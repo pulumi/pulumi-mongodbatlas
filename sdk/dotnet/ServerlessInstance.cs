@@ -10,6 +10,41 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `mongodbatlas.ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
+    /// 
+    /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
+    /// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+    /// 
+    /// ## Example Usage
+    /// ### Basic
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.ServerlessInstance("test", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         ProviderSettingsBackingProviderName = "AWS",
+    ///         ProviderSettingsProviderName = "SERVERLESS",
+    ///         ProviderSettingsRegionName = "US_EAST_1",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
+    /// That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
+    /// and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+    /// 
+    /// Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
+    /// When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+    /// 
+    /// Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+    /// 
     /// ## Import
     /// 
     /// Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.

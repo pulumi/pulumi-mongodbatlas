@@ -10,6 +10,71 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+    /// This is the second of two resources required to configure PrivateLink for Serverless, the first is mongodbatlas_privatelink_endpoint_serverless.
+    /// 
+    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+    /// **NOTE:** Create waits for all serverless instances on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation of this resource. Default timeout is 2hrs.
+    /// 
+    /// ## Example with AWS
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("testServerlessInstance", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         ProviderSettingsBackingProviderName = "AWS",
+    ///         ProviderSettingsProviderName = "SERVERLESS",
+    ///         ProviderSettingsRegionName = "US_EAST_1",
+    ///         ContinuousBackupEnabled = true,
+    ///     });
+    /// 
+    ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         InstanceName = testServerlessInstance.Name,
+    ///         ProviderName = "AWS",
+    ///     });
+    /// 
+    ///     var ptfeService = new Aws.Ec2.VpcEndpoint("ptfeService", new()
+    ///     {
+    ///         VpcId = "vpc-7fc0a543",
+    ///         ServiceName = testPrivatelinkEndpointServerless.EndpointServiceName,
+    ///         VpcEndpointType = "Interface",
+    ///         SubnetIds = new[]
+    ///         {
+    ///             "subnet-de0406d2",
+    ///         },
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             "sg-3f238186",
+    ///         },
+    ///     });
+    /// 
+    ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         InstanceName = testServerlessInstance.Name,
+    ///         EndpointId = testPrivatelinkEndpointServerless.EndpointId,
+    ///         CloudProviderEndpointId = ptfeService.Id,
+    ///         ProviderName = "AWS",
+    ///         Comment = "New serverless endpoint",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Example with AZURE
+    /// ### Available complete examples
+    /// - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+    /// 
     /// ## Import
     /// 
     /// Serverless privatelink endpoint can be imported using project ID and endpoint ID, in the format `project_id`--`endpoint_id`, e.g.

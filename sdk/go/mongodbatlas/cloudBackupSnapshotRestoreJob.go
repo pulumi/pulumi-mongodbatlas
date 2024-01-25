@@ -12,6 +12,70 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+// ### Example of a point in time restore
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// clusterTest, err := mongodbatlas.NewCluster(ctx, "clusterTest", &mongodbatlas.ClusterArgs{
+// ProjectId: pulumi.Any(mongodbatlas_project.Project_test.Id),
+// ProviderName: pulumi.String("AWS"),
+// ProviderRegionName: pulumi.String("US_EAST_1"),
+// ProviderInstanceSizeName: pulumi.String("M10"),
+// CloudBackup: pulumi.Bool(true),
+// PitEnabled: pulumi.Bool(true),
+// })
+// if err != nil {
+// return err
+// }
+// testCloudBackupSnapshot, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "testCloudBackupSnapshot", &mongodbatlas.CloudBackupSnapshotArgs{
+// ProjectId: clusterTest.ProjectId,
+// ClusterName: clusterTest.Name,
+// Description: pulumi.String("My description"),
+// RetentionInDays: pulumi.Int(1),
+// })
+// if err != nil {
+// return err
+// }
+// var testCloudBackupSnapshotRestoreJob []*mongodbatlas.CloudBackupSnapshotRestoreJob
+//
+//	for index := 0; index < ()%!v(PANIC=Format method: fatal: A failure has occurred: unlowered conditional expression @ #-resources-mongodbatlas:index-cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob.pp:18,19-61) == true; index++ {
+//	    key0 := index
+//	    _ := index
+//
+// __res, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, fmt.Sprintf("testCloudBackupSnapshotRestoreJob-%v", key0), &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
+// ProjectId: testCloudBackupSnapshot.ProjectId,
+// ClusterName: testCloudBackupSnapshot.ClusterName,
+// SnapshotId: testCloudBackupSnapshot.ID(),
+// DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
+// PointInTime: pulumi.Bool(true),
+// TargetClusterName: clusterTest.Name,
+// TargetProjectId: clusterTest.ProjectId,
+// PointInTimeUtcSeconds: pulumi.Any(_var.Point_in_time_utc_seconds),
+// },
+// })
+// if err != nil {
+// return err
+// }
+// testCloudBackupSnapshotRestoreJob = append(testCloudBackupSnapshotRestoreJob, __res)
+// }
+// return nil
+// })
+// }
+// ```
+// ### Available complete examples
+// - Restore from automated backup snapshot
+// - Restore from backup snapshot download
+// - Restore from backup snapshot at point in time
+//
 // ## Import
 //
 // Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.

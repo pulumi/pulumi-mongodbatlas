@@ -314,6 +314,30 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        `PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a Private Endpoint Service that can be created in an Atlas project.
+
+        > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
+          * Organization Owner
+          * Project Owner
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        > **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.PrivateLinkEndpoint("test",
+            project_id="<PROJECT-ID>",
+            provider_name="AWS/AZURE",
+            region="US_EAST_1")
+        ```
+        ### Available complete examples
+        - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+
         ## Import
 
         Private Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.
@@ -337,6 +361,30 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                  args: PrivateLinkEndpointArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a Private Endpoint Service that can be created in an Atlas project.
+
+        > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
+          * Organization Owner
+          * Project Owner
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        > **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.PrivateLinkEndpoint("test",
+            project_id="<PROJECT-ID>",
+            provider_name="AWS/AZURE",
+            region="US_EAST_1")
+        ```
+        ### Available complete examples
+        - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+
         ## Import
 
         Private Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.

@@ -1443,6 +1443,178 @@ class Cluster(pulumi.CustomResource):
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+        ### Example AWS cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            auto_scaling_disk_gb_enabled=True,
+            cloud_backup=True,
+            cluster_type="REPLICASET",
+            mongo_db_major_version="4.2",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M40",
+            provider_name="AWS",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                    region_name="US_EAST_1",
+                )],
+            )])
+        ```
+        ### Example Azure cluster.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Cluster("test",
+            auto_scaling_disk_gb_enabled=True,
+            cloud_backup=True,
+            cluster_type="REPLICASET",
+            mongo_db_major_version="4.2",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_disk_type_name="P6",
+            provider_instance_size_name="M30",
+            provider_name="AZURE",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                    region_name="US_EAST",
+                )],
+            )])
+        ```
+        ### Example GCP cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Cluster("test",
+            auto_scaling_disk_gb_enabled=True,
+            cloud_backup=True,
+            cluster_type="REPLICASET",
+            mongo_db_major_version="4.2",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M30",
+            provider_name="GCP",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                    region_name="EASTERN_US",
+                )],
+            )])
+        ```
+        ### Example Multi Region cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            cloud_backup=True,
+            cluster_type="REPLICASET",
+            num_shards=1,
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M10",
+            provider_name="AWS",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[
+                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                        region_name="US_EAST_1",
+                    ),
+                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=2,
+                        priority=6,
+                        read_only_nodes=0,
+                        region_name="US_EAST_2",
+                    ),
+                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=2,
+                        priority=5,
+                        read_only_nodes=2,
+                        region_name="US_WEST_1",
+                    ),
+                ],
+            )])
+        ```
+        ### Example Global cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            cloud_backup=True,
+            cluster_type="GEOSHARDED",
+            num_shards=1,
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M30",
+            provider_name="AWS",
+            replication_specs=[
+                mongodbatlas.ClusterReplicationSpecArgs(
+                    num_shards=2,
+                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                        region_name="US_EAST_1",
+                    )],
+                    zone_name="Zone 1",
+                ),
+                mongodbatlas.ClusterReplicationSpecArgs(
+                    num_shards=2,
+                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                        region_name="EU_CENTRAL_1",
+                    )],
+                    zone_name="Zone 2",
+                ),
+            ])
+        ```
+        ### Example AWS Shared Tier (M2/M5) cluster
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            backing_provider_name="AWS",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M2",
+            provider_name="TENANT",
+            provider_region_name="US_EAST_1")
+        ```
+        ### Example AWS Free Tier cluster
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            backing_provider_name="AWS",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M0",
+            provider_name="TENANT",
+            provider_region_name="US_EAST_1")
+        ```
+
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -1521,6 +1693,178 @@ class Cluster(pulumi.CustomResource):
                  args: ClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+        ### Example AWS cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            auto_scaling_disk_gb_enabled=True,
+            cloud_backup=True,
+            cluster_type="REPLICASET",
+            mongo_db_major_version="4.2",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M40",
+            provider_name="AWS",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                    region_name="US_EAST_1",
+                )],
+            )])
+        ```
+        ### Example Azure cluster.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Cluster("test",
+            auto_scaling_disk_gb_enabled=True,
+            cloud_backup=True,
+            cluster_type="REPLICASET",
+            mongo_db_major_version="4.2",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_disk_type_name="P6",
+            provider_instance_size_name="M30",
+            provider_name="AZURE",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                    region_name="US_EAST",
+                )],
+            )])
+        ```
+        ### Example GCP cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Cluster("test",
+            auto_scaling_disk_gb_enabled=True,
+            cloud_backup=True,
+            cluster_type="REPLICASET",
+            mongo_db_major_version="4.2",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M30",
+            provider_name="GCP",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                    region_name="EASTERN_US",
+                )],
+            )])
+        ```
+        ### Example Multi Region cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            cloud_backup=True,
+            cluster_type="REPLICASET",
+            num_shards=1,
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M10",
+            provider_name="AWS",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[
+                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                        region_name="US_EAST_1",
+                    ),
+                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=2,
+                        priority=6,
+                        read_only_nodes=0,
+                        region_name="US_EAST_2",
+                    ),
+                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=2,
+                        priority=5,
+                        read_only_nodes=2,
+                        region_name="US_WEST_1",
+                    ),
+                ],
+            )])
+        ```
+        ### Example Global cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            cloud_backup=True,
+            cluster_type="GEOSHARDED",
+            num_shards=1,
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M30",
+            provider_name="AWS",
+            replication_specs=[
+                mongodbatlas.ClusterReplicationSpecArgs(
+                    num_shards=2,
+                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                        region_name="US_EAST_1",
+                    )],
+                    zone_name="Zone 1",
+                ),
+                mongodbatlas.ClusterReplicationSpecArgs(
+                    num_shards=2,
+                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                        region_name="EU_CENTRAL_1",
+                    )],
+                    zone_name="Zone 2",
+                ),
+            ])
+        ```
+        ### Example AWS Shared Tier (M2/M5) cluster
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            backing_provider_name="AWS",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M2",
+            provider_name="TENANT",
+            provider_region_name="US_EAST_1")
+        ```
+        ### Example AWS Free Tier cluster
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            backing_provider_name="AWS",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M0",
+            provider_name="TENANT",
+            provider_region_name="US_EAST_1")
+        ```
+
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.LdapConfiguration` provides an LDAP Configuration resource. This allows an LDAP configuration for an Atlas project to be crated and managed. This endpoint doesn’t verify connectivity using the provided LDAP over TLS configuration details. To verify a configuration before saving it, use the resource to verify the LDAP configuration.
+ *
  * ## Example Usage
  *
  * ```typescript

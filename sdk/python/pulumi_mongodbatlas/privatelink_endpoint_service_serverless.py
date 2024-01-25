@@ -293,6 +293,48 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+        This is the second of two resources required to configure PrivateLink for Serverless, the first is mongodbatlas_privatelink_endpoint_serverless.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        **NOTE:** Create waits for all serverless instances on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation of this resource. Default timeout is 2hrs.
+
+        ## Example with AWS
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
+            project_id="<PROJECT_ID>",
+            provider_settings_backing_provider_name="AWS",
+            provider_settings_provider_name="SERVERLESS",
+            provider_settings_region_name="US_EAST_1",
+            continuous_backup_enabled=True)
+        test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
+            project_id="<PROJECT_ID>",
+            instance_name=test_serverless_instance.name,
+            provider_name="AWS")
+        ptfe_service = aws.ec2.VpcEndpoint("ptfeService",
+            vpc_id="vpc-7fc0a543",
+            service_name=test_privatelink_endpoint_serverless.endpoint_service_name,
+            vpc_endpoint_type="Interface",
+            subnet_ids=["subnet-de0406d2"],
+            security_group_ids=["sg-3f238186"])
+        test_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless",
+            project_id="<PROJECT_ID>",
+            instance_name=test_serverless_instance.name,
+            endpoint_id=test_privatelink_endpoint_serverless.endpoint_id,
+            cloud_provider_endpoint_id=ptfe_service.id,
+            provider_name="AWS",
+            comment="New serverless endpoint")
+        ```
+
+        ## Example with AZURE
+        ### Available complete examples
+        - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+
         ## Import
 
         Serverless privatelink endpoint can be imported using project ID and endpoint ID, in the format `project_id`--`endpoint_id`, e.g.
@@ -319,6 +361,48 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
                  args: PrivatelinkEndpointServiceServerlessArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+        This is the second of two resources required to configure PrivateLink for Serverless, the first is mongodbatlas_privatelink_endpoint_serverless.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        **NOTE:** Create waits for all serverless instances on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation of this resource. Default timeout is 2hrs.
+
+        ## Example with AWS
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
+            project_id="<PROJECT_ID>",
+            provider_settings_backing_provider_name="AWS",
+            provider_settings_provider_name="SERVERLESS",
+            provider_settings_region_name="US_EAST_1",
+            continuous_backup_enabled=True)
+        test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
+            project_id="<PROJECT_ID>",
+            instance_name=test_serverless_instance.name,
+            provider_name="AWS")
+        ptfe_service = aws.ec2.VpcEndpoint("ptfeService",
+            vpc_id="vpc-7fc0a543",
+            service_name=test_privatelink_endpoint_serverless.endpoint_service_name,
+            vpc_endpoint_type="Interface",
+            subnet_ids=["subnet-de0406d2"],
+            security_group_ids=["sg-3f238186"])
+        test_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless",
+            project_id="<PROJECT_ID>",
+            instance_name=test_serverless_instance.name,
+            endpoint_id=test_privatelink_endpoint_serverless.endpoint_id,
+            cloud_provider_endpoint_id=ptfe_service.id,
+            provider_name="AWS",
+            comment="New serverless endpoint")
+        ```
+
+        ## Example with AZURE
+        ### Available complete examples
+        - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+
         ## Import
 
         Serverless privatelink endpoint can be imported using project ID and endpoint ID, in the format `project_id`--`endpoint_id`, e.g.

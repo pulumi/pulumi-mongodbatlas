@@ -52,6 +52,9 @@ namespace Pulumi.Mongodbatlas
         [Output("stateName")]
         public Output<string> StateName { get; private set; } = null!;
 
+        /// <summary>
+        /// The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+        /// </summary>
         [Output("timeouts")]
         public Output<Outputs.SearchDeploymentTimeouts?> Timeouts { get; private set; } = null!;
 
@@ -125,6 +128,9 @@ namespace Pulumi.Mongodbatlas
             set => _specs = value;
         }
 
+        /// <summary>
+        /// The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+        /// </summary>
         [Input("timeouts")]
         public Input<Inputs.SearchDeploymentTimeoutsArgs>? Timeouts { get; set; }
 
@@ -166,6 +172,9 @@ namespace Pulumi.Mongodbatlas
         [Input("stateName")]
         public Input<string>? StateName { get; set; }
 
+        /// <summary>
+        /// The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+        /// </summary>
         [Input("timeouts")]
         public Input<Inputs.SearchDeploymentTimeoutsGetArgs>? Timeouts { get; set; }
 

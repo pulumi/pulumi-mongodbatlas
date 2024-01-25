@@ -10,6 +10,59 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## Example Usage
+    /// ### Example of a point in time restore
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var clusterTest = new Mongodbatlas.Cluster("clusterTest", new()
+    ///     {
+    ///         ProjectId = mongodbatlas_project.Project_test.Id,
+    ///         ProviderName = "AWS",
+    ///         ProviderRegionName = "US_EAST_1",
+    ///         ProviderInstanceSizeName = "M10",
+    ///         CloudBackup = true,
+    ///         PitEnabled = true,
+    ///     });
+    /// 
+    ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", new()
+    ///     {
+    ///         ProjectId = clusterTest.ProjectId,
+    ///         ClusterName = clusterTest.Name,
+    ///         Description = "My description",
+    ///         RetentionInDays = 1,
+    ///     });
+    /// 
+    ///     var testCloudBackupSnapshotRestoreJob = new List&lt;Mongodbatlas.CloudBackupSnapshotRestoreJob&gt;();
+    ///     for (var rangeIndex = 0; rangeIndex &lt; ((@var.Point_in_time_utc_seconds == 0 ? 0 : 1) == true); rangeIndex++)
+    ///     {
+    ///         var range = new { Value = rangeIndex };
+    ///         testCloudBackupSnapshotRestoreJob.Add(new Mongodbatlas.CloudBackupSnapshotRestoreJob($"testCloudBackupSnapshotRestoreJob-{range.Value}", new()
+    ///         {
+    ///             ProjectId = testCloudBackupSnapshot.ProjectId,
+    ///             ClusterName = testCloudBackupSnapshot.ClusterName,
+    ///             SnapshotId = testCloudBackupSnapshot.Id,
+    ///             DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
+    ///             {
+    ///                 PointInTime = true,
+    ///                 TargetClusterName = clusterTest.Name,
+    ///                 TargetProjectId = clusterTest.ProjectId,
+    ///                 PointInTimeUtcSeconds = @var.Point_in_time_utc_seconds,
+    ///             },
+    ///         }));
+    ///     }
+    /// });
+    /// ```
+    /// ### Available complete examples
+    /// - Restore from automated backup snapshot
+    /// - Restore from backup snapshot download
+    /// - Restore from backup snapshot at point in time
+    /// 
     /// ## Import
     /// 
     /// Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.

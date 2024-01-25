@@ -18,6 +18,74 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## Example Usage
+ * ### Example of a point in time restore
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
+ * import com.pulumi.codegen.internal.KeyedValue;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var clusterTest = new Cluster(&#34;clusterTest&#34;, ClusterArgs.builder()        
+ *             .projectId(mongodbatlas_project.project_test().id())
+ *             .providerName(&#34;AWS&#34;)
+ *             .providerRegionName(&#34;US_EAST_1&#34;)
+ *             .providerInstanceSizeName(&#34;M10&#34;)
+ *             .cloudBackup(true)
+ *             .pitEnabled(true)
+ *             .build());
+ * 
+ *         var testCloudBackupSnapshot = new CloudBackupSnapshot(&#34;testCloudBackupSnapshot&#34;, CloudBackupSnapshotArgs.builder()        
+ *             .projectId(clusterTest.projectId())
+ *             .clusterName(clusterTest.name())
+ *             .description(&#34;My description&#34;)
+ *             .retentionInDays(&#34;1&#34;)
+ *             .build());
+ * 
+ *         for (var i = 0; i &lt; ((var_.point_in_time_utc_seconds() == 0 ? 0 : 1) == true); i++) {
+ *             new CloudBackupSnapshotRestoreJob(&#34;testCloudBackupSnapshotRestoreJob-&#34; + i, CloudBackupSnapshotRestoreJobArgs.builder()            
+ *                 .projectId(testCloudBackupSnapshot.projectId())
+ *                 .clusterName(testCloudBackupSnapshot.clusterName())
+ *                 .snapshotId(testCloudBackupSnapshot.id())
+ *                 .deliveryTypeConfig(CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs.builder()
+ *                     .pointInTime(true)
+ *                     .targetClusterName(clusterTest.name())
+ *                     .targetProjectId(clusterTest.projectId())
+ *                     .pointInTimeUtcSeconds(var_.point_in_time_utc_seconds())
+ *                     .build())
+ *                 .build());
+ * 
+ *         
+ * }
+ *     }
+ * }
+ * ```
+ * ### Available complete examples
+ * - Restore from automated backup snapshot
+ * - Restore from backup snapshot download
+ * - Restore from backup snapshot at point in time
+ * 
  * ## Import
  * 
  * Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.

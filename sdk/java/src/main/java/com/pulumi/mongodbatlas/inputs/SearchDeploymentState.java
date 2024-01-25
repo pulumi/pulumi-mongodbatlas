@@ -78,9 +78,17 @@ public final class SearchDeploymentState extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.stateName);
     }
 
+    /**
+     * The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+     * 
+     */
     @Import(name="timeouts")
     private @Nullable Output<SearchDeploymentTimeoutsArgs> timeouts;
 
+    /**
+     * @return The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+     * 
+     */
     public Optional<Output<SearchDeploymentTimeoutsArgs>> timeouts() {
         return Optional.ofNullable(this.timeouts);
     }
@@ -207,11 +215,23 @@ public final class SearchDeploymentState extends com.pulumi.resources.ResourceAr
             return stateName(Output.of(stateName));
         }
 
+        /**
+         * @param timeouts The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timeouts(@Nullable Output<SearchDeploymentTimeoutsArgs> timeouts) {
             $.timeouts = timeouts;
             return this;
         }
 
+        /**
+         * @param timeouts The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timeouts(SearchDeploymentTimeoutsArgs timeouts) {
             return timeouts(Output.of(timeouts));
         }

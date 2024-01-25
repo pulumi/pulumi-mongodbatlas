@@ -66,6 +66,9 @@ export class SearchDeployment extends pulumi.CustomResource {
      * Human-readable label that indicates the current operating condition of this search node deployment.
      */
     public /*out*/ readonly stateName!: pulumi.Output<string>;
+    /**
+     * The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+     */
     public readonly timeouts!: pulumi.Output<outputs.SearchDeploymentTimeouts | undefined>;
 
     /**
@@ -128,6 +131,9 @@ export interface SearchDeploymentState {
      * Human-readable label that indicates the current operating condition of this search node deployment.
      */
     stateName?: pulumi.Input<string>;
+    /**
+     * The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+     */
     timeouts?: pulumi.Input<inputs.SearchDeploymentTimeouts>;
 }
 
@@ -147,5 +153,8 @@ export interface SearchDeploymentArgs {
      * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
      */
     specs: pulumi.Input<pulumi.Input<inputs.SearchDeploymentSpec>[]>;
+    /**
+     * The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+     */
     timeouts?: pulumi.Input<inputs.SearchDeploymentTimeouts>;
 }
