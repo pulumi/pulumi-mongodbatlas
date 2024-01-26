@@ -12,6 +12,49 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
+//
+// > **NOTE:**  Serverless instances do not support some Atlas features at this time.
+// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+//
+// ## Example Usage
+// ### Basic
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewServerlessInstance(ctx, "test", &mongodbatlas.ServerlessInstanceArgs{
+//				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				ProviderSettingsBackingProviderName: pulumi.String("AWS"),
+//				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
+//				ProviderSettingsRegionName:          pulumi.String("US_EAST_1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
+// That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
+// and the `privatelinkEndpointService` must exist before the `serverlessInstance` gets its respective `connectionStringsPrivateEndpointSrv` values.
+//
+// Because of this, the `serverlessInstance` data source has particular value as a source of the `connectionStringsPrivateEndpointSrv`.\
+// When using the dataSource in-tandem with the afforementioned resources, we can create and retrieve the `connectionStringsPrivateEndpointSrv` in a single `pulumi up`.
+//
+// Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+//
 // ## Import
 //
 // Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.

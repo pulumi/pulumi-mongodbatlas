@@ -26,6 +26,323 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## Example Usage
+ * ### Example AWS cluster
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
+ *             .autoScalingDiskGbEnabled(true)
+ *             .cloudBackup(true)
+ *             .clusterType(&#34;REPLICASET&#34;)
+ *             .mongoDbMajorVersion(&#34;4.2&#34;)
+ *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .providerInstanceSizeName(&#34;M40&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
+ *                 .numShards(1)
+ *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                     .electableNodes(3)
+ *                     .priority(7)
+ *                     .readOnlyNodes(0)
+ *                     .regionName(&#34;US_EAST_1&#34;)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Example Azure cluster.
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
+ *             .autoScalingDiskGbEnabled(true)
+ *             .cloudBackup(true)
+ *             .clusterType(&#34;REPLICASET&#34;)
+ *             .mongoDbMajorVersion(&#34;4.2&#34;)
+ *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .providerDiskTypeName(&#34;P6&#34;)
+ *             .providerInstanceSizeName(&#34;M30&#34;)
+ *             .providerName(&#34;AZURE&#34;)
+ *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
+ *                 .numShards(1)
+ *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                     .electableNodes(3)
+ *                     .priority(7)
+ *                     .readOnlyNodes(0)
+ *                     .regionName(&#34;US_EAST&#34;)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Example GCP cluster
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
+ *             .autoScalingDiskGbEnabled(true)
+ *             .cloudBackup(true)
+ *             .clusterType(&#34;REPLICASET&#34;)
+ *             .mongoDbMajorVersion(&#34;4.2&#34;)
+ *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .providerInstanceSizeName(&#34;M30&#34;)
+ *             .providerName(&#34;GCP&#34;)
+ *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
+ *                 .numShards(1)
+ *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                     .electableNodes(3)
+ *                     .priority(7)
+ *                     .readOnlyNodes(0)
+ *                     .regionName(&#34;EASTERN_US&#34;)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Example Multi Region cluster
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
+ *             .cloudBackup(true)
+ *             .clusterType(&#34;REPLICASET&#34;)
+ *             .numShards(1)
+ *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .providerInstanceSizeName(&#34;M10&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
+ *                 .numShards(1)
+ *                 .regionsConfigs(                
+ *                     ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                         .electableNodes(3)
+ *                         .priority(7)
+ *                         .readOnlyNodes(0)
+ *                         .regionName(&#34;US_EAST_1&#34;)
+ *                         .build(),
+ *                     ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                         .electableNodes(2)
+ *                         .priority(6)
+ *                         .readOnlyNodes(0)
+ *                         .regionName(&#34;US_EAST_2&#34;)
+ *                         .build(),
+ *                     ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                         .electableNodes(2)
+ *                         .priority(5)
+ *                         .readOnlyNodes(2)
+ *                         .regionName(&#34;US_WEST_1&#34;)
+ *                         .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Example Global cluster
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
+ *             .cloudBackup(true)
+ *             .clusterType(&#34;GEOSHARDED&#34;)
+ *             .numShards(1)
+ *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .providerInstanceSizeName(&#34;M30&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .replicationSpecs(            
+ *                 ClusterReplicationSpecArgs.builder()
+ *                     .numShards(2)
+ *                     .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                         .electableNodes(3)
+ *                         .priority(7)
+ *                         .readOnlyNodes(0)
+ *                         .regionName(&#34;US_EAST_1&#34;)
+ *                         .build())
+ *                     .zoneName(&#34;Zone 1&#34;)
+ *                     .build(),
+ *                 ClusterReplicationSpecArgs.builder()
+ *                     .numShards(2)
+ *                     .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                         .electableNodes(3)
+ *                         .priority(7)
+ *                         .readOnlyNodes(0)
+ *                         .regionName(&#34;EU_CENTRAL_1&#34;)
+ *                         .build())
+ *                     .zoneName(&#34;Zone 2&#34;)
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Example AWS Shared Tier (M2/M5) cluster
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
+ *             .backingProviderName(&#34;AWS&#34;)
+ *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .providerInstanceSizeName(&#34;M2&#34;)
+ *             .providerName(&#34;TENANT&#34;)
+ *             .providerRegionName(&#34;US_EAST_1&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Example AWS Free Tier cluster
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
+ *             .backingProviderName(&#34;AWS&#34;)
+ *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .providerInstanceSizeName(&#34;M0&#34;)
+ *             .providerName(&#34;TENANT&#34;)
+ *             .providerRegionName(&#34;US_EAST_1&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

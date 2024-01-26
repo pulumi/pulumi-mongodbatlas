@@ -418,6 +418,33 @@ class ServerlessInstance(pulumi.CustomResource):
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
+        `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
+
+        > **NOTE:**  Serverless instances do not support some Atlas features at this time.
+        For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+
+        ## Example Usage
+        ### Basic
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ServerlessInstance("test",
+            project_id="<PROJECT_ID>",
+            provider_settings_backing_provider_name="AWS",
+            provider_settings_provider_name="SERVERLESS",
+            provider_settings_region_name="US_EAST_1")
+        ```
+
+        **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
+        That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\
+        and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+
+        Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\\
+        When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+
+        Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+
         ## Import
 
         Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.
@@ -447,6 +474,33 @@ class ServerlessInstance(pulumi.CustomResource):
                  args: ServerlessInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
+
+        > **NOTE:**  Serverless instances do not support some Atlas features at this time.
+        For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+
+        ## Example Usage
+        ### Basic
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ServerlessInstance("test",
+            project_id="<PROJECT_ID>",
+            provider_settings_backing_provider_name="AWS",
+            provider_settings_provider_name="SERVERLESS",
+            provider_settings_region_name="US_EAST_1")
+        ```
+
+        **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
+        That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\
+        and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+
+        Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\\
+        When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+
+        Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+
         ## Import
 
         Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.

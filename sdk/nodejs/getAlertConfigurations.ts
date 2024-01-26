@@ -6,6 +6,11 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ */
 export function getAlertConfigurations(args: GetAlertConfigurationsArgs, opts?: pulumi.InvokeOptions): Promise<GetAlertConfigurationsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -57,6 +62,11 @@ export interface GetAlertConfigurationsResult {
      */
     readonly totalCount: number;
 }
+/**
+ * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ */
 export function getAlertConfigurationsOutput(args: GetAlertConfigurationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlertConfigurationsResult> {
     return pulumi.output(args).apply((a: any) => getAlertConfigurations(a, opts))
 }

@@ -325,6 +325,42 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+        ### Example of a point in time restore
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("clusterTest",
+            project_id=mongodbatlas_project["project_test"]["id"],
+            provider_name="AWS",
+            provider_region_name="US_EAST_1",
+            provider_instance_size_name="M10",
+            cloud_backup=True,
+            pit_enabled=True)
+        test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
+            project_id=cluster_test.project_id,
+            cluster_name=cluster_test.name,
+            description="My description",
+            retention_in_days=1)
+        test_cloud_backup_snapshot_restore_job = None
+        if (0 if var.point_in_time_utc_seconds == 0 else 1) == True:
+            test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
+                project_id=test_cloud_backup_snapshot.project_id,
+                cluster_name=test_cloud_backup_snapshot.cluster_name,
+                snapshot_id=test_cloud_backup_snapshot.id,
+                delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
+                    point_in_time=True,
+                    target_cluster_name=cluster_test.name,
+                    target_project_id=cluster_test.project_id,
+                    point_in_time_utc_seconds=var["point_in_time_utc_seconds"],
+                ))
+        ```
+        ### Available complete examples
+        - Restore from automated backup snapshot
+        - Restore from backup snapshot download
+        - Restore from backup snapshot at point in time
+
         ## Import
 
         Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.
@@ -356,6 +392,42 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                  args: CloudBackupSnapshotRestoreJobArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+        ### Example of a point in time restore
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("clusterTest",
+            project_id=mongodbatlas_project["project_test"]["id"],
+            provider_name="AWS",
+            provider_region_name="US_EAST_1",
+            provider_instance_size_name="M10",
+            cloud_backup=True,
+            pit_enabled=True)
+        test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
+            project_id=cluster_test.project_id,
+            cluster_name=cluster_test.name,
+            description="My description",
+            retention_in_days=1)
+        test_cloud_backup_snapshot_restore_job = None
+        if (0 if var.point_in_time_utc_seconds == 0 else 1) == True:
+            test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
+                project_id=test_cloud_backup_snapshot.project_id,
+                cluster_name=test_cloud_backup_snapshot.cluster_name,
+                snapshot_id=test_cloud_backup_snapshot.id,
+                delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
+                    point_in_time=True,
+                    target_cluster_name=cluster_test.name,
+                    target_project_id=cluster_test.project_id,
+                    point_in_time_utc_seconds=var["point_in_time_utc_seconds"],
+                ))
+        ```
+        ### Available complete examples
+        - Restore from automated backup snapshot
+        - Restore from backup snapshot download
+        - Restore from backup snapshot at point in time
+
         ## Import
 
         Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.

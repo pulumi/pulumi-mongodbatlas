@@ -209,7 +209,31 @@ def get_serverless_instance(continuous_backup_enabled: Optional[bool] = None,
                             state_name: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerlessInstanceResult:
     """
-    Use this data source to access information about an existing resource.
+    `ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+    > **NOTE:**  Serverless instances do not support some Atlas features at this time.
+    For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+    ### Basic
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_two = mongodbatlas.get_serverless_instance(name="<SERVERLESS_INSTANCE_NAME>",
+        project_id="<PROJECT_ID >")
+    ```
+
+    **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
+    That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\
+    and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+
+    Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\\
+    When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+
+    Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+
 
     :param bool continuous_backup_enabled: Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
     :param str name: Human-readable label that identifies your serverless instance.
@@ -251,7 +275,31 @@ def get_serverless_instance_output(continuous_backup_enabled: Optional[pulumi.In
                                    state_name: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServerlessInstanceResult]:
     """
-    Use this data source to access information about an existing resource.
+    `ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+    > **NOTE:**  Serverless instances do not support some Atlas features at this time.
+    For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+    ### Basic
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_two = mongodbatlas.get_serverless_instance(name="<SERVERLESS_INSTANCE_NAME>",
+        project_id="<PROJECT_ID >")
+    ```
+
+    **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
+    That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\
+    and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+
+    Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\\
+    When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+
+    Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+
 
     :param bool continuous_backup_enabled: Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
     :param str name: Human-readable label that identifies your serverless instance.

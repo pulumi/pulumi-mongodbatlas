@@ -39,8 +39,9 @@ type SearchDeployment struct {
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
 	Specs SearchDeploymentSpecArrayOutput `pulumi:"specs"`
 	// Human-readable label that indicates the current operating condition of this search node deployment.
-	StateName pulumi.StringOutput               `pulumi:"stateName"`
-	Timeouts  SearchDeploymentTimeoutsPtrOutput `pulumi:"timeouts"`
+	StateName pulumi.StringOutput `pulumi:"stateName"`
+	// The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+	Timeouts SearchDeploymentTimeoutsPtrOutput `pulumi:"timeouts"`
 }
 
 // NewSearchDeployment registers a new resource with the given unique name, arguments, and options.
@@ -89,8 +90,9 @@ type searchDeploymentState struct {
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
 	Specs []SearchDeploymentSpec `pulumi:"specs"`
 	// Human-readable label that indicates the current operating condition of this search node deployment.
-	StateName *string                   `pulumi:"stateName"`
-	Timeouts  *SearchDeploymentTimeouts `pulumi:"timeouts"`
+	StateName *string `pulumi:"stateName"`
+	// The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+	Timeouts *SearchDeploymentTimeouts `pulumi:"timeouts"`
 }
 
 type SearchDeploymentState struct {
@@ -102,7 +104,8 @@ type SearchDeploymentState struct {
 	Specs SearchDeploymentSpecArrayInput
 	// Human-readable label that indicates the current operating condition of this search node deployment.
 	StateName pulumi.StringPtrInput
-	Timeouts  SearchDeploymentTimeoutsPtrInput
+	// The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+	Timeouts SearchDeploymentTimeoutsPtrInput
 }
 
 func (SearchDeploymentState) ElementType() reflect.Type {
@@ -115,7 +118,8 @@ type searchDeploymentArgs struct {
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
-	Specs    []SearchDeploymentSpec    `pulumi:"specs"`
+	Specs []SearchDeploymentSpec `pulumi:"specs"`
+	// The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
 	Timeouts *SearchDeploymentTimeouts `pulumi:"timeouts"`
 }
 
@@ -126,7 +130,8 @@ type SearchDeploymentArgs struct {
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
-	Specs    SearchDeploymentSpecArrayInput
+	Specs SearchDeploymentSpecArrayInput
+	// The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
 	Timeouts SearchDeploymentTimeoutsPtrInput
 }
 
@@ -237,6 +242,7 @@ func (o SearchDeploymentOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchDeployment) pulumi.StringOutput { return v.StateName }).(pulumi.StringOutput)
 }
 
+// The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
 func (o SearchDeploymentOutput) Timeouts() SearchDeploymentTimeoutsPtrOutput {
 	return o.ApplyT(func(v *SearchDeployment) SearchDeploymentTimeoutsPtrOutput { return v.Timeouts }).(SearchDeploymentTimeoutsPtrOutput)
 }

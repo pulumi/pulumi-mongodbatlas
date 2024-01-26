@@ -373,6 +373,8 @@ class LdapConfiguration(pulumi.CustomResource):
                  user_to_dn_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LdapConfigurationUserToDnMappingArgs']]]]] = None,
                  __props__=None):
         """
+        `LdapConfiguration` provides an LDAP Configuration resource. This allows an LDAP configuration for an Atlas project to be crated and managed. This endpoint doesn’t verify connectivity using the provided LDAP over TLS configuration details. To verify a configuration before saving it, use the resource to verify the LDAP configuration.
+
         ## Example Usage
 
         ```python
@@ -442,6 +444,8 @@ class LdapConfiguration(pulumi.CustomResource):
                  args: LdapConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `LdapConfiguration` provides an LDAP Configuration resource. This allows an LDAP configuration for an Atlas project to be crated and managed. This endpoint doesn’t verify connectivity using the provided LDAP over TLS configuration details. To verify a configuration before saving it, use the resource to verify the LDAP configuration.
+
         ## Example Usage
 
         ```python

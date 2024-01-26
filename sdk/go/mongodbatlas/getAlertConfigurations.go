@@ -11,6 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 func LookupAlertConfigurations(ctx *pulumi.Context, args *LookupAlertConfigurationsArgs, opts ...pulumi.InvokeOption) (*LookupAlertConfigurationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAlertConfigurationsResult

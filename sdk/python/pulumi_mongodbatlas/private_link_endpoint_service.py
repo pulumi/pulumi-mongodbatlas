@@ -413,6 +413,72 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
+
+        > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
+          * Organization Owner
+          * Project Owner
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        **NOTE:** Create and delete wait for all clusters on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation or deletion of this resource. Default timeout is 2hrs.
+
+        ## Example with AWS
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
+            project_id="<PROJECT_ID>",
+            provider_name="AWS",
+            region="US_EAST_1")
+        ptfe_service = aws.ec2.VpcEndpoint("ptfeService",
+            vpc_id="vpc-7fc0a543",
+            service_name=test_private_link_endpoint.endpoint_service_name,
+            vpc_endpoint_type="Interface",
+            subnet_ids=["subnet-de0406d2"],
+            security_group_ids=["sg-3f238186"])
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
+            project_id=test_private_link_endpoint.project_id,
+            private_link_id=test_private_link_endpoint.private_link_id,
+            endpoint_service_id=ptfe_service.id,
+            provider_name="AWS")
+        ```
+
+        ## Example with Azure
+
+        ```python
+        import pulumi
+        import pulumi_azure as azure
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
+            project_id=var["project_id"],
+            provider_name="AZURE",
+            region="eastus2")
+        test_endpoint = azure.privatelink.Endpoint("testEndpoint",
+            location=data["azurerm_resource_group"]["test"]["location"],
+            resource_group_name=var["resource_group_name"],
+            subnet_id=azurerm_subnet["test"]["id"],
+            private_service_connection=azure.privatelink.EndpointPrivateServiceConnectionArgs(
+                name=test_private_link_endpoint.private_link_service_name,
+                private_connection_resource_id=test_private_link_endpoint.private_link_service_resource_id,
+                is_manual_connection=True,
+                request_message="Azure Private Link test",
+            ))
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
+            project_id=test_private_link_endpoint.project_id,
+            private_link_id=test_private_link_endpoint.private_link_id,
+            endpoint_service_id=test_endpoint.id,
+            private_endpoint_ip_address=test_endpoint.private_service_connection.private_ip_address,
+            provider_name="AZURE")
+        ```
+
+        ## Example with GCP
+        ### Available complete examples
+        - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+
         ## Import
 
         Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
@@ -439,6 +505,72 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  args: PrivateLinkEndpointServiceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
+
+        > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
+          * Organization Owner
+          * Project Owner
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        **NOTE:** Create and delete wait for all clusters on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation or deletion of this resource. Default timeout is 2hrs.
+
+        ## Example with AWS
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
+            project_id="<PROJECT_ID>",
+            provider_name="AWS",
+            region="US_EAST_1")
+        ptfe_service = aws.ec2.VpcEndpoint("ptfeService",
+            vpc_id="vpc-7fc0a543",
+            service_name=test_private_link_endpoint.endpoint_service_name,
+            vpc_endpoint_type="Interface",
+            subnet_ids=["subnet-de0406d2"],
+            security_group_ids=["sg-3f238186"])
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
+            project_id=test_private_link_endpoint.project_id,
+            private_link_id=test_private_link_endpoint.private_link_id,
+            endpoint_service_id=ptfe_service.id,
+            provider_name="AWS")
+        ```
+
+        ## Example with Azure
+
+        ```python
+        import pulumi
+        import pulumi_azure as azure
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
+            project_id=var["project_id"],
+            provider_name="AZURE",
+            region="eastus2")
+        test_endpoint = azure.privatelink.Endpoint("testEndpoint",
+            location=data["azurerm_resource_group"]["test"]["location"],
+            resource_group_name=var["resource_group_name"],
+            subnet_id=azurerm_subnet["test"]["id"],
+            private_service_connection=azure.privatelink.EndpointPrivateServiceConnectionArgs(
+                name=test_private_link_endpoint.private_link_service_name,
+                private_connection_resource_id=test_private_link_endpoint.private_link_service_resource_id,
+                is_manual_connection=True,
+                request_message="Azure Private Link test",
+            ))
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
+            project_id=test_private_link_endpoint.project_id,
+            private_link_id=test_private_link_endpoint.private_link_id,
+            endpoint_service_id=test_endpoint.id,
+            private_endpoint_ip_address=test_endpoint.private_service_connection.private_ip_address,
+            provider_name="AZURE")
+        ```
+
+        ## Example with GCP
+        ### Available complete examples
+        - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+
         ## Import
 
         Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
