@@ -712,15 +712,39 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetAlertConfigurationResult> getAlertConfigurationPlain(GetAlertConfigurationPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", TypeShape.of(GetAlertConfigurationResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     */
     public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args) {
         return getAlertConfigurations(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     */
     public static CompletableFuture<GetAlertConfigurationsInvokeResult> getAlertConfigurationsPlain(GetAlertConfigurationsPlainArgs args) {
         return getAlertConfigurationsPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     */
     public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", TypeShape.of(GetAlertConfigurationsInvokeResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     */
     public static CompletableFuture<GetAlertConfigurationsInvokeResult> getAlertConfigurationsPlain(GetAlertConfigurationsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", TypeShape.of(GetAlertConfigurationsInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -9612,27 +9636,107 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalModePlain(GetPrivateEndpointRegionalModePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", TypeShape.of(GetPrivateEndpointRegionalModeResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * 
+     */
     public static Output<GetPrivateLinkEndpointResult> getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs args) {
         return getPrivateLinkEndpoint(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * 
+     */
     public static CompletableFuture<GetPrivateLinkEndpointResult> getPrivateLinkEndpointPlain(GetPrivateLinkEndpointPlainArgs args) {
         return getPrivateLinkEndpointPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * 
+     */
     public static Output<GetPrivateLinkEndpointResult> getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", TypeShape.of(GetPrivateLinkEndpointResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * 
+     */
     public static CompletableFuture<GetPrivateLinkEndpointResult> getPrivateLinkEndpointPlain(GetPrivateLinkEndpointPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", TypeShape.of(GetPrivateLinkEndpointResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with Azure
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * 
+     */
     public static Output<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs args) {
         return getPrivateLinkEndpointService(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with Azure
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * 
+     */
     public static CompletableFuture<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointServicePlain(GetPrivateLinkEndpointServicePlainArgs args) {
         return getPrivateLinkEndpointServicePlain(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with Azure
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * 
+     */
     public static Output<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", TypeShape.of(GetPrivateLinkEndpointServiceResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with Azure
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * 
+     */
     public static CompletableFuture<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointServicePlain(GetPrivateLinkEndpointServicePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", TypeShape.of(GetPrivateLinkEndpointServiceResult.class), args, Utilities.withVersion(options));
     }
@@ -9660,15 +9764,531 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult> getPrivatelinkEndpointServiceDataFederationOnlineArchivesPlain(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", TypeShape.of(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ## Example with AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+     * 
+     */
     public static Output<GetPrivatelinkEndpointServiceServerlessResult> getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs args) {
         return getPrivatelinkEndpointServiceServerless(args, InvokeOptions.Empty);
     }
+    /**
+     * `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ## Example with AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+     * 
+     */
     public static CompletableFuture<GetPrivatelinkEndpointServiceServerlessResult> getPrivatelinkEndpointServiceServerlessPlain(GetPrivatelinkEndpointServiceServerlessPlainArgs args) {
         return getPrivatelinkEndpointServiceServerlessPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ## Example with AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+     * 
+     */
     public static Output<GetPrivatelinkEndpointServiceServerlessResult> getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", TypeShape.of(GetPrivatelinkEndpointServiceServerlessResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ## Example with AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ### Available complete examples
+     * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+     * 
+     */
     public static CompletableFuture<GetPrivatelinkEndpointServiceServerlessResult> getPrivatelinkEndpointServiceServerlessPlain(GetPrivatelinkEndpointServiceServerlessPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", TypeShape.of(GetPrivatelinkEndpointServiceServerlessResult.class), args, Utilities.withVersion(options));
     }
@@ -11624,15 +12244,211 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetSearchIndexesInvokeResult> getSearchIndexesPlain(GetSearchIndexesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSearchIndexes:getSearchIndexes", TypeShape.of(GetSearchIndexesInvokeResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+     * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var testTwo = MongodbatlasFunctions.getServerlessInstance(GetServerlessInstanceArgs.builder()
+     *             .name(&#34;&lt;SERVERLESS_INSTANCE_NAME&gt;&#34;)
+     *             .projectId(&#34;&lt;PROJECT_ID &gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
+     * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
+     * and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+     * 
+     * Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
+     * When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+     * 
+     * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+     * 
+     */
     public static Output<GetServerlessInstanceResult> getServerlessInstance(GetServerlessInstanceArgs args) {
         return getServerlessInstance(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+     * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var testTwo = MongodbatlasFunctions.getServerlessInstance(GetServerlessInstanceArgs.builder()
+     *             .name(&#34;&lt;SERVERLESS_INSTANCE_NAME&gt;&#34;)
+     *             .projectId(&#34;&lt;PROJECT_ID &gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
+     * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
+     * and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+     * 
+     * Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
+     * When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+     * 
+     * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+     * 
+     */
     public static CompletableFuture<GetServerlessInstanceResult> getServerlessInstancePlain(GetServerlessInstancePlainArgs args) {
         return getServerlessInstancePlain(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+     * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var testTwo = MongodbatlasFunctions.getServerlessInstance(GetServerlessInstanceArgs.builder()
+     *             .name(&#34;&lt;SERVERLESS_INSTANCE_NAME&gt;&#34;)
+     *             .projectId(&#34;&lt;PROJECT_ID &gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
+     * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
+     * and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+     * 
+     * Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
+     * When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+     * 
+     * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+     * 
+     */
     public static Output<GetServerlessInstanceResult> getServerlessInstance(GetServerlessInstanceArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServerlessInstance:getServerlessInstance", TypeShape.of(GetServerlessInstanceResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+     * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ### Basic
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var testTwo = MongodbatlasFunctions.getServerlessInstance(GetServerlessInstanceArgs.builder()
+     *             .name(&#34;&lt;SERVERLESS_INSTANCE_NAME&gt;&#34;)
+     *             .projectId(&#34;&lt;PROJECT_ID &gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
+     * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
+     * and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+     * 
+     * Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
+     * When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+     * 
+     * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+     * 
+     */
     public static CompletableFuture<GetServerlessInstanceResult> getServerlessInstancePlain(GetServerlessInstancePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServerlessInstance:getServerlessInstance", TypeShape.of(GetServerlessInstanceResult.class), args, Utilities.withVersion(options));
     }

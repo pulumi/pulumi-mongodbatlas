@@ -129,9 +129,17 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
     public Output<String> stateName() {
         return this.stateName;
     }
+    /**
+     * The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+     * 
+     */
     @Export(name="timeouts", refs={SearchDeploymentTimeouts.class}, tree="[0]")
     private Output</* @Nullable */ SearchDeploymentTimeouts> timeouts;
 
+    /**
+     * @return The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+     * 
+     */
     public Output<Optional<SearchDeploymentTimeouts>> timeouts() {
         return Codegen.optional(this.timeouts);
     }

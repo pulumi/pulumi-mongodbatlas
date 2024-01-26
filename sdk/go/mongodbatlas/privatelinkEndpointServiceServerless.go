@@ -12,6 +12,80 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `privatelinkEndpointServiceServerless` Provides a Serverless PrivateLink Endpoint Service resource.
+// This is the second of two resources required to configure PrivateLink for Serverless, the first is mongodbatlas_privatelink_endpoint_serverless.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+// **NOTE:** Create waits for all serverless instances on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation of this resource. Default timeout is 2hrs.
+//
+// ## Example with AWS
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "testServerlessInstance", &mongodbatlas.ServerlessInstanceArgs{
+//				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				ProviderSettingsBackingProviderName: pulumi.String("AWS"),
+//				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
+//				ProviderSettingsRegionName:          pulumi.String("US_EAST_1"),
+//				ContinuousBackupEnabled:             pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testPrivatelinkEndpointServerless, err := mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "testPrivatelinkEndpointServerless", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
+//				ProjectId:    pulumi.String("<PROJECT_ID>"),
+//				InstanceName: testServerlessInstance.Name,
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ptfeService, err := ec2.NewVpcEndpoint(ctx, "ptfeService", &ec2.VpcEndpointArgs{
+//				VpcId:           pulumi.String("vpc-7fc0a543"),
+//				ServiceName:     testPrivatelinkEndpointServerless.EndpointServiceName,
+//				VpcEndpointType: pulumi.String("Interface"),
+//				SubnetIds: pulumi.StringArray{
+//					pulumi.String("subnet-de0406d2"),
+//				},
+//				SecurityGroupIds: pulumi.StringArray{
+//					pulumi.String("sg-3f238186"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "testPrivatelinkEndpointServiceServerless", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
+//				ProjectId:               pulumi.String("<PROJECT_ID>"),
+//				InstanceName:            testServerlessInstance.Name,
+//				EndpointId:              testPrivatelinkEndpointServerless.EndpointId,
+//				CloudProviderEndpointId: ptfeService.ID(),
+//				ProviderName:            pulumi.String("AWS"),
+//				Comment:                 pulumi.String("New serverless endpoint"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example with AZURE
+// ### Available complete examples
+// - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+//
 // ## Import
 //
 // Serverless privatelink endpoint can be imported using project ID and endpoint ID, in the format `project_id`--`endpoint_id`, e.g.

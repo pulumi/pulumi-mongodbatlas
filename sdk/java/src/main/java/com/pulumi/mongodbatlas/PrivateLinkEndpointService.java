@@ -18,6 +18,218 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
+ * 
+ * &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
+ *   * Organization Owner
+ *   * Project Owner
+ * 
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+ * **NOTE:** Create and delete wait for all clusters on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation or deletion of this resource. Default timeout is 2hrs.
+ * 
+ * ## Example with AWS
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+ * import com.pulumi.aws.ec2.VpcEndpoint;
+ * import com.pulumi.aws.ec2.VpcEndpointArgs;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint(&#34;testPrivateLinkEndpoint&#34;, PrivateLinkEndpointArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .region(&#34;US_EAST_1&#34;)
+ *             .build());
+ * 
+ *         var ptfeService = new VpcEndpoint(&#34;ptfeService&#34;, VpcEndpointArgs.builder()        
+ *             .vpcId(&#34;vpc-7fc0a543&#34;)
+ *             .serviceName(testPrivateLinkEndpoint.endpointServiceName())
+ *             .vpcEndpointType(&#34;Interface&#34;)
+ *             .subnetIds(&#34;subnet-de0406d2&#34;)
+ *             .securityGroupIds(&#34;sg-3f238186&#34;)
+ *             .build());
+ * 
+ *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService(&#34;testPrivateLinkEndpointService&#34;, PrivateLinkEndpointServiceArgs.builder()        
+ *             .projectId(testPrivateLinkEndpoint.projectId())
+ *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+ *             .endpointServiceId(ptfeService.id())
+ *             .providerName(&#34;AWS&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ## Example with Azure
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+ * import com.pulumi.azure.privatelink.Endpoint;
+ * import com.pulumi.azure.privatelink.EndpointArgs;
+ * import com.pulumi.azure.privatelink.inputs.EndpointPrivateServiceConnectionArgs;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint(&#34;testPrivateLinkEndpoint&#34;, PrivateLinkEndpointArgs.builder()        
+ *             .projectId(var_.project_id())
+ *             .providerName(&#34;AZURE&#34;)
+ *             .region(&#34;eastus2&#34;)
+ *             .build());
+ * 
+ *         var testEndpoint = new Endpoint(&#34;testEndpoint&#34;, EndpointArgs.builder()        
+ *             .location(data.azurerm_resource_group().test().location())
+ *             .resourceGroupName(var_.resource_group_name())
+ *             .subnetId(azurerm_subnet.test().id())
+ *             .privateServiceConnection(EndpointPrivateServiceConnectionArgs.builder()
+ *                 .name(testPrivateLinkEndpoint.privateLinkServiceName())
+ *                 .privateConnectionResourceId(testPrivateLinkEndpoint.privateLinkServiceResourceId())
+ *                 .isManualConnection(true)
+ *                 .requestMessage(&#34;Azure Private Link test&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService(&#34;testPrivateLinkEndpointService&#34;, PrivateLinkEndpointServiceArgs.builder()        
+ *             .projectId(testPrivateLinkEndpoint.projectId())
+ *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+ *             .endpointServiceId(testEndpoint.id())
+ *             .privateEndpointIpAddress(testEndpoint.privateServiceConnection().applyValue(privateServiceConnection -&gt; privateServiceConnection.privateIpAddress()))
+ *             .providerName(&#34;AZURE&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ## Example with GCP
+ * 
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+ * import com.pulumi.gcp.compute.Network;
+ * import com.pulumi.gcp.compute.NetworkArgs;
+ * import com.pulumi.gcp.compute.Subnetwork;
+ * import com.pulumi.gcp.compute.SubnetworkArgs;
+ * import com.pulumi.gcp.compute.Address;
+ * import com.pulumi.gcp.compute.AddressArgs;
+ * import com.pulumi.gcp.compute.ForwardingRule;
+ * import com.pulumi.gcp.compute.ForwardingRuleArgs;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
+ * import com.pulumi.codegen.internal.KeyedValue;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint(&#34;testPrivateLinkEndpoint&#34;, PrivateLinkEndpointArgs.builder()        
+ *             .projectId(var_.project_id())
+ *             .providerName(&#34;GCP&#34;)
+ *             .region(var_.gcp_region())
+ *             .build());
+ * 
+ *         var defaultNetwork = new Network(&#34;defaultNetwork&#34;, NetworkArgs.builder()        
+ *             .project(var_.gcp_project())
+ *             .build());
+ * 
+ *         var defaultSubnetwork = new Subnetwork(&#34;defaultSubnetwork&#34;, SubnetworkArgs.builder()        
+ *             .project(defaultNetwork.project())
+ *             .ipCidrRange(&#34;10.0.0.0/16&#34;)
+ *             .region(var_.gcp_region())
+ *             .network(defaultNetwork.id())
+ *             .build());
+ * 
+ *         for (var i = 0; i &lt; 50; i++) {
+ *             new Address(&#34;defaultAddress-&#34; + i, AddressArgs.builder()            
+ *                 .project(defaultSubnetwork.project())
+ *                 .subnetwork(defaultSubnetwork.id())
+ *                 .addressType(&#34;INTERNAL&#34;)
+ *                 .address(String.format(&#34;10.0.42.%s&#34;, range.value()))
+ *                 .region(var_.gcp_region())
+ *                 .build(), CustomResourceOptions.builder()
+ *                     .dependsOn(testPrivateLinkEndpoint)
+ *                     .build());
+ * 
+ *         
+ * }
+ *         for (var i = 0; i &lt; 50; i++) {
+ *             new ForwardingRule(&#34;defaultForwardingRule-&#34; + i, ForwardingRuleArgs.builder()            
+ *                 .target(testPrivateLinkEndpoint.serviceAttachmentNames().applyValue(serviceAttachmentNames -&gt; serviceAttachmentNames[range.value()]))
+ *                 .project(defaultAddress[range.value()].project())
+ *                 .region(defaultAddress[range.value()].region())
+ *                 .ipAddress(defaultAddress[range.value()].id())
+ *                 .network(defaultNetwork.id())
+ *                 .loadBalancingScheme(&#34;&#34;)
+ *                 .build());
+ * 
+ *         
+ * }
+ *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService(&#34;testPrivateLinkEndpointService&#34;, PrivateLinkEndpointServiceArgs.builder()        
+ *             .projectId(testPrivateLinkEndpoint.projectId())
+ *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+ *             .providerName(&#34;GCP&#34;)
+ *             .endpointServiceId(defaultNetwork.name())
+ *             .gcpProjectId(var_.gcp_project())
+ *             .dynamic(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(defaultForwardingRule)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### Available complete examples
+ * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+ * 
  * ## Import
  * 
  * Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.

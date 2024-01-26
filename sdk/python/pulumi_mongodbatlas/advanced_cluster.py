@@ -780,6 +780,295 @@ class AdvancedCluster(pulumi.CustomResource):
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
+
+        More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
+
+        > **IMPORTANT:**
+        <br> &#8226; The primary difference between `Cluster` is that `AdvancedCluster` supports multi-cloud clusters.  We recommend new users start with the `AdvancedCluster` resource.
+
+        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
+        <br> &#8226; Upgrading the shared tier is supported. Any change from a shared tier cluster (a tenant) to a different instance size will be considered a tenant upgrade. When upgrading from the shared tier, change the `provider_name` from "TENANT" to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Tenant Cluster Upgrade below.   Note you can upgrade a shared tier cluster only to a single provider on an M10-tier cluster or greater.\\
+        <br> &#8226; **IMPORTANT NOTE** When upgrading from the shared tier, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+        > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+
+        > **NOTE:** A network container is created for each provider/region combination on the advanced cluster. This can be referenced via a computed attribute for use with other resources. Refer to the `replication_specs.#.container_id` attribute in the Attributes Reference for more information.
+
+        > **NOTE:** To enable Cluster Extended Storage Sizes use the `is_extended_storage_sizes_enabled` parameter in the Project resource.
+
+        > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, i.e. `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
+
+        ## Example Usage
+        ### Example single provider and single region
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AdvancedCluster("test",
+            cluster_type="REPLICASET",
+            project_id="PROJECT ID",
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                        instance_size="M10",
+                        node_count=1,
+                    ),
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="US_EAST_1",
+                )],
+            )])
+        ```
+        ### Example Tenant Cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AdvancedCluster("test",
+            cluster_type="REPLICASET",
+            project_id="PROJECT ID",
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    backing_provider_name="AWS",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M5",
+                    ),
+                    priority=7,
+                    provider_name="TENANT",
+                    region_name="US_EAST_1",
+                )],
+            )])
+        ```
+        ### Example Tenant Cluster Upgrade
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AdvancedCluster("test",
+            cluster_type="REPLICASET",
+            project_id="PROJECT ID",
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                    ),
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="US_EAST_1",
+                )],
+            )])
+        ```
+        ### Example Multi-Cloud Cluster.
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AdvancedCluster("test",
+            cluster_type="REPLICASET",
+            project_id="PROJECT ID",
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[
+                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                            instance_size="M10",
+                            node_count=1,
+                        ),
+                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                            instance_size="M10",
+                            node_count=3,
+                        ),
+                        priority=7,
+                        provider_name="AWS",
+                        region_name="US_EAST_1",
+                    ),
+                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                            instance_size="M10",
+                            node_count=2,
+                        ),
+                        priority=6,
+                        provider_name="GCP",
+                        region_name="NORTH_AMERICA_NORTHEAST_1",
+                    ),
+                ],
+            )])
+        ```
+        ### Example of a Multi-Cloud Cluster.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster = mongodbatlas.AdvancedCluster("cluster",
+            project_id=mongodbatlas_project["project"]["id"],
+            cluster_type="SHARDED",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                num_shards=3,
+                region_configs=[
+                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                            instance_size="M10",
+                            node_count=3,
+                        ),
+                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                            instance_size="M10",
+                            node_count=1,
+                        ),
+                        provider_name="AWS",
+                        priority=7,
+                        region_name="US_EAST_1",
+                    ),
+                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                            instance_size="M10",
+                            node_count=2,
+                        ),
+                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                            instance_size="M10",
+                            node_count=1,
+                        ),
+                        provider_name="AZURE",
+                        priority=6,
+                        region_name="US_EAST_2",
+                    ),
+                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                            instance_size="M10",
+                            node_count=2,
+                        ),
+                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                            instance_size="M10",
+                            node_count=1,
+                        ),
+                        provider_name="GCP",
+                        priority=5,
+                        region_name="US_EAST_4",
+                    ),
+                ],
+            )],
+            advanced_configuration=mongodbatlas.AdvancedClusterAdvancedConfigurationArgs(
+                javascript_enabled=True,
+                oplog_size_mb=30,
+                sample_refresh_interval_bi_connector=300,
+            ))
+        ```
+        ### Example of a Global Cluster.
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster = mongodbatlas.AdvancedCluster("cluster",
+            project_id=mongodbatlas_project["project"]["id"],
+            cluster_type="GEOSHARDED",
+            backup_enabled=True,
+            replication_specs=[
+                mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                    zone_name="zone n1",
+                    num_shards=3,
+                    region_configs=[
+                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                                instance_size="M10",
+                                node_count=3,
+                            ),
+                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                                instance_size="M10",
+                                node_count=1,
+                            ),
+                            provider_name="AWS",
+                            priority=7,
+                            region_name="US_EAST_1",
+                        ),
+                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                                instance_size="M10",
+                                node_count=2,
+                            ),
+                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                                instance_size="M10",
+                                node_count=1,
+                            ),
+                            provider_name="AZURE",
+                            priority=6,
+                            region_name="US_EAST_2",
+                        ),
+                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                                instance_size="M10",
+                                node_count=2,
+                            ),
+                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                                instance_size="M10",
+                                node_count=1,
+                            ),
+                            provider_name="GCP",
+                            priority=5,
+                            region_name="US_EAST_4",
+                        ),
+                    ],
+                ),
+                mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                    zone_name="zone n2",
+                    num_shards=2,
+                    region_configs=[
+                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                                instance_size="M10",
+                                node_count=3,
+                            ),
+                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                                instance_size="M10",
+                                node_count=1,
+                            ),
+                            provider_name="AWS",
+                            priority=7,
+                            region_name="EU_WEST_1",
+                        ),
+                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                                instance_size="M10",
+                                node_count=2,
+                            ),
+                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                                instance_size="M10",
+                                node_count=1,
+                            ),
+                            provider_name="AZURE",
+                            priority=6,
+                            region_name="EUROPE_NORTH",
+                        ),
+                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                                instance_size="M10",
+                                node_count=2,
+                            ),
+                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                                instance_size="M10",
+                                node_count=1,
+                            ),
+                            provider_name="GCP",
+                            priority=5,
+                            region_name="US_EAST_4",
+                        ),
+                    ],
+                ),
+            ],
+            advanced_configuration=mongodbatlas.AdvancedClusterAdvancedConfigurationArgs(
+                javascript_enabled=True,
+                oplog_size_mb=999,
+                sample_refresh_interval_bi_connector=300,
+            ))
+        ```
+
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -825,6 +1114,295 @@ class AdvancedCluster(pulumi.CustomResource):
                  args: AdvancedClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
+
+        More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
+
+        > **IMPORTANT:**
+        <br> &#8226; The primary difference between `Cluster` is that `AdvancedCluster` supports multi-cloud clusters.  We recommend new users start with the `AdvancedCluster` resource.
+
+        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
+        <br> &#8226; Upgrading the shared tier is supported. Any change from a shared tier cluster (a tenant) to a different instance size will be considered a tenant upgrade. When upgrading from the shared tier, change the `provider_name` from "TENANT" to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Tenant Cluster Upgrade below.   Note you can upgrade a shared tier cluster only to a single provider on an M10-tier cluster or greater.\\
+        <br> &#8226; **IMPORTANT NOTE** When upgrading from the shared tier, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+        > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+
+        > **NOTE:** A network container is created for each provider/region combination on the advanced cluster. This can be referenced via a computed attribute for use with other resources. Refer to the `replication_specs.#.container_id` attribute in the Attributes Reference for more information.
+
+        > **NOTE:** To enable Cluster Extended Storage Sizes use the `is_extended_storage_sizes_enabled` parameter in the Project resource.
+
+        > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, i.e. `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
+
+        ## Example Usage
+        ### Example single provider and single region
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AdvancedCluster("test",
+            cluster_type="REPLICASET",
+            project_id="PROJECT ID",
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                        instance_size="M10",
+                        node_count=1,
+                    ),
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="US_EAST_1",
+                )],
+            )])
+        ```
+        ### Example Tenant Cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AdvancedCluster("test",
+            cluster_type="REPLICASET",
+            project_id="PROJECT ID",
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    backing_provider_name="AWS",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M5",
+                    ),
+                    priority=7,
+                    provider_name="TENANT",
+                    region_name="US_EAST_1",
+                )],
+            )])
+        ```
+        ### Example Tenant Cluster Upgrade
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AdvancedCluster("test",
+            cluster_type="REPLICASET",
+            project_id="PROJECT ID",
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                    ),
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="US_EAST_1",
+                )],
+            )])
+        ```
+        ### Example Multi-Cloud Cluster.
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AdvancedCluster("test",
+            cluster_type="REPLICASET",
+            project_id="PROJECT ID",
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[
+                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                            instance_size="M10",
+                            node_count=1,
+                        ),
+                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                            instance_size="M10",
+                            node_count=3,
+                        ),
+                        priority=7,
+                        provider_name="AWS",
+                        region_name="US_EAST_1",
+                    ),
+                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                            instance_size="M10",
+                            node_count=2,
+                        ),
+                        priority=6,
+                        provider_name="GCP",
+                        region_name="NORTH_AMERICA_NORTHEAST_1",
+                    ),
+                ],
+            )])
+        ```
+        ### Example of a Multi-Cloud Cluster.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster = mongodbatlas.AdvancedCluster("cluster",
+            project_id=mongodbatlas_project["project"]["id"],
+            cluster_type="SHARDED",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                num_shards=3,
+                region_configs=[
+                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                            instance_size="M10",
+                            node_count=3,
+                        ),
+                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                            instance_size="M10",
+                            node_count=1,
+                        ),
+                        provider_name="AWS",
+                        priority=7,
+                        region_name="US_EAST_1",
+                    ),
+                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                            instance_size="M10",
+                            node_count=2,
+                        ),
+                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                            instance_size="M10",
+                            node_count=1,
+                        ),
+                        provider_name="AZURE",
+                        priority=6,
+                        region_name="US_EAST_2",
+                    ),
+                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                            instance_size="M10",
+                            node_count=2,
+                        ),
+                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                            instance_size="M10",
+                            node_count=1,
+                        ),
+                        provider_name="GCP",
+                        priority=5,
+                        region_name="US_EAST_4",
+                    ),
+                ],
+            )],
+            advanced_configuration=mongodbatlas.AdvancedClusterAdvancedConfigurationArgs(
+                javascript_enabled=True,
+                oplog_size_mb=30,
+                sample_refresh_interval_bi_connector=300,
+            ))
+        ```
+        ### Example of a Global Cluster.
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster = mongodbatlas.AdvancedCluster("cluster",
+            project_id=mongodbatlas_project["project"]["id"],
+            cluster_type="GEOSHARDED",
+            backup_enabled=True,
+            replication_specs=[
+                mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                    zone_name="zone n1",
+                    num_shards=3,
+                    region_configs=[
+                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                                instance_size="M10",
+                                node_count=3,
+                            ),
+                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                                instance_size="M10",
+                                node_count=1,
+                            ),
+                            provider_name="AWS",
+                            priority=7,
+                            region_name="US_EAST_1",
+                        ),
+                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                                instance_size="M10",
+                                node_count=2,
+                            ),
+                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                                instance_size="M10",
+                                node_count=1,
+                            ),
+                            provider_name="AZURE",
+                            priority=6,
+                            region_name="US_EAST_2",
+                        ),
+                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                                instance_size="M10",
+                                node_count=2,
+                            ),
+                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                                instance_size="M10",
+                                node_count=1,
+                            ),
+                            provider_name="GCP",
+                            priority=5,
+                            region_name="US_EAST_4",
+                        ),
+                    ],
+                ),
+                mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                    zone_name="zone n2",
+                    num_shards=2,
+                    region_configs=[
+                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                                instance_size="M10",
+                                node_count=3,
+                            ),
+                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                                instance_size="M10",
+                                node_count=1,
+                            ),
+                            provider_name="AWS",
+                            priority=7,
+                            region_name="EU_WEST_1",
+                        ),
+                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                                instance_size="M10",
+                                node_count=2,
+                            ),
+                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                                instance_size="M10",
+                                node_count=1,
+                            ),
+                            provider_name="AZURE",
+                            priority=6,
+                            region_name="EUROPE_NORTH",
+                        ),
+                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                                instance_size="M10",
+                                node_count=2,
+                            ),
+                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                                instance_size="M10",
+                                node_count=1,
+                            ),
+                            provider_name="GCP",
+                            priority=5,
+                            region_name="US_EAST_4",
+                        ),
+                    ],
+                ),
+            ],
+            advanced_configuration=mongodbatlas.AdvancedClusterAdvancedConfigurationArgs(
+                javascript_enabled=True,
+                oplog_size_mb=999,
+                sample_refresh_interval_bi_connector=300,
+            ))
+        ```
+
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

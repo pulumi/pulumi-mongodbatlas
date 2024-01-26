@@ -7,6 +7,78 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
+ *
+ * > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
+ *   * Organization Owner
+ *   * Project Owner
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ * **NOTE:** Create and delete wait for all clusters on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation or deletion of this resource. Default timeout is 2hrs.
+ *
+ * ## Example with AWS
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", {
+ *     projectId: "<PROJECT_ID>",
+ *     providerName: "AWS",
+ *     region: "US_EAST_1",
+ * });
+ * const ptfeService = new aws.ec2.VpcEndpoint("ptfeService", {
+ *     vpcId: "vpc-7fc0a543",
+ *     serviceName: testPrivateLinkEndpoint.endpointServiceName,
+ *     vpcEndpointType: "Interface",
+ *     subnetIds: ["subnet-de0406d2"],
+ *     securityGroupIds: ["sg-3f238186"],
+ * });
+ * const testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", {
+ *     projectId: testPrivateLinkEndpoint.projectId,
+ *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
+ *     endpointServiceId: ptfeService.id,
+ *     providerName: "AWS",
+ * });
+ * ```
+ *
+ * ## Example with Azure
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as azure from "@pulumi/azure";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", {
+ *     projectId: _var.project_id,
+ *     providerName: "AZURE",
+ *     region: "eastus2",
+ * });
+ * const testEndpoint = new azure.privatelink.Endpoint("testEndpoint", {
+ *     location: data.azurerm_resource_group.test.location,
+ *     resourceGroupName: _var.resource_group_name,
+ *     subnetId: azurerm_subnet.test.id,
+ *     privateServiceConnection: {
+ *         name: testPrivateLinkEndpoint.privateLinkServiceName,
+ *         privateConnectionResourceId: testPrivateLinkEndpoint.privateLinkServiceResourceId,
+ *         isManualConnection: true,
+ *         requestMessage: "Azure Private Link test",
+ *     },
+ * });
+ * const testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", {
+ *     projectId: testPrivateLinkEndpoint.projectId,
+ *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
+ *     endpointServiceId: testEndpoint.id,
+ *     privateEndpointIpAddress: testEndpoint.privateServiceConnection.apply(privateServiceConnection => privateServiceConnection.privateIpAddress),
+ *     providerName: "AZURE",
+ * });
+ * ```
+ *
+ * ## Example with GCP
+ * ### Available complete examples
+ * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+ *
  * ## Import
  *
  * Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.

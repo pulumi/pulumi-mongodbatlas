@@ -15,6 +15,24 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.PrivateEndpointRegionalMode` provides a Private Endpoint Regional Mode resource. This represents a regionalized private endpoint setting for a Project. Enable it to allow region specific private endpoints.
+ * 
+ * &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
+ *   * Organization Owner
+ *   * Project Owner
+ * 
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+ * 
+ * &gt; **WARNING:**Your [connection strings](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#std-label-connstring-privatelink) to existing multi-region and global sharded clusters change when you enable this setting.  You must update your applications to use the new connection strings. This might cause downtime.
+ * 
+ * ## Additional Reference
+ * 
+ * In addition to the example shown above, keep in mind:
+ * * `mongodbatlas_cluster.cluster-atlas.depends_on` - Make your cluster dependent on the project&#39;s `mongodbatlas.PrivateEndpointRegionalMode` as well as any relevant `mongodbatlas.PrivateLinkEndpointService` resources.  See an example.
+ * * `mongodbatlas_cluster.cluster-atlas.connection_strings` will differ based on the value of `mongodbatlas_private_endpoint_regional_mode.test.enabled`.
+ * * For more information on usage with GCP, see our Privatelink Endpoint Service documentation: Example with GCP
+ * * For more information on usage with Azure, see our Privatelink Endpoint Service documentation: Examples with Azure
+ * 
  * ## Import
  * 
  * Private Endpoint Regional Mode can be imported using project id in format `{project_id}`, e.g.

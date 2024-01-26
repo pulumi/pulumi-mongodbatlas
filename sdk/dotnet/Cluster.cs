@@ -10,6 +10,277 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## Example Usage
+    /// ### Example AWS cluster
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
+    ///     {
+    ///         AutoScalingDiskGbEnabled = true,
+    ///         CloudBackup = true,
+    ///         ClusterType = "REPLICASET",
+    ///         MongoDbMajorVersion = "4.2",
+    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         ProviderInstanceSizeName = "M40",
+    ///         ProviderName = "AWS",
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///             {
+    ///                 NumShards = 1,
+    ///                 RegionsConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                     {
+    ///                         ElectableNodes = 3,
+    ///                         Priority = 7,
+    ///                         ReadOnlyNodes = 0,
+    ///                         RegionName = "US_EAST_1",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Example Azure cluster.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.Cluster("test", new()
+    ///     {
+    ///         AutoScalingDiskGbEnabled = true,
+    ///         CloudBackup = true,
+    ///         ClusterType = "REPLICASET",
+    ///         MongoDbMajorVersion = "4.2",
+    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         ProviderDiskTypeName = "P6",
+    ///         ProviderInstanceSizeName = "M30",
+    ///         ProviderName = "AZURE",
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///             {
+    ///                 NumShards = 1,
+    ///                 RegionsConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                     {
+    ///                         ElectableNodes = 3,
+    ///                         Priority = 7,
+    ///                         ReadOnlyNodes = 0,
+    ///                         RegionName = "US_EAST",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Example GCP cluster
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.Cluster("test", new()
+    ///     {
+    ///         AutoScalingDiskGbEnabled = true,
+    ///         CloudBackup = true,
+    ///         ClusterType = "REPLICASET",
+    ///         MongoDbMajorVersion = "4.2",
+    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         ProviderInstanceSizeName = "M30",
+    ///         ProviderName = "GCP",
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///             {
+    ///                 NumShards = 1,
+    ///                 RegionsConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                     {
+    ///                         ElectableNodes = 3,
+    ///                         Priority = 7,
+    ///                         ReadOnlyNodes = 0,
+    ///                         RegionName = "EASTERN_US",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Example Multi Region cluster
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
+    ///     {
+    ///         CloudBackup = true,
+    ///         ClusterType = "REPLICASET",
+    ///         NumShards = 1,
+    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         ProviderInstanceSizeName = "M10",
+    ///         ProviderName = "AWS",
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///             {
+    ///                 NumShards = 1,
+    ///                 RegionsConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                     {
+    ///                         ElectableNodes = 3,
+    ///                         Priority = 7,
+    ///                         ReadOnlyNodes = 0,
+    ///                         RegionName = "US_EAST_1",
+    ///                     },
+    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                     {
+    ///                         ElectableNodes = 2,
+    ///                         Priority = 6,
+    ///                         ReadOnlyNodes = 0,
+    ///                         RegionName = "US_EAST_2",
+    ///                     },
+    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                     {
+    ///                         ElectableNodes = 2,
+    ///                         Priority = 5,
+    ///                         ReadOnlyNodes = 2,
+    ///                         RegionName = "US_WEST_1",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Example Global cluster
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
+    ///     {
+    ///         CloudBackup = true,
+    ///         ClusterType = "GEOSHARDED",
+    ///         NumShards = 1,
+    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         ProviderInstanceSizeName = "M30",
+    ///         ProviderName = "AWS",
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///             {
+    ///                 NumShards = 2,
+    ///                 RegionsConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                     {
+    ///                         ElectableNodes = 3,
+    ///                         Priority = 7,
+    ///                         ReadOnlyNodes = 0,
+    ///                         RegionName = "US_EAST_1",
+    ///                     },
+    ///                 },
+    ///                 ZoneName = "Zone 1",
+    ///             },
+    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///             {
+    ///                 NumShards = 2,
+    ///                 RegionsConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                     {
+    ///                         ElectableNodes = 3,
+    ///                         Priority = 7,
+    ///                         ReadOnlyNodes = 0,
+    ///                         RegionName = "EU_CENTRAL_1",
+    ///                     },
+    ///                 },
+    ///                 ZoneName = "Zone 2",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Example AWS Shared Tier (M2/M5) cluster
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
+    ///     {
+    ///         BackingProviderName = "AWS",
+    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         ProviderInstanceSizeName = "M2",
+    ///         ProviderName = "TENANT",
+    ///         ProviderRegionName = "US_EAST_1",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Example AWS Free Tier cluster
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
+    ///     {
+    ///         BackingProviderName = "AWS",
+    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         ProviderInstanceSizeName = "M0",
+    ///         ProviderName = "TENANT",
+    ///         ProviderRegionName = "US_EAST_1",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

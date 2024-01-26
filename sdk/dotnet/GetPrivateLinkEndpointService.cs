@@ -11,9 +11,27 @@ namespace Pulumi.Mongodbatlas
 {
     public static class GetPrivateLinkEndpointService
     {
+        /// <summary>
+        /// `mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// ## Example with Azure
+        /// ### Available complete examples
+        /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        /// </summary>
         public static Task<GetPrivateLinkEndpointServiceResult> InvokeAsync(GetPrivateLinkEndpointServiceArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivateLinkEndpointServiceResult>("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", args ?? new GetPrivateLinkEndpointServiceArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// `mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// ## Example with Azure
+        /// ### Available complete examples
+        /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        /// </summary>
         public static Output<GetPrivateLinkEndpointServiceResult> Invoke(GetPrivateLinkEndpointServiceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivateLinkEndpointServiceResult>("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", args ?? new GetPrivateLinkEndpointServiceInvokeArgs(), options.WithDefaults());
     }

@@ -19,6 +19,54 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
+ * 
+ * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
+ * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+ * 
+ * ## Example Usage
+ * ### Basic
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.ServerlessInstance;
+ * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new ServerlessInstance(&#34;test&#34;, ServerlessInstanceArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+ *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+ *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+ *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
+ * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
+ * and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
+ * 
+ * Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\
+ * When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
+ * 
+ * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+ * 
  * ## Import
  * 
  * Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.

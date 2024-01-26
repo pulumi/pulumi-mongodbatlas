@@ -7,6 +7,46 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ * ### Example of a point in time restore
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const clusterTest = new mongodbatlas.Cluster("clusterTest", {
+ *     projectId: mongodbatlas_project.project_test.id,
+ *     providerName: "AWS",
+ *     providerRegionName: "US_EAST_1",
+ *     providerInstanceSizeName: "M10",
+ *     cloudBackup: true,
+ *     pitEnabled: true,
+ * });
+ * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", {
+ *     projectId: clusterTest.projectId,
+ *     clusterName: clusterTest.name,
+ *     description: "My description",
+ *     retentionInDays: 1,
+ * });
+ * let testCloudBackupSnapshotRestoreJob: mongodbatlas.CloudBackupSnapshotRestoreJob | undefined;
+ * if ((_var.point_in_time_utc_seconds == 0 ? 0 : 1) == true) {
+ *     testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", {
+ *         projectId: testCloudBackupSnapshot.projectId,
+ *         clusterName: testCloudBackupSnapshot.clusterName,
+ *         snapshotId: testCloudBackupSnapshot.id,
+ *         deliveryTypeConfig: {
+ *             pointInTime: true,
+ *             targetClusterName: clusterTest.name,
+ *             targetProjectId: clusterTest.projectId,
+ *             pointInTimeUtcSeconds: _var.point_in_time_utc_seconds,
+ *         },
+ *     });
+ * }
+ * ```
+ * ### Available complete examples
+ * - Restore from automated backup snapshot
+ * - Restore from backup snapshot download
+ * - Restore from backup snapshot at point in time
+ *
  * ## Import
  *
  * Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.

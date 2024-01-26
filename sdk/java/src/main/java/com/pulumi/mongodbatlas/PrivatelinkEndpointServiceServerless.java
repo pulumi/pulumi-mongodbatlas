@@ -15,6 +15,79 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+ * This is the second of two resources required to configure PrivateLink for Serverless, the first is mongodbatlas_privatelink_endpoint_serverless.
+ * 
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+ * **NOTE:** Create waits for all serverless instances on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation of this resource. Default timeout is 2hrs.
+ * 
+ * ## Example with AWS
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.ServerlessInstance;
+ * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+ * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+ * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+ * import com.pulumi.aws.ec2.VpcEndpoint;
+ * import com.pulumi.aws.ec2.VpcEndpointArgs;
+ * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+ * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+ *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+ *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+ *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+ *             .continuousBackupEnabled(true)
+ *             .build());
+ * 
+ *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+ *             .instanceName(testServerlessInstance.name())
+ *             .providerName(&#34;AWS&#34;)
+ *             .build());
+ * 
+ *         var ptfeService = new VpcEndpoint(&#34;ptfeService&#34;, VpcEndpointArgs.builder()        
+ *             .vpcId(&#34;vpc-7fc0a543&#34;)
+ *             .serviceName(testPrivatelinkEndpointServerless.endpointServiceName())
+ *             .vpcEndpointType(&#34;Interface&#34;)
+ *             .subnetIds(&#34;subnet-de0406d2&#34;)
+ *             .securityGroupIds(&#34;sg-3f238186&#34;)
+ *             .build());
+ * 
+ *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+ *             .instanceName(testServerlessInstance.name())
+ *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+ *             .cloudProviderEndpointId(ptfeService.id())
+ *             .providerName(&#34;AWS&#34;)
+ *             .comment(&#34;New serverless endpoint&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ## Example with AZURE
+ * ### Available complete examples
+ * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+ * 
  * ## Import
  * 
  * Serverless privatelink endpoint can be imported using project ID and endpoint ID, in the format `project_id`--`endpoint_id`, e.g.

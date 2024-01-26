@@ -6,6 +6,34 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * `mongodbatlas.ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+ * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
+ * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ * ### Basic
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testTwo = mongodbatlas.getServerlessInstance({
+ *     name: "<SERVERLESS_INSTANCE_NAME>",
+ *     projectId: "<PROJECT_ID >",
+ * });
+ * ```
+ *
+ * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
+ * That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
+ * and the `privatelinkEndpointService` must exist before the `serverlessInstance` gets its respective `connectionStringsPrivateEndpointSrv` values.
+ *
+ * Because of this, the `serverlessInstance` data source has particular value as a source of the `connectionStringsPrivateEndpointSrv`.\
+ * When using the dataSource in-tandem with the afforementioned resources, we can create and retrieve the `connectionStringsPrivateEndpointSrv` in a single `pulumi up`.
+ *
+ * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+ */
 export function getServerlessInstance(args: GetServerlessInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetServerlessInstanceResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -94,6 +122,34 @@ export interface GetServerlessInstanceResult {
      */
     readonly terminationProtectionEnabled: boolean;
 }
+/**
+ * `mongodbatlas.ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+ * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
+ * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ * ### Basic
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testTwo = mongodbatlas.getServerlessInstance({
+ *     name: "<SERVERLESS_INSTANCE_NAME>",
+ *     projectId: "<PROJECT_ID >",
+ * });
+ * ```
+ *
+ * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
+ * That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
+ * and the `privatelinkEndpointService` must exist before the `serverlessInstance` gets its respective `connectionStringsPrivateEndpointSrv` values.
+ *
+ * Because of this, the `serverlessInstance` data source has particular value as a source of the `connectionStringsPrivateEndpointSrv`.\
+ * When using the dataSource in-tandem with the afforementioned resources, we can create and retrieve the `connectionStringsPrivateEndpointSrv` in a single `pulumi up`.
+ *
+ * Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
+ */
 export function getServerlessInstanceOutput(args: GetServerlessInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServerlessInstanceResult> {
     return pulumi.output(args).apply((a: any) => getServerlessInstance(a, opts))
 }
