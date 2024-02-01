@@ -6752,6 +6752,10 @@ class ProjectIpAccessListTimeoutsArgs:
     def __init__(__self__, *,
                  delete: Optional[pulumi.Input[str]] = None,
                  read: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param pulumi.Input[str] read: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+        """
         if delete is not None:
             pulumi.set(__self__, "delete", delete)
         if read is not None:
@@ -6760,6 +6764,9 @@ class ProjectIpAccessListTimeoutsArgs:
     @property
     @pulumi.getter
     def delete(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
         return pulumi.get(self, "delete")
 
     @delete.setter
@@ -6769,6 +6776,9 @@ class ProjectIpAccessListTimeoutsArgs:
     @property
     @pulumi.getter
     def read(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+        """
         return pulumi.get(self, "read")
 
     @read.setter
@@ -6902,6 +6912,17 @@ class ProviderAssumeRoleArgs:
                  source_identity: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  transitive_tag_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] duration: The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
+        :param pulumi.Input[str] external_id: A unique identifier that might be required when you assume a role in another account.
+        :param pulumi.Input[str] policy: IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_arns: Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
+        :param pulumi.Input[str] role_arn: Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
+        :param pulumi.Input[str] session_name: An identifier for the assumed role session.
+        :param pulumi.Input[str] source_identity: Source identity specified by the principal assuming the role.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Assume role session tags.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] transitive_tag_keys: Assume role session tag keys to pass to any subsequent sessions.
+        """
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if external_id is not None:
@@ -6924,6 +6945,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter
     def duration(self) -> Optional[pulumi.Input[str]]:
+        """
+        The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
+        """
         return pulumi.get(self, "duration")
 
     @duration.setter
@@ -6933,6 +6957,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter(name="externalId")
     def external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        A unique identifier that might be required when you assume a role in another account.
+        """
         return pulumi.get(self, "external_id")
 
     @external_id.setter
@@ -6942,6 +6969,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
+        """
         return pulumi.get(self, "policy")
 
     @policy.setter
@@ -6951,6 +6981,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter(name="policyArns")
     def policy_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
+        """
         return pulumi.get(self, "policy_arns")
 
     @policy_arns.setter
@@ -6960,6 +6993,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
+        """
         return pulumi.get(self, "role_arn")
 
     @role_arn.setter
@@ -6969,6 +7005,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter(name="sessionName")
     def session_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        An identifier for the assumed role session.
+        """
         return pulumi.get(self, "session_name")
 
     @session_name.setter
@@ -6978,6 +7017,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter(name="sourceIdentity")
     def source_identity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Source identity specified by the principal assuming the role.
+        """
         return pulumi.get(self, "source_identity")
 
     @source_identity.setter
@@ -6987,6 +7029,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Assume role session tags.
+        """
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -6996,6 +7041,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter(name="transitiveTagKeys")
     def transitive_tag_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Assume role session tag keys to pass to any subsequent sessions.
+        """
         return pulumi.get(self, "transitive_tag_keys")
 
     @transitive_tag_keys.setter
@@ -7046,6 +7094,11 @@ class SearchDeploymentTimeoutsArgs:
                  create: Optional[pulumi.Input[str]] = None,
                  delete: Optional[pulumi.Input[str]] = None,
                  update: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param pulumi.Input[str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param pulumi.Input[str] update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
         if create is not None:
             pulumi.set(__self__, "create", create)
         if delete is not None:
@@ -7056,6 +7109,9 @@ class SearchDeploymentTimeoutsArgs:
     @property
     @pulumi.getter
     def create(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
         return pulumi.get(self, "create")
 
     @create.setter
@@ -7065,6 +7121,9 @@ class SearchDeploymentTimeoutsArgs:
     @property
     @pulumi.getter
     def delete(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
         return pulumi.get(self, "delete")
 
     @delete.setter
@@ -7074,6 +7133,9 @@ class SearchDeploymentTimeoutsArgs:
     @property
     @pulumi.getter
     def update(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
         return pulumi.get(self, "update")
 
     @update.setter

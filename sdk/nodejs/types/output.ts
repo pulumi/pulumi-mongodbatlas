@@ -5873,7 +5873,13 @@ export interface ProjectApiKeyProjectAssignment {
 }
 
 export interface ProjectIpAccessListTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
     delete?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+     */
     read?: string;
 }
 
@@ -5916,8 +5922,17 @@ export interface SearchDeploymentSpec {
 }
 
 export interface SearchDeploymentTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
     create?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
     delete?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
     update?: string;
 }
 
@@ -5964,14 +5979,41 @@ export interface X509AuthenticationDatabaseUserCertificate {
 
 export namespace config {
     export interface AssumeRole {
+        /**
+         * The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
+         */
         duration?: string;
+        /**
+         * A unique identifier that might be required when you assume a role in another account.
+         */
         externalId?: string;
+        /**
+         * IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
+         */
         policy?: string;
+        /**
+         * Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
+         */
         policyArns?: string[];
+        /**
+         * Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
+         */
         roleArn?: string;
+        /**
+         * An identifier for the assumed role session.
+         */
         sessionName?: string;
+        /**
+         * Source identity specified by the principal assuming the role.
+         */
         sourceIdentity?: string;
+        /**
+         * Assume role session tags.
+         */
         tags?: {[key: string]: string};
+        /**
+         * Assume role session tag keys to pass to any subsequent sessions.
+         */
         transitiveTagKeys?: string[];
     }
 
