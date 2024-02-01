@@ -2034,7 +2034,13 @@ export interface ProjectApiKeyProjectAssignment {
 }
 
 export interface ProjectIpAccessListTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
     delete?: pulumi.Input<string>;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+     */
     read?: pulumi.Input<string>;
 }
 
@@ -2066,14 +2072,41 @@ export interface ProjectTeam {
 }
 
 export interface ProviderAssumeRole {
+    /**
+     * The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
+     */
     duration?: pulumi.Input<string>;
+    /**
+     * A unique identifier that might be required when you assume a role in another account.
+     */
     externalId?: pulumi.Input<string>;
+    /**
+     * IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
+     */
     policy?: pulumi.Input<string>;
+    /**
+     * Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
+     */
     policyArns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
+     */
     roleArn?: pulumi.Input<string>;
+    /**
+     * An identifier for the assumed role session.
+     */
     sessionName?: pulumi.Input<string>;
+    /**
+     * Source identity specified by the principal assuming the role.
+     */
     sourceIdentity?: pulumi.Input<string>;
+    /**
+     * Assume role session tags.
+     */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Assume role session tag keys to pass to any subsequent sessions.
+     */
     transitiveTagKeys?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -2089,8 +2122,17 @@ export interface SearchDeploymentSpec {
 }
 
 export interface SearchDeploymentTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
     create?: pulumi.Input<string>;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
     delete?: pulumi.Input<string>;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
     update?: pulumi.Input<string>;
 }
 
