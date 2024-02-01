@@ -25,6 +25,17 @@ class AssumeRole(dict):
                  source_identity: Optional[str] = None,
                  tags: Optional[Mapping[str, str]] = None,
                  transitive_tag_keys: Optional[Sequence[str]] = None):
+        """
+        :param str duration: The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
+        :param str external_id: A unique identifier that might be required when you assume a role in another account.
+        :param str policy: IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
+        :param Sequence[str] policy_arns: Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
+        :param str role_arn: Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
+        :param str session_name: An identifier for the assumed role session.
+        :param str source_identity: Source identity specified by the principal assuming the role.
+        :param Mapping[str, str] tags: Assume role session tags.
+        :param Sequence[str] transitive_tag_keys: Assume role session tag keys to pass to any subsequent sessions.
+        """
         if duration is not None:
             pulumi.set(__self__, "duration", duration)
         if external_id is not None:
@@ -47,46 +58,73 @@ class AssumeRole(dict):
     @property
     @pulumi.getter
     def duration(self) -> Optional[str]:
+        """
+        The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
+        """
         return pulumi.get(self, "duration")
 
     @property
     @pulumi.getter(name="externalId")
     def external_id(self) -> Optional[str]:
+        """
+        A unique identifier that might be required when you assume a role in another account.
+        """
         return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter
     def policy(self) -> Optional[str]:
+        """
+        IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
+        """
         return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter(name="policyArns")
     def policy_arns(self) -> Optional[Sequence[str]]:
+        """
+        Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
+        """
         return pulumi.get(self, "policy_arns")
 
     @property
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> Optional[str]:
+        """
+        Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
+        """
         return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="sessionName")
     def session_name(self) -> Optional[str]:
+        """
+        An identifier for the assumed role session.
+        """
         return pulumi.get(self, "session_name")
 
     @property
     @pulumi.getter(name="sourceIdentity")
     def source_identity(self) -> Optional[str]:
+        """
+        Source identity specified by the principal assuming the role.
+        """
         return pulumi.get(self, "source_identity")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Mapping[str, str]]:
+        """
+        Assume role session tags.
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitiveTagKeys")
     def transitive_tag_keys(self) -> Optional[Sequence[str]]:
+        """
+        Assume role session tag keys to pass to any subsequent sessions.
+        """
         return pulumi.get(self, "transitive_tag_keys")
 
 

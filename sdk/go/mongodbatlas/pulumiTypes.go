@@ -14378,8 +14378,10 @@ func (o ProjectApiKeyProjectAssignmentArrayOutput) Index(i pulumi.IntInput) Proj
 }
 
 type ProjectIpAccessListTimeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 	Delete *string `pulumi:"delete"`
-	Read   *string `pulumi:"read"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+	Read *string `pulumi:"read"`
 }
 
 // ProjectIpAccessListTimeoutsInput is an input type that accepts ProjectIpAccessListTimeoutsArgs and ProjectIpAccessListTimeoutsOutput values.
@@ -14394,8 +14396,10 @@ type ProjectIpAccessListTimeoutsInput interface {
 }
 
 type ProjectIpAccessListTimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 	Delete pulumi.StringPtrInput `pulumi:"delete"`
-	Read   pulumi.StringPtrInput `pulumi:"read"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+	Read pulumi.StringPtrInput `pulumi:"read"`
 }
 
 func (ProjectIpAccessListTimeoutsArgs) ElementType() reflect.Type {
@@ -14475,10 +14479,12 @@ func (o ProjectIpAccessListTimeoutsOutput) ToProjectIpAccessListTimeoutsPtrOutpu
 	}).(ProjectIpAccessListTimeoutsPtrOutput)
 }
 
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 func (o ProjectIpAccessListTimeoutsOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProjectIpAccessListTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
 }
 
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
 func (o ProjectIpAccessListTimeoutsOutput) Read() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProjectIpAccessListTimeouts) *string { return v.Read }).(pulumi.StringPtrOutput)
 }
@@ -14507,6 +14513,7 @@ func (o ProjectIpAccessListTimeoutsPtrOutput) Elem() ProjectIpAccessListTimeouts
 	}).(ProjectIpAccessListTimeoutsOutput)
 }
 
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 func (o ProjectIpAccessListTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProjectIpAccessListTimeouts) *string {
 		if v == nil {
@@ -14516,6 +14523,7 @@ func (o ProjectIpAccessListTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
 func (o ProjectIpAccessListTimeoutsPtrOutput) Read() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProjectIpAccessListTimeouts) *string {
 		if v == nil {
@@ -14762,15 +14770,24 @@ func (o ProjectTeamArrayOutput) Index(i pulumi.IntInput) ProjectTeamOutput {
 }
 
 type ProviderAssumeRole struct {
-	Duration          *string           `pulumi:"duration"`
-	ExternalId        *string           `pulumi:"externalId"`
-	Policy            *string           `pulumi:"policy"`
-	PolicyArns        []string          `pulumi:"policyArns"`
-	RoleArn           *string           `pulumi:"roleArn"`
-	SessionName       *string           `pulumi:"sessionName"`
-	SourceIdentity    *string           `pulumi:"sourceIdentity"`
-	Tags              map[string]string `pulumi:"tags"`
-	TransitiveTagKeys []string          `pulumi:"transitiveTagKeys"`
+	// The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
+	Duration *string `pulumi:"duration"`
+	// A unique identifier that might be required when you assume a role in another account.
+	ExternalId *string `pulumi:"externalId"`
+	// IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
+	Policy *string `pulumi:"policy"`
+	// Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
+	PolicyArns []string `pulumi:"policyArns"`
+	// Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
+	RoleArn *string `pulumi:"roleArn"`
+	// An identifier for the assumed role session.
+	SessionName *string `pulumi:"sessionName"`
+	// Source identity specified by the principal assuming the role.
+	SourceIdentity *string `pulumi:"sourceIdentity"`
+	// Assume role session tags.
+	Tags map[string]string `pulumi:"tags"`
+	// Assume role session tag keys to pass to any subsequent sessions.
+	TransitiveTagKeys []string `pulumi:"transitiveTagKeys"`
 }
 
 // ProviderAssumeRoleInput is an input type that accepts ProviderAssumeRoleArgs and ProviderAssumeRoleOutput values.
@@ -14785,14 +14802,23 @@ type ProviderAssumeRoleInput interface {
 }
 
 type ProviderAssumeRoleArgs struct {
-	Duration          pulumi.StringPtrInput   `pulumi:"duration"`
-	ExternalId        pulumi.StringPtrInput   `pulumi:"externalId"`
-	Policy            pulumi.StringPtrInput   `pulumi:"policy"`
-	PolicyArns        pulumi.StringArrayInput `pulumi:"policyArns"`
-	RoleArn           pulumi.StringPtrInput   `pulumi:"roleArn"`
-	SessionName       pulumi.StringPtrInput   `pulumi:"sessionName"`
-	SourceIdentity    pulumi.StringPtrInput   `pulumi:"sourceIdentity"`
-	Tags              pulumi.StringMapInput   `pulumi:"tags"`
+	// The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
+	Duration pulumi.StringPtrInput `pulumi:"duration"`
+	// A unique identifier that might be required when you assume a role in another account.
+	ExternalId pulumi.StringPtrInput `pulumi:"externalId"`
+	// IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
+	Policy pulumi.StringPtrInput `pulumi:"policy"`
+	// Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
+	PolicyArns pulumi.StringArrayInput `pulumi:"policyArns"`
+	// Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
+	RoleArn pulumi.StringPtrInput `pulumi:"roleArn"`
+	// An identifier for the assumed role session.
+	SessionName pulumi.StringPtrInput `pulumi:"sessionName"`
+	// Source identity specified by the principal assuming the role.
+	SourceIdentity pulumi.StringPtrInput `pulumi:"sourceIdentity"`
+	// Assume role session tags.
+	Tags pulumi.StringMapInput `pulumi:"tags"`
+	// Assume role session tag keys to pass to any subsequent sessions.
 	TransitiveTagKeys pulumi.StringArrayInput `pulumi:"transitiveTagKeys"`
 }
 
@@ -14873,38 +14899,47 @@ func (o ProviderAssumeRoleOutput) ToProviderAssumeRolePtrOutputWithContext(ctx c
 	}).(ProviderAssumeRolePtrOutput)
 }
 
+// The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
 func (o ProviderAssumeRoleOutput) Duration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.Duration }).(pulumi.StringPtrOutput)
 }
 
+// A unique identifier that might be required when you assume a role in another account.
 func (o ProviderAssumeRoleOutput) ExternalId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.ExternalId }).(pulumi.StringPtrOutput)
 }
 
+// IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
 func (o ProviderAssumeRoleOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.Policy }).(pulumi.StringPtrOutput)
 }
 
+// Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
 func (o ProviderAssumeRoleOutput) PolicyArns() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) []string { return v.PolicyArns }).(pulumi.StringArrayOutput)
 }
 
+// Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
 func (o ProviderAssumeRoleOutput) RoleArn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.RoleArn }).(pulumi.StringPtrOutput)
 }
 
+// An identifier for the assumed role session.
 func (o ProviderAssumeRoleOutput) SessionName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.SessionName }).(pulumi.StringPtrOutput)
 }
 
+// Source identity specified by the principal assuming the role.
 func (o ProviderAssumeRoleOutput) SourceIdentity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.SourceIdentity }).(pulumi.StringPtrOutput)
 }
 
+// Assume role session tags.
 func (o ProviderAssumeRoleOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
 
+// Assume role session tag keys to pass to any subsequent sessions.
 func (o ProviderAssumeRoleOutput) TransitiveTagKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ProviderAssumeRole) []string { return v.TransitiveTagKeys }).(pulumi.StringArrayOutput)
 }
@@ -14933,6 +14968,7 @@ func (o ProviderAssumeRolePtrOutput) Elem() ProviderAssumeRoleOutput {
 	}).(ProviderAssumeRoleOutput)
 }
 
+// The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
 func (o ProviderAssumeRolePtrOutput) Duration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) *string {
 		if v == nil {
@@ -14942,6 +14978,7 @@ func (o ProviderAssumeRolePtrOutput) Duration() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// A unique identifier that might be required when you assume a role in another account.
 func (o ProviderAssumeRolePtrOutput) ExternalId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) *string {
 		if v == nil {
@@ -14951,6 +14988,7 @@ func (o ProviderAssumeRolePtrOutput) ExternalId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
 func (o ProviderAssumeRolePtrOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) *string {
 		if v == nil {
@@ -14960,6 +14998,7 @@ func (o ProviderAssumeRolePtrOutput) Policy() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
 func (o ProviderAssumeRolePtrOutput) PolicyArns() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) []string {
 		if v == nil {
@@ -14969,6 +15008,7 @@ func (o ProviderAssumeRolePtrOutput) PolicyArns() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
+// Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
 func (o ProviderAssumeRolePtrOutput) RoleArn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) *string {
 		if v == nil {
@@ -14978,6 +15018,7 @@ func (o ProviderAssumeRolePtrOutput) RoleArn() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// An identifier for the assumed role session.
 func (o ProviderAssumeRolePtrOutput) SessionName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) *string {
 		if v == nil {
@@ -14987,6 +15028,7 @@ func (o ProviderAssumeRolePtrOutput) SessionName() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Source identity specified by the principal assuming the role.
 func (o ProviderAssumeRolePtrOutput) SourceIdentity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) *string {
 		if v == nil {
@@ -14996,6 +15038,7 @@ func (o ProviderAssumeRolePtrOutput) SourceIdentity() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Assume role session tags.
 func (o ProviderAssumeRolePtrOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) map[string]string {
 		if v == nil {
@@ -15005,6 +15048,7 @@ func (o ProviderAssumeRolePtrOutput) Tags() pulumi.StringMapOutput {
 	}).(pulumi.StringMapOutput)
 }
 
+// Assume role session tag keys to pass to any subsequent sessions.
 func (o ProviderAssumeRolePtrOutput) TransitiveTagKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ProviderAssumeRole) []string {
 		if v == nil {
@@ -15121,8 +15165,11 @@ func (o SearchDeploymentSpecArrayOutput) Index(i pulumi.IntInput) SearchDeployme
 }
 
 type SearchDeploymentTimeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 	Create *string `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 	Delete *string `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 	Update *string `pulumi:"update"`
 }
 
@@ -15138,8 +15185,11 @@ type SearchDeploymentTimeoutsInput interface {
 }
 
 type SearchDeploymentTimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 	Create pulumi.StringPtrInput `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 	Update pulumi.StringPtrInput `pulumi:"update"`
 }
 
@@ -15220,14 +15270,17 @@ func (o SearchDeploymentTimeoutsOutput) ToSearchDeploymentTimeoutsPtrOutputWithC
 	}).(SearchDeploymentTimeoutsPtrOutput)
 }
 
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 func (o SearchDeploymentTimeoutsOutput) Create() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SearchDeploymentTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
 }
 
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 func (o SearchDeploymentTimeoutsOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SearchDeploymentTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
 }
 
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 func (o SearchDeploymentTimeoutsOutput) Update() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SearchDeploymentTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
 }
@@ -15256,6 +15309,7 @@ func (o SearchDeploymentTimeoutsPtrOutput) Elem() SearchDeploymentTimeoutsOutput
 	}).(SearchDeploymentTimeoutsOutput)
 }
 
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 func (o SearchDeploymentTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SearchDeploymentTimeouts) *string {
 		if v == nil {
@@ -15265,6 +15319,7 @@ func (o SearchDeploymentTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 func (o SearchDeploymentTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SearchDeploymentTimeouts) *string {
 		if v == nil {
@@ -15274,6 +15329,7 @@ func (o SearchDeploymentTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 func (o SearchDeploymentTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SearchDeploymentTimeouts) *string {
 		if v == nil {
