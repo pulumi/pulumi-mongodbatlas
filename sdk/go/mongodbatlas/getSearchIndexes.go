@@ -32,14 +32,6 @@ type LookupSearchIndexesArgs struct {
 	CollectionName string `pulumi:"collectionName"`
 	// (Required) Name of the database the collection is in.
 	Database string `pulumi:"database"`
-	// Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-	//
-	// Deprecated: this parameter is deprecated and will be removed in version 1.15.0
-	ItemsPerPage *int `pulumi:"itemsPerPage"`
-	// Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-	//
-	// Deprecated: this parameter is deprecated and will be removed in version 1.15.0
-	PageNum *int `pulumi:"pageNum"`
 	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
 	ProjectId string `pulumi:"projectId"`
 }
@@ -52,11 +44,7 @@ type LookupSearchIndexesResult struct {
 	// (Required) Name of the database the collection is in.
 	Database string `pulumi:"database"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.15.0
-	ItemsPerPage *int `pulumi:"itemsPerPage"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.15.0
-	PageNum   *int   `pulumi:"pageNum"`
+	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a search index.
 	Results []GetSearchIndexesResult `pulumi:"results"`
@@ -85,14 +73,6 @@ type LookupSearchIndexesOutputArgs struct {
 	CollectionName pulumi.StringInput `pulumi:"collectionName"`
 	// (Required) Name of the database the collection is in.
 	Database pulumi.StringInput `pulumi:"database"`
-	// Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-	//
-	// Deprecated: this parameter is deprecated and will be removed in version 1.15.0
-	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
-	// Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-	//
-	// Deprecated: this parameter is deprecated and will be removed in version 1.15.0
-	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
 	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
@@ -133,16 +113,6 @@ func (o LookupSearchIndexesResultOutput) Database() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupSearchIndexesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchIndexesResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Deprecated: this parameter is deprecated and will be removed in version 1.15.0
-func (o LookupSearchIndexesResultOutput) ItemsPerPage() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LookupSearchIndexesResult) *int { return v.ItemsPerPage }).(pulumi.IntPtrOutput)
-}
-
-// Deprecated: this parameter is deprecated and will be removed in version 1.15.0
-func (o LookupSearchIndexesResultOutput) PageNum() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LookupSearchIndexesResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
 }
 
 func (o LookupSearchIndexesResultOutput) ProjectId() pulumi.StringOutput {

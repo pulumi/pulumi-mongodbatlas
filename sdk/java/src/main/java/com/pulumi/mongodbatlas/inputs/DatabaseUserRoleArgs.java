@@ -32,14 +32,14 @@ public final class DatabaseUserRoleArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+     * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
      * 
      */
     @Import(name="databaseName", required=true)
     private Output<String> databaseName;
 
     /**
-     * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+     * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
      * 
      */
     public Output<String> databaseName() {
@@ -109,7 +109,7 @@ public final class DatabaseUserRoleArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param databaseName Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+         * @param databaseName Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
          * 
          * @return builder
          * 
@@ -120,7 +120,7 @@ public final class DatabaseUserRoleArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param databaseName Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+         * @param databaseName Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
          * 
          * @return builder
          * 

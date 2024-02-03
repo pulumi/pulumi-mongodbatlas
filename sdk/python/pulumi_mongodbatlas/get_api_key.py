@@ -65,9 +65,6 @@ class GetApiKeyResult:
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> str:
-        """
-        Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-        """
         return pulumi.get(self, "org_id")
 
     @property
@@ -109,7 +106,8 @@ def get_api_key(api_key_id: Optional[str] = None,
     ## Example Usage
 
 
-    :param str org_id: The unique ID for the project.
+    :param str api_key_id: Unique identifier for the organization API key.
+    :param str org_id: Unique identifier for the organization.
     """
     __args__ = dict()
     __args__['apiKeyId'] = api_key_id
@@ -134,6 +132,7 @@ def get_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
     ## Example Usage
 
 
-    :param str org_id: The unique ID for the project.
+    :param str api_key_id: Unique identifier for the organization API key.
+    :param str org_id: Unique identifier for the organization.
     """
     ...

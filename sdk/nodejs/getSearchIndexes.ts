@@ -18,8 +18,6 @@ export function getSearchIndexes(args: GetSearchIndexesArgs, opts?: pulumi.Invok
         "clusterName": args.clusterName,
         "collectionName": args.collectionName,
         "database": args.database,
-        "itemsPerPage": args.itemsPerPage,
-        "pageNum": args.pageNum,
         "projectId": args.projectId,
     }, opts);
 }
@@ -40,18 +38,6 @@ export interface GetSearchIndexesArgs {
      * (Required) Name of the database the collection is in.
      */
     database: string;
-    /**
-     * Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-     *
-     * @deprecated this parameter is deprecated and will be removed in version 1.15.0
-     */
-    itemsPerPage?: number;
-    /**
-     * Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-     *
-     * @deprecated this parameter is deprecated and will be removed in version 1.15.0
-     */
-    pageNum?: number;
     /**
      * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
      */
@@ -75,14 +61,6 @@ export interface GetSearchIndexesResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.15.0
-     */
-    readonly itemsPerPage?: number;
-    /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.15.0
-     */
-    readonly pageNum?: number;
     readonly projectId: string;
     /**
      * A list where each represents a search index.
@@ -118,18 +96,6 @@ export interface GetSearchIndexesOutputArgs {
      * (Required) Name of the database the collection is in.
      */
     database: pulumi.Input<string>;
-    /**
-     * Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-     *
-     * @deprecated this parameter is deprecated and will be removed in version 1.15.0
-     */
-    itemsPerPage?: pulumi.Input<number>;
-    /**
-     * Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-     *
-     * @deprecated this parameter is deprecated and will be removed in version 1.15.0
-     */
-    pageNum?: pulumi.Input<number>;
     /**
      * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
      */

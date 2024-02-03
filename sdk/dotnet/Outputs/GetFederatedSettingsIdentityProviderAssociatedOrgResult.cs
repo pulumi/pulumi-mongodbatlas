@@ -21,9 +21,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Flag that indicates whether domain restriction is enabled for the connected organization.
         /// </summary>
         public readonly bool DomainRestrictionEnabled;
-        /// <summary>
-        /// Unique 20-hexadecimal digit string that identifies the IdP.
-        /// </summary>
         public readonly string IdentityProviderId;
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.

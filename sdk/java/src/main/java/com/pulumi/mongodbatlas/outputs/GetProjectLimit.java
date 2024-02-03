@@ -11,8 +11,20 @@ import java.util.Objects;
 
 @CustomType
 public final class GetProjectLimit {
+    /**
+     * @return Amount that indicates the current usage of the limit.
+     * 
+     */
     private Integer currentUsage;
+    /**
+     * @return Default value of the limit.
+     * 
+     */
     private Integer defaultLimit;
+    /**
+     * @return Maximum value of the limit.
+     * 
+     */
     private Integer maximumLimit;
     /**
      * @return The unique ID for the project.
@@ -21,15 +33,31 @@ public final class GetProjectLimit {
      * 
      */
     private String name;
+    /**
+     * @return Amount the limit is set to.
+     * 
+     */
     private Integer value;
 
     private GetProjectLimit() {}
+    /**
+     * @return Amount that indicates the current usage of the limit.
+     * 
+     */
     public Integer currentUsage() {
         return this.currentUsage;
     }
+    /**
+     * @return Default value of the limit.
+     * 
+     */
     public Integer defaultLimit() {
         return this.defaultLimit;
     }
+    /**
+     * @return Maximum value of the limit.
+     * 
+     */
     public Integer maximumLimit() {
         return this.maximumLimit;
     }
@@ -42,6 +70,10 @@ public final class GetProjectLimit {
     public String name() {
         return this.name;
     }
+    /**
+     * @return Amount the limit is set to.
+     * 
+     */
     public Integer value() {
         return this.value;
     }

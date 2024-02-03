@@ -31,11 +31,14 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetApiKeyArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Unique identifier for the organization API key.
+        /// </summary>
         [Input("apiKeyId", required: true)]
         public string ApiKeyId { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project.
+        /// Unique identifier for the organization.
         /// </summary>
         [Input("orgId", required: true)]
         public string OrgId { get; set; } = null!;
@@ -48,11 +51,14 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetApiKeyInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Unique identifier for the organization API key.
+        /// </summary>
         [Input("apiKeyId", required: true)]
         public Input<string> ApiKeyId { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project.
+        /// Unique identifier for the organization.
         /// </summary>
         [Input("orgId", required: true)]
         public Input<string> OrgId { get; set; } = null!;
@@ -76,9 +82,6 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-        /// </summary>
         public readonly string OrgId;
         /// <summary>
         /// Public key for this Organization API key.

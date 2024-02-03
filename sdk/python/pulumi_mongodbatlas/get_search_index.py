@@ -167,6 +167,9 @@ class GetSearchIndexResult:
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Current status of the index.
+        """
         return pulumi.get(self, "status")
 
     @property
@@ -222,7 +225,6 @@ def get_search_index(analyzer: Optional[str] = None,
                      name: Optional[str] = None,
                      project_id: Optional[str] = None,
                      search_analyzer: Optional[str] = None,
-                     status: Optional[str] = None,
                      type: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSearchIndexResult:
     """
@@ -267,7 +269,6 @@ def get_search_index(analyzer: Optional[str] = None,
     __args__['name'] = name
     __args__['projectId'] = project_id
     __args__['searchAnalyzer'] = search_analyzer
-    __args__['status'] = status
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getSearchIndex:getSearchIndex', __args__, opts=opts, typ=GetSearchIndexResult).value
@@ -304,7 +305,6 @@ def get_search_index_output(analyzer: Optional[pulumi.Input[Optional[str]]] = No
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             project_id: Optional[pulumi.Input[str]] = None,
                             search_analyzer: Optional[pulumi.Input[Optional[str]]] = None,
-                            status: Optional[pulumi.Input[Optional[str]]] = None,
                             type: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSearchIndexResult]:
     """

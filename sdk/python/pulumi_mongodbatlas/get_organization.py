@@ -22,7 +22,10 @@ class GetOrganizationResult:
     """
     A collection of values returned by getOrganization.
     """
-    def __init__(__self__, id=None, is_deleted=None, links=None, name=None, org_id=None):
+    def __init__(__self__, api_access_list_required=None, id=None, is_deleted=None, links=None, multi_factor_auth_required=None, name=None, org_id=None, restrict_employee_access=None):
+        if api_access_list_required and not isinstance(api_access_list_required, bool):
+            raise TypeError("Expected argument 'api_access_list_required' to be a bool")
+        pulumi.set(__self__, "api_access_list_required", api_access_list_required)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -32,12 +35,26 @@ class GetOrganizationResult:
         if links and not isinstance(links, list):
             raise TypeError("Expected argument 'links' to be a list")
         pulumi.set(__self__, "links", links)
+        if multi_factor_auth_required and not isinstance(multi_factor_auth_required, bool):
+            raise TypeError("Expected argument 'multi_factor_auth_required' to be a bool")
+        pulumi.set(__self__, "multi_factor_auth_required", multi_factor_auth_required)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
         if org_id and not isinstance(org_id, str):
             raise TypeError("Expected argument 'org_id' to be a str")
         pulumi.set(__self__, "org_id", org_id)
+        if restrict_employee_access and not isinstance(restrict_employee_access, bool):
+            raise TypeError("Expected argument 'restrict_employee_access' to be a bool")
+        pulumi.set(__self__, "restrict_employee_access", restrict_employee_access)
+
+    @property
+    @pulumi.getter(name="apiAccessListRequired")
+    def api_access_list_required(self) -> bool:
+        """
+        (Optional) Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+        """
+        return pulumi.get(self, "api_access_list_required")
 
     @property
     @pulumi.getter
@@ -61,6 +78,14 @@ class GetOrganizationResult:
         return pulumi.get(self, "links")
 
     @property
+    @pulumi.getter(name="multiFactorAuthRequired")
+    def multi_factor_auth_required(self) -> bool:
+        """
+        (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+        """
+        return pulumi.get(self, "multi_factor_auth_required")
+
+    @property
     @pulumi.getter
     def name(self) -> str:
         """
@@ -73,6 +98,14 @@ class GetOrganizationResult:
     def org_id(self) -> str:
         return pulumi.get(self, "org_id")
 
+    @property
+    @pulumi.getter(name="restrictEmployeeAccess")
+    def restrict_employee_access(self) -> bool:
+        """
+        (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+        """
+        return pulumi.get(self, "restrict_employee_access")
+
 
 class AwaitableGetOrganizationResult(GetOrganizationResult):
     # pylint: disable=using-constant-test
@@ -80,11 +113,14 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
         if False:
             yield self
         return GetOrganizationResult(
+            api_access_list_required=self.api_access_list_required,
             id=self.id,
             is_deleted=self.is_deleted,
             links=self.links,
+            multi_factor_auth_required=self.multi_factor_auth_required,
             name=self.name,
-            org_id=self.org_id)
+            org_id=self.org_id,
+            restrict_employee_access=self.restrict_employee_access)
 
 
 def get_organization(org_id: Optional[str] = None,
@@ -110,11 +146,14 @@ def get_organization(org_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult).value
 
     return AwaitableGetOrganizationResult(
+        api_access_list_required=pulumi.get(__ret__, 'api_access_list_required'),
         id=pulumi.get(__ret__, 'id'),
         is_deleted=pulumi.get(__ret__, 'is_deleted'),
         links=pulumi.get(__ret__, 'links'),
+        multi_factor_auth_required=pulumi.get(__ret__, 'multi_factor_auth_required'),
         name=pulumi.get(__ret__, 'name'),
-        org_id=pulumi.get(__ret__, 'org_id'))
+        org_id=pulumi.get(__ret__, 'org_id'),
+        restrict_employee_access=pulumi.get(__ret__, 'restrict_employee_access'))
 
 
 @_utilities.lift_output_func(get_organization)

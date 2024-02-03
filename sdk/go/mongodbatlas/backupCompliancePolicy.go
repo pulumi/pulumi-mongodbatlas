@@ -35,12 +35,12 @@ type BackupCompliancePolicy struct {
 	// Last name of the user who authorized to update the Backup Compliance Policy settings.
 	AuthorizedUserLastName pulumi.StringOutput `pulumi:"authorizedUserLastName"`
 	// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
-	CopyProtectionEnabled pulumi.BoolOutput `pulumi:"copyProtectionEnabled"`
+	CopyProtectionEnabled pulumi.BoolPtrOutput `pulumi:"copyProtectionEnabled"`
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	EncryptionAtRestEnabled pulumi.BoolOutput                              `pulumi:"encryptionAtRestEnabled"`
+	EncryptionAtRestEnabled pulumi.BoolPtrOutput                           `pulumi:"encryptionAtRestEnabled"`
 	OnDemandPolicyItem      BackupCompliancePolicyOnDemandPolicyItemOutput `pulumi:"onDemandPolicyItem"`
 	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	PitEnabled          pulumi.BoolOutput                                  `pulumi:"pitEnabled"`
+	PitEnabled          pulumi.BoolPtrOutput                               `pulumi:"pitEnabled"`
 	PolicyItemDaily     BackupCompliancePolicyPolicyItemDailyPtrOutput     `pulumi:"policyItemDaily"`
 	PolicyItemHourly    BackupCompliancePolicyPolicyItemHourlyPtrOutput    `pulumi:"policyItemHourly"`
 	PolicyItemMonthlies BackupCompliancePolicyPolicyItemMonthlyArrayOutput `pulumi:"policyItemMonthlies"`
@@ -73,17 +73,8 @@ func NewBackupCompliancePolicy(ctx *pulumi.Context,
 	if args.AuthorizedUserLastName == nil {
 		return nil, errors.New("invalid value for required argument 'AuthorizedUserLastName'")
 	}
-	if args.CopyProtectionEnabled == nil {
-		return nil, errors.New("invalid value for required argument 'CopyProtectionEnabled'")
-	}
-	if args.EncryptionAtRestEnabled == nil {
-		return nil, errors.New("invalid value for required argument 'EncryptionAtRestEnabled'")
-	}
 	if args.OnDemandPolicyItem == nil {
 		return nil, errors.New("invalid value for required argument 'OnDemandPolicyItem'")
-	}
-	if args.PitEnabled == nil {
-		return nil, errors.New("invalid value for required argument 'PitEnabled'")
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
@@ -182,12 +173,12 @@ type backupCompliancePolicyArgs struct {
 	// Last name of the user who authorized to update the Backup Compliance Policy settings.
 	AuthorizedUserLastName string `pulumi:"authorizedUserLastName"`
 	// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
-	CopyProtectionEnabled bool `pulumi:"copyProtectionEnabled"`
+	CopyProtectionEnabled *bool `pulumi:"copyProtectionEnabled"`
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	EncryptionAtRestEnabled bool                                     `pulumi:"encryptionAtRestEnabled"`
+	EncryptionAtRestEnabled *bool                                    `pulumi:"encryptionAtRestEnabled"`
 	OnDemandPolicyItem      BackupCompliancePolicyOnDemandPolicyItem `pulumi:"onDemandPolicyItem"`
 	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	PitEnabled          bool                                      `pulumi:"pitEnabled"`
+	PitEnabled          *bool                                     `pulumi:"pitEnabled"`
 	PolicyItemDaily     *BackupCompliancePolicyPolicyItemDaily    `pulumi:"policyItemDaily"`
 	PolicyItemHourly    *BackupCompliancePolicyPolicyItemHourly   `pulumi:"policyItemHourly"`
 	PolicyItemMonthlies []BackupCompliancePolicyPolicyItemMonthly `pulumi:"policyItemMonthlies"`
@@ -207,12 +198,12 @@ type BackupCompliancePolicyArgs struct {
 	// Last name of the user who authorized to update the Backup Compliance Policy settings.
 	AuthorizedUserLastName pulumi.StringInput
 	// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
-	CopyProtectionEnabled pulumi.BoolInput
+	CopyProtectionEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	EncryptionAtRestEnabled pulumi.BoolInput
+	EncryptionAtRestEnabled pulumi.BoolPtrInput
 	OnDemandPolicyItem      BackupCompliancePolicyOnDemandPolicyItemInput
 	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
-	PitEnabled          pulumi.BoolInput
+	PitEnabled          pulumi.BoolPtrInput
 	PolicyItemDaily     BackupCompliancePolicyPolicyItemDailyPtrInput
 	PolicyItemHourly    BackupCompliancePolicyPolicyItemHourlyPtrInput
 	PolicyItemMonthlies BackupCompliancePolicyPolicyItemMonthlyArrayInput
@@ -326,13 +317,13 @@ func (o BackupCompliancePolicyOutput) AuthorizedUserLastName() pulumi.StringOutp
 }
 
 // Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
-func (o BackupCompliancePolicyOutput) CopyProtectionEnabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v *BackupCompliancePolicy) pulumi.BoolOutput { return v.CopyProtectionEnabled }).(pulumi.BoolOutput)
+func (o BackupCompliancePolicyOutput) CopyProtectionEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicy) pulumi.BoolPtrOutput { return v.CopyProtectionEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
-func (o BackupCompliancePolicyOutput) EncryptionAtRestEnabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v *BackupCompliancePolicy) pulumi.BoolOutput { return v.EncryptionAtRestEnabled }).(pulumi.BoolOutput)
+func (o BackupCompliancePolicyOutput) EncryptionAtRestEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicy) pulumi.BoolPtrOutput { return v.EncryptionAtRestEnabled }).(pulumi.BoolPtrOutput)
 }
 
 func (o BackupCompliancePolicyOutput) OnDemandPolicyItem() BackupCompliancePolicyOnDemandPolicyItemOutput {
@@ -342,8 +333,8 @@ func (o BackupCompliancePolicyOutput) OnDemandPolicyItem() BackupCompliancePolic
 }
 
 // Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
-func (o BackupCompliancePolicyOutput) PitEnabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v *BackupCompliancePolicy) pulumi.BoolOutput { return v.PitEnabled }).(pulumi.BoolOutput)
+func (o BackupCompliancePolicyOutput) PitEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicy) pulumi.BoolPtrOutput { return v.PitEnabled }).(pulumi.BoolPtrOutput)
 }
 
 func (o BackupCompliancePolicyOutput) PolicyItemDaily() BackupCompliancePolicyPolicyItemDailyPtrOutput {

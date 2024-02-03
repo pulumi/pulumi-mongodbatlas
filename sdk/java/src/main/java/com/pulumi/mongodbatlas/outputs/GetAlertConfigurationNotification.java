@@ -29,7 +29,7 @@ public final class GetAlertConfigurationNotification {
      */
     private String datadogApiKey;
     /**
-     * @return Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+     * @return Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
      * 
      */
     private String datadogRegion;
@@ -158,7 +158,7 @@ public final class GetAlertConfigurationNotification {
         return this.datadogApiKey;
     }
     /**
-     * @return Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+     * @return Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
      * 
      */
     public String datadogRegion() {

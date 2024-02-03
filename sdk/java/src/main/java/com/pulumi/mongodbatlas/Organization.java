@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.OrganizationArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.OrganizationState;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +19,11 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
  * 
- * &gt; **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you&#39;ll need to use them to grant access to the newly created Atlas organization.
+ * &gt; **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you&#39;ll need to use them to grant access to the newly created Atlas organization. To use this resource, `role_names` for new API Key must have the ORG_OWNER role specified.
+ * 
+ * &gt; **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key&#39;s organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.
+ * 
+ * &gt; **NOTE** Import command is currently not supported for this resource.
  * 
  * ## Example Usage
  * ```java
@@ -52,20 +57,23 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
- * ## Import
- * 
- * Organization must be imported using organization ID, e.g.
- * 
- * ```sh
- *  $ pulumi import mongodbatlas:index/organization:Organization my_org 5d09d6a59ccf6445652a444a
- * ```
- *  For more information see[MongoDB Atlas Admin API Organization](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/createOrganization)
- * 
- * Documentation for more information.
- * 
  */
 @ResourceType(type="mongodbatlas:index/organization:Organization")
 public class Organization extends com.pulumi.resources.CustomResource {
+    /**
+     * Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+     * 
+     */
+    @Export(name="apiAccessListRequired", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> apiAccessListRequired;
+
+    /**
+     * @return Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+     * 
+     */
+    public Output<Boolean> apiAccessListRequired() {
+        return this.apiAccessListRequired;
+    }
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
@@ -73,18 +81,32 @@ public class Organization extends com.pulumi.resources.CustomResource {
         return this.description;
     }
     /**
-     * (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     * Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
      * 
      */
     @Export(name="federationSettingsId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> federationSettingsId;
 
     /**
-     * @return (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     * @return Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
      * 
      */
     public Output<Optional<String>> federationSettingsId() {
         return Codegen.optional(this.federationSettingsId);
+    }
+    /**
+     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * 
+     */
+    @Export(name="multiFactorAuthRequired", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> multiFactorAuthRequired;
+
+    /**
+     * @return Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * 
+     */
+    public Output<Boolean> multiFactorAuthRequired() {
+        return this.multiFactorAuthRequired;
     }
     /**
      * The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
@@ -147,6 +169,20 @@ public class Organization extends com.pulumi.resources.CustomResource {
      */
     public Output<String> publicKey() {
         return this.publicKey;
+    }
+    /**
+     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * 
+     */
+    @Export(name="restrictEmployeeAccess", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> restrictEmployeeAccess;
+
+    /**
+     * @return Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * 
+     */
+    public Output<Boolean> restrictEmployeeAccess() {
+        return this.restrictEmployeeAccess;
     }
     /**
      * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.

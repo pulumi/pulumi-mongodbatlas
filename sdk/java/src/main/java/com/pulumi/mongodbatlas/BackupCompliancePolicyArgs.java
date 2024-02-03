@@ -73,30 +73,30 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      * 
      */
-    @Import(name="copyProtectionEnabled", required=true)
-    private Output<Boolean> copyProtectionEnabled;
+    @Import(name="copyProtectionEnabled")
+    private @Nullable Output<Boolean> copyProtectionEnabled;
 
     /**
      * @return Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      * 
      */
-    public Output<Boolean> copyProtectionEnabled() {
-        return this.copyProtectionEnabled;
+    public Optional<Output<Boolean>> copyProtectionEnabled() {
+        return Optional.ofNullable(this.copyProtectionEnabled);
     }
 
     /**
      * Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      * 
      */
-    @Import(name="encryptionAtRestEnabled", required=true)
-    private Output<Boolean> encryptionAtRestEnabled;
+    @Import(name="encryptionAtRestEnabled")
+    private @Nullable Output<Boolean> encryptionAtRestEnabled;
 
     /**
      * @return Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      * 
      */
-    public Output<Boolean> encryptionAtRestEnabled() {
-        return this.encryptionAtRestEnabled;
+    public Optional<Output<Boolean>> encryptionAtRestEnabled() {
+        return Optional.ofNullable(this.encryptionAtRestEnabled);
     }
 
     @Import(name="onDemandPolicyItem", required=true)
@@ -110,15 +110,15 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      * 
      */
-    @Import(name="pitEnabled", required=true)
-    private Output<Boolean> pitEnabled;
+    @Import(name="pitEnabled")
+    private @Nullable Output<Boolean> pitEnabled;
 
     /**
      * @return Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      * 
      */
-    public Output<Boolean> pitEnabled() {
-        return this.pitEnabled;
+    public Optional<Output<Boolean>> pitEnabled() {
+        return Optional.ofNullable(this.pitEnabled);
     }
 
     @Import(name="policyItemDaily")
@@ -284,7 +284,7 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
          * @return builder
          * 
          */
-        public Builder copyProtectionEnabled(Output<Boolean> copyProtectionEnabled) {
+        public Builder copyProtectionEnabled(@Nullable Output<Boolean> copyProtectionEnabled) {
             $.copyProtectionEnabled = copyProtectionEnabled;
             return this;
         }
@@ -305,7 +305,7 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
          * @return builder
          * 
          */
-        public Builder encryptionAtRestEnabled(Output<Boolean> encryptionAtRestEnabled) {
+        public Builder encryptionAtRestEnabled(@Nullable Output<Boolean> encryptionAtRestEnabled) {
             $.encryptionAtRestEnabled = encryptionAtRestEnabled;
             return this;
         }
@@ -335,7 +335,7 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
          * @return builder
          * 
          */
-        public Builder pitEnabled(Output<Boolean> pitEnabled) {
+        public Builder pitEnabled(@Nullable Output<Boolean> pitEnabled) {
             $.pitEnabled = pitEnabled;
             return this;
         }
@@ -446,17 +446,8 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
             if ($.authorizedUserLastName == null) {
                 throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "authorizedUserLastName");
             }
-            if ($.copyProtectionEnabled == null) {
-                throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "copyProtectionEnabled");
-            }
-            if ($.encryptionAtRestEnabled == null) {
-                throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "encryptionAtRestEnabled");
-            }
             if ($.onDemandPolicyItem == null) {
                 throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "onDemandPolicyItem");
-            }
-            if ($.pitEnabled == null) {
-                throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "pitEnabled");
             }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("BackupCompliancePolicyArgs", "projectId");

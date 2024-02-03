@@ -190,9 +190,17 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.searchAnalyzer);
     }
 
+    /**
+     * Current status of the index.
+     * 
+     */
     @Import(name="status")
     private @Nullable Output<String> status;
 
+    /**
+     * @return Current status of the index.
+     * 
+     */
     public Optional<Output<String>> status() {
         return Optional.ofNullable(this.status);
     }
@@ -513,11 +521,23 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
             return searchAnalyzer(Output.of(searchAnalyzer));
         }
 
+        /**
+         * @param status Current status of the index.
+         * 
+         * @return builder
+         * 
+         */
         public Builder status(@Nullable Output<String> status) {
             $.status = status;
             return this;
         }
 
+        /**
+         * @param status Current status of the index.
+         * 
+         * @return builder
+         * 
+         */
         public Builder status(String status) {
             return status(Output.of(status));
         }

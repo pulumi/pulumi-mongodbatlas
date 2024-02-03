@@ -36,6 +36,12 @@ public final class GetDatabaseUserResult {
      * 
      */
     private String oidcAuthType;
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.16.0
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
     private String password;
     private String projectId;
     /**
@@ -90,6 +96,12 @@ public final class GetDatabaseUserResult {
     public String oidcAuthType() {
         return this.oidcAuthType;
     }
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.16.0
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
     public String password() {
         return this.password;
     }

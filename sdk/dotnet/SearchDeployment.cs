@@ -16,45 +16,35 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Only a single search deployment resource can be defined for each cluster.
     /// 
-    /// ## Import
-    /// 
-    /// Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
-    /// 
-    /// ```sh
-    ///  $ pulumi import mongodbatlas:index/searchDeployment:SearchDeployment test 650972848269185c55f40ca1-Cluster0
-    /// ```
-    ///  For more information see[MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
+    /// ## Example Usage
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/searchDeployment:SearchDeployment")]
     public partial class SearchDeployment : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Label that identifies the cluster to create search nodes for.
+        /// Label that identifies the cluster to return the search nodes for.
         /// </summary>
         [Output("clusterName")]
         public Output<string> ClusterName { get; private set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal character string that identifies the project.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+        /// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         /// </summary>
         [Output("specs")]
         public Output<ImmutableArray<Outputs.SearchDeploymentSpec>> Specs { get; private set; } = null!;
 
         /// <summary>
-        /// Human-readable label that indicates the current operating condition of this search node deployment.
+        /// Human-readable label that indicates the current operating condition of this search deployment.
         /// </summary>
         [Output("stateName")]
         public Output<string> StateName { get; private set; } = null!;
 
-        /// <summary>
-        /// The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-        /// </summary>
         [Output("timeouts")]
         public Output<Outputs.SearchDeploymentTimeouts?> Timeouts { get; private set; } = null!;
 
@@ -105,13 +95,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class SearchDeploymentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Label that identifies the cluster to create search nodes for.
+        /// Label that identifies the cluster to return the search nodes for.
         /// </summary>
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal character string that identifies the project.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -120,7 +110,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.SearchDeploymentSpecArgs>? _specs;
 
         /// <summary>
-        /// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+        /// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         /// </summary>
         public InputList<Inputs.SearchDeploymentSpecArgs> Specs
         {
@@ -128,9 +118,6 @@ namespace Pulumi.Mongodbatlas
             set => _specs = value;
         }
 
-        /// <summary>
-        /// The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-        /// </summary>
         [Input("timeouts")]
         public Input<Inputs.SearchDeploymentTimeoutsArgs>? Timeouts { get; set; }
 
@@ -143,13 +130,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class SearchDeploymentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Label that identifies the cluster to create search nodes for.
+        /// Label that identifies the cluster to return the search nodes for.
         /// </summary>
         [Input("clusterName")]
         public Input<string>? ClusterName { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal character string that identifies the project.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -158,7 +145,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.SearchDeploymentSpecGetArgs>? _specs;
 
         /// <summary>
-        /// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+        /// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         /// </summary>
         public InputList<Inputs.SearchDeploymentSpecGetArgs> Specs
         {
@@ -167,14 +154,11 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Human-readable label that indicates the current operating condition of this search node deployment.
+        /// Human-readable label that indicates the current operating condition of this search deployment.
         /// </summary>
         [Input("stateName")]
         public Input<string>? StateName { get; set; }
 
-        /// <summary>
-        /// The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-        /// </summary>
         [Input("timeouts")]
         public Input<Inputs.SearchDeploymentTimeoutsGetArgs>? Timeouts { get; set; }
 

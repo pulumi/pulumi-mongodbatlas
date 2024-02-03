@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.ProjectArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.ProjectState;
+import com.pulumi.mongodbatlas.outputs.ProjectIpAddresses;
 import com.pulumi.mongodbatlas.outputs.ProjectLimit;
 import com.pulumi.mongodbatlas.outputs.ProjectTeam;
 import java.lang.Boolean;
@@ -99,32 +100,46 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/project:Project")
 public class Project extends com.pulumi.resources.CustomResource {
     /**
-     * The number of Atlas clusters deployed in the project..
+     * The number of Atlas clusters deployed in the project.
      * 
      */
     @Export(name="clusterCount", refs={Integer.class}, tree="[0]")
     private Output<Integer> clusterCount;
 
     /**
-     * @return The number of Atlas clusters deployed in the project..
+     * @return The number of Atlas clusters deployed in the project.
      * 
      */
     public Output<Integer> clusterCount() {
         return this.clusterCount;
     }
     /**
-     * The ISO-8601-formatted timestamp of when Atlas created the project..
+     * The ISO-8601-formatted timestamp of when Atlas created the project.
      * 
      */
     @Export(name="created", refs={String.class}, tree="[0]")
     private Output<String> created;
 
     /**
-     * @return The ISO-8601-formatted timestamp of when Atlas created the project..
+     * @return The ISO-8601-formatted timestamp of when Atlas created the project.
      * 
      */
     public Output<String> created() {
         return this.created;
+    }
+    /**
+     * IP addresses in a project categorized by services. See IP Addresses.
+     * 
+     */
+    @Export(name="ipAddresses", refs={ProjectIpAddresses.class}, tree="[0]")
+    private Output<ProjectIpAddresses> ipAddresses;
+
+    /**
+     * @return IP addresses in a project categorized by services. See IP Addresses.
+     * 
+     */
+    public Output<ProjectIpAddresses> ipAddresses() {
+        return this.ipAddresses;
     }
     /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.

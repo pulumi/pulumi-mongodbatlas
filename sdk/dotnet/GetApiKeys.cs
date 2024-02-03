@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         public int? ItemsPerPage { get; set; }
 
         /// <summary>
-        /// Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        /// Unique identifier for the organization whose API keys you want to retrieve.
         /// </summary>
         [Input("orgId", required: true)]
         public string OrgId { get; set; } = null!;
@@ -54,7 +54,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? ItemsPerPage { get; set; }
 
         /// <summary>
-        /// Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        /// Unique identifier for the organization whose API keys you want to retrieve.
         /// </summary>
         [Input("orgId", required: true)]
         public Input<string> OrgId { get; set; } = null!;

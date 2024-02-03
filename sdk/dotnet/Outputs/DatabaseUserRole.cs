@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? CollectionName;
         /// <summary>
-        /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
         /// </summary>
         public readonly string DatabaseName;
         /// <summary>

@@ -16,25 +16,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetSearchDeployment.Invoke(new()
-        ///     {
-        ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
-        ///         ProjectId = "&lt;PROJECT_ID&gt;",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetSearchDeploymentResult> InvokeAsync(GetSearchDeploymentArgs args, InvokeOptions? options = null)
@@ -45,25 +26,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetSearchDeployment.Invoke(new()
-        ///     {
-        ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
-        ///         ProjectId = "&lt;PROJECT_ID&gt;",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetSearchDeploymentResult> Invoke(GetSearchDeploymentInvokeArgs args, InvokeOptions? options = null)
@@ -74,13 +36,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetSearchDeploymentArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the cluster containing a search node deployment.
+        /// Label that identifies the cluster to return the search nodes for.
         /// </summary>
         [Input("clusterName", required: true)]
         public string ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -94,13 +56,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetSearchDeploymentInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the cluster containing a search node deployment.
+        /// Label that identifies the cluster to return the search nodes for.
         /// </summary>
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -115,15 +77,24 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetSearchDeploymentResult
     {
+        /// <summary>
+        /// Label that identifies the cluster to return the search nodes for.
+        /// </summary>
         public readonly string ClusterName;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the search deployment.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// List of settings that configure the search nodes for your cluster. See specs.
+        /// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSearchDeploymentSpecResult> Specs;
         /// <summary>
-        /// Human-readable label that indicates the current operating condition of this search node deployment.
+        /// Human-readable label that indicates the current operating condition of this search deployment.
         /// </summary>
         public readonly string StateName;
 

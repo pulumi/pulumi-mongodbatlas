@@ -353,9 +353,17 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> searchAnalyzer() {
         return Codegen.optional(this.searchAnalyzer);
     }
+    /**
+     * Current status of the index.
+     * 
+     */
     @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
+    /**
+     * @return Current status of the index.
+     * 
+     */
     public Output<String> status() {
         return this.status;
     }

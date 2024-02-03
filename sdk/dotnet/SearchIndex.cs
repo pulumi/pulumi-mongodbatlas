@@ -215,6 +215,9 @@ namespace Pulumi.Mongodbatlas
         [Output("searchAnalyzer")]
         public Output<string?> SearchAnalyzer { get; private set; } = null!;
 
+        /// <summary>
+        /// Current status of the index.
+        /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
@@ -345,9 +348,6 @@ namespace Pulumi.Mongodbatlas
         [Input("searchAnalyzer")]
         public Input<string>? SearchAnalyzer { get; set; }
 
-        [Input("status")]
-        public Input<string>? Status { get; set; }
-
         [Input("synonyms")]
         private InputList<Inputs.SearchIndexSynonymArgs>? _synonyms;
 
@@ -446,6 +446,9 @@ namespace Pulumi.Mongodbatlas
         [Input("searchAnalyzer")]
         public Input<string>? SearchAnalyzer { get; set; }
 
+        /// <summary>
+        /// Current status of the index.
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 

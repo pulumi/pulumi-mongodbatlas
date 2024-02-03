@@ -349,7 +349,7 @@ export interface AlertConfigurationNotification {
      */
     datadogApiKey?: string;
     /**
-     * Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+     * Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
      */
     datadogRegion?: string;
     /**
@@ -773,11 +773,6 @@ export interface CloudProviderAccessAuthorizationFeatureUsage {
     featureType: string;
 }
 
-export interface CloudProviderAccessFeatureUsage {
-    featureId: {[key: string]: any};
-    featureType: string;
-}
-
 export interface CloudProviderAccessSetupAwsConfig {
     atlasAssumedRoleExternalId: string;
     atlasAwsAccountArn: string;
@@ -1173,7 +1168,7 @@ export interface DatabaseUserRole {
      */
     collectionName?: string;
     /**
-     * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+     * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
      */
     databaseName: string;
     /**
@@ -1208,7 +1203,7 @@ export interface EncryptionAtRestAwsKmsConfig {
      */
     region?: string;
     /**
-     * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlas.CloudProviderAccess` resource.
+     * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlasCloudProviderAccess` resource.
      */
     roleId?: string;
     secretAccessKey?: string;
@@ -1320,15 +1315,15 @@ export interface FederatedDatabaseInstanceDataProcessRegion {
 }
 
 export interface FederatedDatabaseInstanceStorageDatabase {
-    collections?: outputs.FederatedDatabaseInstanceStorageDatabaseCollection[];
+    collections: outputs.FederatedDatabaseInstanceStorageDatabaseCollection[];
     maxWildcardCollections: number;
     /**
      * Name of the Atlas Federated Database Instance.
      * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
      * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
-    name?: string;
-    views?: outputs.FederatedDatabaseInstanceStorageDatabaseView[];
+    name: string;
+    views: outputs.FederatedDatabaseInstanceStorageDatabaseView[];
 }
 
 export interface FederatedDatabaseInstanceStorageDatabaseCollection {
@@ -1338,21 +1333,21 @@ export interface FederatedDatabaseInstanceStorageDatabaseCollection {
      * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
      * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
-    name?: string;
+    name: string;
 }
 
 export interface FederatedDatabaseInstanceStorageDatabaseCollectionDataSource {
-    allowInsecure?: boolean;
-    collection?: string;
-    collectionRegex?: string;
-    database?: string;
-    databaseRegex?: string;
-    datasetName?: string;
-    defaultFormat?: string;
-    path?: string;
-    provenanceFieldName?: string;
-    storeName?: string;
-    urls?: string[];
+    allowInsecure: boolean;
+    collection: string;
+    collectionRegex: string;
+    database: string;
+    databaseRegex: string;
+    datasetName: string;
+    defaultFormat: string;
+    path: string;
+    provenanceFieldName: string;
+    storeName: string;
+    urls: string[];
 }
 
 export interface FederatedDatabaseInstanceStorageDatabaseView {
@@ -1367,42 +1362,42 @@ export interface FederatedDatabaseInstanceStorageDatabaseView {
 }
 
 export interface FederatedDatabaseInstanceStorageStore {
-    additionalStorageClasses?: string[];
-    allowInsecure?: boolean;
-    bucket?: string;
+    additionalStorageClasses: string[];
+    allowInsecure: boolean;
+    bucket: string;
     /**
      * @deprecated this parameter is deprecated and will be removed by September 2024
      */
-    clusterId?: string;
-    clusterName?: string;
-    defaultFormat?: string;
-    delimiter?: string;
-    includeTags?: boolean;
+    clusterId: string;
+    clusterName: string;
+    defaultFormat: string;
+    delimiter: string;
+    includeTags: boolean;
     /**
      * Name of the Atlas Federated Database Instance.
      * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
      * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
-    name?: string;
-    prefix?: string;
+    name: string;
+    prefix: string;
     /**
      * The unique ID for the project to create a Federated Database Instance.
      */
-    projectId?: string;
-    provider?: string;
-    public?: string;
-    readPreference?: outputs.FederatedDatabaseInstanceStorageStoreReadPreference;
+    projectId: string;
+    provider: string;
+    public: string;
+    readPreference: outputs.FederatedDatabaseInstanceStorageStoreReadPreference;
     /**
      * Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
      */
-    region?: string;
-    urls?: string[];
+    region: string;
+    urls: string[];
 }
 
 export interface FederatedDatabaseInstanceStorageStoreReadPreference {
-    maxStalenessSeconds?: number;
-    mode?: string;
-    tagSets?: outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet[];
+    maxStalenessSeconds: number;
+    mode: string;
+    tagSets: outputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet[];
 }
 
 export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
@@ -1415,8 +1410,8 @@ export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
      * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
      * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
-    name?: string;
-    value?: string;
+    name: string;
+    value: string;
 }
 
 export interface FederatedSettingsOrgRoleMappingRoleAssignment {
@@ -2122,7 +2117,7 @@ export interface GetAlertConfigurationNotification {
      */
     datadogApiKey: string;
     /**
-     * Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+     * Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
      */
     datadogRegion: string;
     /**
@@ -2340,7 +2335,7 @@ export interface GetAlertConfigurationsResultNotification {
      */
     datadogApiKey: string;
     /**
-     * Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+     * Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
      */
     datadogRegion: string;
     /**
@@ -3034,46 +3029,6 @@ export interface GetCloudBackupSnapshotsResultMember {
      * Label given to a shard or config server from which Atlas took this snapshot.
      */
     replicaSetName: string;
-}
-
-export interface GetCloudProviderAccessAwsIamRole {
-    /**
-     * Unique external ID Atlas uses when assuming the IAM role in your AWS account.
-     */
-    atlasAssumedRoleExternalId: string;
-    /**
-     * ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
-     */
-    atlasAwsAccountArn: string;
-    /**
-     * Date on which this role was authorized.
-     */
-    authorizedDate: string;
-    /**
-     * Date on which this role was created.
-     */
-    createdDate: string;
-    /**
-     * Atlas features this AWS IAM role is linked to.
-     */
-    featureUsages: outputs.GetCloudProviderAccessAwsIamRoleFeatureUsage[];
-    /**
-     * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account.
-     */
-    iamAssumedRoleArn: string;
-    /**
-     * Name of the cloud provider. Currently limited to AWS.
-     */
-    providerName: string;
-    /**
-     * Unique ID of this role.
-     */
-    roleId: string;
-}
-
-export interface GetCloudProviderAccessAwsIamRoleFeatureUsage {
-    featureId: {[key: string]: any};
-    featureType: string;
 }
 
 export interface GetCloudProviderAccessSetupAwsConfig {
@@ -4031,6 +3986,9 @@ export interface GetDatabaseUsersResult {
      * (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      */
     oidcAuthType: string;
+    /**
+     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
+     */
     password: string;
     /**
      * The unique ID for the project to get all database users.
@@ -4523,9 +4481,6 @@ export interface GetFederatedSettingsIdentityProviderAssociatedOrg {
      * Flag that indicates whether domain restriction is enabled for the connected organization.
      */
     domainRestrictionEnabled: boolean;
-    /**
-     * Unique 20-hexadecimal digit string that identifies the IdP.
-     */
     identityProviderId: string;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
@@ -4625,13 +4580,29 @@ export interface GetFederatedSettingsIdentityProvidersResult {
      */
     associatedOrgs: outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrg[];
     /**
+     * Identifier of the intended recipient of the token.
+     */
+    audienceClaims: string[];
+    /**
      * Identifier for the intended audience of the SAML Assertion.
      */
     audienceUri: string;
     /**
+     * Client identifier that is assigned to an application by the Identity Provider.
+     */
+    clientId: string;
+    /**
      * Human-readable label that identifies the IdP.
      */
     displayName: string;
+    /**
+     * Identifier of the claim which contains IdP Group IDs in the token.
+     */
+    groupsClaim: string;
+    /**
+     * Unique 20-hexadecimal digit string that identifies the IdP.
+     */
+    idpId: string;
     /**
      * Identifier for the issuer of the SAML Assertion.
      */
@@ -4639,11 +4610,19 @@ export interface GetFederatedSettingsIdentityProvidersResult {
     oktaIdpId: string;
     pemFileInfos: outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfo[];
     /**
+     * The protocol of the identity provider
+     */
+    protocol: string;
+    /**
      * SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
      * - HTTP POST
      * - HTTP REDIRECT
      */
     requestBinding: string;
+    /**
+     * Scopes that MongoDB applications will request from the authorization endpoint.
+     */
+    requestedScopes: string[];
     /**
      * Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
      * - SHA-1
@@ -4662,6 +4641,10 @@ export interface GetFederatedSettingsIdentityProvidersResult {
      * Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
      */
     status: string;
+    /**
+     * Identifier of the claim which contains the user ID in the token.
+     */
+    userClaim: string;
 }
 
 export interface GetFederatedSettingsIdentityProvidersResultAssociatedOrg {
@@ -5206,20 +5189,32 @@ export interface GetOrganizationLink {
 
 export interface GetOrganizationsResult {
     /**
+     * Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+     */
+    apiAccessListRequired: boolean;
+    /**
      * Autogenerated Unique ID for this data source.
      */
     id: string;
     /**
      * Flag that indicates whether this organization has been deleted.
-     *
-     * See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
      */
     isDeleted: boolean;
     links: outputs.GetOrganizationsResultLink[];
     /**
+     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     */
+    multiFactorAuthRequired: boolean;
+    /**
      * Human-readable label that identifies the organization.
      */
     name: string;
+    /**
+     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     *
+     * See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
+     */
+    restrictEmployeeAccess: boolean;
 }
 
 export interface GetOrganizationsResultLink {
@@ -5333,9 +5328,32 @@ export interface GetProjectApiKeysResultProjectAssignment {
     roleNames: string[];
 }
 
+export interface GetProjectIpAddresses {
+    services: outputs.GetProjectIpAddressesServices;
+}
+
+export interface GetProjectIpAddressesServices {
+    clusters: outputs.GetProjectIpAddressesServicesCluster[];
+}
+
+export interface GetProjectIpAddressesServicesCluster {
+    clusterName: string;
+    inbounds: string[];
+    outbounds: string[];
+}
+
 export interface GetProjectLimit {
+    /**
+     * Amount that indicates the current usage of the limit.
+     */
     currentUsage: number;
+    /**
+     * Default value of the limit.
+     */
     defaultLimit: number;
+    /**
+     * Maximum value of the limit.
+     */
     maximumLimit: number;
     /**
      * The unique ID for the project.
@@ -5343,11 +5361,20 @@ export interface GetProjectLimit {
      * > **IMPORTANT:** Either `projectId` or `name` must be configurated.
      */
     name: string;
+    /**
+     * Amount the limit is set to.
+     */
     value: number;
 }
 
 export interface GetProjectTeam {
+    /**
+     * Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     */
     roleNames: string[];
+    /**
+     * The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+     */
     teamId: string;
 }
 
@@ -5358,19 +5385,16 @@ export interface GetProjectsResult {
     clusterCount: number;
     /**
      * The ISO-8601-formatted timestamp of when Atlas created the project.
-     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * * `limits.#.name` - Human-readable label that identifies this project limit.
-     * * `limits.#.value` - Amount the limit is set to.
-     * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-     * * `limits.#.default_limit` - Default value of the limit.
-     * * `limits.#.maximum_limit` - Maximum value of the limit.
      */
     created: string;
     /**
      * Autogenerated Unique ID for this data source.
      */
     id: string;
+    /**
+     * IP addresses in a project categorized by services. See IP Addresses.
+     */
+    ipAddresses: outputs.GetProjectsResultIpAddresses;
     /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
      */
@@ -5395,9 +5419,12 @@ export interface GetProjectsResult {
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      */
     isSchemaAdvisorEnabled: boolean;
+    /**
+     * The limits for the specified project. See Limits.
+     */
     limits: outputs.GetProjectsResultLimit[];
     /**
-     * The name of the project you want to create.
+     * Human-readable label that identifies this project limit.
      */
     name: string;
     /**
@@ -5407,36 +5434,69 @@ export interface GetProjectsResult {
     projectId: string;
     /**
      * If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
-     *
-     * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/project-get-teams/) Documentation for more information.
      */
     regionUsageRestrictions: string;
+    /**
+     * Returns all teams to which the authenticated user has access in the project. See Teams.
+     */
     teams: outputs.GetProjectsResultTeam[];
 }
 
+export interface GetProjectsResultIpAddresses {
+    services: outputs.GetProjectsResultIpAddressesServices;
+}
+
+export interface GetProjectsResultIpAddressesServices {
+    clusters: outputs.GetProjectsResultIpAddressesServicesCluster[];
+}
+
+export interface GetProjectsResultIpAddressesServicesCluster {
+    clusterName: string;
+    inbounds: string[];
+    outbounds: string[];
+}
+
 export interface GetProjectsResultLimit {
+    /**
+     * Amount that indicates the current usage of the limit.
+     */
     currentUsage: number;
+    /**
+     * Default value of the limit.
+     */
     defaultLimit: number;
+    /**
+     * Maximum value of the limit.
+     */
     maximumLimit: number;
     /**
-     * The name of the project you want to create.
+     * Human-readable label that identifies this project limit.
      */
     name: string;
+    /**
+     * Amount the limit is set to.
+     */
     value: number;
 }
 
 export interface GetProjectsResultTeam {
+    /**
+     * Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+     */
     roleNames: string[];
+    /**
+     * The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+     */
     teamId: string;
 }
 
 export interface GetSearchDeploymentSpec {
     /**
-     * (Required) Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+     * Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
      */
     instanceSize: string;
     /**
-     * (Required) Number of search nodes in the cluster.
+     * Number of search nodes in the cluster.
      */
     nodeCount: number;
 }
@@ -5496,6 +5556,9 @@ export interface GetSearchIndexesResult {
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      */
     searchAnalyzer?: string;
+    /**
+     * Current status of the index.
+     */
     status: string;
     /**
      * Synonyms mapping definition to use in this index.
@@ -5883,6 +5946,20 @@ export interface ProjectIpAccessListTimeouts {
     read?: string;
 }
 
+export interface ProjectIpAddresses {
+    services: outputs.ProjectIpAddressesServices;
+}
+
+export interface ProjectIpAddressesServices {
+    clusters: outputs.ProjectIpAddressesServicesCluster[];
+}
+
+export interface ProjectIpAddressesServicesCluster {
+    clusterName: string;
+    inbounds: string[];
+    outbounds: string[];
+}
+
 export interface ProjectLimit {
     currentUsage: number;
     defaultLimit: number;
@@ -5946,7 +6023,7 @@ export interface SearchIndexSynonym {
      */
     name: string;
     /**
-     * Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+     * (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
      */
     sourceCollection: string;
 }

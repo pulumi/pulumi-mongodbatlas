@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.outputs.GetProjectIpAddresses;
 import com.pulumi.mongodbatlas.outputs.GetProjectLimit;
 import com.pulumi.mongodbatlas.outputs.GetProjectTeam;
 import java.lang.Boolean;
@@ -24,17 +25,15 @@ public final class GetProjectResult {
     private Integer clusterCount;
     /**
      * @return The ISO-8601-formatted timestamp of when Atlas created the project.
-     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * * `limits.#.name` - Human-readable label that identifies this project limit.
-     * * `limits.#.value` - Amount the limit is set to.
-     * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-     * * `limits.#.default_limit` - Default value of the limit.
-     * * `limits.#.maximum_limit` - Maximum value of the limit.
      * 
      */
     private String created;
     private String id;
+    /**
+     * @return IP addresses in a project categorized by services. See IP Addresses.
+     * 
+     */
+    private GetProjectIpAddresses ipAddresses;
     /**
      * @return Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
      * 
@@ -65,9 +64,13 @@ public final class GetProjectResult {
      * 
      */
     private Boolean isSchemaAdvisorEnabled;
+    /**
+     * @return The limits for the specified project. See Limits.
+     * 
+     */
     private List<GetProjectLimit> limits;
     /**
-     * @return The name of the project you want to create.
+     * @return Human-readable label that identifies this project limit.
      * 
      */
     private @Nullable String name;
@@ -82,6 +85,10 @@ public final class GetProjectResult {
      * 
      */
     private String regionUsageRestrictions;
+    /**
+     * @return Returns all teams to which the authenticated user has access in the project. See Teams.
+     * 
+     */
     private List<GetProjectTeam> teams;
 
     private GetProjectResult() {}
@@ -94,13 +101,6 @@ public final class GetProjectResult {
     }
     /**
      * @return The ISO-8601-formatted timestamp of when Atlas created the project.
-     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * * `limits.#.name` - Human-readable label that identifies this project limit.
-     * * `limits.#.value` - Amount the limit is set to.
-     * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-     * * `limits.#.default_limit` - Default value of the limit.
-     * * `limits.#.maximum_limit` - Maximum value of the limit.
      * 
      */
     public String created() {
@@ -108,6 +108,13 @@ public final class GetProjectResult {
     }
     public String id() {
         return this.id;
+    }
+    /**
+     * @return IP addresses in a project categorized by services. See IP Addresses.
+     * 
+     */
+    public GetProjectIpAddresses ipAddresses() {
+        return this.ipAddresses;
     }
     /**
      * @return Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -151,11 +158,15 @@ public final class GetProjectResult {
     public Boolean isSchemaAdvisorEnabled() {
         return this.isSchemaAdvisorEnabled;
     }
+    /**
+     * @return The limits for the specified project. See Limits.
+     * 
+     */
     public List<GetProjectLimit> limits() {
         return this.limits;
     }
     /**
-     * @return The name of the project you want to create.
+     * @return Human-readable label that identifies this project limit.
      * 
      */
     public Optional<String> name() {
@@ -178,6 +189,10 @@ public final class GetProjectResult {
     public String regionUsageRestrictions() {
         return this.regionUsageRestrictions;
     }
+    /**
+     * @return Returns all teams to which the authenticated user has access in the project. See Teams.
+     * 
+     */
     public List<GetProjectTeam> teams() {
         return this.teams;
     }
@@ -194,6 +209,7 @@ public final class GetProjectResult {
         private Integer clusterCount;
         private String created;
         private String id;
+        private GetProjectIpAddresses ipAddresses;
         private Boolean isCollectDatabaseSpecificsStatisticsEnabled;
         private Boolean isDataExplorerEnabled;
         private Boolean isExtendedStorageSizesEnabled;
@@ -212,6 +228,7 @@ public final class GetProjectResult {
     	      this.clusterCount = defaults.clusterCount;
     	      this.created = defaults.created;
     	      this.id = defaults.id;
+    	      this.ipAddresses = defaults.ipAddresses;
     	      this.isCollectDatabaseSpecificsStatisticsEnabled = defaults.isCollectDatabaseSpecificsStatisticsEnabled;
     	      this.isDataExplorerEnabled = defaults.isDataExplorerEnabled;
     	      this.isExtendedStorageSizesEnabled = defaults.isExtendedStorageSizesEnabled;
@@ -248,6 +265,14 @@ public final class GetProjectResult {
               throw new MissingRequiredPropertyException("GetProjectResult", "id");
             }
             this.id = id;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ipAddresses(GetProjectIpAddresses ipAddresses) {
+            if (ipAddresses == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "ipAddresses");
+            }
+            this.ipAddresses = ipAddresses;
             return this;
         }
         @CustomType.Setter
@@ -353,6 +378,7 @@ public final class GetProjectResult {
             _resultValue.clusterCount = clusterCount;
             _resultValue.created = created;
             _resultValue.id = id;
+            _resultValue.ipAddresses = ipAddresses;
             _resultValue.isCollectDatabaseSpecificsStatisticsEnabled = isCollectDatabaseSpecificsStatisticsEnabled;
             _resultValue.isDataExplorerEnabled = isDataExplorerEnabled;
             _resultValue.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;

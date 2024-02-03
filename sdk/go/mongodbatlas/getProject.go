@@ -41,15 +41,10 @@ type LookupProjectResult struct {
 	// The number of Atlas clusters deployed in the project.
 	ClusterCount int `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project.
-	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-	// * `limits.#.name` - Human-readable label that identifies this project limit.
-	// * `limits.#.value` - Amount the limit is set to.
-	// * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-	// * `limits.#.default_limit` - Default value of the limit.
-	// * `limits.#.maximum_limit` - Maximum value of the limit.
 	Created string `pulumi:"created"`
 	Id      string `pulumi:"id"`
+	// IP addresses in a project categorized by services. See IP Addresses.
+	IpAddresses GetProjectIpAddresses `pulumi:"ipAddresses"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
@@ -61,16 +56,18 @@ type LookupProjectResult struct {
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
 	IsRealtimePerformancePanelEnabled bool `pulumi:"isRealtimePerformancePanelEnabled"`
 	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-	IsSchemaAdvisorEnabled bool              `pulumi:"isSchemaAdvisorEnabled"`
-	Limits                 []GetProjectLimit `pulumi:"limits"`
-	// The name of the project you want to create.
+	IsSchemaAdvisorEnabled bool `pulumi:"isSchemaAdvisorEnabled"`
+	// The limits for the specified project. See Limits.
+	Limits []GetProjectLimit `pulumi:"limits"`
+	// Human-readable label that identifies this project limit.
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId     string  `pulumi:"orgId"`
 	ProjectId *string `pulumi:"projectId"`
 	// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
-	RegionUsageRestrictions string           `pulumi:"regionUsageRestrictions"`
-	Teams                   []GetProjectTeam `pulumi:"teams"`
+	RegionUsageRestrictions string `pulumi:"regionUsageRestrictions"`
+	// Returns all teams to which the authenticated user has access in the project. See Teams.
+	Teams []GetProjectTeam `pulumi:"teams"`
 }
 
 func LookupProjectOutput(ctx *pulumi.Context, args LookupProjectOutputArgs, opts ...pulumi.InvokeOption) LookupProjectResultOutput {
@@ -121,19 +118,17 @@ func (o LookupProjectResultOutput) ClusterCount() pulumi.IntOutput {
 }
 
 // The ISO-8601-formatted timestamp of when Atlas created the project.
-// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-// * `limits.#.name` - Human-readable label that identifies this project limit.
-// * `limits.#.value` - Amount the limit is set to.
-// * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-// * `limits.#.default_limit` - Default value of the limit.
-// * `limits.#.maximum_limit` - Maximum value of the limit.
 func (o LookupProjectResultOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.Created }).(pulumi.StringOutput)
 }
 
 func (o LookupProjectResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// IP addresses in a project categorized by services. See IP Addresses.
+func (o LookupProjectResultOutput) IpAddresses() GetProjectIpAddressesOutput {
+	return o.ApplyT(func(v LookupProjectResult) GetProjectIpAddresses { return v.IpAddresses }).(GetProjectIpAddressesOutput)
 }
 
 // Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -166,11 +161,12 @@ func (o LookupProjectResultOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
 }
 
+// The limits for the specified project. See Limits.
 func (o LookupProjectResultOutput) Limits() GetProjectLimitArrayOutput {
 	return o.ApplyT(func(v LookupProjectResult) []GetProjectLimit { return v.Limits }).(GetProjectLimitArrayOutput)
 }
 
-// The name of the project you want to create.
+// Human-readable label that identifies this project limit.
 func (o LookupProjectResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupProjectResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -189,6 +185,7 @@ func (o LookupProjectResultOutput) RegionUsageRestrictions() pulumi.StringOutput
 	return o.ApplyT(func(v LookupProjectResult) string { return v.RegionUsageRestrictions }).(pulumi.StringOutput)
 }
 
+// Returns all teams to which the authenticated user has access in the project. See Teams.
 func (o LookupProjectResultOutput) Teams() GetProjectTeamArrayOutput {
 	return o.ApplyT(func(v LookupProjectResult) []GetProjectTeam { return v.Teams }).(GetProjectTeamArrayOutput)
 }

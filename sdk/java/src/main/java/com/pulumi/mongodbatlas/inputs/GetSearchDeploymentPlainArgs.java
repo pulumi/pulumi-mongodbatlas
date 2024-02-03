@@ -14,14 +14,14 @@ public final class GetSearchDeploymentPlainArgs extends com.pulumi.resources.Inv
     public static final GetSearchDeploymentPlainArgs Empty = new GetSearchDeploymentPlainArgs();
 
     /**
-     * The name of the cluster containing a search node deployment.
+     * Label that identifies the cluster to return the search nodes for.
      * 
      */
     @Import(name="clusterName", required=true)
     private String clusterName;
 
     /**
-     * @return The name of the cluster containing a search node deployment.
+     * @return Label that identifies the cluster to return the search nodes for.
      * 
      */
     public String clusterName() {
@@ -29,14 +29,14 @@ public final class GetSearchDeploymentPlainArgs extends com.pulumi.resources.Inv
     }
 
     /**
-     * The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     public String projectId() {
@@ -69,7 +69,7 @@ public final class GetSearchDeploymentPlainArgs extends com.pulumi.resources.Inv
         }
 
         /**
-         * @param clusterName The name of the cluster containing a search node deployment.
+         * @param clusterName Label that identifies the cluster to return the search nodes for.
          * 
          * @return builder
          * 
@@ -80,7 +80,7 @@ public final class GetSearchDeploymentPlainArgs extends com.pulumi.resources.Inv
         }
 
         /**
-         * @param projectId The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 

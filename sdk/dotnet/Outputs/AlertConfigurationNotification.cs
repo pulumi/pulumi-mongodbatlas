@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? DatadogApiKey;
         /// <summary>
-        /// Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+        /// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
         /// </summary>
         public readonly string? DatadogRegion;
         /// <summary>

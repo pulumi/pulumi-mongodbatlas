@@ -166,10 +166,10 @@ namespace Pulumi.Mongodbatlas
     public partial class FederatedDatabaseInstance : global::Pulumi.CustomResource
     {
         [Output("cloudProviderConfig")]
-        public Output<Outputs.FederatedDatabaseInstanceCloudProviderConfig?> CloudProviderConfig { get; private set; } = null!;
+        public Output<Outputs.FederatedDatabaseInstanceCloudProviderConfig> CloudProviderConfig { get; private set; } = null!;
 
         [Output("dataProcessRegion")]
-        public Output<Outputs.FederatedDatabaseInstanceDataProcessRegion?> DataProcessRegion { get; private set; } = null!;
+        public Output<Outputs.FederatedDatabaseInstanceDataProcessRegion> DataProcessRegion { get; private set; } = null!;
 
         /// <summary>
         /// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.

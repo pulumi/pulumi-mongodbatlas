@@ -15,6 +15,38 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.ApiKey;
+ * import com.pulumi.mongodbatlas.ApiKeyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new ApiKey(&#34;test&#34;, ApiKeyArgs.builder()        
+ *             .description(&#34;key-name&#34;)
+ *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+ *             .roleNames(&#34;ORG_READ_ONLY&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
  * ## Import
  * 
  * API Keys must be imported using org ID, API Key ID e.g.

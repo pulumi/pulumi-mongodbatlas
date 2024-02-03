@@ -24,8 +24,9 @@ func LookupApiKey(ctx *pulumi.Context, args *LookupApiKeyArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getApiKey.
 type LookupApiKeyArgs struct {
+	// Unique identifier for the organization API key.
 	ApiKeyId string `pulumi:"apiKeyId"`
-	// The unique ID for the project.
+	// Unique identifier for the organization.
 	OrgId string `pulumi:"orgId"`
 }
 
@@ -35,8 +36,7 @@ type LookupApiKeyResult struct {
 	// Description of this Organization API key.
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	Id    string `pulumi:"id"`
 	OrgId string `pulumi:"orgId"`
 	// Public key for this Organization API key.
 	PublicKey string `pulumi:"publicKey"`
@@ -60,8 +60,9 @@ func LookupApiKeyOutput(ctx *pulumi.Context, args LookupApiKeyOutputArgs, opts .
 
 // A collection of arguments for invoking getApiKey.
 type LookupApiKeyOutputArgs struct {
+	// Unique identifier for the organization API key.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
-	// The unique ID for the project.
+	// Unique identifier for the organization.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
 }
 
@@ -98,7 +99,6 @@ func (o LookupApiKeyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApiKeyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
 func (o LookupApiKeyResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApiKeyResult) string { return v.OrgId }).(pulumi.StringOutput)
 }

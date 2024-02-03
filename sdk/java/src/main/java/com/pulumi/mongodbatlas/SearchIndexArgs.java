@@ -184,13 +184,6 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.searchAnalyzer);
     }
 
-    @Import(name="status")
-    private @Nullable Output<String> status;
-
-    public Optional<Output<String>> status() {
-        return Optional.ofNullable(this.status);
-    }
-
     /**
      * Synonyms mapping definition to use in this index.
      * 
@@ -242,7 +235,6 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         this.name = $.name;
         this.projectId = $.projectId;
         this.searchAnalyzer = $.searchAnalyzer;
-        this.status = $.status;
         this.synonyms = $.synonyms;
         this.type = $.type;
         this.waitForIndexBuildCompletion = $.waitForIndexBuildCompletion;
@@ -495,15 +487,6 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder searchAnalyzer(String searchAnalyzer) {
             return searchAnalyzer(Output.of(searchAnalyzer));
-        }
-
-        public Builder status(@Nullable Output<String> status) {
-            $.status = status;
-            return this;
-        }
-
-        public Builder status(String status) {
-            return status(Output.of(status));
         }
 
         /**

@@ -225,6 +225,7 @@ class _ProjectState:
     def __init__(__self__, *,
                  cluster_count: Optional[pulumi.Input[int]] = None,
                  created: Optional[pulumi.Input[str]] = None,
+                 ip_addresses: Optional[pulumi.Input['ProjectIpAddressesArgs']] = None,
                  is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
                  is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
                  is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
@@ -240,8 +241,9 @@ class _ProjectState:
                  with_default_alerts_settings: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering Project resources.
-        :param pulumi.Input[int] cluster_count: The number of Atlas clusters deployed in the project..
-        :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project..
+        :param pulumi.Input[int] cluster_count: The number of Atlas clusters deployed in the project.
+        :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project.
+        :param pulumi.Input['ProjectIpAddressesArgs'] ip_addresses: IP addresses in a project categorized by services. See IP Addresses.
         :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
         :param pulumi.Input[bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
@@ -258,6 +260,8 @@ class _ProjectState:
             pulumi.set(__self__, "cluster_count", cluster_count)
         if created is not None:
             pulumi.set(__self__, "created", created)
+        if ip_addresses is not None:
+            pulumi.set(__self__, "ip_addresses", ip_addresses)
         if is_collect_database_specifics_statistics_enabled is not None:
             pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         if is_data_explorer_enabled is not None:
@@ -289,7 +293,7 @@ class _ProjectState:
     @pulumi.getter(name="clusterCount")
     def cluster_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of Atlas clusters deployed in the project..
+        The number of Atlas clusters deployed in the project.
         """
         return pulumi.get(self, "cluster_count")
 
@@ -301,13 +305,25 @@ class _ProjectState:
     @pulumi.getter
     def created(self) -> Optional[pulumi.Input[str]]:
         """
-        The ISO-8601-formatted timestamp of when Atlas created the project..
+        The ISO-8601-formatted timestamp of when Atlas created the project.
         """
         return pulumi.get(self, "created")
 
     @created.setter
     def created(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "created", value)
+
+    @property
+    @pulumi.getter(name="ipAddresses")
+    def ip_addresses(self) -> Optional[pulumi.Input['ProjectIpAddressesArgs']]:
+        """
+        IP addresses in a project categorized by services. See IP Addresses.
+        """
+        return pulumi.get(self, "ip_addresses")
+
+    @ip_addresses.setter
+    def ip_addresses(self, value: Optional[pulumi.Input['ProjectIpAddressesArgs']]):
+        pulumi.set(self, "ip_addresses", value)
 
     @property
     @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
@@ -663,6 +679,7 @@ class Project(pulumi.CustomResource):
             __props__.__dict__["with_default_alerts_settings"] = with_default_alerts_settings
             __props__.__dict__["cluster_count"] = None
             __props__.__dict__["created"] = None
+            __props__.__dict__["ip_addresses"] = None
         super(Project, __self__).__init__(
             'mongodbatlas:index/project:Project',
             resource_name,
@@ -675,6 +692,7 @@ class Project(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_count: Optional[pulumi.Input[int]] = None,
             created: Optional[pulumi.Input[str]] = None,
+            ip_addresses: Optional[pulumi.Input[pulumi.InputType['ProjectIpAddressesArgs']]] = None,
             is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
             is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
             is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
@@ -695,8 +713,9 @@ class Project(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] cluster_count: The number of Atlas clusters deployed in the project..
-        :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project..
+        :param pulumi.Input[int] cluster_count: The number of Atlas clusters deployed in the project.
+        :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project.
+        :param pulumi.Input[pulumi.InputType['ProjectIpAddressesArgs']] ip_addresses: IP addresses in a project categorized by services. See IP Addresses.
         :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
         :param pulumi.Input[bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
@@ -715,6 +734,7 @@ class Project(pulumi.CustomResource):
 
         __props__.__dict__["cluster_count"] = cluster_count
         __props__.__dict__["created"] = created
+        __props__.__dict__["ip_addresses"] = ip_addresses
         __props__.__dict__["is_collect_database_specifics_statistics_enabled"] = is_collect_database_specifics_statistics_enabled
         __props__.__dict__["is_data_explorer_enabled"] = is_data_explorer_enabled
         __props__.__dict__["is_extended_storage_sizes_enabled"] = is_extended_storage_sizes_enabled
@@ -734,7 +754,7 @@ class Project(pulumi.CustomResource):
     @pulumi.getter(name="clusterCount")
     def cluster_count(self) -> pulumi.Output[int]:
         """
-        The number of Atlas clusters deployed in the project..
+        The number of Atlas clusters deployed in the project.
         """
         return pulumi.get(self, "cluster_count")
 
@@ -742,9 +762,17 @@ class Project(pulumi.CustomResource):
     @pulumi.getter
     def created(self) -> pulumi.Output[str]:
         """
-        The ISO-8601-formatted timestamp of when Atlas created the project..
+        The ISO-8601-formatted timestamp of when Atlas created the project.
         """
         return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter(name="ipAddresses")
+    def ip_addresses(self) -> pulumi.Output['outputs.ProjectIpAddresses']:
+        """
+        IP addresses in a project categorized by services. See IP Addresses.
+        """
+        return pulumi.get(self, "ip_addresses")
 
     @property
     @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")

@@ -50,18 +50,6 @@ namespace Pulumi.Mongodbatlas
         public string Database { get; set; } = null!;
 
         /// <summary>
-        /// Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-        /// </summary>
-        [Input("itemsPerPage")]
-        public int? ItemsPerPage { get; set; }
-
-        /// <summary>
-        /// Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-        /// </summary>
-        [Input("pageNum")]
-        public int? PageNum { get; set; }
-
-        /// <summary>
         /// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
         /// </summary>
         [Input("projectId", required: true)]
@@ -94,18 +82,6 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Database { get; set; } = null!;
 
         /// <summary>
-        /// Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-        /// </summary>
-        [Input("itemsPerPage")]
-        public Input<int>? ItemsPerPage { get; set; }
-
-        /// <summary>
-        /// Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-        /// </summary>
-        [Input("pageNum")]
-        public Input<int>? PageNum { get; set; }
-
-        /// <summary>
         /// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
         /// </summary>
         [Input("projectId", required: true)]
@@ -134,8 +110,6 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly int? ItemsPerPage;
-        public readonly int? PageNum;
         public readonly string ProjectId;
         /// <summary>
         /// A list where each represents a search index.
@@ -156,10 +130,6 @@ namespace Pulumi.Mongodbatlas
 
             string id,
 
-            int? itemsPerPage,
-
-            int? pageNum,
-
             string projectId,
 
             ImmutableArray<Outputs.GetSearchIndexesResultResult> results,
@@ -170,8 +140,6 @@ namespace Pulumi.Mongodbatlas
             CollectionName = collectionName;
             Database = database;
             Id = id;
-            ItemsPerPage = itemsPerPage;
-            PageNum = pageNum;
             ProjectId = projectId;
             Results = results;
             TotalCount = totalCount;

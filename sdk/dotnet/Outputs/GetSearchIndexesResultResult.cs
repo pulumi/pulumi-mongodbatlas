@@ -55,6 +55,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
         /// </summary>
         public readonly string? SearchAnalyzer;
+        /// <summary>
+        /// Current status of the index.
+        /// </summary>
         public readonly string Status;
         /// <summary>
         /// Synonyms mapping definition to use in this index.

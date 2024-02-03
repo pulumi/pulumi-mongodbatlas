@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.outputs.GetProjectsResultIpAddresses;
 import com.pulumi.mongodbatlas.outputs.GetProjectsResultLimit;
 import com.pulumi.mongodbatlas.outputs.GetProjectsResultTeam;
 import java.lang.Boolean;
@@ -22,13 +23,6 @@ public final class GetProjectsResult {
     private Integer clusterCount;
     /**
      * @return The ISO-8601-formatted timestamp of when Atlas created the project.
-     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * * `limits.#.name` - Human-readable label that identifies this project limit.
-     * * `limits.#.value` - Amount the limit is set to.
-     * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-     * * `limits.#.default_limit` - Default value of the limit.
-     * * `limits.#.maximum_limit` - Maximum value of the limit.
      * 
      */
     private String created;
@@ -37,6 +31,11 @@ public final class GetProjectsResult {
      * 
      */
     private String id;
+    /**
+     * @return IP addresses in a project categorized by services. See IP Addresses.
+     * 
+     */
+    private GetProjectsResultIpAddresses ipAddresses;
     /**
      * @return Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
      * 
@@ -67,9 +66,13 @@ public final class GetProjectsResult {
      * 
      */
     private Boolean isSchemaAdvisorEnabled;
+    /**
+     * @return The limits for the specified project. See Limits.
+     * 
+     */
     private List<GetProjectsResultLimit> limits;
     /**
-     * @return The name of the project you want to create.
+     * @return Human-readable label that identifies this project limit.
      * 
      */
     private String name;
@@ -82,10 +85,12 @@ public final class GetProjectsResult {
     /**
      * @return If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      * 
-     * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/project-get-teams/) Documentation for more information.
-     * 
      */
     private String regionUsageRestrictions;
+    /**
+     * @return Returns all teams to which the authenticated user has access in the project. See Teams.
+     * 
+     */
     private List<GetProjectsResultTeam> teams;
 
     private GetProjectsResult() {}
@@ -98,13 +103,6 @@ public final class GetProjectsResult {
     }
     /**
      * @return The ISO-8601-formatted timestamp of when Atlas created the project.
-     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * * `limits.#.name` - Human-readable label that identifies this project limit.
-     * * `limits.#.value` - Amount the limit is set to.
-     * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-     * * `limits.#.default_limit` - Default value of the limit.
-     * * `limits.#.maximum_limit` - Maximum value of the limit.
      * 
      */
     public String created() {
@@ -116,6 +114,13 @@ public final class GetProjectsResult {
      */
     public String id() {
         return this.id;
+    }
+    /**
+     * @return IP addresses in a project categorized by services. See IP Addresses.
+     * 
+     */
+    public GetProjectsResultIpAddresses ipAddresses() {
+        return this.ipAddresses;
     }
     /**
      * @return Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -159,11 +164,15 @@ public final class GetProjectsResult {
     public Boolean isSchemaAdvisorEnabled() {
         return this.isSchemaAdvisorEnabled;
     }
+    /**
+     * @return The limits for the specified project. See Limits.
+     * 
+     */
     public List<GetProjectsResultLimit> limits() {
         return this.limits;
     }
     /**
-     * @return The name of the project you want to create.
+     * @return Human-readable label that identifies this project limit.
      * 
      */
     public String name() {
@@ -182,12 +191,14 @@ public final class GetProjectsResult {
     /**
      * @return If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      * 
-     * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/project-get-teams/) Documentation for more information.
-     * 
      */
     public String regionUsageRestrictions() {
         return this.regionUsageRestrictions;
     }
+    /**
+     * @return Returns all teams to which the authenticated user has access in the project. See Teams.
+     * 
+     */
     public List<GetProjectsResultTeam> teams() {
         return this.teams;
     }
@@ -204,6 +215,7 @@ public final class GetProjectsResult {
         private Integer clusterCount;
         private String created;
         private String id;
+        private GetProjectsResultIpAddresses ipAddresses;
         private Boolean isCollectDatabaseSpecificsStatisticsEnabled;
         private Boolean isDataExplorerEnabled;
         private Boolean isExtendedStorageSizesEnabled;
@@ -222,6 +234,7 @@ public final class GetProjectsResult {
     	      this.clusterCount = defaults.clusterCount;
     	      this.created = defaults.created;
     	      this.id = defaults.id;
+    	      this.ipAddresses = defaults.ipAddresses;
     	      this.isCollectDatabaseSpecificsStatisticsEnabled = defaults.isCollectDatabaseSpecificsStatisticsEnabled;
     	      this.isDataExplorerEnabled = defaults.isDataExplorerEnabled;
     	      this.isExtendedStorageSizesEnabled = defaults.isExtendedStorageSizesEnabled;
@@ -258,6 +271,14 @@ public final class GetProjectsResult {
               throw new MissingRequiredPropertyException("GetProjectsResult", "id");
             }
             this.id = id;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ipAddresses(GetProjectsResultIpAddresses ipAddresses) {
+            if (ipAddresses == null) {
+              throw new MissingRequiredPropertyException("GetProjectsResult", "ipAddresses");
+            }
+            this.ipAddresses = ipAddresses;
             return this;
         }
         @CustomType.Setter
@@ -367,6 +388,7 @@ public final class GetProjectsResult {
             _resultValue.clusterCount = clusterCount;
             _resultValue.created = created;
             _resultValue.id = id;
+            _resultValue.ipAddresses = ipAddresses;
             _resultValue.isCollectDatabaseSpecificsStatisticsEnabled = isCollectDatabaseSpecificsStatisticsEnabled;
             _resultValue.isDataExplorerEnabled = isDataExplorerEnabled;
             _resultValue.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;

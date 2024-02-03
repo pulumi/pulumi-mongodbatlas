@@ -13,14 +13,7 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Only a single search deployment resource can be defined for each cluster.
  *
- * ## Import
- *
- * Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
- *
- * ```sh
- *  $ pulumi import mongodbatlas:index/searchDeployment:SearchDeployment test 650972848269185c55f40ca1-Cluster0
- * ```
- *  For more information see[MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
+ * ## Example Usage
  */
 export class SearchDeployment extends pulumi.CustomResource {
     /**
@@ -51,24 +44,21 @@ export class SearchDeployment extends pulumi.CustomResource {
     }
 
     /**
-     * Label that identifies the cluster to create search nodes for.
+     * Label that identifies the cluster to return the search nodes for.
      */
     public readonly clusterName!: pulumi.Output<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal character string that identifies the project.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+     * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      */
     public readonly specs!: pulumi.Output<outputs.SearchDeploymentSpec[]>;
     /**
-     * Human-readable label that indicates the current operating condition of this search node deployment.
+     * Human-readable label that indicates the current operating condition of this search deployment.
      */
     public /*out*/ readonly stateName!: pulumi.Output<string>;
-    /**
-     * The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-     */
     public readonly timeouts!: pulumi.Output<outputs.SearchDeploymentTimeouts | undefined>;
 
     /**
@@ -116,24 +106,21 @@ export class SearchDeployment extends pulumi.CustomResource {
  */
 export interface SearchDeploymentState {
     /**
-     * Label that identifies the cluster to create search nodes for.
+     * Label that identifies the cluster to return the search nodes for.
      */
     clusterName?: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal character string that identifies the project.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+     * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      */
     specs?: pulumi.Input<pulumi.Input<inputs.SearchDeploymentSpec>[]>;
     /**
-     * Human-readable label that indicates the current operating condition of this search node deployment.
+     * Human-readable label that indicates the current operating condition of this search deployment.
      */
     stateName?: pulumi.Input<string>;
-    /**
-     * The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-     */
     timeouts?: pulumi.Input<inputs.SearchDeploymentTimeouts>;
 }
 
@@ -142,19 +129,16 @@ export interface SearchDeploymentState {
  */
 export interface SearchDeploymentArgs {
     /**
-     * Label that identifies the cluster to create search nodes for.
+     * Label that identifies the cluster to return the search nodes for.
      */
     clusterName: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal character string that identifies the project.
      */
     projectId: pulumi.Input<string>;
     /**
-     * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+     * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      */
     specs: pulumi.Input<pulumi.Input<inputs.SearchDeploymentSpec>[]>;
-    /**
-     * The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-     */
     timeouts?: pulumi.Input<inputs.SearchDeploymentTimeouts>;
 }

@@ -16,9 +16,21 @@ public final class GetOrganizationsPlainArgs extends com.pulumi.resources.Invoke
 
     public static final GetOrganizationsPlainArgs Empty = new GetOrganizationsPlainArgs();
 
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.16.0
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
     @Import(name="includeDeletedOrgs")
     private @Nullable Boolean includeDeletedOrgs;
 
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.16.0
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
     public Optional<Boolean> includeDeletedOrgs() {
         return Optional.ofNullable(this.includeDeletedOrgs);
     }
@@ -95,6 +107,14 @@ public final class GetOrganizationsPlainArgs extends com.pulumi.resources.Invoke
             $ = new GetOrganizationsPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * this parameter is deprecated and will be removed in version 1.16.0
+         * 
+         */
+        @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
         public Builder includeDeletedOrgs(@Nullable Boolean includeDeletedOrgs) {
             $.includeDeletedOrgs = includeDeletedOrgs;
             return this;

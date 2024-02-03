@@ -14,7 +14,11 @@ import (
 
 // `Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
 //
-// > **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization.
+// > **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization. To use this resource, `roleNames` for new API Key must have the ORG_OWNER role specified.
+//
+// > **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key's organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.
+//
+// > **NOTE** Import command is currently not supported for this resource.
 //
 // ## Example Usage
 //
@@ -45,26 +49,16 @@ import (
 //	}
 //
 // ```
-//
-// ## Import
-//
-// Organization must be imported using organization ID, e.g.
-//
-// ```sh
-//
-//	$ pulumi import mongodbatlas:index/organization:Organization my_org 5d09d6a59ccf6445652a444a
-//
-// ```
-//
-//	For more information see[MongoDB Atlas Admin API Organization](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/createOrganization)
-//
-// Documentation for more information.
 type Organization struct {
 	pulumi.CustomResourceState
 
-	Description pulumi.StringOutput `pulumi:"description"`
-	// (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+	ApiAccessListRequired pulumi.BoolOutput   `pulumi:"apiAccessListRequired"`
+	Description           pulumi.StringOutput `pulumi:"description"`
+	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
 	FederationSettingsId pulumi.StringPtrOutput `pulumi:"federationSettingsId"`
+	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+	MultiFactorAuthRequired pulumi.BoolOutput `pulumi:"multiFactorAuthRequired"`
 	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization id.
@@ -74,6 +68,8 @@ type Organization struct {
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// Public API key value set for the specified organization API key.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
+	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+	RestrictEmployeeAccess pulumi.BoolOutput `pulumi:"restrictEmployeeAccess"`
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
 	RoleNames pulumi.StringArrayOutput `pulumi:"roleNames"`
 }
@@ -122,9 +118,13 @@ func GetOrganization(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Organization resources.
 type organizationState struct {
-	Description *string `pulumi:"description"`
-	// (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+	ApiAccessListRequired *bool   `pulumi:"apiAccessListRequired"`
+	Description           *string `pulumi:"description"`
+	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
 	FederationSettingsId *string `pulumi:"federationSettingsId"`
+	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+	MultiFactorAuthRequired *bool `pulumi:"multiFactorAuthRequired"`
 	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
 	Name *string `pulumi:"name"`
 	// The organization id.
@@ -134,14 +134,20 @@ type organizationState struct {
 	PrivateKey *string `pulumi:"privateKey"`
 	// Public API key value set for the specified organization API key.
 	PublicKey *string `pulumi:"publicKey"`
+	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+	RestrictEmployeeAccess *bool `pulumi:"restrictEmployeeAccess"`
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
 	RoleNames []string `pulumi:"roleNames"`
 }
 
 type OrganizationState struct {
-	Description pulumi.StringPtrInput
-	// (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+	ApiAccessListRequired pulumi.BoolPtrInput
+	Description           pulumi.StringPtrInput
+	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
 	FederationSettingsId pulumi.StringPtrInput
+	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+	MultiFactorAuthRequired pulumi.BoolPtrInput
 	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
 	Name pulumi.StringPtrInput
 	// The organization id.
@@ -151,6 +157,8 @@ type OrganizationState struct {
 	PrivateKey pulumi.StringPtrInput
 	// Public API key value set for the specified organization API key.
 	PublicKey pulumi.StringPtrInput
+	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+	RestrictEmployeeAccess pulumi.BoolPtrInput
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
 	RoleNames pulumi.StringArrayInput
 }
@@ -160,26 +168,38 @@ func (OrganizationState) ElementType() reflect.Type {
 }
 
 type organizationArgs struct {
-	Description string `pulumi:"description"`
-	// (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+	ApiAccessListRequired *bool  `pulumi:"apiAccessListRequired"`
+	Description           string `pulumi:"description"`
+	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
 	FederationSettingsId *string `pulumi:"federationSettingsId"`
+	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+	MultiFactorAuthRequired *bool `pulumi:"multiFactorAuthRequired"`
 	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
 	Name *string `pulumi:"name"`
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
 	OrgOwnerId string `pulumi:"orgOwnerId"`
+	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+	RestrictEmployeeAccess *bool `pulumi:"restrictEmployeeAccess"`
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
 	RoleNames []string `pulumi:"roleNames"`
 }
 
 // The set of arguments for constructing a Organization resource.
 type OrganizationArgs struct {
-	Description pulumi.StringInput
-	// (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+	ApiAccessListRequired pulumi.BoolPtrInput
+	Description           pulumi.StringInput
+	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
 	FederationSettingsId pulumi.StringPtrInput
+	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+	MultiFactorAuthRequired pulumi.BoolPtrInput
 	// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
 	Name pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername)
 	OrgOwnerId pulumi.StringInput
+	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+	RestrictEmployeeAccess pulumi.BoolPtrInput
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
 	RoleNames pulumi.StringArrayInput
 }
@@ -271,13 +291,23 @@ func (o OrganizationOutput) ToOrganizationOutputWithContext(ctx context.Context)
 	return o
 }
 
+// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+func (o OrganizationOutput) ApiAccessListRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Organization) pulumi.BoolOutput { return v.ApiAccessListRequired }).(pulumi.BoolOutput)
+}
+
 func (o OrganizationOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
 func (o OrganizationOutput) FederationSettingsId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringPtrOutput { return v.FederationSettingsId }).(pulumi.StringPtrOutput)
+}
+
+// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+func (o OrganizationOutput) MultiFactorAuthRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Organization) pulumi.BoolOutput { return v.MultiFactorAuthRequired }).(pulumi.BoolOutput)
 }
 
 // The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
@@ -302,6 +332,11 @@ func (o OrganizationOutput) PrivateKey() pulumi.StringOutput {
 // Public API key value set for the specified organization API key.
 func (o OrganizationOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+func (o OrganizationOutput) RestrictEmployeeAccess() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Organization) pulumi.BoolOutput { return v.RestrictEmployeeAccess }).(pulumi.BoolOutput)
 }
 
 // List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.

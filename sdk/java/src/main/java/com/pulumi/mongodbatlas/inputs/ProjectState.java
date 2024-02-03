@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.ProjectIpAddressesArgs;
 import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
 import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
 import java.lang.Boolean;
@@ -21,14 +22,14 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     public static final ProjectState Empty = new ProjectState();
 
     /**
-     * The number of Atlas clusters deployed in the project..
+     * The number of Atlas clusters deployed in the project.
      * 
      */
     @Import(name="clusterCount")
     private @Nullable Output<Integer> clusterCount;
 
     /**
-     * @return The number of Atlas clusters deployed in the project..
+     * @return The number of Atlas clusters deployed in the project.
      * 
      */
     public Optional<Output<Integer>> clusterCount() {
@@ -36,18 +37,33 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ISO-8601-formatted timestamp of when Atlas created the project..
+     * The ISO-8601-formatted timestamp of when Atlas created the project.
      * 
      */
     @Import(name="created")
     private @Nullable Output<String> created;
 
     /**
-     * @return The ISO-8601-formatted timestamp of when Atlas created the project..
+     * @return The ISO-8601-formatted timestamp of when Atlas created the project.
      * 
      */
     public Optional<Output<String>> created() {
         return Optional.ofNullable(this.created);
+    }
+
+    /**
+     * IP addresses in a project categorized by services. See IP Addresses.
+     * 
+     */
+    @Import(name="ipAddresses")
+    private @Nullable Output<ProjectIpAddressesArgs> ipAddresses;
+
+    /**
+     * @return IP addresses in a project categorized by services. See IP Addresses.
+     * 
+     */
+    public Optional<Output<ProjectIpAddressesArgs>> ipAddresses() {
+        return Optional.ofNullable(this.ipAddresses);
     }
 
     /**
@@ -234,6 +250,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     private ProjectState(ProjectState $) {
         this.clusterCount = $.clusterCount;
         this.created = $.created;
+        this.ipAddresses = $.ipAddresses;
         this.isCollectDatabaseSpecificsStatisticsEnabled = $.isCollectDatabaseSpecificsStatisticsEnabled;
         this.isDataExplorerEnabled = $.isDataExplorerEnabled;
         this.isExtendedStorageSizesEnabled = $.isExtendedStorageSizesEnabled;
@@ -268,7 +285,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clusterCount The number of Atlas clusters deployed in the project..
+         * @param clusterCount The number of Atlas clusters deployed in the project.
          * 
          * @return builder
          * 
@@ -279,7 +296,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clusterCount The number of Atlas clusters deployed in the project..
+         * @param clusterCount The number of Atlas clusters deployed in the project.
          * 
          * @return builder
          * 
@@ -289,7 +306,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param created The ISO-8601-formatted timestamp of when Atlas created the project..
+         * @param created The ISO-8601-formatted timestamp of when Atlas created the project.
          * 
          * @return builder
          * 
@@ -300,13 +317,34 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param created The ISO-8601-formatted timestamp of when Atlas created the project..
+         * @param created The ISO-8601-formatted timestamp of when Atlas created the project.
          * 
          * @return builder
          * 
          */
         public Builder created(String created) {
             return created(Output.of(created));
+        }
+
+        /**
+         * @param ipAddresses IP addresses in a project categorized by services. See IP Addresses.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipAddresses(@Nullable Output<ProjectIpAddressesArgs> ipAddresses) {
+            $.ipAddresses = ipAddresses;
+            return this;
+        }
+
+        /**
+         * @param ipAddresses IP addresses in a project categorized by services. See IP Addresses.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ipAddresses(ProjectIpAddressesArgs ipAddresses) {
+            return ipAddresses(Output.of(ipAddresses));
         }
 
         /**

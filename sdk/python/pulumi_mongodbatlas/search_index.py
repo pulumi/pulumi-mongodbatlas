@@ -27,7 +27,6 @@ class SearchIndexArgs:
                  mappings_fields: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  search_analyzer: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None):
@@ -65,8 +64,6 @@ class SearchIndexArgs:
             pulumi.set(__self__, "name", name)
         if search_analyzer is not None:
             pulumi.set(__self__, "search_analyzer", search_analyzer)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
         if synonyms is not None:
             pulumi.set(__self__, "synonyms", synonyms)
         if type is not None:
@@ -208,15 +205,6 @@ class SearchIndexArgs:
 
     @property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "status")
-
-    @status.setter
-    def status(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "status", value)
-
-    @property
-    @pulumi.getter
     def synonyms(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]:
         """
         Synonyms mapping definition to use in this index.
@@ -281,6 +269,7 @@ class _SearchIndexState:
         :param pulumi.Input[str] name: The name of the search index you want to create.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[str] status: Current status of the index.
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
         """
@@ -461,6 +450,9 @@ class _SearchIndexState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Current status of the index.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -517,7 +509,6 @@ class SearchIndex(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  search_analyzer: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
@@ -782,7 +773,6 @@ class SearchIndex(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  search_analyzer: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
@@ -814,11 +804,11 @@ class SearchIndex(pulumi.CustomResource):
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["search_analyzer"] = search_analyzer
-            __props__.__dict__["status"] = status
             __props__.__dict__["synonyms"] = synonyms
             __props__.__dict__["type"] = type
             __props__.__dict__["wait_for_index_build_completion"] = wait_for_index_build_completion
             __props__.__dict__["index_id"] = None
+            __props__.__dict__["status"] = None
         super(SearchIndex, __self__).__init__(
             'mongodbatlas:index/searchIndex:SearchIndex',
             resource_name,
@@ -863,6 +853,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the search index you want to create.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[str] status: Current status of the index.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
         """
@@ -984,6 +975,9 @@ class SearchIndex(pulumi.CustomResource):
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Current status of the index.
+        """
         return pulumi.get(self, "status")
 
     @property

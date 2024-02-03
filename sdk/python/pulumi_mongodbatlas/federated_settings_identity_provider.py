@@ -16,38 +16,67 @@ class FederatedSettingsIdentityProviderArgs:
     def __init__(__self__, *,
                  federation_settings_id: pulumi.Input[str],
                  issuer_uri: pulumi.Input[str],
-                 request_binding: pulumi.Input[str],
-                 response_signature_algorithm: pulumi.Input[str],
-                 sso_debug_enabled: pulumi.Input[bool],
-                 sso_url: pulumi.Input[str],
-                 status: pulumi.Input[str],
                  associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 audience_claims: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 groups_claim: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
+                 request_binding: Optional[pulumi.Input[str]] = None,
+                 requested_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_signature_algorithm: Optional[pulumi.Input[str]] = None,
+                 sso_debug_enabled: Optional[pulumi.Input[bool]] = None,
+                 sso_url: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 user_claim: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FederatedSettingsIdentityProvider resource.
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
-        :param pulumi.Input[str] issuer_uri: Unique string that identifies the issuer of the SAML
-        :param pulumi.Input[str] request_binding: SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+        :param pulumi.Input[str] issuer_uri: Unique string that identifies the issuer of the IdP.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] associated_domains: List that contains the domains associated with the identity provider.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audience_claims: Identifier of the intended recipient of the token used in OIDC IdP.
+        :param pulumi.Input[str] client_id: Client identifier that is assigned to an application by the OIDC Identity Provider.
+        :param pulumi.Input[str] groups_claim: Identifier of the claim which contains OIDC IdP Group IDs in the token.
+        :param pulumi.Input[str] name: Human-readable label that identifies the identity provider.
+        :param pulumi.Input[str] protocol: The protocol of the identity provider. Either `SAML` or `OIDC`.
+        :param pulumi.Input[str] request_binding: SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
                - HTTP POST
                - HTTP REDIRECT
-        :param pulumi.Input[str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] requested_scopes: Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+        :param pulumi.Input[str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
         :param pulumi.Input[bool] sso_debug_enabled: Flag that indicates whether the identity provider has SSO debug enabled.
         :param pulumi.Input[str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] associated_domains: List that contains the domains associated with the identity provider.
-        :param pulumi.Input[str] name: Human-readable label that identifies the identity provider.
+        :param pulumi.Input[str] user_claim: Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
         """
         pulumi.set(__self__, "federation_settings_id", federation_settings_id)
         pulumi.set(__self__, "issuer_uri", issuer_uri)
-        pulumi.set(__self__, "request_binding", request_binding)
-        pulumi.set(__self__, "response_signature_algorithm", response_signature_algorithm)
-        pulumi.set(__self__, "sso_debug_enabled", sso_debug_enabled)
-        pulumi.set(__self__, "sso_url", sso_url)
-        pulumi.set(__self__, "status", status)
         if associated_domains is not None:
             pulumi.set(__self__, "associated_domains", associated_domains)
+        if audience_claims is not None:
+            pulumi.set(__self__, "audience_claims", audience_claims)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if groups_claim is not None:
+            pulumi.set(__self__, "groups_claim", groups_claim)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if request_binding is not None:
+            pulumi.set(__self__, "request_binding", request_binding)
+        if requested_scopes is not None:
+            pulumi.set(__self__, "requested_scopes", requested_scopes)
+        if response_signature_algorithm is not None:
+            pulumi.set(__self__, "response_signature_algorithm", response_signature_algorithm)
+        if sso_debug_enabled is not None:
+            pulumi.set(__self__, "sso_debug_enabled", sso_debug_enabled)
+        if sso_url is not None:
+            pulumi.set(__self__, "sso_url", sso_url)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if user_claim is not None:
+            pulumi.set(__self__, "user_claim", user_claim)
 
     @property
     @pulumi.getter(name="federationSettingsId")
@@ -65,7 +94,7 @@ class FederatedSettingsIdentityProviderArgs:
     @pulumi.getter(name="issuerUri")
     def issuer_uri(self) -> pulumi.Input[str]:
         """
-        Unique string that identifies the issuer of the SAML
+        Unique string that identifies the issuer of the IdP.
         """
         return pulumi.get(self, "issuer_uri")
 
@@ -74,68 +103,6 @@ class FederatedSettingsIdentityProviderArgs:
         pulumi.set(self, "issuer_uri", value)
 
     @property
-    @pulumi.getter(name="requestBinding")
-    def request_binding(self) -> pulumi.Input[str]:
-        """
-        SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
-        - HTTP POST
-        - HTTP REDIRECT
-        """
-        return pulumi.get(self, "request_binding")
-
-    @request_binding.setter
-    def request_binding(self, value: pulumi.Input[str]):
-        pulumi.set(self, "request_binding", value)
-
-    @property
-    @pulumi.getter(name="responseSignatureAlgorithm")
-    def response_signature_algorithm(self) -> pulumi.Input[str]:
-        """
-        Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
-        """
-        return pulumi.get(self, "response_signature_algorithm")
-
-    @response_signature_algorithm.setter
-    def response_signature_algorithm(self, value: pulumi.Input[str]):
-        pulumi.set(self, "response_signature_algorithm", value)
-
-    @property
-    @pulumi.getter(name="ssoDebugEnabled")
-    def sso_debug_enabled(self) -> pulumi.Input[bool]:
-        """
-        Flag that indicates whether the identity provider has SSO debug enabled.
-        """
-        return pulumi.get(self, "sso_debug_enabled")
-
-    @sso_debug_enabled.setter
-    def sso_debug_enabled(self, value: pulumi.Input[bool]):
-        pulumi.set(self, "sso_debug_enabled", value)
-
-    @property
-    @pulumi.getter(name="ssoUrl")
-    def sso_url(self) -> pulumi.Input[str]:
-        """
-        Unique string that identifies the intended audience of the SAML assertion.
-        """
-        return pulumi.get(self, "sso_url")
-
-    @sso_url.setter
-    def sso_url(self, value: pulumi.Input[str]):
-        pulumi.set(self, "sso_url", value)
-
-    @property
-    @pulumi.getter
-    def status(self) -> pulumi.Input[str]:
-        """
-        String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
-        """
-        return pulumi.get(self, "status")
-
-    @status.setter
-    def status(self, value: pulumi.Input[str]):
-        pulumi.set(self, "status", value)
-
-    @property
     @pulumi.getter(name="associatedDomains")
     def associated_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -148,102 +115,40 @@ class FederatedSettingsIdentityProviderArgs:
         pulumi.set(self, "associated_domains", value)
 
     @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter(name="audienceClaims")
+    def audience_claims(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Human-readable label that identifies the identity provider.
+        Identifier of the intended recipient of the token used in OIDC IdP.
         """
-        return pulumi.get(self, "name")
+        return pulumi.get(self, "audience_claims")
 
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class _FederatedSettingsIdentityProviderState:
-    def __init__(__self__, *,
-                 associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 federation_settings_id: Optional[pulumi.Input[str]] = None,
-                 issuer_uri: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 okta_idp_id: Optional[pulumi.Input[str]] = None,
-                 request_binding: Optional[pulumi.Input[str]] = None,
-                 response_signature_algorithm: Optional[pulumi.Input[str]] = None,
-                 sso_debug_enabled: Optional[pulumi.Input[bool]] = None,
-                 sso_url: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None):
-        """
-        Input properties used for looking up and filtering FederatedSettingsIdentityProvider resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] associated_domains: List that contains the domains associated with the identity provider.
-        :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
-        :param pulumi.Input[str] issuer_uri: Unique string that identifies the issuer of the SAML
-        :param pulumi.Input[str] name: Human-readable label that identifies the identity provider.
-        :param pulumi.Input[str] okta_idp_id: Unique 20-hexadecimal digit string that identifies the IdP.
-        :param pulumi.Input[str] request_binding: SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
-               - HTTP POST
-               - HTTP REDIRECT
-        :param pulumi.Input[str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
-        :param pulumi.Input[bool] sso_debug_enabled: Flag that indicates whether the identity provider has SSO debug enabled.
-        :param pulumi.Input[str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
-        :param pulumi.Input[str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
-        """
-        if associated_domains is not None:
-            pulumi.set(__self__, "associated_domains", associated_domains)
-        if federation_settings_id is not None:
-            pulumi.set(__self__, "federation_settings_id", federation_settings_id)
-        if issuer_uri is not None:
-            pulumi.set(__self__, "issuer_uri", issuer_uri)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if okta_idp_id is not None:
-            pulumi.set(__self__, "okta_idp_id", okta_idp_id)
-        if request_binding is not None:
-            pulumi.set(__self__, "request_binding", request_binding)
-        if response_signature_algorithm is not None:
-            pulumi.set(__self__, "response_signature_algorithm", response_signature_algorithm)
-        if sso_debug_enabled is not None:
-            pulumi.set(__self__, "sso_debug_enabled", sso_debug_enabled)
-        if sso_url is not None:
-            pulumi.set(__self__, "sso_url", sso_url)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
+    @audience_claims.setter
+    def audience_claims(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "audience_claims", value)
 
     @property
-    @pulumi.getter(name="associatedDomains")
-    def associated_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        List that contains the domains associated with the identity provider.
+        Client identifier that is assigned to an application by the OIDC Identity Provider.
         """
-        return pulumi.get(self, "associated_domains")
+        return pulumi.get(self, "client_id")
 
-    @associated_domains.setter
-    def associated_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "associated_domains", value)
-
-    @property
-    @pulumi.getter(name="federationSettingsId")
-    def federation_settings_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
-        """
-        return pulumi.get(self, "federation_settings_id")
-
-    @federation_settings_id.setter
-    def federation_settings_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "federation_settings_id", value)
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
 
     @property
-    @pulumi.getter(name="issuerUri")
-    def issuer_uri(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter(name="groupsClaim")
+    def groups_claim(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique string that identifies the issuer of the SAML
+        Identifier of the claim which contains OIDC IdP Group IDs in the token.
         """
-        return pulumi.get(self, "issuer_uri")
+        return pulumi.get(self, "groups_claim")
 
-    @issuer_uri.setter
-    def issuer_uri(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "issuer_uri", value)
+    @groups_claim.setter
+    def groups_claim(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "groups_claim", value)
 
     @property
     @pulumi.getter
@@ -258,22 +163,22 @@ class _FederatedSettingsIdentityProviderState:
         pulumi.set(self, "name", value)
 
     @property
-    @pulumi.getter(name="oktaIdpId")
-    def okta_idp_id(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique 20-hexadecimal digit string that identifies the IdP.
+        The protocol of the identity provider. Either `SAML` or `OIDC`.
         """
-        return pulumi.get(self, "okta_idp_id")
+        return pulumi.get(self, "protocol")
 
-    @okta_idp_id.setter
-    def okta_idp_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "okta_idp_id", value)
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
 
     @property
     @pulumi.getter(name="requestBinding")
     def request_binding(self) -> Optional[pulumi.Input[str]]:
         """
-        SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+        SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
         - HTTP POST
         - HTTP REDIRECT
         """
@@ -284,10 +189,22 @@ class _FederatedSettingsIdentityProviderState:
         pulumi.set(self, "request_binding", value)
 
     @property
+    @pulumi.getter(name="requestedScopes")
+    def requested_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+        """
+        return pulumi.get(self, "requested_scopes")
+
+    @requested_scopes.setter
+    def requested_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "requested_scopes", value)
+
+    @property
     @pulumi.getter(name="responseSignatureAlgorithm")
     def response_signature_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+        Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
         """
         return pulumi.get(self, "response_signature_algorithm")
 
@@ -331,6 +248,302 @@ class _FederatedSettingsIdentityProviderState:
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
 
+    @property
+    @pulumi.getter(name="userClaim")
+    def user_claim(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        """
+        return pulumi.get(self, "user_claim")
+
+    @user_claim.setter
+    def user_claim(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_claim", value)
+
+
+@pulumi.input_type
+class _FederatedSettingsIdentityProviderState:
+    def __init__(__self__, *,
+                 associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audience_claims: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 federation_settings_id: Optional[pulumi.Input[str]] = None,
+                 groups_claim: Optional[pulumi.Input[str]] = None,
+                 idp_id: Optional[pulumi.Input[str]] = None,
+                 issuer_uri: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 okta_idp_id: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
+                 request_binding: Optional[pulumi.Input[str]] = None,
+                 requested_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 response_signature_algorithm: Optional[pulumi.Input[str]] = None,
+                 sso_debug_enabled: Optional[pulumi.Input[bool]] = None,
+                 sso_url: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 user_claim: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering FederatedSettingsIdentityProvider resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] associated_domains: List that contains the domains associated with the identity provider.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audience_claims: Identifier of the intended recipient of the token used in OIDC IdP.
+        :param pulumi.Input[str] client_id: Client identifier that is assigned to an application by the OIDC Identity Provider.
+        :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param pulumi.Input[str] groups_claim: Identifier of the claim which contains OIDC IdP Group IDs in the token.
+        :param pulumi.Input[str] idp_id: Unique 24-hexadecimal digit string that identifies the IdP.
+        :param pulumi.Input[str] issuer_uri: Unique string that identifies the issuer of the IdP.
+        :param pulumi.Input[str] name: Human-readable label that identifies the identity provider.
+        :param pulumi.Input[str] okta_idp_id: Unique 20-hexadecimal digit string that identifies the IdP.
+        :param pulumi.Input[str] protocol: The protocol of the identity provider. Either `SAML` or `OIDC`.
+        :param pulumi.Input[str] request_binding: SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+               - HTTP POST
+               - HTTP REDIRECT
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] requested_scopes: Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+        :param pulumi.Input[str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        :param pulumi.Input[bool] sso_debug_enabled: Flag that indicates whether the identity provider has SSO debug enabled.
+        :param pulumi.Input[str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
+        :param pulumi.Input[str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
+        :param pulumi.Input[str] user_claim: Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        """
+        if associated_domains is not None:
+            pulumi.set(__self__, "associated_domains", associated_domains)
+        if audience_claims is not None:
+            pulumi.set(__self__, "audience_claims", audience_claims)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if federation_settings_id is not None:
+            pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        if groups_claim is not None:
+            pulumi.set(__self__, "groups_claim", groups_claim)
+        if idp_id is not None:
+            pulumi.set(__self__, "idp_id", idp_id)
+        if issuer_uri is not None:
+            pulumi.set(__self__, "issuer_uri", issuer_uri)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if okta_idp_id is not None:
+            pulumi.set(__self__, "okta_idp_id", okta_idp_id)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if request_binding is not None:
+            pulumi.set(__self__, "request_binding", request_binding)
+        if requested_scopes is not None:
+            pulumi.set(__self__, "requested_scopes", requested_scopes)
+        if response_signature_algorithm is not None:
+            pulumi.set(__self__, "response_signature_algorithm", response_signature_algorithm)
+        if sso_debug_enabled is not None:
+            pulumi.set(__self__, "sso_debug_enabled", sso_debug_enabled)
+        if sso_url is not None:
+            pulumi.set(__self__, "sso_url", sso_url)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if user_claim is not None:
+            pulumi.set(__self__, "user_claim", user_claim)
+
+    @property
+    @pulumi.getter(name="associatedDomains")
+    def associated_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List that contains the domains associated with the identity provider.
+        """
+        return pulumi.get(self, "associated_domains")
+
+    @associated_domains.setter
+    def associated_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "associated_domains", value)
+
+    @property
+    @pulumi.getter(name="audienceClaims")
+    def audience_claims(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Identifier of the intended recipient of the token used in OIDC IdP.
+        """
+        return pulumi.get(self, "audience_claims")
+
+    @audience_claims.setter
+    def audience_claims(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "audience_claims", value)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Client identifier that is assigned to an application by the OIDC Identity Provider.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter(name="federationSettingsId")
+    def federation_settings_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
+        return pulumi.get(self, "federation_settings_id")
+
+    @federation_settings_id.setter
+    def federation_settings_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "federation_settings_id", value)
+
+    @property
+    @pulumi.getter(name="groupsClaim")
+    def groups_claim(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the claim which contains OIDC IdP Group IDs in the token.
+        """
+        return pulumi.get(self, "groups_claim")
+
+    @groups_claim.setter
+    def groups_claim(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "groups_claim", value)
+
+    @property
+    @pulumi.getter(name="idpId")
+    def idp_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the IdP.
+        """
+        return pulumi.get(self, "idp_id")
+
+    @idp_id.setter
+    def idp_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "idp_id", value)
+
+    @property
+    @pulumi.getter(name="issuerUri")
+    def issuer_uri(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique string that identifies the issuer of the IdP.
+        """
+        return pulumi.get(self, "issuer_uri")
+
+    @issuer_uri.setter
+    def issuer_uri(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "issuer_uri", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable label that identifies the identity provider.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="oktaIdpId")
+    def okta_idp_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 20-hexadecimal digit string that identifies the IdP.
+        """
+        return pulumi.get(self, "okta_idp_id")
+
+    @okta_idp_id.setter
+    def okta_idp_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "okta_idp_id", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        The protocol of the identity provider. Either `SAML` or `OIDC`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter(name="requestBinding")
+    def request_binding(self) -> Optional[pulumi.Input[str]]:
+        """
+        SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+        - HTTP POST
+        - HTTP REDIRECT
+        """
+        return pulumi.get(self, "request_binding")
+
+    @request_binding.setter
+    def request_binding(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "request_binding", value)
+
+    @property
+    @pulumi.getter(name="requestedScopes")
+    def requested_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+        """
+        return pulumi.get(self, "requested_scopes")
+
+    @requested_scopes.setter
+    def requested_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "requested_scopes", value)
+
+    @property
+    @pulumi.getter(name="responseSignatureAlgorithm")
+    def response_signature_algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        """
+        return pulumi.get(self, "response_signature_algorithm")
+
+    @response_signature_algorithm.setter
+    def response_signature_algorithm(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "response_signature_algorithm", value)
+
+    @property
+    @pulumi.getter(name="ssoDebugEnabled")
+    def sso_debug_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether the identity provider has SSO debug enabled.
+        """
+        return pulumi.get(self, "sso_debug_enabled")
+
+    @sso_debug_enabled.setter
+    def sso_debug_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "sso_debug_enabled", value)
+
+    @property
+    @pulumi.getter(name="ssoUrl")
+    def sso_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique string that identifies the intended audience of the SAML assertion.
+        """
+        return pulumi.get(self, "sso_url")
+
+    @sso_url.setter
+    def sso_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sso_url", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="userClaim")
+    def user_claim(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        """
+        return pulumi.get(self, "user_claim")
+
+    @user_claim.setter
+    def user_claim(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_claim", value)
+
 
 class FederatedSettingsIdentityProvider(pulumi.CustomResource):
     @overload
@@ -338,17 +551,25 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audience_claims: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
                  federation_settings_id: Optional[pulumi.Input[str]] = None,
+                 groups_claim: Optional[pulumi.Input[str]] = None,
                  issuer_uri: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  request_binding: Optional[pulumi.Input[str]] = None,
+                 requested_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  response_signature_algorithm: Optional[pulumi.Input[str]] = None,
                  sso_debug_enabled: Optional[pulumi.Input[bool]] = None,
                  sso_url: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 user_claim: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
+
+        > **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         ## Example Usage
 
         > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
@@ -375,21 +596,29 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk1297
         ```
-         For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+         __WARNING:__ Starting from terraform provider version 1.16.0, to import the resource a 24-hexadecimal digit string that identifies the IdP (`idp_id`) will have to be used instead of `okta_idp_id`. See more [here](../guides/1.15.0-upgrade-guide.html.markdown)
+
+        For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] associated_domains: List that contains the domains associated with the identity provider.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audience_claims: Identifier of the intended recipient of the token used in OIDC IdP.
+        :param pulumi.Input[str] client_id: Client identifier that is assigned to an application by the OIDC Identity Provider.
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
-        :param pulumi.Input[str] issuer_uri: Unique string that identifies the issuer of the SAML
+        :param pulumi.Input[str] groups_claim: Identifier of the claim which contains OIDC IdP Group IDs in the token.
+        :param pulumi.Input[str] issuer_uri: Unique string that identifies the issuer of the IdP.
         :param pulumi.Input[str] name: Human-readable label that identifies the identity provider.
-        :param pulumi.Input[str] request_binding: SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+        :param pulumi.Input[str] protocol: The protocol of the identity provider. Either `SAML` or `OIDC`.
+        :param pulumi.Input[str] request_binding: SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
                - HTTP POST
                - HTTP REDIRECT
-        :param pulumi.Input[str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] requested_scopes: Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+        :param pulumi.Input[str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
         :param pulumi.Input[bool] sso_debug_enabled: Flag that indicates whether the identity provider has SSO debug enabled.
         :param pulumi.Input[str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
+        :param pulumi.Input[str] user_claim: Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
         """
         ...
     @overload
@@ -399,6 +628,8 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
+
+        > **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         ## Example Usage
 
         > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
@@ -425,7 +656,9 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk1297
         ```
-         For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+         __WARNING:__ Starting from terraform provider version 1.16.0, to import the resource a 24-hexadecimal digit string that identifies the IdP (`idp_id`) will have to be used instead of `okta_idp_id`. See more [here](../guides/1.15.0-upgrade-guide.html.markdown)
+
+        For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
 
         :param str resource_name: The name of the resource.
         :param FederatedSettingsIdentityProviderArgs args: The arguments to use to populate this resource's properties.
@@ -443,14 +676,20 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audience_claims: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
                  federation_settings_id: Optional[pulumi.Input[str]] = None,
+                 groups_claim: Optional[pulumi.Input[str]] = None,
                  issuer_uri: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  request_binding: Optional[pulumi.Input[str]] = None,
+                 requested_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  response_signature_algorithm: Optional[pulumi.Input[str]] = None,
                  sso_debug_enabled: Optional[pulumi.Input[bool]] = None,
                  sso_url: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 user_claim: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -461,28 +700,25 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             __props__ = FederatedSettingsIdentityProviderArgs.__new__(FederatedSettingsIdentityProviderArgs)
 
             __props__.__dict__["associated_domains"] = associated_domains
+            __props__.__dict__["audience_claims"] = audience_claims
+            __props__.__dict__["client_id"] = client_id
             if federation_settings_id is None and not opts.urn:
                 raise TypeError("Missing required property 'federation_settings_id'")
             __props__.__dict__["federation_settings_id"] = federation_settings_id
+            __props__.__dict__["groups_claim"] = groups_claim
             if issuer_uri is None and not opts.urn:
                 raise TypeError("Missing required property 'issuer_uri'")
             __props__.__dict__["issuer_uri"] = issuer_uri
             __props__.__dict__["name"] = name
-            if request_binding is None and not opts.urn:
-                raise TypeError("Missing required property 'request_binding'")
+            __props__.__dict__["protocol"] = protocol
             __props__.__dict__["request_binding"] = request_binding
-            if response_signature_algorithm is None and not opts.urn:
-                raise TypeError("Missing required property 'response_signature_algorithm'")
+            __props__.__dict__["requested_scopes"] = requested_scopes
             __props__.__dict__["response_signature_algorithm"] = response_signature_algorithm
-            if sso_debug_enabled is None and not opts.urn:
-                raise TypeError("Missing required property 'sso_debug_enabled'")
             __props__.__dict__["sso_debug_enabled"] = sso_debug_enabled
-            if sso_url is None and not opts.urn:
-                raise TypeError("Missing required property 'sso_url'")
             __props__.__dict__["sso_url"] = sso_url
-            if status is None and not opts.urn:
-                raise TypeError("Missing required property 'status'")
             __props__.__dict__["status"] = status
+            __props__.__dict__["user_claim"] = user_claim
+            __props__.__dict__["idp_id"] = None
             __props__.__dict__["okta_idp_id"] = None
         super(FederatedSettingsIdentityProvider, __self__).__init__(
             'mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider',
@@ -495,15 +731,22 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            audience_claims: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
             federation_settings_id: Optional[pulumi.Input[str]] = None,
+            groups_claim: Optional[pulumi.Input[str]] = None,
+            idp_id: Optional[pulumi.Input[str]] = None,
             issuer_uri: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             okta_idp_id: Optional[pulumi.Input[str]] = None,
+            protocol: Optional[pulumi.Input[str]] = None,
             request_binding: Optional[pulumi.Input[str]] = None,
+            requested_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             response_signature_algorithm: Optional[pulumi.Input[str]] = None,
             sso_debug_enabled: Optional[pulumi.Input[bool]] = None,
             sso_url: Optional[pulumi.Input[str]] = None,
-            status: Optional[pulumi.Input[str]] = None) -> 'FederatedSettingsIdentityProvider':
+            status: Optional[pulumi.Input[str]] = None,
+            user_claim: Optional[pulumi.Input[str]] = None) -> 'FederatedSettingsIdentityProvider':
         """
         Get an existing FederatedSettingsIdentityProvider resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -512,32 +755,46 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] associated_domains: List that contains the domains associated with the identity provider.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] audience_claims: Identifier of the intended recipient of the token used in OIDC IdP.
+        :param pulumi.Input[str] client_id: Client identifier that is assigned to an application by the OIDC Identity Provider.
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
-        :param pulumi.Input[str] issuer_uri: Unique string that identifies the issuer of the SAML
+        :param pulumi.Input[str] groups_claim: Identifier of the claim which contains OIDC IdP Group IDs in the token.
+        :param pulumi.Input[str] idp_id: Unique 24-hexadecimal digit string that identifies the IdP.
+        :param pulumi.Input[str] issuer_uri: Unique string that identifies the issuer of the IdP.
         :param pulumi.Input[str] name: Human-readable label that identifies the identity provider.
         :param pulumi.Input[str] okta_idp_id: Unique 20-hexadecimal digit string that identifies the IdP.
-        :param pulumi.Input[str] request_binding: SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+        :param pulumi.Input[str] protocol: The protocol of the identity provider. Either `SAML` or `OIDC`.
+        :param pulumi.Input[str] request_binding: SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
                - HTTP POST
                - HTTP REDIRECT
-        :param pulumi.Input[str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] requested_scopes: Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+        :param pulumi.Input[str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
         :param pulumi.Input[bool] sso_debug_enabled: Flag that indicates whether the identity provider has SSO debug enabled.
         :param pulumi.Input[str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
+        :param pulumi.Input[str] user_claim: Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _FederatedSettingsIdentityProviderState.__new__(_FederatedSettingsIdentityProviderState)
 
         __props__.__dict__["associated_domains"] = associated_domains
+        __props__.__dict__["audience_claims"] = audience_claims
+        __props__.__dict__["client_id"] = client_id
         __props__.__dict__["federation_settings_id"] = federation_settings_id
+        __props__.__dict__["groups_claim"] = groups_claim
+        __props__.__dict__["idp_id"] = idp_id
         __props__.__dict__["issuer_uri"] = issuer_uri
         __props__.__dict__["name"] = name
         __props__.__dict__["okta_idp_id"] = okta_idp_id
+        __props__.__dict__["protocol"] = protocol
         __props__.__dict__["request_binding"] = request_binding
+        __props__.__dict__["requested_scopes"] = requested_scopes
         __props__.__dict__["response_signature_algorithm"] = response_signature_algorithm
         __props__.__dict__["sso_debug_enabled"] = sso_debug_enabled
         __props__.__dict__["sso_url"] = sso_url
         __props__.__dict__["status"] = status
+        __props__.__dict__["user_claim"] = user_claim
         return FederatedSettingsIdentityProvider(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -549,6 +806,22 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         return pulumi.get(self, "associated_domains")
 
     @property
+    @pulumi.getter(name="audienceClaims")
+    def audience_claims(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Identifier of the intended recipient of the token used in OIDC IdP.
+        """
+        return pulumi.get(self, "audience_claims")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Client identifier that is assigned to an application by the OIDC Identity Provider.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
     @pulumi.getter(name="federationSettingsId")
     def federation_settings_id(self) -> pulumi.Output[str]:
         """
@@ -557,10 +830,26 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         return pulumi.get(self, "federation_settings_id")
 
     @property
+    @pulumi.getter(name="groupsClaim")
+    def groups_claim(self) -> pulumi.Output[Optional[str]]:
+        """
+        Identifier of the claim which contains OIDC IdP Group IDs in the token.
+        """
+        return pulumi.get(self, "groups_claim")
+
+    @property
+    @pulumi.getter(name="idpId")
+    def idp_id(self) -> pulumi.Output[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the IdP.
+        """
+        return pulumi.get(self, "idp_id")
+
+    @property
     @pulumi.getter(name="issuerUri")
     def issuer_uri(self) -> pulumi.Output[str]:
         """
-        Unique string that identifies the issuer of the SAML
+        Unique string that identifies the issuer of the IdP.
         """
         return pulumi.get(self, "issuer_uri")
 
@@ -581,26 +870,42 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         return pulumi.get(self, "okta_idp_id")
 
     @property
-    @pulumi.getter(name="requestBinding")
-    def request_binding(self) -> pulumi.Output[str]:
+    @pulumi.getter
+    def protocol(self) -> pulumi.Output[str]:
         """
-        SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+        The protocol of the identity provider. Either `SAML` or `OIDC`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="requestBinding")
+    def request_binding(self) -> pulumi.Output[Optional[str]]:
+        """
+        SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
         - HTTP POST
         - HTTP REDIRECT
         """
         return pulumi.get(self, "request_binding")
 
     @property
-    @pulumi.getter(name="responseSignatureAlgorithm")
-    def response_signature_algorithm(self) -> pulumi.Output[str]:
+    @pulumi.getter(name="requestedScopes")
+    def requested_scopes(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+        Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+        """
+        return pulumi.get(self, "requested_scopes")
+
+    @property
+    @pulumi.getter(name="responseSignatureAlgorithm")
+    def response_signature_algorithm(self) -> pulumi.Output[Optional[str]]:
+        """
+        Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
         """
         return pulumi.get(self, "response_signature_algorithm")
 
     @property
     @pulumi.getter(name="ssoDebugEnabled")
-    def sso_debug_enabled(self) -> pulumi.Output[bool]:
+    def sso_debug_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
         Flag that indicates whether the identity provider has SSO debug enabled.
         """
@@ -608,7 +913,7 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ssoUrl")
-    def sso_url(self) -> pulumi.Output[str]:
+    def sso_url(self) -> pulumi.Output[Optional[str]]:
         """
         Unique string that identifies the intended audience of the SAML assertion.
         """
@@ -616,9 +921,17 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def status(self) -> pulumi.Output[str]:
+    def status(self) -> pulumi.Output[Optional[str]]:
         """
         String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="userClaim")
+    def user_claim(self) -> pulumi.Output[Optional[str]]:
+        """
+        Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        """
+        return pulumi.get(self, "user_claim")
 

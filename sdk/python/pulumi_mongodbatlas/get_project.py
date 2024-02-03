@@ -22,7 +22,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, cluster_count=None, created=None, id=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, teams=None):
+    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, teams=None):
         if cluster_count and not isinstance(cluster_count, int):
             raise TypeError("Expected argument 'cluster_count' to be a int")
         pulumi.set(__self__, "cluster_count", cluster_count)
@@ -32,6 +32,9 @@ class GetProjectResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if ip_addresses and not isinstance(ip_addresses, dict):
+            raise TypeError("Expected argument 'ip_addresses' to be a dict")
+        pulumi.set(__self__, "ip_addresses", ip_addresses)
         if is_collect_database_specifics_statistics_enabled and not isinstance(is_collect_database_specifics_statistics_enabled, bool):
             raise TypeError("Expected argument 'is_collect_database_specifics_statistics_enabled' to be a bool")
         pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
@@ -82,13 +85,6 @@ class GetProjectResult:
     def created(self) -> str:
         """
         The ISO-8601-formatted timestamp of when Atlas created the project.
-        * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-        * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-        * `limits.#.name` - Human-readable label that identifies this project limit.
-        * `limits.#.value` - Amount the limit is set to.
-        * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-        * `limits.#.default_limit` - Default value of the limit.
-        * `limits.#.maximum_limit` - Maximum value of the limit.
         """
         return pulumi.get(self, "created")
 
@@ -96,6 +92,14 @@ class GetProjectResult:
     @pulumi.getter
     def id(self) -> str:
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipAddresses")
+    def ip_addresses(self) -> 'outputs.GetProjectIpAddressesResult':
+        """
+        IP addresses in a project categorized by services. See IP Addresses.
+        """
+        return pulumi.get(self, "ip_addresses")
 
     @property
     @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
@@ -148,13 +152,16 @@ class GetProjectResult:
     @property
     @pulumi.getter
     def limits(self) -> Sequence['outputs.GetProjectLimitResult']:
+        """
+        The limits for the specified project. See Limits.
+        """
         return pulumi.get(self, "limits")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        The name of the project you want to create.
+        Human-readable label that identifies this project limit.
         """
         return pulumi.get(self, "name")
 
@@ -182,6 +189,9 @@ class GetProjectResult:
     @property
     @pulumi.getter
     def teams(self) -> Sequence['outputs.GetProjectTeamResult']:
+        """
+        Returns all teams to which the authenticated user has access in the project. See Teams.
+        """
         return pulumi.get(self, "teams")
 
 
@@ -194,6 +204,7 @@ class AwaitableGetProjectResult(GetProjectResult):
             cluster_count=self.cluster_count,
             created=self.created,
             id=self.id,
+            ip_addresses=self.ip_addresses,
             is_collect_database_specifics_statistics_enabled=self.is_collect_database_specifics_statistics_enabled,
             is_data_explorer_enabled=self.is_data_explorer_enabled,
             is_extended_storage_sizes_enabled=self.is_extended_storage_sizes_enabled,
@@ -234,6 +245,7 @@ def get_project(name: Optional[str] = None,
         cluster_count=pulumi.get(__ret__, 'cluster_count'),
         created=pulumi.get(__ret__, 'created'),
         id=pulumi.get(__ret__, 'id'),
+        ip_addresses=pulumi.get(__ret__, 'ip_addresses'),
         is_collect_database_specifics_statistics_enabled=pulumi.get(__ret__, 'is_collect_database_specifics_statistics_enabled'),
         is_data_explorer_enabled=pulumi.get(__ret__, 'is_data_explorer_enabled'),
         is_extended_storage_sizes_enabled=pulumi.get(__ret__, 'is_extended_storage_sizes_enabled'),

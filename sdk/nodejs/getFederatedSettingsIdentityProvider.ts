@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
  *
+ * > **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -48,9 +50,6 @@ export interface GetFederatedSettingsIdentityProviderArgs {
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
     federationSettingsId: string;
-    /**
-     * Unique 20-hexadecimal digit string that identifies the IdP.
-     */
     identityProviderId: string;
 }
 
@@ -71,9 +70,17 @@ export interface GetFederatedSettingsIdentityProviderResult {
      */
     readonly associatedOrgs: outputs.GetFederatedSettingsIdentityProviderAssociatedOrg[];
     /**
+     * Identifier of the intended recipient of the token.
+     */
+    readonly audienceClaims: string[];
+    /**
      * Identifier for the intended audience of the SAML Assertion.
      */
     readonly audienceUri: string;
+    /**
+     * Client identifier that is assigned to an application by the Identity Provider.
+     */
+    readonly clientId: string;
     /**
      * Human-readable label that identifies the IdP.
      */
@@ -83,10 +90,18 @@ export interface GetFederatedSettingsIdentityProviderResult {
      */
     readonly federationSettingsId: string;
     /**
+     * Identifier of the claim which contains IdP Group IDs in the token.
+     */
+    readonly groupsClaim: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly identityProviderId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the IdP
+     */
+    readonly idpId: string;
     /**
      * Identifier for the issuer of the SAML Assertion.
      */
@@ -97,11 +112,19 @@ export interface GetFederatedSettingsIdentityProviderResult {
     readonly oktaIdpId: string;
     readonly pemFileInfos: outputs.GetFederatedSettingsIdentityProviderPemFileInfo[];
     /**
+     * The protocol of the identity provider. Either SAML or OIDC.
+     */
+    readonly protocol: string;
+    /**
      * SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
      * - HTTP POST
      * - HTTP REDIRECT
      */
     readonly requestBinding: string;
+    /**
+     * Scopes that MongoDB applications will request from the authorization endpoint.
+     */
+    readonly requestedScopes: string[];
     /**
      * Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
      * - SHA-1
@@ -120,9 +143,15 @@ export interface GetFederatedSettingsIdentityProviderResult {
      * Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
      */
     readonly status: string;
+    /**
+     * Identifier of the claim which contains the user ID in the token.
+     */
+    readonly userClaim: string;
 }
 /**
  * `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
+ *
+ * > **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
  *
  * ## Example Usage
  *
@@ -158,8 +187,5 @@ export interface GetFederatedSettingsIdentityProviderOutputArgs {
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
     federationSettingsId: pulumi.Input<string>;
-    /**
-     * Unique 20-hexadecimal digit string that identifies the IdP.
-     */
     identityProviderId: pulumi.Input<string>;
 }

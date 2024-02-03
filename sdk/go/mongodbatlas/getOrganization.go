@@ -56,14 +56,20 @@ type LookupOrganizationArgs struct {
 
 // A collection of values returned by getOrganization.
 type LookupOrganizationResult struct {
+	// (Optional) Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+	ApiAccessListRequired bool `pulumi:"apiAccessListRequired"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Flag that indicates whether this organization has been deleted.
 	IsDeleted bool                  `pulumi:"isDeleted"`
 	Links     []GetOrganizationLink `pulumi:"links"`
+	// (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+	MultiFactorAuthRequired bool `pulumi:"multiFactorAuthRequired"`
 	// Human-readable label that identifies the organization.
 	Name  string `pulumi:"name"`
 	OrgId string `pulumi:"orgId"`
+	// (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+	RestrictEmployeeAccess bool `pulumi:"restrictEmployeeAccess"`
 }
 
 func LookupOrganizationOutput(ctx *pulumi.Context, args LookupOrganizationOutputArgs, opts ...pulumi.InvokeOption) LookupOrganizationResultOutput {
@@ -104,6 +110,11 @@ func (o LookupOrganizationResultOutput) ToLookupOrganizationResultOutputWithCont
 	return o
 }
 
+// (Optional) Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+func (o LookupOrganizationResultOutput) ApiAccessListRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupOrganizationResult) bool { return v.ApiAccessListRequired }).(pulumi.BoolOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupOrganizationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationResult) string { return v.Id }).(pulumi.StringOutput)
@@ -118,6 +129,11 @@ func (o LookupOrganizationResultOutput) Links() GetOrganizationLinkArrayOutput {
 	return o.ApplyT(func(v LookupOrganizationResult) []GetOrganizationLink { return v.Links }).(GetOrganizationLinkArrayOutput)
 }
 
+// (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+func (o LookupOrganizationResultOutput) MultiFactorAuthRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupOrganizationResult) bool { return v.MultiFactorAuthRequired }).(pulumi.BoolOutput)
+}
+
 // Human-readable label that identifies the organization.
 func (o LookupOrganizationResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationResult) string { return v.Name }).(pulumi.StringOutput)
@@ -125,6 +141,11 @@ func (o LookupOrganizationResultOutput) Name() pulumi.StringOutput {
 
 func (o LookupOrganizationResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationResult) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+func (o LookupOrganizationResultOutput) RestrictEmployeeAccess() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupOrganizationResult) bool { return v.RestrictEmployeeAccess }).(pulumi.BoolOutput)
 }
 
 func init() {

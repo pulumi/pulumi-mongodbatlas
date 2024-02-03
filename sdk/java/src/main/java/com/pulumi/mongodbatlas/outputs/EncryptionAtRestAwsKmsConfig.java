@@ -29,7 +29,7 @@ public final class EncryptionAtRestAwsKmsConfig {
      */
     private @Nullable String region;
     /**
-     * @return ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas.CloudProviderAccess` resource.
+     * @return ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
      * 
      */
     private @Nullable String roleId;
@@ -61,7 +61,7 @@ public final class EncryptionAtRestAwsKmsConfig {
         return Optional.ofNullable(this.region);
     }
     /**
-     * @return ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas.CloudProviderAccess` resource.
+     * @return ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
      * 
      */
     public Optional<String> roleId() {

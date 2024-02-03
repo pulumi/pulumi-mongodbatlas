@@ -41,6 +41,12 @@ public final class GetDatabaseUsersResult {
      * 
      */
     private String oidcAuthType;
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.16.0
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
     private String password;
     /**
      * @return The unique ID for the project to get all database users.
@@ -108,6 +114,12 @@ public final class GetDatabaseUsersResult {
     public String oidcAuthType() {
         return this.oidcAuthType;
     }
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.16.0
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
     public String password() {
         return this.password;
     }

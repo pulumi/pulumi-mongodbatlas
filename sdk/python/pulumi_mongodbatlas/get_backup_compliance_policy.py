@@ -9,7 +9,6 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
-from ._inputs import *
 
 __all__ = [
     'GetBackupCompliancePolicyResult',
@@ -126,7 +125,7 @@ class GetBackupCompliancePolicyResult:
 
     @property
     @pulumi.getter(name="onDemandPolicyItem")
-    def on_demand_policy_item(self) -> Optional['outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult']:
+    def on_demand_policy_item(self) -> 'outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult':
         return pulumi.get(self, "on_demand_policy_item")
 
     @property
@@ -139,22 +138,22 @@ class GetBackupCompliancePolicyResult:
 
     @property
     @pulumi.getter(name="policyItemDaily")
-    def policy_item_daily(self) -> Optional['outputs.GetBackupCompliancePolicyPolicyItemDailyResult']:
+    def policy_item_daily(self) -> 'outputs.GetBackupCompliancePolicyPolicyItemDailyResult':
         return pulumi.get(self, "policy_item_daily")
 
     @property
     @pulumi.getter(name="policyItemHourly")
-    def policy_item_hourly(self) -> Optional['outputs.GetBackupCompliancePolicyPolicyItemHourlyResult']:
+    def policy_item_hourly(self) -> 'outputs.GetBackupCompliancePolicyPolicyItemHourlyResult':
         return pulumi.get(self, "policy_item_hourly")
 
     @property
     @pulumi.getter(name="policyItemMonthlies")
-    def policy_item_monthlies(self) -> Optional[Sequence['outputs.GetBackupCompliancePolicyPolicyItemMonthlyResult']]:
+    def policy_item_monthlies(self) -> Sequence['outputs.GetBackupCompliancePolicyPolicyItemMonthlyResult']:
         return pulumi.get(self, "policy_item_monthlies")
 
     @property
     @pulumi.getter(name="policyItemWeeklies")
-    def policy_item_weeklies(self) -> Optional[Sequence['outputs.GetBackupCompliancePolicyPolicyItemWeeklyResult']]:
+    def policy_item_weeklies(self) -> Sequence['outputs.GetBackupCompliancePolicyPolicyItemWeeklyResult']:
         return pulumi.get(self, "policy_item_weeklies")
 
     @property
@@ -220,12 +219,7 @@ class AwaitableGetBackupCompliancePolicyResult(GetBackupCompliancePolicyResult):
             updated_user=self.updated_user)
 
 
-def get_backup_compliance_policy(on_demand_policy_item: Optional[pulumi.InputType['GetBackupCompliancePolicyOnDemandPolicyItemArgs']] = None,
-                                 policy_item_daily: Optional[pulumi.InputType['GetBackupCompliancePolicyPolicyItemDailyArgs']] = None,
-                                 policy_item_hourly: Optional[pulumi.InputType['GetBackupCompliancePolicyPolicyItemHourlyArgs']] = None,
-                                 policy_item_monthlies: Optional[Sequence[pulumi.InputType['GetBackupCompliancePolicyPolicyItemMonthlyArgs']]] = None,
-                                 policy_item_weeklies: Optional[Sequence[pulumi.InputType['GetBackupCompliancePolicyPolicyItemWeeklyArgs']]] = None,
-                                 project_id: Optional[str] = None,
+def get_backup_compliance_policy(project_id: Optional[str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackupCompliancePolicyResult:
     """
     Use this data source to access information about an existing resource.
@@ -233,11 +227,6 @@ def get_backup_compliance_policy(on_demand_policy_item: Optional[pulumi.InputTyp
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project
     """
     __args__ = dict()
-    __args__['onDemandPolicyItem'] = on_demand_policy_item
-    __args__['policyItemDaily'] = policy_item_daily
-    __args__['policyItemHourly'] = policy_item_hourly
-    __args__['policyItemMonthlies'] = policy_item_monthlies
-    __args__['policyItemWeeklies'] = policy_item_weeklies
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy', __args__, opts=opts, typ=GetBackupCompliancePolicyResult).value
@@ -263,12 +252,7 @@ def get_backup_compliance_policy(on_demand_policy_item: Optional[pulumi.InputTyp
 
 
 @_utilities.lift_output_func(get_backup_compliance_policy)
-def get_backup_compliance_policy_output(on_demand_policy_item: Optional[pulumi.Input[Optional[pulumi.InputType['GetBackupCompliancePolicyOnDemandPolicyItemArgs']]]] = None,
-                                        policy_item_daily: Optional[pulumi.Input[Optional[pulumi.InputType['GetBackupCompliancePolicyPolicyItemDailyArgs']]]] = None,
-                                        policy_item_hourly: Optional[pulumi.Input[Optional[pulumi.InputType['GetBackupCompliancePolicyPolicyItemHourlyArgs']]]] = None,
-                                        policy_item_monthlies: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetBackupCompliancePolicyPolicyItemMonthlyArgs']]]]] = None,
-                                        policy_item_weeklies: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetBackupCompliancePolicyPolicyItemWeeklyArgs']]]]] = None,
-                                        project_id: Optional[pulumi.Input[str]] = None,
+def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[str]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackupCompliancePolicyResult]:
     """
     Use this data source to access information about an existing resource.

@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +17,21 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
 
     public static final OrganizationState Empty = new OrganizationState();
 
+    /**
+     * Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+     * 
+     */
+    @Import(name="apiAccessListRequired")
+    private @Nullable Output<Boolean> apiAccessListRequired;
+
+    /**
+     * @return Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+     * 
+     */
+    public Optional<Output<Boolean>> apiAccessListRequired() {
+        return Optional.ofNullable(this.apiAccessListRequired);
+    }
+
     @Import(name="description")
     private @Nullable Output<String> description;
 
@@ -24,18 +40,33 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     * Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
      * 
      */
     @Import(name="federationSettingsId")
     private @Nullable Output<String> federationSettingsId;
 
     /**
-     * @return (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+     * @return Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
      * 
      */
     public Optional<Output<String>> federationSettingsId() {
         return Optional.ofNullable(this.federationSettingsId);
+    }
+
+    /**
+     * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * 
+     */
+    @Import(name="multiFactorAuthRequired")
+    private @Nullable Output<Boolean> multiFactorAuthRequired;
+
+    /**
+     * @return Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     * 
+     */
+    public Optional<Output<Boolean>> multiFactorAuthRequired() {
+        return Optional.ofNullable(this.multiFactorAuthRequired);
     }
 
     /**
@@ -106,6 +137,21 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * 
+     */
+    @Import(name="restrictEmployeeAccess")
+    private @Nullable Output<Boolean> restrictEmployeeAccess;
+
+    /**
+     * @return Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     * 
+     */
+    public Optional<Output<Boolean>> restrictEmployeeAccess() {
+        return Optional.ofNullable(this.restrictEmployeeAccess);
+    }
+
+    /**
      * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
      * 
      */
@@ -123,13 +169,16 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
     private OrganizationState() {}
 
     private OrganizationState(OrganizationState $) {
+        this.apiAccessListRequired = $.apiAccessListRequired;
         this.description = $.description;
         this.federationSettingsId = $.federationSettingsId;
+        this.multiFactorAuthRequired = $.multiFactorAuthRequired;
         this.name = $.name;
         this.orgId = $.orgId;
         this.orgOwnerId = $.orgOwnerId;
         this.privateKey = $.privateKey;
         this.publicKey = $.publicKey;
+        this.restrictEmployeeAccess = $.restrictEmployeeAccess;
         this.roleNames = $.roleNames;
     }
 
@@ -151,6 +200,27 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
             $ = new OrganizationState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param apiAccessListRequired Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiAccessListRequired(@Nullable Output<Boolean> apiAccessListRequired) {
+            $.apiAccessListRequired = apiAccessListRequired;
+            return this;
+        }
+
+        /**
+         * @param apiAccessListRequired Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiAccessListRequired(Boolean apiAccessListRequired) {
+            return apiAccessListRequired(Output.of(apiAccessListRequired));
+        }
+
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
@@ -161,7 +231,7 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param federationSettingsId (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+         * @param federationSettingsId Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
          * 
          * @return builder
          * 
@@ -172,13 +242,34 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param federationSettingsId (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+         * @param federationSettingsId Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
          * 
          * @return builder
          * 
          */
         public Builder federationSettingsId(String federationSettingsId) {
             return federationSettingsId(Output.of(federationSettingsId));
+        }
+
+        /**
+         * @param multiFactorAuthRequired Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder multiFactorAuthRequired(@Nullable Output<Boolean> multiFactorAuthRequired) {
+            $.multiFactorAuthRequired = multiFactorAuthRequired;
+            return this;
+        }
+
+        /**
+         * @param multiFactorAuthRequired Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder multiFactorAuthRequired(Boolean multiFactorAuthRequired) {
+            return multiFactorAuthRequired(Output.of(multiFactorAuthRequired));
         }
 
         /**
@@ -272,6 +363,27 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder publicKey(String publicKey) {
             return publicKey(Output.of(publicKey));
+        }
+
+        /**
+         * @param restrictEmployeeAccess Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder restrictEmployeeAccess(@Nullable Output<Boolean> restrictEmployeeAccess) {
+            $.restrictEmployeeAccess = restrictEmployeeAccess;
+            return this;
+        }
+
+        /**
+         * @param restrictEmployeeAccess Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder restrictEmployeeAccess(Boolean restrictEmployeeAccess) {
+            return restrictEmployeeAccess(Output.of(restrictEmployeeAccess));
         }
 
         /**

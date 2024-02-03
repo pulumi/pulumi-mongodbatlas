@@ -13,6 +13,8 @@ import (
 
 // `FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
 //
+// > **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
+//
 // ## Example Usage
 //
 // ```go
@@ -65,8 +67,7 @@ func LookupFederatedSettingsIdentityProvider(ctx *pulumi.Context, args *LookupFe
 type LookupFederatedSettingsIdentityProviderArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId string `pulumi:"federationSettingsId"`
-	// Unique 20-hexadecimal digit string that identifies the IdP.
-	IdentityProviderId string `pulumi:"identityProviderId"`
+	IdentityProviderId   string `pulumi:"identityProviderId"`
 }
 
 // A collection of values returned by getFederatedSettingsIdentityProvider.
@@ -77,24 +78,36 @@ type LookupFederatedSettingsIdentityProviderResult struct {
 	AssociatedDomains []string `pulumi:"associatedDomains"`
 	// List that contains the organizations from which users can log in for this IdP.
 	AssociatedOrgs []GetFederatedSettingsIdentityProviderAssociatedOrg `pulumi:"associatedOrgs"`
+	// Identifier of the intended recipient of the token.
+	AudienceClaims []string `pulumi:"audienceClaims"`
 	// Identifier for the intended audience of the SAML Assertion.
 	AudienceUri string `pulumi:"audienceUri"`
+	// Client identifier that is assigned to an application by the Identity Provider.
+	ClientId string `pulumi:"clientId"`
 	// Human-readable label that identifies the IdP.
 	DisplayName string `pulumi:"displayName"`
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId string `pulumi:"federationSettingsId"`
+	// Identifier of the claim which contains IdP Group IDs in the token.
+	GroupsClaim string `pulumi:"groupsClaim"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                 string `pulumi:"id"`
 	IdentityProviderId string `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the IdP
+	IdpId string `pulumi:"idpId"`
 	// Identifier for the issuer of the SAML Assertion.
 	IssuerUri string `pulumi:"issuerUri"`
 	// Unique 20-hexadecimal digit string that identifies the IdP.
 	OktaIdpId    string                                            `pulumi:"oktaIdpId"`
 	PemFileInfos []GetFederatedSettingsIdentityProviderPemFileInfo `pulumi:"pemFileInfos"`
+	// The protocol of the identity provider. Either SAML or OIDC.
+	Protocol string `pulumi:"protocol"`
 	// SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
 	// - HTTP POST
 	// - HTTP REDIRECT
 	RequestBinding string `pulumi:"requestBinding"`
+	// Scopes that MongoDB applications will request from the authorization endpoint.
+	RequestedScopes []string `pulumi:"requestedScopes"`
 	// Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
 	// - SHA-1
 	// - SHA-256
@@ -105,6 +118,8 @@ type LookupFederatedSettingsIdentityProviderResult struct {
 	SsoUrl string `pulumi:"ssoUrl"`
 	// Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
 	Status string `pulumi:"status"`
+	// Identifier of the claim which contains the user ID in the token.
+	UserClaim string `pulumi:"userClaim"`
 }
 
 func LookupFederatedSettingsIdentityProviderOutput(ctx *pulumi.Context, args LookupFederatedSettingsIdentityProviderOutputArgs, opts ...pulumi.InvokeOption) LookupFederatedSettingsIdentityProviderResultOutput {
@@ -124,8 +139,7 @@ func LookupFederatedSettingsIdentityProviderOutput(ctx *pulumi.Context, args Loo
 type LookupFederatedSettingsIdentityProviderOutputArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId pulumi.StringInput `pulumi:"federationSettingsId"`
-	// Unique 20-hexadecimal digit string that identifies the IdP.
-	IdentityProviderId pulumi.StringInput `pulumi:"identityProviderId"`
+	IdentityProviderId   pulumi.StringInput `pulumi:"identityProviderId"`
 }
 
 func (LookupFederatedSettingsIdentityProviderOutputArgs) ElementType() reflect.Type {
@@ -164,9 +178,19 @@ func (o LookupFederatedSettingsIdentityProviderResultOutput) AssociatedOrgs() Ge
 	}).(GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput)
 }
 
+// Identifier of the intended recipient of the token.
+func (o LookupFederatedSettingsIdentityProviderResultOutput) AudienceClaims() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) []string { return v.AudienceClaims }).(pulumi.StringArrayOutput)
+}
+
 // Identifier for the intended audience of the SAML Assertion.
 func (o LookupFederatedSettingsIdentityProviderResultOutput) AudienceUri() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.AudienceUri }).(pulumi.StringOutput)
+}
+
+// Client identifier that is assigned to an application by the Identity Provider.
+func (o LookupFederatedSettingsIdentityProviderResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.ClientId }).(pulumi.StringOutput)
 }
 
 // Human-readable label that identifies the IdP.
@@ -179,6 +203,11 @@ func (o LookupFederatedSettingsIdentityProviderResultOutput) FederationSettingsI
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.FederationSettingsId }).(pulumi.StringOutput)
 }
 
+// Identifier of the claim which contains IdP Group IDs in the token.
+func (o LookupFederatedSettingsIdentityProviderResultOutput) GroupsClaim() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.GroupsClaim }).(pulumi.StringOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupFederatedSettingsIdentityProviderResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.Id }).(pulumi.StringOutput)
@@ -186,6 +215,11 @@ func (o LookupFederatedSettingsIdentityProviderResultOutput) Id() pulumi.StringO
 
 func (o LookupFederatedSettingsIdentityProviderResultOutput) IdentityProviderId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.IdentityProviderId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the IdP
+func (o LookupFederatedSettingsIdentityProviderResultOutput) IdpId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.IdpId }).(pulumi.StringOutput)
 }
 
 // Identifier for the issuer of the SAML Assertion.
@@ -204,11 +238,21 @@ func (o LookupFederatedSettingsIdentityProviderResultOutput) PemFileInfos() GetF
 	}).(GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput)
 }
 
+// The protocol of the identity provider. Either SAML or OIDC.
+func (o LookupFederatedSettingsIdentityProviderResultOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
 // SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
 // - HTTP POST
 // - HTTP REDIRECT
 func (o LookupFederatedSettingsIdentityProviderResultOutput) RequestBinding() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.RequestBinding }).(pulumi.StringOutput)
+}
+
+// Scopes that MongoDB applications will request from the authorization endpoint.
+func (o LookupFederatedSettingsIdentityProviderResultOutput) RequestedScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) []string { return v.RequestedScopes }).(pulumi.StringArrayOutput)
 }
 
 // Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
@@ -231,6 +275,11 @@ func (o LookupFederatedSettingsIdentityProviderResultOutput) SsoUrl() pulumi.Str
 // Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
 func (o LookupFederatedSettingsIdentityProviderResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Identifier of the claim which contains the user ID in the token.
+func (o LookupFederatedSettingsIdentityProviderResultOutput) UserClaim() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.UserClaim }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -21,6 +21,12 @@ public final class GetOrganizationsInvokeResult {
      * 
      */
     private String id;
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.16.0
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
     private @Nullable Boolean includeDeletedOrgs;
     private @Nullable Integer itemsPerPage;
     private @Nullable String name;
@@ -36,6 +42,12 @@ public final class GetOrganizationsInvokeResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @deprecated
+     * this parameter is deprecated and will be removed in version 1.16.0
+     * 
+     */
+    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
     public Optional<Boolean> includeDeletedOrgs() {
         return Optional.ofNullable(this.includeDeletedOrgs);
     }

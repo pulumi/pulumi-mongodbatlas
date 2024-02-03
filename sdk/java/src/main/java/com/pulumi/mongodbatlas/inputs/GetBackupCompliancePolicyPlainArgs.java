@@ -5,56 +5,13 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyOnDemandPolicyItem;
-import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyPolicyItemDaily;
-import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyPolicyItemHourly;
-import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyPolicyItemMonthly;
-import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyPolicyItemWeekly;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class GetBackupCompliancePolicyPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetBackupCompliancePolicyPlainArgs Empty = new GetBackupCompliancePolicyPlainArgs();
-
-    @Import(name="onDemandPolicyItem")
-    private @Nullable GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem;
-
-    public Optional<GetBackupCompliancePolicyOnDemandPolicyItem> onDemandPolicyItem() {
-        return Optional.ofNullable(this.onDemandPolicyItem);
-    }
-
-    @Import(name="policyItemDaily")
-    private @Nullable GetBackupCompliancePolicyPolicyItemDaily policyItemDaily;
-
-    public Optional<GetBackupCompliancePolicyPolicyItemDaily> policyItemDaily() {
-        return Optional.ofNullable(this.policyItemDaily);
-    }
-
-    @Import(name="policyItemHourly")
-    private @Nullable GetBackupCompliancePolicyPolicyItemHourly policyItemHourly;
-
-    public Optional<GetBackupCompliancePolicyPolicyItemHourly> policyItemHourly() {
-        return Optional.ofNullable(this.policyItemHourly);
-    }
-
-    @Import(name="policyItemMonthlies")
-    private @Nullable List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies;
-
-    public Optional<List<GetBackupCompliancePolicyPolicyItemMonthly>> policyItemMonthlies() {
-        return Optional.ofNullable(this.policyItemMonthlies);
-    }
-
-    @Import(name="policyItemWeeklies")
-    private @Nullable List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies;
-
-    public Optional<List<GetBackupCompliancePolicyPolicyItemWeekly>> policyItemWeeklies() {
-        return Optional.ofNullable(this.policyItemWeeklies);
-    }
 
     /**
      * Unique 24-hexadecimal digit string that identifies your project
@@ -74,11 +31,6 @@ public final class GetBackupCompliancePolicyPlainArgs extends com.pulumi.resourc
     private GetBackupCompliancePolicyPlainArgs() {}
 
     private GetBackupCompliancePolicyPlainArgs(GetBackupCompliancePolicyPlainArgs $) {
-        this.onDemandPolicyItem = $.onDemandPolicyItem;
-        this.policyItemDaily = $.policyItemDaily;
-        this.policyItemHourly = $.policyItemHourly;
-        this.policyItemMonthlies = $.policyItemMonthlies;
-        this.policyItemWeeklies = $.policyItemWeeklies;
         this.projectId = $.projectId;
     }
 
@@ -98,39 +50,6 @@ public final class GetBackupCompliancePolicyPlainArgs extends com.pulumi.resourc
 
         public Builder(GetBackupCompliancePolicyPlainArgs defaults) {
             $ = new GetBackupCompliancePolicyPlainArgs(Objects.requireNonNull(defaults));
-        }
-
-        public Builder onDemandPolicyItem(@Nullable GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem) {
-            $.onDemandPolicyItem = onDemandPolicyItem;
-            return this;
-        }
-
-        public Builder policyItemDaily(@Nullable GetBackupCompliancePolicyPolicyItemDaily policyItemDaily) {
-            $.policyItemDaily = policyItemDaily;
-            return this;
-        }
-
-        public Builder policyItemHourly(@Nullable GetBackupCompliancePolicyPolicyItemHourly policyItemHourly) {
-            $.policyItemHourly = policyItemHourly;
-            return this;
-        }
-
-        public Builder policyItemMonthlies(@Nullable List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies) {
-            $.policyItemMonthlies = policyItemMonthlies;
-            return this;
-        }
-
-        public Builder policyItemMonthlies(GetBackupCompliancePolicyPolicyItemMonthly... policyItemMonthlies) {
-            return policyItemMonthlies(List.of(policyItemMonthlies));
-        }
-
-        public Builder policyItemWeeklies(@Nullable List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies) {
-            $.policyItemWeeklies = policyItemWeeklies;
-            return this;
-        }
-
-        public Builder policyItemWeeklies(GetBackupCompliancePolicyPolicyItemWeekly... policyItemWeeklies) {
-            return policyItemWeeklies(List.of(policyItemWeeklies));
         }
 
         /**

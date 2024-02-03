@@ -12,6 +12,36 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewApiKey(ctx, "test", &mongodbatlas.ApiKeyArgs{
+//				Description: pulumi.String("key-name"),
+//				OrgId:       pulumi.String("<ORG_ID>"),
+//				RoleNames: pulumi.StringArray{
+//					pulumi.String("ORG_READ_ONLY"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // API Keys must be imported using org ID, API Key ID e.g.

@@ -22,10 +22,6 @@ public final class GetApiKeyResult {
      * 
      */
     private String id;
-    /**
-     * @return Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-     * 
-     */
     private String orgId;
     /**
      * @return Public key for this Organization API key.
@@ -57,10 +53,6 @@ public final class GetApiKeyResult {
     public String id() {
         return this.id;
     }
-    /**
-     * @return Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-     * 
-     */
     public String orgId() {
         return this.orgId;
     }

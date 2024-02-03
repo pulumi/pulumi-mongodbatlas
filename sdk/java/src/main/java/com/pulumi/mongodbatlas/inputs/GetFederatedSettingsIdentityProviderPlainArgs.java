@@ -28,17 +28,9 @@ public final class GetFederatedSettingsIdentityProviderPlainArgs extends com.pul
         return this.federationSettingsId;
     }
 
-    /**
-     * Unique 20-hexadecimal digit string that identifies the IdP.
-     * 
-     */
     @Import(name="identityProviderId", required=true)
     private String identityProviderId;
 
-    /**
-     * @return Unique 20-hexadecimal digit string that identifies the IdP.
-     * 
-     */
     public String identityProviderId() {
         return this.identityProviderId;
     }
@@ -79,12 +71,6 @@ public final class GetFederatedSettingsIdentityProviderPlainArgs extends com.pul
             return this;
         }
 
-        /**
-         * @param identityProviderId Unique 20-hexadecimal digit string that identifies the IdP.
-         * 
-         * @return builder
-         * 
-         */
         public Builder identityProviderId(String identityProviderId) {
             $.identityProviderId = identityProviderId;
             return this;

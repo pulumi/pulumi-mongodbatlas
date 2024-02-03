@@ -87,16 +87,22 @@ namespace Pulumi.Mongodbatlas
     public partial class Project : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The number of Atlas clusters deployed in the project..
+        /// The number of Atlas clusters deployed in the project.
         /// </summary>
         [Output("clusterCount")]
         public Output<int> ClusterCount { get; private set; } = null!;
 
         /// <summary>
-        /// The ISO-8601-formatted timestamp of when Atlas created the project..
+        /// The ISO-8601-formatted timestamp of when Atlas created the project.
         /// </summary>
         [Output("created")]
         public Output<string> Created { get; private set; } = null!;
+
+        /// <summary>
+        /// IP addresses in a project categorized by services. See IP Addresses.
+        /// </summary>
+        [Output("ipAddresses")]
+        public Output<Outputs.ProjectIpAddresses> IpAddresses { get; private set; } = null!;
 
         /// <summary>
         /// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
@@ -307,16 +313,22 @@ namespace Pulumi.Mongodbatlas
     public sealed class ProjectState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The number of Atlas clusters deployed in the project..
+        /// The number of Atlas clusters deployed in the project.
         /// </summary>
         [Input("clusterCount")]
         public Input<int>? ClusterCount { get; set; }
 
         /// <summary>
-        /// The ISO-8601-formatted timestamp of when Atlas created the project..
+        /// The ISO-8601-formatted timestamp of when Atlas created the project.
         /// </summary>
         [Input("created")]
         public Input<string>? Created { get; set; }
+
+        /// <summary>
+        /// IP addresses in a project categorized by services. See IP Addresses.
+        /// </summary>
+        [Input("ipAddresses")]
+        public Input<Inputs.ProjectIpAddressesGetArgs>? IpAddresses { get; set; }
 
         /// <summary>
         /// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.

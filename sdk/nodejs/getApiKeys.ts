@@ -25,7 +25,7 @@ export interface GetApiKeysArgs {
      */
     itemsPerPage?: number;
     /**
-     * Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * Unique identifier for the organization whose API keys you want to retrieve.
      */
     orgId: string;
     /**
@@ -60,7 +60,7 @@ export interface GetApiKeysOutputArgs {
      */
     itemsPerPage?: pulumi.Input<number>;
     /**
-     * Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * Unique identifier for the organization whose API keys you want to retrieve.
      */
     orgId: pulumi.Input<string>;
     /**

@@ -67,6 +67,10 @@ public final class GetSearchIndexesResult {
      * 
      */
     private @Nullable String searchAnalyzer;
+    /**
+     * @return Current status of the index.
+     * 
+     */
     private String status;
     /**
      * @return Synonyms mapping definition to use in this index.
@@ -156,6 +160,10 @@ public final class GetSearchIndexesResult {
     public Optional<String> searchAnalyzer() {
         return Optional.ofNullable(this.searchAnalyzer);
     }
+    /**
+     * @return Current status of the index.
+     * 
+     */
     public String status() {
         return this.status;
     }

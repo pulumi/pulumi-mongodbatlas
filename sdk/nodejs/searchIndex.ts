@@ -188,7 +188,10 @@ export class SearchIndex extends pulumi.CustomResource {
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
     public readonly searchAnalyzer!: pulumi.Output<string | undefined>;
-    public readonly status!: pulumi.Output<string>;
+    /**
+     * Current status of the index.
+     */
+    public /*out*/ readonly status!: pulumi.Output<string>;
     /**
      * Synonyms mapping definition to use in this index.
      */
@@ -253,11 +256,11 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["searchAnalyzer"] = args ? args.searchAnalyzer : undefined;
-            resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["synonyms"] = args ? args.synonyms : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["waitForIndexBuildCompletion"] = args ? args.waitForIndexBuildCompletion : undefined;
             resourceInputs["indexId"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SearchIndex.__pulumiType, name, resourceInputs, opts);
@@ -313,6 +316,9 @@ export interface SearchIndexState {
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
     searchAnalyzer?: pulumi.Input<string>;
+    /**
+     * Current status of the index.
+     */
     status?: pulumi.Input<string>;
     /**
      * Synonyms mapping definition to use in this index.
@@ -373,7 +379,6 @@ export interface SearchIndexArgs {
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
     searchAnalyzer?: pulumi.Input<string>;
-    status?: pulumi.Input<string>;
     /**
      * Synonyms mapping definition to use in this index.
      */
