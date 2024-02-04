@@ -19,7 +19,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? CollectionName { get; set; }
 
         /// <summary>
-        /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
         /// </summary>
         [Input("databaseName", required: true)]
         public Input<string> DatabaseName { get; set; } = null!;

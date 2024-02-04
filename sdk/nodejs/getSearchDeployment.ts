@@ -10,16 +10,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.SearchDeployment` describes a search node deployment.
  *
  * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getSearchDeployment({
- *     clusterName: "<CLUSTER_NAME>",
- *     projectId: "<PROJECT_ID>",
- * });
- * ```
  */
 export function getSearchDeployment(args: GetSearchDeploymentArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchDeploymentResult> {
 
@@ -35,11 +25,11 @@ export function getSearchDeployment(args: GetSearchDeploymentArgs, opts?: pulumi
  */
 export interface GetSearchDeploymentArgs {
     /**
-     * The name of the cluster containing a search node deployment.
+     * Label that identifies the cluster to return the search nodes for.
      */
     clusterName: string;
     /**
-     * The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: string;
 }
@@ -48,15 +38,24 @@ export interface GetSearchDeploymentArgs {
  * A collection of values returned by getSearchDeployment.
  */
 export interface GetSearchDeploymentResult {
+    /**
+     * Label that identifies the cluster to return the search nodes for.
+     */
     readonly clusterName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the search deployment.
+     */
     readonly id: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project.
+     */
     readonly projectId: string;
     /**
-     * List of settings that configure the search nodes for your cluster. See specs.
+     * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      */
     readonly specs: outputs.GetSearchDeploymentSpec[];
     /**
-     * Human-readable label that indicates the current operating condition of this search node deployment.
+     * Human-readable label that indicates the current operating condition of this search deployment.
      */
     readonly stateName: string;
 }
@@ -64,16 +63,6 @@ export interface GetSearchDeploymentResult {
  * `mongodbatlas.SearchDeployment` describes a search node deployment.
  *
  * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getSearchDeployment({
- *     clusterName: "<CLUSTER_NAME>",
- *     projectId: "<PROJECT_ID>",
- * });
- * ```
  */
 export function getSearchDeploymentOutput(args: GetSearchDeploymentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSearchDeploymentResult> {
     return pulumi.output(args).apply((a: any) => getSearchDeployment(a, opts))
@@ -84,11 +73,11 @@ export function getSearchDeploymentOutput(args: GetSearchDeploymentOutputArgs, o
  */
 export interface GetSearchDeploymentOutputArgs {
     /**
-     * The name of the cluster containing a search node deployment.
+     * Label that identifies the cluster to return the search nodes for.
      */
     clusterName: pulumi.Input<string>;
     /**
-     * The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: pulumi.Input<string>;
 }

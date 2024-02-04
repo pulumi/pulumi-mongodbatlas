@@ -89,7 +89,7 @@ def get_api_keys(items_per_page: Optional[int] = None,
     Use this data source to access information about an existing resource.
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-    :param str org_id: Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+    :param str org_id: Unique identifier for the organization whose API keys you want to retrieve.
     :param int page_num: The page to return. Defaults to `1`.
     """
     __args__ = dict()
@@ -116,7 +116,7 @@ def get_api_keys_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
     Use this data source to access information about an existing resource.
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-    :param str org_id: Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+    :param str org_id: Unique identifier for the organization whose API keys you want to retrieve.
     :param int page_num: The page to return. Defaults to `1`.
     """
     ...

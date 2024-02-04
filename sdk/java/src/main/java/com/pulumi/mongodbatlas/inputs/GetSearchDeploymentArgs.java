@@ -15,14 +15,14 @@ public final class GetSearchDeploymentArgs extends com.pulumi.resources.InvokeAr
     public static final GetSearchDeploymentArgs Empty = new GetSearchDeploymentArgs();
 
     /**
-     * The name of the cluster containing a search node deployment.
+     * Label that identifies the cluster to return the search nodes for.
      * 
      */
     @Import(name="clusterName", required=true)
     private Output<String> clusterName;
 
     /**
-     * @return The name of the cluster containing a search node deployment.
+     * @return Label that identifies the cluster to return the search nodes for.
      * 
      */
     public Output<String> clusterName() {
@@ -30,14 +30,14 @@ public final class GetSearchDeploymentArgs extends com.pulumi.resources.InvokeAr
     }
 
     /**
-     * The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     public Output<String> projectId() {
@@ -70,7 +70,7 @@ public final class GetSearchDeploymentArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param clusterName The name of the cluster containing a search node deployment.
+         * @param clusterName Label that identifies the cluster to return the search nodes for.
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class GetSearchDeploymentArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param clusterName The name of the cluster containing a search node deployment.
+         * @param clusterName Label that identifies the cluster to return the search nodes for.
          * 
          * @return builder
          * 
@@ -91,7 +91,7 @@ public final class GetSearchDeploymentArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param projectId The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 
@@ -102,7 +102,7 @@ public final class GetSearchDeploymentArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param projectId The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 

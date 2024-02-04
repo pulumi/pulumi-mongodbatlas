@@ -10,8 +10,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetSearchIndexesInvokeResult {
@@ -31,20 +29,6 @@ public final class GetSearchIndexesInvokeResult {
      * 
      */
     private String id;
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.15.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
-    private @Nullable Integer itemsPerPage;
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.15.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
-    private @Nullable Integer pageNum;
     private String projectId;
     /**
      * @return A list where each represents a search index.
@@ -82,24 +66,6 @@ public final class GetSearchIndexesInvokeResult {
     public String id() {
         return this.id;
     }
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.15.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
-    public Optional<Integer> itemsPerPage() {
-        return Optional.ofNullable(this.itemsPerPage);
-    }
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.15.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
-    public Optional<Integer> pageNum() {
-        return Optional.ofNullable(this.pageNum);
-    }
     public String projectId() {
         return this.projectId;
     }
@@ -131,8 +97,6 @@ public final class GetSearchIndexesInvokeResult {
         private String collectionName;
         private String database;
         private String id;
-        private @Nullable Integer itemsPerPage;
-        private @Nullable Integer pageNum;
         private String projectId;
         private List<GetSearchIndexesResult> results;
         private Integer totalCount;
@@ -143,8 +107,6 @@ public final class GetSearchIndexesInvokeResult {
     	      this.collectionName = defaults.collectionName;
     	      this.database = defaults.database;
     	      this.id = defaults.id;
-    	      this.itemsPerPage = defaults.itemsPerPage;
-    	      this.pageNum = defaults.pageNum;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
     	      this.totalCount = defaults.totalCount;
@@ -183,18 +145,6 @@ public final class GetSearchIndexesInvokeResult {
             return this;
         }
         @CustomType.Setter
-        public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
-
-            this.itemsPerPage = itemsPerPage;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder pageNum(@Nullable Integer pageNum) {
-
-            this.pageNum = pageNum;
-            return this;
-        }
-        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetSearchIndexesInvokeResult", "projectId");
@@ -227,8 +177,6 @@ public final class GetSearchIndexesInvokeResult {
             _resultValue.collectionName = collectionName;
             _resultValue.database = database;
             _resultValue.id = id;
-            _resultValue.itemsPerPage = itemsPerPage;
-            _resultValue.pageNum = pageNum;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
             _resultValue.totalCount = totalCount;

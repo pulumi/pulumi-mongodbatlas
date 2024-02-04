@@ -33,14 +33,14 @@ public final class GetApiKeysArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * Unique identifier for the organization whose API keys you want to retrieve.
      * 
      */
     @Import(name="orgId", required=true)
     private Output<String> orgId;
 
     /**
-     * @return Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * @return Unique identifier for the organization whose API keys you want to retrieve.
      * 
      */
     public Output<String> orgId() {
@@ -110,7 +110,7 @@ public final class GetApiKeysArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param orgId Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+         * @param orgId Unique identifier for the organization whose API keys you want to retrieve.
          * 
          * @return builder
          * 
@@ -121,7 +121,7 @@ public final class GetApiKeysArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param orgId Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+         * @param orgId Unique identifier for the organization whose API keys you want to retrieve.
          * 
          * @return builder
          * 

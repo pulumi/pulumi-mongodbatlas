@@ -84,28 +84,28 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * 
      */
     @Export(name="copyProtectionEnabled", refs={Boolean.class}, tree="[0]")
-    private Output<Boolean> copyProtectionEnabled;
+    private Output</* @Nullable */ Boolean> copyProtectionEnabled;
 
     /**
      * @return Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      * 
      */
-    public Output<Boolean> copyProtectionEnabled() {
-        return this.copyProtectionEnabled;
+    public Output<Optional<Boolean>> copyProtectionEnabled() {
+        return Codegen.optional(this.copyProtectionEnabled);
     }
     /**
      * Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      * 
      */
     @Export(name="encryptionAtRestEnabled", refs={Boolean.class}, tree="[0]")
-    private Output<Boolean> encryptionAtRestEnabled;
+    private Output</* @Nullable */ Boolean> encryptionAtRestEnabled;
 
     /**
      * @return Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      * 
      */
-    public Output<Boolean> encryptionAtRestEnabled() {
-        return this.encryptionAtRestEnabled;
+    public Output<Optional<Boolean>> encryptionAtRestEnabled() {
+        return Codegen.optional(this.encryptionAtRestEnabled);
     }
     @Export(name="onDemandPolicyItem", refs={BackupCompliancePolicyOnDemandPolicyItem.class}, tree="[0]")
     private Output<BackupCompliancePolicyOnDemandPolicyItem> onDemandPolicyItem;
@@ -118,14 +118,14 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * 
      */
     @Export(name="pitEnabled", refs={Boolean.class}, tree="[0]")
-    private Output<Boolean> pitEnabled;
+    private Output</* @Nullable */ Boolean> pitEnabled;
 
     /**
      * @return Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      * 
      */
-    public Output<Boolean> pitEnabled() {
-        return this.pitEnabled;
+    public Output<Optional<Boolean>> pitEnabled() {
+        return Codegen.optional(this.pitEnabled);
     }
     @Export(name="policyItemDaily", refs={BackupCompliancePolicyPolicyItemDaily.class}, tree="[0]")
     private Output</* @Nullable */ BackupCompliancePolicyPolicyItemDaily> policyItemDaily;

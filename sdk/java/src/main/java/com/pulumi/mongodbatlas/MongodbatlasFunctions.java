@@ -52,8 +52,6 @@ import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobsArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsPlainArgs;
-import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessArgs;
-import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
@@ -208,7 +206,6 @@ import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotRestoreJobResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotRestoreJobsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotsInvokeResult;
-import com.pulumi.mongodbatlas.outputs.GetCloudProviderAccessResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudProviderAccessSetupResult;
 import com.pulumi.mongodbatlas.outputs.GetClusterOutageSimulationResult;
 import com.pulumi.mongodbatlas.outputs.GetClusterResult;
@@ -2773,199 +2770,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", TypeShape.of(GetCloudBackupSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * **WARNING:** The data source `mongodbatlas.CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `mongodbatlas.CloudProviderAccessSetup` instead.
-     * 
-     * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.CloudProviderAccess;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testRole = new CloudProviderAccess(&#34;testRole&#34;, CloudProviderAccessArgs.builder()        
-     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
-     *             .providerName(&#34;AWS&#34;)
-     *             .build());
-     * 
-     *         final var all = MongodbatlasFunctions.getCloudProviderAccess(GetCloudProviderAccessArgs.builder()
-     *             .projectId(testRole.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static Output<GetCloudProviderAccessResult> getCloudProviderAccess(GetCloudProviderAccessArgs args) {
-        return getCloudProviderAccess(args, InvokeOptions.Empty);
-    }
-    /**
-     * **WARNING:** The data source `mongodbatlas.CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `mongodbatlas.CloudProviderAccessSetup` instead.
-     * 
-     * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.CloudProviderAccess;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testRole = new CloudProviderAccess(&#34;testRole&#34;, CloudProviderAccessArgs.builder()        
-     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
-     *             .providerName(&#34;AWS&#34;)
-     *             .build());
-     * 
-     *         final var all = MongodbatlasFunctions.getCloudProviderAccess(GetCloudProviderAccessArgs.builder()
-     *             .projectId(testRole.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static CompletableFuture<GetCloudProviderAccessResult> getCloudProviderAccessPlain(GetCloudProviderAccessPlainArgs args) {
-        return getCloudProviderAccessPlain(args, InvokeOptions.Empty);
-    }
-    /**
-     * **WARNING:** The data source `mongodbatlas.CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `mongodbatlas.CloudProviderAccessSetup` instead.
-     * 
-     * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.CloudProviderAccess;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testRole = new CloudProviderAccess(&#34;testRole&#34;, CloudProviderAccessArgs.builder()        
-     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
-     *             .providerName(&#34;AWS&#34;)
-     *             .build());
-     * 
-     *         final var all = MongodbatlasFunctions.getCloudProviderAccess(GetCloudProviderAccessArgs.builder()
-     *             .projectId(testRole.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static Output<GetCloudProviderAccessResult> getCloudProviderAccess(GetCloudProviderAccessArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", TypeShape.of(GetCloudProviderAccessResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * **WARNING:** The data source `mongodbatlas.CloudProviderAccess` is deprecated and will be removed in version v1.14.0, use the data source `mongodbatlas.CloudProviderAccessSetup` instead.
-     * 
-     * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS and Azure is supported.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.CloudProviderAccess;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testRole = new CloudProviderAccess(&#34;testRole&#34;, CloudProviderAccessArgs.builder()        
-     *             .projectId(&#34;64259ee860c43338194b0f8e&#34;)
-     *             .providerName(&#34;AWS&#34;)
-     *             .build());
-     * 
-     *         final var all = MongodbatlasFunctions.getCloudProviderAccess(GetCloudProviderAccessArgs.builder()
-     *             .projectId(testRole.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static CompletableFuture<GetCloudProviderAccessResult> getCloudProviderAccessPlain(GetCloudProviderAccessPlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", TypeShape.of(GetCloudProviderAccessResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas_cloud_provider_access` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -3058,7 +2863,7 @@ public final class MongodbatlasFunctions {
         return getCloudProviderAccessSetup(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas_cloud_provider_access` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -3151,7 +2956,7 @@ public final class MongodbatlasFunctions {
         return getCloudProviderAccessSetupPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas_cloud_provider_access` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -3244,7 +3049,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", TypeShape.of(GetCloudProviderAccessSetupResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas_cloud_provider_access` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -6555,6 +6360,8 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
      * 
+     * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -6605,6 +6412,8 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
+     * 
+     * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
      * 
      * ## Example Usage
      * ```java
@@ -6657,6 +6466,8 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
      * 
+     * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -6707,6 +6518,8 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
+     * 
+     * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
      * 
      * ## Example Usage
      * ```java
@@ -6759,6 +6572,8 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
      * 
+     * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -6806,6 +6621,8 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+     * 
+     * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      * ## Example Usage
      * ```java
@@ -6855,6 +6672,8 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
      * 
+     * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -6902,6 +6721,8 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+     * 
+     * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      * ## Example Usage
      * ```java
@@ -11752,35 +11573,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.SearchDeployment` describes a search node deployment.
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getSearchDeployment(GetSearchDeploymentArgs.builder()
-     *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
-     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static Output<GetSearchDeploymentResult> getSearchDeployment(GetSearchDeploymentArgs args) {
@@ -11790,35 +11582,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.SearchDeployment` describes a search node deployment.
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getSearchDeployment(GetSearchDeploymentArgs.builder()
-     *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
-     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static CompletableFuture<GetSearchDeploymentResult> getSearchDeploymentPlain(GetSearchDeploymentPlainArgs args) {
@@ -11828,35 +11591,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.SearchDeployment` describes a search node deployment.
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getSearchDeployment(GetSearchDeploymentArgs.builder()
-     *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
-     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static Output<GetSearchDeploymentResult> getSearchDeployment(GetSearchDeploymentArgs args, InvokeOptions options) {
@@ -11866,35 +11600,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.SearchDeployment` describes a search node deployment.
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getSearchDeployment(GetSearchDeploymentArgs.builder()
-     *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
-     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
      * 
      */
     public static CompletableFuture<GetSearchDeploymentResult> getSearchDeploymentPlain(GetSearchDeploymentPlainArgs args, InvokeOptions options) {
@@ -12078,7 +11783,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexesArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -12092,12 +11797,10 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getSearchIndex(GetSearchIndexArgs.builder()
+     *         final var test = MongodbatlasFunctions.getSearchIndexes(GetSearchIndexesArgs.builder()
      *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
      *             .collectionName(&#34;&lt;COLLECTION_NAME&gt;&#34;)
      *             .databaseName(&#34;&lt;DATABASE_NAME&gt;&#34;)
-     *             .itemsPerPage(100)
-     *             .pageNum(1)
      *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
      *             .build());
      * 
@@ -12123,7 +11826,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexesArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -12137,12 +11840,10 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getSearchIndex(GetSearchIndexArgs.builder()
+     *         final var test = MongodbatlasFunctions.getSearchIndexes(GetSearchIndexesArgs.builder()
      *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
      *             .collectionName(&#34;&lt;COLLECTION_NAME&gt;&#34;)
      *             .databaseName(&#34;&lt;DATABASE_NAME&gt;&#34;)
-     *             .itemsPerPage(100)
-     *             .pageNum(1)
      *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
      *             .build());
      * 
@@ -12168,7 +11869,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexesArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -12182,12 +11883,10 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getSearchIndex(GetSearchIndexArgs.builder()
+     *         final var test = MongodbatlasFunctions.getSearchIndexes(GetSearchIndexesArgs.builder()
      *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
      *             .collectionName(&#34;&lt;COLLECTION_NAME&gt;&#34;)
      *             .databaseName(&#34;&lt;DATABASE_NAME&gt;&#34;)
-     *             .itemsPerPage(100)
-     *             .pageNum(1)
      *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
      *             .build());
      * 
@@ -12213,7 +11912,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexesArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -12227,12 +11926,10 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getSearchIndex(GetSearchIndexArgs.builder()
+     *         final var test = MongodbatlasFunctions.getSearchIndexes(GetSearchIndexesArgs.builder()
      *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
      *             .collectionName(&#34;&lt;COLLECTION_NAME&gt;&#34;)
      *             .databaseName(&#34;&lt;DATABASE_NAME&gt;&#34;)
-     *             .itemsPerPage(100)
-     *             .pageNum(1)
      *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
      *             .build());
      * 

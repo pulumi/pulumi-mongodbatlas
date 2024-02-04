@@ -40,7 +40,6 @@ export function getSearchIndex(args: GetSearchIndexArgs, opts?: pulumi.InvokeOpt
         "name": args.name,
         "projectId": args.projectId,
         "searchAnalyzer": args.searchAnalyzer,
-        "status": args.status,
         "type": args.type,
     }, opts);
 }
@@ -94,7 +93,6 @@ export interface GetSearchIndexArgs {
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      */
     searchAnalyzer?: string;
-    status?: string;
     type?: string;
 }
 
@@ -142,6 +140,9 @@ export interface GetSearchIndexResult {
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      */
     readonly searchAnalyzer?: string;
+    /**
+     * Current status of the index.
+     */
     readonly status: string;
     /**
      * Synonyms mapping definition to use in this index.
@@ -223,6 +224,5 @@ export interface GetSearchIndexOutputArgs {
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      */
     searchAnalyzer?: pulumi.Input<string>;
-    status?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
 }

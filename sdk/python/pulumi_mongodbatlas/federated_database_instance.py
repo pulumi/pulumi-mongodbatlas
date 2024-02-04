@@ -807,12 +807,12 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cloudProviderConfig")
-    def cloud_provider_config(self) -> pulumi.Output[Optional['outputs.FederatedDatabaseInstanceCloudProviderConfig']]:
+    def cloud_provider_config(self) -> pulumi.Output['outputs.FederatedDatabaseInstanceCloudProviderConfig']:
         return pulumi.get(self, "cloud_provider_config")
 
     @property
     @pulumi.getter(name="dataProcessRegion")
-    def data_process_region(self) -> pulumi.Output[Optional['outputs.FederatedDatabaseInstanceDataProcessRegion']]:
+    def data_process_region(self) -> pulumi.Output['outputs.FederatedDatabaseInstanceDataProcessRegion']:
         return pulumi.get(self, "data_process_region")
 
     @property
@@ -851,7 +851,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="storageDatabases")
-    def storage_databases(self) -> pulumi.Output[Optional[Sequence['outputs.FederatedDatabaseInstanceStorageDatabase']]]:
+    def storage_databases(self) -> pulumi.Output[Sequence['outputs.FederatedDatabaseInstanceStorageDatabase']]:
         """
         Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
         * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.

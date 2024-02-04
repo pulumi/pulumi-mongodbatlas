@@ -150,9 +150,6 @@ namespace Pulumi.Mongodbatlas
         [Input("searchAnalyzer")]
         public string? SearchAnalyzer { get; set; }
 
-        [Input("status")]
-        public string? Status { get; set; }
-
         [Input("type")]
         public string? Type { get; set; }
 
@@ -233,9 +230,6 @@ namespace Pulumi.Mongodbatlas
         [Input("searchAnalyzer")]
         public Input<string>? SearchAnalyzer { get; set; }
 
-        [Input("status")]
-        public Input<string>? Status { get; set; }
-
         [Input("type")]
         public Input<string>? Type { get; set; }
 
@@ -289,6 +283,9 @@ namespace Pulumi.Mongodbatlas
         /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
         /// </summary>
         public readonly string? SearchAnalyzer;
+        /// <summary>
+        /// Current status of the index.
+        /// </summary>
         public readonly string Status;
         /// <summary>
         /// Synonyms mapping definition to use in this index.

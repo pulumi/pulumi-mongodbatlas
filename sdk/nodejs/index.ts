@@ -60,11 +60,6 @@ export type CloudBackupSnapshotRestoreJob = import("./cloudBackupSnapshotRestore
 export const CloudBackupSnapshotRestoreJob: typeof import("./cloudBackupSnapshotRestoreJob").CloudBackupSnapshotRestoreJob = null as any;
 utilities.lazyLoad(exports, ["CloudBackupSnapshotRestoreJob"], () => require("./cloudBackupSnapshotRestoreJob"));
 
-export { CloudProviderAccessArgs, CloudProviderAccessState } from "./cloudProviderAccess";
-export type CloudProviderAccess = import("./cloudProviderAccess").CloudProviderAccess;
-export const CloudProviderAccess: typeof import("./cloudProviderAccess").CloudProviderAccess = null as any;
-utilities.lazyLoad(exports, ["CloudProviderAccess"], () => require("./cloudProviderAccess"));
-
 export { CloudProviderAccessAuthorizationArgs, CloudProviderAccessAuthorizationState } from "./cloudProviderAccessAuthorization";
 export type CloudProviderAccessAuthorization = import("./cloudProviderAccessAuthorization").CloudProviderAccessAuthorization;
 export const CloudProviderAccessAuthorization: typeof import("./cloudProviderAccessAuthorization").CloudProviderAccessAuthorization = null as any;
@@ -249,11 +244,6 @@ export { GetCloudBackupSnapshotsArgs, GetCloudBackupSnapshotsResult, GetCloudBac
 export const getCloudBackupSnapshots: typeof import("./getCloudBackupSnapshots").getCloudBackupSnapshots = null as any;
 export const getCloudBackupSnapshotsOutput: typeof import("./getCloudBackupSnapshots").getCloudBackupSnapshotsOutput = null as any;
 utilities.lazyLoad(exports, ["getCloudBackupSnapshots","getCloudBackupSnapshotsOutput"], () => require("./getCloudBackupSnapshots"));
-
-export { GetCloudProviderAccessArgs, GetCloudProviderAccessResult, GetCloudProviderAccessOutputArgs } from "./getCloudProviderAccess";
-export const getCloudProviderAccess: typeof import("./getCloudProviderAccess").getCloudProviderAccess = null as any;
-export const getCloudProviderAccessOutput: typeof import("./getCloudProviderAccess").getCloudProviderAccessOutput = null as any;
-utilities.lazyLoad(exports, ["getCloudProviderAccess","getCloudProviderAccessOutput"], () => require("./getCloudProviderAccess"));
 
 export { GetCloudProviderAccessSetupArgs, GetCloudProviderAccessSetupResult, GetCloudProviderAccessSetupOutputArgs } from "./getCloudProviderAccessSetup";
 export const getCloudProviderAccessSetup: typeof import("./getCloudProviderAccessSetup").getCloudProviderAccessSetup = null as any;
@@ -761,8 +751,6 @@ const _module = {
                 return new CloudBackupSnapshotExportJob(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob":
                 return new CloudBackupSnapshotRestoreJob(name, <any>undefined, { urn })
-            case "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess":
-                return new CloudProviderAccess(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization":
                 return new CloudProviderAccessAuthorization(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup":
@@ -861,7 +849,6 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshot
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshotExportBucket", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshotExportJob", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshotRestoreJob", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccess", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccessAuthorization", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccessSetup", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cluster", _module)

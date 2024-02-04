@@ -21,31 +21,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetBackupCompliancePolicyArgs : global::Pulumi.InvokeArgs
     {
-        [Input("onDemandPolicyItem")]
-        public Inputs.GetBackupCompliancePolicyOnDemandPolicyItemArgs? OnDemandPolicyItem { get; set; }
-
-        [Input("policyItemDaily")]
-        public Inputs.GetBackupCompliancePolicyPolicyItemDailyArgs? PolicyItemDaily { get; set; }
-
-        [Input("policyItemHourly")]
-        public Inputs.GetBackupCompliancePolicyPolicyItemHourlyArgs? PolicyItemHourly { get; set; }
-
-        [Input("policyItemMonthlies")]
-        private List<Inputs.GetBackupCompliancePolicyPolicyItemMonthlyArgs>? _policyItemMonthlies;
-        public List<Inputs.GetBackupCompliancePolicyPolicyItemMonthlyArgs> PolicyItemMonthlies
-        {
-            get => _policyItemMonthlies ?? (_policyItemMonthlies = new List<Inputs.GetBackupCompliancePolicyPolicyItemMonthlyArgs>());
-            set => _policyItemMonthlies = value;
-        }
-
-        [Input("policyItemWeeklies")]
-        private List<Inputs.GetBackupCompliancePolicyPolicyItemWeeklyArgs>? _policyItemWeeklies;
-        public List<Inputs.GetBackupCompliancePolicyPolicyItemWeeklyArgs> PolicyItemWeeklies
-        {
-            get => _policyItemWeeklies ?? (_policyItemWeeklies = new List<Inputs.GetBackupCompliancePolicyPolicyItemWeeklyArgs>());
-            set => _policyItemWeeklies = value;
-        }
-
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project
         /// </summary>
@@ -60,31 +35,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetBackupCompliancePolicyInvokeArgs : global::Pulumi.InvokeArgs
     {
-        [Input("onDemandPolicyItem")]
-        public Input<Inputs.GetBackupCompliancePolicyOnDemandPolicyItemInputArgs>? OnDemandPolicyItem { get; set; }
-
-        [Input("policyItemDaily")]
-        public Input<Inputs.GetBackupCompliancePolicyPolicyItemDailyInputArgs>? PolicyItemDaily { get; set; }
-
-        [Input("policyItemHourly")]
-        public Input<Inputs.GetBackupCompliancePolicyPolicyItemHourlyInputArgs>? PolicyItemHourly { get; set; }
-
-        [Input("policyItemMonthlies")]
-        private InputList<Inputs.GetBackupCompliancePolicyPolicyItemMonthlyInputArgs>? _policyItemMonthlies;
-        public InputList<Inputs.GetBackupCompliancePolicyPolicyItemMonthlyInputArgs> PolicyItemMonthlies
-        {
-            get => _policyItemMonthlies ?? (_policyItemMonthlies = new InputList<Inputs.GetBackupCompliancePolicyPolicyItemMonthlyInputArgs>());
-            set => _policyItemMonthlies = value;
-        }
-
-        [Input("policyItemWeeklies")]
-        private InputList<Inputs.GetBackupCompliancePolicyPolicyItemWeeklyInputArgs>? _policyItemWeeklies;
-        public InputList<Inputs.GetBackupCompliancePolicyPolicyItemWeeklyInputArgs> PolicyItemWeeklies
-        {
-            get => _policyItemWeeklies ?? (_policyItemWeeklies = new InputList<Inputs.GetBackupCompliancePolicyPolicyItemWeeklyInputArgs>());
-            set => _policyItemWeeklies = value;
-        }
-
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project
         /// </summary>
@@ -125,13 +75,13 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly Outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult? OnDemandPolicyItem;
+        public readonly Outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult OnDemandPolicyItem;
         /// <summary>
         /// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
         /// </summary>
         public readonly bool PitEnabled;
-        public readonly Outputs.GetBackupCompliancePolicyPolicyItemDailyResult? PolicyItemDaily;
-        public readonly Outputs.GetBackupCompliancePolicyPolicyItemHourlyResult? PolicyItemHourly;
+        public readonly Outputs.GetBackupCompliancePolicyPolicyItemDailyResult PolicyItemDaily;
+        public readonly Outputs.GetBackupCompliancePolicyPolicyItemHourlyResult PolicyItemHourly;
         public readonly ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemMonthlyResult> PolicyItemMonthlies;
         public readonly ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemWeeklyResult> PolicyItemWeeklies;
         public readonly string ProjectId;
@@ -166,13 +116,13 @@ namespace Pulumi.Mongodbatlas
 
             string id,
 
-            Outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult? onDemandPolicyItem,
+            Outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult onDemandPolicyItem,
 
             bool pitEnabled,
 
-            Outputs.GetBackupCompliancePolicyPolicyItemDailyResult? policyItemDaily,
+            Outputs.GetBackupCompliancePolicyPolicyItemDailyResult policyItemDaily,
 
-            Outputs.GetBackupCompliancePolicyPolicyItemHourlyResult? policyItemHourly,
+            Outputs.GetBackupCompliancePolicyPolicyItemHourlyResult policyItemHourly,
 
             ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemMonthlyResult> policyItemMonthlies,
 

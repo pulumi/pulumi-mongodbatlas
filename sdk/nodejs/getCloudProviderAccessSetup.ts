@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+ * `mongodbatlasCloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
@@ -114,7 +114,7 @@ export interface GetCloudProviderAccessSetupResult {
     readonly roleId: string;
 }
 /**
- * `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+ * `mongodbatlasCloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *

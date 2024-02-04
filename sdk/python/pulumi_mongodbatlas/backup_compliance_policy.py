@@ -19,11 +19,11 @@ class BackupCompliancePolicyArgs:
                  authorized_email: pulumi.Input[str],
                  authorized_user_first_name: pulumi.Input[str],
                  authorized_user_last_name: pulumi.Input[str],
-                 copy_protection_enabled: pulumi.Input[bool],
-                 encryption_at_rest_enabled: pulumi.Input[bool],
                  on_demand_policy_item: pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs'],
-                 pit_enabled: pulumi.Input[bool],
                  project_id: pulumi.Input[str],
+                 copy_protection_enabled: Optional[pulumi.Input[bool]] = None,
+                 encryption_at_rest_enabled: Optional[pulumi.Input[bool]] = None,
+                 pit_enabled: Optional[pulumi.Input[bool]] = None,
                  policy_item_daily: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs']] = None,
                  policy_item_hourly: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']] = None,
                  policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]] = None,
@@ -34,20 +34,23 @@ class BackupCompliancePolicyArgs:
         :param pulumi.Input[str] authorized_email: Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
         :param pulumi.Input[str] authorized_user_first_name: First name of the user who authorized to update the Backup Compliance Policy settings.
         :param pulumi.Input[str] authorized_user_last_name: Last name of the user who authorized to update the Backup Compliance Policy settings.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[bool] copy_protection_enabled: Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] encryption_at_rest_enabled: Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[int] restore_window_days: Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
         """
         pulumi.set(__self__, "authorized_email", authorized_email)
         pulumi.set(__self__, "authorized_user_first_name", authorized_user_first_name)
         pulumi.set(__self__, "authorized_user_last_name", authorized_user_last_name)
-        pulumi.set(__self__, "copy_protection_enabled", copy_protection_enabled)
-        pulumi.set(__self__, "encryption_at_rest_enabled", encryption_at_rest_enabled)
         pulumi.set(__self__, "on_demand_policy_item", on_demand_policy_item)
-        pulumi.set(__self__, "pit_enabled", pit_enabled)
         pulumi.set(__self__, "project_id", project_id)
+        if copy_protection_enabled is not None:
+            pulumi.set(__self__, "copy_protection_enabled", copy_protection_enabled)
+        if encryption_at_rest_enabled is not None:
+            pulumi.set(__self__, "encryption_at_rest_enabled", encryption_at_rest_enabled)
+        if pit_enabled is not None:
+            pulumi.set(__self__, "pit_enabled", pit_enabled)
         if policy_item_daily is not None:
             pulumi.set(__self__, "policy_item_daily", policy_item_daily)
         if policy_item_hourly is not None:
@@ -96,30 +99,6 @@ class BackupCompliancePolicyArgs:
         pulumi.set(self, "authorized_user_last_name", value)
 
     @property
-    @pulumi.getter(name="copyProtectionEnabled")
-    def copy_protection_enabled(self) -> pulumi.Input[bool]:
-        """
-        Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
-        """
-        return pulumi.get(self, "copy_protection_enabled")
-
-    @copy_protection_enabled.setter
-    def copy_protection_enabled(self, value: pulumi.Input[bool]):
-        pulumi.set(self, "copy_protection_enabled", value)
-
-    @property
-    @pulumi.getter(name="encryptionAtRestEnabled")
-    def encryption_at_rest_enabled(self) -> pulumi.Input[bool]:
-        """
-        Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
-        """
-        return pulumi.get(self, "encryption_at_rest_enabled")
-
-    @encryption_at_rest_enabled.setter
-    def encryption_at_rest_enabled(self, value: pulumi.Input[bool]):
-        pulumi.set(self, "encryption_at_rest_enabled", value)
-
-    @property
     @pulumi.getter(name="onDemandPolicyItem")
     def on_demand_policy_item(self) -> pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']:
         return pulumi.get(self, "on_demand_policy_item")
@@ -127,18 +106,6 @@ class BackupCompliancePolicyArgs:
     @on_demand_policy_item.setter
     def on_demand_policy_item(self, value: pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']):
         pulumi.set(self, "on_demand_policy_item", value)
-
-    @property
-    @pulumi.getter(name="pitEnabled")
-    def pit_enabled(self) -> pulumi.Input[bool]:
-        """
-        Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
-        """
-        return pulumi.get(self, "pit_enabled")
-
-    @pit_enabled.setter
-    def pit_enabled(self, value: pulumi.Input[bool]):
-        pulumi.set(self, "pit_enabled", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -151,6 +118,42 @@ class BackupCompliancePolicyArgs:
     @project_id.setter
     def project_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="copyProtectionEnabled")
+    def copy_protection_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
+        """
+        return pulumi.get(self, "copy_protection_enabled")
+
+    @copy_protection_enabled.setter
+    def copy_protection_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "copy_protection_enabled", value)
+
+    @property
+    @pulumi.getter(name="encryptionAtRestEnabled")
+    def encryption_at_rest_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
+        """
+        return pulumi.get(self, "encryption_at_rest_enabled")
+
+    @encryption_at_rest_enabled.setter
+    def encryption_at_rest_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "encryption_at_rest_enabled", value)
+
+    @property
+    @pulumi.getter(name="pitEnabled")
+    def pit_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
+        """
+        return pulumi.get(self, "pit_enabled")
+
+    @pit_enabled.setter
+    def pit_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "pit_enabled", value)
 
     @property
     @pulumi.getter(name="policyItemDaily")
@@ -551,17 +554,11 @@ class BackupCompliancePolicy(pulumi.CustomResource):
             if authorized_user_last_name is None and not opts.urn:
                 raise TypeError("Missing required property 'authorized_user_last_name'")
             __props__.__dict__["authorized_user_last_name"] = authorized_user_last_name
-            if copy_protection_enabled is None and not opts.urn:
-                raise TypeError("Missing required property 'copy_protection_enabled'")
             __props__.__dict__["copy_protection_enabled"] = copy_protection_enabled
-            if encryption_at_rest_enabled is None and not opts.urn:
-                raise TypeError("Missing required property 'encryption_at_rest_enabled'")
             __props__.__dict__["encryption_at_rest_enabled"] = encryption_at_rest_enabled
             if on_demand_policy_item is None and not opts.urn:
                 raise TypeError("Missing required property 'on_demand_policy_item'")
             __props__.__dict__["on_demand_policy_item"] = on_demand_policy_item
-            if pit_enabled is None and not opts.urn:
-                raise TypeError("Missing required property 'pit_enabled'")
             __props__.__dict__["pit_enabled"] = pit_enabled
             __props__.__dict__["policy_item_daily"] = policy_item_daily
             __props__.__dict__["policy_item_hourly"] = policy_item_hourly
@@ -667,7 +664,7 @@ class BackupCompliancePolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="copyProtectionEnabled")
-    def copy_protection_enabled(self) -> pulumi.Output[bool]:
+    def copy_protection_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
         Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         """
@@ -675,7 +672,7 @@ class BackupCompliancePolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="encryptionAtRestEnabled")
-    def encryption_at_rest_enabled(self) -> pulumi.Output[bool]:
+    def encryption_at_rest_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
         Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
         """
@@ -688,7 +685,7 @@ class BackupCompliancePolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="pitEnabled")
-    def pit_enabled(self) -> pulumi.Output[bool]:
+    def pit_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
         Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
         """

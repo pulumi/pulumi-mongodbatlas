@@ -12,39 +12,63 @@ import java.util.Objects;
 
 @CustomType
 public final class GetSearchDeploymentResult {
+    /**
+     * @return Label that identifies the cluster to return the search nodes for.
+     * 
+     */
     private String clusterName;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the search deployment.
+     * 
+     */
     private String id;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * 
+     */
     private String projectId;
     /**
-     * @return List of settings that configure the search nodes for your cluster. See specs.
+     * @return List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      * 
      */
     private List<GetSearchDeploymentSpec> specs;
     /**
-     * @return Human-readable label that indicates the current operating condition of this search node deployment.
+     * @return Human-readable label that indicates the current operating condition of this search deployment.
      * 
      */
     private String stateName;
 
     private GetSearchDeploymentResult() {}
+    /**
+     * @return Label that identifies the cluster to return the search nodes for.
+     * 
+     */
     public String clusterName() {
         return this.clusterName;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the search deployment.
+     * 
+     */
     public String id() {
         return this.id;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * 
+     */
     public String projectId() {
         return this.projectId;
     }
     /**
-     * @return List of settings that configure the search nodes for your cluster. See specs.
+     * @return List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      * 
      */
     public List<GetSearchDeploymentSpec> specs() {
         return this.specs;
     }
     /**
-     * @return Human-readable label that indicates the current operating condition of this search node deployment.
+     * @return Human-readable label that indicates the current operating condition of this search deployment.
      * 
      */
     public String stateName() {

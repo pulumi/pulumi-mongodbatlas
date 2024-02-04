@@ -91,13 +91,17 @@ export class Project extends pulumi.CustomResource {
     }
 
     /**
-     * The number of Atlas clusters deployed in the project..
+     * The number of Atlas clusters deployed in the project.
      */
     public /*out*/ readonly clusterCount!: pulumi.Output<number>;
     /**
-     * The ISO-8601-formatted timestamp of when Atlas created the project..
+     * The ISO-8601-formatted timestamp of when Atlas created the project.
      */
     public /*out*/ readonly created!: pulumi.Output<string>;
+    /**
+     * IP addresses in a project categorized by services. See IP Addresses.
+     */
+    public /*out*/ readonly ipAddresses!: pulumi.Output<outputs.ProjectIpAddresses>;
     /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
      */
@@ -160,6 +164,7 @@ export class Project extends pulumi.CustomResource {
             const state = argsOrState as ProjectState | undefined;
             resourceInputs["clusterCount"] = state ? state.clusterCount : undefined;
             resourceInputs["created"] = state ? state.created : undefined;
+            resourceInputs["ipAddresses"] = state ? state.ipAddresses : undefined;
             resourceInputs["isCollectDatabaseSpecificsStatisticsEnabled"] = state ? state.isCollectDatabaseSpecificsStatisticsEnabled : undefined;
             resourceInputs["isDataExplorerEnabled"] = state ? state.isDataExplorerEnabled : undefined;
             resourceInputs["isExtendedStorageSizesEnabled"] = state ? state.isExtendedStorageSizesEnabled : undefined;
@@ -193,6 +198,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["withDefaultAlertsSettings"] = args ? args.withDefaultAlertsSettings : undefined;
             resourceInputs["clusterCount"] = undefined /*out*/;
             resourceInputs["created"] = undefined /*out*/;
+            resourceInputs["ipAddresses"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Project.__pulumiType, name, resourceInputs, opts);
@@ -204,13 +210,17 @@ export class Project extends pulumi.CustomResource {
  */
 export interface ProjectState {
     /**
-     * The number of Atlas clusters deployed in the project..
+     * The number of Atlas clusters deployed in the project.
      */
     clusterCount?: pulumi.Input<number>;
     /**
-     * The ISO-8601-formatted timestamp of when Atlas created the project..
+     * The ISO-8601-formatted timestamp of when Atlas created the project.
      */
     created?: pulumi.Input<string>;
+    /**
+     * IP addresses in a project categorized by services. See IP Addresses.
+     */
+    ipAddresses?: pulumi.Input<inputs.ProjectIpAddresses>;
     /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
      */

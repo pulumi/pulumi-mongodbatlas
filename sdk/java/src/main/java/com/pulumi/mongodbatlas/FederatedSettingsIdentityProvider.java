@@ -18,6 +18,8 @@ import javax.annotation.Nullable;
 
 /**
  * `mongodbatlas.FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
+ * 
+ * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  * ## Example Usage
  * 
  * &gt; **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
@@ -64,7 +66,9 @@ import javax.annotation.Nullable;
  * ```sh
  *  $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk1297
  * ```
- *  For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+ *  __WARNING:__ Starting from terraform provider version 1.16.0, to import the resource a 24-hexadecimal digit string that identifies the IdP (`idp_id`) will have to be used instead of `okta_idp_id`. See more [here](../guides/1.15.0-upgrade-guide.html.markdown)
+ * 
+ * For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
  * 
  */
 @ResourceType(type="mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider")
@@ -84,6 +88,34 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
         return Codegen.optional(this.associatedDomains);
     }
     /**
+     * Identifier of the intended recipient of the token used in OIDC IdP.
+     * 
+     */
+    @Export(name="audienceClaims", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> audienceClaims;
+
+    /**
+     * @return Identifier of the intended recipient of the token used in OIDC IdP.
+     * 
+     */
+    public Output<Optional<List<String>>> audienceClaims() {
+        return Codegen.optional(this.audienceClaims);
+    }
+    /**
+     * Client identifier that is assigned to an application by the OIDC Identity Provider.
+     * 
+     */
+    @Export(name="clientId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clientId;
+
+    /**
+     * @return Client identifier that is assigned to an application by the OIDC Identity Provider.
+     * 
+     */
+    public Output<Optional<String>> clientId() {
+        return Codegen.optional(this.clientId);
+    }
+    /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      * 
      */
@@ -98,14 +130,42 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
         return this.federationSettingsId;
     }
     /**
-     * Unique string that identifies the issuer of the SAML
+     * Identifier of the claim which contains OIDC IdP Group IDs in the token.
+     * 
+     */
+    @Export(name="groupsClaim", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> groupsClaim;
+
+    /**
+     * @return Identifier of the claim which contains OIDC IdP Group IDs in the token.
+     * 
+     */
+    public Output<Optional<String>> groupsClaim() {
+        return Codegen.optional(this.groupsClaim);
+    }
+    /**
+     * Unique 24-hexadecimal digit string that identifies the IdP.
+     * 
+     */
+    @Export(name="idpId", refs={String.class}, tree="[0]")
+    private Output<String> idpId;
+
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the IdP.
+     * 
+     */
+    public Output<String> idpId() {
+        return this.idpId;
+    }
+    /**
+     * Unique string that identifies the issuer of the IdP.
      * 
      */
     @Export(name="issuerUri", refs={String.class}, tree="[0]")
     private Output<String> issuerUri;
 
     /**
-     * @return Unique string that identifies the issuer of the SAML
+     * @return Unique string that identifies the issuer of the IdP.
      * 
      */
     public Output<String> issuerUri() {
@@ -140,78 +200,120 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
         return this.oktaIdpId;
     }
     /**
-     * SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+     * The protocol of the identity provider. Either `SAML` or `OIDC`.
+     * 
+     */
+    @Export(name="protocol", refs={String.class}, tree="[0]")
+    private Output<String> protocol;
+
+    /**
+     * @return The protocol of the identity provider. Either `SAML` or `OIDC`.
+     * 
+     */
+    public Output<String> protocol() {
+        return this.protocol;
+    }
+    /**
+     * SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
      * - HTTP POST
      * - HTTP REDIRECT
      * 
      */
     @Export(name="requestBinding", refs={String.class}, tree="[0]")
-    private Output<String> requestBinding;
+    private Output</* @Nullable */ String> requestBinding;
 
     /**
-     * @return SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+     * @return SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
      * - HTTP POST
      * - HTTP REDIRECT
      * 
      */
-    public Output<String> requestBinding() {
-        return this.requestBinding;
+    public Output<Optional<String>> requestBinding() {
+        return Codegen.optional(this.requestBinding);
     }
     /**
-     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+     * Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+     * 
+     */
+    @Export(name="requestedScopes", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> requestedScopes;
+
+    /**
+     * @return Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+     * 
+     */
+    public Output<Optional<List<String>>> requestedScopes() {
+        return Codegen.optional(this.requestedScopes);
+    }
+    /**
+     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
      * 
      */
     @Export(name="responseSignatureAlgorithm", refs={String.class}, tree="[0]")
-    private Output<String> responseSignatureAlgorithm;
+    private Output</* @Nullable */ String> responseSignatureAlgorithm;
 
     /**
-     * @return Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+     * @return Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
      * 
      */
-    public Output<String> responseSignatureAlgorithm() {
-        return this.responseSignatureAlgorithm;
+    public Output<Optional<String>> responseSignatureAlgorithm() {
+        return Codegen.optional(this.responseSignatureAlgorithm);
     }
     /**
      * Flag that indicates whether the identity provider has SSO debug enabled.
      * 
      */
     @Export(name="ssoDebugEnabled", refs={Boolean.class}, tree="[0]")
-    private Output<Boolean> ssoDebugEnabled;
+    private Output</* @Nullable */ Boolean> ssoDebugEnabled;
 
     /**
      * @return Flag that indicates whether the identity provider has SSO debug enabled.
      * 
      */
-    public Output<Boolean> ssoDebugEnabled() {
-        return this.ssoDebugEnabled;
+    public Output<Optional<Boolean>> ssoDebugEnabled() {
+        return Codegen.optional(this.ssoDebugEnabled);
     }
     /**
      * Unique string that identifies the intended audience of the SAML assertion.
      * 
      */
     @Export(name="ssoUrl", refs={String.class}, tree="[0]")
-    private Output<String> ssoUrl;
+    private Output</* @Nullable */ String> ssoUrl;
 
     /**
      * @return Unique string that identifies the intended audience of the SAML assertion.
      * 
      */
-    public Output<String> ssoUrl() {
-        return this.ssoUrl;
+    public Output<Optional<String>> ssoUrl() {
+        return Codegen.optional(this.ssoUrl);
     }
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
      * 
      */
     @Export(name="status", refs={String.class}, tree="[0]")
-    private Output<String> status;
+    private Output</* @Nullable */ String> status;
 
     /**
      * @return String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
      * 
      */
-    public Output<String> status() {
-        return this.status;
+    public Output<Optional<String>> status() {
+        return Codegen.optional(this.status);
+    }
+    /**
+     * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     * 
+     */
+    @Export(name="userClaim", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> userClaim;
+
+    /**
+     * @return Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     * 
+     */
+    public Output<Optional<String>> userClaim() {
+        return Codegen.optional(this.userClaim);
     }
 
     /**

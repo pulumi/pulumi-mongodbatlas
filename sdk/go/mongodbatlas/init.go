@@ -43,8 +43,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CloudBackupSnapshotExportJob{}
 	case "mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob":
 		r = &CloudBackupSnapshotRestoreJob{}
-	case "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess":
-		r = &CloudProviderAccess{}
 	case "mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization":
 		r = &CloudProviderAccessAuthorization{}
 	case "mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup":
@@ -211,11 +209,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/cloudBackupSnapshotRestoreJob",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"mongodbatlas",
-		"index/cloudProviderAccess",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

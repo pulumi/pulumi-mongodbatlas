@@ -30,15 +30,35 @@ public final class GetFederatedSettingsIdentityProvidersResult {
      */
     private List<GetFederatedSettingsIdentityProvidersResultAssociatedOrg> associatedOrgs;
     /**
+     * @return Identifier of the intended recipient of the token.
+     * 
+     */
+    private List<String> audienceClaims;
+    /**
      * @return Identifier for the intended audience of the SAML Assertion.
      * 
      */
     private String audienceUri;
     /**
+     * @return Client identifier that is assigned to an application by the Identity Provider.
+     * 
+     */
+    private String clientId;
+    /**
      * @return Human-readable label that identifies the IdP.
      * 
      */
     private String displayName;
+    /**
+     * @return Identifier of the claim which contains IdP Group IDs in the token.
+     * 
+     */
+    private String groupsClaim;
+    /**
+     * @return Unique 20-hexadecimal digit string that identifies the IdP.
+     * 
+     */
+    private String idpId;
     /**
      * @return Identifier for the issuer of the SAML Assertion.
      * 
@@ -47,12 +67,22 @@ public final class GetFederatedSettingsIdentityProvidersResult {
     private String oktaIdpId;
     private List<GetFederatedSettingsIdentityProvidersResultPemFileInfo> pemFileInfos;
     /**
+     * @return The protocol of the identity provider
+     * 
+     */
+    private String protocol;
+    /**
      * @return SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
      * - HTTP POST
      * - HTTP REDIRECT
      * 
      */
     private String requestBinding;
+    /**
+     * @return Scopes that MongoDB applications will request from the authorization endpoint.
+     * 
+     */
+    private List<String> requestedScopes;
     /**
      * @return Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
      * - SHA-1
@@ -75,6 +105,11 @@ public final class GetFederatedSettingsIdentityProvidersResult {
      * 
      */
     private String status;
+    /**
+     * @return Identifier of the claim which contains the user ID in the token.
+     * 
+     */
+    private String userClaim;
 
     private GetFederatedSettingsIdentityProvidersResult() {}
     /**
@@ -99,6 +134,13 @@ public final class GetFederatedSettingsIdentityProvidersResult {
         return this.associatedOrgs;
     }
     /**
+     * @return Identifier of the intended recipient of the token.
+     * 
+     */
+    public List<String> audienceClaims() {
+        return this.audienceClaims;
+    }
+    /**
      * @return Identifier for the intended audience of the SAML Assertion.
      * 
      */
@@ -106,11 +148,32 @@ public final class GetFederatedSettingsIdentityProvidersResult {
         return this.audienceUri;
     }
     /**
+     * @return Client identifier that is assigned to an application by the Identity Provider.
+     * 
+     */
+    public String clientId() {
+        return this.clientId;
+    }
+    /**
      * @return Human-readable label that identifies the IdP.
      * 
      */
     public String displayName() {
         return this.displayName;
+    }
+    /**
+     * @return Identifier of the claim which contains IdP Group IDs in the token.
+     * 
+     */
+    public String groupsClaim() {
+        return this.groupsClaim;
+    }
+    /**
+     * @return Unique 20-hexadecimal digit string that identifies the IdP.
+     * 
+     */
+    public String idpId() {
+        return this.idpId;
     }
     /**
      * @return Identifier for the issuer of the SAML Assertion.
@@ -126,6 +189,13 @@ public final class GetFederatedSettingsIdentityProvidersResult {
         return this.pemFileInfos;
     }
     /**
+     * @return The protocol of the identity provider
+     * 
+     */
+    public String protocol() {
+        return this.protocol;
+    }
+    /**
      * @return SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
      * - HTTP POST
      * - HTTP REDIRECT
@@ -133,6 +203,13 @@ public final class GetFederatedSettingsIdentityProvidersResult {
      */
     public String requestBinding() {
         return this.requestBinding;
+    }
+    /**
+     * @return Scopes that MongoDB applications will request from the authorization endpoint.
+     * 
+     */
+    public List<String> requestedScopes() {
+        return this.requestedScopes;
     }
     /**
      * @return Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
@@ -164,6 +241,13 @@ public final class GetFederatedSettingsIdentityProvidersResult {
     public String status() {
         return this.status;
     }
+    /**
+     * @return Identifier of the claim which contains the user ID in the token.
+     * 
+     */
+    public String userClaim() {
+        return this.userClaim;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -177,32 +261,46 @@ public final class GetFederatedSettingsIdentityProvidersResult {
         private String acsUrl;
         private List<String> associatedDomains;
         private List<GetFederatedSettingsIdentityProvidersResultAssociatedOrg> associatedOrgs;
+        private List<String> audienceClaims;
         private String audienceUri;
+        private String clientId;
         private String displayName;
+        private String groupsClaim;
+        private String idpId;
         private String issuerUri;
         private String oktaIdpId;
         private List<GetFederatedSettingsIdentityProvidersResultPemFileInfo> pemFileInfos;
+        private String protocol;
         private String requestBinding;
+        private List<String> requestedScopes;
         private String responseSignatureAlgorithm;
         private Boolean ssoDebugEnabled;
         private String ssoUrl;
         private String status;
+        private String userClaim;
         public Builder() {}
         public Builder(GetFederatedSettingsIdentityProvidersResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.acsUrl = defaults.acsUrl;
     	      this.associatedDomains = defaults.associatedDomains;
     	      this.associatedOrgs = defaults.associatedOrgs;
+    	      this.audienceClaims = defaults.audienceClaims;
     	      this.audienceUri = defaults.audienceUri;
+    	      this.clientId = defaults.clientId;
     	      this.displayName = defaults.displayName;
+    	      this.groupsClaim = defaults.groupsClaim;
+    	      this.idpId = defaults.idpId;
     	      this.issuerUri = defaults.issuerUri;
     	      this.oktaIdpId = defaults.oktaIdpId;
     	      this.pemFileInfos = defaults.pemFileInfos;
+    	      this.protocol = defaults.protocol;
     	      this.requestBinding = defaults.requestBinding;
+    	      this.requestedScopes = defaults.requestedScopes;
     	      this.responseSignatureAlgorithm = defaults.responseSignatureAlgorithm;
     	      this.ssoDebugEnabled = defaults.ssoDebugEnabled;
     	      this.ssoUrl = defaults.ssoUrl;
     	      this.status = defaults.status;
+    	      this.userClaim = defaults.userClaim;
         }
 
         @CustomType.Setter
@@ -236,6 +334,17 @@ public final class GetFederatedSettingsIdentityProvidersResult {
             return associatedOrgs(List.of(associatedOrgs));
         }
         @CustomType.Setter
+        public Builder audienceClaims(List<String> audienceClaims) {
+            if (audienceClaims == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "audienceClaims");
+            }
+            this.audienceClaims = audienceClaims;
+            return this;
+        }
+        public Builder audienceClaims(String... audienceClaims) {
+            return audienceClaims(List.of(audienceClaims));
+        }
+        @CustomType.Setter
         public Builder audienceUri(String audienceUri) {
             if (audienceUri == null) {
               throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "audienceUri");
@@ -244,11 +353,35 @@ public final class GetFederatedSettingsIdentityProvidersResult {
             return this;
         }
         @CustomType.Setter
+        public Builder clientId(String clientId) {
+            if (clientId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "clientId");
+            }
+            this.clientId = clientId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder displayName(String displayName) {
             if (displayName == null) {
               throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "displayName");
             }
             this.displayName = displayName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder groupsClaim(String groupsClaim) {
+            if (groupsClaim == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "groupsClaim");
+            }
+            this.groupsClaim = groupsClaim;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder idpId(String idpId) {
+            if (idpId == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "idpId");
+            }
+            this.idpId = idpId;
             return this;
         }
         @CustomType.Setter
@@ -279,12 +412,31 @@ public final class GetFederatedSettingsIdentityProvidersResult {
             return pemFileInfos(List.of(pemFileInfos));
         }
         @CustomType.Setter
+        public Builder protocol(String protocol) {
+            if (protocol == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "protocol");
+            }
+            this.protocol = protocol;
+            return this;
+        }
+        @CustomType.Setter
         public Builder requestBinding(String requestBinding) {
             if (requestBinding == null) {
               throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "requestBinding");
             }
             this.requestBinding = requestBinding;
             return this;
+        }
+        @CustomType.Setter
+        public Builder requestedScopes(List<String> requestedScopes) {
+            if (requestedScopes == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "requestedScopes");
+            }
+            this.requestedScopes = requestedScopes;
+            return this;
+        }
+        public Builder requestedScopes(String... requestedScopes) {
+            return requestedScopes(List.of(requestedScopes));
         }
         @CustomType.Setter
         public Builder responseSignatureAlgorithm(String responseSignatureAlgorithm) {
@@ -318,21 +470,36 @@ public final class GetFederatedSettingsIdentityProvidersResult {
             this.status = status;
             return this;
         }
+        @CustomType.Setter
+        public Builder userClaim(String userClaim) {
+            if (userClaim == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "userClaim");
+            }
+            this.userClaim = userClaim;
+            return this;
+        }
         public GetFederatedSettingsIdentityProvidersResult build() {
             final var _resultValue = new GetFederatedSettingsIdentityProvidersResult();
             _resultValue.acsUrl = acsUrl;
             _resultValue.associatedDomains = associatedDomains;
             _resultValue.associatedOrgs = associatedOrgs;
+            _resultValue.audienceClaims = audienceClaims;
             _resultValue.audienceUri = audienceUri;
+            _resultValue.clientId = clientId;
             _resultValue.displayName = displayName;
+            _resultValue.groupsClaim = groupsClaim;
+            _resultValue.idpId = idpId;
             _resultValue.issuerUri = issuerUri;
             _resultValue.oktaIdpId = oktaIdpId;
             _resultValue.pemFileInfos = pemFileInfos;
+            _resultValue.protocol = protocol;
             _resultValue.requestBinding = requestBinding;
+            _resultValue.requestedScopes = requestedScopes;
             _resultValue.responseSignatureAlgorithm = responseSignatureAlgorithm;
             _resultValue.ssoDebugEnabled = ssoDebugEnabled;
             _resultValue.ssoUrl = ssoUrl;
             _resultValue.status = status;
+            _resultValue.userClaim = userClaim;
             return _resultValue;
         }
     }

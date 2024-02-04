@@ -105,6 +105,9 @@ class GetDatabaseUserResult:
     @property
     @pulumi.getter
     def password(self) -> str:
+        warnings.warn("""this parameter is deprecated and will be removed in version 1.16.0""", DeprecationWarning)
+        pulumi.log.warn("""password is deprecated: this parameter is deprecated and will be removed in version 1.16.0""")
+
         return pulumi.get(self, "password")
 
     @property

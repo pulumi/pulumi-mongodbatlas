@@ -20,9 +20,12 @@ export function getApiKey(args: GetApiKeyArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getApiKey.
  */
 export interface GetApiKeyArgs {
+    /**
+     * Unique identifier for the organization API key.
+     */
     apiKeyId: string;
     /**
-     * The unique ID for the project.
+     * Unique identifier for the organization.
      */
     orgId: string;
 }
@@ -40,9 +43,6 @@ export interface GetApiKeyResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
-     */
     readonly orgId: string;
     /**
      * Public key for this Organization API key.
@@ -65,9 +65,12 @@ export function getApiKeyOutput(args: GetApiKeyOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getApiKey.
  */
 export interface GetApiKeyOutputArgs {
+    /**
+     * Unique identifier for the organization API key.
+     */
     apiKeyId: pulumi.Input<string>;
     /**
-     * The unique ID for the project.
+     * Unique identifier for the organization.
      */
     orgId: pulumi.Input<string>;
 }

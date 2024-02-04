@@ -42,23 +42,32 @@ class GetSearchDeploymentResult:
     @property
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> str:
+        """
+        Label that identifies the cluster to return the search nodes for.
+        """
         return pulumi.get(self, "cluster_name")
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the search deployment.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project.
+        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter
     def specs(self) -> Sequence['outputs.GetSearchDeploymentSpecResult']:
         """
-        List of settings that configure the search nodes for your cluster. See specs.
+        List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
         return pulumi.get(self, "specs")
 
@@ -66,7 +75,7 @@ class GetSearchDeploymentResult:
     @pulumi.getter(name="stateName")
     def state_name(self) -> str:
         """
-        Human-readable label that indicates the current operating condition of this search node deployment.
+        Human-readable label that indicates the current operating condition of this search deployment.
         """
         return pulumi.get(self, "state_name")
 
@@ -92,17 +101,9 @@ def get_search_deployment(cluster_name: Optional[str] = None,
 
     ## Example Usage
 
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_search_deployment(cluster_name="<CLUSTER_NAME>",
-        project_id="<PROJECT_ID>")
-    ```
-
-
-    :param str cluster_name: The name of the cluster containing a search node deployment.
-    :param str project_id: The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+    :param str cluster_name: Label that identifies the cluster to return the search nodes for.
+    :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
@@ -127,16 +128,8 @@ def get_search_deployment_output(cluster_name: Optional[pulumi.Input[str]] = Non
 
     ## Example Usage
 
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_search_deployment(cluster_name="<CLUSTER_NAME>",
-        project_id="<PROJECT_ID>")
-    ```
-
-
-    :param str cluster_name: The name of the cluster containing a search node deployment.
-    :param str project_id: The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+    :param str cluster_name: Label that identifies the cluster to return the search nodes for.
+    :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
     ...

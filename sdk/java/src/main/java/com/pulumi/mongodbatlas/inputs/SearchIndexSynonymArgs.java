@@ -45,14 +45,14 @@ public final class SearchIndexSynonymArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+     * (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
      * 
      */
     @Import(name="sourceCollection", required=true)
     private Output<String> sourceCollection;
 
     /**
-     * @return Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+     * @return (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
      * 
      */
     public Output<String> sourceCollection() {
@@ -128,7 +128,7 @@ public final class SearchIndexSynonymArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param sourceCollection Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+         * @param sourceCollection (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
          * 
          * @return builder
          * 
@@ -139,7 +139,7 @@ public final class SearchIndexSynonymArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param sourceCollection Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+         * @param sourceCollection (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
          * 
          * @return builder
          * 

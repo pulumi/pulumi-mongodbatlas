@@ -63,6 +63,9 @@ export interface GetDatabaseUserResult {
      * (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      */
     readonly oidcAuthType: string;
+    /**
+     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
+     */
     readonly password: string;
     readonly projectId: string;
     /**

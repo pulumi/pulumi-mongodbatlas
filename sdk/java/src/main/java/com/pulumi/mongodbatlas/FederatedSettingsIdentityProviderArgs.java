@@ -34,6 +34,36 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
     }
 
     /**
+     * Identifier of the intended recipient of the token used in OIDC IdP.
+     * 
+     */
+    @Import(name="audienceClaims")
+    private @Nullable Output<List<String>> audienceClaims;
+
+    /**
+     * @return Identifier of the intended recipient of the token used in OIDC IdP.
+     * 
+     */
+    public Optional<Output<List<String>>> audienceClaims() {
+        return Optional.ofNullable(this.audienceClaims);
+    }
+
+    /**
+     * Client identifier that is assigned to an application by the OIDC Identity Provider.
+     * 
+     */
+    @Import(name="clientId")
+    private @Nullable Output<String> clientId;
+
+    /**
+     * @return Client identifier that is assigned to an application by the OIDC Identity Provider.
+     * 
+     */
+    public Optional<Output<String>> clientId() {
+        return Optional.ofNullable(this.clientId);
+    }
+
+    /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      * 
      */
@@ -49,14 +79,29 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
     }
 
     /**
-     * Unique string that identifies the issuer of the SAML
+     * Identifier of the claim which contains OIDC IdP Group IDs in the token.
+     * 
+     */
+    @Import(name="groupsClaim")
+    private @Nullable Output<String> groupsClaim;
+
+    /**
+     * @return Identifier of the claim which contains OIDC IdP Group IDs in the token.
+     * 
+     */
+    public Optional<Output<String>> groupsClaim() {
+        return Optional.ofNullable(this.groupsClaim);
+    }
+
+    /**
+     * Unique string that identifies the issuer of the IdP.
      * 
      */
     @Import(name="issuerUri", required=true)
     private Output<String> issuerUri;
 
     /**
-     * @return Unique string that identifies the issuer of the SAML
+     * @return Unique string that identifies the issuer of the IdP.
      * 
      */
     public Output<String> issuerUri() {
@@ -79,96 +124,147 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
     }
 
     /**
-     * SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
-     * - HTTP POST
-     * - HTTP REDIRECT
+     * The protocol of the identity provider. Either `SAML` or `OIDC`.
      * 
      */
-    @Import(name="requestBinding", required=true)
-    private Output<String> requestBinding;
+    @Import(name="protocol")
+    private @Nullable Output<String> protocol;
 
     /**
-     * @return SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
-     * - HTTP POST
-     * - HTTP REDIRECT
+     * @return The protocol of the identity provider. Either `SAML` or `OIDC`.
      * 
      */
-    public Output<String> requestBinding() {
-        return this.requestBinding;
+    public Optional<Output<String>> protocol() {
+        return Optional.ofNullable(this.protocol);
     }
 
     /**
-     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+     * SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+     * - HTTP POST
+     * - HTTP REDIRECT
      * 
      */
-    @Import(name="responseSignatureAlgorithm", required=true)
-    private Output<String> responseSignatureAlgorithm;
+    @Import(name="requestBinding")
+    private @Nullable Output<String> requestBinding;
 
     /**
-     * @return Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+     * @return SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+     * - HTTP POST
+     * - HTTP REDIRECT
      * 
      */
-    public Output<String> responseSignatureAlgorithm() {
-        return this.responseSignatureAlgorithm;
+    public Optional<Output<String>> requestBinding() {
+        return Optional.ofNullable(this.requestBinding);
+    }
+
+    /**
+     * Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+     * 
+     */
+    @Import(name="requestedScopes")
+    private @Nullable Output<List<String>> requestedScopes;
+
+    /**
+     * @return Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+     * 
+     */
+    public Optional<Output<List<String>>> requestedScopes() {
+        return Optional.ofNullable(this.requestedScopes);
+    }
+
+    /**
+     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
+     * 
+     */
+    @Import(name="responseSignatureAlgorithm")
+    private @Nullable Output<String> responseSignatureAlgorithm;
+
+    /**
+     * @return Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
+     * 
+     */
+    public Optional<Output<String>> responseSignatureAlgorithm() {
+        return Optional.ofNullable(this.responseSignatureAlgorithm);
     }
 
     /**
      * Flag that indicates whether the identity provider has SSO debug enabled.
      * 
      */
-    @Import(name="ssoDebugEnabled", required=true)
-    private Output<Boolean> ssoDebugEnabled;
+    @Import(name="ssoDebugEnabled")
+    private @Nullable Output<Boolean> ssoDebugEnabled;
 
     /**
      * @return Flag that indicates whether the identity provider has SSO debug enabled.
      * 
      */
-    public Output<Boolean> ssoDebugEnabled() {
-        return this.ssoDebugEnabled;
+    public Optional<Output<Boolean>> ssoDebugEnabled() {
+        return Optional.ofNullable(this.ssoDebugEnabled);
     }
 
     /**
      * Unique string that identifies the intended audience of the SAML assertion.
      * 
      */
-    @Import(name="ssoUrl", required=true)
-    private Output<String> ssoUrl;
+    @Import(name="ssoUrl")
+    private @Nullable Output<String> ssoUrl;
 
     /**
      * @return Unique string that identifies the intended audience of the SAML assertion.
      * 
      */
-    public Output<String> ssoUrl() {
-        return this.ssoUrl;
+    public Optional<Output<String>> ssoUrl() {
+        return Optional.ofNullable(this.ssoUrl);
     }
 
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
      * 
      */
-    @Import(name="status", required=true)
-    private Output<String> status;
+    @Import(name="status")
+    private @Nullable Output<String> status;
 
     /**
      * @return String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
      * 
      */
-    public Output<String> status() {
-        return this.status;
+    public Optional<Output<String>> status() {
+        return Optional.ofNullable(this.status);
+    }
+
+    /**
+     * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     * 
+     */
+    @Import(name="userClaim")
+    private @Nullable Output<String> userClaim;
+
+    /**
+     * @return Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     * 
+     */
+    public Optional<Output<String>> userClaim() {
+        return Optional.ofNullable(this.userClaim);
     }
 
     private FederatedSettingsIdentityProviderArgs() {}
 
     private FederatedSettingsIdentityProviderArgs(FederatedSettingsIdentityProviderArgs $) {
         this.associatedDomains = $.associatedDomains;
+        this.audienceClaims = $.audienceClaims;
+        this.clientId = $.clientId;
         this.federationSettingsId = $.federationSettingsId;
+        this.groupsClaim = $.groupsClaim;
         this.issuerUri = $.issuerUri;
         this.name = $.name;
+        this.protocol = $.protocol;
         this.requestBinding = $.requestBinding;
+        this.requestedScopes = $.requestedScopes;
         this.responseSignatureAlgorithm = $.responseSignatureAlgorithm;
         this.ssoDebugEnabled = $.ssoDebugEnabled;
         this.ssoUrl = $.ssoUrl;
         this.status = $.status;
+        this.userClaim = $.userClaim;
     }
 
     public static Builder builder() {
@@ -221,6 +317,58 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
         }
 
         /**
+         * @param audienceClaims Identifier of the intended recipient of the token used in OIDC IdP.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder audienceClaims(@Nullable Output<List<String>> audienceClaims) {
+            $.audienceClaims = audienceClaims;
+            return this;
+        }
+
+        /**
+         * @param audienceClaims Identifier of the intended recipient of the token used in OIDC IdP.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder audienceClaims(List<String> audienceClaims) {
+            return audienceClaims(Output.of(audienceClaims));
+        }
+
+        /**
+         * @param audienceClaims Identifier of the intended recipient of the token used in OIDC IdP.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder audienceClaims(String... audienceClaims) {
+            return audienceClaims(List.of(audienceClaims));
+        }
+
+        /**
+         * @param clientId Client identifier that is assigned to an application by the OIDC Identity Provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientId(@Nullable Output<String> clientId) {
+            $.clientId = clientId;
+            return this;
+        }
+
+        /**
+         * @param clientId Client identifier that is assigned to an application by the OIDC Identity Provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientId(String clientId) {
+            return clientId(Output.of(clientId));
+        }
+
+        /**
          * @param federationSettingsId Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
          * 
          * @return builder
@@ -242,7 +390,28 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
         }
 
         /**
-         * @param issuerUri Unique string that identifies the issuer of the SAML
+         * @param groupsClaim Identifier of the claim which contains OIDC IdP Group IDs in the token.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder groupsClaim(@Nullable Output<String> groupsClaim) {
+            $.groupsClaim = groupsClaim;
+            return this;
+        }
+
+        /**
+         * @param groupsClaim Identifier of the claim which contains OIDC IdP Group IDs in the token.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder groupsClaim(String groupsClaim) {
+            return groupsClaim(Output.of(groupsClaim));
+        }
+
+        /**
+         * @param issuerUri Unique string that identifies the issuer of the IdP.
          * 
          * @return builder
          * 
@@ -253,7 +422,7 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
         }
 
         /**
-         * @param issuerUri Unique string that identifies the issuer of the SAML
+         * @param issuerUri Unique string that identifies the issuer of the IdP.
          * 
          * @return builder
          * 
@@ -284,20 +453,41 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
         }
 
         /**
-         * @param requestBinding SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+         * @param protocol The protocol of the identity provider. Either `SAML` or `OIDC`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder protocol(@Nullable Output<String> protocol) {
+            $.protocol = protocol;
+            return this;
+        }
+
+        /**
+         * @param protocol The protocol of the identity provider. Either `SAML` or `OIDC`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder protocol(String protocol) {
+            return protocol(Output.of(protocol));
+        }
+
+        /**
+         * @param requestBinding SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
          * - HTTP POST
          * - HTTP REDIRECT
          * 
          * @return builder
          * 
          */
-        public Builder requestBinding(Output<String> requestBinding) {
+        public Builder requestBinding(@Nullable Output<String> requestBinding) {
             $.requestBinding = requestBinding;
             return this;
         }
 
         /**
-         * @param requestBinding SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+         * @param requestBinding SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
          * - HTTP POST
          * - HTTP REDIRECT
          * 
@@ -309,18 +499,49 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
         }
 
         /**
-         * @param responseSignatureAlgorithm Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+         * @param requestedScopes Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
          * 
          * @return builder
          * 
          */
-        public Builder responseSignatureAlgorithm(Output<String> responseSignatureAlgorithm) {
+        public Builder requestedScopes(@Nullable Output<List<String>> requestedScopes) {
+            $.requestedScopes = requestedScopes;
+            return this;
+        }
+
+        /**
+         * @param requestedScopes Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requestedScopes(List<String> requestedScopes) {
+            return requestedScopes(Output.of(requestedScopes));
+        }
+
+        /**
+         * @param requestedScopes Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requestedScopes(String... requestedScopes) {
+            return requestedScopes(List.of(requestedScopes));
+        }
+
+        /**
+         * @param responseSignatureAlgorithm Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder responseSignatureAlgorithm(@Nullable Output<String> responseSignatureAlgorithm) {
             $.responseSignatureAlgorithm = responseSignatureAlgorithm;
             return this;
         }
 
         /**
-         * @param responseSignatureAlgorithm Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+         * @param responseSignatureAlgorithm Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
          * 
          * @return builder
          * 
@@ -335,7 +556,7 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
          * @return builder
          * 
          */
-        public Builder ssoDebugEnabled(Output<Boolean> ssoDebugEnabled) {
+        public Builder ssoDebugEnabled(@Nullable Output<Boolean> ssoDebugEnabled) {
             $.ssoDebugEnabled = ssoDebugEnabled;
             return this;
         }
@@ -356,7 +577,7 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
          * @return builder
          * 
          */
-        public Builder ssoUrl(Output<String> ssoUrl) {
+        public Builder ssoUrl(@Nullable Output<String> ssoUrl) {
             $.ssoUrl = ssoUrl;
             return this;
         }
@@ -377,7 +598,7 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
          * @return builder
          * 
          */
-        public Builder status(Output<String> status) {
+        public Builder status(@Nullable Output<String> status) {
             $.status = status;
             return this;
         }
@@ -392,27 +613,33 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
             return status(Output.of(status));
         }
 
+        /**
+         * @param userClaim Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userClaim(@Nullable Output<String> userClaim) {
+            $.userClaim = userClaim;
+            return this;
+        }
+
+        /**
+         * @param userClaim Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userClaim(String userClaim) {
+            return userClaim(Output.of(userClaim));
+        }
+
         public FederatedSettingsIdentityProviderArgs build() {
             if ($.federationSettingsId == null) {
                 throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "federationSettingsId");
             }
             if ($.issuerUri == null) {
                 throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "issuerUri");
-            }
-            if ($.requestBinding == null) {
-                throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "requestBinding");
-            }
-            if ($.responseSignatureAlgorithm == null) {
-                throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "responseSignatureAlgorithm");
-            }
-            if ($.ssoDebugEnabled == null) {
-                throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "ssoDebugEnabled");
-            }
-            if ($.ssoUrl == null) {
-                throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "ssoUrl");
-            }
-            if ($.status == null) {
-                throw new MissingRequiredPropertyException("FederatedSettingsIdentityProviderArgs", "status");
             }
             return $;
         }

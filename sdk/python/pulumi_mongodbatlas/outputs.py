@@ -47,7 +47,6 @@ __all__ = [
     'CloudProviderAccessAuthorizationAws',
     'CloudProviderAccessAuthorizationAzure',
     'CloudProviderAccessAuthorizationFeatureUsage',
-    'CloudProviderAccessFeatureUsage',
     'CloudProviderAccessSetupAwsConfig',
     'CloudProviderAccessSetupAzureConfig',
     'ClusterAdvancedConfiguration',
@@ -105,6 +104,9 @@ __all__ = [
     'PrivateLinkEndpointServiceEndpoint',
     'ProjectApiKeyProjectAssignment',
     'ProjectIpAccessListTimeouts',
+    'ProjectIpAddresses',
+    'ProjectIpAddressesServices',
+    'ProjectIpAddressesServicesCluster',
     'ProjectLimit',
     'ProjectTeam',
     'SearchDeploymentSpec',
@@ -183,8 +185,6 @@ __all__ = [
     'GetCloudBackupSnapshotRestoreJobsResultResult',
     'GetCloudBackupSnapshotsResultResult',
     'GetCloudBackupSnapshotsResultMemberResult',
-    'GetCloudProviderAccessAwsIamRoleResult',
-    'GetCloudProviderAccessAwsIamRoleFeatureUsageResult',
     'GetCloudProviderAccessSetupAwsConfigResult',
     'GetCloudProviderAccessSetupAzureConfigResult',
     'GetClusterAdvancedConfigurationResult',
@@ -319,9 +319,15 @@ __all__ = [
     'GetProjectApiKeyProjectAssignmentResult',
     'GetProjectApiKeysResultResult',
     'GetProjectApiKeysResultProjectAssignmentResult',
+    'GetProjectIpAddressesResult',
+    'GetProjectIpAddressesServicesResult',
+    'GetProjectIpAddressesServicesClusterResult',
     'GetProjectLimitResult',
     'GetProjectTeamResult',
     'GetProjectsResultResult',
+    'GetProjectsResultIpAddressesResult',
+    'GetProjectsResultIpAddressesServicesResult',
+    'GetProjectsResultIpAddressesServicesClusterResult',
     'GetProjectsResultLimitResult',
     'GetProjectsResultTeamResult',
     'GetSearchDeploymentSpecResult',
@@ -1742,7 +1748,7 @@ class AlertConfigurationNotification(dict):
         :param str api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str channel_name: Slack channel name. Required for the SLACK notifications type.
         :param str datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-        :param str datadog_region: Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+        :param str datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
         :param int delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param str email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         :param bool email_enabled: Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
@@ -1859,7 +1865,7 @@ class AlertConfigurationNotification(dict):
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> Optional[str]:
         """
-        Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
         """
         return pulumi.get(self, "datadog_region")
 
@@ -3339,46 +3345,6 @@ class CloudProviderAccessAuthorizationFeatureUsage(dict):
 
     def get(self, key: str, default = None) -> Any:
         CloudProviderAccessAuthorizationFeatureUsage.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 feature_id: Optional[Mapping[str, Any]] = None,
-                 feature_type: Optional[str] = None):
-        if feature_id is not None:
-            pulumi.set(__self__, "feature_id", feature_id)
-        if feature_type is not None:
-            pulumi.set(__self__, "feature_type", feature_type)
-
-    @property
-    @pulumi.getter(name="featureId")
-    def feature_id(self) -> Optional[Mapping[str, Any]]:
-        return pulumi.get(self, "feature_id")
-
-    @property
-    @pulumi.getter(name="featureType")
-    def feature_type(self) -> Optional[str]:
-        return pulumi.get(self, "feature_type")
-
-
-@pulumi.output_type
-class CloudProviderAccessFeatureUsage(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "featureId":
-            suggest = "feature_id"
-        elif key == "featureType":
-            suggest = "feature_type"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in CloudProviderAccessFeatureUsage. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        CloudProviderAccessFeatureUsage.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        CloudProviderAccessFeatureUsage.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -5160,7 +5126,7 @@ class DatabaseUserRole(dict):
                  role_name: str,
                  collection_name: Optional[str] = None):
         """
-        :param str database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        :param str database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
         :param str role_name: Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
         :param str collection_name: Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         """
@@ -5173,7 +5139,7 @@ class DatabaseUserRole(dict):
     @pulumi.getter(name="databaseName")
     def database_name(self) -> str:
         """
-        Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
         """
         return pulumi.get(self, "database_name")
 
@@ -5261,7 +5227,7 @@ class EncryptionAtRestAwsKmsConfig(dict):
         :param str customer_master_key_id: The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
         :param bool enabled: Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param str region: The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
-        :param str role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
+        :param str role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
         """
         if access_key_id is not None:
             pulumi.set(__self__, "access_key_id", access_key_id)
@@ -5309,7 +5275,7 @@ class EncryptionAtRestAwsKmsConfig(dict):
     @pulumi.getter(name="roleId")
     def role_id(self) -> Optional[str]:
         """
-        ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
+        ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
         """
         return pulumi.get(self, "role_id")
 
@@ -7106,6 +7072,78 @@ class ProjectIpAccessListTimeouts(dict):
 
 
 @pulumi.output_type
+class ProjectIpAddresses(dict):
+    def __init__(__self__, *,
+                 services: Optional['outputs.ProjectIpAddressesServices'] = None):
+        if services is not None:
+            pulumi.set(__self__, "services", services)
+
+    @property
+    @pulumi.getter
+    def services(self) -> Optional['outputs.ProjectIpAddressesServices']:
+        return pulumi.get(self, "services")
+
+
+@pulumi.output_type
+class ProjectIpAddressesServices(dict):
+    def __init__(__self__, *,
+                 clusters: Optional[Sequence['outputs.ProjectIpAddressesServicesCluster']] = None):
+        if clusters is not None:
+            pulumi.set(__self__, "clusters", clusters)
+
+    @property
+    @pulumi.getter
+    def clusters(self) -> Optional[Sequence['outputs.ProjectIpAddressesServicesCluster']]:
+        return pulumi.get(self, "clusters")
+
+
+@pulumi.output_type
+class ProjectIpAddressesServicesCluster(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clusterName":
+            suggest = "cluster_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProjectIpAddressesServicesCluster. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProjectIpAddressesServicesCluster.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProjectIpAddressesServicesCluster.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cluster_name: Optional[str] = None,
+                 inbounds: Optional[Sequence[str]] = None,
+                 outbounds: Optional[Sequence[str]] = None):
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
+        if inbounds is not None:
+            pulumi.set(__self__, "inbounds", inbounds)
+        if outbounds is not None:
+            pulumi.set(__self__, "outbounds", outbounds)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> Optional[str]:
+        return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter
+    def inbounds(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "inbounds")
+
+    @property
+    @pulumi.getter
+    def outbounds(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "outbounds")
+
+
+@pulumi.output_type
 class ProjectLimit(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -7348,7 +7386,7 @@ class SearchIndexSynonym(dict):
         """
         :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param str name: The name of the search index you want to create.
-        :param str source_collection: Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+        :param str source_collection: (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
         """
         pulumi.set(__self__, "analyzer", analyzer)
         pulumi.set(__self__, "name", name)
@@ -7374,7 +7412,7 @@ class SearchIndexSynonym(dict):
     @pulumi.getter(name="sourceCollection")
     def source_collection(self) -> str:
         """
-        Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+        (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
         """
         return pulumi.get(self, "source_collection")
 
@@ -9507,7 +9545,7 @@ class GetAlertConfigurationNotificationResult(dict):
         :param str api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str channel_name: Slack channel name. Required for the SLACK notifications type.
         :param str datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-        :param str datadog_region: Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+        :param str datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
         :param int delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param str email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         :param bool email_enabled: Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
@@ -9583,7 +9621,7 @@ class GetAlertConfigurationNotificationResult(dict):
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> str:
         """
-        Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
         """
         return pulumi.get(self, "datadog_region")
 
@@ -10125,7 +10163,7 @@ class GetAlertConfigurationsResultNotificationResult(dict):
         :param str api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str channel_name: Slack channel name. Required for the SLACK notifications type.
         :param str datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-        :param str datadog_region: Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+        :param str datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
         :param int delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param str email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         :param bool email_enabled: Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
@@ -10201,7 +10239,7 @@ class GetAlertConfigurationsResultNotificationResult(dict):
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> str:
         """
-        Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
         """
         return pulumi.get(self, "datadog_region")
 
@@ -12082,120 +12120,6 @@ class GetCloudBackupSnapshotsResultMemberResult(dict):
         Label given to a shard or config server from which Atlas took this snapshot.
         """
         return pulumi.get(self, "replica_set_name")
-
-
-@pulumi.output_type
-class GetCloudProviderAccessAwsIamRoleResult(dict):
-    def __init__(__self__, *,
-                 atlas_assumed_role_external_id: str,
-                 atlas_aws_account_arn: str,
-                 authorized_date: str,
-                 created_date: str,
-                 feature_usages: Sequence['outputs.GetCloudProviderAccessAwsIamRoleFeatureUsageResult'],
-                 iam_assumed_role_arn: str,
-                 provider_name: str,
-                 role_id: str):
-        """
-        :param str atlas_assumed_role_external_id: Unique external ID Atlas uses when assuming the IAM role in your AWS account.
-        :param str atlas_aws_account_arn: ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
-        :param str authorized_date: Date on which this role was authorized.
-        :param str created_date: Date on which this role was created.
-        :param Sequence['GetCloudProviderAccessAwsIamRoleFeatureUsageArgs'] feature_usages: Atlas features this AWS IAM role is linked to.
-        :param str iam_assumed_role_arn: ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account.
-        :param str provider_name: Name of the cloud provider. Currently limited to AWS.
-        :param str role_id: Unique ID of this role.
-        """
-        pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
-        pulumi.set(__self__, "atlas_aws_account_arn", atlas_aws_account_arn)
-        pulumi.set(__self__, "authorized_date", authorized_date)
-        pulumi.set(__self__, "created_date", created_date)
-        pulumi.set(__self__, "feature_usages", feature_usages)
-        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
-        pulumi.set(__self__, "provider_name", provider_name)
-        pulumi.set(__self__, "role_id", role_id)
-
-    @property
-    @pulumi.getter(name="atlasAssumedRoleExternalId")
-    def atlas_assumed_role_external_id(self) -> str:
-        """
-        Unique external ID Atlas uses when assuming the IAM role in your AWS account.
-        """
-        return pulumi.get(self, "atlas_assumed_role_external_id")
-
-    @property
-    @pulumi.getter(name="atlasAwsAccountArn")
-    def atlas_aws_account_arn(self) -> str:
-        """
-        ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
-        """
-        return pulumi.get(self, "atlas_aws_account_arn")
-
-    @property
-    @pulumi.getter(name="authorizedDate")
-    def authorized_date(self) -> str:
-        """
-        Date on which this role was authorized.
-        """
-        return pulumi.get(self, "authorized_date")
-
-    @property
-    @pulumi.getter(name="createdDate")
-    def created_date(self) -> str:
-        """
-        Date on which this role was created.
-        """
-        return pulumi.get(self, "created_date")
-
-    @property
-    @pulumi.getter(name="featureUsages")
-    def feature_usages(self) -> Sequence['outputs.GetCloudProviderAccessAwsIamRoleFeatureUsageResult']:
-        """
-        Atlas features this AWS IAM role is linked to.
-        """
-        return pulumi.get(self, "feature_usages")
-
-    @property
-    @pulumi.getter(name="iamAssumedRoleArn")
-    def iam_assumed_role_arn(self) -> str:
-        """
-        ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account.
-        """
-        return pulumi.get(self, "iam_assumed_role_arn")
-
-    @property
-    @pulumi.getter(name="providerName")
-    def provider_name(self) -> str:
-        """
-        Name of the cloud provider. Currently limited to AWS.
-        """
-        return pulumi.get(self, "provider_name")
-
-    @property
-    @pulumi.getter(name="roleId")
-    def role_id(self) -> str:
-        """
-        Unique ID of this role.
-        """
-        return pulumi.get(self, "role_id")
-
-
-@pulumi.output_type
-class GetCloudProviderAccessAwsIamRoleFeatureUsageResult(dict):
-    def __init__(__self__, *,
-                 feature_id: Mapping[str, Any],
-                 feature_type: str):
-        pulumi.set(__self__, "feature_id", feature_id)
-        pulumi.set(__self__, "feature_type", feature_type)
-
-    @property
-    @pulumi.getter(name="featureId")
-    def feature_id(self) -> Mapping[str, Any]:
-        return pulumi.get(self, "feature_id")
-
-    @property
-    @pulumi.getter(name="featureType")
-    def feature_type(self) -> str:
-        return pulumi.get(self, "feature_type")
 
 
 @pulumi.output_type
@@ -15110,6 +15034,9 @@ class GetDatabaseUsersResultResult(dict):
     @property
     @pulumi.getter
     def password(self) -> str:
+        warnings.warn("""this parameter is deprecated and will be removed in version 1.16.0""", DeprecationWarning)
+        pulumi.log.warn("""password is deprecated: this parameter is deprecated and will be removed in version 1.16.0""")
+
         return pulumi.get(self, "password")
 
     @property
@@ -16724,7 +16651,6 @@ class GetFederatedSettingsIdentityProviderAssociatedOrgResult(dict):
         """
         :param Sequence[str] domain_allow_lists: List that contains the approved domains from which organization users can log in.
         :param bool domain_restriction_enabled: Flag that indicates whether domain restriction is enabled for the connected organization.
-        :param str identity_provider_id: Unique 20-hexadecimal digit string that identifies the IdP.
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param Sequence[str] post_auth_role_grants: List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
         """
@@ -16755,9 +16681,6 @@ class GetFederatedSettingsIdentityProviderAssociatedOrgResult(dict):
     @property
     @pulumi.getter(name="identityProviderId")
     def identity_provider_id(self) -> str:
-        """
-        Unique 20-hexadecimal digit string that identifies the IdP.
-        """
         return pulumi.get(self, "identity_provider_id")
 
     @property
@@ -16989,46 +16912,67 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
                  acs_url: str,
                  associated_domains: Sequence[str],
                  associated_orgs: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult'],
+                 audience_claims: Sequence[str],
                  audience_uri: str,
+                 client_id: str,
                  display_name: str,
+                 groups_claim: str,
+                 idp_id: str,
                  issuer_uri: str,
                  okta_idp_id: str,
                  pem_file_infos: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoResult'],
+                 protocol: str,
                  request_binding: str,
+                 requested_scopes: Sequence[str],
                  response_signature_algorithm: str,
                  sso_debug_enabled: bool,
                  sso_url: str,
-                 status: str):
+                 status: str,
+                 user_claim: str):
         """
         :param str acs_url: Assertion consumer service URL to which the IdP sends the SAML response.
         :param Sequence[str] associated_domains: List that contains the configured domains from which users can log in for this IdP.
         :param Sequence['GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs'] associated_orgs: List that contains the configured domains from which users can log in for this IdP.
+        :param Sequence[str] audience_claims: Identifier of the intended recipient of the token.
         :param str audience_uri: Identifier for the intended audience of the SAML Assertion.
+        :param str client_id: Client identifier that is assigned to an application by the Identity Provider.
         :param str display_name: Human-readable label that identifies the IdP.
+        :param str groups_claim: Identifier of the claim which contains IdP Group IDs in the token.
+        :param str idp_id: Unique 20-hexadecimal digit string that identifies the IdP.
         :param str issuer_uri: Identifier for the issuer of the SAML Assertion.
+        :param str protocol: The protocol of the identity provider
         :param str request_binding: SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
                - HTTP POST
                - HTTP REDIRECT
+        :param Sequence[str] requested_scopes: Scopes that MongoDB applications will request from the authorization endpoint.
         :param str response_signature_algorithm: Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
                - SHA-1
                - SHA-256
         :param bool sso_debug_enabled: Flag that indicates whether the IdP has enabled Bypass SAML Mode. Enabling this mode generates a URL that allows you bypass SAML and login to your organizations at any point. You can authenticate with this special URL only when Bypass Mode is enabled. Set this parameter to true during testing. This keeps you from getting locked out of MongoDB.
         :param str sso_url: URL of the receiver of the SAML AuthNRequest.
         :param str status: Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
+        :param str user_claim: Identifier of the claim which contains the user ID in the token.
         """
         pulumi.set(__self__, "acs_url", acs_url)
         pulumi.set(__self__, "associated_domains", associated_domains)
         pulumi.set(__self__, "associated_orgs", associated_orgs)
+        pulumi.set(__self__, "audience_claims", audience_claims)
         pulumi.set(__self__, "audience_uri", audience_uri)
+        pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "groups_claim", groups_claim)
+        pulumi.set(__self__, "idp_id", idp_id)
         pulumi.set(__self__, "issuer_uri", issuer_uri)
         pulumi.set(__self__, "okta_idp_id", okta_idp_id)
         pulumi.set(__self__, "pem_file_infos", pem_file_infos)
+        pulumi.set(__self__, "protocol", protocol)
         pulumi.set(__self__, "request_binding", request_binding)
+        pulumi.set(__self__, "requested_scopes", requested_scopes)
         pulumi.set(__self__, "response_signature_algorithm", response_signature_algorithm)
         pulumi.set(__self__, "sso_debug_enabled", sso_debug_enabled)
         pulumi.set(__self__, "sso_url", sso_url)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "user_claim", user_claim)
 
     @property
     @pulumi.getter(name="acsUrl")
@@ -17055,6 +16999,14 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
         return pulumi.get(self, "associated_orgs")
 
     @property
+    @pulumi.getter(name="audienceClaims")
+    def audience_claims(self) -> Sequence[str]:
+        """
+        Identifier of the intended recipient of the token.
+        """
+        return pulumi.get(self, "audience_claims")
+
+    @property
     @pulumi.getter(name="audienceUri")
     def audience_uri(self) -> str:
         """
@@ -17063,12 +17015,36 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
         return pulumi.get(self, "audience_uri")
 
     @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> str:
+        """
+        Client identifier that is assigned to an application by the Identity Provider.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> str:
         """
         Human-readable label that identifies the IdP.
         """
         return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="groupsClaim")
+    def groups_claim(self) -> str:
+        """
+        Identifier of the claim which contains IdP Group IDs in the token.
+        """
+        return pulumi.get(self, "groups_claim")
+
+    @property
+    @pulumi.getter(name="idpId")
+    def idp_id(self) -> str:
+        """
+        Unique 20-hexadecimal digit string that identifies the IdP.
+        """
+        return pulumi.get(self, "idp_id")
 
     @property
     @pulumi.getter(name="issuerUri")
@@ -17089,6 +17065,14 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
         return pulumi.get(self, "pem_file_infos")
 
     @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        The protocol of the identity provider
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
     @pulumi.getter(name="requestBinding")
     def request_binding(self) -> str:
         """
@@ -17097,6 +17081,14 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
         - HTTP REDIRECT
         """
         return pulumi.get(self, "request_binding")
+
+    @property
+    @pulumi.getter(name="requestedScopes")
+    def requested_scopes(self) -> Sequence[str]:
+        """
+        Scopes that MongoDB applications will request from the authorization endpoint.
+        """
+        return pulumi.get(self, "requested_scopes")
 
     @property
     @pulumi.getter(name="responseSignatureAlgorithm")
@@ -17131,6 +17123,14 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
         Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="userClaim")
+    def user_claim(self) -> str:
+        """
+        Identifier of the claim which contains the user ID in the token.
+        """
+        return pulumi.get(self, "user_claim")
 
 
 @pulumi.output_type
@@ -18817,21 +18817,38 @@ class GetOrganizationLinkResult(dict):
 @pulumi.output_type
 class GetOrganizationsResultResult(dict):
     def __init__(__self__, *,
+                 api_access_list_required: bool,
                  id: str,
                  is_deleted: bool,
                  links: Sequence['outputs.GetOrganizationsResultLinkResult'],
-                 name: str):
+                 multi_factor_auth_required: bool,
+                 name: str,
+                 restrict_employee_access: bool):
         """
+        :param bool api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         :param str id: Autogenerated Unique ID for this data source.
         :param bool is_deleted: Flag that indicates whether this organization has been deleted.
+        :param bool multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+        :param str name: Human-readable label that identifies the organization.
+        :param bool restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
                
                See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
-        :param str name: Human-readable label that identifies the organization.
         """
+        pulumi.set(__self__, "api_access_list_required", api_access_list_required)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "is_deleted", is_deleted)
         pulumi.set(__self__, "links", links)
+        pulumi.set(__self__, "multi_factor_auth_required", multi_factor_auth_required)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "restrict_employee_access", restrict_employee_access)
+
+    @property
+    @pulumi.getter(name="apiAccessListRequired")
+    def api_access_list_required(self) -> bool:
+        """
+        Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+        """
+        return pulumi.get(self, "api_access_list_required")
 
     @property
     @pulumi.getter
@@ -18846,8 +18863,6 @@ class GetOrganizationsResultResult(dict):
     def is_deleted(self) -> bool:
         """
         Flag that indicates whether this organization has been deleted.
-
-        See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
         """
         return pulumi.get(self, "is_deleted")
 
@@ -18857,12 +18872,30 @@ class GetOrganizationsResultResult(dict):
         return pulumi.get(self, "links")
 
     @property
+    @pulumi.getter(name="multiFactorAuthRequired")
+    def multi_factor_auth_required(self) -> bool:
+        """
+        Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+        """
+        return pulumi.get(self, "multi_factor_auth_required")
+
+    @property
     @pulumi.getter
     def name(self) -> str:
         """
         Human-readable label that identifies the organization.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="restrictEmployeeAccess")
+    def restrict_employee_access(self) -> bool:
+        """
+        Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+
+        See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
+        """
+        return pulumi.get(self, "restrict_employee_access")
 
 
 @pulumi.output_type
@@ -19187,6 +19220,56 @@ class GetProjectApiKeysResultProjectAssignmentResult(dict):
 
 
 @pulumi.output_type
+class GetProjectIpAddressesResult(dict):
+    def __init__(__self__, *,
+                 services: 'outputs.GetProjectIpAddressesServicesResult'):
+        pulumi.set(__self__, "services", services)
+
+    @property
+    @pulumi.getter
+    def services(self) -> 'outputs.GetProjectIpAddressesServicesResult':
+        return pulumi.get(self, "services")
+
+
+@pulumi.output_type
+class GetProjectIpAddressesServicesResult(dict):
+    def __init__(__self__, *,
+                 clusters: Sequence['outputs.GetProjectIpAddressesServicesClusterResult']):
+        pulumi.set(__self__, "clusters", clusters)
+
+    @property
+    @pulumi.getter
+    def clusters(self) -> Sequence['outputs.GetProjectIpAddressesServicesClusterResult']:
+        return pulumi.get(self, "clusters")
+
+
+@pulumi.output_type
+class GetProjectIpAddressesServicesClusterResult(dict):
+    def __init__(__self__, *,
+                 cluster_name: str,
+                 inbounds: Sequence[str],
+                 outbounds: Sequence[str]):
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "inbounds", inbounds)
+        pulumi.set(__self__, "outbounds", outbounds)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> str:
+        return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter
+    def inbounds(self) -> Sequence[str]:
+        return pulumi.get(self, "inbounds")
+
+    @property
+    @pulumi.getter
+    def outbounds(self) -> Sequence[str]:
+        return pulumi.get(self, "outbounds")
+
+
+@pulumi.output_type
 class GetProjectLimitResult(dict):
     def __init__(__self__, *,
                  current_usage: int,
@@ -19195,9 +19278,13 @@ class GetProjectLimitResult(dict):
                  name: str,
                  value: int):
         """
+        :param int current_usage: Amount that indicates the current usage of the limit.
+        :param int default_limit: Default value of the limit.
+        :param int maximum_limit: Maximum value of the limit.
         :param str name: The unique ID for the project.
                
                > **IMPORTANT:** Either `project_id` or `name` must be configurated.
+        :param int value: Amount the limit is set to.
         """
         pulumi.set(__self__, "current_usage", current_usage)
         pulumi.set(__self__, "default_limit", default_limit)
@@ -19208,16 +19295,25 @@ class GetProjectLimitResult(dict):
     @property
     @pulumi.getter(name="currentUsage")
     def current_usage(self) -> int:
+        """
+        Amount that indicates the current usage of the limit.
+        """
         return pulumi.get(self, "current_usage")
 
     @property
     @pulumi.getter(name="defaultLimit")
     def default_limit(self) -> int:
+        """
+        Default value of the limit.
+        """
         return pulumi.get(self, "default_limit")
 
     @property
     @pulumi.getter(name="maximumLimit")
     def maximum_limit(self) -> int:
+        """
+        Maximum value of the limit.
+        """
         return pulumi.get(self, "maximum_limit")
 
     @property
@@ -19233,6 +19329,9 @@ class GetProjectLimitResult(dict):
     @property
     @pulumi.getter
     def value(self) -> int:
+        """
+        Amount the limit is set to.
+        """
         return pulumi.get(self, "value")
 
 
@@ -19241,17 +19340,27 @@ class GetProjectTeamResult(dict):
     def __init__(__self__, *,
                  role_names: Sequence[str],
                  team_id: str):
+        """
+        :param Sequence[str] role_names: Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+        :param str team_id: The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+        """
         pulumi.set(__self__, "role_names", role_names)
         pulumi.set(__self__, "team_id", team_id)
 
     @property
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[str]:
+        """
+        Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+        """
         return pulumi.get(self, "role_names")
 
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> str:
+        """
+        The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+        """
         return pulumi.get(self, "team_id")
 
 
@@ -19261,6 +19370,7 @@ class GetProjectsResultResult(dict):
                  cluster_count: int,
                  created: str,
                  id: str,
+                 ip_addresses: 'outputs.GetProjectsResultIpAddressesResult',
                  is_collect_database_specifics_statistics_enabled: bool,
                  is_data_explorer_enabled: bool,
                  is_extended_storage_sizes_enabled: bool,
@@ -19276,29 +19386,24 @@ class GetProjectsResultResult(dict):
         """
         :param int cluster_count: The number of Atlas clusters deployed in the project.
         :param str created: The ISO-8601-formatted timestamp of when Atlas created the project.
-               * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-               * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-               * `limits.#.name` - Human-readable label that identifies this project limit.
-               * `limits.#.value` - Amount the limit is set to.
-               * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-               * `limits.#.default_limit` - Default value of the limit.
-               * `limits.#.maximum_limit` - Maximum value of the limit.
         :param str id: Autogenerated Unique ID for this data source.
+        :param 'GetProjectsResultIpAddressesArgs' ip_addresses: IP addresses in a project categorized by services. See IP Addresses.
         :param bool is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         :param bool is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
         :param bool is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project.
         :param bool is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param bool is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
         :param bool is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-        :param str name: The name of the project you want to create.
+        :param Sequence['GetProjectsResultLimitArgs'] limits: The limits for the specified project. See Limits.
+        :param str name: Human-readable label that identifies this project limit.
         :param str org_id: The ID of the organization you want to create the project within.
         :param str region_usage_restrictions: If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
-               
-               See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/project-get-teams/) Documentation for more information.
+        :param Sequence['GetProjectsResultTeamArgs'] teams: Returns all teams to which the authenticated user has access in the project. See Teams.
         """
         pulumi.set(__self__, "cluster_count", cluster_count)
         pulumi.set(__self__, "created", created)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ip_addresses", ip_addresses)
         pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
         pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
@@ -19325,13 +19430,6 @@ class GetProjectsResultResult(dict):
     def created(self) -> str:
         """
         The ISO-8601-formatted timestamp of when Atlas created the project.
-        * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-        * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-        * `limits.#.name` - Human-readable label that identifies this project limit.
-        * `limits.#.value` - Amount the limit is set to.
-        * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-        * `limits.#.default_limit` - Default value of the limit.
-        * `limits.#.maximum_limit` - Maximum value of the limit.
         """
         return pulumi.get(self, "created")
 
@@ -19342,6 +19440,14 @@ class GetProjectsResultResult(dict):
         Autogenerated Unique ID for this data source.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipAddresses")
+    def ip_addresses(self) -> 'outputs.GetProjectsResultIpAddressesResult':
+        """
+        IP addresses in a project categorized by services. See IP Addresses.
+        """
+        return pulumi.get(self, "ip_addresses")
 
     @property
     @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
@@ -19394,13 +19500,16 @@ class GetProjectsResultResult(dict):
     @property
     @pulumi.getter
     def limits(self) -> Sequence['outputs.GetProjectsResultLimitResult']:
+        """
+        The limits for the specified project. See Limits.
+        """
         return pulumi.get(self, "limits")
 
     @property
     @pulumi.getter
     def name(self) -> str:
         """
-        The name of the project you want to create.
+        Human-readable label that identifies this project limit.
         """
         return pulumi.get(self, "name")
 
@@ -19422,15 +19531,66 @@ class GetProjectsResultResult(dict):
     def region_usage_restrictions(self) -> str:
         """
         If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
-
-        See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/project-get-teams/) Documentation for more information.
         """
         return pulumi.get(self, "region_usage_restrictions")
 
     @property
     @pulumi.getter
     def teams(self) -> Sequence['outputs.GetProjectsResultTeamResult']:
+        """
+        Returns all teams to which the authenticated user has access in the project. See Teams.
+        """
         return pulumi.get(self, "teams")
+
+
+@pulumi.output_type
+class GetProjectsResultIpAddressesResult(dict):
+    def __init__(__self__, *,
+                 services: 'outputs.GetProjectsResultIpAddressesServicesResult'):
+        pulumi.set(__self__, "services", services)
+
+    @property
+    @pulumi.getter
+    def services(self) -> 'outputs.GetProjectsResultIpAddressesServicesResult':
+        return pulumi.get(self, "services")
+
+
+@pulumi.output_type
+class GetProjectsResultIpAddressesServicesResult(dict):
+    def __init__(__self__, *,
+                 clusters: Sequence['outputs.GetProjectsResultIpAddressesServicesClusterResult']):
+        pulumi.set(__self__, "clusters", clusters)
+
+    @property
+    @pulumi.getter
+    def clusters(self) -> Sequence['outputs.GetProjectsResultIpAddressesServicesClusterResult']:
+        return pulumi.get(self, "clusters")
+
+
+@pulumi.output_type
+class GetProjectsResultIpAddressesServicesClusterResult(dict):
+    def __init__(__self__, *,
+                 cluster_name: str,
+                 inbounds: Sequence[str],
+                 outbounds: Sequence[str]):
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "inbounds", inbounds)
+        pulumi.set(__self__, "outbounds", outbounds)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> str:
+        return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter
+    def inbounds(self) -> Sequence[str]:
+        return pulumi.get(self, "inbounds")
+
+    @property
+    @pulumi.getter
+    def outbounds(self) -> Sequence[str]:
+        return pulumi.get(self, "outbounds")
 
 
 @pulumi.output_type
@@ -19442,7 +19602,11 @@ class GetProjectsResultLimitResult(dict):
                  name: str,
                  value: int):
         """
-        :param str name: The name of the project you want to create.
+        :param int current_usage: Amount that indicates the current usage of the limit.
+        :param int default_limit: Default value of the limit.
+        :param int maximum_limit: Maximum value of the limit.
+        :param str name: Human-readable label that identifies this project limit.
+        :param int value: Amount the limit is set to.
         """
         pulumi.set(__self__, "current_usage", current_usage)
         pulumi.set(__self__, "default_limit", default_limit)
@@ -19453,29 +19617,41 @@ class GetProjectsResultLimitResult(dict):
     @property
     @pulumi.getter(name="currentUsage")
     def current_usage(self) -> int:
+        """
+        Amount that indicates the current usage of the limit.
+        """
         return pulumi.get(self, "current_usage")
 
     @property
     @pulumi.getter(name="defaultLimit")
     def default_limit(self) -> int:
+        """
+        Default value of the limit.
+        """
         return pulumi.get(self, "default_limit")
 
     @property
     @pulumi.getter(name="maximumLimit")
     def maximum_limit(self) -> int:
+        """
+        Maximum value of the limit.
+        """
         return pulumi.get(self, "maximum_limit")
 
     @property
     @pulumi.getter
     def name(self) -> str:
         """
-        The name of the project you want to create.
+        Human-readable label that identifies this project limit.
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def value(self) -> int:
+        """
+        Amount the limit is set to.
+        """
         return pulumi.get(self, "value")
 
 
@@ -19484,17 +19660,27 @@ class GetProjectsResultTeamResult(dict):
     def __init__(__self__, *,
                  role_names: Sequence[str],
                  team_id: str):
+        """
+        :param Sequence[str] role_names: Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+        :param str team_id: The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+        """
         pulumi.set(__self__, "role_names", role_names)
         pulumi.set(__self__, "team_id", team_id)
 
     @property
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[str]:
+        """
+        Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+        """
         return pulumi.get(self, "role_names")
 
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> str:
+        """
+        The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+        """
         return pulumi.get(self, "team_id")
 
 
@@ -19504,8 +19690,8 @@ class GetSearchDeploymentSpecResult(dict):
                  instance_size: str,
                  node_count: int):
         """
-        :param str instance_size: (Required) Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
-        :param int node_count: (Required) Number of search nodes in the cluster.
+        :param str instance_size: Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+        :param int node_count: Number of search nodes in the cluster.
         """
         pulumi.set(__self__, "instance_size", instance_size)
         pulumi.set(__self__, "node_count", node_count)
@@ -19514,7 +19700,7 @@ class GetSearchDeploymentSpecResult(dict):
     @pulumi.getter(name="instanceSize")
     def instance_size(self) -> str:
         """
-        (Required) Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
+        Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
         """
         return pulumi.get(self, "instance_size")
 
@@ -19522,7 +19708,7 @@ class GetSearchDeploymentSpecResult(dict):
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> int:
         """
-        (Required) Number of search nodes in the cluster.
+        Number of search nodes in the cluster.
         """
         return pulumi.get(self, "node_count")
 
@@ -19588,6 +19774,7 @@ class GetSearchIndexesResultResult(dict):
         :param str database: (Required) Name of the database the collection is in.
         :param str name: Name of the index.
         :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        :param str status: Current status of the index.
         :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
         :param str analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
         :param bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings.
@@ -19672,6 +19859,9 @@ class GetSearchIndexesResultResult(dict):
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Current status of the index.
+        """
         return pulumi.get(self, "status")
 
     @property

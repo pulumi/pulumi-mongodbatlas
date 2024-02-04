@@ -49,16 +49,13 @@ export interface GetProjectResult {
     readonly clusterCount: number;
     /**
      * The ISO-8601-formatted timestamp of when Atlas created the project.
-     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
-     * * `limits.#.name` - Human-readable label that identifies this project limit.
-     * * `limits.#.value` - Amount the limit is set to.
-     * * `limits.#.current_usage` - Amount that indicates the current usage of the limit.
-     * * `limits.#.default_limit` - Default value of the limit.
-     * * `limits.#.maximum_limit` - Maximum value of the limit.
      */
     readonly created: string;
     readonly id: string;
+    /**
+     * IP addresses in a project categorized by services. See IP Addresses.
+     */
+    readonly ipAddresses: outputs.GetProjectIpAddresses;
     /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
      */
@@ -83,9 +80,12 @@ export interface GetProjectResult {
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      */
     readonly isSchemaAdvisorEnabled: boolean;
+    /**
+     * The limits for the specified project. See Limits.
+     */
     readonly limits: outputs.GetProjectLimit[];
     /**
-     * The name of the project you want to create.
+     * Human-readable label that identifies this project limit.
      */
     readonly name?: string;
     /**
@@ -97,6 +97,9 @@ export interface GetProjectResult {
      * If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      */
     readonly regionUsageRestrictions: string;
+    /**
+     * Returns all teams to which the authenticated user has access in the project. See Teams.
+     */
     readonly teams: outputs.GetProjectTeam[];
 }
 /**

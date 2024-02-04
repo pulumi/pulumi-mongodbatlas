@@ -25,7 +25,7 @@ func LookupApiKeys(ctx *pulumi.Context, args *LookupApiKeysArgs, opts ...pulumi.
 type LookupApiKeysArgs struct {
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
 	ItemsPerPage *int `pulumi:"itemsPerPage"`
-	// Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique identifier for the organization whose API keys you want to retrieve.
 	OrgId string `pulumi:"orgId"`
 	// The page to return. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
@@ -58,7 +58,7 @@ func LookupApiKeysOutput(ctx *pulumi.Context, args LookupApiKeysOutputArgs, opts
 type LookupApiKeysOutputArgs struct {
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
-	// Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique identifier for the organization whose API keys you want to retrieve.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
 	// The page to return. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`

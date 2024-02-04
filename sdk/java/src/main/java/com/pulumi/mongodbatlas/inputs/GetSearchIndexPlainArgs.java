@@ -188,13 +188,6 @@ public final class GetSearchIndexPlainArgs extends com.pulumi.resources.InvokeAr
         return Optional.ofNullable(this.searchAnalyzer);
     }
 
-    @Import(name="status")
-    private @Nullable String status;
-
-    public Optional<String> status() {
-        return Optional.ofNullable(this.status);
-    }
-
     @Import(name="type")
     private @Nullable String type;
 
@@ -217,7 +210,6 @@ public final class GetSearchIndexPlainArgs extends com.pulumi.resources.InvokeAr
         this.name = $.name;
         this.projectId = $.projectId;
         this.searchAnalyzer = $.searchAnalyzer;
-        this.status = $.status;
         this.type = $.type;
     }
 
@@ -362,11 +354,6 @@ public final class GetSearchIndexPlainArgs extends com.pulumi.resources.InvokeAr
          */
         public Builder searchAnalyzer(@Nullable String searchAnalyzer) {
             $.searchAnalyzer = searchAnalyzer;
-            return this;
-        }
-
-        public Builder status(@Nullable String status) {
-            $.status = status;
             return this;
         }
 

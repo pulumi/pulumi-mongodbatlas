@@ -14,22 +14,30 @@ public final class GetApiKeyArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetApiKeyArgs Empty = new GetApiKeyArgs();
 
+    /**
+     * Unique identifier for the organization API key.
+     * 
+     */
     @Import(name="apiKeyId", required=true)
     private Output<String> apiKeyId;
 
+    /**
+     * @return Unique identifier for the organization API key.
+     * 
+     */
     public Output<String> apiKeyId() {
         return this.apiKeyId;
     }
 
     /**
-     * The unique ID for the project.
+     * Unique identifier for the organization.
      * 
      */
     @Import(name="orgId", required=true)
     private Output<String> orgId;
 
     /**
-     * @return The unique ID for the project.
+     * @return Unique identifier for the organization.
      * 
      */
     public Output<String> orgId() {
@@ -61,17 +69,29 @@ public final class GetApiKeyArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetApiKeyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param apiKeyId Unique identifier for the organization API key.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiKeyId(Output<String> apiKeyId) {
             $.apiKeyId = apiKeyId;
             return this;
         }
 
+        /**
+         * @param apiKeyId Unique identifier for the organization API key.
+         * 
+         * @return builder
+         * 
+         */
         public Builder apiKeyId(String apiKeyId) {
             return apiKeyId(Output.of(apiKeyId));
         }
 
         /**
-         * @param orgId The unique ID for the project.
+         * @param orgId Unique identifier for the organization.
          * 
          * @return builder
          * 
@@ -82,7 +102,7 @@ public final class GetApiKeyArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param orgId The unique ID for the project.
+         * @param orgId Unique identifier for the organization.
          * 
          * @return builder
          * 

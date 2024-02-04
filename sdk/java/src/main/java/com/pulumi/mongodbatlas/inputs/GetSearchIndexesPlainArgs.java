@@ -5,11 +5,8 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class GetSearchIndexesPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -62,52 +59,6 @@ public final class GetSearchIndexesPlainArgs extends com.pulumi.resources.Invoke
     }
 
     /**
-     * Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.15.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
-    @Import(name="itemsPerPage")
-    private @Nullable Integer itemsPerPage;
-
-    /**
-     * @return Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.15.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
-    public Optional<Integer> itemsPerPage() {
-        return Optional.ofNullable(this.itemsPerPage);
-    }
-
-    /**
-     * Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.15.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
-    @Import(name="pageNum")
-    private @Nullable Integer pageNum;
-
-    /**
-     * @return Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.15.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
-    public Optional<Integer> pageNum() {
-        return Optional.ofNullable(this.pageNum);
-    }
-
-    /**
      * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
      * 
      */
@@ -128,8 +79,6 @@ public final class GetSearchIndexesPlainArgs extends com.pulumi.resources.Invoke
         this.clusterName = $.clusterName;
         this.collectionName = $.collectionName;
         this.database = $.database;
-        this.itemsPerPage = $.itemsPerPage;
-        this.pageNum = $.pageNum;
         this.projectId = $.projectId;
     }
 
@@ -181,36 +130,6 @@ public final class GetSearchIndexesPlainArgs extends com.pulumi.resources.Invoke
          */
         public Builder database(String database) {
             $.database = database;
-            return this;
-        }
-
-        /**
-         * @param itemsPerPage Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in version 1.15.0
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
-        public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
-            $.itemsPerPage = itemsPerPage;
-            return this;
-        }
-
-        /**
-         * @param pageNum Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in version 1.15.0
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.15.0 */
-        public Builder pageNum(@Nullable Integer pageNum) {
-            $.pageNum = pageNum;
             return this;
         }
 

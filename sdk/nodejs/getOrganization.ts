@@ -43,6 +43,10 @@ export interface GetOrganizationArgs {
  */
 export interface GetOrganizationResult {
     /**
+     * (Optional) Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+     */
+    readonly apiAccessListRequired: boolean;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
@@ -52,10 +56,18 @@ export interface GetOrganizationResult {
     readonly isDeleted: boolean;
     readonly links: outputs.GetOrganizationLink[];
     /**
+     * (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+     */
+    readonly multiFactorAuthRequired: boolean;
+    /**
      * Human-readable label that identifies the organization.
      */
     readonly name: string;
     readonly orgId: string;
+    /**
+     * (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+     */
+    readonly restrictEmployeeAccess: boolean;
 }
 /**
  * `mongodbatlas.Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.

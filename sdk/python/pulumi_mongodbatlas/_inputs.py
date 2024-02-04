@@ -46,7 +46,6 @@ __all__ = [
     'CloudProviderAccessAuthorizationAwsArgs',
     'CloudProviderAccessAuthorizationAzureArgs',
     'CloudProviderAccessAuthorizationFeatureUsageArgs',
-    'CloudProviderAccessFeatureUsageArgs',
     'CloudProviderAccessSetupAwsConfigArgs',
     'CloudProviderAccessSetupAzureConfigArgs',
     'ClusterAdvancedConfigurationArgs',
@@ -104,6 +103,9 @@ __all__ = [
     'PrivateLinkEndpointServiceEndpointArgs',
     'ProjectApiKeyProjectAssignmentArgs',
     'ProjectIpAccessListTimeoutsArgs',
+    'ProjectIpAddressesArgs',
+    'ProjectIpAddressesServicesArgs',
+    'ProjectIpAddressesServicesClusterArgs',
     'ProjectLimitArgs',
     'ProjectTeamArgs',
     'ProviderAssumeRoleArgs',
@@ -115,11 +117,6 @@ __all__ = [
     'X509AuthenticationDatabaseUserCertificateArgs',
     'GetAlertConfigurationOutputArgs',
     'GetAlertConfigurationsListOptionArgs',
-    'GetBackupCompliancePolicyOnDemandPolicyItemArgs',
-    'GetBackupCompliancePolicyPolicyItemDailyArgs',
-    'GetBackupCompliancePolicyPolicyItemHourlyArgs',
-    'GetBackupCompliancePolicyPolicyItemMonthlyArgs',
-    'GetBackupCompliancePolicyPolicyItemWeeklyArgs',
     'GetCloudProviderAccessSetupAzureConfigArgs',
     'GetCustomDbRoleInheritedRoleArgs',
     'GetFederatedDatabaseInstanceCloudProviderConfigArgs',
@@ -1446,7 +1443,7 @@ class AlertConfigurationNotificationArgs:
         :param pulumi.Input[str] api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param pulumi.Input[str] channel_name: Slack channel name. Required for the SLACK notifications type.
         :param pulumi.Input[str] datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-        :param pulumi.Input[str] datadog_region: Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+        :param pulumi.Input[str] datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
         :param pulumi.Input[int] delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param pulumi.Input[str] email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         :param pulumi.Input[bool] email_enabled: Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
@@ -1579,7 +1576,7 @@ class AlertConfigurationNotificationArgs:
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> Optional[pulumi.Input[str]]:
         """
-        Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
+        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
         """
         return pulumi.get(self, "datadog_region")
 
@@ -3066,35 +3063,6 @@ class CloudProviderAccessAuthorizationAzureArgs:
 
 @pulumi.input_type
 class CloudProviderAccessAuthorizationFeatureUsageArgs:
-    def __init__(__self__, *,
-                 feature_id: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 feature_type: Optional[pulumi.Input[str]] = None):
-        if feature_id is not None:
-            pulumi.set(__self__, "feature_id", feature_id)
-        if feature_type is not None:
-            pulumi.set(__self__, "feature_type", feature_type)
-
-    @property
-    @pulumi.getter(name="featureId")
-    def feature_id(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        return pulumi.get(self, "feature_id")
-
-    @feature_id.setter
-    def feature_id(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
-        pulumi.set(self, "feature_id", value)
-
-    @property
-    @pulumi.getter(name="featureType")
-    def feature_type(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "feature_type")
-
-    @feature_type.setter
-    def feature_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "feature_type", value)
-
-
-@pulumi.input_type
-class CloudProviderAccessFeatureUsageArgs:
     def __init__(__self__, *,
                  feature_id: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  feature_type: Optional[pulumi.Input[str]] = None):
@@ -4839,7 +4807,7 @@ class DatabaseUserRoleArgs:
                  role_name: pulumi.Input[str],
                  collection_name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        :param pulumi.Input[str] database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
         :param pulumi.Input[str] role_name: Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
         :param pulumi.Input[str] collection_name: Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         """
@@ -4852,7 +4820,7 @@ class DatabaseUserRoleArgs:
     @pulumi.getter(name="databaseName")
     def database_name(self) -> pulumi.Input[str]:
         """
-        Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
         """
         return pulumi.get(self, "database_name")
 
@@ -4937,7 +4905,7 @@ class EncryptionAtRestAwsKmsConfigArgs:
         :param pulumi.Input[str] customer_master_key_id: The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
         :param pulumi.Input[bool] enabled: Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param pulumi.Input[str] region: The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
-        :param pulumi.Input[str] role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
+        :param pulumi.Input[str] role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
         """
         if access_key_id is not None:
             pulumi.set(__self__, "access_key_id", access_key_id)
@@ -5001,7 +4969,7 @@ class EncryptionAtRestAwsKmsConfigArgs:
     @pulumi.getter(name="roleId")
     def role_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
+        ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
         """
         return pulumi.get(self, "role_id")
 
@@ -6787,6 +6755,81 @@ class ProjectIpAccessListTimeoutsArgs:
 
 
 @pulumi.input_type
+class ProjectIpAddressesArgs:
+    def __init__(__self__, *,
+                 services: Optional[pulumi.Input['ProjectIpAddressesServicesArgs']] = None):
+        if services is not None:
+            pulumi.set(__self__, "services", services)
+
+    @property
+    @pulumi.getter
+    def services(self) -> Optional[pulumi.Input['ProjectIpAddressesServicesArgs']]:
+        return pulumi.get(self, "services")
+
+    @services.setter
+    def services(self, value: Optional[pulumi.Input['ProjectIpAddressesServicesArgs']]):
+        pulumi.set(self, "services", value)
+
+
+@pulumi.input_type
+class ProjectIpAddressesServicesArgs:
+    def __init__(__self__, *,
+                 clusters: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgs']]]] = None):
+        if clusters is not None:
+            pulumi.set(__self__, "clusters", clusters)
+
+    @property
+    @pulumi.getter
+    def clusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgs']]]]:
+        return pulumi.get(self, "clusters")
+
+    @clusters.setter
+    def clusters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgs']]]]):
+        pulumi.set(self, "clusters", value)
+
+
+@pulumi.input_type
+class ProjectIpAddressesServicesClusterArgs:
+    def __init__(__self__, *,
+                 cluster_name: Optional[pulumi.Input[str]] = None,
+                 inbounds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 outbounds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
+        if inbounds is not None:
+            pulumi.set(__self__, "inbounds", inbounds)
+        if outbounds is not None:
+            pulumi.set(__self__, "outbounds", outbounds)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cluster_name")
+
+    @cluster_name.setter
+    def cluster_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_name", value)
+
+    @property
+    @pulumi.getter
+    def inbounds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "inbounds")
+
+    @inbounds.setter
+    def inbounds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "inbounds", value)
+
+    @property
+    @pulumi.getter
+    def outbounds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "outbounds")
+
+    @outbounds.setter
+    def outbounds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "outbounds", value)
+
+
+@pulumi.input_type
 class ProjectLimitArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
@@ -7152,7 +7195,7 @@ class SearchIndexSynonymArgs:
         """
         :param pulumi.Input[str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[str] name: The name of the search index you want to create.
-        :param pulumi.Input[str] source_collection: Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+        :param pulumi.Input[str] source_collection: (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
         """
         pulumi.set(__self__, "analyzer", analyzer)
         pulumi.set(__self__, "name", name)
@@ -7186,7 +7229,7 @@ class SearchIndexSynonymArgs:
     @pulumi.getter(name="sourceCollection")
     def source_collection(self) -> pulumi.Input[str]:
         """
-        Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+        (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
         """
         return pulumi.get(self, "source_collection")
 
@@ -7414,416 +7457,6 @@ class GetAlertConfigurationsListOptionArgs:
     @page_num.setter
     def page_num(self, value: Optional[int]):
         pulumi.set(self, "page_num", value)
-
-
-@pulumi.input_type
-class GetBackupCompliancePolicyOnDemandPolicyItemArgs:
-    def __init__(__self__, *,
-                 frequency_interval: int,
-                 frequency_type: str,
-                 id: str,
-                 retention_unit: str,
-                 retention_value: int):
-        """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        :param str id: Unique identifier of the backup policy item.
-        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
-
-    @property
-    @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> int:
-        """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        """
-        return pulumi.get(self, "frequency_interval")
-
-    @frequency_interval.setter
-    def frequency_interval(self, value: int):
-        pulumi.set(self, "frequency_interval", value)
-
-    @property
-    @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> str:
-        """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        """
-        return pulumi.get(self, "frequency_type")
-
-    @frequency_type.setter
-    def frequency_type(self, value: str):
-        pulumi.set(self, "frequency_type", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique identifier of the backup policy item.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: str):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter(name="retentionUnit")
-    def retention_unit(self) -> str:
-        """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
-        """
-        return pulumi.get(self, "retention_unit")
-
-    @retention_unit.setter
-    def retention_unit(self, value: str):
-        pulumi.set(self, "retention_unit", value)
-
-    @property
-    @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> int:
-        """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        """
-        return pulumi.get(self, "retention_value")
-
-    @retention_value.setter
-    def retention_value(self, value: int):
-        pulumi.set(self, "retention_value", value)
-
-
-@pulumi.input_type
-class GetBackupCompliancePolicyPolicyItemDailyArgs:
-    def __init__(__self__, *,
-                 frequency_interval: int,
-                 frequency_type: str,
-                 id: str,
-                 retention_unit: str,
-                 retention_value: int):
-        """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        :param str id: Unique identifier of the backup policy item.
-        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
-
-    @property
-    @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> int:
-        """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        """
-        return pulumi.get(self, "frequency_interval")
-
-    @frequency_interval.setter
-    def frequency_interval(self, value: int):
-        pulumi.set(self, "frequency_interval", value)
-
-    @property
-    @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> str:
-        """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        """
-        return pulumi.get(self, "frequency_type")
-
-    @frequency_type.setter
-    def frequency_type(self, value: str):
-        pulumi.set(self, "frequency_type", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique identifier of the backup policy item.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: str):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter(name="retentionUnit")
-    def retention_unit(self) -> str:
-        """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
-        """
-        return pulumi.get(self, "retention_unit")
-
-    @retention_unit.setter
-    def retention_unit(self, value: str):
-        pulumi.set(self, "retention_unit", value)
-
-    @property
-    @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> int:
-        """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        """
-        return pulumi.get(self, "retention_value")
-
-    @retention_value.setter
-    def retention_value(self, value: int):
-        pulumi.set(self, "retention_value", value)
-
-
-@pulumi.input_type
-class GetBackupCompliancePolicyPolicyItemHourlyArgs:
-    def __init__(__self__, *,
-                 frequency_interval: int,
-                 frequency_type: str,
-                 id: str,
-                 retention_unit: str,
-                 retention_value: int):
-        """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        :param str id: Unique identifier of the backup policy item.
-        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
-
-    @property
-    @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> int:
-        """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        """
-        return pulumi.get(self, "frequency_interval")
-
-    @frequency_interval.setter
-    def frequency_interval(self, value: int):
-        pulumi.set(self, "frequency_interval", value)
-
-    @property
-    @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> str:
-        """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        """
-        return pulumi.get(self, "frequency_type")
-
-    @frequency_type.setter
-    def frequency_type(self, value: str):
-        pulumi.set(self, "frequency_type", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique identifier of the backup policy item.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: str):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter(name="retentionUnit")
-    def retention_unit(self) -> str:
-        """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
-        """
-        return pulumi.get(self, "retention_unit")
-
-    @retention_unit.setter
-    def retention_unit(self, value: str):
-        pulumi.set(self, "retention_unit", value)
-
-    @property
-    @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> int:
-        """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        """
-        return pulumi.get(self, "retention_value")
-
-    @retention_value.setter
-    def retention_value(self, value: int):
-        pulumi.set(self, "retention_value", value)
-
-
-@pulumi.input_type
-class GetBackupCompliancePolicyPolicyItemMonthlyArgs:
-    def __init__(__self__, *,
-                 frequency_interval: int,
-                 frequency_type: str,
-                 id: str,
-                 retention_unit: str,
-                 retention_value: int):
-        """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        :param str id: Unique identifier of the backup policy item.
-        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
-
-    @property
-    @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> int:
-        """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        """
-        return pulumi.get(self, "frequency_interval")
-
-    @frequency_interval.setter
-    def frequency_interval(self, value: int):
-        pulumi.set(self, "frequency_interval", value)
-
-    @property
-    @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> str:
-        """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        """
-        return pulumi.get(self, "frequency_type")
-
-    @frequency_type.setter
-    def frequency_type(self, value: str):
-        pulumi.set(self, "frequency_type", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique identifier of the backup policy item.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: str):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter(name="retentionUnit")
-    def retention_unit(self) -> str:
-        """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
-        """
-        return pulumi.get(self, "retention_unit")
-
-    @retention_unit.setter
-    def retention_unit(self, value: str):
-        pulumi.set(self, "retention_unit", value)
-
-    @property
-    @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> int:
-        """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        """
-        return pulumi.get(self, "retention_value")
-
-    @retention_value.setter
-    def retention_value(self, value: int):
-        pulumi.set(self, "retention_value", value)
-
-
-@pulumi.input_type
-class GetBackupCompliancePolicyPolicyItemWeeklyArgs:
-    def __init__(__self__, *,
-                 frequency_interval: int,
-                 frequency_type: str,
-                 id: str,
-                 retention_unit: str,
-                 retention_value: int):
-        """
-        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param str frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        :param str id: Unique identifier of the backup policy item.
-        :param str retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param int retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
-
-    @property
-    @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> int:
-        """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        """
-        return pulumi.get(self, "frequency_interval")
-
-    @frequency_interval.setter
-    def frequency_interval(self, value: int):
-        pulumi.set(self, "frequency_interval", value)
-
-    @property
-    @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> str:
-        """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        """
-        return pulumi.get(self, "frequency_type")
-
-    @frequency_type.setter
-    def frequency_type(self, value: str):
-        pulumi.set(self, "frequency_type", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique identifier of the backup policy item.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: str):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter(name="retentionUnit")
-    def retention_unit(self) -> str:
-        """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
-        """
-        return pulumi.get(self, "retention_unit")
-
-    @retention_unit.setter
-    def retention_unit(self, value: str):
-        pulumi.set(self, "retention_unit", value)
-
-    @property
-    @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> int:
-        """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        """
-        return pulumi.get(self, "retention_value")
-
-    @retention_value.setter
-    def retention_value(self, value: int):
-        pulumi.set(self, "retention_value", value)
 
 
 @pulumi.input_type

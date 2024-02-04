@@ -46,13 +46,13 @@ namespace Pulumi.Mongodbatlas
         /// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         /// </summary>
         [Output("copyProtectionEnabled")]
-        public Output<bool> CopyProtectionEnabled { get; private set; } = null!;
+        public Output<bool?> CopyProtectionEnabled { get; private set; } = null!;
 
         /// <summary>
         /// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
         /// </summary>
         [Output("encryptionAtRestEnabled")]
-        public Output<bool> EncryptionAtRestEnabled { get; private set; } = null!;
+        public Output<bool?> EncryptionAtRestEnabled { get; private set; } = null!;
 
         [Output("onDemandPolicyItem")]
         public Output<Outputs.BackupCompliancePolicyOnDemandPolicyItem> OnDemandPolicyItem { get; private set; } = null!;
@@ -61,7 +61,7 @@ namespace Pulumi.Mongodbatlas
         /// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
         /// </summary>
         [Output("pitEnabled")]
-        public Output<bool> PitEnabled { get; private set; } = null!;
+        public Output<bool?> PitEnabled { get; private set; } = null!;
 
         [Output("policyItemDaily")]
         public Output<Outputs.BackupCompliancePolicyPolicyItemDaily?> PolicyItemDaily { get; private set; } = null!;
@@ -172,14 +172,14 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         /// </summary>
-        [Input("copyProtectionEnabled", required: true)]
-        public Input<bool> CopyProtectionEnabled { get; set; } = null!;
+        [Input("copyProtectionEnabled")]
+        public Input<bool>? CopyProtectionEnabled { get; set; }
 
         /// <summary>
         /// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
         /// </summary>
-        [Input("encryptionAtRestEnabled", required: true)]
-        public Input<bool> EncryptionAtRestEnabled { get; set; } = null!;
+        [Input("encryptionAtRestEnabled")]
+        public Input<bool>? EncryptionAtRestEnabled { get; set; }
 
         [Input("onDemandPolicyItem", required: true)]
         public Input<Inputs.BackupCompliancePolicyOnDemandPolicyItemArgs> OnDemandPolicyItem { get; set; } = null!;
@@ -187,8 +187,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
         /// </summary>
-        [Input("pitEnabled", required: true)]
-        public Input<bool> PitEnabled { get; set; } = null!;
+        [Input("pitEnabled")]
+        public Input<bool>? PitEnabled { get; set; }
 
         [Input("policyItemDaily")]
         public Input<Inputs.BackupCompliancePolicyPolicyItemDailyArgs>? PolicyItemDaily { get; set; }

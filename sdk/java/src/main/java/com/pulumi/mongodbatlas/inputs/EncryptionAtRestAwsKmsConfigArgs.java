@@ -69,14 +69,14 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
     }
 
     /**
-     * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas.CloudProviderAccess` resource.
+     * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
      * 
      */
     @Import(name="roleId")
     private @Nullable Output<String> roleId;
 
     /**
-     * @return ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas.CloudProviderAccess` resource.
+     * @return ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
      * 
      */
     public Optional<Output<String>> roleId() {
@@ -192,7 +192,7 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
         }
 
         /**
-         * @param roleId ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas.CloudProviderAccess` resource.
+         * @param roleId ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
          * 
          * @return builder
          * 
@@ -203,7 +203,7 @@ public final class EncryptionAtRestAwsKmsConfigArgs extends com.pulumi.resources
         }
 
         /**
-         * @param roleId ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas.CloudProviderAccess` resource.
+         * @param roleId ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas_cloud_provider_access` resource.
          * 
          * @return builder
          * 

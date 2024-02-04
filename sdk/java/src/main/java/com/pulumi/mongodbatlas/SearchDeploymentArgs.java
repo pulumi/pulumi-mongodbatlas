@@ -20,14 +20,14 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
     public static final SearchDeploymentArgs Empty = new SearchDeploymentArgs();
 
     /**
-     * Label that identifies the cluster to create search nodes for.
+     * Label that identifies the cluster to return the search nodes for.
      * 
      */
     @Import(name="clusterName", required=true)
     private Output<String> clusterName;
 
     /**
-     * @return Label that identifies the cluster to create search nodes for.
+     * @return Label that identifies the cluster to return the search nodes for.
      * 
      */
     public Output<String> clusterName() {
@@ -35,14 +35,14 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal character string that identifies the project.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal character string that identifies the project.
      * 
      */
     public Output<String> projectId() {
@@ -50,31 +50,23 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+     * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      * 
      */
     @Import(name="specs", required=true)
     private Output<List<SearchDeploymentSpecArgs>> specs;
 
     /**
-     * @return List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+     * @return List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      * 
      */
     public Output<List<SearchDeploymentSpecArgs>> specs() {
         return this.specs;
     }
 
-    /**
-     * The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-     * 
-     */
     @Import(name="timeouts")
     private @Nullable Output<SearchDeploymentTimeoutsArgs> timeouts;
 
-    /**
-     * @return The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-     * 
-     */
     public Optional<Output<SearchDeploymentTimeoutsArgs>> timeouts() {
         return Optional.ofNullable(this.timeouts);
     }
@@ -107,7 +99,7 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param clusterName Label that identifies the cluster to create search nodes for.
+         * @param clusterName Label that identifies the cluster to return the search nodes for.
          * 
          * @return builder
          * 
@@ -118,7 +110,7 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param clusterName Label that identifies the cluster to create search nodes for.
+         * @param clusterName Label that identifies the cluster to return the search nodes for.
          * 
          * @return builder
          * 
@@ -128,7 +120,7 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
+         * @param projectId Unique 24-hexadecimal character string that identifies the project.
          * 
          * @return builder
          * 
@@ -139,7 +131,7 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
+         * @param projectId Unique 24-hexadecimal character string that identifies the project.
          * 
          * @return builder
          * 
@@ -149,7 +141,7 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param specs List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+         * @param specs List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
          * 
          * @return builder
          * 
@@ -160,7 +152,7 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param specs List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+         * @param specs List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
          * 
          * @return builder
          * 
@@ -170,7 +162,7 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param specs List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+         * @param specs List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
          * 
          * @return builder
          * 
@@ -179,23 +171,11 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
             return specs(List.of(specs));
         }
 
-        /**
-         * @param timeouts The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-         * 
-         * @return builder
-         * 
-         */
         public Builder timeouts(@Nullable Output<SearchDeploymentTimeoutsArgs> timeouts) {
             $.timeouts = timeouts;
             return this;
         }
 
-        /**
-         * @param timeouts The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-         * 
-         * @return builder
-         * 
-         */
         public Builder timeouts(SearchDeploymentTimeoutsArgs timeouts) {
             return timeouts(Output.of(timeouts));
         }

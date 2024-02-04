@@ -12,7 +12,11 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
     /// 
-    /// &gt; **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization.
+    /// &gt; **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization. To use this resource, `role_names` for new API Key must have the ORG_OWNER role specified.
+    /// 
+    /// &gt; **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key's organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.
+    /// 
+    /// &gt; **NOTE** Import command is currently not supported for this resource.
     /// 
     /// ## Example Usage
     /// 
@@ -36,29 +40,30 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Organization must be imported using organization ID, e.g.
-    /// 
-    /// ```sh
-    ///  $ pulumi import mongodbatlas:index/organization:Organization my_org 5d09d6a59ccf6445652a444a
-    /// ```
-    ///  For more information see[MongoDB Atlas Admin API Organization](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/createOrganization)
-    /// 
-    /// Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/organization:Organization")]
     public partial class Organization : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+        /// </summary>
+        [Output("apiAccessListRequired")]
+        public Output<bool> ApiAccessListRequired { get; private set; } = null!;
+
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        /// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
         /// </summary>
         [Output("federationSettingsId")]
         public Output<string?> FederationSettingsId { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+        /// </summary>
+        [Output("multiFactorAuthRequired")]
+        public Output<bool> MultiFactorAuthRequired { get; private set; } = null!;
 
         /// <summary>
         /// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
@@ -86,6 +91,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+        /// </summary>
+        [Output("restrictEmployeeAccess")]
+        public Output<bool> RestrictEmployeeAccess { get; private set; } = null!;
 
         /// <summary>
         /// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key.
@@ -144,14 +155,26 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class OrganizationArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+        /// </summary>
+        [Input("apiAccessListRequired")]
+        public Input<bool>? ApiAccessListRequired { get; set; }
+
         [Input("description", required: true)]
         public Input<string> Description { get; set; } = null!;
 
         /// <summary>
-        /// (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        /// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
         /// </summary>
         [Input("federationSettingsId")]
         public Input<string>? FederationSettingsId { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+        /// </summary>
+        [Input("multiFactorAuthRequired")]
+        public Input<bool>? MultiFactorAuthRequired { get; set; }
 
         /// <summary>
         /// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
@@ -164,6 +187,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("orgOwnerId", required: true)]
         public Input<string> OrgOwnerId { get; set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+        /// </summary>
+        [Input("restrictEmployeeAccess")]
+        public Input<bool>? RestrictEmployeeAccess { get; set; }
 
         [Input("roleNames", required: true)]
         private InputList<string>? _roleNames;
@@ -185,14 +214,26 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class OrganizationState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+        /// </summary>
+        [Input("apiAccessListRequired")]
+        public Input<bool>? ApiAccessListRequired { get; set; }
+
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// (Optional) Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
+        /// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation.
         /// </summary>
         [Input("federationSettingsId")]
         public Input<string>? FederationSettingsId { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+        /// </summary>
+        [Input("multiFactorAuthRequired")]
+        public Input<bool>? MultiFactorAuthRequired { get; set; }
 
         /// <summary>
         /// The name of the organization you want to create. (Cannot be changed via this Provider after creation.)
@@ -239,6 +280,12 @@ namespace Pulumi.Mongodbatlas
                 _publicKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+        /// </summary>
+        [Input("restrictEmployeeAccess")]
+        public Input<bool>? RestrictEmployeeAccess { get; set; }
 
         [Input("roleNames")]
         private InputList<string>? _roleNames;

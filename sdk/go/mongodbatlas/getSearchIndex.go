@@ -77,7 +77,6 @@ type LookupSearchIndexArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
-	Status         *string `pulumi:"status"`
 	Type           *string `pulumi:"type"`
 }
 
@@ -105,7 +104,8 @@ type LookupSearchIndexResult struct {
 	ProjectId string  `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
-	Status         string  `pulumi:"status"`
+	// Current status of the index.
+	Status string `pulumi:"status"`
 	// Synonyms mapping definition to use in this index.
 	// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
 	// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
@@ -152,7 +152,6 @@ type LookupSearchIndexOutputArgs struct {
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer pulumi.StringPtrInput `pulumi:"searchAnalyzer"`
-	Status         pulumi.StringPtrInput `pulumi:"status"`
 	Type           pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -236,6 +235,7 @@ func (o LookupSearchIndexResultOutput) SearchAnalyzer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.SearchAnalyzer }).(pulumi.StringPtrOutput)
 }
 
+// Current status of the index.
 func (o LookupSearchIndexResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Status }).(pulumi.StringOutput)
 }

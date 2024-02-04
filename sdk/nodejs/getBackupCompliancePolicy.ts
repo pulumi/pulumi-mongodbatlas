@@ -10,11 +10,6 @@ export function getBackupCompliancePolicy(args: GetBackupCompliancePolicyArgs, o
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", {
-        "onDemandPolicyItem": args.onDemandPolicyItem,
-        "policyItemDaily": args.policyItemDaily,
-        "policyItemHourly": args.policyItemHourly,
-        "policyItemMonthlies": args.policyItemMonthlies,
-        "policyItemWeeklies": args.policyItemWeeklies,
         "projectId": args.projectId,
     }, opts);
 }
@@ -23,11 +18,6 @@ export function getBackupCompliancePolicy(args: GetBackupCompliancePolicyArgs, o
  * A collection of arguments for invoking getBackupCompliancePolicy.
  */
 export interface GetBackupCompliancePolicyArgs {
-    onDemandPolicyItem?: inputs.GetBackupCompliancePolicyOnDemandPolicyItem;
-    policyItemDaily?: inputs.GetBackupCompliancePolicyPolicyItemDaily;
-    policyItemHourly?: inputs.GetBackupCompliancePolicyPolicyItemHourly;
-    policyItemMonthlies?: inputs.GetBackupCompliancePolicyPolicyItemMonthly[];
-    policyItemWeeklies?: inputs.GetBackupCompliancePolicyPolicyItemWeekly[];
     /**
      * Unique 24-hexadecimal digit string that identifies your project
      */
@@ -62,15 +52,15 @@ export interface GetBackupCompliancePolicyResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly onDemandPolicyItem?: outputs.GetBackupCompliancePolicyOnDemandPolicyItem;
+    readonly onDemandPolicyItem: outputs.GetBackupCompliancePolicyOnDemandPolicyItem;
     /**
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
     readonly pitEnabled: boolean;
-    readonly policyItemDaily?: outputs.GetBackupCompliancePolicyPolicyItemDaily;
-    readonly policyItemHourly?: outputs.GetBackupCompliancePolicyPolicyItemHourly;
-    readonly policyItemMonthlies?: outputs.GetBackupCompliancePolicyPolicyItemMonthly[];
-    readonly policyItemWeeklies?: outputs.GetBackupCompliancePolicyPolicyItemWeekly[];
+    readonly policyItemDaily: outputs.GetBackupCompliancePolicyPolicyItemDaily;
+    readonly policyItemHourly: outputs.GetBackupCompliancePolicyPolicyItemHourly;
+    readonly policyItemMonthlies: outputs.GetBackupCompliancePolicyPolicyItemMonthly[];
+    readonly policyItemWeeklies: outputs.GetBackupCompliancePolicyPolicyItemWeekly[];
     readonly projectId: string;
     /**
      * Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -97,11 +87,6 @@ export function getBackupCompliancePolicyOutput(args: GetBackupCompliancePolicyO
  * A collection of arguments for invoking getBackupCompliancePolicy.
  */
 export interface GetBackupCompliancePolicyOutputArgs {
-    onDemandPolicyItem?: pulumi.Input<inputs.GetBackupCompliancePolicyOnDemandPolicyItemArgs>;
-    policyItemDaily?: pulumi.Input<inputs.GetBackupCompliancePolicyPolicyItemDailyArgs>;
-    policyItemHourly?: pulumi.Input<inputs.GetBackupCompliancePolicyPolicyItemHourlyArgs>;
-    policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.GetBackupCompliancePolicyPolicyItemMonthlyArgs>[]>;
-    policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.GetBackupCompliancePolicyPolicyItemWeeklyArgs>[]>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project
      */

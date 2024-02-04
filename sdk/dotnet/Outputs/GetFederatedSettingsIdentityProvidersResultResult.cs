@@ -26,13 +26,29 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult> AssociatedOrgs;
         /// <summary>
+        /// Identifier of the intended recipient of the token.
+        /// </summary>
+        public readonly ImmutableArray<string> AudienceClaims;
+        /// <summary>
         /// Identifier for the intended audience of the SAML Assertion.
         /// </summary>
         public readonly string AudienceUri;
         /// <summary>
+        /// Client identifier that is assigned to an application by the Identity Provider.
+        /// </summary>
+        public readonly string ClientId;
+        /// <summary>
         /// Human-readable label that identifies the IdP.
         /// </summary>
         public readonly string DisplayName;
+        /// <summary>
+        /// Identifier of the claim which contains IdP Group IDs in the token.
+        /// </summary>
+        public readonly string GroupsClaim;
+        /// <summary>
+        /// Unique 20-hexadecimal digit string that identifies the IdP.
+        /// </summary>
+        public readonly string IdpId;
         /// <summary>
         /// Identifier for the issuer of the SAML Assertion.
         /// </summary>
@@ -40,11 +56,19 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string OktaIdpId;
         public readonly ImmutableArray<Outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoResult> PemFileInfos;
         /// <summary>
+        /// The protocol of the identity provider
+        /// </summary>
+        public readonly string Protocol;
+        /// <summary>
         /// SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
         /// - HTTP POST
         /// - HTTP REDIRECT
         /// </summary>
         public readonly string RequestBinding;
+        /// <summary>
+        /// Scopes that MongoDB applications will request from the authorization endpoint.
+        /// </summary>
+        public readonly ImmutableArray<string> RequestedScopes;
         /// <summary>
         /// Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
         /// - SHA-1
@@ -63,6 +87,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Identifier of the claim which contains the user ID in the token.
+        /// </summary>
+        public readonly string UserClaim;
 
         [OutputConstructor]
         private GetFederatedSettingsIdentityProvidersResultResult(
@@ -72,9 +100,17 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<Outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult> associatedOrgs,
 
+            ImmutableArray<string> audienceClaims,
+
             string audienceUri,
 
+            string clientId,
+
             string displayName,
+
+            string groupsClaim,
+
+            string idpId,
 
             string issuerUri,
 
@@ -82,7 +118,11 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<Outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoResult> pemFileInfos,
 
+            string protocol,
+
             string requestBinding,
+
+            ImmutableArray<string> requestedScopes,
 
             string responseSignatureAlgorithm,
 
@@ -90,21 +130,30 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string ssoUrl,
 
-            string status)
+            string status,
+
+            string userClaim)
         {
             AcsUrl = acsUrl;
             AssociatedDomains = associatedDomains;
             AssociatedOrgs = associatedOrgs;
+            AudienceClaims = audienceClaims;
             AudienceUri = audienceUri;
+            ClientId = clientId;
             DisplayName = displayName;
+            GroupsClaim = groupsClaim;
+            IdpId = idpId;
             IssuerUri = issuerUri;
             OktaIdpId = oktaIdpId;
             PemFileInfos = pemFileInfos;
+            Protocol = protocol;
             RequestBinding = requestBinding;
+            RequestedScopes = requestedScopes;
             ResponseSignatureAlgorithm = responseSignatureAlgorithm;
             SsoDebugEnabled = ssoDebugEnabled;
             SsoUrl = ssoUrl;
             Status = status;
+            UserClaim = userClaim;
         }
     }
 }

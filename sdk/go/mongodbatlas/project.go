@@ -92,10 +92,12 @@ import (
 type Project struct {
 	pulumi.CustomResourceState
 
-	// The number of Atlas clusters deployed in the project..
+	// The number of Atlas clusters deployed in the project.
 	ClusterCount pulumi.IntOutput `pulumi:"clusterCount"`
-	// The ISO-8601-formatted timestamp of when Atlas created the project..
+	// The ISO-8601-formatted timestamp of when Atlas created the project.
 	Created pulumi.StringOutput `pulumi:"created"`
+	// IP addresses in a project categorized by services. See IP Addresses.
+	IpAddresses ProjectIpAddressesOutput `pulumi:"ipAddresses"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolOutput `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
@@ -155,10 +157,12 @@ func GetProject(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Project resources.
 type projectState struct {
-	// The number of Atlas clusters deployed in the project..
+	// The number of Atlas clusters deployed in the project.
 	ClusterCount *int `pulumi:"clusterCount"`
-	// The ISO-8601-formatted timestamp of when Atlas created the project..
+	// The ISO-8601-formatted timestamp of when Atlas created the project.
 	Created *string `pulumi:"created"`
+	// IP addresses in a project categorized by services. See IP Addresses.
+	IpAddresses *ProjectIpAddresses `pulumi:"ipAddresses"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
 	IsCollectDatabaseSpecificsStatisticsEnabled *bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
@@ -186,10 +190,12 @@ type projectState struct {
 }
 
 type ProjectState struct {
-	// The number of Atlas clusters deployed in the project..
+	// The number of Atlas clusters deployed in the project.
 	ClusterCount pulumi.IntPtrInput
-	// The ISO-8601-formatted timestamp of when Atlas created the project..
+	// The ISO-8601-formatted timestamp of when Atlas created the project.
 	Created pulumi.StringPtrInput
+	// IP addresses in a project categorized by services. See IP Addresses.
+	IpAddresses ProjectIpAddressesPtrInput
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
@@ -362,14 +368,19 @@ func (o ProjectOutput) ToProjectOutputWithContext(ctx context.Context) ProjectOu
 	return o
 }
 
-// The number of Atlas clusters deployed in the project..
+// The number of Atlas clusters deployed in the project.
 func (o ProjectOutput) ClusterCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *Project) pulumi.IntOutput { return v.ClusterCount }).(pulumi.IntOutput)
 }
 
-// The ISO-8601-formatted timestamp of when Atlas created the project..
+// The ISO-8601-formatted timestamp of when Atlas created the project.
 func (o ProjectOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Created }).(pulumi.StringOutput)
+}
+
+// IP addresses in a project categorized by services. See IP Addresses.
+func (o ProjectOutput) IpAddresses() ProjectIpAddressesOutput {
+	return o.ApplyT(func(v *Project) ProjectIpAddressesOutput { return v.IpAddresses }).(ProjectIpAddressesOutput)
 }
 
 // Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.

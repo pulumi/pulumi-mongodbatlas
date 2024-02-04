@@ -139,8 +139,8 @@ export class FederatedDatabaseInstance extends pulumi.CustomResource {
         return obj['__pulumiType'] === FederatedDatabaseInstance.__pulumiType;
     }
 
-    public readonly cloudProviderConfig!: pulumi.Output<outputs.FederatedDatabaseInstanceCloudProviderConfig | undefined>;
-    public readonly dataProcessRegion!: pulumi.Output<outputs.FederatedDatabaseInstanceDataProcessRegion | undefined>;
+    public readonly cloudProviderConfig!: pulumi.Output<outputs.FederatedDatabaseInstanceCloudProviderConfig>;
+    public readonly dataProcessRegion!: pulumi.Output<outputs.FederatedDatabaseInstanceDataProcessRegion>;
     /**
      * The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
      */
@@ -182,7 +182,7 @@ export class FederatedDatabaseInstance extends pulumi.CustomResource {
      * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
      * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
      */
-    public readonly storageDatabases!: pulumi.Output<outputs.FederatedDatabaseInstanceStorageDatabase[] | undefined>;
+    public readonly storageDatabases!: pulumi.Output<outputs.FederatedDatabaseInstanceStorageDatabase[]>;
     /**
      * Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
      * * `storage_stores.#.name` - Name of the data store.

@@ -61,16 +61,16 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
     /**
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      */
-    public readonly copyProtectionEnabled!: pulumi.Output<boolean>;
+    public readonly copyProtectionEnabled!: pulumi.Output<boolean | undefined>;
     /**
      * Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
-    public readonly encryptionAtRestEnabled!: pulumi.Output<boolean>;
+    public readonly encryptionAtRestEnabled!: pulumi.Output<boolean | undefined>;
     public readonly onDemandPolicyItem!: pulumi.Output<outputs.BackupCompliancePolicyOnDemandPolicyItem>;
     /**
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
-    public readonly pitEnabled!: pulumi.Output<boolean>;
+    public readonly pitEnabled!: pulumi.Output<boolean | undefined>;
     public readonly policyItemDaily!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemDaily | undefined>;
     public readonly policyItemHourly!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemHourly | undefined>;
     public readonly policyItemMonthlies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemMonthly[] | undefined>;
@@ -136,17 +136,8 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
             if ((!args || args.authorizedUserLastName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'authorizedUserLastName'");
             }
-            if ((!args || args.copyProtectionEnabled === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'copyProtectionEnabled'");
-            }
-            if ((!args || args.encryptionAtRestEnabled === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'encryptionAtRestEnabled'");
-            }
             if ((!args || args.onDemandPolicyItem === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'onDemandPolicyItem'");
-            }
-            if ((!args || args.pitEnabled === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'pitEnabled'");
             }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
@@ -247,16 +238,16 @@ export interface BackupCompliancePolicyArgs {
     /**
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      */
-    copyProtectionEnabled: pulumi.Input<boolean>;
+    copyProtectionEnabled?: pulumi.Input<boolean>;
     /**
      * Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
-    encryptionAtRestEnabled: pulumi.Input<boolean>;
+    encryptionAtRestEnabled?: pulumi.Input<boolean>;
     onDemandPolicyItem: pulumi.Input<inputs.BackupCompliancePolicyOnDemandPolicyItem>;
     /**
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
-    pitEnabled: pulumi.Input<boolean>;
+    pitEnabled?: pulumi.Input<boolean>;
     policyItemDaily?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemDaily>;
     policyItemHourly?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemHourly>;
     policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemMonthly>[]>;

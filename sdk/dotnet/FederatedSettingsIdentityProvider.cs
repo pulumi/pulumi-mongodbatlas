@@ -11,6 +11,8 @@ namespace Pulumi.Mongodbatlas
 {
     /// <summary>
     /// `mongodbatlas.FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
+    /// 
+    /// &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
     /// ## Example Usage
     /// 
     /// &gt; **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
@@ -48,7 +50,9 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk1297
     /// ```
-    ///  For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+    ///  __WARNING:__ Starting from terraform provider version 1.16.0, to import the resource a 24-hexadecimal digit string that identifies the IdP (`idp_id`) will have to be used instead of `okta_idp_id`. See more [here](../guides/1.15.0-upgrade-guide.html.markdown)
+    /// 
+    /// For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider")]
     public partial class FederatedSettingsIdentityProvider : global::Pulumi.CustomResource
@@ -60,13 +64,37 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<string>> AssociatedDomains { get; private set; } = null!;
 
         /// <summary>
+        /// Identifier of the intended recipient of the token used in OIDC IdP.
+        /// </summary>
+        [Output("audienceClaims")]
+        public Output<ImmutableArray<string>> AudienceClaims { get; private set; } = null!;
+
+        /// <summary>
+        /// Client identifier that is assigned to an application by the OIDC Identity Provider.
+        /// </summary>
+        [Output("clientId")]
+        public Output<string?> ClientId { get; private set; } = null!;
+
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         /// </summary>
         [Output("federationSettingsId")]
         public Output<string> FederationSettingsId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique string that identifies the issuer of the SAML
+        /// Identifier of the claim which contains OIDC IdP Group IDs in the token.
+        /// </summary>
+        [Output("groupsClaim")]
+        public Output<string?> GroupsClaim { get; private set; } = null!;
+
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the IdP.
+        /// </summary>
+        [Output("idpId")]
+        public Output<string> IdpId { get; private set; } = null!;
+
+        /// <summary>
+        /// Unique string that identifies the issuer of the IdP.
         /// </summary>
         [Output("issuerUri")]
         public Output<string> IssuerUri { get; private set; } = null!;
@@ -84,36 +112,54 @@ namespace Pulumi.Mongodbatlas
         public Output<string> OktaIdpId { get; private set; } = null!;
 
         /// <summary>
-        /// SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+        /// The protocol of the identity provider. Either `SAML` or `OIDC`.
+        /// </summary>
+        [Output("protocol")]
+        public Output<string> Protocol { get; private set; } = null!;
+
+        /// <summary>
+        /// SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
         /// - HTTP POST
         /// - HTTP REDIRECT
         /// </summary>
         [Output("requestBinding")]
-        public Output<string> RequestBinding { get; private set; } = null!;
+        public Output<string?> RequestBinding { get; private set; } = null!;
 
         /// <summary>
-        /// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+        /// Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+        /// </summary>
+        [Output("requestedScopes")]
+        public Output<ImmutableArray<string>> RequestedScopes { get; private set; } = null!;
+
+        /// <summary>
+        /// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
         /// </summary>
         [Output("responseSignatureAlgorithm")]
-        public Output<string> ResponseSignatureAlgorithm { get; private set; } = null!;
+        public Output<string?> ResponseSignatureAlgorithm { get; private set; } = null!;
 
         /// <summary>
         /// Flag that indicates whether the identity provider has SSO debug enabled.
         /// </summary>
         [Output("ssoDebugEnabled")]
-        public Output<bool> SsoDebugEnabled { get; private set; } = null!;
+        public Output<bool?> SsoDebugEnabled { get; private set; } = null!;
 
         /// <summary>
         /// Unique string that identifies the intended audience of the SAML assertion.
         /// </summary>
         [Output("ssoUrl")]
-        public Output<string> SsoUrl { get; private set; } = null!;
+        public Output<string?> SsoUrl { get; private set; } = null!;
 
         /// <summary>
         /// String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
         /// </summary>
         [Output("status")]
-        public Output<string> Status { get; private set; } = null!;
+        public Output<string?> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        /// </summary>
+        [Output("userClaim")]
+        public Output<string?> UserClaim { get; private set; } = null!;
 
 
         /// <summary>
@@ -173,6 +219,24 @@ namespace Pulumi.Mongodbatlas
             set => _associatedDomains = value;
         }
 
+        [Input("audienceClaims")]
+        private InputList<string>? _audienceClaims;
+
+        /// <summary>
+        /// Identifier of the intended recipient of the token used in OIDC IdP.
+        /// </summary>
+        public InputList<string> AudienceClaims
+        {
+            get => _audienceClaims ?? (_audienceClaims = new InputList<string>());
+            set => _audienceClaims = value;
+        }
+
+        /// <summary>
+        /// Client identifier that is assigned to an application by the OIDC Identity Provider.
+        /// </summary>
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
+
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         /// </summary>
@@ -180,7 +244,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string> FederationSettingsId { get; set; } = null!;
 
         /// <summary>
-        /// Unique string that identifies the issuer of the SAML
+        /// Identifier of the claim which contains OIDC IdP Group IDs in the token.
+        /// </summary>
+        [Input("groupsClaim")]
+        public Input<string>? GroupsClaim { get; set; }
+
+        /// <summary>
+        /// Unique string that identifies the issuer of the IdP.
         /// </summary>
         [Input("issuerUri", required: true)]
         public Input<string> IssuerUri { get; set; } = null!;
@@ -192,91 +262,33 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
-        /// - HTTP POST
-        /// - HTTP REDIRECT
+        /// The protocol of the identity provider. Either `SAML` or `OIDC`.
         /// </summary>
-        [Input("requestBinding", required: true)]
-        public Input<string> RequestBinding { get; set; } = null!;
+        [Input("protocol")]
+        public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
-        /// </summary>
-        [Input("responseSignatureAlgorithm", required: true)]
-        public Input<string> ResponseSignatureAlgorithm { get; set; } = null!;
-
-        /// <summary>
-        /// Flag that indicates whether the identity provider has SSO debug enabled.
-        /// </summary>
-        [Input("ssoDebugEnabled", required: true)]
-        public Input<bool> SsoDebugEnabled { get; set; } = null!;
-
-        /// <summary>
-        /// Unique string that identifies the intended audience of the SAML assertion.
-        /// </summary>
-        [Input("ssoUrl", required: true)]
-        public Input<string> SsoUrl { get; set; } = null!;
-
-        /// <summary>
-        /// String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
-        /// </summary>
-        [Input("status", required: true)]
-        public Input<string> Status { get; set; } = null!;
-
-        public FederatedSettingsIdentityProviderArgs()
-        {
-        }
-        public static new FederatedSettingsIdentityProviderArgs Empty => new FederatedSettingsIdentityProviderArgs();
-    }
-
-    public sealed class FederatedSettingsIdentityProviderState : global::Pulumi.ResourceArgs
-    {
-        [Input("associatedDomains")]
-        private InputList<string>? _associatedDomains;
-
-        /// <summary>
-        /// List that contains the domains associated with the identity provider.
-        /// </summary>
-        public InputList<string> AssociatedDomains
-        {
-            get => _associatedDomains ?? (_associatedDomains = new InputList<string>());
-            set => _associatedDomains = value;
-        }
-
-        /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
-        /// </summary>
-        [Input("federationSettingsId")]
-        public Input<string>? FederationSettingsId { get; set; }
-
-        /// <summary>
-        /// Unique string that identifies the issuer of the SAML
-        /// </summary>
-        [Input("issuerUri")]
-        public Input<string>? IssuerUri { get; set; }
-
-        /// <summary>
-        /// Human-readable label that identifies the identity provider.
-        /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
-
-        /// <summary>
-        /// Unique 20-hexadecimal digit string that identifies the IdP.
-        /// </summary>
-        [Input("oktaIdpId")]
-        public Input<string>? OktaIdpId { get; set; }
-
-        /// <summary>
-        /// SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+        /// SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
         /// - HTTP POST
         /// - HTTP REDIRECT
         /// </summary>
         [Input("requestBinding")]
         public Input<string>? RequestBinding { get; set; }
 
+        [Input("requestedScopes")]
+        private InputList<string>? _requestedScopes;
+
         /// <summary>
-        /// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+        /// Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+        /// </summary>
+        public InputList<string> RequestedScopes
+        {
+            get => _requestedScopes ?? (_requestedScopes = new InputList<string>());
+            set => _requestedScopes = value;
+        }
+
+        /// <summary>
+        /// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
         /// </summary>
         [Input("responseSignatureAlgorithm")]
         public Input<string>? ResponseSignatureAlgorithm { get; set; }
@@ -298,6 +310,142 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        /// </summary>
+        [Input("userClaim")]
+        public Input<string>? UserClaim { get; set; }
+
+        public FederatedSettingsIdentityProviderArgs()
+        {
+        }
+        public static new FederatedSettingsIdentityProviderArgs Empty => new FederatedSettingsIdentityProviderArgs();
+    }
+
+    public sealed class FederatedSettingsIdentityProviderState : global::Pulumi.ResourceArgs
+    {
+        [Input("associatedDomains")]
+        private InputList<string>? _associatedDomains;
+
+        /// <summary>
+        /// List that contains the domains associated with the identity provider.
+        /// </summary>
+        public InputList<string> AssociatedDomains
+        {
+            get => _associatedDomains ?? (_associatedDomains = new InputList<string>());
+            set => _associatedDomains = value;
+        }
+
+        [Input("audienceClaims")]
+        private InputList<string>? _audienceClaims;
+
+        /// <summary>
+        /// Identifier of the intended recipient of the token used in OIDC IdP.
+        /// </summary>
+        public InputList<string> AudienceClaims
+        {
+            get => _audienceClaims ?? (_audienceClaims = new InputList<string>());
+            set => _audienceClaims = value;
+        }
+
+        /// <summary>
+        /// Client identifier that is assigned to an application by the OIDC Identity Provider.
+        /// </summary>
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
+
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        /// </summary>
+        [Input("federationSettingsId")]
+        public Input<string>? FederationSettingsId { get; set; }
+
+        /// <summary>
+        /// Identifier of the claim which contains OIDC IdP Group IDs in the token.
+        /// </summary>
+        [Input("groupsClaim")]
+        public Input<string>? GroupsClaim { get; set; }
+
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the IdP.
+        /// </summary>
+        [Input("idpId")]
+        public Input<string>? IdpId { get; set; }
+
+        /// <summary>
+        /// Unique string that identifies the issuer of the IdP.
+        /// </summary>
+        [Input("issuerUri")]
+        public Input<string>? IssuerUri { get; set; }
+
+        /// <summary>
+        /// Human-readable label that identifies the identity provider.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Unique 20-hexadecimal digit string that identifies the IdP.
+        /// </summary>
+        [Input("oktaIdpId")]
+        public Input<string>? OktaIdpId { get; set; }
+
+        /// <summary>
+        /// The protocol of the identity provider. Either `SAML` or `OIDC`.
+        /// </summary>
+        [Input("protocol")]
+        public Input<string>? Protocol { get; set; }
+
+        /// <summary>
+        /// SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+        /// - HTTP POST
+        /// - HTTP REDIRECT
+        /// </summary>
+        [Input("requestBinding")]
+        public Input<string>? RequestBinding { get; set; }
+
+        [Input("requestedScopes")]
+        private InputList<string>? _requestedScopes;
+
+        /// <summary>
+        /// Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+        /// </summary>
+        public InputList<string> RequestedScopes
+        {
+            get => _requestedScopes ?? (_requestedScopes = new InputList<string>());
+            set => _requestedScopes = value;
+        }
+
+        /// <summary>
+        /// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        /// </summary>
+        [Input("responseSignatureAlgorithm")]
+        public Input<string>? ResponseSignatureAlgorithm { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether the identity provider has SSO debug enabled.
+        /// </summary>
+        [Input("ssoDebugEnabled")]
+        public Input<bool>? SsoDebugEnabled { get; set; }
+
+        /// <summary>
+        /// Unique string that identifies the intended audience of the SAML assertion.
+        /// </summary>
+        [Input("ssoUrl")]
+        public Input<string>? SsoUrl { get; set; }
+
+        /// <summary>
+        /// String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        /// </summary>
+        [Input("userClaim")]
+        public Input<string>? UserClaim { get; set; }
 
         public FederatedSettingsIdentityProviderState()
         {

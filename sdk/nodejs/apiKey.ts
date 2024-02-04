@@ -5,6 +5,19 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.ApiKey("test", {
+ *     description: "key-name",
+ *     orgId: "<ORG_ID>",
+ *     roleNames: ["ORG_READ_ONLY"],
+ * });
+ * ```
+ *
  * ## Import
  *
  * API Keys must be imported using org ID, API Key ID e.g.

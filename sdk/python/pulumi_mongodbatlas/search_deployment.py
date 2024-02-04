@@ -22,10 +22,9 @@ class SearchDeploymentArgs:
                  timeouts: Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a SearchDeployment resource.
-        :param pulumi.Input[str] cluster_name: Label that identifies the cluster to create search nodes for.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
-        :param pulumi.Input['SearchDeploymentTimeoutsArgs'] timeouts: The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+        :param pulumi.Input[str] cluster_name: Label that identifies the cluster to return the search nodes for.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal character string that identifies the project.
+        :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "project_id", project_id)
@@ -37,7 +36,7 @@ class SearchDeploymentArgs:
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> pulumi.Input[str]:
         """
-        Label that identifies the cluster to create search nodes for.
+        Label that identifies the cluster to return the search nodes for.
         """
         return pulumi.get(self, "cluster_name")
 
@@ -49,7 +48,7 @@ class SearchDeploymentArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal character string that identifies the project.
         """
         return pulumi.get(self, "project_id")
 
@@ -61,7 +60,7 @@ class SearchDeploymentArgs:
     @pulumi.getter
     def specs(self) -> pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]]:
         """
-        List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+        List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
         return pulumi.get(self, "specs")
 
@@ -72,9 +71,6 @@ class SearchDeploymentArgs:
     @property
     @pulumi.getter
     def timeouts(self) -> Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']]:
-        """
-        The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-        """
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
@@ -92,11 +88,10 @@ class _SearchDeploymentState:
                  timeouts: Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering SearchDeployment resources.
-        :param pulumi.Input[str] cluster_name: Label that identifies the cluster to create search nodes for.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
-        :param pulumi.Input[str] state_name: Human-readable label that indicates the current operating condition of this search node deployment.
-        :param pulumi.Input['SearchDeploymentTimeoutsArgs'] timeouts: The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+        :param pulumi.Input[str] cluster_name: Label that identifies the cluster to return the search nodes for.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal character string that identifies the project.
+        :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
+        :param pulumi.Input[str] state_name: Human-readable label that indicates the current operating condition of this search deployment.
         """
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
@@ -113,7 +108,7 @@ class _SearchDeploymentState:
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Label that identifies the cluster to create search nodes for.
+        Label that identifies the cluster to return the search nodes for.
         """
         return pulumi.get(self, "cluster_name")
 
@@ -125,7 +120,7 @@ class _SearchDeploymentState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal character string that identifies the project.
         """
         return pulumi.get(self, "project_id")
 
@@ -137,7 +132,7 @@ class _SearchDeploymentState:
     @pulumi.getter
     def specs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]]]:
         """
-        List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+        List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
         return pulumi.get(self, "specs")
 
@@ -149,7 +144,7 @@ class _SearchDeploymentState:
     @pulumi.getter(name="stateName")
     def state_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Human-readable label that indicates the current operating condition of this search node deployment.
+        Human-readable label that indicates the current operating condition of this search deployment.
         """
         return pulumi.get(self, "state_name")
 
@@ -160,9 +155,6 @@ class _SearchDeploymentState:
     @property
     @pulumi.getter
     def timeouts(self) -> Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']]:
-        """
-        The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-        """
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
@@ -187,21 +179,13 @@ class SearchDeployment(pulumi.CustomResource):
 
         > **NOTE:** Only a single search deployment resource can be defined for each cluster.
 
-        ## Import
-
-        Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
-
-        ```sh
-         $ pulumi import mongodbatlas:index/searchDeployment:SearchDeployment test 650972848269185c55f40ca1-Cluster0
-        ```
-         For more information see[MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
+        ## Example Usage
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cluster_name: Label that identifies the cluster to create search nodes for.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchDeploymentSpecArgs']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
-        :param pulumi.Input[pulumi.InputType['SearchDeploymentTimeoutsArgs']] timeouts: The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+        :param pulumi.Input[str] cluster_name: Label that identifies the cluster to return the search nodes for.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal character string that identifies the project.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchDeploymentSpecArgs']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
         ...
     @overload
@@ -216,14 +200,7 @@ class SearchDeployment(pulumi.CustomResource):
 
         > **NOTE:** Only a single search deployment resource can be defined for each cluster.
 
-        ## Import
-
-        Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
-
-        ```sh
-         $ pulumi import mongodbatlas:index/searchDeployment:SearchDeployment test 650972848269185c55f40ca1-Cluster0
-        ```
-         For more information see[MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
+        ## Example Usage
 
         :param str resource_name: The name of the resource.
         :param SearchDeploymentArgs args: The arguments to use to populate this resource's properties.
@@ -286,11 +263,10 @@ class SearchDeployment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cluster_name: Label that identifies the cluster to create search nodes for.
-        :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchDeploymentSpecArgs']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
-        :param pulumi.Input[str] state_name: Human-readable label that indicates the current operating condition of this search node deployment.
-        :param pulumi.Input[pulumi.InputType['SearchDeploymentTimeoutsArgs']] timeouts: The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
+        :param pulumi.Input[str] cluster_name: Label that identifies the cluster to return the search nodes for.
+        :param pulumi.Input[str] project_id: Unique 24-hexadecimal character string that identifies the project.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchDeploymentSpecArgs']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
+        :param pulumi.Input[str] state_name: Human-readable label that indicates the current operating condition of this search deployment.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -307,7 +283,7 @@ class SearchDeployment(pulumi.CustomResource):
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> pulumi.Output[str]:
         """
-        Label that identifies the cluster to create search nodes for.
+        Label that identifies the cluster to return the search nodes for.
         """
         return pulumi.get(self, "cluster_name")
 
@@ -315,7 +291,7 @@ class SearchDeployment(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal character string that identifies the project.
         """
         return pulumi.get(self, "project_id")
 
@@ -323,7 +299,7 @@ class SearchDeployment(pulumi.CustomResource):
     @pulumi.getter
     def specs(self) -> pulumi.Output[Sequence['outputs.SearchDeploymentSpec']]:
         """
-        List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+        List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
         return pulumi.get(self, "specs")
 
@@ -331,15 +307,12 @@ class SearchDeployment(pulumi.CustomResource):
     @pulumi.getter(name="stateName")
     def state_name(self) -> pulumi.Output[str]:
         """
-        Human-readable label that indicates the current operating condition of this search node deployment.
+        Human-readable label that indicates the current operating condition of this search deployment.
         """
         return pulumi.get(self, "state_name")
 
     @property
     @pulumi.getter
     def timeouts(self) -> pulumi.Output[Optional['outputs.SearchDeploymentTimeouts']]:
-        """
-        The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-        """
         return pulumi.get(self, "timeouts")
 

@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+        /// (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
         /// </summary>
         public readonly string SourceCollection;
 

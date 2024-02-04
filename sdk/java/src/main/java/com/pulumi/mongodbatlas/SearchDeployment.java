@@ -26,120 +26,68 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.SearchDeployment;
- * import com.pulumi.mongodbatlas.SearchDeploymentArgs;
- * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new SearchDeployment(&#34;test&#34;, SearchDeploymentArgs.builder()        
- *             .clusterName(&#34;NAME OF CLUSTER&#34;)
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .specs(SearchDeploymentSpecArgs.builder()
- *                 .instance_size(&#34;S20_HIGHCPU_NVME&#34;)
- *                 .node_count(2)
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- * ## Import
- * 
- * Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
- * 
- * ```sh
- *  $ pulumi import mongodbatlas:index/searchDeployment:SearchDeployment test 650972848269185c55f40ca1-Cluster0
- * ```
- *  For more information see[MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
- * 
  */
 @ResourceType(type="mongodbatlas:index/searchDeployment:SearchDeployment")
 public class SearchDeployment extends com.pulumi.resources.CustomResource {
     /**
-     * Label that identifies the cluster to create search nodes for.
+     * Label that identifies the cluster to return the search nodes for.
      * 
      */
     @Export(name="clusterName", refs={String.class}, tree="[0]")
     private Output<String> clusterName;
 
     /**
-     * @return Label that identifies the cluster to create search nodes for.
+     * @return Label that identifies the cluster to return the search nodes for.
      * 
      */
     public Output<String> clusterName() {
         return this.clusterName;
     }
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal character string that identifies the project.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal character string that identifies the project.
      * 
      */
     public Output<String> projectId() {
         return this.projectId;
     }
     /**
-     * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+     * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      * 
      */
     @Export(name="specs", refs={List.class,SearchDeploymentSpec.class}, tree="[0,1]")
     private Output<List<SearchDeploymentSpec>> specs;
 
     /**
-     * @return List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element. See specs.
+     * @return List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      * 
      */
     public Output<List<SearchDeploymentSpec>> specs() {
         return this.specs;
     }
     /**
-     * Human-readable label that indicates the current operating condition of this search node deployment.
+     * Human-readable label that indicates the current operating condition of this search deployment.
      * 
      */
     @Export(name="stateName", refs={String.class}, tree="[0]")
     private Output<String> stateName;
 
     /**
-     * @return Human-readable label that indicates the current operating condition of this search node deployment.
+     * @return Human-readable label that indicates the current operating condition of this search deployment.
      * 
      */
     public Output<String> stateName() {
         return this.stateName;
     }
-    /**
-     * The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-     * 
-     */
     @Export(name="timeouts", refs={SearchDeploymentTimeouts.class}, tree="[0]")
     private Output</* @Nullable */ SearchDeploymentTimeouts> timeouts;
 
-    /**
-     * @return The time to wait for search nodes to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The attribute must be defined with nested attributes.
-     * 
-     */
     public Output<Optional<SearchDeploymentTimeouts>> timeouts() {
         return Codegen.optional(this.timeouts);
     }

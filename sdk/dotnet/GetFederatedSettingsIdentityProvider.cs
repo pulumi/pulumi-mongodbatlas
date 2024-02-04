@@ -14,6 +14,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
         /// 
+        /// &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -59,6 +60,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
         /// 
+        /// &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -111,9 +113,6 @@ namespace Pulumi.Mongodbatlas
         [Input("federationSettingsId", required: true)]
         public string FederationSettingsId { get; set; } = null!;
 
-        /// <summary>
-        /// Unique 20-hexadecimal digit string that identifies the IdP.
-        /// </summary>
         [Input("identityProviderId", required: true)]
         public string IdentityProviderId { get; set; } = null!;
 
@@ -131,9 +130,6 @@ namespace Pulumi.Mongodbatlas
         [Input("federationSettingsId", required: true)]
         public Input<string> FederationSettingsId { get; set; } = null!;
 
-        /// <summary>
-        /// Unique 20-hexadecimal digit string that identifies the IdP.
-        /// </summary>
         [Input("identityProviderId", required: true)]
         public Input<string> IdentityProviderId { get; set; } = null!;
 
@@ -160,9 +156,17 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableArray<Outputs.GetFederatedSettingsIdentityProviderAssociatedOrgResult> AssociatedOrgs;
         /// <summary>
+        /// Identifier of the intended recipient of the token.
+        /// </summary>
+        public readonly ImmutableArray<string> AudienceClaims;
+        /// <summary>
         /// Identifier for the intended audience of the SAML Assertion.
         /// </summary>
         public readonly string AudienceUri;
+        /// <summary>
+        /// Client identifier that is assigned to an application by the Identity Provider.
+        /// </summary>
+        public readonly string ClientId;
         /// <summary>
         /// Human-readable label that identifies the IdP.
         /// </summary>
@@ -172,10 +176,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string FederationSettingsId;
         /// <summary>
+        /// Identifier of the claim which contains IdP Group IDs in the token.
+        /// </summary>
+        public readonly string GroupsClaim;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string IdentityProviderId;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the IdP
+        /// </summary>
+        public readonly string IdpId;
         /// <summary>
         /// Identifier for the issuer of the SAML Assertion.
         /// </summary>
@@ -186,11 +198,19 @@ namespace Pulumi.Mongodbatlas
         public readonly string OktaIdpId;
         public readonly ImmutableArray<Outputs.GetFederatedSettingsIdentityProviderPemFileInfoResult> PemFileInfos;
         /// <summary>
+        /// The protocol of the identity provider. Either SAML or OIDC.
+        /// </summary>
+        public readonly string Protocol;
+        /// <summary>
         /// SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
         /// - HTTP POST
         /// - HTTP REDIRECT
         /// </summary>
         public readonly string RequestBinding;
+        /// <summary>
+        /// Scopes that MongoDB applications will request from the authorization endpoint.
+        /// </summary>
+        public readonly ImmutableArray<string> RequestedScopes;
         /// <summary>
         /// Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
         /// - SHA-1
@@ -209,6 +229,10 @@ namespace Pulumi.Mongodbatlas
         /// Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Identifier of the claim which contains the user ID in the token.
+        /// </summary>
+        public readonly string UserClaim;
 
         [OutputConstructor]
         private GetFederatedSettingsIdentityProviderResult(
@@ -218,15 +242,23 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetFederatedSettingsIdentityProviderAssociatedOrgResult> associatedOrgs,
 
+            ImmutableArray<string> audienceClaims,
+
             string audienceUri,
+
+            string clientId,
 
             string displayName,
 
             string federationSettingsId,
 
+            string groupsClaim,
+
             string id,
 
             string identityProviderId,
+
+            string idpId,
 
             string issuerUri,
 
@@ -234,7 +266,11 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetFederatedSettingsIdentityProviderPemFileInfoResult> pemFileInfos,
 
+            string protocol,
+
             string requestBinding,
+
+            ImmutableArray<string> requestedScopes,
 
             string responseSignatureAlgorithm,
 
@@ -242,24 +278,33 @@ namespace Pulumi.Mongodbatlas
 
             string ssoUrl,
 
-            string status)
+            string status,
+
+            string userClaim)
         {
             AcsUrl = acsUrl;
             AssociatedDomains = associatedDomains;
             AssociatedOrgs = associatedOrgs;
+            AudienceClaims = audienceClaims;
             AudienceUri = audienceUri;
+            ClientId = clientId;
             DisplayName = displayName;
             FederationSettingsId = federationSettingsId;
+            GroupsClaim = groupsClaim;
             Id = id;
             IdentityProviderId = identityProviderId;
+            IdpId = idpId;
             IssuerUri = issuerUri;
             OktaIdpId = oktaIdpId;
             PemFileInfos = pemFileInfos;
+            Protocol = protocol;
             RequestBinding = requestBinding;
+            RequestedScopes = requestedScopes;
             ResponseSignatureAlgorithm = responseSignatureAlgorithm;
             SsoDebugEnabled = ssoDebugEnabled;
             SsoUrl = ssoUrl;
             Status = status;
+            UserClaim = userClaim;
         }
     }
 }

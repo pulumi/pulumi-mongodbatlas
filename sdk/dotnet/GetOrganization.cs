@@ -102,6 +102,10 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetOrganizationResult
     {
         /// <summary>
+        /// (Optional) Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+        /// </summary>
+        public readonly bool ApiAccessListRequired;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -111,28 +115,45 @@ namespace Pulumi.Mongodbatlas
         public readonly bool IsDeleted;
         public readonly ImmutableArray<Outputs.GetOrganizationLinkResult> Links;
         /// <summary>
+        /// (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
+        /// </summary>
+        public readonly bool MultiFactorAuthRequired;
+        /// <summary>
         /// Human-readable label that identifies the organization.
         /// </summary>
         public readonly string Name;
         public readonly string OrgId;
+        /// <summary>
+        /// (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
+        /// </summary>
+        public readonly bool RestrictEmployeeAccess;
 
         [OutputConstructor]
         private GetOrganizationResult(
+            bool apiAccessListRequired,
+
             string id,
 
             bool isDeleted,
 
             ImmutableArray<Outputs.GetOrganizationLinkResult> links,
 
+            bool multiFactorAuthRequired,
+
             string name,
 
-            string orgId)
+            string orgId,
+
+            bool restrictEmployeeAccess)
         {
+            ApiAccessListRequired = apiAccessListRequired;
             Id = id;
             IsDeleted = isDeleted;
             Links = links;
+            MultiFactorAuthRequired = multiFactorAuthRequired;
             Name = name;
             OrgId = orgId;
+            RestrictEmployeeAccess = restrictEmployeeAccess;
         }
     }
 }

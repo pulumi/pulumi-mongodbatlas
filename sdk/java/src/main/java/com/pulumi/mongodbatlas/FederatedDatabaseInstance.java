@@ -16,7 +16,6 @@ import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstanceStorageDatabase;
 import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstanceStorageStore;
 import java.lang.String;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -172,16 +171,16 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance")
 public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResource {
     @Export(name="cloudProviderConfig", refs={FederatedDatabaseInstanceCloudProviderConfig.class}, tree="[0]")
-    private Output</* @Nullable */ FederatedDatabaseInstanceCloudProviderConfig> cloudProviderConfig;
+    private Output<FederatedDatabaseInstanceCloudProviderConfig> cloudProviderConfig;
 
-    public Output<Optional<FederatedDatabaseInstanceCloudProviderConfig>> cloudProviderConfig() {
-        return Codegen.optional(this.cloudProviderConfig);
+    public Output<FederatedDatabaseInstanceCloudProviderConfig> cloudProviderConfig() {
+        return this.cloudProviderConfig;
     }
     @Export(name="dataProcessRegion", refs={FederatedDatabaseInstanceDataProcessRegion.class}, tree="[0]")
-    private Output</* @Nullable */ FederatedDatabaseInstanceDataProcessRegion> dataProcessRegion;
+    private Output<FederatedDatabaseInstanceDataProcessRegion> dataProcessRegion;
 
-    public Output<Optional<FederatedDatabaseInstanceDataProcessRegion>> dataProcessRegion() {
-        return Codegen.optional(this.dataProcessRegion);
+    public Output<FederatedDatabaseInstanceDataProcessRegion> dataProcessRegion() {
+        return this.dataProcessRegion;
     }
     /**
      * The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
@@ -268,7 +267,7 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      * 
      */
     @Export(name="storageDatabases", refs={List.class,FederatedDatabaseInstanceStorageDatabase.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<FederatedDatabaseInstanceStorageDatabase>> storageDatabases;
+    private Output<List<FederatedDatabaseInstanceStorageDatabase>> storageDatabases;
 
     /**
      * @return Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
@@ -294,8 +293,8 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
      * 
      */
-    public Output<Optional<List<FederatedDatabaseInstanceStorageDatabase>>> storageDatabases() {
-        return Codegen.optional(this.storageDatabases);
+    public Output<List<FederatedDatabaseInstanceStorageDatabase>> storageDatabases() {
+        return this.storageDatabases;
     }
     /**
      * Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.

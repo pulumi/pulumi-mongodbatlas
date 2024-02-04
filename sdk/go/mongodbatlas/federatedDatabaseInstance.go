@@ -164,8 +164,8 @@ import (
 type FederatedDatabaseInstance struct {
 	pulumi.CustomResourceState
 
-	CloudProviderConfig FederatedDatabaseInstanceCloudProviderConfigPtrOutput `pulumi:"cloudProviderConfig"`
-	DataProcessRegion   FederatedDatabaseInstanceDataProcessRegionPtrOutput   `pulumi:"dataProcessRegion"`
+	CloudProviderConfig FederatedDatabaseInstanceCloudProviderConfigOutput `pulumi:"cloudProviderConfig"`
+	DataProcessRegion   FederatedDatabaseInstanceDataProcessRegionOutput   `pulumi:"dataProcessRegion"`
 	// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
 	Hostnames pulumi.StringArrayOutput `pulumi:"hostnames"`
 	// Name of the Atlas Federated Database Instance.
@@ -574,16 +574,16 @@ func (o FederatedDatabaseInstanceOutput) ToFederatedDatabaseInstanceOutputWithCo
 	return o
 }
 
-func (o FederatedDatabaseInstanceOutput) CloudProviderConfig() FederatedDatabaseInstanceCloudProviderConfigPtrOutput {
-	return o.ApplyT(func(v *FederatedDatabaseInstance) FederatedDatabaseInstanceCloudProviderConfigPtrOutput {
+func (o FederatedDatabaseInstanceOutput) CloudProviderConfig() FederatedDatabaseInstanceCloudProviderConfigOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstance) FederatedDatabaseInstanceCloudProviderConfigOutput {
 		return v.CloudProviderConfig
-	}).(FederatedDatabaseInstanceCloudProviderConfigPtrOutput)
+	}).(FederatedDatabaseInstanceCloudProviderConfigOutput)
 }
 
-func (o FederatedDatabaseInstanceOutput) DataProcessRegion() FederatedDatabaseInstanceDataProcessRegionPtrOutput {
-	return o.ApplyT(func(v *FederatedDatabaseInstance) FederatedDatabaseInstanceDataProcessRegionPtrOutput {
+func (o FederatedDatabaseInstanceOutput) DataProcessRegion() FederatedDatabaseInstanceDataProcessRegionOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstance) FederatedDatabaseInstanceDataProcessRegionOutput {
 		return v.DataProcessRegion
-	}).(FederatedDatabaseInstanceDataProcessRegionPtrOutput)
+	}).(FederatedDatabaseInstanceDataProcessRegionOutput)
 }
 
 // The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.

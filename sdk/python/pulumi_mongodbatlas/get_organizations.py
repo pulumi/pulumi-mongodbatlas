@@ -56,6 +56,9 @@ class GetOrganizationsResult:
     @property
     @pulumi.getter(name="includeDeletedOrgs")
     def include_deleted_orgs(self) -> Optional[bool]:
+        warnings.warn("""this parameter is deprecated and will be removed in version 1.16.0""", DeprecationWarning)
+        pulumi.log.warn("""include_deleted_orgs is deprecated: this parameter is deprecated and will be removed in version 1.16.0""")
+
         return pulumi.get(self, "include_deleted_orgs")
 
     @property

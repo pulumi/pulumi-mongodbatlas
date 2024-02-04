@@ -6,6 +6,8 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas.FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
+ *
+ * > **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  * ## Example Usage
  *
  * > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
@@ -33,7 +35,9 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk1297
  * ```
- *  For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+ *  __WARNING:__ Starting from terraform provider version 1.16.0, to import the resource a 24-hexadecimal digit string that identifies the IdP (`idp_id`) will have to be used instead of `okta_idp_id`. See more [here](../guides/1.15.0-upgrade-guide.html.markdown)
+ *
+ * For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
  */
 export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
     /**
@@ -68,11 +72,27 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
      */
     public readonly associatedDomains!: pulumi.Output<string[] | undefined>;
     /**
+     * Identifier of the intended recipient of the token used in OIDC IdP.
+     */
+    public readonly audienceClaims!: pulumi.Output<string[] | undefined>;
+    /**
+     * Client identifier that is assigned to an application by the OIDC Identity Provider.
+     */
+    public readonly clientId!: pulumi.Output<string | undefined>;
+    /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
     public readonly federationSettingsId!: pulumi.Output<string>;
     /**
-     * Unique string that identifies the issuer of the SAML
+     * Identifier of the claim which contains OIDC IdP Group IDs in the token.
+     */
+    public readonly groupsClaim!: pulumi.Output<string | undefined>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the IdP.
+     */
+    public /*out*/ readonly idpId!: pulumi.Output<string>;
+    /**
+     * Unique string that identifies the issuer of the IdP.
      */
     public readonly issuerUri!: pulumi.Output<string>;
     /**
@@ -84,27 +104,39 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
      */
     public /*out*/ readonly oktaIdpId!: pulumi.Output<string>;
     /**
-     * SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+     * The protocol of the identity provider. Either `SAML` or `OIDC`.
+     */
+    public readonly protocol!: pulumi.Output<string>;
+    /**
+     * SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
      * - HTTP POST
      * - HTTP REDIRECT
      */
-    public readonly requestBinding!: pulumi.Output<string>;
+    public readonly requestBinding!: pulumi.Output<string | undefined>;
     /**
-     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+     * Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
      */
-    public readonly responseSignatureAlgorithm!: pulumi.Output<string>;
+    public readonly requestedScopes!: pulumi.Output<string[] | undefined>;
+    /**
+     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+     */
+    public readonly responseSignatureAlgorithm!: pulumi.Output<string | undefined>;
     /**
      * Flag that indicates whether the identity provider has SSO debug enabled.
      */
-    public readonly ssoDebugEnabled!: pulumi.Output<boolean>;
+    public readonly ssoDebugEnabled!: pulumi.Output<boolean | undefined>;
     /**
      * Unique string that identifies the intended audience of the SAML assertion.
      */
-    public readonly ssoUrl!: pulumi.Output<string>;
+    public readonly ssoUrl!: pulumi.Output<string | undefined>;
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
      */
-    public readonly status!: pulumi.Output<string>;
+    public readonly status!: pulumi.Output<string | undefined>;
+    /**
+     * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     */
+    public readonly userClaim!: pulumi.Output<string | undefined>;
 
     /**
      * Create a FederatedSettingsIdentityProvider resource with the given unique name, arguments, and options.
@@ -120,15 +152,22 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as FederatedSettingsIdentityProviderState | undefined;
             resourceInputs["associatedDomains"] = state ? state.associatedDomains : undefined;
+            resourceInputs["audienceClaims"] = state ? state.audienceClaims : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["federationSettingsId"] = state ? state.federationSettingsId : undefined;
+            resourceInputs["groupsClaim"] = state ? state.groupsClaim : undefined;
+            resourceInputs["idpId"] = state ? state.idpId : undefined;
             resourceInputs["issuerUri"] = state ? state.issuerUri : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["oktaIdpId"] = state ? state.oktaIdpId : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
             resourceInputs["requestBinding"] = state ? state.requestBinding : undefined;
+            resourceInputs["requestedScopes"] = state ? state.requestedScopes : undefined;
             resourceInputs["responseSignatureAlgorithm"] = state ? state.responseSignatureAlgorithm : undefined;
             resourceInputs["ssoDebugEnabled"] = state ? state.ssoDebugEnabled : undefined;
             resourceInputs["ssoUrl"] = state ? state.ssoUrl : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["userClaim"] = state ? state.userClaim : undefined;
         } else {
             const args = argsOrState as FederatedSettingsIdentityProviderArgs | undefined;
             if ((!args || args.federationSettingsId === undefined) && !opts.urn) {
@@ -137,30 +176,22 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
             if ((!args || args.issuerUri === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'issuerUri'");
             }
-            if ((!args || args.requestBinding === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'requestBinding'");
-            }
-            if ((!args || args.responseSignatureAlgorithm === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'responseSignatureAlgorithm'");
-            }
-            if ((!args || args.ssoDebugEnabled === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'ssoDebugEnabled'");
-            }
-            if ((!args || args.ssoUrl === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'ssoUrl'");
-            }
-            if ((!args || args.status === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'status'");
-            }
             resourceInputs["associatedDomains"] = args ? args.associatedDomains : undefined;
+            resourceInputs["audienceClaims"] = args ? args.audienceClaims : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["federationSettingsId"] = args ? args.federationSettingsId : undefined;
+            resourceInputs["groupsClaim"] = args ? args.groupsClaim : undefined;
             resourceInputs["issuerUri"] = args ? args.issuerUri : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
             resourceInputs["requestBinding"] = args ? args.requestBinding : undefined;
+            resourceInputs["requestedScopes"] = args ? args.requestedScopes : undefined;
             resourceInputs["responseSignatureAlgorithm"] = args ? args.responseSignatureAlgorithm : undefined;
             resourceInputs["ssoDebugEnabled"] = args ? args.ssoDebugEnabled : undefined;
             resourceInputs["ssoUrl"] = args ? args.ssoUrl : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["userClaim"] = args ? args.userClaim : undefined;
+            resourceInputs["idpId"] = undefined /*out*/;
             resourceInputs["oktaIdpId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -177,11 +208,27 @@ export interface FederatedSettingsIdentityProviderState {
      */
     associatedDomains?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Identifier of the intended recipient of the token used in OIDC IdP.
+     */
+    audienceClaims?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Client identifier that is assigned to an application by the OIDC Identity Provider.
+     */
+    clientId?: pulumi.Input<string>;
+    /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
     federationSettingsId?: pulumi.Input<string>;
     /**
-     * Unique string that identifies the issuer of the SAML
+     * Identifier of the claim which contains OIDC IdP Group IDs in the token.
+     */
+    groupsClaim?: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the IdP.
+     */
+    idpId?: pulumi.Input<string>;
+    /**
+     * Unique string that identifies the issuer of the IdP.
      */
     issuerUri?: pulumi.Input<string>;
     /**
@@ -193,13 +240,21 @@ export interface FederatedSettingsIdentityProviderState {
      */
     oktaIdpId?: pulumi.Input<string>;
     /**
-     * SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+     * The protocol of the identity provider. Either `SAML` or `OIDC`.
+     */
+    protocol?: pulumi.Input<string>;
+    /**
+     * SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
      * - HTTP POST
      * - HTTP REDIRECT
      */
     requestBinding?: pulumi.Input<string>;
     /**
-     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+     * Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
+     */
+    requestedScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
      */
     responseSignatureAlgorithm?: pulumi.Input<string>;
     /**
@@ -214,6 +269,10 @@ export interface FederatedSettingsIdentityProviderState {
      * String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     */
+    userClaim?: pulumi.Input<string>;
 }
 
 /**
@@ -225,11 +284,23 @@ export interface FederatedSettingsIdentityProviderArgs {
      */
     associatedDomains?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Identifier of the intended recipient of the token used in OIDC IdP.
+     */
+    audienceClaims?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Client identifier that is assigned to an application by the OIDC Identity Provider.
+     */
+    clientId?: pulumi.Input<string>;
+    /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
     federationSettingsId: pulumi.Input<string>;
     /**
-     * Unique string that identifies the issuer of the SAML
+     * Identifier of the claim which contains OIDC IdP Group IDs in the token.
+     */
+    groupsClaim?: pulumi.Input<string>;
+    /**
+     * Unique string that identifies the issuer of the IdP.
      */
     issuerUri: pulumi.Input<string>;
     /**
@@ -237,25 +308,37 @@ export interface FederatedSettingsIdentityProviderArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+     * The protocol of the identity provider. Either `SAML` or `OIDC`.
+     */
+    protocol?: pulumi.Input<string>;
+    /**
+     * SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
      * - HTTP POST
      * - HTTP REDIRECT
      */
-    requestBinding: pulumi.Input<string>;
+    requestBinding?: pulumi.Input<string>;
     /**
-     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+     * Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
      */
-    responseSignatureAlgorithm: pulumi.Input<string>;
+    requestedScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+     */
+    responseSignatureAlgorithm?: pulumi.Input<string>;
     /**
      * Flag that indicates whether the identity provider has SSO debug enabled.
      */
-    ssoDebugEnabled: pulumi.Input<boolean>;
+    ssoDebugEnabled?: pulumi.Input<boolean>;
     /**
      * Unique string that identifies the intended audience of the SAML assertion.
      */
-    ssoUrl: pulumi.Input<string>;
+    ssoUrl?: pulumi.Input<string>;
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
      */
-    status: pulumi.Input<string>;
+    status?: pulumi.Input<string>;
+    /**
+     * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     */
+    userClaim?: pulumi.Input<string>;
 }

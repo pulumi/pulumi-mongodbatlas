@@ -23,11 +23,6 @@ func LookupBackupCompliancePolicy(ctx *pulumi.Context, args *LookupBackupComplia
 
 // A collection of arguments for invoking getBackupCompliancePolicy.
 type LookupBackupCompliancePolicyArgs struct {
-	OnDemandPolicyItem  *GetBackupCompliancePolicyOnDemandPolicyItem `pulumi:"onDemandPolicyItem"`
-	PolicyItemDaily     *GetBackupCompliancePolicyPolicyItemDaily    `pulumi:"policyItemDaily"`
-	PolicyItemHourly    *GetBackupCompliancePolicyPolicyItemHourly   `pulumi:"policyItemHourly"`
-	PolicyItemMonthlies []GetBackupCompliancePolicyPolicyItemMonthly `pulumi:"policyItemMonthlies"`
-	PolicyItemWeeklies  []GetBackupCompliancePolicyPolicyItemWeekly  `pulumi:"policyItemWeeklies"`
 	// Unique 24-hexadecimal digit string that identifies your project
 	ProjectId string `pulumi:"projectId"`
 }
@@ -45,12 +40,12 @@ type LookupBackupCompliancePolicyResult struct {
 	// Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
 	EncryptionAtRestEnabled bool `pulumi:"encryptionAtRestEnabled"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                 string                                       `pulumi:"id"`
-	OnDemandPolicyItem *GetBackupCompliancePolicyOnDemandPolicyItem `pulumi:"onDemandPolicyItem"`
+	Id                 string                                      `pulumi:"id"`
+	OnDemandPolicyItem GetBackupCompliancePolicyOnDemandPolicyItem `pulumi:"onDemandPolicyItem"`
 	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
 	PitEnabled          bool                                         `pulumi:"pitEnabled"`
-	PolicyItemDaily     *GetBackupCompliancePolicyPolicyItemDaily    `pulumi:"policyItemDaily"`
-	PolicyItemHourly    *GetBackupCompliancePolicyPolicyItemHourly   `pulumi:"policyItemHourly"`
+	PolicyItemDaily     GetBackupCompliancePolicyPolicyItemDaily     `pulumi:"policyItemDaily"`
+	PolicyItemHourly    GetBackupCompliancePolicyPolicyItemHourly    `pulumi:"policyItemHourly"`
 	PolicyItemMonthlies []GetBackupCompliancePolicyPolicyItemMonthly `pulumi:"policyItemMonthlies"`
 	PolicyItemWeeklies  []GetBackupCompliancePolicyPolicyItemWeekly  `pulumi:"policyItemWeeklies"`
 	ProjectId           string                                       `pulumi:"projectId"`
@@ -79,11 +74,6 @@ func LookupBackupCompliancePolicyOutput(ctx *pulumi.Context, args LookupBackupCo
 
 // A collection of arguments for invoking getBackupCompliancePolicy.
 type LookupBackupCompliancePolicyOutputArgs struct {
-	OnDemandPolicyItem  GetBackupCompliancePolicyOnDemandPolicyItemPtrInput  `pulumi:"onDemandPolicyItem"`
-	PolicyItemDaily     GetBackupCompliancePolicyPolicyItemDailyPtrInput     `pulumi:"policyItemDaily"`
-	PolicyItemHourly    GetBackupCompliancePolicyPolicyItemHourlyPtrInput    `pulumi:"policyItemHourly"`
-	PolicyItemMonthlies GetBackupCompliancePolicyPolicyItemMonthlyArrayInput `pulumi:"policyItemMonthlies"`
-	PolicyItemWeeklies  GetBackupCompliancePolicyPolicyItemWeeklyArrayInput  `pulumi:"policyItemWeeklies"`
 	// Unique 24-hexadecimal digit string that identifies your project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
@@ -137,10 +127,10 @@ func (o LookupBackupCompliancePolicyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupBackupCompliancePolicyResultOutput) OnDemandPolicyItem() GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput {
-	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) *GetBackupCompliancePolicyOnDemandPolicyItem {
+func (o LookupBackupCompliancePolicyResultOutput) OnDemandPolicyItem() GetBackupCompliancePolicyOnDemandPolicyItemOutput {
+	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) GetBackupCompliancePolicyOnDemandPolicyItem {
 		return v.OnDemandPolicyItem
-	}).(GetBackupCompliancePolicyOnDemandPolicyItemPtrOutput)
+	}).(GetBackupCompliancePolicyOnDemandPolicyItemOutput)
 }
 
 // Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -148,16 +138,16 @@ func (o LookupBackupCompliancePolicyResultOutput) PitEnabled() pulumi.BoolOutput
 	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
 }
 
-func (o LookupBackupCompliancePolicyResultOutput) PolicyItemDaily() GetBackupCompliancePolicyPolicyItemDailyPtrOutput {
-	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) *GetBackupCompliancePolicyPolicyItemDaily {
+func (o LookupBackupCompliancePolicyResultOutput) PolicyItemDaily() GetBackupCompliancePolicyPolicyItemDailyOutput {
+	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) GetBackupCompliancePolicyPolicyItemDaily {
 		return v.PolicyItemDaily
-	}).(GetBackupCompliancePolicyPolicyItemDailyPtrOutput)
+	}).(GetBackupCompliancePolicyPolicyItemDailyOutput)
 }
 
-func (o LookupBackupCompliancePolicyResultOutput) PolicyItemHourly() GetBackupCompliancePolicyPolicyItemHourlyPtrOutput {
-	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) *GetBackupCompliancePolicyPolicyItemHourly {
+func (o LookupBackupCompliancePolicyResultOutput) PolicyItemHourly() GetBackupCompliancePolicyPolicyItemHourlyOutput {
+	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) GetBackupCompliancePolicyPolicyItemHourly {
 		return v.PolicyItemHourly
-	}).(GetBackupCompliancePolicyPolicyItemHourlyPtrOutput)
+	}).(GetBackupCompliancePolicyPolicyItemHourlyOutput)
 }
 
 func (o LookupBackupCompliancePolicyResultOutput) PolicyItemMonthlies() GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput {

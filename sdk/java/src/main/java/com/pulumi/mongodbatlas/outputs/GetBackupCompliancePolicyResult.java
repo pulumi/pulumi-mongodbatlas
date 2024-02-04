@@ -15,8 +15,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetBackupCompliancePolicyResult {
@@ -50,16 +48,16 @@ public final class GetBackupCompliancePolicyResult {
      * 
      */
     private String id;
-    private @Nullable GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem;
+    private GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem;
     /**
      * @return Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      * 
      */
     private Boolean pitEnabled;
-    private @Nullable GetBackupCompliancePolicyPolicyItemDaily policyItemDaily;
-    private @Nullable GetBackupCompliancePolicyPolicyItemHourly policyItemHourly;
-    private @Nullable List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies;
-    private @Nullable List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies;
+    private GetBackupCompliancePolicyPolicyItemDaily policyItemDaily;
+    private GetBackupCompliancePolicyPolicyItemHourly policyItemHourly;
+    private List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies;
+    private List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies;
     private String projectId;
     /**
      * @return Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can&#39;t exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -125,8 +123,8 @@ public final class GetBackupCompliancePolicyResult {
     public String id() {
         return this.id;
     }
-    public Optional<GetBackupCompliancePolicyOnDemandPolicyItem> onDemandPolicyItem() {
-        return Optional.ofNullable(this.onDemandPolicyItem);
+    public GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem() {
+        return this.onDemandPolicyItem;
     }
     /**
      * @return Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -135,17 +133,17 @@ public final class GetBackupCompliancePolicyResult {
     public Boolean pitEnabled() {
         return this.pitEnabled;
     }
-    public Optional<GetBackupCompliancePolicyPolicyItemDaily> policyItemDaily() {
-        return Optional.ofNullable(this.policyItemDaily);
+    public GetBackupCompliancePolicyPolicyItemDaily policyItemDaily() {
+        return this.policyItemDaily;
     }
-    public Optional<GetBackupCompliancePolicyPolicyItemHourly> policyItemHourly() {
-        return Optional.ofNullable(this.policyItemHourly);
+    public GetBackupCompliancePolicyPolicyItemHourly policyItemHourly() {
+        return this.policyItemHourly;
     }
     public List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies() {
-        return this.policyItemMonthlies == null ? List.of() : this.policyItemMonthlies;
+        return this.policyItemMonthlies;
     }
     public List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies() {
-        return this.policyItemWeeklies == null ? List.of() : this.policyItemWeeklies;
+        return this.policyItemWeeklies;
     }
     public String projectId() {
         return this.projectId;
@@ -194,12 +192,12 @@ public final class GetBackupCompliancePolicyResult {
         private Boolean copyProtectionEnabled;
         private Boolean encryptionAtRestEnabled;
         private String id;
-        private @Nullable GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem;
+        private GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem;
         private Boolean pitEnabled;
-        private @Nullable GetBackupCompliancePolicyPolicyItemDaily policyItemDaily;
-        private @Nullable GetBackupCompliancePolicyPolicyItemHourly policyItemHourly;
-        private @Nullable List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies;
-        private @Nullable List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies;
+        private GetBackupCompliancePolicyPolicyItemDaily policyItemDaily;
+        private GetBackupCompliancePolicyPolicyItemHourly policyItemHourly;
+        private List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies;
+        private List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies;
         private String projectId;
         private Integer restoreWindowDays;
         private String state;
@@ -276,8 +274,10 @@ public final class GetBackupCompliancePolicyResult {
             return this;
         }
         @CustomType.Setter
-        public Builder onDemandPolicyItem(@Nullable GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem) {
-
+        public Builder onDemandPolicyItem(GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem) {
+            if (onDemandPolicyItem == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "onDemandPolicyItem");
+            }
             this.onDemandPolicyItem = onDemandPolicyItem;
             return this;
         }
@@ -290,20 +290,26 @@ public final class GetBackupCompliancePolicyResult {
             return this;
         }
         @CustomType.Setter
-        public Builder policyItemDaily(@Nullable GetBackupCompliancePolicyPolicyItemDaily policyItemDaily) {
-
+        public Builder policyItemDaily(GetBackupCompliancePolicyPolicyItemDaily policyItemDaily) {
+            if (policyItemDaily == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "policyItemDaily");
+            }
             this.policyItemDaily = policyItemDaily;
             return this;
         }
         @CustomType.Setter
-        public Builder policyItemHourly(@Nullable GetBackupCompliancePolicyPolicyItemHourly policyItemHourly) {
-
+        public Builder policyItemHourly(GetBackupCompliancePolicyPolicyItemHourly policyItemHourly) {
+            if (policyItemHourly == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "policyItemHourly");
+            }
             this.policyItemHourly = policyItemHourly;
             return this;
         }
         @CustomType.Setter
-        public Builder policyItemMonthlies(@Nullable List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies) {
-
+        public Builder policyItemMonthlies(List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies) {
+            if (policyItemMonthlies == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "policyItemMonthlies");
+            }
             this.policyItemMonthlies = policyItemMonthlies;
             return this;
         }
@@ -311,8 +317,10 @@ public final class GetBackupCompliancePolicyResult {
             return policyItemMonthlies(List.of(policyItemMonthlies));
         }
         @CustomType.Setter
-        public Builder policyItemWeeklies(@Nullable List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies) {
-
+        public Builder policyItemWeeklies(List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies) {
+            if (policyItemWeeklies == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "policyItemWeeklies");
+            }
             this.policyItemWeeklies = policyItemWeeklies;
             return this;
         }

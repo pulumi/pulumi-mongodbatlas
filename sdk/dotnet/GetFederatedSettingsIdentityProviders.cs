@@ -14,6 +14,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
         /// 
+        /// &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -56,6 +57,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
         /// 
+        /// &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         /// 
         /// {{% examples %}}
         /// ## Example Usage

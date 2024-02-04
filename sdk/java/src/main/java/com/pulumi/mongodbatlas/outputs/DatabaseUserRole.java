@@ -18,7 +18,7 @@ public final class DatabaseUserRole {
      */
     private @Nullable String collectionName;
     /**
-     * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+     * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
      * 
      */
     private String databaseName;
@@ -37,7 +37,7 @@ public final class DatabaseUserRole {
         return Optional.ofNullable(this.collectionName);
     }
     /**
-     * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+     * @return Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
      * 
      */
     public String databaseName() {

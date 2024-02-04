@@ -22,7 +22,7 @@ class GetSearchIndexesResult:
     """
     A collection of values returned by getSearchIndexes.
     """
-    def __init__(__self__, cluster_name=None, collection_name=None, database=None, id=None, items_per_page=None, page_num=None, project_id=None, results=None, total_count=None):
+    def __init__(__self__, cluster_name=None, collection_name=None, database=None, id=None, project_id=None, results=None, total_count=None):
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
         pulumi.set(__self__, "cluster_name", cluster_name)
@@ -35,12 +35,6 @@ class GetSearchIndexesResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if items_per_page and not isinstance(items_per_page, int):
-            raise TypeError("Expected argument 'items_per_page' to be a int")
-        pulumi.set(__self__, "items_per_page", items_per_page)
-        if page_num and not isinstance(page_num, int):
-            raise TypeError("Expected argument 'page_num' to be a int")
-        pulumi.set(__self__, "page_num", page_num)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -81,22 +75,6 @@ class GetSearchIndexesResult:
         return pulumi.get(self, "id")
 
     @property
-    @pulumi.getter(name="itemsPerPage")
-    def items_per_page(self) -> Optional[int]:
-        warnings.warn("""this parameter is deprecated and will be removed in version 1.15.0""", DeprecationWarning)
-        pulumi.log.warn("""items_per_page is deprecated: this parameter is deprecated and will be removed in version 1.15.0""")
-
-        return pulumi.get(self, "items_per_page")
-
-    @property
-    @pulumi.getter(name="pageNum")
-    def page_num(self) -> Optional[int]:
-        warnings.warn("""this parameter is deprecated and will be removed in version 1.15.0""", DeprecationWarning)
-        pulumi.log.warn("""page_num is deprecated: this parameter is deprecated and will be removed in version 1.15.0""")
-
-        return pulumi.get(self, "page_num")
-
-    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
@@ -128,8 +106,6 @@ class AwaitableGetSearchIndexesResult(GetSearchIndexesResult):
             collection_name=self.collection_name,
             database=self.database,
             id=self.id,
-            items_per_page=self.items_per_page,
-            page_num=self.page_num,
             project_id=self.project_id,
             results=self.results,
             total_count=self.total_count)
@@ -138,8 +114,6 @@ class AwaitableGetSearchIndexesResult(GetSearchIndexesResult):
 def get_search_indexes(cluster_name: Optional[str] = None,
                        collection_name: Optional[str] = None,
                        database: Optional[str] = None,
-                       items_per_page: Optional[int] = None,
-                       page_num: Optional[int] = None,
                        project_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSearchIndexesResult:
     """
@@ -151,16 +125,12 @@ def get_search_indexes(cluster_name: Optional[str] = None,
     :param str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
     :param str collection_name: Name of the collection with one or more Atlas Search indexes.
     :param str database: (Required) Name of the database the collection is in.
-    :param int items_per_page: Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-    :param int page_num: Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
     :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
     __args__['collectionName'] = collection_name
     __args__['database'] = database
-    __args__['itemsPerPage'] = items_per_page
-    __args__['pageNum'] = page_num
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getSearchIndexes:getSearchIndexes', __args__, opts=opts, typ=GetSearchIndexesResult).value
@@ -170,8 +140,6 @@ def get_search_indexes(cluster_name: Optional[str] = None,
         collection_name=pulumi.get(__ret__, 'collection_name'),
         database=pulumi.get(__ret__, 'database'),
         id=pulumi.get(__ret__, 'id'),
-        items_per_page=pulumi.get(__ret__, 'items_per_page'),
-        page_num=pulumi.get(__ret__, 'page_num'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
@@ -181,8 +149,6 @@ def get_search_indexes(cluster_name: Optional[str] = None,
 def get_search_indexes_output(cluster_name: Optional[pulumi.Input[str]] = None,
                               collection_name: Optional[pulumi.Input[str]] = None,
                               database: Optional[pulumi.Input[str]] = None,
-                              items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
-                              page_num: Optional[pulumi.Input[Optional[int]]] = None,
                               project_id: Optional[pulumi.Input[str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSearchIndexesResult]:
     """
@@ -194,8 +160,6 @@ def get_search_indexes_output(cluster_name: Optional[pulumi.Input[str]] = None,
     :param str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
     :param str collection_name: Name of the collection with one or more Atlas Search indexes.
     :param str database: (Required) Name of the database the collection is in.
-    :param int items_per_page: Number of items that Atlas returns per page, up to a maximum of 500. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
-    :param int page_num: Page number, starting with one, that Atlas returns of the total number of objects. **WARNING:** this parameter is deprecated and will be removed in version 1.15.0
     :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
     """
     ...

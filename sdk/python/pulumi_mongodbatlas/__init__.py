@@ -16,7 +16,6 @@ from .cloud_backup_snapshot import *
 from .cloud_backup_snapshot_export_bucket import *
 from .cloud_backup_snapshot_export_job import *
 from .cloud_backup_snapshot_restore_job import *
-from .cloud_provider_access import *
 from .cloud_provider_access_authorization import *
 from .cloud_provider_access_setup import *
 from .cluster import *
@@ -54,7 +53,6 @@ from .get_cloud_backup_snapshot_export_jobs import *
 from .get_cloud_backup_snapshot_restore_job import *
 from .get_cloud_backup_snapshot_restore_jobs import *
 from .get_cloud_backup_snapshots import *
-from .get_cloud_provider_access import *
 from .get_cloud_provider_access_setup import *
 from .get_cluster import *
 from .get_cluster_outage_simulation import *
@@ -248,14 +246,6 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob": "CloudBackupSnapshotRestoreJob"
-  }
- },
- {
-  "pkg": "mongodbatlas",
-  "mod": "index/cloudProviderAccess",
-  "fqn": "pulumi_mongodbatlas",
-  "classes": {
-   "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess": "CloudProviderAccess"
   }
  },
  {
