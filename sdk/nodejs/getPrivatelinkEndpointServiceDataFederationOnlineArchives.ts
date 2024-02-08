@@ -6,6 +6,29 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const atlas_project = new mongodbatlas.Project("atlas-project", {orgId: _var.atlas_org_id});
+ * const test = new mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", {
+ *     projectId: atlas_project.id,
+ *     endpointId: "<PRIVATE-ENDPOINT-SERVICE-ID>",
+ *     providerName: "AWS",
+ *     comment: "Test",
+ * });
+ * const testDataSource = mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput({
+ *     projectId: atlas_project.id,
+ * });
+ * ```
+ */
 export function getPrivatelinkEndpointServiceDataFederationOnlineArchives(args: GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -38,6 +61,29 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
      */
     readonly results: outputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult[];
 }
+/**
+ * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const atlas_project = new mongodbatlas.Project("atlas-project", {orgId: _var.atlas_org_id});
+ * const test = new mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", {
+ *     projectId: atlas_project.id,
+ *     endpointId: "<PRIVATE-ENDPOINT-SERVICE-ID>",
+ *     providerName: "AWS",
+ *     comment: "Test",
+ * });
+ * const testDataSource = mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput({
+ *     projectId: atlas_project.id,
+ * });
+ * ```
+ */
 export function getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput(args: GetPrivatelinkEndpointServiceDataFederationOnlineArchivesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult> {
     return pulumi.output(args).apply((a: any) => getPrivatelinkEndpointServiceDataFederationOnlineArchives(a, opts))
 }

@@ -563,8 +563,8 @@ github.com/mitchellh/reflectwalk v1.0.2 h1:G2LzWKi524PWgd3mLHV8Y5k7s6XUvT0Gef6zx
 github.com/mitchellh/reflectwalk v1.0.2/go.mod h1:mSTlrgnPZtwu0c4WaC2kGObEpuNDbx0jmZXqmk4esnw=
 github.com/mongodb-forks/digest v1.0.5 h1:EJu3wtLZcA0HCvsZpX5yuD193/sW9tHiNvrEM5apXMk=
 github.com/mongodb-forks/digest v1.0.5/go.mod h1:rb+EX8zotClD5Dj4NdgxnJXG9nwrlx3NWKJ8xttz1Dg=
-github.com/mongodb/terraform-provider-mongodbatlas v1.15.0 h1:SvfGIH0w6KQzlbwhTQ2eNio2kPBSTN/u3dSC+AJNz3A=
-github.com/mongodb/terraform-provider-mongodbatlas v1.15.0/go.mod h1:5j6bGNWTTHyrpwEXjYzr/wg5WnZUizWQMR/MwQQNzFo=
+github.com/mongodb/terraform-provider-mongodbatlas v1.15.1 h1:6P2XNhN9eQ4IhA/ozg1uxBhyJZEEX60Tly1VRpct+Pc=
+github.com/mongodb/terraform-provider-mongodbatlas v1.15.1/go.mod h1:5j6bGNWTTHyrpwEXjYzr/wg5WnZUizWQMR/MwQQNzFo=
 github.com/mwielbut/pointy v1.1.0 h1:U5/YEfoIkaGCHv0St3CgjduqXID4FNRoyZgLM1kY9vg=
 github.com/mwielbut/pointy v1.1.0/go.mod h1:MvvO+uMFj9T5DMda33HlvogsFBX7pWWKAkFIn4teYwY=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=
