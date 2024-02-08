@@ -5,7 +5,7 @@ go 1.21.4
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.5.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.32.0
-	github.com/mongodb/terraform-provider-mongodbatlas v1.15.0
+	github.com/mongodb/terraform-provider-mongodbatlas v1.15.1
 )
 
 require (
