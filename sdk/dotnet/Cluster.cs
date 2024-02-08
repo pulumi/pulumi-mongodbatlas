@@ -288,7 +288,7 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/cluster:Cluster my_cluster 1112222b3bf99403840e8934-Cluster0
     /// ```
-    ///  See detailed information for arguments and attributes[MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+    ///  See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cluster:Cluster")]
     public partial class Cluster : global::Pulumi.CustomResource

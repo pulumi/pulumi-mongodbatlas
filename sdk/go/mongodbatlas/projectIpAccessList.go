@@ -134,7 +134,7 @@ import (
 //
 // ```
 //
-//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/access-lists/)
+//	For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/access-lists/)
 type ProjectIpAccessList struct {
 	pulumi.CustomResourceState
 

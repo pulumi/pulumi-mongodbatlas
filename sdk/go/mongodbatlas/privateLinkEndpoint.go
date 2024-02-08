@@ -62,7 +62,7 @@ import (
 //
 // ```
 //
-//	See detailed information for arguments and attributes[MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//)
+//	See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//)
 type PrivateLinkEndpoint struct {
 	pulumi.CustomResourceState
 

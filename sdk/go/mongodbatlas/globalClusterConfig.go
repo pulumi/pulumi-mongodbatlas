@@ -171,7 +171,7 @@ import (
 //
 // ```
 //
-//	See detailed information for arguments and attributes[MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
+//	See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
 type GlobalClusterConfig struct {
 	pulumi.CustomResourceState
 

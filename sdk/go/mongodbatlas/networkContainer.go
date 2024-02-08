@@ -121,7 +121,7 @@ import (
 //
 // ```
 //
-//	See detailed information for arguments and attributes[MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
+//	See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
 //
 // -> __NOTE:__ If you need to get an existing container ID see the How-To Guide.
 type NetworkContainer struct {

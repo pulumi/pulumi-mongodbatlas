@@ -87,7 +87,7 @@ import (
 //
 // ```
 //
-//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
+//	For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
 type MaintenanceWindow struct {
 	pulumi.CustomResourceState
 

@@ -86,7 +86,7 @@ import (
 //
 // ```
 //
-//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
+//	For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
 type CloudBackupSnapshotRestoreJob struct {
 	pulumi.CustomResourceState
 

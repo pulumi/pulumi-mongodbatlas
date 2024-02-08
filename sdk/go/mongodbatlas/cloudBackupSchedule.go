@@ -22,7 +22,7 @@ import (
 //
 // ```
 //
-//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
+//	For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
 type CloudBackupSchedule struct {
 	pulumi.CustomResourceState
 

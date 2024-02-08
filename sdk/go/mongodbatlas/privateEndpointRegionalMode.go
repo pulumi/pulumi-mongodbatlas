@@ -40,7 +40,7 @@ import (
 //
 // ```
 //
-//	See detailed information for arguments and attributes__Private Endpoints__ [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
+//	See detailed information for arguments and attributes: __Private Endpoints__ [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
 type PrivateEndpointRegionalMode struct {
 	pulumi.CustomResourceState
 
