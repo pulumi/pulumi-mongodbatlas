@@ -9573,15 +9573,219 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> getPrivatelinkEndpointServiceDataFederationOnlineArchivePlain(GetPrivatelinkEndpointServiceDataFederationOnlineArchivePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", TypeShape.of(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var atlas_project = new Project(&#34;atlas-project&#34;, ProjectArgs.builder()        
+     *             .orgId(var_.atlas_org_id())
+     *             .build());
+     * 
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *             .projectId(atlas_project.id())
+     *             .endpointId(&#34;&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;&#34;)
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;Test&#34;)
+     *             .build());
+     * 
+     *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs.builder()
+     *             .projectId(atlas_project.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult> getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs args) {
         return getPrivatelinkEndpointServiceDataFederationOnlineArchives(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var atlas_project = new Project(&#34;atlas-project&#34;, ProjectArgs.builder()        
+     *             .orgId(var_.atlas_org_id())
+     *             .build());
+     * 
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *             .projectId(atlas_project.id())
+     *             .endpointId(&#34;&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;&#34;)
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;Test&#34;)
+     *             .build());
+     * 
+     *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs.builder()
+     *             .projectId(atlas_project.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static CompletableFuture<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult> getPrivatelinkEndpointServiceDataFederationOnlineArchivesPlain(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesPlainArgs args) {
         return getPrivatelinkEndpointServiceDataFederationOnlineArchivesPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var atlas_project = new Project(&#34;atlas-project&#34;, ProjectArgs.builder()        
+     *             .orgId(var_.atlas_org_id())
+     *             .build());
+     * 
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *             .projectId(atlas_project.id())
+     *             .endpointId(&#34;&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;&#34;)
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;Test&#34;)
+     *             .build());
+     * 
+     *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs.builder()
+     *             .projectId(atlas_project.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult> getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", TypeShape.of(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var atlas_project = new Project(&#34;atlas-project&#34;, ProjectArgs.builder()        
+     *             .orgId(var_.atlas_org_id())
+     *             .build());
+     * 
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *             .projectId(atlas_project.id())
+     *             .endpointId(&#34;&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;&#34;)
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;Test&#34;)
+     *             .build());
+     * 
+     *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs.builder()
+     *             .projectId(atlas_project.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
     public static CompletableFuture<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult> getPrivatelinkEndpointServiceDataFederationOnlineArchivesPlain(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", TypeShape.of(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult.class), args, Utilities.withVersion(options));
     }

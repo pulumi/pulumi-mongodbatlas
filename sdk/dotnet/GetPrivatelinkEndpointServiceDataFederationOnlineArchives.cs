@@ -11,9 +11,89 @@ namespace Pulumi.Mongodbatlas
 {
     public static class GetPrivatelinkEndpointServiceDataFederationOnlineArchives
     {
+        /// <summary>
+        /// `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
+        ///     {
+        ///         OrgId = @var.Atlas_org_id,
+        ///     });
+        /// 
+        ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
+        ///     {
+        ///         ProjectId = atlas_project.Id,
+        ///         EndpointId = "&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;",
+        ///         ProviderName = "AWS",
+        ///         Comment = "Test",
+        ///     });
+        /// 
+        ///     var testDataSource = Mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchives.Invoke(new()
+        ///     {
+        ///         ProjectId = atlas_project.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult> InvokeAsync(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult>("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", args ?? new GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
+        ///     {
+        ///         OrgId = @var.Atlas_org_id,
+        ///     });
+        /// 
+        ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
+        ///     {
+        ///         ProjectId = atlas_project.Id,
+        ///         EndpointId = "&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;",
+        ///         ProviderName = "AWS",
+        ///         Comment = "Test",
+        ///     });
+        /// 
+        ///     var testDataSource = Mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchives.Invoke(new()
+        ///     {
+        ///         ProjectId = atlas_project.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult> Invoke(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult>("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", args ?? new GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeArgs(), options.WithDefaults());
     }

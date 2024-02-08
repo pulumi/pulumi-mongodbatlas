@@ -11,6 +11,47 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewProject(ctx, "atlas-project", &mongodbatlas.ProjectArgs{
+//				OrgId: pulumi.Any(_var.Atlas_org_id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs{
+//				ProjectId:    atlas_project.ID(),
+//				EndpointId:   pulumi.String("<PRIVATE-ENDPOINT-SERVICE-ID>"),
+//				ProviderName: pulumi.String("AWS"),
+//				Comment:      pulumi.String("Test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput(ctx, mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesOutputArgs{
+//				ProjectId: atlas_project.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupPrivatelinkEndpointServiceDataFederationOnlineArchives(ctx *pulumi.Context, args *LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs, opts ...pulumi.InvokeOption) (*LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
