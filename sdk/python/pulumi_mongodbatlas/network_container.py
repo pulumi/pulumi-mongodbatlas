@@ -428,7 +428,7 @@ class NetworkContainer(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a
         ```
-         See detailed information for arguments and attributes[MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
+         See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
 
         -> __NOTE:__ If you need to get an existing container ID see the How-To Guide.
 
@@ -513,7 +513,7 @@ class NetworkContainer(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a
         ```
-         See detailed information for arguments and attributes[MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
+         See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
 
         -> __NOTE:__ If you need to get an existing container ID see the How-To Guide.
 

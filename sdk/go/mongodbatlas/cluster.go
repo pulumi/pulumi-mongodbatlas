@@ -324,7 +324,7 @@ import (
 //
 // ```
 //
-//	See detailed information for arguments and attributes[MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+//	See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 type Cluster struct {
 	pulumi.CustomResourceState
 

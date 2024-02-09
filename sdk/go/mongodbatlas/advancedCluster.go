@@ -423,7 +423,7 @@ import (
 //
 // ```
 //
-//	See detailed information for arguments and attributes[MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
+//	See detailed information for arguments and attributes: [MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
 type AdvancedCluster struct {
 	pulumi.CustomResourceState
 
