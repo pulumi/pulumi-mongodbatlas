@@ -65,7 +65,7 @@ import (
 //
 // ```
 //
-//	For more information see[MongoDB Atlas API - Serverless Private Endpoints](https://www.mongodb.com/docs/atlas/reference/api/serverless-private-endpoints-get-one/).
+//	For more information see: [MongoDB Atlas API - Serverless Private Endpoints](https://www.mongodb.com/docs/atlas/reference/api/serverless-private-endpoints-get-one/).
 type PrivatelinkEndpointServerless struct {
 	pulumi.CustomResourceState
 
