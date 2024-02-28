@@ -49,6 +49,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Container example provided but not always required,
+//			// see network_container documentation for details.
 //			_, err := mongodbatlas.NewNetworkContainer(ctx, "testNetworkContainer", &mongodbatlas.NetworkContainerArgs{
 //				ProjectId:      pulumi.Any(local.Project_id),
 //				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
@@ -58,6 +60,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create the peering connection request
 //			testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
 //				AccepterRegionName:  pulumi.String("us-east-1"),
 //				ProjectId:           pulumi.Any(local.Project_id),
@@ -70,6 +73,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// the following assumes an AWS provider is configured
+//			// Accept the peering connection request
 //			_, err = ec2.NewVpcPeeringConnectionAccepter(ctx, "peer", &ec2.VpcPeeringConnectionAccepterArgs{
 //				VpcPeeringConnectionId: testNetworkPeering.ConnectionId,
 //				AutoAccept:             pulumi.Bool(true),
@@ -99,6 +104,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Container example provided but not always required,
+//			// see network_container documentation for details.
 //			testNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "testNetworkContainer", &mongodbatlas.NetworkContainerArgs{
 //				ProjectId:      pulumi.Any(local.Project_id),
 //				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
@@ -107,6 +114,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create the peering connection request
 //			testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
 //				ProjectId:    pulumi.Any(local.Project_id),
 //				ContainerId:  testNetworkContainer.ContainerId,
@@ -123,6 +131,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create the GCP peer
 //			_, err = compute.NewNetworkPeering(ctx, "peering", &compute.NetworkPeeringArgs{
 //				Network: *pulumi.String(_default.SelfLink),
 //				PeerNetwork: pulumi.All(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).ApplyT(func(_args []interface{}) (string, error) {
@@ -134,6 +143,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create the cluster once the peering connection is completed
 //			_, err = mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
 //				NumShards:   pulumi.Int(1),
@@ -180,6 +190,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Ensure you have created the required Azure service principal first, see
+//			// see https://docs.atlas.mongodb.com/security-vpc-peering/
+//			// Container example provided but not always required,
+//			// see network_container documentation for details.
 //			testNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "testNetworkContainer", &mongodbatlas.NetworkContainerArgs{
 //				ProjectId:      pulumi.Any(local.Project_id),
 //				AtlasCidrBlock: pulumi.Any(local.ATLAS_CIDR_BLOCK),
@@ -189,6 +203,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create the peering connection request
 //			_, err = mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
 //				ProjectId:           pulumi.Any(local.Project_id),
 //				ContainerId:         testNetworkContainer.ContainerId,
@@ -201,6 +216,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create the cluster once the peering connection is completed
 //			_, err = mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
 //				ClusterType: pulumi.String("REPLICASET"),
@@ -249,6 +265,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create an Atlas cluster, this creates a container if one
+//			// does not yet exist for this AWS region
 //			test, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
 //				ClusterType: pulumi.String("REPLICASET"),
@@ -273,6 +291,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// the following assumes an AWS provider is configured
 //			_, err = ec2.NewDefaultVpc(ctx, "default", &ec2.DefaultVpcArgs{
 //				Tags: pulumi.StringMap{
 //					"Name": pulumi.String("Default VPC"),
@@ -281,6 +300,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create the peering connection request
 //			mongoPeer, err := mongodbatlas.NewNetworkPeering(ctx, "mongoPeer", &mongodbatlas.NetworkPeeringArgs{
 //				AccepterRegionName:  pulumi.String("us-east-2"),
 //				ProjectId:           pulumi.Any(local.Project_id),
@@ -293,6 +313,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Accept the connection
 //			_, err = ec2.NewVpcPeeringConnectionAccepter(ctx, "awsPeer", &ec2.VpcPeeringConnectionAccepterArgs{
 //				VpcPeeringConnectionId: mongoPeer.ConnectionId,
 //				AutoAccept:             pulumi.Bool(true),
@@ -324,6 +345,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create an Atlas cluster, this creates a container if one
+//			// does not yet exist for this GCP
 //			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
 //				ClusterType: pulumi.String("REPLICASET"),
@@ -348,6 +371,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create the peering connection request
 //			testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
 //				ProjectId:      pulumi.Any(local.Project_id),
 //				AtlasCidrBlock: pulumi.String("192.168.0.0/18"),
@@ -365,6 +389,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create the GCP peer
 //			_, err = compute.NewNetworkPeering(ctx, "peering", &compute.NetworkPeeringArgs{
 //				Network: *pulumi.String(_default.SelfLink),
 //				PeerNetwork: pulumi.All(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).ApplyT(func(_args []interface{}) (string, error) {
@@ -395,6 +420,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Ensure you have created the required Azure service principal first, see
+//			// see https://docs.atlas.mongodb.com/security-vpc-peering/
+//			// Create an Atlas cluster, this creates a container if one
+//			// does not yet exist for this AZURE region
 //			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
 //				ClusterType: pulumi.String("REPLICASET"),
@@ -419,6 +448,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create the peering connection request
 //			_, err = mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
 //				ProjectId:           pulumi.Any(local.Project_id),
 //				ContainerId:         testCluster.ContainerId,
