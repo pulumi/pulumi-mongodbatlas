@@ -228,8 +228,10 @@ class OrgInvitation(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+
         ### S
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -239,7 +241,9 @@ class OrgInvitation(pulumi.CustomResource):
             roles=["ORG_OWNER"],
             username="test0-acc-username")
         ```
+        <!--End PulumiCodeChooser -->
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -252,7 +256,9 @@ class OrgInvitation(pulumi.CustomResource):
             ],
             username="test0-acc-username")
         ```
+        <!--End PulumiCodeChooser -->
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -266,15 +272,17 @@ class OrgInvitation(pulumi.CustomResource):
             ],
             username="test1-acc-username")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        ~> __IMPORTANT:__ An organization invitation can __not__ be imported once it has been accepted.
+        ~> __IMPORTANT:__
+        An organization invitation can __not__ be imported once it has been accepted.
 
         Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen:
 
         ```sh
-         $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+        $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
         ```
 
         :param str resource_name: The name of the resource.
@@ -292,8 +300,10 @@ class OrgInvitation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
         ### S
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -303,7 +313,9 @@ class OrgInvitation(pulumi.CustomResource):
             roles=["ORG_OWNER"],
             username="test0-acc-username")
         ```
+        <!--End PulumiCodeChooser -->
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -316,7 +328,9 @@ class OrgInvitation(pulumi.CustomResource):
             ],
             username="test0-acc-username")
         ```
+        <!--End PulumiCodeChooser -->
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -330,15 +344,17 @@ class OrgInvitation(pulumi.CustomResource):
             ],
             username="test1-acc-username")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        ~> __IMPORTANT:__ An organization invitation can __not__ be imported once it has been accepted.
+        ~> __IMPORTANT:__
+        An organization invitation can __not__ be imported once it has been accepted.
 
         Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen:
 
         ```sh
-         $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+        $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
         ```
 
         :param str resource_name: The name of the resource.

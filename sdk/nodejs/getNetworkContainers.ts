@@ -12,8 +12,10 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  * ## Example Usage
+ *
  * ### Basic Example.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -29,6 +31,7 @@ import * as utilities from "./utilities";
  *     providerName: providerName,
  * }));
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getNetworkContainers(args: GetNetworkContainersArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkContainersResult> {
 
@@ -77,8 +80,10 @@ export interface GetNetworkContainersResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  * ## Example Usage
+ *
  * ### Basic Example.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -94,6 +99,7 @@ export interface GetNetworkContainersResult {
  *     providerName: providerName,
  * }));
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getNetworkContainersOutput(args: GetNetworkContainersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkContainersResult> {
     return pulumi.output(args).apply((a: any) => getNetworkContainers(a, opts))

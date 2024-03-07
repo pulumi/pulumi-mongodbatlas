@@ -25,7 +25,9 @@ import javax.annotation.Nullable;
  * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
  * 
  * ## Example Usage
+ * 
  * ### Basic
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -57,6 +59,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
  * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
@@ -75,7 +78,7 @@ import javax.annotation.Nullable;
  * $ pulumi import mongodbatlas:index/serverlessInstance:ServerlessInstance my_serverless_instance 1112222b3bf99403840e8934-My Serverless Instance
  * ```
  * 
- *  For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
+ * For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
  * 
  */
 @ResourceType(type="mongodbatlas:index/serverlessInstance:ServerlessInstance")

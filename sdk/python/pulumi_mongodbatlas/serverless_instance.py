@@ -424,7 +424,9 @@ class ServerlessInstance(pulumi.CustomResource):
         For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
 
         ## Example Usage
+
         ### Basic
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -435,6 +437,7 @@ class ServerlessInstance(pulumi.CustomResource):
             provider_settings_provider_name="SERVERLESS",
             provider_settings_region_name="US_EAST_1")
         ```
+        <!--End PulumiCodeChooser -->
 
         **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
         That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\
@@ -453,7 +456,7 @@ class ServerlessInstance(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/serverlessInstance:ServerlessInstance my_serverless_instance 1112222b3bf99403840e8934-My Serverless Instance
         ```
 
-         For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
+        For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -480,7 +483,9 @@ class ServerlessInstance(pulumi.CustomResource):
         For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
 
         ## Example Usage
+
         ### Basic
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -491,6 +496,7 @@ class ServerlessInstance(pulumi.CustomResource):
             provider_settings_provider_name="SERVERLESS",
             provider_settings_region_name="US_EAST_1")
         ```
+        <!--End PulumiCodeChooser -->
 
         **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
         That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\
@@ -509,7 +515,7 @@ class ServerlessInstance(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/serverlessInstance:ServerlessInstance my_serverless_instance 1112222b3bf99403840e8934-My Serverless Instance
         ```
 
-         For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
+        For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
 
         :param str resource_name: The name of the resource.
         :param ServerlessInstanceArgs args: The arguments to use to populate this resource's properties.

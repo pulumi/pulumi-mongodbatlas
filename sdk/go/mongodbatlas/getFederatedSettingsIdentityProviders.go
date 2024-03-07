@@ -17,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,6 +53,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupFederatedSettingsIdentityProviders(ctx *pulumi.Context, args *LookupFederatedSettingsIdentityProvidersArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsIdentityProvidersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsIdentityProvidersResult

@@ -61,7 +61,9 @@ def get_roles_org_id(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     `Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
 
     ## Example Usage
+
     ### Using project_id attribute to query
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -69,6 +71,7 @@ def get_roles_org_id(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     test = mongodbatlas.get_roles_org_id()
     pulumi.export("orgId", test.org_id)
     ```
+    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -85,7 +88,9 @@ def get_roles_org_id_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulu
     `Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
 
     ## Example Usage
+
     ### Using project_id attribute to query
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -93,5 +98,6 @@ def get_roles_org_id_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulu
     test = mongodbatlas.get_roles_org_id()
     pulumi.export("orgId", test.org_id)
     ```
+    <!--End PulumiCodeChooser -->
     """
     ...

@@ -21,6 +21,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example with AWS
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -62,9 +63,11 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Example with Azure
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -106,19 +109,16 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// 
-    /// ## Example with GCP
-    /// ### Available complete examples
-    /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
+    /// $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
     /// ```
-    ///  See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
+    /// See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService")]
     public partial class PrivateLinkEndpointService : global::Pulumi.CustomResource

@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *
  * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -42,6 +43,7 @@ import * as utilities from "./utilities";
  *     itemsPerPage: 5,
  * }));
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupSnapshotRestoreJobs(args: GetCloudBackupSnapshotRestoreJobsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotRestoreJobsResult> {
 
@@ -103,6 +105,7 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
  *
  * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -130,6 +133,7 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
  *     itemsPerPage: 5,
  * }));
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupSnapshotRestoreJobsOutput(args: GetCloudBackupSnapshotRestoreJobsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotRestoreJobsResult> {
     return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotRestoreJobs(a, opts))

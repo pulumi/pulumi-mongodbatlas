@@ -16,8 +16,10 @@ import * as utilities from "./utilities";
  * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
  *
  * ## Example Usage
+ *
  * ### S
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -53,7 +55,9 @@ import * as utilities from "./utilities";
  *     username: "test-acc-username",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -77,7 +81,9 @@ import * as utilities from "./utilities";
  *     x509Type: "MANAGED",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -101,8 +107,11 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Example of how to create a OIDC federated authentication user
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -118,6 +127,7 @@ import * as utilities from "./utilities";
  *     username: "64d613677e1ad50839cce4db/testUserOr",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  * `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
  *
  * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
@@ -127,9 +137,9 @@ import * as utilities from "./utilities";
  * Database users can be imported using project ID and username, in the format `project_id`-`username`-`auth_database_name`, e.g.
  *
  * ```sh
- *  $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
+ * $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
  * ```
- *  ~> __NOTE:__ Terraform will want to change the password after importing the user if a `password` argument is specified.
+ * ~> __NOTE:__ Terraform will want to change the password after importing the user if a `password` argument is specified.
  */
 export class DatabaseUser extends pulumi.CustomResource {
     /**

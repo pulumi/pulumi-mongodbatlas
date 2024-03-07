@@ -341,6 +341,7 @@ class Organization(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -350,6 +351,7 @@ class Organization(pulumi.CustomResource):
             org_owner_id="6205e5fffff79cde6f",
             role_names=["ORG_OWNER"])
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -378,6 +380,7 @@ class Organization(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -387,6 +390,7 @@ class Organization(pulumi.CustomResource):
             org_owner_id="6205e5fffff79cde6f",
             role_names=["ORG_OWNER"])
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param OrganizationArgs args: The arguments to use to populate this resource's properties.

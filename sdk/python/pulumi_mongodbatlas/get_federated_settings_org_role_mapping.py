@@ -105,6 +105,7 @@ def get_federated_settings_org_role_mapping(federation_settings_id: Optional[str
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -146,6 +147,7 @@ def get_federated_settings_org_role_mapping(federation_settings_id: Optional[str
         org_id="627a9683e7f7f7ff7fe306f14",
         role_mapping_id="627a9673e7f7f7ff7fe306f14")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -177,6 +179,7 @@ def get_federated_settings_org_role_mapping_output(federation_settings_id: Optio
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -218,6 +221,7 @@ def get_federated_settings_org_role_mapping_output(federation_settings_id: Optio
         org_id="627a9683e7f7f7ff7fe306f14",
         role_mapping_id="627a9673e7f7f7ff7fe306f14")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.

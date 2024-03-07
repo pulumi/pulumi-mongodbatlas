@@ -16,8 +16,10 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // ## Example Usage
+//
 // ### S
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,6 +44,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupFederatedQueryLimits(ctx *pulumi.Context, args *LookupFederatedQueryLimitsArgs, opts ...pulumi.InvokeOption) (*LookupFederatedQueryLimitsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedQueryLimitsResult

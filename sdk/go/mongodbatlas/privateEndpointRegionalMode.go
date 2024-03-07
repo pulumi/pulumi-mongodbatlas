@@ -22,25 +22,14 @@ import (
 //
 // > **WARNING:**Your [connection strings](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#std-label-connstring-privatelink) to existing multi-region and global sharded clusters change when you enable this setting.  You must update your applications to use the new connection strings. This might cause downtime.
 //
-// ## Additional Reference
-//
-// In addition to the example shown above, keep in mind:
-// * `mongodbatlas_cluster.cluster-atlas.depends_on` - Make your cluster dependent on the project's `PrivateEndpointRegionalMode` as well as any relevant `PrivateLinkEndpointService` resources.  See an example.
-// * `mongodbatlas_cluster.cluster-atlas.connection_strings` will differ based on the value of `mongodbatlas_private_endpoint_regional_mode.test.enabled`.
-// * For more information on usage with GCP, see our Privatelink Endpoint Service documentation: Example with GCP
-// * For more information on usage with Azure, see our Privatelink Endpoint Service documentation: Examples with Azure
-//
 // ## Import
 //
 // Private Endpoint Regional Mode can be imported using project id in format `{project_id}`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode test 1112222b3bf99403840e8934
-//
+// $ pulumi import mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode test 1112222b3bf99403840e8934
 // ```
-//
-//	See detailed information for arguments and attributes: __Private Endpoints__ [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
+// See detailed information for arguments and attributes: __Private Endpoints__ [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
 type PrivateEndpointRegionalMode struct {
 	pulumi.CustomResourceState
 

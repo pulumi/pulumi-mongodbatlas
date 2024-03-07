@@ -16,11 +16,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
         /// 
         /// ### S
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetX509AuthenticationDatabaseUserResult> InvokeAsync(GetX509AuthenticationDatabaseUserArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetX509AuthenticationDatabaseUserResult>("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", args ?? new GetX509AuthenticationDatabaseUserArgs(), options.WithDefaults());
@@ -30,11 +28,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
         /// 
         /// ### S
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetX509AuthenticationDatabaseUserResult> Invoke(GetX509AuthenticationDatabaseUserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetX509AuthenticationDatabaseUserResult>("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", args ?? new GetX509AuthenticationDatabaseUserInvokeArgs(), options.WithDefaults());

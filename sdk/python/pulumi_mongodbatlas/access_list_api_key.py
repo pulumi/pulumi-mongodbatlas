@@ -173,7 +173,9 @@ class AccessListApiKey(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+
         ### Using CIDR Block
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -183,7 +185,10 @@ class AccessListApiKey(pulumi.CustomResource):
             cidr_block="1.2.3.4/32",
             org_id="<ORG-ID>")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Using IP Address
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -193,15 +198,16 @@ class AccessListApiKey(pulumi.CustomResource):
             ip_address="2.3.4.5",
             org_id="<ORG-ID>")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         IP Access List entries can be imported using the `org_id` , `api_key_id` and `cidr_block` or `ip_address`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/accessListApiKey:AccessListApiKey test 5d0f1f74cf09a29120e123cd-a29120e123cd-10.242.88.0/21
+        $ pulumi import mongodbatlas:index/accessListApiKey:AccessListApiKey test 5d0f1f74cf09a29120e123cd-a29120e123cd-10.242.88.0/21
         ```
-         For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKeyAccessList)
+        For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKeyAccessList)
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -220,7 +226,9 @@ class AccessListApiKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
         ### Using CIDR Block
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -230,7 +238,10 @@ class AccessListApiKey(pulumi.CustomResource):
             cidr_block="1.2.3.4/32",
             org_id="<ORG-ID>")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Using IP Address
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -240,15 +251,16 @@ class AccessListApiKey(pulumi.CustomResource):
             ip_address="2.3.4.5",
             org_id="<ORG-ID>")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         IP Access List entries can be imported using the `org_id` , `api_key_id` and `cidr_block` or `ip_address`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/accessListApiKey:AccessListApiKey test 5d0f1f74cf09a29120e123cd-a29120e123cd-10.242.88.0/21
+        $ pulumi import mongodbatlas:index/accessListApiKey:AccessListApiKey test 5d0f1f74cf09a29120e123cd-a29120e123cd-10.242.88.0/21
         ```
-         For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKeyAccessList)
+        For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKeyAccessList)
 
         :param str resource_name: The name of the resource.
         :param AccessListApiKeyArgs args: The arguments to use to populate this resource's properties.

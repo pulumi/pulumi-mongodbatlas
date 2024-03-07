@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ */
 export function getApiKeys(args: GetApiKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetApiKeysResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -47,6 +50,9 @@ export interface GetApiKeysResult {
     readonly pageNum?: number;
     readonly results: outputs.GetApiKeysResult[];
 }
+/**
+ * ## Example Usage
+ */
 export function getApiKeysOutput(args: GetApiKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetApiKeysResult> {
     return pulumi.output(args).apply((a: any) => getApiKeys(a, opts))
 }

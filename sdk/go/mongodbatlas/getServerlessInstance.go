@@ -18,7 +18,9 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
 // ## Example Usage
+//
 // ### Basic
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,6 +45,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
 // That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\

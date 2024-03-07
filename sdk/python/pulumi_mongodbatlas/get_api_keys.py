@@ -86,7 +86,8 @@ def get_api_keys(items_per_page: Optional[int] = None,
                  page_num: Optional[int] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApiKeysResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param str org_id: Unique identifier for the organization whose API keys you want to retrieve.
@@ -113,7 +114,8 @@ def get_api_keys_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
                         page_num: Optional[pulumi.Input[Optional[int]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetApiKeysResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param str org_id: Unique identifier for the organization whose API keys you want to retrieve.

@@ -13,8 +13,10 @@ import (
 )
 
 // ## Example Usage
+//
 // ### S
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +44,9 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -71,7 +75,9 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -103,17 +109,17 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// ~> __IMPORTANT:__ An organization invitation can __not__ be imported once it has been accepted.
+// ~> __IMPORTANT:__
+// An organization invitation can __not__ be imported once it has been accepted.
 //
 // Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen:
 //
 // ```sh
-//
-//	$ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
-//
+// $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
 // ```
 type OrgInvitation struct {
 	pulumi.CustomResourceState

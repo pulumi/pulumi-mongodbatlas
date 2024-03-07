@@ -239,6 +239,7 @@ def get_third_party_integration(enabled: Optional[bool] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -250,6 +251,7 @@ def get_third_party_integration(enabled: Optional[bool] = None,
         region="<REGION>")
     test = mongodbatlas.get_third_party_integration_output(project_id=test_datadog.project_id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param bool enabled: Whether your cluster has Prometheus enabled.
@@ -314,6 +316,7 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -325,6 +328,7 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
         region="<REGION>")
     test = mongodbatlas.get_third_party_integration_output(project_id=test_datadog.project_id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param bool enabled: Whether your cluster has Prometheus enabled.
