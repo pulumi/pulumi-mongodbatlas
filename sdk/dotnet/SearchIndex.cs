@@ -13,7 +13,9 @@ namespace Pulumi.Mongodbatlas
     /// `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
     /// 
     /// ## Example Usage
+    /// 
     /// ### Basic search index
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,7 +37,10 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Basic vector index
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -62,7 +67,10 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Advanced search index (with custom analyzers)
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -142,6 +150,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/searchIndex:SearchIndex")]
     public partial class SearchIndex : global::Pulumi.CustomResource
@@ -154,6 +163,36 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var analyzers = @"[{
+        /// ""name"": ""index_analyzer_test_name"",
+        /// ""charFilters"": [{
+        /// ""type"": ""mapping"",
+        /// ""mappings"": {""\\"" : ""/""}
+        /// }],
+        /// ""tokenizer"": {
+        /// ""type"": ""nGram"",
+        /// ""minGram"": 2,
+        /// ""maxGram"": 5
+        /// },
+        /// ""tokenFilters"": [{
+        /// ""type"": ""length"",
+        /// ""min"": 20,
+        /// ""max"": 33
+        /// }]
+        /// }]
+        /// ";
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         [Output("analyzers")]
         public Output<string?> Analyzers { get; private set; } = null!;
@@ -290,6 +329,36 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var analyzers = @"[{
+        /// ""name"": ""index_analyzer_test_name"",
+        /// ""charFilters"": [{
+        /// ""type"": ""mapping"",
+        /// ""mappings"": {""\\"" : ""/""}
+        /// }],
+        /// ""tokenizer"": {
+        /// ""type"": ""nGram"",
+        /// ""minGram"": 2,
+        /// ""maxGram"": 5
+        /// },
+        /// ""tokenFilters"": [{
+        /// ""type"": ""length"",
+        /// ""min"": 20,
+        /// ""max"": 33
+        /// }]
+        /// }]
+        /// ";
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         [Input("analyzers")]
         public Input<string>? Analyzers { get; set; }
@@ -385,6 +454,36 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var analyzers = @"[{
+        /// ""name"": ""index_analyzer_test_name"",
+        /// ""charFilters"": [{
+        /// ""type"": ""mapping"",
+        /// ""mappings"": {""\\"" : ""/""}
+        /// }],
+        /// ""tokenizer"": {
+        /// ""type"": ""nGram"",
+        /// ""minGram"": 2,
+        /// ""maxGram"": 5
+        /// },
+        /// ""tokenFilters"": [{
+        /// ""type"": ""length"",
+        /// ""min"": 20,
+        /// ""max"": 33
+        /// }]
+        /// }]
+        /// ";
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         [Input("analyzers")]
         public Input<string>? Analyzers { get; set; }

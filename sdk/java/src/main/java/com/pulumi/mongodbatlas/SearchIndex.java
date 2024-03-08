@@ -21,7 +21,9 @@ import javax.annotation.Nullable;
  * `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
  * 
  * ## Example Usage
+ * 
  * ### Basic search index
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -56,7 +58,10 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### Basic vector index
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -97,7 +102,10 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### Advanced search index (with custom analyzers)
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -189,6 +197,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="mongodbatlas:index/searchIndex:SearchIndex")
@@ -209,6 +218,50 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
     }
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var analyzers = &#34;&#34;&#34;
+     * [{
+     * &#34;name&#34;: &#34;index_analyzer_test_name&#34;,
+     * &#34;charFilters&#34;: [{
+     * &#34;type&#34;: &#34;mapping&#34;,
+     * &#34;mappings&#34;: {&#34;\\&#34; : &#34;/&#34;}
+     * }],
+     * &#34;tokenizer&#34;: {
+     * &#34;type&#34;: &#34;nGram&#34;,
+     * &#34;minGram&#34;: 2,
+     * &#34;maxGram&#34;: 5
+     * },
+     * &#34;tokenFilters&#34;: [{
+     * &#34;type&#34;: &#34;length&#34;,
+     * &#34;min&#34;: 20,
+     * &#34;max&#34;: 33
+     * }]
+     * }]
+     *         &#34;&#34;&#34;;
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     @Export(name="analyzers", refs={String.class}, tree="[0]")
@@ -216,6 +269,50 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
 
     /**
      * @return [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var analyzers = &#34;&#34;&#34;
+     * [{
+     * &#34;name&#34;: &#34;index_analyzer_test_name&#34;,
+     * &#34;charFilters&#34;: [{
+     * &#34;type&#34;: &#34;mapping&#34;,
+     * &#34;mappings&#34;: {&#34;\\&#34; : &#34;/&#34;}
+     * }],
+     * &#34;tokenizer&#34;: {
+     * &#34;type&#34;: &#34;nGram&#34;,
+     * &#34;minGram&#34;: 2,
+     * &#34;maxGram&#34;: 5
+     * },
+     * &#34;tokenFilters&#34;: [{
+     * &#34;type&#34;: &#34;length&#34;,
+     * &#34;min&#34;: 20,
+     * &#34;max&#34;: 33
+     * }]
+     * }]
+     *         &#34;&#34;&#34;;
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public Output<Optional<String>> analyzers() {

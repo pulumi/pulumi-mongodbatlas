@@ -12,9 +12,9 @@ import * as utilities from "./utilities";
  * Encryption at Rest Settings can be imported using project ID, in the format `project_id`, e.g.
  *
  * ```sh
- *  $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
+ * $ pulumi import mongodbatlas:index/encryptionAtRest:EncryptionAtRest example 1112222b3bf99403840e8934
  * ```
- *  For more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
+ * For more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Encryption-at-Rest-using-Customer-Key-Management)
  */
 export class EncryptionAtRest extends pulumi.CustomResource {
     /**

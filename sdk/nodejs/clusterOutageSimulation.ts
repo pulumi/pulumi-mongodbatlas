@@ -21,8 +21,10 @@ import * as utilities from "./utilities";
  * **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
  *
  * ## Example Usage
+ *
  * ### S
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -42,12 +44,13 @@ import * as utilities from "./utilities";
  *     projectId: "64707f06c519c20c3a2b1b03",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * The `mongodbatlas_cluster_outage_simulation` resource does not support import operation.
  *
- *  See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cluster-Outage-Simulation) Documentation for more information.
+ * See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cluster-Outage-Simulation) Documentation for more information.
  */
 export class ClusterOutageSimulation extends pulumi.CustomResource {
     /**

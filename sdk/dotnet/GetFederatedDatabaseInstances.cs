@@ -18,9 +18,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetFederatedDatabaseInstancesResult> InvokeAsync(GetFederatedDatabaseInstancesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedDatabaseInstancesResult>("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args ?? new GetFederatedDatabaseInstancesArgs(), options.WithDefaults());
@@ -32,9 +30,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetFederatedDatabaseInstancesResult> Invoke(GetFederatedDatabaseInstancesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedDatabaseInstancesResult>("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args ?? new GetFederatedDatabaseInstancesInvokeArgs(), options.WithDefaults());

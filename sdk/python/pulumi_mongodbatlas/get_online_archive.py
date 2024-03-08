@@ -173,14 +173,6 @@ def get_online_archive(archive_id: Optional[str] = None,
 
     ## Example Usage
 
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_online_archive(project_id=var["project_id"],
-        cluster_name=var["cluster_name"],
-        archive_id="5ebad3c1fe9c0ab8d37d61e1")
-    ```
     ## Attributes reference
 
     * `db_name`          -  Name of the database that contains the collection.
@@ -266,14 +258,6 @@ def get_online_archive_output(archive_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    ```python
-    import pulumi
-    import pulumi_mongodbatlas as mongodbatlas
-
-    test = mongodbatlas.get_online_archive(project_id=var["project_id"],
-        cluster_name=var["cluster_name"],
-        archive_id="5ebad3c1fe9c0ab8d37d61e1")
-    ```
     ## Attributes reference
 
     * `db_name`          -  Name of the database that contains the collection.

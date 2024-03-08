@@ -17,8 +17,10 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // ## Example Usage
+//
 // ### S With MongoDB Atlas Cluster As Storage Database
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -70,8 +72,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### S With Amazon S3 Bucket As Storage Database
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -141,6 +146,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -150,13 +156,13 @@ import (
 // $ pulumi import mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance mongodbatlas_federated_database_instance.example 1112222b3bf99403840e8934--test
 // ```
 //
-//   - The Federated Database Instance can be imported using project ID, name of the instance and name of the AWS S3 bucket, in the format `project_id`--`name`--`aws_test_s3_bucket`, e.g.
+// - The Federated Database Instance can be imported using project ID, name of the instance and name of the AWS S3 bucket, in the format `project_id`--`name`--`aws_test_s3_bucket`, e.g.
 //
 // ```sh
 // $ pulumi import mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance mongodbatlas_federated_database_instance.example 1112222b3bf99403840e8934--test--s3-test
 // ```
 //
-//	See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation) Documentation for more information.
+// See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation) Documentation for more information.
 type FederatedDatabaseInstance struct {
 	pulumi.CustomResourceState
 

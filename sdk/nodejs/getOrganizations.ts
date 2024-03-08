@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -20,6 +21,7 @@ import * as utilities from "./utilities";
  *     pageNum: 1,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getOrganizations(args?: GetOrganizationsArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationsResult> {
     args = args || {};
@@ -78,6 +80,7 @@ export interface GetOrganizationsResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -87,6 +90,7 @@ export interface GetOrganizationsResult {
  *     pageNum: 1,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getOrganizationsOutput(args?: GetOrganizationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationsResult> {
     return pulumi.output(args).apply((a: any) => getOrganizations(a, opts))

@@ -13,15 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getOnlineArchives({
- *     projectId: _var.project_id,
- *     clusterName: _var.cluster_name,
- * });
- * ```
  * ## Attributes reference
  *
  * * `dbName` - Name of the database that contains the collection.
@@ -111,15 +102,6 @@ export interface GetOnlineArchivesResult {
  *
  * ## Example Usage
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = mongodbatlas.getOnlineArchives({
- *     projectId: _var.project_id,
- *     clusterName: _var.cluster_name,
- * });
- * ```
  * ## Attributes reference
  *
  * * `dbName` - Name of the database that contains the collection.

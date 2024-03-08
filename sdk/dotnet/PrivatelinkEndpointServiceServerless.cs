@@ -18,6 +18,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example with AWS
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -70,19 +71,16 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// 
-    /// ## Example with AZURE
-    /// ### Available complete examples
-    /// - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Serverless privatelink endpoint can be imported using project ID and endpoint ID, in the format `project_id`--`endpoint_id`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless test 1112222b3bf99403840e8934--serverless_name--vpce-jjg5e24qp93513h03
+    /// $ pulumi import mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless test 1112222b3bf99403840e8934--serverless_name--vpce-jjg5e24qp93513h03
     /// ```
-    ///  For more information see: [MongoDB Atlas API - Serverless Private Endpoints](https://www.mongodb.com/docs/atlas/reference/api/serverless-private-endpoints-get-one/).
+    /// For more information see: [MongoDB Atlas API - Serverless Private Endpoints](https://www.mongodb.com/docs/atlas/reference/api/serverless-private-endpoints-get-one/).
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless")]
     public partial class PrivatelinkEndpointServiceServerless : global::Pulumi.CustomResource

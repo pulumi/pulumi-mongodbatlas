@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -33,6 +34,7 @@ import * as utilities from "./utilities";
  *     projectId: testPagerDuty.projectId,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getThirdPartyIntegrations(args: GetThirdPartyIntegrationsArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationsResult> {
 
@@ -77,6 +79,7 @@ export interface GetThirdPartyIntegrationsResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -96,6 +99,7 @@ export interface GetThirdPartyIntegrationsResult {
  *     projectId: testPagerDuty.projectId,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getThirdPartyIntegrationsOutput(args: GetThirdPartyIntegrationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationsResult> {
     return pulumi.output(args).apply((a: any) => getThirdPartyIntegrations(a, opts))

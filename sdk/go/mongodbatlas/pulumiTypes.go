@@ -42640,7 +42640,7 @@ func (o GetPrivateLinkEndpointServiceEndpointArrayOutput) Index(i pulumi.IntInpu
 type GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult struct {
 	// Human-readable string to associate with this private endpoint.
 	Comment string `pulumi:"comment"`
-	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
+	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](<https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature>).
 	EndpointId string `pulumi:"endpointId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
@@ -42662,7 +42662,7 @@ type GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultInput interf
 type GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultArgs struct {
 	// Human-readable string to associate with this private endpoint.
 	Comment pulumi.StringInput `pulumi:"comment"`
-	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
+	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](<https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature>).
 	EndpointId pulumi.StringInput `pulumi:"endpointId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
@@ -42726,7 +42726,7 @@ func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) C
 	return o.ApplyT(func(v GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult) string { return v.Comment }).(pulumi.StringOutput)
 }
 
-// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
+// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](<https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature>).
 func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) EndpointId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult) string { return v.EndpointId }).(pulumi.StringOutput)
 }

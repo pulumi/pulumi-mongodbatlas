@@ -12,8 +12,10 @@ import (
 )
 
 // ## Example Usage
+//
 // ### S
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +40,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupClusterOutageSimulation(ctx *pulumi.Context, args *LookupClusterOutageSimulationArgs, opts ...pulumi.InvokeOption) (*LookupClusterOutageSimulationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClusterOutageSimulationResult

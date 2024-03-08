@@ -326,7 +326,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+
         ### Example of a point in time restore
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -356,6 +358,8 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                     point_in_time_utc_seconds=var["point_in_time_utc_seconds"],
                 ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Available complete examples
         - Restore from automated backup snapshot
         - Restore from backup snapshot download
@@ -366,9 +370,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
+        $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
         ```
-         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
+        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -393,7 +397,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
         ### Example of a point in time restore
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -423,6 +429,8 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                     point_in_time_utc_seconds=var["point_in_time_utc_seconds"],
                 ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Available complete examples
         - Restore from automated backup snapshot
         - Restore from backup snapshot download
@@ -433,9 +441,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
+        $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
         ```
-         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
+        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
 
         :param str resource_name: The name of the resource.
         :param CloudBackupSnapshotRestoreJobArgs args: The arguments to use to populate this resource's properties.

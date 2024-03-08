@@ -74,8 +74,10 @@ def get_network_peerings(project_id: Optional[str] = None,
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
     ## Example Usage
+
     ### Basic Example (AWS).
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -90,6 +92,7 @@ def get_network_peerings(project_id: Optional[str] = None,
         aws_account_id="abc123abc123")
     test_network_peerings = mongodbatlas.get_network_peerings_output(project_id=test_network_peering.project_id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: The unique ID for the project to create the database user.
@@ -114,8 +117,10 @@ def get_network_peerings_output(project_id: Optional[pulumi.Input[str]] = None,
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
     ## Example Usage
+
     ### Basic Example (AWS).
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -130,6 +135,7 @@ def get_network_peerings_output(project_id: Optional[pulumi.Input[str]] = None,
         aws_account_id="abc123abc123")
     test_network_peerings = mongodbatlas.get_network_peerings_output(project_id=test_network_peering.project_id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: The unique ID for the project to create the database user.

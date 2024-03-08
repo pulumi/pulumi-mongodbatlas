@@ -14,7 +14,9 @@ import (
 // `Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
 //
 // ## Example Usage
+//
 // ### Using projectId attribute to query
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +40,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupOrganization(ctx *pulumi.Context, args *LookupOrganizationArgs, opts ...pulumi.InvokeOption) (*LookupOrganizationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOrganizationResult

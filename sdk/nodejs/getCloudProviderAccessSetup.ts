@@ -12,7 +12,9 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ *
  * ### With AWS
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -27,7 +29,10 @@ import * as utilities from "./utilities";
  *     roleId: testRole.roleId,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### With AZURE
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -47,6 +52,7 @@ import * as utilities from "./utilities";
  *     roleId: testRole.roleId,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getCloudProviderAccessSetup(args: GetCloudProviderAccessSetupArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderAccessSetupResult> {
 
@@ -119,7 +125,9 @@ export interface GetCloudProviderAccessSetupResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ *
  * ### With AWS
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -134,7 +142,10 @@ export interface GetCloudProviderAccessSetupResult {
  *     roleId: testRole.roleId,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### With AZURE
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -154,6 +165,7 @@ export interface GetCloudProviderAccessSetupResult {
  *     roleId: testRole.roleId,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getCloudProviderAccessSetupOutput(args: GetCloudProviderAccessSetupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderAccessSetupResult> {
     return pulumi.output(args).apply((a: any) => getCloudProviderAccessSetup(a, opts))

@@ -6,8 +6,10 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
  * ### S
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -18,7 +20,9 @@ import * as utilities from "./utilities";
  *     username: "test0-acc-username",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -32,7 +36,9 @@ import * as utilities from "./utilities";
  *     username: "test0-acc-username",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -47,15 +53,17 @@ import * as utilities from "./utilities";
  *     username: "test1-acc-username",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * ~> __IMPORTANT:__ An organization invitation can __not__ be imported once it has been accepted.
+ * ~> __IMPORTANT:__
+ * An organization invitation can __not__ be imported once it has been accepted.
  *
  * Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen:
  *
  * ```sh
- *  $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+ * $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
  * ```
  */
 export class OrgInvitation extends pulumi.CustomResource {

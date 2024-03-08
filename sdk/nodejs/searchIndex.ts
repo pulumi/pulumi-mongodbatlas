@@ -10,7 +10,9 @@ import * as utilities from "./utilities";
  * `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
  *
  * ## Example Usage
+ *
  * ### Basic search index
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -25,7 +27,10 @@ import * as utilities from "./utilities";
  *     searchAnalyzer: "lucene.standard",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Basic vector index
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -45,7 +50,10 @@ import * as utilities from "./utilities";
  * `,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Advanced search index (with custom analyzers)
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -114,6 +122,7 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class SearchIndex extends pulumi.CustomResource {
     /**
@@ -149,6 +158,30 @@ export class SearchIndex extends pulumi.CustomResource {
     public readonly analyzer!: pulumi.Output<string | undefined>;
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+     * <!--Start PulumiCodeChooser -->
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     *
+     * const analyzers = `[{
+     * "name": "index_analyzer_test_name",
+     * "charFilters": [{
+     * "type": "mapping",
+     * "mappings": {"\\\\" : "/"}
+     * }],
+     * "tokenizer": {
+     * "type": "nGram",
+     * "minGram": 2,
+     * "maxGram": 5
+     * },
+     * "tokenFilters": [{
+     * "type": "length",
+     * "min": 20,
+     * "max": 33
+     * }]
+     * }]
+     * `;
+     * ```
+     * <!--End PulumiCodeChooser -->
      */
     public readonly analyzers!: pulumi.Output<string | undefined>;
     /**
@@ -277,6 +310,30 @@ export interface SearchIndexState {
     analyzer?: pulumi.Input<string>;
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+     * <!--Start PulumiCodeChooser -->
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     *
+     * const analyzers = `[{
+     * "name": "index_analyzer_test_name",
+     * "charFilters": [{
+     * "type": "mapping",
+     * "mappings": {"\\\\" : "/"}
+     * }],
+     * "tokenizer": {
+     * "type": "nGram",
+     * "minGram": 2,
+     * "maxGram": 5
+     * },
+     * "tokenFilters": [{
+     * "type": "length",
+     * "min": 20,
+     * "max": 33
+     * }]
+     * }]
+     * `;
+     * ```
+     * <!--End PulumiCodeChooser -->
      */
     analyzers?: pulumi.Input<string>;
     /**
@@ -341,6 +398,30 @@ export interface SearchIndexArgs {
     analyzer?: pulumi.Input<string>;
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+     * <!--Start PulumiCodeChooser -->
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     *
+     * const analyzers = `[{
+     * "name": "index_analyzer_test_name",
+     * "charFilters": [{
+     * "type": "mapping",
+     * "mappings": {"\\\\" : "/"}
+     * }],
+     * "tokenizer": {
+     * "type": "nGram",
+     * "minGram": 2,
+     * "maxGram": 5
+     * },
+     * "tokenFilters": [{
+     * "type": "length",
+     * "min": 20,
+     * "max": 33
+     * }]
+     * }]
+     * `;
+     * ```
+     * <!--End PulumiCodeChooser -->
      */
     analyzers?: pulumi.Input<string>;
     /**

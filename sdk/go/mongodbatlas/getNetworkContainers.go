@@ -16,8 +16,10 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 //
 // ## Example Usage
+//
 // ### Basic Example.
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,6 +54,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupNetworkContainers(ctx *pulumi.Context, args *LookupNetworkContainersArgs, opts ...pulumi.InvokeOption) (*LookupNetworkContainersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNetworkContainersResult

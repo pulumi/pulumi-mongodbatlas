@@ -194,8 +194,10 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
 
         ## Example Usage
+
         ### S
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -214,12 +216,13 @@ class ClusterOutageSimulation(pulumi.CustomResource):
             ],
             project_id="64707f06c519c20c3a2b1b03")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         The `mongodbatlas_cluster_outage_simulation` resource does not support import operation.
 
-         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cluster-Outage-Simulation) Documentation for more information.
+        See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cluster-Outage-Simulation) Documentation for more information.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -248,8 +251,10 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
 
         ## Example Usage
+
         ### S
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -268,12 +273,13 @@ class ClusterOutageSimulation(pulumi.CustomResource):
             ],
             project_id="64707f06c519c20c3a2b1b03")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         The `mongodbatlas_cluster_outage_simulation` resource does not support import operation.
 
-         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cluster-Outage-Simulation) Documentation for more information.
+        See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cluster-Outage-Simulation) Documentation for more information.
 
         :param str resource_name: The name of the resource.
         :param ClusterOutageSimulationArgs args: The arguments to use to populate this resource's properties.

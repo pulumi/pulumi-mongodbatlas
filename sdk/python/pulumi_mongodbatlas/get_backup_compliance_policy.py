@@ -222,7 +222,8 @@ class AwaitableGetBackupCompliancePolicyResult(GetBackupCompliancePolicyResult):
 def get_backup_compliance_policy(project_id: Optional[str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackupCompliancePolicyResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
 
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project
     """
@@ -255,7 +256,8 @@ def get_backup_compliance_policy(project_id: Optional[str] = None,
 def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[str]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackupCompliancePolicyResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
 
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project
     """

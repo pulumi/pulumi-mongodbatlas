@@ -301,6 +301,7 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
 
         ## Example with AWS
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -330,19 +331,16 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
             provider_name="AWS",
             comment="New serverless endpoint")
         ```
-
-        ## Example with AZURE
-        ### Available complete examples
-        - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Serverless privatelink endpoint can be imported using project ID and endpoint ID, in the format `project_id`--`endpoint_id`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless test 1112222b3bf99403840e8934--serverless_name--vpce-jjg5e24qp93513h03
+        $ pulumi import mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless test 1112222b3bf99403840e8934--serverless_name--vpce-jjg5e24qp93513h03
         ```
-         For more information see: [MongoDB Atlas API - Serverless Private Endpoints](https://www.mongodb.com/docs/atlas/reference/api/serverless-private-endpoints-get-one/).
+        For more information see: [MongoDB Atlas API - Serverless Private Endpoints](https://www.mongodb.com/docs/atlas/reference/api/serverless-private-endpoints-get-one/).
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -369,6 +367,7 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
 
         ## Example with AWS
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -398,19 +397,16 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
             provider_name="AWS",
             comment="New serverless endpoint")
         ```
-
-        ## Example with AZURE
-        ### Available complete examples
-        - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Serverless privatelink endpoint can be imported using project ID and endpoint ID, in the format `project_id`--`endpoint_id`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless test 1112222b3bf99403840e8934--serverless_name--vpce-jjg5e24qp93513h03
+        $ pulumi import mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless test 1112222b3bf99403840e8934--serverless_name--vpce-jjg5e24qp93513h03
         ```
-         For more information see: [MongoDB Atlas API - Serverless Private Endpoints](https://www.mongodb.com/docs/atlas/reference/api/serverless-private-endpoints-get-one/).
+        For more information see: [MongoDB Atlas API - Serverless Private Endpoints](https://www.mongodb.com/docs/atlas/reference/api/serverless-private-endpoints-get-one/).
 
         :param str resource_name: The name of the resource.
         :param PrivatelinkEndpointServiceServerlessArgs args: The arguments to use to populate this resource's properties.

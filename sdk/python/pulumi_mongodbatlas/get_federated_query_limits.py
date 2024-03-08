@@ -84,8 +84,10 @@ def get_federated_query_limits(project_id: Optional[str] = None,
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
+
     ### S
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -93,6 +95,7 @@ def get_federated_query_limits(project_id: Optional[str] = None,
     test = mongodbatlas.get_federated_query_limits(project_id="PROJECT_ID",
         tenant_name="FEDERATED_DATABASE_INSTANCE_NAME")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: The unique ID for the project to create a Federated Database Instance.
@@ -121,8 +124,10 @@ def get_federated_query_limits_output(project_id: Optional[pulumi.Input[str]] = 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
+
     ### S
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -130,6 +135,7 @@ def get_federated_query_limits_output(project_id: Optional[pulumi.Input[str]] = 
     test = mongodbatlas.get_federated_query_limits(project_id="PROJECT_ID",
         tenant_name="FEDERATED_DATABASE_INSTANCE_NAME")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: The unique ID for the project to create a Federated Database Instance.

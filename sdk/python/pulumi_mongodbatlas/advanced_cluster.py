@@ -800,8 +800,10 @@ class AdvancedCluster(pulumi.CustomResource):
         > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, i.e. `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
 
         ## Example Usage
+
         ### Example single provider and single region
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -825,8 +827,11 @@ class AdvancedCluster(pulumi.CustomResource):
                 )],
             )])
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example Tenant Cluster
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -846,8 +851,11 @@ class AdvancedCluster(pulumi.CustomResource):
                 )],
             )])
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example Tenant Cluster Upgrade
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -866,7 +874,10 @@ class AdvancedCluster(pulumi.CustomResource):
                 )],
             )])
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example Multi-Cloud Cluster.
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -901,8 +912,10 @@ class AdvancedCluster(pulumi.CustomResource):
                 ],
             )])
         ```
+        <!--End PulumiCodeChooser -->
         ### Example of a Multi-Cloud Cluster.
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -961,7 +974,10 @@ class AdvancedCluster(pulumi.CustomResource):
                 sample_refresh_interval_bi_connector=300,
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example of a Global Cluster.
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1068,15 +1084,53 @@ class AdvancedCluster(pulumi.CustomResource):
                 sample_refresh_interval_bi_connector=300,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
+        ### Example - Return a Connection String
+        Standard
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+
+        pulumi.export("standard", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard"])
+        ```
+        <!--End PulumiCodeChooser -->
+        Standard srv
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+
+        pulumi.export("standardSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard_srv"])
+        ```
+        <!--End PulumiCodeChooser -->
+        Private with Network peering and Custom DNS AWS enabled
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+
+        pulumi.export("private", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private"])
+        # Example return string: private = "mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=atlas-12diht-shard-0"
+        private = "mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net"
+        ```
+        <!--End PulumiCodeChooser -->
+        Private srv with Network peering and Custom DNS AWS enabled
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+
+        pulumi.export("privateSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private_srv"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        By endpoint_service_id
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
+        $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
         ```
-         See detailed information for arguments and attributes: [MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
+        See detailed information for arguments and attributes: [MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1134,8 +1188,10 @@ class AdvancedCluster(pulumi.CustomResource):
         > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, i.e. `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
 
         ## Example Usage
+
         ### Example single provider and single region
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1159,8 +1215,11 @@ class AdvancedCluster(pulumi.CustomResource):
                 )],
             )])
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example Tenant Cluster
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1180,8 +1239,11 @@ class AdvancedCluster(pulumi.CustomResource):
                 )],
             )])
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example Tenant Cluster Upgrade
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1200,7 +1262,10 @@ class AdvancedCluster(pulumi.CustomResource):
                 )],
             )])
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example Multi-Cloud Cluster.
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1235,8 +1300,10 @@ class AdvancedCluster(pulumi.CustomResource):
                 ],
             )])
         ```
+        <!--End PulumiCodeChooser -->
         ### Example of a Multi-Cloud Cluster.
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1295,7 +1362,10 @@ class AdvancedCluster(pulumi.CustomResource):
                 sample_refresh_interval_bi_connector=300,
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example of a Global Cluster.
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1402,15 +1472,53 @@ class AdvancedCluster(pulumi.CustomResource):
                 sample_refresh_interval_bi_connector=300,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
+        ### Example - Return a Connection String
+        Standard
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+
+        pulumi.export("standard", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard"])
+        ```
+        <!--End PulumiCodeChooser -->
+        Standard srv
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+
+        pulumi.export("standardSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard_srv"])
+        ```
+        <!--End PulumiCodeChooser -->
+        Private with Network peering and Custom DNS AWS enabled
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+
+        pulumi.export("private", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private"])
+        # Example return string: private = "mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=atlas-12diht-shard-0"
+        private = "mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net"
+        ```
+        <!--End PulumiCodeChooser -->
+        Private srv with Network peering and Custom DNS AWS enabled
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+
+        pulumi.export("privateSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private_srv"])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        By endpoint_service_id
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
+        $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
         ```
-         See detailed information for arguments and attributes: [MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
+        See detailed information for arguments and attributes: [MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
 
         :param str resource_name: The name of the resource.
         :param AdvancedClusterArgs args: The arguments to use to populate this resource's properties.

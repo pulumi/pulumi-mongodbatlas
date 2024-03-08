@@ -14,7 +14,9 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ *
  * ### Basic
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -24,6 +26,7 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT_ID >",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
  * That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
@@ -130,7 +133,9 @@ export interface GetServerlessInstanceResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
+ *
  * ### Basic
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -140,6 +145,7 @@ export interface GetServerlessInstanceResult {
  *     projectId: "<PROJECT_ID >",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
  * That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\

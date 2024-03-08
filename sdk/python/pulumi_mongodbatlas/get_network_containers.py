@@ -87,8 +87,10 @@ def get_network_containers(project_id: Optional[str] = None,
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
     ## Example Usage
+
     ### Basic Example.
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -101,6 +103,7 @@ def get_network_containers(project_id: Optional[str] = None,
     test_network_containers = pulumi.Output.all(test_network_container.project_id, test_network_container.provider_name).apply(lambda project_id, provider_name: mongodbatlas.get_network_containers_output(project_id=project_id,
         provider_name=provider_name))
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: The unique ID for the project to create the database user.
@@ -129,8 +132,10 @@ def get_network_containers_output(project_id: Optional[pulumi.Input[str]] = None
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
     ## Example Usage
+
     ### Basic Example.
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -143,6 +148,7 @@ def get_network_containers_output(project_id: Optional[pulumi.Input[str]] = None
     test_network_containers = pulumi.Output.all(test_network_container.project_id, test_network_container.provider_name).apply(lambda project_id, provider_name: mongodbatlas.get_network_containers_output(project_id=project_id,
         provider_name=provider_name))
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: The unique ID for the project to create the database user.

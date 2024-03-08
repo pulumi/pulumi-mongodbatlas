@@ -326,6 +326,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -335,6 +336,8 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             provider_name="AWS/AZURE",
             region="US_EAST_1")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Available complete examples
         - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
 
@@ -343,9 +346,9 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         Private Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
+        $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
         ```
-         See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//)
+        See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//)
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -373,6 +376,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -382,6 +386,8 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             provider_name="AWS/AZURE",
             region="US_EAST_1")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Available complete examples
         - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
 
@@ -390,9 +396,9 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         Private Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
+        $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
         ```
-         See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//)
+        See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//)
 
         :param str resource_name: The name of the resource.
         :param PrivateLinkEndpointArgs args: The arguments to use to populate this resource's properties.

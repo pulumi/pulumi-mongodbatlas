@@ -157,6 +157,7 @@ def get_privatelink_endpoint_service_serverless(endpoint_id: Optional[str] = Non
 
     ## Example with AWS
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -181,9 +182,11 @@ def get_privatelink_endpoint_service_serverless(endpoint_id: Optional[str] = Non
         provider_name="AWS",
         comment="New serverless endpoint")
     ```
+    <!--End PulumiCodeChooser -->
 
     ## Example with AZURE
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -208,6 +211,7 @@ def get_privatelink_endpoint_service_serverless(endpoint_id: Optional[str] = Non
         provider_name="AZURE",
         comment="New serverless endpoint")
     ```
+    <!--End PulumiCodeChooser -->
 
     ### Available complete examples
     - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
@@ -250,6 +254,7 @@ def get_privatelink_endpoint_service_serverless_output(endpoint_id: Optional[pul
 
     ## Example with AWS
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -274,9 +279,11 @@ def get_privatelink_endpoint_service_serverless_output(endpoint_id: Optional[pul
         provider_name="AWS",
         comment="New serverless endpoint")
     ```
+    <!--End PulumiCodeChooser -->
 
     ## Example with AZURE
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -301,6 +308,7 @@ def get_privatelink_endpoint_service_serverless_output(endpoint_id: Optional[pul
         provider_name="AZURE",
         comment="New serverless endpoint")
     ```
+    <!--End PulumiCodeChooser -->
 
     ### Available complete examples
     - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC

@@ -6,8 +6,10 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
  * ### S
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -18,7 +20,9 @@ import * as utilities from "./utilities";
  *     username: "test-acc-username",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -32,15 +36,17 @@ import * as utilities from "./utilities";
  *     username: "test-acc-username",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * ~> __IMPORTANT:__ A project invitation can __not__ be imported once it has been accepted.
+ * ~> __IMPORTANT:__
+ * A project invitation can __not__ be imported once it has been accepted.
  *
  * Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen:
  *
  * ```sh
- *  $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+ * $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
  * ```
  */
 export class ProjectInvitation extends pulumi.CustomResource {

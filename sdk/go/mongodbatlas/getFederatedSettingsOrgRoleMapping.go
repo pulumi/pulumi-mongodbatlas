@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,6 +75,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupFederatedSettingsOrgRoleMapping(ctx *pulumi.Context, args *LookupFederatedSettingsOrgRoleMappingArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsOrgRoleMappingResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsOrgRoleMappingResult

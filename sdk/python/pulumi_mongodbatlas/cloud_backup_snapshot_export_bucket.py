@@ -184,6 +184,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -194,15 +195,16 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             iam_role_id="{IAM_ROLE_ID}",
             project_id="{PROJECT_ID}")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Cloud Backup Snapshot Export Backup entries can be imported using project project_id, and bucket_id (Unique identifier of the snapshot export bucket), in the format `PROJECTID-BUCKETID`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5
+        $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5
         ```
-         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
+        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -224,6 +226,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -234,15 +237,16 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             iam_role_id="{IAM_ROLE_ID}",
             project_id="{PROJECT_ID}")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Cloud Backup Snapshot Export Backup entries can be imported using project project_id, and bucket_id (Unique identifier of the snapshot export bucket), in the format `PROJECTID-BUCKETID`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5
+        $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5
         ```
-         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
+        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
 
         :param str resource_name: The name of the resource.
         :param CloudBackupSnapshotExportBucketArgs args: The arguments to use to populate this resource's properties.

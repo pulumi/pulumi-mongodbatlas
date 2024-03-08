@@ -201,10 +201,6 @@ def get_private_link_endpoint(private_link_id: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
-    ## Example Usage
-    ### Available complete examples
-    - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
-
 
     :param str private_link_id: Unique identifier of the private endpoint service that you want to retrieve.
     :param str project_id: Unique identifier for the project.
@@ -243,10 +239,6 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[str]
     `PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
-    ## Example Usage
-    ### Available complete examples
-    - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
 
 
     :param str private_link_id: Unique identifier of the private endpoint service that you want to retrieve.

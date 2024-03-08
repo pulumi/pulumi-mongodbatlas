@@ -10,16 +10,16 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
     /// ## Import
     /// 
-    /// Backup Compliance Policy entries can be imported using project project_id
-    /// 
-    /// in the format `project_id`, e.g.
+    /// Backup Compliance Policy entries can be imported using project project_id  in the format `project_id`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy backup_policy 5d0f1f73cf09a29120e173cf
+    /// $ pulumi import mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy backup_policy 5d0f1f73cf09a29120e173cf
     /// ```
-    ///  For more information see: [MongoDB Atlas API Reference](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/updateDataProtectionSettings) and [Backup Compliance Policy Prohibited Actions](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#prohibited-actions).
+    /// For more information see: [MongoDB Atlas API Reference](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/updateDataProtectionSettings) and [Backup Compliance Policy Prohibited Actions](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#prohibited-actions).
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy")]
     public partial class BackupCompliancePolicy : global::Pulumi.CustomResource

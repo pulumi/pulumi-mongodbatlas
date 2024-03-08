@@ -13,7 +13,9 @@ import (
 )
 
 // ## Example Usage
+//
 // ### Example of a point in time restore
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -71,6 +73,8 @@ import (
 // })
 // }
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Available complete examples
 // - Restore from automated backup snapshot
 // - Restore from backup snapshot download
@@ -81,12 +85,9 @@ import (
 // Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
-//
+// $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
 // ```
-//
-//	For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
+// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
 type CloudBackupSnapshotRestoreJob struct {
 	pulumi.CustomResourceState
 

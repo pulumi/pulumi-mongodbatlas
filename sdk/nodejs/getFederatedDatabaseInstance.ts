@@ -14,8 +14,10 @@ import * as utilities from "./utilities";
  * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
  *
  * ## Example Usage
+ *
  * ### S With MongoDB Atlas Cluster As Storage Database
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -25,8 +27,11 @@ import * as utilities from "./utilities";
  *     projectId: "PROJECT ID",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### S With Amazon S3 Bucket As Storage Database
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -41,6 +46,7 @@ import * as utilities from "./utilities";
  *     projectId: "PROJECT ID",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getFederatedDatabaseInstance(args: GetFederatedDatabaseInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedDatabaseInstanceResult> {
 
@@ -144,8 +150,10 @@ export interface GetFederatedDatabaseInstanceResult {
  * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
  *
  * ## Example Usage
+ *
  * ### S With MongoDB Atlas Cluster As Storage Database
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -155,8 +163,11 @@ export interface GetFederatedDatabaseInstanceResult {
  *     projectId: "PROJECT ID",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### S With Amazon S3 Bucket As Storage Database
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -171,6 +182,7 @@ export interface GetFederatedDatabaseInstanceResult {
  *     projectId: "PROJECT ID",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getFederatedDatabaseInstanceOutput(args: GetFederatedDatabaseInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedDatabaseInstanceResult> {
     return pulumi.output(args).apply((a: any) => getFederatedDatabaseInstance(a, opts))

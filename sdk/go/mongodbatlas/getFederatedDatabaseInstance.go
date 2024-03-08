@@ -18,8 +18,10 @@ import (
 // > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
 //
 // ## Example Usage
+//
 // ### S With MongoDB Atlas Cluster As Storage Database
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,8 +46,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### S With Amazon S3 Bucket As Storage Database
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -75,6 +80,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupFederatedDatabaseInstance(ctx *pulumi.Context, args *LookupFederatedDatabaseInstanceArgs, opts ...pulumi.InvokeOption) (*LookupFederatedDatabaseInstanceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedDatabaseInstanceResult
