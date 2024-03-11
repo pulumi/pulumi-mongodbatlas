@@ -17,6 +17,7 @@ import (
 //
 // ## Example with AWS
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -67,9 +68,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Example with AZURE
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -120,6 +123,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ### Available complete examples
 // - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC

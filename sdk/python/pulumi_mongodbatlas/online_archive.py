@@ -460,7 +460,9 @@ class OnlineArchive(pulumi.CustomResource):
         > **IMPORTANT:** There are fields that are immutable after creation, i.e if `date_field` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
 
         ## Example Usage
+
         ### S
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -493,9 +495,11 @@ class OnlineArchive(pulumi.CustomResource):
                 start_minute=1,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         For custom criteria example
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -520,6 +524,11 @@ class OnlineArchive(pulumi.CustomResource):
                 query="{ \\"department\\": \\"engineering\\" }",
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -551,7 +560,9 @@ class OnlineArchive(pulumi.CustomResource):
         > **IMPORTANT:** There are fields that are immutable after creation, i.e if `date_field` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
 
         ## Example Usage
+
         ### S
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -584,9 +595,11 @@ class OnlineArchive(pulumi.CustomResource):
                 start_minute=1,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         For custom criteria example
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -611,6 +624,11 @@ class OnlineArchive(pulumi.CustomResource):
                 query="{ \\"department\\": \\"engineering\\" }",
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
 
         :param str resource_name: The name of the resource.
         :param OnlineArchiveArgs args: The arguments to use to populate this resource's properties.

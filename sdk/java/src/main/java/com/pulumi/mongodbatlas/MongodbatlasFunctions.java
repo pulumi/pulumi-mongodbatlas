@@ -464,6 +464,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -503,6 +504,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAdvancedClustersInvokeResult> getAdvancedClusters(GetAdvancedClustersArgs args) {
@@ -519,6 +521,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -558,6 +561,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAdvancedClustersInvokeResult> getAdvancedClustersPlain(GetAdvancedClustersPlainArgs args) {
@@ -574,6 +578,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -613,6 +618,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAdvancedClustersInvokeResult> getAdvancedClusters(GetAdvancedClustersArgs args, InvokeOptions options) {
@@ -629,6 +635,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -668,6 +675,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAdvancedClustersInvokeResult> getAdvancedClustersPlain(GetAdvancedClustersPlainArgs args, InvokeOptions options) {
@@ -773,15 +781,31 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetApiKeyResult> getApiKeyPlain(GetApiKeyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getApiKey:getApiKey", TypeShape.of(GetApiKeyResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static Output<GetApiKeysInvokeResult> getApiKeys(GetApiKeysArgs args) {
         return getApiKeys(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static CompletableFuture<GetApiKeysInvokeResult> getApiKeysPlain(GetApiKeysPlainArgs args) {
         return getApiKeysPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static Output<GetApiKeysInvokeResult> getApiKeys(GetApiKeysArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeys:getApiKeys", TypeShape.of(GetApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static CompletableFuture<GetApiKeysInvokeResult> getApiKeysPlain(GetApiKeysPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getApiKeys:getApiKeys", TypeShape.of(GetApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
@@ -791,7 +815,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
      * 
      * ## Example Usage
+     * 
      * ### Using user_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -820,7 +846,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using username attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -849,6 +878,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAtlasUserResult> getAtlasUser() {
@@ -860,7 +890,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
      * 
      * ## Example Usage
+     * 
      * ### Using user_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -889,7 +921,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using username attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -918,6 +953,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAtlasUserResult> getAtlasUserPlain() {
@@ -929,7 +965,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
      * 
      * ## Example Usage
+     * 
      * ### Using user_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -958,7 +996,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using username attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -987,6 +1028,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAtlasUserResult> getAtlasUser(GetAtlasUserArgs args) {
@@ -998,7 +1040,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
      * 
      * ## Example Usage
+     * 
      * ### Using user_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1027,7 +1071,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using username attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1056,6 +1103,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAtlasUserResult> getAtlasUserPlain(GetAtlasUserPlainArgs args) {
@@ -1067,7 +1115,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
      * 
      * ## Example Usage
+     * 
      * ### Using user_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1096,7 +1146,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using username attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1125,6 +1178,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAtlasUserResult> getAtlasUser(GetAtlasUserArgs args, InvokeOptions options) {
@@ -1136,7 +1190,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
      * 
      * ## Example Usage
+     * 
      * ### Using user_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1165,7 +1221,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using username attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1194,6 +1253,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAtlasUserResult> getAtlasUserPlain(GetAtlasUserPlainArgs args, InvokeOptions options) {
@@ -1205,7 +1265,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Using org_id attribute to query Organization Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1234,7 +1297,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using project_id attribute to query Project Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1263,7 +1330,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using team_id and org_id attribute to query Team Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1293,6 +1364,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAtlasUsersInvokeResult> getAtlasUsers() {
@@ -1304,7 +1376,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Using org_id attribute to query Organization Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1333,7 +1408,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using project_id attribute to query Project Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1362,7 +1441,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using team_id and org_id attribute to query Team Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1392,6 +1475,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAtlasUsersInvokeResult> getAtlasUsersPlain() {
@@ -1403,7 +1487,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Using org_id attribute to query Organization Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1432,7 +1519,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using project_id attribute to query Project Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1461,7 +1552,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using team_id and org_id attribute to query Team Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1491,6 +1586,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAtlasUsersInvokeResult> getAtlasUsers(GetAtlasUsersArgs args) {
@@ -1502,7 +1598,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Using org_id attribute to query Organization Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1531,7 +1630,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using project_id attribute to query Project Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1560,7 +1663,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using team_id and org_id attribute to query Team Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1590,6 +1697,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAtlasUsersInvokeResult> getAtlasUsersPlain(GetAtlasUsersPlainArgs args) {
@@ -1601,7 +1709,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Using org_id attribute to query Organization Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1630,7 +1741,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using project_id attribute to query Project Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1659,7 +1774,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using team_id and org_id attribute to query Team Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1689,6 +1808,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAtlasUsersInvokeResult> getAtlasUsers(GetAtlasUsersArgs args, InvokeOptions options) {
@@ -1700,7 +1820,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Using org_id attribute to query Organization Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1729,7 +1852,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using project_id attribute to query Project Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1758,7 +1885,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### Using team_id and org_id attribute to query Team Atlas Users
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1788,6 +1919,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAtlasUsersInvokeResult> getAtlasUsersPlain(GetAtlasUsersPlainArgs args, InvokeOptions options) {
@@ -1829,15 +1961,31 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetAuditingResult> getAuditingPlain(GetAuditingPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAuditing:getAuditing", TypeShape.of(GetAuditingResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static Output<GetBackupCompliancePolicyResult> getBackupCompliancePolicy(GetBackupCompliancePolicyArgs args) {
         return getBackupCompliancePolicy(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static CompletableFuture<GetBackupCompliancePolicyResult> getBackupCompliancePolicyPlain(GetBackupCompliancePolicyPlainArgs args) {
         return getBackupCompliancePolicyPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static Output<GetBackupCompliancePolicyResult> getBackupCompliancePolicy(GetBackupCompliancePolicyArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", TypeShape.of(GetBackupCompliancePolicyResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static CompletableFuture<GetBackupCompliancePolicyResult> getBackupCompliancePolicyPlain(GetBackupCompliancePolicyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", TypeShape.of(GetBackupCompliancePolicyResult.class), args, Utilities.withVersion(options));
     }
@@ -1955,6 +2103,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1992,6 +2142,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetCloudBackupSnapshotExportBucketsInvokeResult> getCloudBackupSnapshotExportBuckets(GetCloudBackupSnapshotExportBucketsArgs args) {
@@ -2003,6 +2154,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2040,6 +2193,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotExportBucketsInvokeResult> getCloudBackupSnapshotExportBucketsPlain(GetCloudBackupSnapshotExportBucketsPlainArgs args) {
@@ -2051,6 +2205,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2088,6 +2244,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetCloudBackupSnapshotExportBucketsInvokeResult> getCloudBackupSnapshotExportBuckets(GetCloudBackupSnapshotExportBucketsArgs args, InvokeOptions options) {
@@ -2099,6 +2256,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2136,6 +2295,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotExportBucketsInvokeResult> getCloudBackupSnapshotExportBucketsPlain(GetCloudBackupSnapshotExportBucketsPlainArgs args, InvokeOptions options) {
@@ -2183,6 +2343,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2235,6 +2397,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetCloudBackupSnapshotExportJobsInvokeResult> getCloudBackupSnapshotExportJobs(GetCloudBackupSnapshotExportJobsArgs args) {
@@ -2246,6 +2409,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2298,6 +2463,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotExportJobsInvokeResult> getCloudBackupSnapshotExportJobsPlain(GetCloudBackupSnapshotExportJobsPlainArgs args) {
@@ -2309,6 +2475,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2361,6 +2529,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetCloudBackupSnapshotExportJobsInvokeResult> getCloudBackupSnapshotExportJobs(GetCloudBackupSnapshotExportJobsArgs args, InvokeOptions options) {
@@ -2372,6 +2541,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2424,6 +2595,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotExportJobsInvokeResult> getCloudBackupSnapshotExportJobsPlain(GetCloudBackupSnapshotExportJobsPlainArgs args, InvokeOptions options) {
@@ -2473,6 +2645,8 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2527,6 +2701,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetCloudBackupSnapshotRestoreJobsInvokeResult> getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs args) {
@@ -2540,6 +2715,8 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2594,6 +2771,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotRestoreJobsInvokeResult> getCloudBackupSnapshotRestoreJobsPlain(GetCloudBackupSnapshotRestoreJobsPlainArgs args) {
@@ -2607,6 +2785,8 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2661,6 +2841,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetCloudBackupSnapshotRestoreJobsInvokeResult> getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs args, InvokeOptions options) {
@@ -2674,6 +2855,8 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2728,6 +2911,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotRestoreJobsInvokeResult> getCloudBackupSnapshotRestoreJobsPlain(GetCloudBackupSnapshotRestoreJobsPlainArgs args, InvokeOptions options) {
@@ -2775,7 +2959,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### With AWS
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2813,7 +2999,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### With AZURE
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2857,6 +3046,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetCloudProviderAccessSetupResult> getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs args) {
@@ -2868,7 +3058,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### With AWS
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2906,7 +3098,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### With AZURE
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2950,6 +3145,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetCloudProviderAccessSetupResult> getCloudProviderAccessSetupPlain(GetCloudProviderAccessSetupPlainArgs args) {
@@ -2961,7 +3157,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### With AWS
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2999,7 +3197,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### With AZURE
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3043,6 +3244,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetCloudProviderAccessSetupResult> getCloudProviderAccessSetup(GetCloudProviderAccessSetupArgs args, InvokeOptions options) {
@@ -3054,7 +3256,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### With AWS
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3092,7 +3296,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### With AZURE
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3136,6 +3343,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetCloudProviderAccessSetupResult> getCloudProviderAccessSetupPlain(GetCloudProviderAccessSetupPlainArgs args, InvokeOptions options) {
@@ -3199,7 +3407,10 @@ public final class MongodbatlasFunctions {
     }
     /**
      * ## Example Usage
+     * 
      * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3229,6 +3440,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClusterOutageSimulationResult> getClusterOutageSimulation(GetClusterOutageSimulationArgs args) {
@@ -3236,7 +3448,10 @@ public final class MongodbatlasFunctions {
     }
     /**
      * ## Example Usage
+     * 
      * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3266,6 +3481,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClusterOutageSimulationResult> getClusterOutageSimulationPlain(GetClusterOutageSimulationPlainArgs args) {
@@ -3273,7 +3489,10 @@ public final class MongodbatlasFunctions {
     }
     /**
      * ## Example Usage
+     * 
      * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3303,6 +3522,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClusterOutageSimulationResult> getClusterOutageSimulation(GetClusterOutageSimulationArgs args, InvokeOptions options) {
@@ -3310,7 +3530,10 @@ public final class MongodbatlasFunctions {
     }
     /**
      * ## Example Usage
+     * 
      * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3340,6 +3563,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClusterOutageSimulationResult> getClusterOutageSimulationPlain(GetClusterOutageSimulationPlainArgs args, InvokeOptions options) {
@@ -3356,6 +3580,8 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3405,6 +3631,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClustersInvokeResult> getClusters(GetClustersArgs args) {
@@ -3421,6 +3648,8 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3470,6 +3699,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClustersInvokeResult> getClustersPlain(GetClustersPlainArgs args) {
@@ -3486,6 +3716,8 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3535,6 +3767,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClustersInvokeResult> getClusters(GetClustersArgs args, InvokeOptions options) {
@@ -3551,6 +3784,8 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3600,6 +3835,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClustersInvokeResult> getClustersPlain(GetClustersPlainArgs args, InvokeOptions options) {
@@ -3611,6 +3847,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3663,6 +3901,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetCustomDbRoleResult> getCustomDbRole(GetCustomDbRoleArgs args) {
@@ -3674,6 +3913,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3726,6 +3967,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetCustomDbRoleResult> getCustomDbRolePlain(GetCustomDbRolePlainArgs args) {
@@ -3737,6 +3979,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3789,6 +4033,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetCustomDbRoleResult> getCustomDbRole(GetCustomDbRoleArgs args, InvokeOptions options) {
@@ -3800,6 +4045,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3852,6 +4099,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetCustomDbRoleResult> getCustomDbRolePlain(GetCustomDbRolePlainArgs args, InvokeOptions options) {
@@ -3864,6 +4112,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3911,6 +4160,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetCustomDbRolesInvokeResult> getCustomDbRoles(GetCustomDbRolesArgs args) {
@@ -3923,6 +4173,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3970,6 +4221,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetCustomDbRolesInvokeResult> getCustomDbRolesPlain(GetCustomDbRolesPlainArgs args) {
@@ -3982,6 +4234,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4029,6 +4282,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetCustomDbRolesInvokeResult> getCustomDbRoles(GetCustomDbRolesArgs args, InvokeOptions options) {
@@ -4041,6 +4295,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4088,6 +4343,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetCustomDbRolesInvokeResult> getCustomDbRolesPlain(GetCustomDbRolesPlainArgs args, InvokeOptions options) {
@@ -4180,6 +4436,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4247,6 +4504,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDataLakePipelineRunResult> getDataLakePipelineRun(GetDataLakePipelineRunArgs args) {
@@ -4259,6 +4517,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4326,6 +4585,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDataLakePipelineRunResult> getDataLakePipelineRunPlain(GetDataLakePipelineRunPlainArgs args) {
@@ -4338,6 +4598,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4405,6 +4666,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDataLakePipelineRunResult> getDataLakePipelineRun(GetDataLakePipelineRunArgs args, InvokeOptions options) {
@@ -4417,6 +4679,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4484,6 +4747,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDataLakePipelineRunResult> getDataLakePipelineRunPlain(GetDataLakePipelineRunPlainArgs args, InvokeOptions options) {
@@ -4496,6 +4760,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4556,6 +4821,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRuns(GetDataLakePipelineRunsArgs args) {
@@ -4568,6 +4834,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4628,6 +4895,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRunsPlain(GetDataLakePipelineRunsPlainArgs args) {
@@ -4640,6 +4908,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4700,6 +4969,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRuns(GetDataLakePipelineRunsArgs args, InvokeOptions options) {
@@ -4712,6 +4982,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4772,6 +5043,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDataLakePipelineRunsInvokeResult> getDataLakePipelineRunsPlain(GetDataLakePipelineRunsPlainArgs args, InvokeOptions options) {
@@ -4873,6 +5145,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4930,7 +5204,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * **Example of usage with a OIDC federated authentication user**
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4973,6 +5250,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
@@ -4987,6 +5265,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5044,7 +5324,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * **Example of usage with a OIDC federated authentication user**
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5087,6 +5370,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
@@ -5101,6 +5385,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5158,7 +5444,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * **Example of usage with a OIDC federated authentication user**
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5201,6 +5490,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
@@ -5215,6 +5505,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5272,7 +5564,10 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * **Example of usage with a OIDC federated authentication user**
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5315,6 +5610,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
@@ -5385,7 +5681,10 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
      * ### S With MongoDB Atlas Cluster As Storage Database
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5415,7 +5714,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### S With Amazon S3 Bucket As Storage Database
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5452,6 +5755,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedDatabaseInstanceResult> getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs args) {
@@ -5465,7 +5769,10 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
      * ### S With MongoDB Atlas Cluster As Storage Database
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5495,7 +5802,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### S With Amazon S3 Bucket As Storage Database
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5532,6 +5843,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedDatabaseInstanceResult> getFederatedDatabaseInstancePlain(GetFederatedDatabaseInstancePlainArgs args) {
@@ -5545,7 +5857,10 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
      * ### S With MongoDB Atlas Cluster As Storage Database
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5575,7 +5890,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### S With Amazon S3 Bucket As Storage Database
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5612,6 +5931,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedDatabaseInstanceResult> getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs args, InvokeOptions options) {
@@ -5625,7 +5945,10 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
      * ### S With MongoDB Atlas Cluster As Storage Database
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5655,7 +5978,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ### S With Amazon S3 Bucket As Storage Database
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5692,6 +6019,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedDatabaseInstanceResult> getFederatedDatabaseInstancePlain(GetFederatedDatabaseInstancePlainArgs args, InvokeOptions options) {
@@ -5705,8 +6033,10 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
      * ### S
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5736,6 +6066,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs args) {
@@ -5749,8 +6080,10 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
      * ### S
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5780,6 +6113,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstancesPlain(GetFederatedDatabaseInstancesPlainArgs args) {
@@ -5793,8 +6127,10 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
      * ### S
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5824,6 +6160,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs args, InvokeOptions options) {
@@ -5837,8 +6174,10 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
+     * 
      * ### S
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5868,6 +6207,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstancesPlain(GetFederatedDatabaseInstancesPlainArgs args, InvokeOptions options) {
@@ -5881,6 +6221,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5911,6 +6253,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedQueryLimitResult> getFederatedQueryLimit(GetFederatedQueryLimitArgs args) {
@@ -5924,6 +6267,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5954,6 +6299,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedQueryLimitResult> getFederatedQueryLimitPlain(GetFederatedQueryLimitPlainArgs args) {
@@ -5967,6 +6313,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -5997,6 +6345,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedQueryLimitResult> getFederatedQueryLimit(GetFederatedQueryLimitArgs args, InvokeOptions options) {
@@ -6010,6 +6359,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6040,6 +6391,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedQueryLimitResult> getFederatedQueryLimitPlain(GetFederatedQueryLimitPlainArgs args, InvokeOptions options) {
@@ -6051,7 +6403,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6081,6 +6436,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedQueryLimitsInvokeResult> getFederatedQueryLimits(GetFederatedQueryLimitsArgs args) {
@@ -6092,7 +6448,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6122,6 +6481,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedQueryLimitsInvokeResult> getFederatedQueryLimitsPlain(GetFederatedQueryLimitsPlainArgs args) {
@@ -6133,7 +6493,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6163,6 +6526,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedQueryLimitsInvokeResult> getFederatedQueryLimits(GetFederatedQueryLimitsArgs args, InvokeOptions options) {
@@ -6174,7 +6538,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### S
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6204,6 +6571,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedQueryLimitsInvokeResult> getFederatedQueryLimitsPlain(GetFederatedQueryLimitsPlainArgs args, InvokeOptions options) {
@@ -6213,6 +6581,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6241,6 +6611,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsResult> getFederatedSettings(GetFederatedSettingsArgs args) {
@@ -6250,6 +6621,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6278,6 +6651,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsResult> getFederatedSettingsPlain(GetFederatedSettingsPlainArgs args) {
@@ -6287,6 +6661,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6315,6 +6691,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsResult> getFederatedSettings(GetFederatedSettingsArgs args, InvokeOptions options) {
@@ -6324,6 +6701,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6352,6 +6731,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsResult> getFederatedSettingsPlain(GetFederatedSettingsPlainArgs args, InvokeOptions options) {
@@ -6363,6 +6743,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6405,6 +6787,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsIdentityProviderResult> getFederatedSettingsIdentityProvider(GetFederatedSettingsIdentityProviderArgs args) {
@@ -6416,6 +6799,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6458,6 +6843,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsIdentityProviderResult> getFederatedSettingsIdentityProviderPlain(GetFederatedSettingsIdentityProviderPlainArgs args) {
@@ -6469,6 +6855,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6511,6 +6899,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsIdentityProviderResult> getFederatedSettingsIdentityProvider(GetFederatedSettingsIdentityProviderArgs args, InvokeOptions options) {
@@ -6522,6 +6911,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6564,6 +6955,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsIdentityProviderResult> getFederatedSettingsIdentityProviderPlain(GetFederatedSettingsIdentityProviderPlainArgs args, InvokeOptions options) {
@@ -6575,6 +6967,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6614,6 +7008,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs args) {
@@ -6625,6 +7020,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6664,6 +7061,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProvidersPlain(GetFederatedSettingsIdentityProvidersPlainArgs args) {
@@ -6675,6 +7073,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6714,6 +7114,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs args, InvokeOptions options) {
@@ -6725,6 +7126,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6764,6 +7167,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProvidersPlain(GetFederatedSettingsIdentityProvidersPlainArgs args, InvokeOptions options) {
@@ -6773,6 +7177,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6812,6 +7218,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsOrgConfigResult> getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs args) {
@@ -6821,6 +7228,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6860,6 +7269,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsOrgConfigResult> getFederatedSettingsOrgConfigPlain(GetFederatedSettingsOrgConfigPlainArgs args) {
@@ -6869,6 +7279,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6908,6 +7320,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsOrgConfigResult> getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs args, InvokeOptions options) {
@@ -6917,6 +7330,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -6956,6 +7371,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsOrgConfigResult> getFederatedSettingsOrgConfigPlain(GetFederatedSettingsOrgConfigPlainArgs args, InvokeOptions options) {
@@ -6965,6 +7381,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFederatedSettingsOrgConfigs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7003,6 +7421,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsOrgConfigsInvokeResult> getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs args) {
@@ -7012,6 +7431,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFederatedSettingsOrgConfigs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7050,6 +7471,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsOrgConfigsInvokeResult> getFederatedSettingsOrgConfigsPlain(GetFederatedSettingsOrgConfigsPlainArgs args) {
@@ -7059,6 +7481,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFederatedSettingsOrgConfigs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7097,6 +7521,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsOrgConfigsInvokeResult> getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs args, InvokeOptions options) {
@@ -7106,6 +7531,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getFederatedSettingsOrgConfigs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7144,6 +7571,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsOrgConfigsInvokeResult> getFederatedSettingsOrgConfigsPlain(GetFederatedSettingsOrgConfigsPlainArgs args, InvokeOptions options) {
@@ -7153,6 +7581,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7217,6 +7647,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsOrgRoleMappingResult> getFederatedSettingsOrgRoleMapping(GetFederatedSettingsOrgRoleMappingArgs args) {
@@ -7226,6 +7657,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7290,6 +7723,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsOrgRoleMappingResult> getFederatedSettingsOrgRoleMappingPlain(GetFederatedSettingsOrgRoleMappingPlainArgs args) {
@@ -7299,6 +7733,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7363,6 +7799,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsOrgRoleMappingResult> getFederatedSettingsOrgRoleMapping(GetFederatedSettingsOrgRoleMappingArgs args, InvokeOptions options) {
@@ -7372,6 +7809,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7436,6 +7875,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsOrgRoleMappingResult> getFederatedSettingsOrgRoleMappingPlain(GetFederatedSettingsOrgRoleMappingPlainArgs args, InvokeOptions options) {
@@ -7446,6 +7886,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7500,6 +7941,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs args) {
@@ -7510,6 +7952,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7564,6 +8007,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappingsPlain(GetFederatedSettingsOrgRoleMappingsPlainArgs args) {
@@ -7574,6 +8018,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7628,6 +8073,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs args, InvokeOptions options) {
@@ -7638,6 +8084,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7692,6 +8139,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFederatedSettingsOrgRoleMappingsInvokeResult> getFederatedSettingsOrgRoleMappingsPlain(GetFederatedSettingsOrgRoleMappingsPlainArgs args, InvokeOptions options) {
@@ -7899,7 +8347,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Basic Example.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7938,6 +8389,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNetworkContainersInvokeResult> getNetworkContainers(GetNetworkContainersArgs args) {
@@ -7949,7 +8401,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Basic Example.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -7988,6 +8443,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNetworkContainersInvokeResult> getNetworkContainersPlain(GetNetworkContainersPlainArgs args) {
@@ -7999,7 +8455,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Basic Example.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -8038,6 +8497,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNetworkContainersInvokeResult> getNetworkContainers(GetNetworkContainersArgs args, InvokeOptions options) {
@@ -8049,7 +8509,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Basic Example.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -8088,6 +8551,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNetworkContainersInvokeResult> getNetworkContainersPlain(GetNetworkContainersPlainArgs args, InvokeOptions options) {
@@ -8151,7 +8615,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Basic Example (AWS).
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -8192,6 +8659,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNetworkPeeringsInvokeResult> getNetworkPeerings(GetNetworkPeeringsArgs args) {
@@ -8203,7 +8671,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Basic Example (AWS).
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -8244,6 +8715,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNetworkPeeringsInvokeResult> getNetworkPeeringsPlain(GetNetworkPeeringsPlainArgs args) {
@@ -8255,7 +8727,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Basic Example (AWS).
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -8296,6 +8771,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNetworkPeeringsInvokeResult> getNetworkPeerings(GetNetworkPeeringsArgs args, InvokeOptions options) {
@@ -8307,7 +8783,10 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Basic Example (AWS).
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -8348,6 +8827,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNetworkPeeringsInvokeResult> getNetworkPeeringsPlain(GetNetworkPeeringsPlainArgs args, InvokeOptions options) {
@@ -8359,36 +8839,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
      * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetOnlineArchiveArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getOnlineArchive(GetOnlineArchiveArgs.builder()
-     *             .projectId(var_.project_id())
-     *             .clusterName(var_.cluster_name())
-     *             .archiveId(&#34;5ebad3c1fe9c0ab8d37d61e1&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
      * ## Attributes reference
      * 
      * * `db_name`          -  Name of the database that contains the collection.
@@ -8443,36 +8894,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
      * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetOnlineArchiveArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getOnlineArchive(GetOnlineArchiveArgs.builder()
-     *             .projectId(var_.project_id())
-     *             .clusterName(var_.cluster_name())
-     *             .archiveId(&#34;5ebad3c1fe9c0ab8d37d61e1&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
      * ## Attributes reference
      * 
      * * `db_name`          -  Name of the database that contains the collection.
@@ -8527,36 +8949,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
      * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetOnlineArchiveArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getOnlineArchive(GetOnlineArchiveArgs.builder()
-     *             .projectId(var_.project_id())
-     *             .clusterName(var_.cluster_name())
-     *             .archiveId(&#34;5ebad3c1fe9c0ab8d37d61e1&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
      * ## Attributes reference
      * 
      * * `db_name`          -  Name of the database that contains the collection.
@@ -8611,36 +9004,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
      * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetOnlineArchiveArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getOnlineArchive(GetOnlineArchiveArgs.builder()
-     *             .projectId(var_.project_id())
-     *             .clusterName(var_.cluster_name())
-     *             .archiveId(&#34;5ebad3c1fe9c0ab8d37d61e1&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
      * ## Attributes reference
      * 
      * * `db_name`          -  Name of the database that contains the collection.
@@ -8695,35 +9059,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
      * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetOnlineArchivesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getOnlineArchives(GetOnlineArchivesArgs.builder()
-     *             .projectId(var_.project_id())
-     *             .clusterName(var_.cluster_name())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
      * ## Attributes reference
      * 
      * * `db_name` - Name of the database that contains the collection.
@@ -8776,35 +9112,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
      * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetOnlineArchivesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getOnlineArchives(GetOnlineArchivesArgs.builder()
-     *             .projectId(var_.project_id())
-     *             .clusterName(var_.cluster_name())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
      * ## Attributes reference
      * 
      * * `db_name` - Name of the database that contains the collection.
@@ -8857,35 +9165,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
      * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetOnlineArchivesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getOnlineArchives(GetOnlineArchivesArgs.builder()
-     *             .projectId(var_.project_id())
-     *             .clusterName(var_.cluster_name())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
      * ## Attributes reference
      * 
      * * `db_name` - Name of the database that contains the collection.
@@ -8938,35 +9218,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example Usage
-     * ```java
-     * package generated_program;
      * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetOnlineArchivesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = MongodbatlasFunctions.getOnlineArchives(GetOnlineArchivesArgs.builder()
-     *             .projectId(var_.project_id())
-     *             .clusterName(var_.cluster_name())
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
      * ## Attributes reference
      * 
      * * `db_name` - Name of the database that contains the collection.
@@ -9045,7 +9297,9 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
      * 
      * ## Example Usage
+     * 
      * ### Using project_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9074,6 +9328,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetOrganizationResult> getOrganization(GetOrganizationArgs args) {
@@ -9083,7 +9338,9 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
      * 
      * ## Example Usage
+     * 
      * ### Using project_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9112,6 +9369,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetOrganizationResult> getOrganizationPlain(GetOrganizationPlainArgs args) {
@@ -9121,7 +9379,9 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
      * 
      * ## Example Usage
+     * 
      * ### Using project_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9150,6 +9410,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetOrganizationResult> getOrganization(GetOrganizationArgs args, InvokeOptions options) {
@@ -9159,7 +9420,9 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
      * 
      * ## Example Usage
+     * 
      * ### Using project_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9188,6 +9451,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetOrganizationResult> getOrganizationPlain(GetOrganizationPlainArgs args, InvokeOptions options) {
@@ -9197,6 +9461,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getOrganizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9226,6 +9492,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetOrganizationsInvokeResult> getOrganizations() {
@@ -9235,6 +9502,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getOrganizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9264,6 +9533,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetOrganizationsInvokeResult> getOrganizationsPlain() {
@@ -9273,6 +9543,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getOrganizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9302,6 +9574,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetOrganizationsInvokeResult> getOrganizations(GetOrganizationsArgs args) {
@@ -9311,6 +9584,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getOrganizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9340,6 +9615,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetOrganizationsInvokeResult> getOrganizationsPlain(GetOrganizationsPlainArgs args) {
@@ -9349,6 +9625,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getOrganizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9378,6 +9656,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetOrganizationsInvokeResult> getOrganizations(GetOrganizationsArgs args, InvokeOptions options) {
@@ -9387,6 +9666,8 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getOrganizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9416,6 +9697,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetOrganizationsInvokeResult> getOrganizationsPlain(GetOrganizationsPlainArgs args, InvokeOptions options) {
@@ -9462,10 +9744,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
-     * ## Example Usage
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
-     * 
      */
     public static Output<GetPrivateLinkEndpointResult> getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs args) {
         return getPrivateLinkEndpoint(args, InvokeOptions.Empty);
@@ -9474,10 +9752,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     * ## Example Usage
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
      * 
      */
     public static CompletableFuture<GetPrivateLinkEndpointResult> getPrivateLinkEndpointPlain(GetPrivateLinkEndpointPlainArgs args) {
@@ -9488,10 +9762,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
-     * ## Example Usage
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
-     * 
      */
     public static Output<GetPrivateLinkEndpointResult> getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", TypeShape.of(GetPrivateLinkEndpointResult.class), args, Utilities.withVersion(options));
@@ -9500,10 +9770,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     * ## Example Usage
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
      * 
      */
     public static CompletableFuture<GetPrivateLinkEndpointResult> getPrivateLinkEndpointPlain(GetPrivateLinkEndpointPlainArgs args, InvokeOptions options) {
@@ -9514,10 +9780,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
-     * ## Example with Azure
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
-     * 
      */
     public static Output<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs args) {
         return getPrivateLinkEndpointService(args, InvokeOptions.Empty);
@@ -9526,10 +9788,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     * ## Example with Azure
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
      * 
      */
     public static CompletableFuture<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointServicePlain(GetPrivateLinkEndpointServicePlainArgs args) {
@@ -9540,10 +9798,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
-     * ## Example with Azure
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
-     * 
      */
     public static Output<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", TypeShape.of(GetPrivateLinkEndpointServiceResult.class), args, Utilities.withVersion(options));
@@ -9552,10 +9806,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     * ## Example with Azure
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
      * 
      */
     public static CompletableFuture<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointServicePlain(GetPrivateLinkEndpointServicePlainArgs args, InvokeOptions options) {
@@ -9579,6 +9829,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9622,6 +9874,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult> getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs args) {
@@ -9633,6 +9886,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9676,6 +9931,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult> getPrivatelinkEndpointServiceDataFederationOnlineArchivesPlain(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesPlainArgs args) {
@@ -9687,6 +9943,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9730,6 +9988,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult> getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs args, InvokeOptions options) {
@@ -9741,6 +10000,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9784,6 +10045,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult> getPrivatelinkEndpointServiceDataFederationOnlineArchivesPlain(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesPlainArgs args, InvokeOptions options) {
@@ -9795,6 +10057,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example with AWS
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9853,8 +10117,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Example with AZURE
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9913,6 +10180,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
@@ -9927,6 +10195,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example with AWS
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -9985,8 +10255,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Example with AZURE
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10045,6 +10318,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
@@ -10059,6 +10333,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example with AWS
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10117,8 +10393,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Example with AZURE
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10177,6 +10456,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
@@ -10191,6 +10471,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example with AWS
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10249,8 +10531,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Example with AZURE
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10309,6 +10594,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
@@ -10323,6 +10609,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example with AWS
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10380,8 +10668,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Example with AZURE
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10439,6 +10730,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetPrivatelinkEndpointsServiceServerlessInvokeResult> getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs args) {
@@ -10450,6 +10742,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example with AWS
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10507,8 +10801,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Example with AZURE
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10566,6 +10863,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetPrivatelinkEndpointsServiceServerlessInvokeResult> getPrivatelinkEndpointsServiceServerlessPlain(GetPrivatelinkEndpointsServiceServerlessPlainArgs args) {
@@ -10577,6 +10875,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example with AWS
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10634,8 +10934,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Example with AZURE
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10693,6 +10996,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetPrivatelinkEndpointsServiceServerlessInvokeResult> getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs args, InvokeOptions options) {
@@ -10704,6 +11008,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
      * 
      * ## Example with AWS
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10761,8 +11067,11 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Example with AZURE
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10820,6 +11129,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetPrivatelinkEndpointsServiceServerlessInvokeResult> getPrivatelinkEndpointsServiceServerlessPlain(GetPrivatelinkEndpointsServiceServerlessPlainArgs args, InvokeOptions options) {
@@ -10921,6 +11231,8 @@ public final class MongodbatlasFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10951,6 +11263,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetProjectApiKeysInvokeResult> getProjectApiKeys(GetProjectApiKeysArgs args) {
@@ -10958,6 +11271,8 @@ public final class MongodbatlasFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -10988,6 +11303,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetProjectApiKeysInvokeResult> getProjectApiKeysPlain(GetProjectApiKeysPlainArgs args) {
@@ -10995,6 +11311,8 @@ public final class MongodbatlasFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11025,6 +11343,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetProjectApiKeysInvokeResult> getProjectApiKeys(GetProjectApiKeysArgs args, InvokeOptions options) {
@@ -11032,6 +11351,8 @@ public final class MongodbatlasFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11062,6 +11383,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetProjectApiKeysInvokeResult> getProjectApiKeysPlain(GetProjectApiKeysPlainArgs args, InvokeOptions options) {
@@ -11173,6 +11495,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11227,6 +11551,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetProjectsInvokeResult> getProjects() {
@@ -11238,6 +11563,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11292,6 +11619,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetProjectsInvokeResult> getProjectsPlain() {
@@ -11303,6 +11631,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11357,6 +11687,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetProjectsInvokeResult> getProjects(GetProjectsArgs args) {
@@ -11368,6 +11699,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11422,6 +11755,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetProjectsInvokeResult> getProjectsPlain(GetProjectsPlainArgs args) {
@@ -11433,6 +11767,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11487,6 +11823,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetProjectsInvokeResult> getProjects(GetProjectsArgs args, InvokeOptions options) {
@@ -11498,6 +11835,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11552,6 +11891,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetProjectsInvokeResult> getProjectsPlain(GetProjectsPlainArgs args, InvokeOptions options) {
@@ -11561,7 +11901,9 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
+     * 
      * ### Using project_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11588,6 +11930,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetRolesOrgIdResult> getRolesOrgId() {
@@ -11597,7 +11940,9 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
+     * 
      * ### Using project_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11624,6 +11969,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetRolesOrgIdResult> getRolesOrgIdPlain() {
@@ -11633,7 +11979,9 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
+     * 
      * ### Using project_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11660,6 +12008,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetRolesOrgIdResult> getRolesOrgId(InvokeArgs args) {
@@ -11669,7 +12018,9 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
+     * 
      * ### Using project_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11696,6 +12047,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetRolesOrgIdResult> getRolesOrgIdPlain(InvokeArgs args) {
@@ -11705,7 +12057,9 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
+     * 
      * ### Using project_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11732,6 +12086,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetRolesOrgIdResult> getRolesOrgId(InvokeArgs args, InvokeOptions options) {
@@ -11741,7 +12096,9 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
+     * 
      * ### Using project_id attribute to query
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11768,6 +12125,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetRolesOrgIdResult> getRolesOrgIdPlain(InvokeArgs args, InvokeOptions options) {
@@ -11815,6 +12173,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11845,6 +12205,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetSearchIndexResult> getSearchIndex(GetSearchIndexArgs args) {
@@ -11856,6 +12217,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11886,6 +12249,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetSearchIndexResult> getSearchIndexPlain(GetSearchIndexPlainArgs args) {
@@ -11897,6 +12261,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11927,6 +12293,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetSearchIndexResult> getSearchIndex(GetSearchIndexArgs args, InvokeOptions options) {
@@ -11938,6 +12305,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -11968,6 +12337,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetSearchIndexResult> getSearchIndexPlain(GetSearchIndexPlainArgs args, InvokeOptions options) {
@@ -11980,6 +12350,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12011,6 +12382,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetSearchIndexesInvokeResult> getSearchIndexes(GetSearchIndexesArgs args) {
@@ -12023,6 +12395,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12054,6 +12427,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetSearchIndexesInvokeResult> getSearchIndexesPlain(GetSearchIndexesPlainArgs args) {
@@ -12066,6 +12440,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12097,6 +12472,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetSearchIndexesInvokeResult> getSearchIndexes(GetSearchIndexesArgs args, InvokeOptions options) {
@@ -12109,6 +12485,7 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12140,6 +12517,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetSearchIndexesInvokeResult> getSearchIndexesPlain(GetSearchIndexesPlainArgs args, InvokeOptions options) {
@@ -12153,7 +12531,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Basic
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12183,6 +12563,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
      * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
@@ -12205,7 +12586,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Basic
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12235,6 +12618,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
      * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
@@ -12257,7 +12641,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Basic
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12287,6 +12673,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
      * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
@@ -12309,7 +12696,9 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ### Basic
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12339,6 +12728,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
      * That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
@@ -12362,6 +12752,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12390,6 +12782,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetServerlessInstancesInvokeResult> getServerlessInstances(GetServerlessInstancesArgs args) {
@@ -12404,6 +12797,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12432,6 +12827,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetServerlessInstancesInvokeResult> getServerlessInstancesPlain(GetServerlessInstancesPlainArgs args) {
@@ -12446,6 +12842,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12474,6 +12872,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetServerlessInstancesInvokeResult> getServerlessInstances(GetServerlessInstancesArgs args, InvokeOptions options) {
@@ -12488,6 +12887,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12516,6 +12917,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetServerlessInstancesInvokeResult> getServerlessInstancesPlain(GetServerlessInstancesPlainArgs args, InvokeOptions options) {
@@ -12599,6 +13001,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12636,6 +13040,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetThirdPartyIntegrationResult> getThirdPartyIntegration(GetThirdPartyIntegrationArgs args) {
@@ -12647,6 +13052,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12684,6 +13091,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetThirdPartyIntegrationResult> getThirdPartyIntegrationPlain(GetThirdPartyIntegrationPlainArgs args) {
@@ -12695,6 +13103,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12732,6 +13142,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetThirdPartyIntegrationResult> getThirdPartyIntegration(GetThirdPartyIntegrationArgs args, InvokeOptions options) {
@@ -12743,6 +13154,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12780,6 +13193,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetThirdPartyIntegrationResult> getThirdPartyIntegrationPlain(GetThirdPartyIntegrationPlainArgs args, InvokeOptions options) {
@@ -12792,6 +13206,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12835,6 +13251,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetThirdPartyIntegrationsInvokeResult> getThirdPartyIntegrations(GetThirdPartyIntegrationsArgs args) {
@@ -12847,6 +13264,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12890,6 +13309,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetThirdPartyIntegrationsInvokeResult> getThirdPartyIntegrationsPlain(GetThirdPartyIntegrationsPlainArgs args) {
@@ -12902,6 +13322,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -12945,6 +13367,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetThirdPartyIntegrationsInvokeResult> getThirdPartyIntegrations(GetThirdPartyIntegrationsArgs args, InvokeOptions options) {
@@ -12957,6 +13380,8 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -13000,6 +13425,7 @@ public final class MongodbatlasFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetThirdPartyIntegrationsInvokeResult> getThirdPartyIntegrationsPlain(GetThirdPartyIntegrationsPlainArgs args, InvokeOptions options) {

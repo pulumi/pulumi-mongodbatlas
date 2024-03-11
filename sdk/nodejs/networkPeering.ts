@@ -25,8 +25,10 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Container & Peering Connection
+ *
  * ### Example with AWS
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -57,8 +59,11 @@ import * as utilities from "./utilities";
  *     autoAccept: true,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Example with GCP
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -108,9 +113,19 @@ import * as utilities from "./utilities";
  * }, {
  *     dependsOn: ["google_compute_network_peering.peering"],
  * });
+ * //  Private connection strings are not available w/ GCP until the reciprocal
+ * //  connection changes to available (i.e. when the status attribute changes
+ * //  to AVAILABLE on the 'mongodbatlas_network_peering' resource, which
+ * //  happens when the google_compute_network_peering and and
+ * //  mongodbatlas_network_peering make a reciprocal connection).  Hence
+ * //  since the cluster can be created before this connection completes
+ * //  you may need to run `terraform refresh` to obtain the private connection strings.
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Example with Azure
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -157,9 +172,13 @@ import * as utilities from "./utilities";
  *     dependsOn: ["mongodbatlas_network_peering.test"],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Peering Connection Only, Container Exists
  * You can create a peering connection if an appropriate container for your cloud provider already exists in your project (see the networkContainer resource for more information).  A container may already exist if you have already created a cluster in your project, if so you may obtain the `containerId` from the cluster resource as shown in the examples below.
+ *
  * ### Example with AWS
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -207,7 +226,10 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Example with GCP
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -250,8 +272,11 @@ import * as utilities from "./utilities";
  *     peerNetwork: pulumi.interpolate`https://www.googleapis.com/compute/v1/projects/${testNetworkPeering.atlasGcpProjectId}/global/networks/${testNetworkPeering.atlasVpcName}`,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Example with Azure
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -288,15 +313,16 @@ import * as utilities from "./utilities";
  *     vnetName: local.AZURE_VNET_NAME,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Network Peering Connections can be imported using project ID and network peering id, in the format `PROJECTID-PEERID-PROVIDERNAME`, e.g.
  *
  * ```sh
- *  $ pulumi import mongodbatlas:index/networkPeering:NetworkPeering my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS
+ * $ pulumi import mongodbatlas:index/networkPeering:NetworkPeering my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS
  * ```
- *  See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
+ * See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
  *
  * -> __NOTE:__ If you need to get an existing container ID see the How-To Guide.
  */

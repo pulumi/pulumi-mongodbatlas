@@ -11,9 +11,15 @@ namespace Pulumi.Mongodbatlas
 {
     public static class GetBackupCompliancePolicy
     {
+        /// <summary>
+        /// ## Example Usage
+        /// </summary>
         public static Task<GetBackupCompliancePolicyResult> InvokeAsync(GetBackupCompliancePolicyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBackupCompliancePolicyResult>("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", args ?? new GetBackupCompliancePolicyArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetBackupCompliancePolicyResult> Invoke(GetBackupCompliancePolicyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBackupCompliancePolicyResult>("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", args ?? new GetBackupCompliancePolicyInvokeArgs(), options.WithDefaults());
     }

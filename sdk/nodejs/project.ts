@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -52,15 +53,16 @@ import * as utilities from "./utilities";
  *     isSchemaAdvisorEnabled: true,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Project must be imported using project ID, e.g.
  *
  * ```sh
- *  $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
+ * $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
  * ```
- *  For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+ * For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
  */
 export class Project extends pulumi.CustomResource {
     /**

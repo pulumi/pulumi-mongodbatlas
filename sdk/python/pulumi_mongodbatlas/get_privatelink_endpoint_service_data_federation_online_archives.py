@@ -75,6 +75,7 @@ def get_privatelink_endpoint_service_data_federation_online_archives(project_id:
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -87,6 +88,7 @@ def get_privatelink_endpoint_service_data_federation_online_archives(project_id:
         comment="Test")
     test_data_source = mongodbatlas.get_privatelink_endpoint_service_data_federation_online_archives_output(project_id=atlas_project.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.
@@ -112,6 +114,7 @@ def get_privatelink_endpoint_service_data_federation_online_archives_output(proj
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -124,6 +127,7 @@ def get_privatelink_endpoint_service_data_federation_online_archives_output(proj
         comment="Test")
     test_data_source = mongodbatlas.get_privatelink_endpoint_service_data_federation_online_archives_output(project_id=atlas_project.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project.

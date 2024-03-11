@@ -26,6 +26,8 @@ import javax.annotation.Nullable;
  * &gt; **NOTE** Import command is currently not supported for this resource.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -56,6 +58,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="mongodbatlas:index/organization:Organization")

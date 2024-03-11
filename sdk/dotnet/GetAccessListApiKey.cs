@@ -12,17 +12,13 @@ namespace Pulumi.Mongodbatlas
     public static class GetAccessListApiKey
     {
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetAccessListApiKeyResult> InvokeAsync(GetAccessListApiKeyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccessListApiKeyResult>("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", args ?? new GetAccessListApiKeyArgs(), options.WithDefaults());
 
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetAccessListApiKeyResult> Invoke(GetAccessListApiKeyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessListApiKeyResult>("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", args ?? new GetAccessListApiKeyInvokeArgs(), options.WithDefaults());

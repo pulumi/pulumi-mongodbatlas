@@ -11,6 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
 func LookupApiKeys(ctx *pulumi.Context, args *LookupApiKeysArgs, opts ...pulumi.InvokeOption) (*LookupApiKeysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupApiKeysResult

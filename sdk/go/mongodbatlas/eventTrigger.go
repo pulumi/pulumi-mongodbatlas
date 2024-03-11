@@ -19,7 +19,9 @@ import (
 // ## Example Usage
 //
 // ### S
+//
 // ### Example Usage: Database Trigger with Function
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -71,7 +73,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Example Usage: Database Trigger with EventBridge
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -121,7 +126,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Example Usage: Authentication Trigger
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -153,7 +161,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Example Usage: Scheduled Trigger
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -182,18 +193,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Event trigger can be imported using project ID, App ID and Trigger ID, in the format `project_id`--`app_id`-`trigger_id`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
-//
+// $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
 // ```
-//
-//	For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
+// For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
 type EventTrigger struct {
 	pulumi.CustomResourceState
 

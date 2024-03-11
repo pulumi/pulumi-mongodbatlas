@@ -13,7 +13,9 @@ import * as utilities from "./utilities";
  * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
  *
  * ## Example Usage
+ *
  * ### Basic
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -25,6 +27,7 @@ import * as utilities from "./utilities";
  *     providerSettingsRegionName: "US_EAST_1",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
  * That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
@@ -43,7 +46,7 @@ import * as utilities from "./utilities";
  * $ pulumi import mongodbatlas:index/serverlessInstance:ServerlessInstance my_serverless_instance 1112222b3bf99403840e8934-My Serverless Instance
  * ```
  *
- *  For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
+ * For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
  */
 export class ServerlessInstance extends pulumi.CustomResource {
     /**

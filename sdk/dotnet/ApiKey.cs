@@ -12,6 +12,7 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -32,15 +33,16 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// API Keys must be imported using org ID, API Key ID e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import mongodbatlas:index/apiKey:ApiKey test 5d09d6a59ccf6445652a444a-6576974933969669
+    /// $ pulumi import mongodbatlas:index/apiKey:ApiKey test 5d09d6a59ccf6445652a444a-6576974933969669
     /// ```
-    ///  See [MongoDB Atlas API - API Key](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKey) Documentation for more information.
+    /// See [MongoDB Atlas API - API Key](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKey) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/apiKey:ApiKey")]
     public partial class ApiKey : global::Pulumi.CustomResource
