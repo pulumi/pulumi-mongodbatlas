@@ -144,7 +144,9 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[pulumi.Inpu
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
     ## Example Usage
+
     ### With AWS
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -156,7 +158,10 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[pulumi.Inpu
         provider_name=test_role.provider_name,
         role_id=test_role.role_id)
     ```
+    <!--End PulumiCodeChooser -->
+
     ### With AZURE
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -173,6 +178,7 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[pulumi.Inpu
         provider_name=test_role.provider_name,
         role_id=test_role.role_id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetCloudProviderAccessSetupAzureConfigArgs']] azure_configs: azure related configurations
@@ -212,7 +218,9 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
     ## Example Usage
+
     ### With AWS
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -224,7 +232,10 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
         provider_name=test_role.provider_name,
         role_id=test_role.role_id)
     ```
+    <!--End PulumiCodeChooser -->
+
     ### With AZURE
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -241,6 +252,7 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
         provider_name=test_role.provider_name,
         role_id=test_role.role_id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetCloudProviderAccessSetupAzureConfigArgs']] azure_configs: azure related configurations

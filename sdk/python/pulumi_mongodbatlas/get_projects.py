@@ -91,6 +91,7 @@ def get_projects(items_per_page: Optional[int] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -118,6 +119,7 @@ def get_projects(items_per_page: Optional[int] = None,
     test_projects = mongodbatlas.get_projects(page_num=1,
         items_per_page=5)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -148,6 +150,7 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -175,6 +178,7 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
     test_projects = mongodbatlas.get_projects(page_num=1,
         items_per_page=5)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.

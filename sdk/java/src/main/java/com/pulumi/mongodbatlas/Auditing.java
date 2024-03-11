@@ -18,6 +18,8 @@ import javax.annotation.Nullable;
  * `mongodbatlas.Auditing` provides an Auditing resource. This allows auditing to be created.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -49,15 +51,16 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Auditing must be imported using auditing ID, e.g.
  * 
  * ```sh
- *  $ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
+ * $ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
  * ```
- *  For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
+ * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
  * 
  */
 @ResourceType(type="mongodbatlas:index/auditing:Auditing")

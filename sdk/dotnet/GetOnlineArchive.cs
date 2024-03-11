@@ -17,29 +17,17 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// ```terraform 
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetOnlineArchive.Invoke(new()
-        ///     {
-        ///         ProjectId = @var.Project_id,
-        ///         ClusterName = @var.Cluster_name,
-        ///         ArchiveId = "5ebad3c1fe9c0ab8d37d61e1",
-        ///     });
-        /// 
-        /// });
+        /// data "mongodbatlas_online_archive" "test" {
+        ///     project_id   = var.project_id
+        ///     cluster_name = var.cluster_name
+        ///     archive_id     = "5ebad3c1fe9c0ab8d37d61e1"
+        /// }
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// 
         /// ## Attributes reference
         /// 
         /// * `db_name`          -  Name of the database that contains the collection.
@@ -94,29 +82,17 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// ```terraform 
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetOnlineArchive.Invoke(new()
-        ///     {
-        ///         ProjectId = @var.Project_id,
-        ///         ClusterName = @var.Cluster_name,
-        ///         ArchiveId = "5ebad3c1fe9c0ab8d37d61e1",
-        ///     });
-        /// 
-        /// });
+        /// data "mongodbatlas_online_archive" "test" {
+        ///     project_id   = var.project_id
+        ///     cluster_name = var.cluster_name
+        ///     archive_id     = "5ebad3c1fe9c0ab8d37d61e1"
+        /// }
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// 
         /// ## Attributes reference
         /// 
         /// * `db_name`          -  Name of the database that contains the collection.

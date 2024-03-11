@@ -28,7 +28,10 @@ import javax.annotation.Nullable;
  * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
  * 
  * ## Example Usage
+ * 
  * ### S
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -85,6 +88,9 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -131,6 +137,9 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -177,7 +186,11 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Example of how to create a OIDC federated authentication user
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -214,6 +227,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a &#39;/&#39;, followed by the IdP group name
  * 
  * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
@@ -223,9 +237,9 @@ import javax.annotation.Nullable;
  * Database users can be imported using project ID and username, in the format `project_id`-`username`-`auth_database_name`, e.g.
  * 
  * ```sh
- *  $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
+ * $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
  * ```
- *  ~&gt; __NOTE:__ Terraform will want to change the password after importing the user if a `password` argument is specified.
+ * ~&gt; __NOTE:__ Terraform will want to change the password after importing the user if a `password` argument is specified.
  * 
  */
 @ResourceType(type="mongodbatlas:index/databaseUser:DatabaseUser")

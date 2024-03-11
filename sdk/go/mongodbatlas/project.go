@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -77,18 +78,16 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Project must be imported using project ID, e.g.
 //
 // ```sh
-//
-//	$ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
-//
+// $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
 // ```
-//
-//	For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+// For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
 type Project struct {
 	pulumi.CustomResourceState
 

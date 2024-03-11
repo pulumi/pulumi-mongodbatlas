@@ -424,6 +424,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         ## Example with AWS
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -445,9 +446,11 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             endpoint_service_id=ptfe_service.id,
             provider_name="AWS")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Example with Azure
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_azure as azure
@@ -474,19 +477,16 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             private_endpoint_ip_address=test_endpoint.private_service_connection.private_ip_address,
             provider_name="AZURE")
         ```
-
-        ## Example with GCP
-        ### Available complete examples
-        - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
+        $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
         ```
-         See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
+        See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -516,6 +516,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         ## Example with AWS
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -537,9 +538,11 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             endpoint_service_id=ptfe_service.id,
             provider_name="AWS")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Example with Azure
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_azure as azure
@@ -566,19 +569,16 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             private_endpoint_ip_address=test_endpoint.private_service_connection.private_ip_address,
             provider_name="AZURE")
         ```
-
-        ## Example with GCP
-        ### Available complete examples
-        - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
+        $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
         ```
-         See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
+        See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
 
         :param str resource_name: The name of the resource.
         :param PrivateLinkEndpointServiceArgs args: The arguments to use to populate this resource's properties.

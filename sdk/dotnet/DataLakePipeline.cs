@@ -21,9 +21,9 @@ namespace Pulumi.Mongodbatlas
     /// Data Lake Pipeline can be imported using project ID, name of the data lake and name of the AWS s3 bucket, in the format `project_id`--`name`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import mongodbatlas:index/dataLakePipeline:DataLakePipeline example 1112222b3bf99403840e8934--test-data-lake-pipeline-test
+    /// $ pulumi import mongodbatlas:index/dataLakePipeline:DataLakePipeline example 1112222b3bf99403840e8934--test-data-lake-pipeline-test
     /// ```
-    ///  See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines) Documentation for more information.
+    /// See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Lake-Pipelines) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/dataLakePipeline:DataLakePipeline")]
     public partial class DataLakePipeline : global::Pulumi.CustomResource

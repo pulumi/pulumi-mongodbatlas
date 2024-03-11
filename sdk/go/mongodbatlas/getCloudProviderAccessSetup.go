@@ -16,7 +16,9 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
 // ## Example Usage
+//
 // ### With AWS
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,7 +48,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### With AZURE
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -83,6 +88,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupCloudProviderAccessSetup(ctx *pulumi.Context, args *LookupCloudProviderAccessSetupArgs, opts ...pulumi.InvokeOption) (*LookupCloudProviderAccessSetupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudProviderAccessSetupResult

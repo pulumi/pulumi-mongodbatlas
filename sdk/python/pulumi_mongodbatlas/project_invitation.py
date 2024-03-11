@@ -195,8 +195,10 @@ class ProjectInvitation(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+
         ### S
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -206,7 +208,9 @@ class ProjectInvitation(pulumi.CustomResource):
             roles=["GROUP_DATA_ACCESS_READ_WRITE"],
             username="test-acc-username")
         ```
+        <!--End PulumiCodeChooser -->
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -219,15 +223,17 @@ class ProjectInvitation(pulumi.CustomResource):
             ],
             username="test-acc-username")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        ~> __IMPORTANT:__ A project invitation can __not__ be imported once it has been accepted.
+        ~> __IMPORTANT:__
+        A project invitation can __not__ be imported once it has been accepted.
 
         Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen:
 
         ```sh
-         $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+        $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
         ```
 
         :param str resource_name: The name of the resource.
@@ -244,8 +250,10 @@ class ProjectInvitation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
         ### S
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -255,7 +263,9 @@ class ProjectInvitation(pulumi.CustomResource):
             roles=["GROUP_DATA_ACCESS_READ_WRITE"],
             username="test-acc-username")
         ```
+        <!--End PulumiCodeChooser -->
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -268,15 +278,17 @@ class ProjectInvitation(pulumi.CustomResource):
             ],
             username="test-acc-username")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        ~> __IMPORTANT:__ A project invitation can __not__ be imported once it has been accepted.
+        ~> __IMPORTANT:__
+        A project invitation can __not__ be imported once it has been accepted.
 
         Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen:
 
         ```sh
-         $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+        $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
         ```
 
         :param str resource_name: The name of the resource.

@@ -114,6 +114,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
      * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
      * * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
      * * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -136,6 +137,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * * The default value is false.  M10 and above only.
      * 
      */
@@ -147,6 +149,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
      * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
      * * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
      * * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -169,6 +172,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * * The default value is false.  M10 and above only.
      * 
      */
@@ -779,6 +783,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
          * * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
          * * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -801,6 +806,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * * The default value is false.  M10 and above only.
          * 
          * @return builder
@@ -816,6 +822,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
          * * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
          * * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -838,6 +845,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * * The default value is false.  M10 and above only.
          * 
          * @return builder

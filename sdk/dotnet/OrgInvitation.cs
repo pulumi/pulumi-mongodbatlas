@@ -11,8 +11,10 @@ namespace Pulumi.Mongodbatlas
 {
     /// <summary>
     /// ## Example Usage
+    /// 
     /// ### S
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,7 +35,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -55,7 +59,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -81,15 +87,17 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// ~&gt; __IMPORTANT:__ An organization invitation can __not__ be imported once it has been accepted.
+    /// ~&gt; __IMPORTANT:__
+    /// An organization invitation can __not__ be imported once it has been accepted.
     /// 
     /// Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen:
     /// 
     /// ```sh
-    ///  $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+    /// $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
     /// ```
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/orgInvitation:OrgInvitation")]

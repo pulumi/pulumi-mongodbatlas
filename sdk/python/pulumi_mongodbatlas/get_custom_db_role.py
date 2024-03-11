@@ -96,6 +96,7 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[pulumi.InputType['GetC
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -122,6 +123,7 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[pulumi.InputType['GetC
     test = mongodbatlas.get_custom_db_role_output(project_id=test_role.project_id,
         role_name=test_role.role_name)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: The unique ID for the project to create the database user.
@@ -154,6 +156,7 @@ def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Se
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -180,6 +183,7 @@ def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Se
     test = mongodbatlas.get_custom_db_role_output(project_id=test_role.project_id,
         role_name=test_role.role_name)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: The unique ID for the project to create the database user.

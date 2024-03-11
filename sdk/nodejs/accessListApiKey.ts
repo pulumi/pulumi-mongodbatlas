@@ -6,7 +6,9 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
  * ### Using CIDR Block
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -17,7 +19,10 @@ import * as utilities from "./utilities";
  *     orgId: "<ORG-ID>",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Using IP Address
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -28,15 +33,16 @@ import * as utilities from "./utilities";
  *     orgId: "<ORG-ID>",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * IP Access List entries can be imported using the `org_id` , `api_key_id` and `cidr_block` or `ip_address`, e.g.
  *
  * ```sh
- *  $ pulumi import mongodbatlas:index/accessListApiKey:AccessListApiKey test 5d0f1f74cf09a29120e123cd-a29120e123cd-10.242.88.0/21
+ * $ pulumi import mongodbatlas:index/accessListApiKey:AccessListApiKey test 5d0f1f74cf09a29120e123cd-a29120e123cd-10.242.88.0/21
  * ```
- *  For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKeyAccessList)
+ * For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKeyAccessList)
  */
 export class AccessListApiKey extends pulumi.CustomResource {
     /**

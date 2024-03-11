@@ -18,7 +18,9 @@ namespace Pulumi.Mongodbatlas
     /// When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
     /// 
     /// ## Example Usage
+    /// 
     /// ### Using CIDR Block
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,7 +38,10 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Using IP Address
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -54,7 +59,10 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Using an AWS Security Group
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -97,6 +105,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
     /// 
@@ -105,9 +114,9 @@ namespace Pulumi.Mongodbatlas
     /// IP Access List entries can be imported using the `project_id` and `cidr_block` or `ip_address`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList test 5d0f1f74cf09a29120e123cd-10.242.88.0/21
+    /// $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList test 5d0f1f74cf09a29120e123cd-10.242.88.0/21
     /// ```
-    ///  For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/access-lists/)
+    /// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/access-lists/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList")]
     public partial class ProjectIpAccessList : global::Pulumi.CustomResource

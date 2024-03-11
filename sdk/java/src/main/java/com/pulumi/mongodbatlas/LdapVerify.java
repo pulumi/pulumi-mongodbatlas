@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * `mongodbatlas.LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -72,15 +74,16 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * LDAP Configuration must be imported using project ID and request ID, e.g.
  * 
  * ```sh
- *  $ pulumi import mongodbatlas:index/ldapVerify:LdapVerify test 5d09d6a59ccf6445652a444a-5d09d6a59ccf6445652a444a
+ * $ pulumi import mongodbatlas:index/ldapVerify:LdapVerify test 5d09d6a59ccf6445652a444a-5d09d6a59ccf6445652a444a
  * ```
- *  For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+ * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
  * 
  */
 @ResourceType(type="mongodbatlas:index/ldapVerify:LdapVerify")

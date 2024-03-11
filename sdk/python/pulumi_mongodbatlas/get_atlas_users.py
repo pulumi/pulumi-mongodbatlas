@@ -126,24 +126,32 @@ def get_atlas_users(items_per_page: Optional[int] = None,
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
     ## Example Usage
+
     ### Using org_id attribute to query Organization Atlas Users
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
     test = mongodbatlas.get_atlas_users(org_id="<ORG_ID>")
     ```
+    <!--End PulumiCodeChooser -->
+
     ### Using project_id attribute to query Project Atlas Users
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
     test = mongodbatlas.get_atlas_users(project_id="<PROJECT_ID>")
     ```
+    <!--End PulumiCodeChooser -->
+
     ### Using team_id and org_id attribute to query Team Atlas Users
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -151,6 +159,7 @@ def get_atlas_users(items_per_page: Optional[int] = None,
     test = mongodbatlas.get_atlas_users(org_id="<ORG_ID>",
         team_id="<TEAM_ID>")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
@@ -194,24 +203,32 @@ def get_atlas_users_output(items_per_page: Optional[pulumi.Input[Optional[int]]]
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
     ## Example Usage
+
     ### Using org_id attribute to query Organization Atlas Users
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
     test = mongodbatlas.get_atlas_users(org_id="<ORG_ID>")
     ```
+    <!--End PulumiCodeChooser -->
+
     ### Using project_id attribute to query Project Atlas Users
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
     test = mongodbatlas.get_atlas_users(project_id="<PROJECT_ID>")
     ```
+    <!--End PulumiCodeChooser -->
+
     ### Using team_id and org_id attribute to query Team Atlas Users
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -219,6 +236,7 @@ def get_atlas_users_output(items_per_page: Optional[pulumi.Input[Optional[int]]]
     test = mongodbatlas.get_atlas_users(org_id="<ORG_ID>",
         team_id="<TEAM_ID>")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.

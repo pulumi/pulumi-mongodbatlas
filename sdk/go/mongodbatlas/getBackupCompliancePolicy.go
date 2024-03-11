@@ -11,6 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
 func LookupBackupCompliancePolicy(ctx *pulumi.Context, args *LookupBackupCompliancePolicyArgs, opts ...pulumi.InvokeOption) (*LookupBackupCompliancePolicyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBackupCompliancePolicyResult

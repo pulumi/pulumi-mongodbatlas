@@ -12,17 +12,13 @@ namespace Pulumi.Mongodbatlas
     public static class GetProjectApiKey
     {
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetProjectApiKeyResult> InvokeAsync(GetProjectApiKeyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectApiKeyResult>("mongodbatlas:index/getProjectApiKey:getProjectApiKey", args ?? new GetProjectApiKeyArgs(), options.WithDefaults());
 
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetProjectApiKeyResult> Invoke(GetProjectApiKeyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectApiKeyResult>("mongodbatlas:index/getProjectApiKey:getProjectApiKey", args ?? new GetProjectApiKeyInvokeArgs(), options.WithDefaults());

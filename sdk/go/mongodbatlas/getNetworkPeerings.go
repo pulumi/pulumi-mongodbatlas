@@ -16,8 +16,10 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 //
 // ## Example Usage
+//
 // ### Basic Example (AWS).
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,6 +52,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func LookupNetworkPeerings(ctx *pulumi.Context, args *LookupNetworkPeeringsArgs, opts ...pulumi.InvokeOption) (*LookupNetworkPeeringsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNetworkPeeringsResult

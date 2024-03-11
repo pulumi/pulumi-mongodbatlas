@@ -186,6 +186,7 @@ class CustomDbRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -217,8 +218,11 @@ class CustomDbRole(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             role_name="myCustomRole")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### With Inherited Roles
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -272,15 +276,16 @@ class CustomDbRole(pulumi.CustomResource):
                 ),
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Database users can be imported using project ID and username, in the format `PROJECTID-ROLENAME`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole
+        $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole
         ```
-         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
+        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -309,6 +314,7 @@ class CustomDbRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -340,8 +346,11 @@ class CustomDbRole(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             role_name="myCustomRole")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### With Inherited Roles
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -395,15 +404,16 @@ class CustomDbRole(pulumi.CustomResource):
                 ),
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Database users can be imported using project ID and username, in the format `PROJECTID-ROLENAME`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole
+        $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole
         ```
-         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
+        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
 
         :param str resource_name: The name of the resource.
         :param CustomDbRoleArgs args: The arguments to use to populate this resource's properties.

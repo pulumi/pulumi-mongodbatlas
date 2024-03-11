@@ -301,8 +301,10 @@ class FederatedQueryLimit(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
+
         ### S
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -314,15 +316,17 @@ class FederatedQueryLimit(pulumi.CustomResource):
             tenant_name="FederatedDatabseInstance0",
             value=5147483648)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        The Federated Database Instance Query Limit can be imported using project ID, name of the instance and limit name, in the format: `project_id`--`tenant_name`--`limit_name`, e.g.
+        The Federated Database Instance Query Limit can be imported using project ID, name of the instance and limit name, in the format:
+        `project_id`--`tenant_name`--`limit_name`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit example 1112222b3bf99403840e8934--FederatedDatabaseInstance0--bytesProcessed.daily
+        $ pulumi import mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit example 1112222b3bf99403840e8934--FederatedDatabaseInstance0--bytesProcessed.daily
         ```
-         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createOneDataFederationQueryLimit) Documentation for more information.
+        See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createOneDataFederationQueryLimit) Documentation for more information.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -349,8 +353,10 @@ class FederatedQueryLimit(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
+
         ### S
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -362,15 +368,17 @@ class FederatedQueryLimit(pulumi.CustomResource):
             tenant_name="FederatedDatabseInstance0",
             value=5147483648)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        The Federated Database Instance Query Limit can be imported using project ID, name of the instance and limit name, in the format: `project_id`--`tenant_name`--`limit_name`, e.g.
+        The Federated Database Instance Query Limit can be imported using project ID, name of the instance and limit name, in the format:
+        `project_id`--`tenant_name`--`limit_name`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit example 1112222b3bf99403840e8934--FederatedDatabaseInstance0--bytesProcessed.daily
+        $ pulumi import mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit example 1112222b3bf99403840e8934--FederatedDatabaseInstance0--bytesProcessed.daily
         ```
-         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createOneDataFederationQueryLimit) Documentation for more information.
+        See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createOneDataFederationQueryLimit) Documentation for more information.
 
         :param str resource_name: The name of the resource.
         :param FederatedQueryLimitArgs args: The arguments to use to populate this resource's properties.

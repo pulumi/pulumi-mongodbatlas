@@ -116,6 +116,7 @@ def get_cloud_backup_snapshot_restore_jobs(cluster_name: Optional[str] = None,
 
     First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -139,6 +140,7 @@ def get_cloud_backup_snapshot_restore_jobs(cluster_name: Optional[str] = None,
         page_num=1,
         items_per_page=5))
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: The name of the Atlas cluster for which you want to retrieve restore jobs.
@@ -179,6 +181,7 @@ def get_cloud_backup_snapshot_restore_jobs_output(cluster_name: Optional[pulumi.
 
     First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -202,6 +205,7 @@ def get_cloud_backup_snapshot_restore_jobs_output(cluster_name: Optional[pulumi.
         page_num=1,
         items_per_page=5))
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: The name of the Atlas cluster for which you want to retrieve restore jobs.

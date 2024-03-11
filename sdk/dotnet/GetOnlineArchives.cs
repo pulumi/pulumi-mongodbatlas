@@ -17,28 +17,15 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetOnlineArchives.Invoke(new()
-        ///     {
-        ///         ProjectId = @var.Project_id,
-        ///         ClusterName = @var.Cluster_name,
-        ///     });
-        /// 
-        /// });
+        /// ```terraform 
+        /// data "mongodbatlas_online_archives" "test" {
+        ///     project_id   = var.project_id
+        ///     cluster_name = var.cluster_name
+        /// }
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// 
         /// ## Attributes reference
         /// 
         /// * `db_name` - Name of the database that contains the collection.
@@ -90,28 +77,15 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Mongodbatlas.GetOnlineArchives.Invoke(new()
-        ///     {
-        ///         ProjectId = @var.Project_id,
-        ///         ClusterName = @var.Cluster_name,
-        ///     });
-        /// 
-        /// });
+        /// ```terraform 
+        /// data "mongodbatlas_online_archives" "test" {
+        ///     project_id   = var.project_id
+        ///     cluster_name = var.cluster_name
+        /// }
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// 
         /// ## Attributes reference
         /// 
         /// * `db_name` - Name of the database that contains the collection.

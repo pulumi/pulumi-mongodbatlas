@@ -16,9 +16,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetProjectInvitationResult> InvokeAsync(GetProjectInvitationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationArgs(), options.WithDefaults());
@@ -28,9 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetProjectInvitationResult> Invoke(GetProjectInvitationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationInvokeArgs(), options.WithDefaults());

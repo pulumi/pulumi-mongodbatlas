@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -42,6 +43,7 @@ import * as utilities from "./utilities";
  *     roleName: testRole.roleName,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getCustomDbRole(args: GetCustomDbRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDbRoleResult> {
 
@@ -91,6 +93,7 @@ export interface GetCustomDbRoleResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -120,6 +123,7 @@ export interface GetCustomDbRoleResult {
  *     roleName: testRole.roleName,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getCustomDbRoleOutput(args: GetCustomDbRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDbRoleResult> {
     return pulumi.output(args).apply((a: any) => getCustomDbRole(a, opts))

@@ -15,7 +15,9 @@ import (
 // `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 //
 // ## Example Usage
+//
 // ### Basic search index
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,7 +47,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Basic vector index
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -82,7 +87,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Advanced search index (with custom analyzers)
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -176,12 +184,46 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SearchIndex struct {
 	pulumi.CustomResourceState
 
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer pulumi.StringPtrOutput `pulumi:"analyzer"`
 	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+	// <!--Start PulumiCodeChooser -->
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		_ := `[{
+	// "name": "index_analyzer_test_name",
+	// "charFilters": [{
+	// "type": "mapping",
+	// "mappings": {"\\" : "/"}
+	// }],
+	// "tokenizer": {
+	// "type": "nGram",
+	// "minGram": 2,
+	// "maxGram": 5
+	// },
+	// "tokenFilters": [{
+	// "type": "length",
+	// "min": 20,
+	// "max": 33
+	// }]
+	// }]
+	// `
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	// <!--End PulumiCodeChooser -->
 	Analyzers pulumi.StringPtrOutput `pulumi:"analyzers"`
 	// The name of the cluster where you want to create the search index within.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
@@ -256,6 +298,39 @@ type searchIndexState struct {
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer *string `pulumi:"analyzer"`
 	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+	// <!--Start PulumiCodeChooser -->
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		_ := `[{
+	// "name": "index_analyzer_test_name",
+	// "charFilters": [{
+	// "type": "mapping",
+	// "mappings": {"\\" : "/"}
+	// }],
+	// "tokenizer": {
+	// "type": "nGram",
+	// "minGram": 2,
+	// "maxGram": 5
+	// },
+	// "tokenFilters": [{
+	// "type": "length",
+	// "min": 20,
+	// "max": 33
+	// }]
+	// }]
+	// `
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	// <!--End PulumiCodeChooser -->
 	Analyzers *string `pulumi:"analyzers"`
 	// The name of the cluster where you want to create the search index within.
 	ClusterName *string `pulumi:"clusterName"`
@@ -289,6 +364,39 @@ type SearchIndexState struct {
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer pulumi.StringPtrInput
 	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+	// <!--Start PulumiCodeChooser -->
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		_ := `[{
+	// "name": "index_analyzer_test_name",
+	// "charFilters": [{
+	// "type": "mapping",
+	// "mappings": {"\\" : "/"}
+	// }],
+	// "tokenizer": {
+	// "type": "nGram",
+	// "minGram": 2,
+	// "maxGram": 5
+	// },
+	// "tokenFilters": [{
+	// "type": "length",
+	// "min": 20,
+	// "max": 33
+	// }]
+	// }]
+	// `
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	// <!--End PulumiCodeChooser -->
 	Analyzers pulumi.StringPtrInput
 	// The name of the cluster where you want to create the search index within.
 	ClusterName pulumi.StringPtrInput
@@ -326,6 +434,39 @@ type searchIndexArgs struct {
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer *string `pulumi:"analyzer"`
 	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+	// <!--Start PulumiCodeChooser -->
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		_ := `[{
+	// "name": "index_analyzer_test_name",
+	// "charFilters": [{
+	// "type": "mapping",
+	// "mappings": {"\\" : "/"}
+	// }],
+	// "tokenizer": {
+	// "type": "nGram",
+	// "minGram": 2,
+	// "maxGram": 5
+	// },
+	// "tokenFilters": [{
+	// "type": "length",
+	// "min": 20,
+	// "max": 33
+	// }]
+	// }]
+	// `
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	// <!--End PulumiCodeChooser -->
 	Analyzers *string `pulumi:"analyzers"`
 	// The name of the cluster where you want to create the search index within.
 	ClusterName string `pulumi:"clusterName"`
@@ -357,6 +498,39 @@ type SearchIndexArgs struct {
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer pulumi.StringPtrInput
 	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+	// <!--Start PulumiCodeChooser -->
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		_ := `[{
+	// "name": "index_analyzer_test_name",
+	// "charFilters": [{
+	// "type": "mapping",
+	// "mappings": {"\\" : "/"}
+	// }],
+	// "tokenizer": {
+	// "type": "nGram",
+	// "minGram": 2,
+	// "maxGram": 5
+	// },
+	// "tokenFilters": [{
+	// "type": "length",
+	// "min": 20,
+	// "max": 33
+	// }]
+	// }]
+	// `
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	// <!--End PulumiCodeChooser -->
 	Analyzers pulumi.StringPtrInput
 	// The name of the cluster where you want to create the search index within.
 	ClusterName pulumi.StringInput
@@ -476,6 +650,44 @@ func (o SearchIndexOutput) Analyzer() pulumi.StringPtrOutput {
 }
 
 // [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_ := `[{
+//
+// "name": "index_analyzer_test_name",
+// "charFilters": [{
+// "type": "mapping",
+// "mappings": {"\\" : "/"}
+// }],
+// "tokenizer": {
+// "type": "nGram",
+// "minGram": 2,
+// "maxGram": 5
+// },
+// "tokenFilters": [{
+// "type": "length",
+// "min": 20,
+// "max": 33
+// }]
+// }]
+// `
+//
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func (o SearchIndexOutput) Analyzers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.Analyzers }).(pulumi.StringPtrOutput)
 }

@@ -14,10 +14,10 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
+        /// 
         /// ### Using project_id attribute to query
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,8 +34,7 @@ namespace Pulumi.Mongodbatlas
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetRolesOrgIdResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRolesOrgIdResult>("mongodbatlas:index/getRolesOrgId:getRolesOrgId", InvokeArgs.Empty, options.WithDefaults());
@@ -43,10 +42,10 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
+        /// 
         /// ### Using project_id attribute to query
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -63,8 +62,7 @@ namespace Pulumi.Mongodbatlas
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetRolesOrgIdResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRolesOrgIdResult>("mongodbatlas:index/getRolesOrgId:getRolesOrgId", InvokeArgs.Empty, options.WithDefaults());

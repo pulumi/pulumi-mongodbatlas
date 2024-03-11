@@ -16,9 +16,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetDataLakePipelinesResult> InvokeAsync(GetDataLakePipelinesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDataLakePipelinesResult>("mongodbatlas:index/getDataLakePipelines:getDataLakePipelines", args ?? new GetDataLakePipelinesArgs(), options.WithDefaults());
@@ -28,9 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetDataLakePipelinesResult> Invoke(GetDataLakePipelinesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataLakePipelinesResult>("mongodbatlas:index/getDataLakePipelines:getDataLakePipelines", args ?? new GetDataLakePipelinesInvokeArgs(), options.WithDefaults());

@@ -715,7 +715,9 @@ class EventTrigger(pulumi.CustomResource):
         ## Example Usage
 
         ### S
+
         ### Example Usage: Database Trigger with Function
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -749,7 +751,10 @@ class EventTrigger(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example Usage: Database Trigger with EventBridge
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -781,7 +786,10 @@ class EventTrigger(pulumi.CustomResource):
             type="DATABASE",
             unordered=False)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example Usage: Authentication Trigger
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -795,7 +803,10 @@ class EventTrigger(pulumi.CustomResource):
             project_id="PROJECT ID",
             type="AUTHENTICATION")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example Usage: Scheduled Trigger
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -808,15 +819,16 @@ class EventTrigger(pulumi.CustomResource):
             project_id="PROJECT ID",
             type="SCHEDULED")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Event trigger can be imported using project ID, App ID and Trigger ID, in the format `project_id`--`app_id`-`trigger_id`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
+        $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
         ```
-         For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
+        For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -856,7 +868,9 @@ class EventTrigger(pulumi.CustomResource):
         ## Example Usage
 
         ### S
+
         ### Example Usage: Database Trigger with Function
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -890,7 +904,10 @@ class EventTrigger(pulumi.CustomResource):
                 ),
             ))
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example Usage: Database Trigger with EventBridge
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -922,7 +939,10 @@ class EventTrigger(pulumi.CustomResource):
             type="DATABASE",
             unordered=False)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example Usage: Authentication Trigger
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -936,7 +956,10 @@ class EventTrigger(pulumi.CustomResource):
             project_id="PROJECT ID",
             type="AUTHENTICATION")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Example Usage: Scheduled Trigger
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -949,15 +972,16 @@ class EventTrigger(pulumi.CustomResource):
             project_id="PROJECT ID",
             type="SCHEDULED")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Event trigger can be imported using project ID, App ID and Trigger ID, in the format `project_id`--`app_id`-`trigger_id`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
+        $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
         ```
-         For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
+        For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
 
         :param str resource_name: The name of the resource.
         :param EventTriggerArgs args: The arguments to use to populate this resource's properties.

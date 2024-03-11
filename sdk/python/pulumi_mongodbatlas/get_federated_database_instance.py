@@ -182,8 +182,10 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
     > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
 
     ## Example Usage
+
     ### S With MongoDB Atlas Cluster As Storage Database
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -191,8 +193,11 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
     test = mongodbatlas.get_federated_database_instance(name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         project_id="PROJECT ID")
     ```
+    <!--End PulumiCodeChooser -->
+
     ### S With Amazon S3 Bucket As Storage Database
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -205,6 +210,7 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
         name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         project_id="PROJECT ID")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the Atlas Federated Database Instance.
@@ -242,8 +248,10 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
     > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
 
     ## Example Usage
+
     ### S With MongoDB Atlas Cluster As Storage Database
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -251,8 +259,11 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
     test = mongodbatlas.get_federated_database_instance(name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         project_id="PROJECT ID")
     ```
+    <!--End PulumiCodeChooser -->
+
     ### S With Amazon S3 Bucket As Storage Database
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -265,6 +276,7 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
         name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         project_id="PROJECT ID")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the Atlas Federated Database Instance.

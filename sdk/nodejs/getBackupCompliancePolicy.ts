@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ */
 export function getBackupCompliancePolicy(args: GetBackupCompliancePolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetBackupCompliancePolicyResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -79,6 +82,9 @@ export interface GetBackupCompliancePolicyResult {
      */
     readonly updatedUser: string;
 }
+/**
+ * ## Example Usage
+ */
 export function getBackupCompliancePolicyOutput(args: GetBackupCompliancePolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackupCompliancePolicyResult> {
     return pulumi.output(args).apply((a: any) => getBackupCompliancePolicy(a, opts))
 }
