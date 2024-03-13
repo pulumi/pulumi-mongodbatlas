@@ -8,8 +8,8 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 
 require (
 	github.com/mongodb/terraform-provider-mongodbatlas/shim v0.0.0
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.30.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.77.0
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.30.1-0.20240313202306-548e9053798d
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.77.1-0.20240313202306-548e9053798d
 	github.com/pulumi/pulumi/sdk/v3 v3.108.1
 )
 
