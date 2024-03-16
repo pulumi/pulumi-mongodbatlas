@@ -11,9 +11,91 @@ namespace Pulumi.Mongodbatlas
 {
     public static class GetPrivatelinkEndpointServiceDataFederationOnlineArchive
     {
+        /// <summary>
+        /// `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
+        ///     {
+        ///         OrgId = @var.Atlas_org_id,
+        ///     });
+        /// 
+        ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
+        ///     {
+        ///         ProjectId = atlas_project.Id,
+        ///         EndpointId = "vpce-046cf43c79424d4c9",
+        ///         ProviderName = "AWS",
+        ///         Comment = "Test",
+        ///         Region = "US_EAST_1",
+        ///         CustomerEndpointDnsName = "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
+        ///     });
+        /// 
+        ///     var testDataSource = Mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchive.Invoke(new()
+        ///     {
+        ///         ProjectId = atlas_project.Id,
+        ///         EndpointId = test.EndpointId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// </summary>
         public static Task<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> InvokeAsync(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult>("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", args ?? new GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
+        ///     {
+        ///         OrgId = @var.Atlas_org_id,
+        ///     });
+        /// 
+        ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
+        ///     {
+        ///         ProjectId = atlas_project.Id,
+        ///         EndpointId = "vpce-046cf43c79424d4c9",
+        ///         ProviderName = "AWS",
+        ///         Comment = "Test",
+        ///         Region = "US_EAST_1",
+        ///         CustomerEndpointDnsName = "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
+        ///     });
+        /// 
+        ///     var testDataSource = Mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchive.Invoke(new()
+        ///     {
+        ///         ProjectId = atlas_project.Id,
+        ///         EndpointId = test.EndpointId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// </summary>
         public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> Invoke(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult>("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", args ?? new GetPrivatelinkEndpointServiceDataFederationOnlineArchiveInvokeArgs(), options.WithDefaults());
     }
@@ -67,6 +149,10 @@ namespace Pulumi.Mongodbatlas
         /// Human-readable string to associate with this private endpoint.
         /// </summary>
         public readonly string Comment;
+        /// <summary>
+        /// (Optional) Human-readable label to identify VPC endpoint DNS name.
+        /// </summary>
+        public readonly string CustomerEndpointDnsName;
         public readonly string EndpointId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -78,6 +164,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ProviderName;
         /// <summary>
+        /// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        /// </summary>
+        public readonly string Region;
+        /// <summary>
         /// Human-readable label that identifies the resource type associated with this private endpoint.
         /// </summary>
         public readonly string Type;
@@ -85,6 +175,8 @@ namespace Pulumi.Mongodbatlas
         [OutputConstructor]
         private GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult(
             string comment,
+
+            string customerEndpointDnsName,
 
             string endpointId,
 
@@ -94,13 +186,17 @@ namespace Pulumi.Mongodbatlas
 
             string providerName,
 
+            string region,
+
             string type)
         {
             Comment = comment;
+            CustomerEndpointDnsName = customerEndpointDnsName;
             EndpointId = endpointId;
             Id = id;
             ProjectId = projectId;
             ProviderName = providerName;
+            Region = region;
             Type = type;
         }
     }

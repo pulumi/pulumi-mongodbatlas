@@ -96,7 +96,13 @@ export interface GetPrivatelinkEndpointsServiceServerlessArgs {
      * Human-readable label that identifies the serverless instance
      */
     instanceName: string;
+    /**
+     * @deprecated this parameter is deprecated and will be removed in version 1.17.0
+     */
     itemsPerPage?: number;
+    /**
+     * @deprecated this parameter is deprecated and will be removed in version 1.17.0
+     */
     pageNum?: number;
     /**
      * Unique 24-digit hexadecimal string that identifies the project.
@@ -113,7 +119,13 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
      */
     readonly id: string;
     readonly instanceName: string;
+    /**
+     * @deprecated this parameter is deprecated and will be removed in version 1.17.0
+     */
     readonly itemsPerPage?: number;
+    /**
+     * @deprecated this parameter is deprecated and will be removed in version 1.17.0
+     */
     readonly pageNum?: number;
     readonly projectId: string;
     /**
@@ -204,7 +216,13 @@ export interface GetPrivatelinkEndpointsServiceServerlessOutputArgs {
      * Human-readable label that identifies the serverless instance
      */
     instanceName: pulumi.Input<string>;
+    /**
+     * @deprecated this parameter is deprecated and will be removed in version 1.17.0
+     */
     itemsPerPage?: pulumi.Input<number>;
+    /**
+     * @deprecated this parameter is deprecated and will be removed in version 1.17.0
+     */
     pageNum?: pulumi.Input<number>;
     /**
      * Unique 24-digit hexadecimal string that identifies the project.

@@ -16,6 +16,11 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResu
      */
     private String comment;
     /**
+     * @return (Optional) Human-readable label to identify VPC endpoint DNS name.
+     * 
+     */
+    private String customerEndpointDnsName;
+    /**
      * @return Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](&lt;https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature&gt;).
      * 
      */
@@ -25,6 +30,11 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResu
      * 
      */
     private String providerName;
+    /**
+     * @return Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * 
+     */
+    private String region;
     /**
      * @return Human-readable label that identifies the resource type associated with this private endpoint.
      * 
@@ -40,6 +50,13 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResu
         return this.comment;
     }
     /**
+     * @return (Optional) Human-readable label to identify VPC endpoint DNS name.
+     * 
+     */
+    public String customerEndpointDnsName() {
+        return this.customerEndpointDnsName;
+    }
+    /**
      * @return Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](&lt;https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature&gt;).
      * 
      */
@@ -52,6 +69,13 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResu
      */
     public String providerName() {
         return this.providerName;
+    }
+    /**
+     * @return Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * 
+     */
+    public String region() {
+        return this.region;
     }
     /**
      * @return Human-readable label that identifies the resource type associated with this private endpoint.
@@ -71,15 +95,19 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResu
     @CustomType.Builder
     public static final class Builder {
         private String comment;
+        private String customerEndpointDnsName;
         private String endpointId;
         private String providerName;
+        private String region;
         private String type;
         public Builder() {}
         public Builder(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.comment = defaults.comment;
+    	      this.customerEndpointDnsName = defaults.customerEndpointDnsName;
     	      this.endpointId = defaults.endpointId;
     	      this.providerName = defaults.providerName;
+    	      this.region = defaults.region;
     	      this.type = defaults.type;
         }
 
@@ -89,6 +117,14 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResu
               throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult", "comment");
             }
             this.comment = comment;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder customerEndpointDnsName(String customerEndpointDnsName) {
+            if (customerEndpointDnsName == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult", "customerEndpointDnsName");
+            }
+            this.customerEndpointDnsName = customerEndpointDnsName;
             return this;
         }
         @CustomType.Setter
@@ -108,6 +144,14 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResu
             return this;
         }
         @CustomType.Setter
+        public Builder region(String region) {
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult", "region");
+            }
+            this.region = region;
+            return this;
+        }
+        @CustomType.Setter
         public Builder type(String type) {
             if (type == null) {
               throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult", "type");
@@ -118,8 +162,10 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResu
         public GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult build() {
             final var _resultValue = new GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult();
             _resultValue.comment = comment;
+            _resultValue.customerEndpointDnsName = customerEndpointDnsName;
             _resultValue.endpointId = endpointId;
             _resultValue.providerName = providerName;
+            _resultValue.region = region;
             _resultValue.type = type;
             return _resultValue;
         }

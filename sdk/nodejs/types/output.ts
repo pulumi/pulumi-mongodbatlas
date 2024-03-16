@@ -4061,7 +4061,7 @@ export interface GetEventTriggersResult {
      */
     configCollection: string;
     /**
-     * The name of the MongoDB database that contains the watched collection.
+     * The name of the MongoDB database to watch.
      */
     configDatabase: string;
     /**
@@ -5247,6 +5247,10 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
      */
     comment: string;
     /**
+     * (Optional) Human-readable label to identify VPC endpoint DNS name.
+     */
+    customerEndpointDnsName: string;
+    /**
      * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature).
      */
     endpointId: string;
@@ -5254,6 +5258,10 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
      * Human-readable label that identifies the cloud service provider.
      */
     providerName: string;
+    /**
+     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     */
+    region: string;
     /**
      * Human-readable label that identifies the resource type associated with this private endpoint.
      */
@@ -5713,7 +5721,7 @@ export interface GetThirdPartyIntegrationsResult {
      */
     projectId: string;
     /**
-     * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+     * Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
      */
     region: string;
     /**

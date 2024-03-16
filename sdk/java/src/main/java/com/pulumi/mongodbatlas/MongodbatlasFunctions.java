@@ -2954,7 +2954,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", TypeShape.of(GetCloudBackupSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas_cloud_provider_access` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -3053,7 +3053,7 @@ public final class MongodbatlasFunctions {
         return getCloudProviderAccessSetup(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas_cloud_provider_access` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -3152,7 +3152,7 @@ public final class MongodbatlasFunctions {
         return getCloudProviderAccessSetupPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas_cloud_provider_access` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -3251,7 +3251,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", TypeShape.of(GetCloudProviderAccessSetupResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas_cloud_provider_access` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+     * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
@@ -9811,15 +9811,243 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointServicePlain(GetPrivateLinkEndpointServicePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", TypeShape.of(GetPrivateLinkEndpointServiceResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var atlas_project = new Project(&#34;atlas-project&#34;, ProjectArgs.builder()        
+     *             .orgId(var_.atlas_org_id())
+     *             .build());
+     * 
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *             .projectId(atlas_project.id())
+     *             .endpointId(&#34;vpce-046cf43c79424d4c9&#34;)
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;Test&#34;)
+     *             .region(&#34;US_EAST_1&#34;)
+     *             .customerEndpointDnsName(&#34;vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com&#34;)
+     *             .build());
+     * 
+     *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchive(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
+     *             .projectId(atlas_project.id())
+     *             .endpointId(test.endpointId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> getPrivatelinkEndpointServiceDataFederationOnlineArchive(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args) {
         return getPrivatelinkEndpointServiceDataFederationOnlineArchive(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var atlas_project = new Project(&#34;atlas-project&#34;, ProjectArgs.builder()        
+     *             .orgId(var_.atlas_org_id())
+     *             .build());
+     * 
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *             .projectId(atlas_project.id())
+     *             .endpointId(&#34;vpce-046cf43c79424d4c9&#34;)
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;Test&#34;)
+     *             .region(&#34;US_EAST_1&#34;)
+     *             .customerEndpointDnsName(&#34;vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com&#34;)
+     *             .build());
+     * 
+     *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchive(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
+     *             .projectId(atlas_project.id())
+     *             .endpointId(test.endpointId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> getPrivatelinkEndpointServiceDataFederationOnlineArchivePlain(GetPrivatelinkEndpointServiceDataFederationOnlineArchivePlainArgs args) {
         return getPrivatelinkEndpointServiceDataFederationOnlineArchivePlain(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var atlas_project = new Project(&#34;atlas-project&#34;, ProjectArgs.builder()        
+     *             .orgId(var_.atlas_org_id())
+     *             .build());
+     * 
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *             .projectId(atlas_project.id())
+     *             .endpointId(&#34;vpce-046cf43c79424d4c9&#34;)
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;Test&#34;)
+     *             .region(&#34;US_EAST_1&#34;)
+     *             .customerEndpointDnsName(&#34;vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com&#34;)
+     *             .build());
+     * 
+     *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchive(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
+     *             .projectId(atlas_project.id())
+     *             .endpointId(test.endpointId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> getPrivatelinkEndpointServiceDataFederationOnlineArchive(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", TypeShape.of(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var atlas_project = new Project(&#34;atlas-project&#34;, ProjectArgs.builder()        
+     *             .orgId(var_.atlas_org_id())
+     *             .build());
+     * 
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *             .projectId(atlas_project.id())
+     *             .endpointId(&#34;vpce-046cf43c79424d4c9&#34;)
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;Test&#34;)
+     *             .region(&#34;US_EAST_1&#34;)
+     *             .customerEndpointDnsName(&#34;vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com&#34;)
+     *             .build());
+     * 
+     *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchive(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
+     *             .projectId(atlas_project.id())
+     *             .endpointId(test.endpointId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> getPrivatelinkEndpointServiceDataFederationOnlineArchivePlain(GetPrivatelinkEndpointServiceDataFederationOnlineArchivePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", TypeShape.of(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult.class), args, Utilities.withVersion(options));
     }
@@ -9862,9 +10090,11 @@ public final class MongodbatlasFunctions {
      * 
      *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
      *             .projectId(atlas_project.id())
-     *             .endpointId(&#34;&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;&#34;)
+     *             .endpointId(&#34;vpce-046cf43c79424d4c9&#34;)
      *             .providerName(&#34;AWS&#34;)
      *             .comment(&#34;Test&#34;)
+     *             .region(&#34;US_EAST_1&#34;)
+     *             .customerEndpointDnsName(&#34;vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com&#34;)
      *             .build());
      * 
      *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs.builder()
@@ -9919,9 +10149,11 @@ public final class MongodbatlasFunctions {
      * 
      *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
      *             .projectId(atlas_project.id())
-     *             .endpointId(&#34;&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;&#34;)
+     *             .endpointId(&#34;vpce-046cf43c79424d4c9&#34;)
      *             .providerName(&#34;AWS&#34;)
      *             .comment(&#34;Test&#34;)
+     *             .region(&#34;US_EAST_1&#34;)
+     *             .customerEndpointDnsName(&#34;vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com&#34;)
      *             .build());
      * 
      *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs.builder()
@@ -9976,9 +10208,11 @@ public final class MongodbatlasFunctions {
      * 
      *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
      *             .projectId(atlas_project.id())
-     *             .endpointId(&#34;&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;&#34;)
+     *             .endpointId(&#34;vpce-046cf43c79424d4c9&#34;)
      *             .providerName(&#34;AWS&#34;)
      *             .comment(&#34;Test&#34;)
+     *             .region(&#34;US_EAST_1&#34;)
+     *             .customerEndpointDnsName(&#34;vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com&#34;)
      *             .build());
      * 
      *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs.builder()
@@ -10033,9 +10267,11 @@ public final class MongodbatlasFunctions {
      * 
      *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
      *             .projectId(atlas_project.id())
-     *             .endpointId(&#34;&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;&#34;)
+     *             .endpointId(&#34;vpce-046cf43c79424d4c9&#34;)
      *             .providerName(&#34;AWS&#34;)
      *             .comment(&#34;Test&#34;)
+     *             .region(&#34;US_EAST_1&#34;)
+     *             .customerEndpointDnsName(&#34;vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com&#34;)
      *             .build());
      * 
      *         final var testDataSource = MongodbatlasFunctions.getPrivatelinkEndpointServiceDataFederationOnlineArchives(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs.builder()
@@ -11898,11 +12134,11 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjects:getProjects", TypeShape.of(GetProjectsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using data source to query
      * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
@@ -11937,11 +12173,11 @@ public final class MongodbatlasFunctions {
         return getRolesOrgId(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using data source to query
      * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
@@ -11976,11 +12212,11 @@ public final class MongodbatlasFunctions {
         return getRolesOrgIdPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using data source to query
      * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
@@ -12015,11 +12251,11 @@ public final class MongodbatlasFunctions {
         return getRolesOrgId(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using data source to query
      * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
@@ -12054,11 +12290,11 @@ public final class MongodbatlasFunctions {
         return getRolesOrgIdPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using data source to query
      * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
@@ -12093,11 +12329,11 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getRolesOrgId:getRolesOrgId", TypeShape.of(GetRolesOrgIdResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+     * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
      * 
-     * ### Using project_id attribute to query
+     * ### Using data source to query
      * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;

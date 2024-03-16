@@ -63,9 +63,8 @@ namespace Pulumi.Mongodbatlas
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Available complete examples
-    /// - Restore from automated backup snapshot
-    /// - Restore from backup snapshot download
     /// - Restore from backup snapshot at point in time
+    /// - Restore from backup snapshot using an advanced cluster resource
     /// 
     /// ## Import
     /// 
@@ -142,10 +141,10 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the snapshot to restore.
+        /// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         /// </summary>
         [Output("snapshotId")]
-        public Output<string> SnapshotId { get; private set; } = null!;
+        public Output<string?> SnapshotId { get; private set; } = null!;
 
         /// <summary>
         /// The unique identifier of the restore job.
@@ -232,10 +231,10 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the snapshot to restore.
+        /// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         /// </summary>
-        [Input("snapshotId", required: true)]
-        public Input<string> SnapshotId { get; set; } = null!;
+        [Input("snapshotId")]
+        public Input<string>? SnapshotId { get; set; }
 
         public CloudBackupSnapshotRestoreJobArgs()
         {
@@ -314,7 +313,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Unique identifier of the snapshot to restore.
+        /// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }

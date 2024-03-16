@@ -21,9 +21,11 @@ import * as utilities from "./utilities";
  * const atlas_project = new mongodbatlas.Project("atlas-project", {orgId: _var.atlas_org_id});
  * const test = new mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", {
  *     projectId: atlas_project.id,
- *     endpointId: "<PRIVATE-ENDPOINT-SERVICE-ID>",
+ *     endpointId: "vpce-046cf43c79424d4c9",
  *     providerName: "AWS",
  *     comment: "Test",
+ *     region: "US_EAST_1",
+ *     customerEndpointDnsName: "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
  * });
  * const testDataSource = mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput({
  *     projectId: atlas_project.id,
@@ -78,9 +80,11 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
  * const atlas_project = new mongodbatlas.Project("atlas-project", {orgId: _var.atlas_org_id});
  * const test = new mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", {
  *     projectId: atlas_project.id,
- *     endpointId: "<PRIVATE-ENDPOINT-SERVICE-ID>",
+ *     endpointId: "vpce-046cf43c79424d4c9",
  *     providerName: "AWS",
  *     comment: "Test",
+ *     region: "US_EAST_1",
+ *     customerEndpointDnsName: "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
  * });
  * const testDataSource = mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput({
  *     projectId: atlas_project.id,

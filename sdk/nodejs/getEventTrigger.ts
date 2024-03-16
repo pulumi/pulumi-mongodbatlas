@@ -48,7 +48,7 @@ export interface GetEventTriggerResult {
      */
     readonly configCollection: string;
     /**
-     * The name of the MongoDB database that contains the watched collection.
+     * The name of the MongoDB database to watch.
      */
     readonly configDatabase: string;
     /**

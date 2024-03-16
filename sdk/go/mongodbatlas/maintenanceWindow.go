@@ -95,13 +95,13 @@ type MaintenanceWindow struct {
 	// Defer any scheduled maintenance for the given project for one week.
 	AutoDefer            pulumi.BoolOutput `pulumi:"autoDefer"`
 	AutoDeferOnceEnabled pulumi.BoolOutput `pulumi:"autoDeferOnceEnabled"`
-	// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek pulumi.IntOutput `pulumi:"dayOfWeek"`
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer pulumi.BoolOutput `pulumi:"defer"`
 	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
 	HourOfDay pulumi.IntOutput `pulumi:"hourOfDay"`
-	// Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals pulumi.IntOutput `pulumi:"numberOfDeferrals"`
 	// The unique identifier of the project for the Maintenance Window.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -116,6 +116,9 @@ func NewMaintenanceWindow(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.DayOfWeek == nil {
+		return nil, errors.New("invalid value for required argument 'DayOfWeek'")
+	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
@@ -145,13 +148,13 @@ type maintenanceWindowState struct {
 	// Defer any scheduled maintenance for the given project for one week.
 	AutoDefer            *bool `pulumi:"autoDefer"`
 	AutoDeferOnceEnabled *bool `pulumi:"autoDeferOnceEnabled"`
-	// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek *int `pulumi:"dayOfWeek"`
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer *bool `pulumi:"defer"`
 	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
 	HourOfDay *int `pulumi:"hourOfDay"`
-	// Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals *int `pulumi:"numberOfDeferrals"`
 	// The unique identifier of the project for the Maintenance Window.
 	ProjectId *string `pulumi:"projectId"`
@@ -163,13 +166,13 @@ type MaintenanceWindowState struct {
 	// Defer any scheduled maintenance for the given project for one week.
 	AutoDefer            pulumi.BoolPtrInput
 	AutoDeferOnceEnabled pulumi.BoolPtrInput
-	// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek pulumi.IntPtrInput
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer pulumi.BoolPtrInput
 	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
 	HourOfDay pulumi.IntPtrInput
-	// Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals pulumi.IntPtrInput
 	// The unique identifier of the project for the Maintenance Window.
 	ProjectId pulumi.StringPtrInput
@@ -185,16 +188,16 @@ type maintenanceWindowArgs struct {
 	// Defer any scheduled maintenance for the given project for one week.
 	AutoDefer            *bool `pulumi:"autoDefer"`
 	AutoDeferOnceEnabled *bool `pulumi:"autoDeferOnceEnabled"`
-	// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
-	DayOfWeek *int `pulumi:"dayOfWeek"`
+	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+	DayOfWeek int `pulumi:"dayOfWeek"`
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer *bool `pulumi:"defer"`
 	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
 	HourOfDay *int `pulumi:"hourOfDay"`
-	// Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
-	NumberOfDeferrals *int `pulumi:"numberOfDeferrals"`
 	// The unique identifier of the project for the Maintenance Window.
 	ProjectId string `pulumi:"projectId"`
+	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+	StartAsap *bool `pulumi:"startAsap"`
 }
 
 // The set of arguments for constructing a MaintenanceWindow resource.
@@ -202,16 +205,16 @@ type MaintenanceWindowArgs struct {
 	// Defer any scheduled maintenance for the given project for one week.
 	AutoDefer            pulumi.BoolPtrInput
 	AutoDeferOnceEnabled pulumi.BoolPtrInput
-	// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
-	DayOfWeek pulumi.IntPtrInput
+	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+	DayOfWeek pulumi.IntInput
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer pulumi.BoolPtrInput
 	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
 	HourOfDay pulumi.IntPtrInput
-	// Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
-	NumberOfDeferrals pulumi.IntPtrInput
 	// The unique identifier of the project for the Maintenance Window.
 	ProjectId pulumi.StringInput
+	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+	StartAsap pulumi.BoolPtrInput
 }
 
 func (MaintenanceWindowArgs) ElementType() reflect.Type {
@@ -310,7 +313,7 @@ func (o MaintenanceWindowOutput) AutoDeferOnceEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.AutoDeferOnceEnabled }).(pulumi.BoolOutput)
 }
 
-// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 func (o MaintenanceWindowOutput) DayOfWeek() pulumi.IntOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntOutput { return v.DayOfWeek }).(pulumi.IntOutput)
 }
@@ -325,7 +328,7 @@ func (o MaintenanceWindowOutput) HourOfDay() pulumi.IntOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntOutput { return v.HourOfDay }).(pulumi.IntOutput)
 }
 
-// Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 func (o MaintenanceWindowOutput) NumberOfDeferrals() pulumi.IntOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntOutput { return v.NumberOfDeferrals }).(pulumi.IntOutput)
 }

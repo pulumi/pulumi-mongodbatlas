@@ -79,18 +79,18 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
     }
 
     /**
-     * Unique identifier of the snapshot to restore.
+     * Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
      * 
      */
-    @Import(name="snapshotId", required=true)
-    private Output<String> snapshotId;
+    @Import(name="snapshotId")
+    private @Nullable Output<String> snapshotId;
 
     /**
-     * @return Unique identifier of the snapshot to restore.
+     * @return Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
      * 
      */
-    public Output<String> snapshotId() {
-        return this.snapshotId;
+    public Optional<Output<String>> snapshotId() {
+        return Optional.ofNullable(this.snapshotId);
     }
 
     private CloudBackupSnapshotRestoreJobArgs() {}
@@ -200,18 +200,18 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
         }
 
         /**
-         * @param snapshotId Unique identifier of the snapshot to restore.
+         * @param snapshotId Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
          * 
          * @return builder
          * 
          */
-        public Builder snapshotId(Output<String> snapshotId) {
+        public Builder snapshotId(@Nullable Output<String> snapshotId) {
             $.snapshotId = snapshotId;
             return this;
         }
 
         /**
-         * @param snapshotId Unique identifier of the snapshot to restore.
+         * @param snapshotId Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
          * 
          * @return builder
          * 
@@ -226,9 +226,6 @@ public final class CloudBackupSnapshotRestoreJobArgs extends com.pulumi.resource
             }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("CloudBackupSnapshotRestoreJobArgs", "projectId");
-            }
-            if ($.snapshotId == null) {
-                throw new MissingRequiredPropertyException("CloudBackupSnapshotRestoreJobArgs", "snapshotId");
             }
             return $;
         }

@@ -110,7 +110,7 @@ class GetEventTriggerResult:
     @pulumi.getter(name="configDatabase")
     def config_database(self) -> str:
         """
-        The name of the MongoDB database that contains the watched collection.
+        The name of the MongoDB database to watch.
         """
         return pulumi.get(self, "config_database")
 

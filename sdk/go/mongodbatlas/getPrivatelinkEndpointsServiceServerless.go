@@ -136,8 +136,10 @@ func LookupPrivatelinkEndpointsServiceServerless(ctx *pulumi.Context, args *Look
 type LookupPrivatelinkEndpointsServiceServerlessArgs struct {
 	// Human-readable label that identifies the serverless instance
 	InstanceName string `pulumi:"instanceName"`
-	ItemsPerPage *int   `pulumi:"itemsPerPage"`
-	PageNum      *int   `pulumi:"pageNum"`
+	// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+	ItemsPerPage *int `pulumi:"itemsPerPage"`
+	// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+	PageNum *int `pulumi:"pageNum"`
 	// Unique 24-digit hexadecimal string that identifies the project.
 	ProjectId string `pulumi:"projectId"`
 }
@@ -147,9 +149,11 @@ type LookupPrivatelinkEndpointsServiceServerlessResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id           string `pulumi:"id"`
 	InstanceName string `pulumi:"instanceName"`
-	ItemsPerPage *int   `pulumi:"itemsPerPage"`
-	PageNum      *int   `pulumi:"pageNum"`
-	ProjectId    string `pulumi:"projectId"`
+	// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+	ItemsPerPage *int `pulumi:"itemsPerPage"`
+	// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+	PageNum   *int   `pulumi:"pageNum"`
+	ProjectId string `pulumi:"projectId"`
 	// Each element in the `result` array is one private serverless endpoint.
 	Results []GetPrivatelinkEndpointsServiceServerlessResult `pulumi:"results"`
 }
@@ -171,8 +175,10 @@ func LookupPrivatelinkEndpointsServiceServerlessOutput(ctx *pulumi.Context, args
 type LookupPrivatelinkEndpointsServiceServerlessOutputArgs struct {
 	// Human-readable label that identifies the serverless instance
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
-	PageNum      pulumi.IntPtrInput `pulumi:"pageNum"`
+	// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
 	// Unique 24-digit hexadecimal string that identifies the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
@@ -205,10 +211,12 @@ func (o LookupPrivatelinkEndpointsServiceServerlessResultOutput) InstanceName() 
 	return o.ApplyT(func(v LookupPrivatelinkEndpointsServiceServerlessResult) string { return v.InstanceName }).(pulumi.StringOutput)
 }
 
+// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
 func (o LookupPrivatelinkEndpointsServiceServerlessResultOutput) ItemsPerPage() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupPrivatelinkEndpointsServiceServerlessResult) *int { return v.ItemsPerPage }).(pulumi.IntPtrOutput)
 }
 
+// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
 func (o LookupPrivatelinkEndpointsServiceServerlessResultOutput) PageNum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupPrivatelinkEndpointsServiceServerlessResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
 }

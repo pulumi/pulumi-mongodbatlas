@@ -4,6 +4,34 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const atlas_project = new mongodbatlas.Project("atlas-project", {orgId: _var.atlas_org_id});
+ * const test = new mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", {
+ *     projectId: atlas_project.id,
+ *     endpointId: "vpce-046cf43c79424d4c9",
+ *     providerName: "AWS",
+ *     comment: "Test",
+ *     region: "US_EAST_1",
+ *     customerEndpointDnsName: "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
+ * });
+ * const testDataSource = mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput({
+ *     projectId: atlas_project.id,
+ *     endpointId: test.endpointId,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getPrivatelinkEndpointServiceDataFederationOnlineArchive(args: GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -35,6 +63,10 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult 
      * Human-readable string to associate with this private endpoint.
      */
     readonly comment: string;
+    /**
+     * (Optional) Human-readable label to identify VPC endpoint DNS name.
+     */
+    readonly customerEndpointDnsName: string;
     readonly endpointId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -46,10 +78,42 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult 
      */
     readonly providerName: string;
     /**
+     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     */
+    readonly region: string;
+    /**
      * Human-readable label that identifies the resource type associated with this private endpoint.
      */
     readonly type: string;
 }
+/**
+ * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const atlas_project = new mongodbatlas.Project("atlas-project", {orgId: _var.atlas_org_id});
+ * const test = new mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", {
+ *     projectId: atlas_project.id,
+ *     endpointId: "vpce-046cf43c79424d4c9",
+ *     providerName: "AWS",
+ *     comment: "Test",
+ *     region: "US_EAST_1",
+ *     customerEndpointDnsName: "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
+ * });
+ * const testDataSource = mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput({
+ *     projectId: atlas_project.id,
+ *     endpointId: test.endpointId,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ */
 export function getPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput(args: GetPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> {
     return pulumi.output(args).apply((a: any) => getPrivatelinkEndpointServiceDataFederationOnlineArchive(a, opts))
 }

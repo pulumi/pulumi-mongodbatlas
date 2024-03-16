@@ -12,11 +12,11 @@ namespace Pulumi.Mongodbatlas
     public static class GetRolesOrgId
     {
         /// <summary>
-        /// `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+        /// `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using project_id attribute to query
+        /// ### Using data source to query
         /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
@@ -40,11 +40,11 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRolesOrgIdResult>("mongodbatlas:index/getRolesOrgId:getRolesOrgId", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+        /// `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
         /// 
         /// ## Example Usage
         /// 
-        /// ### Using project_id attribute to query
+        /// ### Using data source to query
         /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;

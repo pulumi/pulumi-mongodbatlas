@@ -36,14 +36,14 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+     * Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      * 
      */
     @Import(name="configCollection")
     private @Nullable Output<String> configCollection;
 
     /**
-     * @return Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+     * @return Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      * 
      */
     public Optional<Output<String>> configCollection() {
@@ -51,14 +51,14 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+     * Required for `DATABASE` type. The name of the MongoDB database to watch.
      * 
      */
     @Import(name="configDatabase")
     private @Nullable Output<String> configDatabase;
 
     /**
-     * @return Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+     * @return Required for `DATABASE` type. The name of the MongoDB database to watch.
      * 
      */
     public Optional<Output<String>> configDatabase() {
@@ -407,7 +407,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configCollection Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+         * @param configCollection Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
          * 
          * @return builder
          * 
@@ -418,7 +418,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configCollection Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+         * @param configCollection Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
          * 
          * @return builder
          * 
@@ -428,7 +428,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configDatabase Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+         * @param configDatabase Required for `DATABASE` type. The name of the MongoDB database to watch.
          * 
          * @return builder
          * 
@@ -439,7 +439,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configDatabase Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+         * @param configDatabase Required for `DATABASE` type. The name of the MongoDB database to watch.
          * 
          * @return builder
          * 

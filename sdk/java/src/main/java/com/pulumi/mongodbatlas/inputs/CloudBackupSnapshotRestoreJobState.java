@@ -170,14 +170,14 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
     }
 
     /**
-     * Unique identifier of the snapshot to restore.
+     * Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
      * 
      */
     @Import(name="snapshotId")
     private @Nullable Output<String> snapshotId;
 
     /**
-     * @return Unique identifier of the snapshot to restore.
+     * @return Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
      * 
      */
     public Optional<Output<String>> snapshotId() {
@@ -465,7 +465,7 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
         }
 
         /**
-         * @param snapshotId Unique identifier of the snapshot to restore.
+         * @param snapshotId Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
          * 
          * @return builder
          * 
@@ -476,7 +476,7 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
         }
 
         /**
-         * @param snapshotId Unique identifier of the snapshot to restore.
+         * @param snapshotId Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
          * 
          * @return builder
          * 

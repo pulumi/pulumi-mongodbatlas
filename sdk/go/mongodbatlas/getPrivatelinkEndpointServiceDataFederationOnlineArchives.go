@@ -37,10 +37,12 @@ import (
 //				return err
 //			}
 //			_, err = mongodbatlas.NewPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs{
-//				ProjectId:    atlas_project.ID(),
-//				EndpointId:   pulumi.String("<PRIVATE-ENDPOINT-SERVICE-ID>"),
-//				ProviderName: pulumi.String("AWS"),
-//				Comment:      pulumi.String("Test"),
+//				ProjectId:               atlas_project.ID(),
+//				EndpointId:              pulumi.String("vpce-046cf43c79424d4c9"),
+//				ProviderName:            pulumi.String("AWS"),
+//				Comment:                 pulumi.String("Test"),
+//				Region:                  pulumi.String("US_EAST_1"),
+//				CustomerEndpointDnsName: pulumi.String("vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com"),
 //			})
 //			if err != nil {
 //				return err

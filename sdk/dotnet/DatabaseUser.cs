@@ -16,6 +16,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
+    /// &gt; **WARNING:** The password argument is required for creation but should be removed after creation if it will be managed externally. More details can be found in the password argument documentation.
+    /// 
     /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
     /// 
     /// ## Example Usage

@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  * 
+ * &gt; **NOTE:** Updates are limited to the `comment` argument.
+ * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -51,9 +53,11 @@ import javax.annotation.Nullable;
  * 
  *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
  *             .projectId(atlas_project.id())
- *             .endpointId(&#34;&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;&#34;)
+ *             .endpointId(&#34;vpce-046cf43c79424d4c9&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .comment(&#34;Test&#34;)
+ *             .region(&#34;US_EAST_1&#34;)
+ *             .customerEndpointDnsName(&#34;vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com&#34;)
  *             .build());
  * 
  *     }
@@ -86,6 +90,20 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      */
     public Output<Optional<String>> comment() {
         return Codegen.optional(this.comment);
+    }
+    /**
+     * Human-readable label to identify VPC endpoint DNS name.
+     * 
+     */
+    @Export(name="customerEndpointDnsName", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> customerEndpointDnsName;
+
+    /**
+     * @return Human-readable label to identify VPC endpoint DNS name.
+     * 
+     */
+    public Output<Optional<String>> customerEndpointDnsName() {
+        return Codegen.optional(this.customerEndpointDnsName);
     }
     /**
      * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](&lt;https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature&gt;).
@@ -128,6 +146,20 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      */
     public Output<String> providerName() {
         return this.providerName;
+    }
+    /**
+     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * 
+     */
+    @Export(name="region", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> region;
+
+    /**
+     * @return Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * 
+     */
+    public Output<Optional<String>> region() {
+        return Codegen.optional(this.region);
     }
     /**
      * Human-readable label that identifies the resource type associated with this private endpoint.

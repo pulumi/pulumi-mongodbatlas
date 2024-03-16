@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudProviderAccessSetup
     {
         /// <summary>
-        /// `mongodbatlas_cloud_provider_access` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+        /// `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -86,7 +86,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderAccessSetupResult>("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args ?? new GetCloudProviderAccessSetupArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas_cloud_provider_access` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+        /// `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 

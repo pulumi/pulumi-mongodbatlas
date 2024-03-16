@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ConfigCollection;
         /// <summary>
-        /// The name of the MongoDB database that contains the watched collection.
+        /// The name of the MongoDB database to watch.
         /// </summary>
         public readonly string ConfigDatabase;
         /// <summary>

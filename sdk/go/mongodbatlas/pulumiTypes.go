@@ -33398,7 +33398,7 @@ func (o GetEventTriggerEventProcessorAwsEventbridgeArrayOutput) Index(i pulumi.I
 type GetEventTriggersResult struct {
 	// The name of the MongoDB collection that the trigger watches for change events.
 	ConfigCollection string `pulumi:"configCollection"`
-	// The name of the MongoDB database that contains the watched collection.
+	// The name of the MongoDB database to watch.
 	ConfigDatabase string `pulumi:"configDatabase"`
 	// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
 	ConfigFullDocument       bool `pulumi:"configFullDocument"`
@@ -33451,7 +33451,7 @@ type GetEventTriggersResultInput interface {
 type GetEventTriggersResultArgs struct {
 	// The name of the MongoDB collection that the trigger watches for change events.
 	ConfigCollection pulumi.StringInput `pulumi:"configCollection"`
-	// The name of the MongoDB database that contains the watched collection.
+	// The name of the MongoDB database to watch.
 	ConfigDatabase pulumi.StringInput `pulumi:"configDatabase"`
 	// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
 	ConfigFullDocument       pulumi.BoolInput `pulumi:"configFullDocument"`
@@ -33546,7 +33546,7 @@ func (o GetEventTriggersResultOutput) ConfigCollection() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) string { return v.ConfigCollection }).(pulumi.StringOutput)
 }
 
-// The name of the MongoDB database that contains the watched collection.
+// The name of the MongoDB database to watch.
 func (o GetEventTriggersResultOutput) ConfigDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) string { return v.ConfigDatabase }).(pulumi.StringOutput)
 }
@@ -42640,10 +42640,14 @@ func (o GetPrivateLinkEndpointServiceEndpointArrayOutput) Index(i pulumi.IntInpu
 type GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult struct {
 	// Human-readable string to associate with this private endpoint.
 	Comment string `pulumi:"comment"`
+	// (Optional) Human-readable label to identify VPC endpoint DNS name.
+	CustomerEndpointDnsName string `pulumi:"customerEndpointDnsName"`
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](<https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature>).
 	EndpointId string `pulumi:"endpointId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	Region string `pulumi:"region"`
 	// Human-readable label that identifies the resource type associated with this private endpoint.
 	Type string `pulumi:"type"`
 }
@@ -42662,10 +42666,14 @@ type GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultInput interf
 type GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultArgs struct {
 	// Human-readable string to associate with this private endpoint.
 	Comment pulumi.StringInput `pulumi:"comment"`
+	// (Optional) Human-readable label to identify VPC endpoint DNS name.
+	CustomerEndpointDnsName pulumi.StringInput `pulumi:"customerEndpointDnsName"`
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](<https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature>).
 	EndpointId pulumi.StringInput `pulumi:"endpointId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	Region pulumi.StringInput `pulumi:"region"`
 	// Human-readable label that identifies the resource type associated with this private endpoint.
 	Type pulumi.StringInput `pulumi:"type"`
 }
@@ -42726,6 +42734,13 @@ func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) C
 	return o.ApplyT(func(v GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult) string { return v.Comment }).(pulumi.StringOutput)
 }
 
+// (Optional) Human-readable label to identify VPC endpoint DNS name.
+func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) CustomerEndpointDnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult) string {
+		return v.CustomerEndpointDnsName
+	}).(pulumi.StringOutput)
+}
+
 // Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](<https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature>).
 func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) EndpointId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult) string { return v.EndpointId }).(pulumi.StringOutput)
@@ -42734,6 +42749,11 @@ func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) E
 // Human-readable label that identifies the cloud service provider.
 func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // Human-readable label that identifies the resource type associated with this private endpoint.
@@ -45859,7 +45879,7 @@ type GetThirdPartyIntegrationsResult struct {
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
-	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey string `pulumi:"routingKey"`
@@ -45902,7 +45922,7 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
 	Region pulumi.StringInput `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey pulumi.StringInput `pulumi:"routingKey"`
@@ -46002,7 +46022,7 @@ func (o GetThirdPartyIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
 func (o GetThirdPartyIntegrationsResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Region }).(pulumi.StringOutput)
 }

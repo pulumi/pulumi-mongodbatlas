@@ -18,13 +18,12 @@ class CloudBackupSnapshotRestoreJobArgs:
     def __init__(__self__, *,
                  cluster_name: pulumi.Input[str],
                  project_id: pulumi.Input[str],
-                 snapshot_id: pulumi.Input[str],
-                 delivery_type_config: Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] = None):
+                 delivery_type_config: Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] = None,
+                 snapshot_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CloudBackupSnapshotRestoreJob resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[str] snapshot_id: Unique identifier of the snapshot to restore.
         :param pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
@@ -34,12 +33,14 @@ class CloudBackupSnapshotRestoreJobArgs:
                * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
                * `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.
                * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
+        :param pulumi.Input[str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "snapshot_id", snapshot_id)
         if delivery_type_config is not None:
             pulumi.set(__self__, "delivery_type_config", delivery_type_config)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -66,18 +67,6 @@ class CloudBackupSnapshotRestoreJobArgs:
         pulumi.set(self, "project_id", value)
 
     @property
-    @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> pulumi.Input[str]:
-        """
-        Unique identifier of the snapshot to restore.
-        """
-        return pulumi.get(self, "snapshot_id")
-
-    @snapshot_id.setter
-    def snapshot_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "snapshot_id", value)
-
-    @property
     @pulumi.getter(name="deliveryTypeConfig")
     def delivery_type_config(self) -> Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]:
         """
@@ -96,6 +85,18 @@ class CloudBackupSnapshotRestoreJobArgs:
     @delivery_type_config.setter
     def delivery_type_config(self, value: Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]):
         pulumi.set(self, "delivery_type_config", value)
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @snapshot_id.setter
+    def snapshot_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "snapshot_id", value)
 
 
 @pulumi.input_type
@@ -132,7 +133,7 @@ class _CloudBackupSnapshotRestoreJobState:
         :param pulumi.Input[str] expires_at: UTC ISO 8601 formatted point in time when the restore job expires.
         :param pulumi.Input[str] finished_at: UTC ISO 8601 formatted point in time when the restore job completed.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[str] snapshot_id: Unique identifier of the snapshot to restore.
+        :param pulumi.Input[str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         :param pulumi.Input[str] snapshot_restore_job_id: The unique identifier of the restore job.
         :param pulumi.Input[str] timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
         """
@@ -281,7 +282,7 @@ class _CloudBackupSnapshotRestoreJobState:
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique identifier of the snapshot to restore.
+        Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         """
         return pulumi.get(self, "snapshot_id")
 
@@ -361,9 +362,8 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         <!--End PulumiCodeChooser -->
 
         ### Available complete examples
-        - Restore from automated backup snapshot
-        - Restore from backup snapshot download
         - Restore from backup snapshot at point in time
+        - Restore from backup snapshot using an advanced cluster resource
 
         ## Import
 
@@ -387,7 +387,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                * `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.
                * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[str] snapshot_id: Unique identifier of the snapshot to restore.
+        :param pulumi.Input[str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         """
         ...
     @overload
@@ -432,9 +432,8 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         <!--End PulumiCodeChooser -->
 
         ### Available complete examples
-        - Restore from automated backup snapshot
-        - Restore from backup snapshot download
         - Restore from backup snapshot at point in time
+        - Restore from backup snapshot using an advanced cluster resource
 
         ## Import
 
@@ -480,8 +479,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
-            if snapshot_id is None and not opts.urn:
-                raise TypeError("Missing required property 'snapshot_id'")
             __props__.__dict__["snapshot_id"] = snapshot_id
             __props__.__dict__["cancelled"] = None
             __props__.__dict__["created_at"] = None
@@ -537,7 +534,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.Input[str] expires_at: UTC ISO 8601 formatted point in time when the restore job expires.
         :param pulumi.Input[str] finished_at: UTC ISO 8601 formatted point in time when the restore job completed.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[str] snapshot_id: Unique identifier of the snapshot to restore.
+        :param pulumi.Input[str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         :param pulumi.Input[str] snapshot_restore_job_id: The unique identifier of the restore job.
         :param pulumi.Input[str] timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
         """
@@ -641,9 +638,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> pulumi.Output[str]:
+    def snapshot_id(self) -> pulumi.Output[Optional[str]]:
         """
-        Unique identifier of the snapshot to restore.
+        Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         """
         return pulumi.get(self, "snapshot_id")
 

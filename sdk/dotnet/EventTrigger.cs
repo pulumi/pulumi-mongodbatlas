@@ -187,13 +187,13 @@ namespace Pulumi.Mongodbatlas
         public Output<string> AppId { get; private set; } = null!;
 
         /// <summary>
-        /// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+        /// Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
         /// </summary>
         [Output("configCollection")]
         public Output<string> ConfigCollection { get; private set; } = null!;
 
         /// <summary>
-        /// Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+        /// Required for `DATABASE` type. The name of the MongoDB database to watch.
         /// </summary>
         [Output("configDatabase")]
         public Output<string> ConfigDatabase { get; private set; } = null!;
@@ -362,13 +362,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string> AppId { get; set; } = null!;
 
         /// <summary>
-        /// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+        /// Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
         /// </summary>
         [Input("configCollection")]
         public Input<string>? ConfigCollection { get; set; }
 
         /// <summary>
-        /// Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+        /// Required for `DATABASE` type. The name of the MongoDB database to watch.
         /// </summary>
         [Input("configDatabase")]
         public Input<string>? ConfigDatabase { get; set; }
@@ -496,13 +496,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? AppId { get; set; }
 
         /// <summary>
-        /// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+        /// Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
         /// </summary>
         [Input("configCollection")]
         public Input<string>? ConfigCollection { get; set; }
 
         /// <summary>
-        /// Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+        /// Required for `DATABASE` type. The name of the MongoDB database to watch.
         /// </summary>
         [Input("configDatabase")]
         public Input<string>? ConfigDatabase { get; set; }

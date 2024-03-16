@@ -128,14 +128,14 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
         return this.autoDeferOnceEnabled;
     }
     /**
-     * Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+     * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
      * 
      */
     @Export(name="dayOfWeek", refs={Integer.class}, tree="[0]")
     private Output<Integer> dayOfWeek;
 
     /**
-     * @return Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+     * @return Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
      * 
      */
     public Output<Integer> dayOfWeek() {
@@ -170,14 +170,14 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
         return this.hourOfDay;
     }
     /**
-     * Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+     * Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
      * 
      */
     @Export(name="numberOfDeferrals", refs={Integer.class}, tree="[0]")
     private Output<Integer> numberOfDeferrals;
 
     /**
-     * @return Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+     * @return Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
      * 
      */
     public Output<Integer> numberOfDeferrals() {

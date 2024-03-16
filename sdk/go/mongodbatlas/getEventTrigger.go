@@ -38,7 +38,7 @@ type LookupEventTriggerResult struct {
 	AppId string `pulumi:"appId"`
 	// The name of the MongoDB collection that the trigger watches for change events.
 	ConfigCollection string `pulumi:"configCollection"`
-	// The name of the MongoDB database that contains the watched collection.
+	// The name of the MongoDB database to watch.
 	ConfigDatabase string `pulumi:"configDatabase"`
 	// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
 	ConfigFullDocument       bool `pulumi:"configFullDocument"`
@@ -132,7 +132,7 @@ func (o LookupEventTriggerResultOutput) ConfigCollection() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigCollection }).(pulumi.StringOutput)
 }
 
-// The name of the MongoDB database that contains the watched collection.
+// The name of the MongoDB database to watch.
 func (o LookupEventTriggerResultOutput) ConfigDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigDatabase }).(pulumi.StringOutput)
 }

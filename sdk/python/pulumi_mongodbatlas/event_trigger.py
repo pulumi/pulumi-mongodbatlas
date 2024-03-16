@@ -41,8 +41,8 @@ class EventTriggerArgs:
                * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
         :param pulumi.Input[str] project_id: The unique ID for the project to create the trigger.
         :param pulumi.Input[str] type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
-        :param pulumi.Input[str] config_collection: Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
-        :param pulumi.Input[str] config_database: Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+        :param pulumi.Input[str] config_collection: Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+        :param pulumi.Input[str] config_database: Required for `DATABASE` type. The name of the MongoDB database to watch.
         :param pulumi.Input[bool] config_full_document: Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
         :param pulumi.Input[str] config_match: Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
         :param pulumi.Input[str] config_operation_type: Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
@@ -136,7 +136,7 @@ class EventTriggerArgs:
     @pulumi.getter(name="configCollection")
     def config_collection(self) -> Optional[pulumi.Input[str]]:
         """
-        Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+        Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
         """
         return pulumi.get(self, "config_collection")
 
@@ -148,7 +148,7 @@ class EventTriggerArgs:
     @pulumi.getter(name="configDatabase")
     def config_database(self) -> Optional[pulumi.Input[str]]:
         """
-        Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+        Required for `DATABASE` type. The name of the MongoDB database to watch.
         """
         return pulumi.get(self, "config_database")
 
@@ -353,8 +353,8 @@ class _EventTriggerState:
         Input properties used for looking up and filtering EventTrigger resources.
         :param pulumi.Input[str] app_id: The ObjectID of your application.
                * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
-        :param pulumi.Input[str] config_collection: Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
-        :param pulumi.Input[str] config_database: Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+        :param pulumi.Input[str] config_collection: Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+        :param pulumi.Input[str] config_database: Required for `DATABASE` type. The name of the MongoDB database to watch.
         :param pulumi.Input[bool] config_full_document: Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
         :param pulumi.Input[str] config_match: Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
         :param pulumi.Input[str] config_operation_type: Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
@@ -437,7 +437,7 @@ class _EventTriggerState:
     @pulumi.getter(name="configCollection")
     def config_collection(self) -> Optional[pulumi.Input[str]]:
         """
-        Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+        Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
         """
         return pulumi.get(self, "config_collection")
 
@@ -449,7 +449,7 @@ class _EventTriggerState:
     @pulumi.getter(name="configDatabase")
     def config_database(self) -> Optional[pulumi.Input[str]]:
         """
-        Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+        Required for `DATABASE` type. The name of the MongoDB database to watch.
         """
         return pulumi.get(self, "config_database")
 
@@ -834,8 +834,8 @@ class EventTrigger(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] app_id: The ObjectID of your application.
                * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
-        :param pulumi.Input[str] config_collection: Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
-        :param pulumi.Input[str] config_database: Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+        :param pulumi.Input[str] config_collection: Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+        :param pulumi.Input[str] config_database: Required for `DATABASE` type. The name of the MongoDB database to watch.
         :param pulumi.Input[bool] config_full_document: Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
         :param pulumi.Input[str] config_match: Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
         :param pulumi.Input[str] config_operation_type: Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
@@ -1095,8 +1095,8 @@ class EventTrigger(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] app_id: The ObjectID of your application.
                * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
-        :param pulumi.Input[str] config_collection: Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
-        :param pulumi.Input[str] config_database: Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+        :param pulumi.Input[str] config_collection: Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+        :param pulumi.Input[str] config_database: Required for `DATABASE` type. The name of the MongoDB database to watch.
         :param pulumi.Input[bool] config_full_document: Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
         :param pulumi.Input[str] config_match: Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
         :param pulumi.Input[str] config_operation_type: Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
@@ -1158,7 +1158,7 @@ class EventTrigger(pulumi.CustomResource):
     @pulumi.getter(name="configCollection")
     def config_collection(self) -> pulumi.Output[str]:
         """
-        Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+        Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
         """
         return pulumi.get(self, "config_collection")
 
@@ -1166,7 +1166,7 @@ class EventTrigger(pulumi.CustomResource):
     @pulumi.getter(name="configDatabase")
     def config_database(self) -> pulumi.Output[str]:
         """
-        Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+        Required for `DATABASE` type. The name of the MongoDB database to watch.
         """
         return pulumi.get(self, "config_database")
 

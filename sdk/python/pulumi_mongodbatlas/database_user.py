@@ -382,6 +382,8 @@ class DatabaseUser(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+        > **WARNING:** The password argument is required for creation but should be removed after creation if it will be managed externally. More details can be found in the password argument documentation.
+
         > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
 
         ## Example Usage
@@ -530,6 +532,8 @@ class DatabaseUser(pulumi.CustomResource):
         Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        > **WARNING:** The password argument is required for creation but should be removed after creation if it will be managed externally. More details can be found in the password argument documentation.
 
         > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
 

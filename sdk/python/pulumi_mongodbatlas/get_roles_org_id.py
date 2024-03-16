@@ -58,11 +58,11 @@ class AwaitableGetRolesOrgIdResult(GetRolesOrgIdResult):
 
 def get_roles_org_id(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRolesOrgIdResult:
     """
-    `Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+    `get_roles_org_id` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
 
     ## Example Usage
 
-    ### Using project_id attribute to query
+    ### Using data source to query
     <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
@@ -85,11 +85,11 @@ def get_roles_org_id(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
 @_utilities.lift_output_func(get_roles_org_id)
 def get_roles_org_id_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRolesOrgIdResult]:
     """
-    `Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+    `get_roles_org_id` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
 
     ## Example Usage
 
-    ### Using project_id attribute to query
+    ### Using data source to query
     <!--Start PulumiCodeChooser -->
     ```python
     import pulumi

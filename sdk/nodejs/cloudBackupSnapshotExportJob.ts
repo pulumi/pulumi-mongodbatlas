@@ -13,6 +13,8 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ### Export one snapshot
+ *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -32,6 +34,55 @@ import * as utilities from "./utilities";
  *     customDatas: [{
  *         key: "exported by",
  *         value: "myName",
+ *     }],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Create backup and automatic snapshot export policies
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const _export = new mongodbatlas.CloudBackupSnapshotExportBucket("export", {
+ *     projectId: "{PROJECT_ID}",
+ *     iamRoleId: "{IAM_ROLE_ID}",
+ *     bucketName: "example_bucket",
+ *     cloudProvider: "AWS",
+ * });
+ * const backup = new mongodbatlas.CloudBackupSchedule("backup", {
+ *     projectId: "{PROJECT_ID}",
+ *     clusterName: "{CLUSTER_NAME}",
+ *     autoExportEnabled: true,
+ *     "export": {
+ *         exportBucketId: _export.exportBucketId,
+ *         frequencyType: "daily",
+ *     },
+ *     useOrgAndGroupNamesInExportPrefix: true,
+ *     referenceHourOfDay: 7,
+ *     referenceMinuteOfHour: 0,
+ *     restoreWindowDays: 5,
+ *     policyItemHourly: {
+ *         frequencyInterval: 6,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemDaily: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemWeeklies: [{
+ *         frequencyInterval: 6,
+ *         retentionUnit: "weeks",
+ *         retentionValue: 4,
+ *     }],
+ *     policyItemMonthlies: [{
+ *         frequencyInterval: 28,
+ *         retentionUnit: "months",
+ *         retentionValue: 12,
  *     }],
  * });
  * ```

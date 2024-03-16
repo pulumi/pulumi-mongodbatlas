@@ -15230,7 +15230,7 @@ class GetEventTriggersResultResult(dict):
                  unordered: bool):
         """
         :param str config_collection: The name of the MongoDB collection that the trigger watches for change events.
-        :param str config_database: The name of the MongoDB database that contains the watched collection.
+        :param str config_database: The name of the MongoDB database to watch.
         :param bool config_full_document: If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
         :param str config_match: A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
         :param str config_operation_type: The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
@@ -15282,7 +15282,7 @@ class GetEventTriggersResultResult(dict):
     @pulumi.getter(name="configDatabase")
     def config_database(self) -> str:
         """
-        The name of the MongoDB database that contains the watched collection.
+        The name of the MongoDB database to watch.
         """
         return pulumi.get(self, "config_database")
 
@@ -18972,18 +18972,24 @@ class GetPrivateLinkEndpointServiceEndpointResult(dict):
 class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult(dict):
     def __init__(__self__, *,
                  comment: str,
+                 customer_endpoint_dns_name: str,
                  endpoint_id: str,
                  provider_name: str,
+                 region: str,
                  type: str):
         """
         :param str comment: Human-readable string to associate with this private endpoint.
+        :param str customer_endpoint_dns_name: (Optional) Human-readable label to identify VPC endpoint DNS name.
         :param str endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature).
         :param str provider_name: Human-readable label that identifies the cloud service provider.
+        :param str region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param str type: Human-readable label that identifies the resource type associated with this private endpoint.
         """
         pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "customer_endpoint_dns_name", customer_endpoint_dns_name)
         pulumi.set(__self__, "endpoint_id", endpoint_id)
         pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "type", type)
 
     @property
@@ -18993,6 +18999,14 @@ class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult(dict
         Human-readable string to associate with this private endpoint.
         """
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter(name="customerEndpointDnsName")
+    def customer_endpoint_dns_name(self) -> str:
+        """
+        (Optional) Human-readable label to identify VPC endpoint DNS name.
+        """
+        return pulumi.get(self, "customer_endpoint_dns_name")
 
     @property
     @pulumi.getter(name="endpointId")
@@ -19009,6 +19023,14 @@ class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult(dict
         Human-readable label that identifies the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
@@ -20381,7 +20403,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
         """
         :param str api_key: Your API Key.
         :param str project_id: The unique ID for the project to get all Third-Party service integrations
-        :param str region: Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        :param str region: Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
         :param str routing_key: An optional field for your Routing Key.
         :param str secret: An optional field for your webhook secret.
         :param str service_key: Your Service Key.
@@ -20445,7 +20467,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
     @pulumi.getter
     def region(self) -> str:
         """
-        Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
         """
         return pulumi.get(self, "region")
 

@@ -86,9 +86,8 @@ import javax.annotation.Nullable;
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Available complete examples
- * - Restore from automated backup snapshot
- * - Restore from backup snapshot download
  * - Restore from backup snapshot at point in time
+ * - Restore from backup snapshot using an advanced cluster resource
  * 
  * ## Import
  * 
@@ -245,18 +244,18 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
         return this.projectId;
     }
     /**
-     * Unique identifier of the snapshot to restore.
+     * Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
      * 
      */
     @Export(name="snapshotId", refs={String.class}, tree="[0]")
-    private Output<String> snapshotId;
+    private Output</* @Nullable */ String> snapshotId;
 
     /**
-     * @return Unique identifier of the snapshot to restore.
+     * @return Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
      * 
      */
-    public Output<String> snapshotId() {
-        return this.snapshotId;
+    public Output<Optional<String>> snapshotId() {
+        return Codegen.optional(this.snapshotId);
     }
     /**
      * The unique identifier of the restore job.

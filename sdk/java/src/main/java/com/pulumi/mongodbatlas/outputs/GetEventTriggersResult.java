@@ -19,7 +19,7 @@ public final class GetEventTriggersResult {
      */
     private String configCollection;
     /**
-     * @return The name of the MongoDB database that contains the watched collection.
+     * @return The name of the MongoDB database to watch.
      * 
      */
     private String configDatabase;
@@ -113,7 +113,7 @@ public final class GetEventTriggersResult {
         return this.configCollection;
     }
     /**
-     * @return The name of the MongoDB database that contains the watched collection.
+     * @return The name of the MongoDB database to watch.
      * 
      */
     public String configDatabase() {

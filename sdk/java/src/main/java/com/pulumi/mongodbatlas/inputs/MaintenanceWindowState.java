@@ -40,14 +40,14 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+     * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
      * 
      */
     @Import(name="dayOfWeek")
     private @Nullable Output<Integer> dayOfWeek;
 
     /**
-     * @return Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+     * @return Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
      * 
      */
     public Optional<Output<Integer>> dayOfWeek() {
@@ -85,14 +85,14 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+     * Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
      * 
      */
     @Import(name="numberOfDeferrals")
     private @Nullable Output<Integer> numberOfDeferrals;
 
     /**
-     * @return Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+     * @return Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
      * 
      */
     public Optional<Output<Integer>> numberOfDeferrals() {
@@ -191,7 +191,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param dayOfWeek Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+         * @param dayOfWeek Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
          * 
          * @return builder
          * 
@@ -202,7 +202,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param dayOfWeek Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+         * @param dayOfWeek Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
          * 
          * @return builder
          * 
@@ -254,7 +254,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param numberOfDeferrals Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+         * @param numberOfDeferrals Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
          * 
          * @return builder
          * 
@@ -265,7 +265,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param numberOfDeferrals Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+         * @param numberOfDeferrals Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
          * 
          * @return builder
          * 
