@@ -247,28 +247,28 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
         return this.appId;
     }
     /**
-     * Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+     * Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      * 
      */
     @Export(name="configCollection", refs={String.class}, tree="[0]")
     private Output<String> configCollection;
 
     /**
-     * @return Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+     * @return Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      * 
      */
     public Output<String> configCollection() {
         return this.configCollection;
     }
     /**
-     * Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+     * Required for `DATABASE` type. The name of the MongoDB database to watch.
      * 
      */
     @Export(name="configDatabase", refs={String.class}, tree="[0]")
     private Output<String> configDatabase;
 
     /**
-     * @return Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+     * @return Required for `DATABASE` type. The name of the MongoDB database to watch.
      * 
      */
     public Output<String> configDatabase() {

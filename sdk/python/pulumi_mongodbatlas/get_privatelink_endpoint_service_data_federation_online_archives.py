@@ -83,9 +83,11 @@ def get_privatelink_endpoint_service_data_federation_online_archives(project_id:
     atlas_project = mongodbatlas.Project("atlas-project", org_id=var["atlas_org_id"])
     test = mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test",
         project_id=atlas_project.id,
-        endpoint_id="<PRIVATE-ENDPOINT-SERVICE-ID>",
+        endpoint_id="vpce-046cf43c79424d4c9",
         provider_name="AWS",
-        comment="Test")
+        comment="Test",
+        region="US_EAST_1",
+        customer_endpoint_dns_name="vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com")
     test_data_source = mongodbatlas.get_privatelink_endpoint_service_data_federation_online_archives_output(project_id=atlas_project.id)
     ```
     <!--End PulumiCodeChooser -->
@@ -122,9 +124,11 @@ def get_privatelink_endpoint_service_data_federation_online_archives_output(proj
     atlas_project = mongodbatlas.Project("atlas-project", org_id=var["atlas_org_id"])
     test = mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test",
         project_id=atlas_project.id,
-        endpoint_id="<PRIVATE-ENDPOINT-SERVICE-ID>",
+        endpoint_id="vpce-046cf43c79424d4c9",
         provider_name="AWS",
-        comment="Test")
+        comment="Test",
+        region="US_EAST_1",
+        customer_endpoint_dns_name="vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com")
     test_data_source = mongodbatlas.get_privatelink_endpoint_service_data_federation_online_archives_output(project_id=atlas_project.id)
     ```
     <!--End PulumiCodeChooser -->

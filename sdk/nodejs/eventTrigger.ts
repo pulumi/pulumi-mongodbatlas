@@ -167,11 +167,11 @@ export class EventTrigger extends pulumi.CustomResource {
      */
     public readonly appId!: pulumi.Output<string>;
     /**
-     * Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+     * Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      */
     public readonly configCollection!: pulumi.Output<string>;
     /**
-     * Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+     * Required for `DATABASE` type. The name of the MongoDB database to watch.
      */
     public readonly configDatabase!: pulumi.Output<string>;
     /**
@@ -331,11 +331,11 @@ export interface EventTriggerState {
      */
     appId?: pulumi.Input<string>;
     /**
-     * Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+     * Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      */
     configCollection?: pulumi.Input<string>;
     /**
-     * Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+     * Required for `DATABASE` type. The name of the MongoDB database to watch.
      */
     configDatabase?: pulumi.Input<string>;
     /**
@@ -422,11 +422,11 @@ export interface EventTriggerArgs {
      */
     appId: pulumi.Input<string>;
     /**
-     * Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+     * Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      */
     configCollection?: pulumi.Input<string>;
     /**
-     * Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+     * Required for `DATABASE` type. The name of the MongoDB database to watch.
      */
     configDatabase?: pulumi.Input<string>;
     /**

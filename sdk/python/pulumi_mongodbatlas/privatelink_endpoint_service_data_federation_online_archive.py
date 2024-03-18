@@ -17,19 +17,27 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
                  endpoint_id: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  provider_name: pulumi.Input[str],
-                 comment: Optional[pulumi.Input[str]] = None):
+                 comment: Optional[pulumi.Input[str]] = None,
+                 customer_endpoint_dns_name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a PrivatelinkEndpointServiceDataFederationOnlineArchive resource.
         :param pulumi.Input[str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature).
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[str] provider_name: Human-readable label that identifies the cloud service provider.
         :param pulumi.Input[str] comment: Human-readable string to associate with this private endpoint.
+        :param pulumi.Input[str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name.
+        :param pulumi.Input[str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         """
         pulumi.set(__self__, "endpoint_id", endpoint_id)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_name", provider_name)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if customer_endpoint_dns_name is not None:
+            pulumi.set(__self__, "customer_endpoint_dns_name", customer_endpoint_dns_name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -79,31 +87,63 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
 
+    @property
+    @pulumi.getter(name="customerEndpointDnsName")
+    def customer_endpoint_dns_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable label to identify VPC endpoint DNS name.
+        """
+        return pulumi.get(self, "customer_endpoint_dns_name")
+
+    @customer_endpoint_dns_name.setter
+    def customer_endpoint_dns_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "customer_endpoint_dns_name", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
 
 @pulumi.input_type
 class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
+                 customer_endpoint_dns_name: Optional[pulumi.Input[str]] = None,
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering PrivatelinkEndpointServiceDataFederationOnlineArchive resources.
         :param pulumi.Input[str] comment: Human-readable string to associate with this private endpoint.
+        :param pulumi.Input[str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name.
         :param pulumi.Input[str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature).
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[str] provider_name: Human-readable label that identifies the cloud service provider.
+        :param pulumi.Input[str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input[str] type: Human-readable label that identifies the resource type associated with this private endpoint.
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if customer_endpoint_dns_name is not None:
+            pulumi.set(__self__, "customer_endpoint_dns_name", customer_endpoint_dns_name)
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if provider_name is not None:
             pulumi.set(__self__, "provider_name", provider_name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -118,6 +158,18 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter(name="customerEndpointDnsName")
+    def customer_endpoint_dns_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable label to identify VPC endpoint DNS name.
+        """
+        return pulumi.get(self, "customer_endpoint_dns_name")
+
+    @customer_endpoint_dns_name.setter
+    def customer_endpoint_dns_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "customer_endpoint_dns_name", value)
 
     @property
     @pulumi.getter(name="endpointId")
@@ -157,6 +209,18 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
 
     @property
     @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         Human-readable label that identifies the resource type associated with this private endpoint.
@@ -174,14 +238,18 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 customer_endpoint_dns_name: Optional[pulumi.Input[str]] = None,
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         `PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        > **NOTE:** Updates are limited to the `comment` argument.
 
         ## Example Usage
 
@@ -193,9 +261,11 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         atlas_project = mongodbatlas.Project("atlas-project", org_id=var["atlas_org_id"])
         test = mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test",
             project_id=atlas_project.id,
-            endpoint_id="<PRIVATE-ENDPOINT-SERVICE-ID>",
+            endpoint_id="vpce-046cf43c79424d4c9",
             provider_name="AWS",
-            comment="Test")
+            comment="Test",
+            region="US_EAST_1",
+            customer_endpoint_dns_name="vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -211,9 +281,11 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Human-readable string to associate with this private endpoint.
+        :param pulumi.Input[str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name.
         :param pulumi.Input[str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature).
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[str] provider_name: Human-readable label that identifies the cloud service provider.
+        :param pulumi.Input[str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         """
         ...
     @overload
@@ -226,6 +298,8 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+        > **NOTE:** Updates are limited to the `comment` argument.
+
         ## Example Usage
 
         <!--Start PulumiCodeChooser -->
@@ -236,9 +310,11 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         atlas_project = mongodbatlas.Project("atlas-project", org_id=var["atlas_org_id"])
         test = mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test",
             project_id=atlas_project.id,
-            endpoint_id="<PRIVATE-ENDPOINT-SERVICE-ID>",
+            endpoint_id="vpce-046cf43c79424d4c9",
             provider_name="AWS",
-            comment="Test")
+            comment="Test",
+            region="US_EAST_1",
+            customer_endpoint_dns_name="vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -267,9 +343,11 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 customer_endpoint_dns_name: Optional[pulumi.Input[str]] = None,
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -280,6 +358,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
             __props__ = PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.__new__(PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs)
 
             __props__.__dict__["comment"] = comment
+            __props__.__dict__["customer_endpoint_dns_name"] = customer_endpoint_dns_name
             if endpoint_id is None and not opts.urn:
                 raise TypeError("Missing required property 'endpoint_id'")
             __props__.__dict__["endpoint_id"] = endpoint_id
@@ -289,6 +368,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
             if provider_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_name'")
             __props__.__dict__["provider_name"] = provider_name
+            __props__.__dict__["region"] = region
             __props__.__dict__["type"] = None
         super(PrivatelinkEndpointServiceDataFederationOnlineArchive, __self__).__init__(
             'mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive',
@@ -301,9 +381,11 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[str]] = None,
+            customer_endpoint_dns_name: Optional[pulumi.Input[str]] = None,
             endpoint_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             provider_name: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'PrivatelinkEndpointServiceDataFederationOnlineArchive':
         """
         Get an existing PrivatelinkEndpointServiceDataFederationOnlineArchive resource's state with the given name, id, and optional extra
@@ -313,9 +395,11 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Human-readable string to associate with this private endpoint.
+        :param pulumi.Input[str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name.
         :param pulumi.Input[str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature).
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[str] provider_name: Human-readable label that identifies the cloud service provider.
+        :param pulumi.Input[str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input[str] type: Human-readable label that identifies the resource type associated with this private endpoint.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -323,9 +407,11 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         __props__ = _PrivatelinkEndpointServiceDataFederationOnlineArchiveState.__new__(_PrivatelinkEndpointServiceDataFederationOnlineArchiveState)
 
         __props__.__dict__["comment"] = comment
+        __props__.__dict__["customer_endpoint_dns_name"] = customer_endpoint_dns_name
         __props__.__dict__["endpoint_id"] = endpoint_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["provider_name"] = provider_name
+        __props__.__dict__["region"] = region
         __props__.__dict__["type"] = type
         return PrivatelinkEndpointServiceDataFederationOnlineArchive(resource_name, opts=opts, __props__=__props__)
 
@@ -336,6 +422,14 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         Human-readable string to associate with this private endpoint.
         """
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter(name="customerEndpointDnsName")
+    def customer_endpoint_dns_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        Human-readable label to identify VPC endpoint DNS name.
+        """
+        return pulumi.get(self, "customer_endpoint_dns_name")
 
     @property
     @pulumi.getter(name="endpointId")
@@ -360,6 +454,14 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         Human-readable label that identifies the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[Optional[str]]:
+        """
+        Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter

@@ -85,7 +85,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> AutoDeferOnceEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+        /// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         /// </summary>
         [Output("dayOfWeek")]
         public Output<int> DayOfWeek { get; private set; } = null!;
@@ -103,7 +103,7 @@ namespace Pulumi.Mongodbatlas
         public Output<int> HourOfDay { get; private set; } = null!;
 
         /// <summary>
-        /// Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+        /// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         /// </summary>
         [Output("numberOfDeferrals")]
         public Output<int> NumberOfDeferrals { get; private set; } = null!;
@@ -176,10 +176,10 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
 
         /// <summary>
-        /// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+        /// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         /// </summary>
-        [Input("dayOfWeek")]
-        public Input<int>? DayOfWeek { get; set; }
+        [Input("dayOfWeek", required: true)]
+        public Input<int> DayOfWeek { get; set; } = null!;
 
         /// <summary>
         /// Defer the next scheduled maintenance for the given project for one week.
@@ -194,16 +194,16 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? HourOfDay { get; set; }
 
         /// <summary>
-        /// Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
-        /// </summary>
-        [Input("numberOfDeferrals")]
-        public Input<int>? NumberOfDeferrals { get; set; }
-
-        /// <summary>
         /// The unique identifier of the project for the Maintenance Window.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        /// </summary>
+        [Input("startAsap")]
+        public Input<bool>? StartAsap { get; set; }
 
         public MaintenanceWindowArgs()
         {
@@ -223,7 +223,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
 
         /// <summary>
-        /// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+        /// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         /// </summary>
         [Input("dayOfWeek")]
         public Input<int>? DayOfWeek { get; set; }
@@ -241,7 +241,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? HourOfDay { get; set; }
 
         /// <summary>
-        /// Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+        /// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         /// </summary>
         [Input("numberOfDeferrals")]
         public Input<int>? NumberOfDeferrals { get; set; }

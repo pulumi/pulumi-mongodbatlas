@@ -209,9 +209,9 @@ type EventTrigger struct {
 	// The ObjectID of your application.
 	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 	AppId pulumi.StringOutput `pulumi:"appId"`
-	// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+	// Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
 	ConfigCollection pulumi.StringOutput `pulumi:"configCollection"`
-	// Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+	// Required for `DATABASE` type. The name of the MongoDB database to watch.
 	ConfigDatabase pulumi.StringOutput `pulumi:"configDatabase"`
 	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
 	ConfigFullDocument       pulumi.BoolOutput `pulumi:"configFullDocument"`
@@ -295,9 +295,9 @@ type eventTriggerState struct {
 	// The ObjectID of your application.
 	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 	AppId *string `pulumi:"appId"`
-	// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+	// Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
 	ConfigCollection *string `pulumi:"configCollection"`
-	// Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+	// Required for `DATABASE` type. The name of the MongoDB database to watch.
 	ConfigDatabase *string `pulumi:"configDatabase"`
 	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
 	ConfigFullDocument       *bool `pulumi:"configFullDocument"`
@@ -343,9 +343,9 @@ type EventTriggerState struct {
 	// The ObjectID of your application.
 	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 	AppId pulumi.StringPtrInput
-	// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+	// Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
 	ConfigCollection pulumi.StringPtrInput
-	// Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+	// Required for `DATABASE` type. The name of the MongoDB database to watch.
 	ConfigDatabase pulumi.StringPtrInput
 	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
 	ConfigFullDocument       pulumi.BoolPtrInput
@@ -395,9 +395,9 @@ type eventTriggerArgs struct {
 	// The ObjectID of your application.
 	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 	AppId string `pulumi:"appId"`
-	// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+	// Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
 	ConfigCollection *string `pulumi:"configCollection"`
-	// Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+	// Required for `DATABASE` type. The name of the MongoDB database to watch.
 	ConfigDatabase *string `pulumi:"configDatabase"`
 	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
 	ConfigFullDocument       *bool `pulumi:"configFullDocument"`
@@ -439,9 +439,9 @@ type EventTriggerArgs struct {
 	// The ObjectID of your application.
 	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#section/Project-and-Application-IDs
 	AppId pulumi.StringInput
-	// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+	// Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
 	ConfigCollection pulumi.StringPtrInput
-	// Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+	// Required for `DATABASE` type. The name of the MongoDB database to watch.
 	ConfigDatabase pulumi.StringPtrInput
 	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
 	ConfigFullDocument       pulumi.BoolPtrInput
@@ -571,12 +571,12 @@ func (o EventTriggerOutput) AppId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.AppId }).(pulumi.StringOutput)
 }
 
-// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+// Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
 func (o EventTriggerOutput) ConfigCollection() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigCollection }).(pulumi.StringOutput)
 }
 
-// Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+// Required for `DATABASE` type. The name of the MongoDB database to watch.
 func (o EventTriggerOutput) ConfigDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigDatabase }).(pulumi.StringOutput)
 }

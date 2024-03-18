@@ -96,7 +96,7 @@ type LookupThirdPartyIntegrationResult struct {
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	ProjectId                string  `pulumi:"projectId"`
-	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey string `pulumi:"routingKey"`
@@ -206,7 +206,7 @@ func (o LookupThirdPartyIntegrationResultOutput) ProjectId() pulumi.StringOutput
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
 func (o LookupThirdPartyIntegrationResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Region }).(pulumi.StringOutput)
 }

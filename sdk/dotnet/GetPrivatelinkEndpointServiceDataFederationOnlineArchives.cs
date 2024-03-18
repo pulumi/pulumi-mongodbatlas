@@ -35,9 +35,11 @@ namespace Pulumi.Mongodbatlas
         ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
         ///     {
         ///         ProjectId = atlas_project.Id,
-        ///         EndpointId = "&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;",
+        ///         EndpointId = "vpce-046cf43c79424d4c9",
         ///         ProviderName = "AWS",
         ///         Comment = "Test",
+        ///         Region = "US_EAST_1",
+        ///         CustomerEndpointDnsName = "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
         ///     });
         /// 
         ///     var testDataSource = Mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchives.Invoke(new()
@@ -76,9 +78,11 @@ namespace Pulumi.Mongodbatlas
         ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
         ///     {
         ///         ProjectId = atlas_project.Id,
-        ///         EndpointId = "&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;",
+        ///         EndpointId = "vpce-046cf43c79424d4c9",
         ///         ProviderName = "AWS",
         ///         Comment = "Test",
+        ///         Region = "US_EAST_1",
+        ///         CustomerEndpointDnsName = "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
         ///     });
         /// 
         ///     var testDataSource = Mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchives.Invoke(new()

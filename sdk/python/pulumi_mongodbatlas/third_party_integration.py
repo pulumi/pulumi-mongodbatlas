@@ -45,7 +45,7 @@ class ThirdPartyIntegrationArgs:
         :param pulumi.Input[bool] enabled: Whether your cluster has Prometheus enabled.
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
         :param pulumi.Input[str] password: Your Prometheus password.
-        :param pulumi.Input[str] region: Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        :param pulumi.Input[str] region: Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
         :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
@@ -177,7 +177,7 @@ class ThirdPartyIntegrationArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
         """
         return pulumi.get(self, "region")
 
@@ -305,7 +305,7 @@ class _ThirdPartyIntegrationState:
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
         :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] region: Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        :param pulumi.Input[str] region: Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
         :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
@@ -428,7 +428,7 @@ class _ThirdPartyIntegrationState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
         """
         return pulumi.get(self, "region")
 
@@ -613,7 +613,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
         :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] region: Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        :param pulumi.Input[str] region: Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
         :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
@@ -771,7 +771,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
         :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] region: Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        :param pulumi.Input[str] region: Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
         :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
@@ -859,7 +859,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
         """
         return pulumi.get(self, "region")
 

@@ -11,11 +11,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+// `getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
 //
 // ## Example Usage
 //
-// ### Using projectId attribute to query
+// ### Using data source to query
 // <!--Start PulumiCodeChooser -->
 // ```go
 // package main

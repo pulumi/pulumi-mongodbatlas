@@ -18,6 +18,8 @@ import (
 //
 // ## Example Usage
 //
+// ### Export one snapshot
+//
 // <!--Start PulumiCodeChooser -->
 // ```go
 // package main
@@ -49,6 +51,77 @@ import (
 //					&mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs{
 //						Key:   pulumi.String("exported by"),
 //						Value: pulumi.String("myName"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Create backup and automatic snapshot export policies
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			export, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "export", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//				ProjectId:     pulumi.String("{PROJECT_ID}"),
+//				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
+//				BucketName:    pulumi.String("example_bucket"),
+//				CloudProvider: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudBackupSchedule(ctx, "backup", &mongodbatlas.CloudBackupScheduleArgs{
+//				ProjectId:         pulumi.String("{PROJECT_ID}"),
+//				ClusterName:       pulumi.String("{CLUSTER_NAME}"),
+//				AutoExportEnabled: pulumi.Bool(true),
+//				Export: &mongodbatlas.CloudBackupScheduleExportArgs{
+//					ExportBucketId: export.ExportBucketId,
+//					FrequencyType:  pulumi.String("daily"),
+//				},
+//				UseOrgAndGroupNamesInExportPrefix: pulumi.Bool(true),
+//				ReferenceHourOfDay:                pulumi.Int(7),
+//				ReferenceMinuteOfHour:             pulumi.Int(0),
+//				RestoreWindowDays:                 pulumi.Int(5),
+//				PolicyItemHourly: &mongodbatlas.CloudBackupSchedulePolicyItemHourlyArgs{
+//					FrequencyInterval: pulumi.Int(6),
+//					RetentionUnit:     pulumi.String("days"),
+//					RetentionValue:    pulumi.Int(7),
+//				},
+//				PolicyItemDaily: &mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs{
+//					FrequencyInterval: pulumi.Int(1),
+//					RetentionUnit:     pulumi.String("days"),
+//					RetentionValue:    pulumi.Int(7),
+//				},
+//				PolicyItemWeeklies: mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArray{
+//					&mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArgs{
+//						FrequencyInterval: pulumi.Int(6),
+//						RetentionUnit:     pulumi.String("weeks"),
+//						RetentionValue:    pulumi.Int(4),
+//					},
+//				},
+//				PolicyItemMonthlies: mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArray{
+//					&mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArgs{
+//						FrequencyInterval: pulumi.Int(28),
+//						RetentionUnit:     pulumi.String("months"),
+//						RetentionValue:    pulumi.Int(12),
 //					},
 //				},
 //			})

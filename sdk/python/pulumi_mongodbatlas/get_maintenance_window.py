@@ -57,7 +57,7 @@ class GetMaintenanceWindowResult:
     @pulumi.getter(name="dayOfWeek")
     def day_of_week(self) -> int:
         """
-        Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+        Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         """
         return pulumi.get(self, "day_of_week")
 
@@ -81,7 +81,7 @@ class GetMaintenanceWindowResult:
     @pulumi.getter(name="numberOfDeferrals")
     def number_of_deferrals(self) -> int:
         """
-        Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+        Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         """
         return pulumi.get(self, "number_of_deferrals")
 

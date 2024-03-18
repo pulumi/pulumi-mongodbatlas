@@ -32,6 +32,21 @@ public final class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs ext
     }
 
     /**
+     * Human-readable label to identify VPC endpoint DNS name.
+     * 
+     */
+    @Import(name="customerEndpointDnsName")
+    private @Nullable Output<String> customerEndpointDnsName;
+
+    /**
+     * @return Human-readable label to identify VPC endpoint DNS name.
+     * 
+     */
+    public Optional<Output<String>> customerEndpointDnsName() {
+        return Optional.ofNullable(this.customerEndpointDnsName);
+    }
+
+    /**
      * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](&lt;https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature&gt;).
      * 
      */
@@ -76,13 +91,30 @@ public final class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs ext
         return this.providerName;
     }
 
+    /**
+     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
     private PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs() {}
 
     private PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs(PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs $) {
         this.comment = $.comment;
+        this.customerEndpointDnsName = $.customerEndpointDnsName;
         this.endpointId = $.endpointId;
         this.projectId = $.projectId;
         this.providerName = $.providerName;
+        this.region = $.region;
     }
 
     public static Builder builder() {
@@ -122,6 +154,27 @@ public final class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs ext
          */
         public Builder comment(String comment) {
             return comment(Output.of(comment));
+        }
+
+        /**
+         * @param customerEndpointDnsName Human-readable label to identify VPC endpoint DNS name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customerEndpointDnsName(@Nullable Output<String> customerEndpointDnsName) {
+            $.customerEndpointDnsName = customerEndpointDnsName;
+            return this;
+        }
+
+        /**
+         * @param customerEndpointDnsName Human-readable label to identify VPC endpoint DNS name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customerEndpointDnsName(String customerEndpointDnsName) {
+            return customerEndpointDnsName(Output.of(customerEndpointDnsName));
         }
 
         /**
@@ -185,6 +238,27 @@ public final class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs ext
          */
         public Builder providerName(String providerName) {
             return providerName(Output.of(providerName));
+        }
+
+        /**
+         * @param region Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
         }
 
         public PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs build() {

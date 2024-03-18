@@ -336,6 +336,8 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Export one snapshot
+
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
@@ -354,6 +356,53 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
                 key="exported by",
                 value="myName",
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Create backup and automatic snapshot export policies
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        export = mongodbatlas.CloudBackupSnapshotExportBucket("export",
+            project_id="{PROJECT_ID}",
+            iam_role_id="{IAM_ROLE_ID}",
+            bucket_name="example_bucket",
+            cloud_provider="AWS")
+        backup = mongodbatlas.CloudBackupSchedule("backup",
+            project_id="{PROJECT_ID}",
+            cluster_name="{CLUSTER_NAME}",
+            auto_export_enabled=True,
+            export=mongodbatlas.CloudBackupScheduleExportArgs(
+                export_bucket_id=export.export_bucket_id,
+                frequency_type="daily",
+            ),
+            use_org_and_group_names_in_export_prefix=True,
+            reference_hour_of_day=7,
+            reference_minute_of_hour=0,
+            restore_window_days=5,
+            policy_item_hourly=mongodbatlas.CloudBackupSchedulePolicyItemHourlyArgs(
+                frequency_interval=6,
+                retention_unit="days",
+                retention_value=7,
+            ),
+            policy_item_daily=mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs(
+                frequency_interval=1,
+                retention_unit="days",
+                retention_value=7,
+            ),
+            policy_item_weeklies=[mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArgs(
+                frequency_interval=6,
+                retention_unit="weeks",
+                retention_value=4,
+            )],
+            policy_item_monthlies=[mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArgs(
+                frequency_interval=28,
+                retention_unit="months",
+                retention_value=12,
             )])
         ```
         <!--End PulumiCodeChooser -->
@@ -388,6 +437,8 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Export one snapshot
+
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
@@ -406,6 +457,53 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
                 key="exported by",
                 value="myName",
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Create backup and automatic snapshot export policies
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        export = mongodbatlas.CloudBackupSnapshotExportBucket("export",
+            project_id="{PROJECT_ID}",
+            iam_role_id="{IAM_ROLE_ID}",
+            bucket_name="example_bucket",
+            cloud_provider="AWS")
+        backup = mongodbatlas.CloudBackupSchedule("backup",
+            project_id="{PROJECT_ID}",
+            cluster_name="{CLUSTER_NAME}",
+            auto_export_enabled=True,
+            export=mongodbatlas.CloudBackupScheduleExportArgs(
+                export_bucket_id=export.export_bucket_id,
+                frequency_type="daily",
+            ),
+            use_org_and_group_names_in_export_prefix=True,
+            reference_hour_of_day=7,
+            reference_minute_of_hour=0,
+            restore_window_days=5,
+            policy_item_hourly=mongodbatlas.CloudBackupSchedulePolicyItemHourlyArgs(
+                frequency_interval=6,
+                retention_unit="days",
+                retention_value=7,
+            ),
+            policy_item_daily=mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs(
+                frequency_interval=1,
+                retention_unit="days",
+                retention_value=7,
+            ),
+            policy_item_weeklies=[mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArgs(
+                frequency_interval=6,
+                retention_unit="weeks",
+                retention_value=4,
+            )],
+            policy_item_monthlies=[mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArgs(
+                frequency_interval=28,
+                retention_unit="months",
+                retention_value=12,
             )])
         ```
         <!--End PulumiCodeChooser -->

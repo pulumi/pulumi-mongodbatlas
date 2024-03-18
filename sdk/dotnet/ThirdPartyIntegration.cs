@@ -89,7 +89,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        /// Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -273,7 +273,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        /// Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -458,7 +458,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+        /// Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

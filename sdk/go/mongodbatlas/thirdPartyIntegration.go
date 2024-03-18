@@ -75,7 +75,7 @@ type ThirdPartyIntegration struct {
 	Password pulumi.StringOutput `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+	// Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey pulumi.StringOutput `pulumi:"routingKey"`
@@ -185,7 +185,7 @@ type thirdPartyIntegrationState struct {
 	Password *string `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId *string `pulumi:"projectId"`
-	// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+	// Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
 	Region *string `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey *string `pulumi:"routingKey"`
@@ -225,7 +225,7 @@ type ThirdPartyIntegrationState struct {
 	Password pulumi.StringPtrInput
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringPtrInput
-	// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+	// Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
 	Region pulumi.StringPtrInput
 	// An optional field for your Routing Key.
 	RoutingKey pulumi.StringPtrInput
@@ -269,7 +269,7 @@ type thirdPartyIntegrationArgs struct {
 	Password *string `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
-	// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+	// Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
 	Region *string `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey *string `pulumi:"routingKey"`
@@ -310,7 +310,7 @@ type ThirdPartyIntegrationArgs struct {
 	Password pulumi.StringPtrInput
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput
-	// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+	// Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
 	Region pulumi.StringPtrInput
 	// An optional field for your Routing Key.
 	RoutingKey pulumi.StringPtrInput
@@ -454,7 +454,7 @@ func (o ThirdPartyIntegrationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+// Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
 func (o ThirdPartyIntegrationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

@@ -125,7 +125,7 @@ class GetThirdPartyIntegrationResult:
     @pulumi.getter
     def region(self) -> str:
         """
-        Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
         """
         return pulumi.get(self, "region")
 

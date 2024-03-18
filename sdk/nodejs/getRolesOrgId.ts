@@ -5,11 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+ * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
  *
  * ## Example Usage
  *
- * ### Using projectId attribute to query
+ * ### Using data source to query
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -41,11 +41,11 @@ export interface GetRolesOrgIdResult {
     readonly orgId: string;
 }
 /**
- * `mongodbatlas.Project` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+ * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
  *
  * ## Example Usage
  *
- * ### Using projectId attribute to query
+ * ### Using data source to query
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

@@ -15,6 +15,11 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResul
      * 
      */
     private String comment;
+    /**
+     * @return (Optional) Human-readable label to identify VPC endpoint DNS name.
+     * 
+     */
+    private String customerEndpointDnsName;
     private String endpointId;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -28,6 +33,11 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResul
      */
     private String providerName;
     /**
+     * @return Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * 
+     */
+    private String region;
+    /**
      * @return Human-readable label that identifies the resource type associated with this private endpoint.
      * 
      */
@@ -40,6 +50,13 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResul
      */
     public String comment() {
         return this.comment;
+    }
+    /**
+     * @return (Optional) Human-readable label to identify VPC endpoint DNS name.
+     * 
+     */
+    public String customerEndpointDnsName() {
+        return this.customerEndpointDnsName;
     }
     public String endpointId() {
         return this.endpointId;
@@ -62,6 +79,13 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResul
         return this.providerName;
     }
     /**
+     * @return Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * 
+     */
+    public String region() {
+        return this.region;
+    }
+    /**
      * @return Human-readable label that identifies the resource type associated with this private endpoint.
      * 
      */
@@ -79,19 +103,23 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResul
     @CustomType.Builder
     public static final class Builder {
         private String comment;
+        private String customerEndpointDnsName;
         private String endpointId;
         private String id;
         private String projectId;
         private String providerName;
+        private String region;
         private String type;
         public Builder() {}
         public Builder(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.comment = defaults.comment;
+    	      this.customerEndpointDnsName = defaults.customerEndpointDnsName;
     	      this.endpointId = defaults.endpointId;
     	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.providerName = defaults.providerName;
+    	      this.region = defaults.region;
     	      this.type = defaults.type;
         }
 
@@ -101,6 +129,14 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResul
               throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult", "comment");
             }
             this.comment = comment;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder customerEndpointDnsName(String customerEndpointDnsName) {
+            if (customerEndpointDnsName == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult", "customerEndpointDnsName");
+            }
+            this.customerEndpointDnsName = customerEndpointDnsName;
             return this;
         }
         @CustomType.Setter
@@ -136,6 +172,14 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResul
             return this;
         }
         @CustomType.Setter
+        public Builder region(String region) {
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult", "region");
+            }
+            this.region = region;
+            return this;
+        }
+        @CustomType.Setter
         public Builder type(String type) {
             if (type == null) {
               throw new MissingRequiredPropertyException("GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult", "type");
@@ -146,10 +190,12 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResul
         public GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult build() {
             final var _resultValue = new GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult();
             _resultValue.comment = comment;
+            _resultValue.customerEndpointDnsName = customerEndpointDnsName;
             _resultValue.endpointId = endpointId;
             _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.providerName = providerName;
+            _resultValue.region = region;
             _resultValue.type = type;
             return _resultValue;
         }

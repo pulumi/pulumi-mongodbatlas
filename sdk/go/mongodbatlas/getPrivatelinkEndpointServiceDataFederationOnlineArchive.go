@@ -11,6 +11,52 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewProject(ctx, "atlas-project", &mongodbatlas.ProjectArgs{
+//				OrgId: pulumi.Any(_var.Atlas_org_id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := mongodbatlas.NewPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs{
+//				ProjectId:               atlas_project.ID(),
+//				EndpointId:              pulumi.String("vpce-046cf43c79424d4c9"),
+//				ProviderName:            pulumi.String("AWS"),
+//				Comment:                 pulumi.String("Test"),
+//				Region:                  pulumi.String("US_EAST_1"),
+//				CustomerEndpointDnsName: pulumi.String("vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput(ctx, mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputArgs{
+//				ProjectId:  atlas_project.ID(),
+//				EndpointId: test.EndpointId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func LookupPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx *pulumi.Context, args *LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs, opts ...pulumi.InvokeOption) (*LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult
@@ -32,13 +78,17 @@ type LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 // A collection of values returned by getPrivatelinkEndpointServiceDataFederationOnlineArchive.
 type LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult struct {
 	// Human-readable string to associate with this private endpoint.
-	Comment    string `pulumi:"comment"`
-	EndpointId string `pulumi:"endpointId"`
+	Comment string `pulumi:"comment"`
+	// (Optional) Human-readable label to identify VPC endpoint DNS name.
+	CustomerEndpointDnsName string `pulumi:"customerEndpointDnsName"`
+	EndpointId              string `pulumi:"endpointId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	Region string `pulumi:"region"`
 	// Human-readable label that identifies the resource type associated with this private endpoint.
 	Type string `pulumi:"type"`
 }
@@ -88,6 +138,13 @@ func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput)
 	return o.ApplyT(func(v LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult) string { return v.Comment }).(pulumi.StringOutput)
 }
 
+// (Optional) Human-readable label to identify VPC endpoint DNS name.
+func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput) CustomerEndpointDnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult) string {
+		return v.CustomerEndpointDnsName
+	}).(pulumi.StringOutput)
+}
+
 func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput) EndpointId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult) string { return v.EndpointId }).(pulumi.StringOutput)
 }
@@ -106,6 +163,11 @@ func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput)
 	return o.ApplyT(func(v LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult) string {
 		return v.ProviderName
 	}).(pulumi.StringOutput)
+}
+
+// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // Human-readable label that identifies the resource type associated with this private endpoint.

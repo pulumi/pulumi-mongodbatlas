@@ -58,11 +58,17 @@ class GetPrivatelinkEndpointsServiceServerlessResult:
     @property
     @pulumi.getter(name="itemsPerPage")
     def items_per_page(self) -> Optional[int]:
+        warnings.warn("""this parameter is deprecated and will be removed in version 1.17.0""", DeprecationWarning)
+        pulumi.log.warn("""items_per_page is deprecated: this parameter is deprecated and will be removed in version 1.17.0""")
+
         return pulumi.get(self, "items_per_page")
 
     @property
     @pulumi.getter(name="pageNum")
     def page_num(self) -> Optional[int]:
+        warnings.warn("""this parameter is deprecated and will be removed in version 1.17.0""", DeprecationWarning)
+        pulumi.log.warn("""page_num is deprecated: this parameter is deprecated and will be removed in version 1.17.0""")
+
         return pulumi.get(self, "page_num")
 
     @property

@@ -76,9 +76,8 @@ import (
 // <!--End PulumiCodeChooser -->
 //
 // ### Available complete examples
-// - Restore from automated backup snapshot
-// - Restore from backup snapshot download
 // - Restore from backup snapshot at point in time
+// - Restore from backup snapshot using an advanced cluster resource
 //
 // ## Import
 //
@@ -117,8 +116,8 @@ type CloudBackupSnapshotRestoreJob struct {
 	FinishedAt pulumi.StringOutput `pulumi:"finishedAt"`
 	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Unique identifier of the snapshot to restore.
-	SnapshotId pulumi.StringOutput `pulumi:"snapshotId"`
+	// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
+	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
 	// The unique identifier of the restore job.
 	SnapshotRestoreJobId pulumi.StringOutput `pulumi:"snapshotRestoreJobId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
@@ -137,9 +136,6 @@ func NewCloudBackupSnapshotRestoreJob(ctx *pulumi.Context,
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
-	}
-	if args.SnapshotId == nil {
-		return nil, errors.New("invalid value for required argument 'SnapshotId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CloudBackupSnapshotRestoreJob
@@ -190,7 +186,7 @@ type cloudBackupSnapshotRestoreJobState struct {
 	FinishedAt *string `pulumi:"finishedAt"`
 	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
 	ProjectId *string `pulumi:"projectId"`
-	// Unique identifier of the snapshot to restore.
+	// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
 	SnapshotId *string `pulumi:"snapshotId"`
 	// The unique identifier of the restore job.
 	SnapshotRestoreJobId *string `pulumi:"snapshotRestoreJobId"`
@@ -225,7 +221,7 @@ type CloudBackupSnapshotRestoreJobState struct {
 	FinishedAt pulumi.StringPtrInput
 	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
 	ProjectId pulumi.StringPtrInput
-	// Unique identifier of the snapshot to restore.
+	// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
 	SnapshotId pulumi.StringPtrInput
 	// The unique identifier of the restore job.
 	SnapshotRestoreJobId pulumi.StringPtrInput
@@ -252,8 +248,8 @@ type cloudBackupSnapshotRestoreJobArgs struct {
 	DeliveryTypeConfig *CloudBackupSnapshotRestoreJobDeliveryTypeConfig `pulumi:"deliveryTypeConfig"`
 	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
 	ProjectId string `pulumi:"projectId"`
-	// Unique identifier of the snapshot to restore.
-	SnapshotId string `pulumi:"snapshotId"`
+	// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
+	SnapshotId *string `pulumi:"snapshotId"`
 }
 
 // The set of arguments for constructing a CloudBackupSnapshotRestoreJob resource.
@@ -272,8 +268,8 @@ type CloudBackupSnapshotRestoreJobArgs struct {
 	DeliveryTypeConfig CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrInput
 	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
 	ProjectId pulumi.StringInput
-	// Unique identifier of the snapshot to restore.
-	SnapshotId pulumi.StringInput
+	// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
+	SnapshotId pulumi.StringPtrInput
 }
 
 func (CloudBackupSnapshotRestoreJobArgs) ElementType() reflect.Type {
@@ -418,9 +414,9 @@ func (o CloudBackupSnapshotRestoreJobOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the snapshot to restore.
-func (o CloudBackupSnapshotRestoreJobOutput) SnapshotId() pulumi.StringOutput {
-	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringOutput { return v.SnapshotId }).(pulumi.StringOutput)
+// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
+func (o CloudBackupSnapshotRestoreJobOutput) SnapshotId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringPtrOutput { return v.SnapshotId }).(pulumi.StringPtrOutput)
 }
 
 // The unique identifier of the restore job.

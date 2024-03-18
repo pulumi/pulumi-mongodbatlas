@@ -100,14 +100,14 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
+     * Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use &#34;US&#34; by default.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
+     * @return Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use &#34;US&#34; by default.
      * 
      */
     public Optional<Output<String>> region() {
@@ -409,7 +409,7 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param region Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
+         * @param region Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use &#34;US&#34; by default.
          * 
          * @return builder
          * 
@@ -420,7 +420,7 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param region Indicates which API URL to use, either &#34;US&#34; or &#34;EU&#34;. OpsGenie will use &#34;US&#34; by default.
+         * @param region Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use &#34;US&#34; by default.
          * 
          * @return builder
          * 

@@ -24,6 +24,8 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * ### Export one snapshot
+ * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
@@ -64,6 +66,83 @@ import javax.annotation.Nullable;
  *             .customDatas(CloudBackupSnapshotExportJobCustomDataArgs.builder()
  *                 .key(&#34;exported by&#34;)
  *                 .value(&#34;myName&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Create backup and automatic snapshot export policies
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucket;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+ * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleExportArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemWeeklyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemMonthlyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var export = new CloudBackupSnapshotExportBucket(&#34;export&#34;, CloudBackupSnapshotExportBucketArgs.builder()        
+ *             .projectId(&#34;{PROJECT_ID}&#34;)
+ *             .iamRoleId(&#34;{IAM_ROLE_ID}&#34;)
+ *             .bucketName(&#34;example_bucket&#34;)
+ *             .cloudProvider(&#34;AWS&#34;)
+ *             .build());
+ * 
+ *         var backup = new CloudBackupSchedule(&#34;backup&#34;, CloudBackupScheduleArgs.builder()        
+ *             .projectId(&#34;{PROJECT_ID}&#34;)
+ *             .clusterName(&#34;{CLUSTER_NAME}&#34;)
+ *             .autoExportEnabled(true)
+ *             .export(CloudBackupScheduleExportArgs.builder()
+ *                 .exportBucketId(export.exportBucketId())
+ *                 .frequencyType(&#34;daily&#34;)
+ *                 .build())
+ *             .useOrgAndGroupNamesInExportPrefix(true)
+ *             .referenceHourOfDay(7)
+ *             .referenceMinuteOfHour(0)
+ *             .restoreWindowDays(5)
+ *             .policyItemHourly(CloudBackupSchedulePolicyItemHourlyArgs.builder()
+ *                 .frequencyInterval(6)
+ *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionValue(7)
+ *                 .build())
+ *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionValue(7)
+ *                 .build())
+ *             .policyItemWeeklies(CloudBackupSchedulePolicyItemWeeklyArgs.builder()
+ *                 .frequencyInterval(6)
+ *                 .retentionUnit(&#34;weeks&#34;)
+ *                 .retentionValue(4)
+ *                 .build())
+ *             .policyItemMonthlies(CloudBackupSchedulePolicyItemMonthlyArgs.builder()
+ *                 .frequencyInterval(28)
+ *                 .retentionUnit(&#34;months&#34;)
+ *                 .retentionValue(12)
  *                 .build())
  *             .build());
  * 

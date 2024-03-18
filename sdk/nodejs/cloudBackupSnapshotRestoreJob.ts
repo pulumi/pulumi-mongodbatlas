@@ -47,9 +47,8 @@ import * as utilities from "./utilities";
  * <!--End PulumiCodeChooser -->
  *
  * ### Available complete examples
- * - Restore from automated backup snapshot
- * - Restore from backup snapshot download
  * - Restore from backup snapshot at point in time
+ * - Restore from backup snapshot using an advanced cluster resource
  *
  * ## Import
  *
@@ -133,9 +132,9 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Unique identifier of the snapshot to restore.
+     * Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
      */
-    public readonly snapshotId!: pulumi.Output<string>;
+    public readonly snapshotId!: pulumi.Output<string | undefined>;
     /**
      * The unique identifier of the restore job.
      */
@@ -177,9 +176,6 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
             }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
-            }
-            if ((!args || args.snapshotId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'snapshotId'");
             }
             resourceInputs["clusterName"] = args ? args.clusterName : undefined;
             resourceInputs["deliveryTypeConfig"] = args ? args.deliveryTypeConfig : undefined;
@@ -248,7 +244,7 @@ export interface CloudBackupSnapshotRestoreJobState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Unique identifier of the snapshot to restore.
+     * Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
      */
     snapshotId?: pulumi.Input<string>;
     /**
@@ -286,7 +282,7 @@ export interface CloudBackupSnapshotRestoreJobArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Unique identifier of the snapshot to restore.
+     * Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
      */
-    snapshotId: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string>;
 }

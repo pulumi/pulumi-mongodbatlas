@@ -41,18 +41,18 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+     * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
      * 
      */
-    @Import(name="dayOfWeek")
-    private @Nullable Output<Integer> dayOfWeek;
+    @Import(name="dayOfWeek", required=true)
+    private Output<Integer> dayOfWeek;
 
     /**
-     * @return Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+     * @return Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
      * 
      */
-    public Optional<Output<Integer>> dayOfWeek() {
-        return Optional.ofNullable(this.dayOfWeek);
+    public Output<Integer> dayOfWeek() {
+        return this.dayOfWeek;
     }
 
     /**
@@ -86,21 +86,6 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
-     * 
-     */
-    @Import(name="numberOfDeferrals")
-    private @Nullable Output<Integer> numberOfDeferrals;
-
-    /**
-     * @return Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
-     * 
-     */
-    public Optional<Output<Integer>> numberOfDeferrals() {
-        return Optional.ofNullable(this.numberOfDeferrals);
-    }
-
-    /**
      * The unique identifier of the project for the Maintenance Window.
      * 
      */
@@ -115,6 +100,21 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         return this.projectId;
     }
 
+    /**
+     * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     * 
+     */
+    @Import(name="startAsap")
+    private @Nullable Output<Boolean> startAsap;
+
+    /**
+     * @return Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     * 
+     */
+    public Optional<Output<Boolean>> startAsap() {
+        return Optional.ofNullable(this.startAsap);
+    }
+
     private MaintenanceWindowArgs() {}
 
     private MaintenanceWindowArgs(MaintenanceWindowArgs $) {
@@ -123,8 +123,8 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         this.dayOfWeek = $.dayOfWeek;
         this.defer = $.defer;
         this.hourOfDay = $.hourOfDay;
-        this.numberOfDeferrals = $.numberOfDeferrals;
         this.projectId = $.projectId;
+        this.startAsap = $.startAsap;
     }
 
     public static Builder builder() {
@@ -176,18 +176,18 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param dayOfWeek Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+         * @param dayOfWeek Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
          * 
          * @return builder
          * 
          */
-        public Builder dayOfWeek(@Nullable Output<Integer> dayOfWeek) {
+        public Builder dayOfWeek(Output<Integer> dayOfWeek) {
             $.dayOfWeek = dayOfWeek;
             return this;
         }
 
         /**
-         * @param dayOfWeek Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+         * @param dayOfWeek Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
          * 
          * @return builder
          * 
@@ -239,27 +239,6 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param numberOfDeferrals Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder numberOfDeferrals(@Nullable Output<Integer> numberOfDeferrals) {
-            $.numberOfDeferrals = numberOfDeferrals;
-            return this;
-        }
-
-        /**
-         * @param numberOfDeferrals Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder numberOfDeferrals(Integer numberOfDeferrals) {
-            return numberOfDeferrals(Output.of(numberOfDeferrals));
-        }
-
-        /**
          * @param projectId The unique identifier of the project for the Maintenance Window.
          * 
          * @return builder
@@ -280,7 +259,31 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param startAsap Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder startAsap(@Nullable Output<Boolean> startAsap) {
+            $.startAsap = startAsap;
+            return this;
+        }
+
+        /**
+         * @param startAsap Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder startAsap(Boolean startAsap) {
+            return startAsap(Output.of(startAsap));
+        }
+
         public MaintenanceWindowArgs build() {
+            if ($.dayOfWeek == null) {
+                throw new MissingRequiredPropertyException("MaintenanceWindowArgs", "dayOfWeek");
+            }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("MaintenanceWindowArgs", "projectId");
             }

@@ -16,6 +16,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
+    /// ### Export one snapshot
+    /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
@@ -45,6 +47,75 @@ namespace Pulumi.Mongodbatlas
     ///             {
     ///                 Key = "exported by",
     ///                 Value = "myName",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Create backup and automatic snapshot export policies
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var export = new Mongodbatlas.CloudBackupSnapshotExportBucket("export", new()
+    ///     {
+    ///         ProjectId = "{PROJECT_ID}",
+    ///         IamRoleId = "{IAM_ROLE_ID}",
+    ///         BucketName = "example_bucket",
+    ///         CloudProvider = "AWS",
+    ///     });
+    /// 
+    ///     var backup = new Mongodbatlas.CloudBackupSchedule("backup", new()
+    ///     {
+    ///         ProjectId = "{PROJECT_ID}",
+    ///         ClusterName = "{CLUSTER_NAME}",
+    ///         AutoExportEnabled = true,
+    ///         Export = new Mongodbatlas.Inputs.CloudBackupScheduleExportArgs
+    ///         {
+    ///             ExportBucketId = export.ExportBucketId,
+    ///             FrequencyType = "daily",
+    ///         },
+    ///         UseOrgAndGroupNamesInExportPrefix = true,
+    ///         ReferenceHourOfDay = 7,
+    ///         ReferenceMinuteOfHour = 0,
+    ///         RestoreWindowDays = 5,
+    ///         PolicyItemHourly = new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemHourlyArgs
+    ///         {
+    ///             FrequencyInterval = 6,
+    ///             RetentionUnit = "days",
+    ///             RetentionValue = 7,
+    ///         },
+    ///         PolicyItemDaily = new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemDailyArgs
+    ///         {
+    ///             FrequencyInterval = 1,
+    ///             RetentionUnit = "days",
+    ///             RetentionValue = 7,
+    ///         },
+    ///         PolicyItemWeeklies = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemWeeklyArgs
+    ///             {
+    ///                 FrequencyInterval = 6,
+    ///                 RetentionUnit = "weeks",
+    ///                 RetentionValue = 4,
+    ///             },
+    ///         },
+    ///         PolicyItemMonthlies = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemMonthlyArgs
+    ///             {
+    ///                 FrequencyInterval = 28,
+    ///                 RetentionUnit = "months",
+    ///                 RetentionValue = 12,
     ///             },
     ///         },
     ///     });

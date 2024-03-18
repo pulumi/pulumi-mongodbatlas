@@ -87,7 +87,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
     public readonly autoDefer!: pulumi.Output<boolean>;
     public readonly autoDeferOnceEnabled!: pulumi.Output<boolean>;
     /**
-     * Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+     * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
      */
     public readonly dayOfWeek!: pulumi.Output<number>;
     /**
@@ -99,9 +99,9 @@ export class MaintenanceWindow extends pulumi.CustomResource {
      */
     public readonly hourOfDay!: pulumi.Output<number>;
     /**
-     * Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+     * Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
      */
-    public readonly numberOfDeferrals!: pulumi.Output<number>;
+    public /*out*/ readonly numberOfDeferrals!: pulumi.Output<number>;
     /**
      * The unique identifier of the project for the Maintenance Window.
      */
@@ -109,7 +109,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
     /**
      * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      */
-    public /*out*/ readonly startAsap!: pulumi.Output<boolean>;
+    public readonly startAsap!: pulumi.Output<boolean>;
 
     /**
      * Create a MaintenanceWindow resource with the given unique name, arguments, and options.
@@ -134,6 +134,9 @@ export class MaintenanceWindow extends pulumi.CustomResource {
             resourceInputs["startAsap"] = state ? state.startAsap : undefined;
         } else {
             const args = argsOrState as MaintenanceWindowArgs | undefined;
+            if ((!args || args.dayOfWeek === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'dayOfWeek'");
+            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -142,9 +145,9 @@ export class MaintenanceWindow extends pulumi.CustomResource {
             resourceInputs["dayOfWeek"] = args ? args.dayOfWeek : undefined;
             resourceInputs["defer"] = args ? args.defer : undefined;
             resourceInputs["hourOfDay"] = args ? args.hourOfDay : undefined;
-            resourceInputs["numberOfDeferrals"] = args ? args.numberOfDeferrals : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["startAsap"] = undefined /*out*/;
+            resourceInputs["startAsap"] = args ? args.startAsap : undefined;
+            resourceInputs["numberOfDeferrals"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(MaintenanceWindow.__pulumiType, name, resourceInputs, opts);
@@ -161,7 +164,7 @@ export interface MaintenanceWindowState {
     autoDefer?: pulumi.Input<boolean>;
     autoDeferOnceEnabled?: pulumi.Input<boolean>;
     /**
-     * Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+     * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
      */
     dayOfWeek?: pulumi.Input<number>;
     /**
@@ -173,7 +176,7 @@ export interface MaintenanceWindowState {
      */
     hourOfDay?: pulumi.Input<number>;
     /**
-     * Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+     * Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
      */
     numberOfDeferrals?: pulumi.Input<number>;
     /**
@@ -196,9 +199,9 @@ export interface MaintenanceWindowArgs {
     autoDefer?: pulumi.Input<boolean>;
     autoDeferOnceEnabled?: pulumi.Input<boolean>;
     /**
-     * Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+     * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
      */
-    dayOfWeek?: pulumi.Input<number>;
+    dayOfWeek: pulumi.Input<number>;
     /**
      * Defer the next scheduled maintenance for the given project for one week.
      */
@@ -208,11 +211,11 @@ export interface MaintenanceWindowArgs {
      */
     hourOfDay?: pulumi.Input<number>;
     /**
-     * Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
-     */
-    numberOfDeferrals?: pulumi.Input<number>;
-    /**
      * The unique identifier of the project for the Maintenance Window.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     */
+    startAsap?: pulumi.Input<boolean>;
 }

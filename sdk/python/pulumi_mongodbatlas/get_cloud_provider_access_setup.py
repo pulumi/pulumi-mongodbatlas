@@ -139,7 +139,7 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[pulumi.Inpu
                                     role_id: Optional[str] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudProviderAccessSetupResult:
     """
-    `mongodbatlas_cloud_provider_access` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+    `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -213,7 +213,7 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
                                            role_id: Optional[pulumi.Input[str]] = None,
                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderAccessSetupResult]:
     """
-    `mongodbatlas_cloud_provider_access` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
+    `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup, currently only AWS and Azure are supported.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 

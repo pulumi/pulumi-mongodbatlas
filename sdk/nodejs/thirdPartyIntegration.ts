@@ -90,7 +90,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+     * Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -221,7 +221,7 @@ export interface ThirdPartyIntegrationState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+     * Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
      */
     region?: pulumi.Input<string>;
     /**
@@ -292,7 +292,7 @@ export interface ThirdPartyIntegrationArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Indicates which API URL to use, either "US" or "EU". OpsGenie will use "US" by default.
+     * Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
      */
     region?: pulumi.Input<string>;
     /**

@@ -14,6 +14,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
     /// 
+    /// &gt; **NOTE:** Updates are limited to the `comment` argument.
+    /// 
     /// ## Example Usage
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
@@ -33,9 +35,11 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
     ///     {
     ///         ProjectId = atlas_project.Id,
-    ///         EndpointId = "&lt;PRIVATE-ENDPOINT-SERVICE-ID&gt;",
+    ///         EndpointId = "vpce-046cf43c79424d4c9",
     ///         ProviderName = "AWS",
     ///         Comment = "Test",
+    ///         Region = "US_EAST_1",
+    ///         CustomerEndpointDnsName = "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
     ///     });
     /// 
     /// });
@@ -61,6 +65,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> Comment { get; private set; } = null!;
 
         /// <summary>
+        /// Human-readable label to identify VPC endpoint DNS name.
+        /// </summary>
+        [Output("customerEndpointDnsName")]
+        public Output<string?> CustomerEndpointDnsName { get; private set; } = null!;
+
+        /// <summary>
         /// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature).
         /// </summary>
         [Output("endpointId")]
@@ -77,6 +87,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
+
+        /// <summary>
+        /// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        /// </summary>
+        [Output("region")]
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// Human-readable label that identifies the resource type associated with this private endpoint.
@@ -137,6 +153,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Comment { get; set; }
 
         /// <summary>
+        /// Human-readable label to identify VPC endpoint DNS name.
+        /// </summary>
+        [Input("customerEndpointDnsName")]
+        public Input<string>? CustomerEndpointDnsName { get; set; }
+
+        /// <summary>
         /// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature).
         /// </summary>
         [Input("endpointId", required: true)]
@@ -154,6 +176,12 @@ namespace Pulumi.Mongodbatlas
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
 
+        /// <summary>
+        /// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
         public PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs()
         {
         }
@@ -167,6 +195,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
+
+        /// <summary>
+        /// Human-readable label to identify VPC endpoint DNS name.
+        /// </summary>
+        [Input("customerEndpointDnsName")]
+        public Input<string>? CustomerEndpointDnsName { get; set; }
 
         /// <summary>
         /// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature).
@@ -185,6 +219,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }
+
+        /// <summary>
+        /// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// Human-readable label that identifies the resource type associated with this private endpoint.
