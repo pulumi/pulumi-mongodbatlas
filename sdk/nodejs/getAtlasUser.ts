@@ -84,7 +84,7 @@ export interface GetAtlasUserResult {
      */
     readonly firstName: string;
     /**
-     * @deprecated Please use user_id id attribute instead
+     * @deprecated Please use userId id attribute instead
      */
     readonly id: string;
     /**
