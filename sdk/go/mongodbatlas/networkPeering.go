@@ -138,7 +138,7 @@ import (
 //			}
 //			// Create the GCP peer
 //			_, err = compute.NewNetworkPeering(ctx, "peering", &compute.NetworkPeeringArgs{
-//				Network: *pulumi.String(_default.SelfLink),
+//				Network: pulumi.String(_default.SelfLink),
 //				PeerNetwork: pulumi.All(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).ApplyT(func(_args []interface{}) (string, error) {
 //					atlasGcpProjectId := _args[0].(string)
 //					atlasVpcName := _args[1].(string)
@@ -406,7 +406,7 @@ import (
 //			}
 //			// Create the GCP peer
 //			_, err = compute.NewNetworkPeering(ctx, "peering", &compute.NetworkPeeringArgs{
-//				Network: *pulumi.String(_default.SelfLink),
+//				Network: pulumi.String(_default.SelfLink),
 //				PeerNetwork: pulumi.All(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).ApplyT(func(_args []interface{}) (string, error) {
 //					atlasGcpProjectId := _args[0].(string)
 //					atlasVpcName := _args[1].(string)
