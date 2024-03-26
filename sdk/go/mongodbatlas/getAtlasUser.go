@@ -100,7 +100,7 @@ type GetAtlasUserResult struct {
 	EmailAddress string `pulumi:"emailAddress"`
 	// First or given name that belongs to the MongoDB Atlas user.
 	FirstName string `pulumi:"firstName"`
-	// Deprecated: Please use userId id attribute instead
+	// Deprecated: Please use user_id id attribute instead
 	Id string `pulumi:"id"`
 	// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
 	LastAuth string `pulumi:"lastAuth"`
@@ -183,7 +183,7 @@ func (o GetAtlasUserResultOutput) FirstName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAtlasUserResult) string { return v.FirstName }).(pulumi.StringOutput)
 }
 
-// Deprecated: Please use userId id attribute instead
+// Deprecated: Please use user_id id attribute instead
 func (o GetAtlasUserResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAtlasUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
