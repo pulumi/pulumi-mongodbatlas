@@ -38,7 +38,7 @@ class OnlineArchiveArgs:
         :param pulumi.Input[str] collection_type: Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         :param pulumi.Input['OnlineArchiveDataExpirationRuleArgs'] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
         :param pulumi.Input['OnlineArchiveDataProcessRegionArgs'] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
-        :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input['OnlineArchiveScheduleArgs'] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         """
@@ -162,7 +162,7 @@ class OnlineArchiveArgs:
     @pulumi.getter(name="partitionFields")
     def partition_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]:
         """
-        Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         """
         return pulumi.get(self, "partition_fields")
 
@@ -231,7 +231,7 @@ class _OnlineArchiveState:
         :param pulumi.Input['OnlineArchiveDataExpirationRuleArgs'] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
         :param pulumi.Input['OnlineArchiveDataProcessRegionArgs'] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
-        :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input[str] project_id: The unique ID for the project
         :param pulumi.Input['OnlineArchiveScheduleArgs'] schedule: Regular frequency and duration when archiving process occurs. See schedule.
@@ -366,7 +366,7 @@ class _OnlineArchiveState:
     @pulumi.getter(name="partitionFields")
     def partition_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]:
         """
-        Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         """
         return pulumi.get(self, "partition_fields")
 
@@ -474,17 +474,21 @@ class OnlineArchive(pulumi.CustomResource):
             db_name=var["database_name"],
             partition_fields=[
                 mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="firstName",
+                    field_name="dateField",
                     order=0,
                 ),
                 mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="lastName",
+                    field_name="firstName",
                     order=1,
+                ),
+                mongodbatlas.OnlineArchivePartitionFieldArgs(
+                    field_name="lastName",
+                    order=2,
                 ),
             ],
             criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
                 type="DATE",
-                date_field="created",
+                date_field="dateField",
                 expire_after_days=5,
             ),
             schedule=mongodbatlas.OnlineArchiveScheduleArgs(
@@ -539,7 +543,7 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['OnlineArchiveDataExpirationRuleArgs']] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
         :param pulumi.Input[pulumi.InputType['OnlineArchiveDataProcessRegionArgs']] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input[str] project_id: The unique ID for the project
         :param pulumi.Input[pulumi.InputType['OnlineArchiveScheduleArgs']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
@@ -574,17 +578,21 @@ class OnlineArchive(pulumi.CustomResource):
             db_name=var["database_name"],
             partition_fields=[
                 mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="firstName",
+                    field_name="dateField",
                     order=0,
                 ),
                 mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="lastName",
+                    field_name="firstName",
                     order=1,
+                ),
+                mongodbatlas.OnlineArchivePartitionFieldArgs(
+                    field_name="lastName",
+                    order=2,
                 ),
             ],
             criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
                 type="DATE",
-                date_field="created",
+                date_field="dateField",
                 expire_after_days=5,
             ),
             schedule=mongodbatlas.OnlineArchiveScheduleArgs(
@@ -729,7 +737,7 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['OnlineArchiveDataExpirationRuleArgs']] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
         :param pulumi.Input[pulumi.InputType['OnlineArchiveDataProcessRegionArgs']] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input[str] project_id: The unique ID for the project
         :param pulumi.Input[pulumi.InputType['OnlineArchiveScheduleArgs']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
@@ -823,7 +831,7 @@ class OnlineArchive(pulumi.CustomResource):
     @pulumi.getter(name="partitionFields")
     def partition_fields(self) -> pulumi.Output[Sequence['outputs.OnlineArchivePartitionField']]:
         """
-        Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         """
         return pulumi.get(self, "partition_fields")
 

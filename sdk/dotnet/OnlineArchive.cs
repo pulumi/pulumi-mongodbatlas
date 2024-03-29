@@ -40,19 +40,24 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs
     ///             {
-    ///                 FieldName = "firstName",
+    ///                 FieldName = "dateField",
     ///                 Order = 0,
     ///             },
     ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs
     ///             {
-    ///                 FieldName = "lastName",
+    ///                 FieldName = "firstName",
     ///                 Order = 1,
+    ///             },
+    ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs
+    ///             {
+    ///                 FieldName = "lastName",
+    ///                 Order = 2,
     ///             },
     ///         },
     ///         Criteria = new Mongodbatlas.Inputs.OnlineArchiveCriteriaArgs
     ///         {
     ///             Type = "DATE",
-    ///             DateField = "created",
+    ///             DateField = "dateField",
     ///             ExpireAfterDays = 5,
     ///         },
     ///         Schedule = new Mongodbatlas.Inputs.OnlineArchiveScheduleArgs
@@ -166,7 +171,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> DbName { get; private set; } = null!;
 
         /// <summary>
-        /// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        /// Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         /// </summary>
         [Output("partitionFields")]
         public Output<ImmutableArray<Outputs.OnlineArchivePartitionField>> PartitionFields { get; private set; } = null!;
@@ -290,7 +295,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.OnlineArchivePartitionFieldArgs>? _partitionFields;
 
         /// <summary>
-        /// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        /// Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         /// </summary>
         public InputList<Inputs.OnlineArchivePartitionFieldArgs> PartitionFields
         {
@@ -379,7 +384,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.OnlineArchivePartitionFieldGetArgs>? _partitionFields;
 
         /// <summary>
-        /// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        /// Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         /// </summary>
         public InputList<Inputs.OnlineArchivePartitionFieldGetArgs> PartitionFields
         {

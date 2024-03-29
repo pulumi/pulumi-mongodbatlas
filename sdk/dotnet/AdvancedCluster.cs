@@ -158,7 +158,7 @@ namespace Pulumi.Mongodbatlas
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ### Example Multi-Cloud Cluster.
+    /// ### Example Multi-Cloud Cluster
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
@@ -213,7 +213,7 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
-    /// ### Example of a Multi-Cloud Cluster.
+    /// ### Example of a Multi-Cloud Cluster
     /// 
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
@@ -299,7 +299,7 @@ namespace Pulumi.Mongodbatlas
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ### Example of a Global Cluster.
+    /// ### Example of a Global Cluster
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;

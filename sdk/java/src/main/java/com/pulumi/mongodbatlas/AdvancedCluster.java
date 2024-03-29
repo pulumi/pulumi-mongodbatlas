@@ -186,7 +186,7 @@ import javax.annotation.Nullable;
  * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Example Multi-Cloud Cluster.
+ * ### Example Multi-Cloud Cluster
  * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
@@ -244,7 +244,7 @@ import javax.annotation.Nullable;
  * }
  * ```
  * &lt;!--End PulumiCodeChooser --&gt;
- * ### Example of a Multi-Cloud Cluster.
+ * ### Example of a Multi-Cloud Cluster
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
@@ -329,7 +329,7 @@ import javax.annotation.Nullable;
  * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Example of a Global Cluster.
+ * ### Example of a Global Cluster
  * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas.PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a Private Endpoint Service that can be created in an Atlas project.
+    /// `mongodbatlas.PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a [Private Endpoint Service](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) that can be created in an Atlas project.
     /// 
     /// &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
     ///   * Organization Owner

@@ -106,7 +106,7 @@ import * as utilities from "./utilities";
  * ```
  * <!--End PulumiCodeChooser -->
  *
- * ### Example Multi-Cloud Cluster.
+ * ### Example Multi-Cloud Cluster
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -144,7 +144,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  * <!--End PulumiCodeChooser -->
- * ### Example of a Multi-Cloud Cluster.
+ * ### Example of a Multi-Cloud Cluster
  *
  * <!--Start PulumiCodeChooser -->
  * ```typescript
@@ -208,7 +208,7 @@ import * as utilities from "./utilities";
  * ```
  * <!--End PulumiCodeChooser -->
  *
- * ### Example of a Global Cluster.
+ * ### Example of a Global Cluster
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
