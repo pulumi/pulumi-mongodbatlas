@@ -97,9 +97,9 @@ namespace Pulumi.Mongodbatlas
     ///         Comment = "TestAcc for awsSecurityGroup",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             "mongodbatlas_network_peering.test",
+    ///             "mongodbatlas_network_peering.test", 
     ///         },
     ///     });
     /// 
