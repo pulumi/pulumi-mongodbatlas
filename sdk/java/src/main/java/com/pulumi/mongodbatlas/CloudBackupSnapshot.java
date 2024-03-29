@@ -61,6 +61,7 @@ import javax.annotation.Nullable;
  *             .cloudBackup(true)
  *             .build());
  * 
+ *         // enable cloud backup snapshots
  *         var testCloudBackupSnapshot = new CloudBackupSnapshot(&#34;testCloudBackupSnapshot&#34;, CloudBackupSnapshotArgs.builder()        
  *             .projectId(myCluster.projectId())
  *             .clusterName(myCluster.name())
