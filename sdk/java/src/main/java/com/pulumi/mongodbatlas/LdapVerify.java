@@ -61,6 +61,7 @@ import javax.annotation.Nullable;
  *             .cloudBackup(true)
  *             .build());
  * 
+ *         //enable cloud provider snapshots
  *         var testLdapVerify = new LdapVerify(&#34;testLdapVerify&#34;, LdapVerifyArgs.builder()        
  *             .projectId(testProject.id())
  *             .hostname(&#34;HOSTNAME&#34;)

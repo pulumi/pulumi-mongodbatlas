@@ -154,9 +154,9 @@ namespace Pulumi.Mongodbatlas
     ///         ProviderInstanceSizeName = "M10",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             "google_compute_network_peering.peering",
+    ///             "google_compute_network_peering.peering", 
     ///         },
     ///     });
     /// 
@@ -235,9 +235,9 @@ namespace Pulumi.Mongodbatlas
     ///         ProviderInstanceSizeName = "M10",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             "mongodbatlas_network_peering.test",
+    ///             "mongodbatlas_network_peering.test", 
     ///         },
     ///     });
     /// 

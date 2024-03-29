@@ -47,9 +47,9 @@ namespace Pulumi.Mongodbatlas
     ///         BindPassword = "PASSWORD",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             testCluster,
+    ///             testCluster, 
     ///         },
     ///     });
     /// 

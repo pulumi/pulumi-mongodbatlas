@@ -63,6 +63,8 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Container example provided but not always required, 
+ *         // see network_container documentation for details. 
  *         var testNetworkContainer = new NetworkContainer(&#34;testNetworkContainer&#34;, NetworkContainerArgs.builder()        
  *             .projectId(local.project_id())
  *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
@@ -70,6 +72,7 @@ import javax.annotation.Nullable;
  *             .regionName(&#34;US_EAST_1&#34;)
  *             .build());
  * 
+ *         // Create the peering connection request
  *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
  *             .accepterRegionName(&#34;us-east-1&#34;)
  *             .projectId(local.project_id())
@@ -80,6 +83,8 @@ import javax.annotation.Nullable;
  *             .awsAccountId(&#34;abc123abc123&#34;)
  *             .build());
  * 
+ *         // the following assumes an AWS provider is configured
+ *         // Accept the peering connection request
  *         var peer = new VpcPeeringConnectionAccepter(&#34;peer&#34;, VpcPeeringConnectionAccepterArgs.builder()        
  *             .vpcPeeringConnectionId(testNetworkPeering.connectionId())
  *             .autoAccept(true)
@@ -124,12 +129,15 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Container example provided but not always required, 
+ *         // see network_container documentation for details. 
  *         var testNetworkContainer = new NetworkContainer(&#34;testNetworkContainer&#34;, NetworkContainerArgs.builder()        
  *             .projectId(local.project_id())
  *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
  *             .providerName(&#34;GCP&#34;)
  *             .build());
  * 
+ *         // Create the peering connection request
  *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
  *             .projectId(local.project_id())
  *             .containerId(testNetworkContainer.containerId())
@@ -142,6 +150,7 @@ import javax.annotation.Nullable;
  *             .name(&#34;default&#34;)
  *             .build());
  * 
+ *         // Create the GCP peer
  *         var peering = new NetworkPeering(&#34;peering&#34;, NetworkPeeringArgs.builder()        
  *             .network(default_.selfLink())
  *             .peerNetwork(Output.tuple(testNetworkPeering.atlasGcpProjectId(), testNetworkPeering.atlasVpcName()).applyValue(values -&gt; {
@@ -151,6 +160,7 @@ import javax.annotation.Nullable;
  *             }))
  *             .build());
  * 
+ *         // Create the cluster once the peering connection is completed
  *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
  *             .projectId(local.project_id())
  *             .numShards(1)
@@ -172,6 +182,13 @@ import javax.annotation.Nullable;
  *                 .dependsOn(&#34;google_compute_network_peering.peering&#34;)
  *                 .build());
  * 
+ *         //  Private connection strings are not available w/ GCP until the reciprocal
+ *         //  connection changes to available (i.e. when the status attribute changes
+ *         //  to AVAILABLE on the &#39;mongodbatlas_network_peering&#39; resource, which
+ *         //  happens when the google_compute_network_peering and and
+ *         //  mongodbatlas_network_peering make a reciprocal connection).  Hence
+ *         //  since the cluster can be created before this connection completes
+ *         //  you may need to run `terraform refresh` to obtain the private connection strings.
  *     }
  * }
  * ```
@@ -207,6 +224,10 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Ensure you have created the required Azure service principal first, see
+ *         // see https://docs.atlas.mongodb.com/security-vpc-peering/
+ *         // Container example provided but not always required, 
+ *         // see network_container documentation for details. 
  *         var testNetworkContainer = new NetworkContainer(&#34;testNetworkContainer&#34;, NetworkContainerArgs.builder()        
  *             .projectId(local.project_id())
  *             .atlasCidrBlock(local.ATLAS_CIDR_BLOCK())
@@ -214,6 +235,7 @@ import javax.annotation.Nullable;
  *             .region(&#34;US_EAST_2&#34;)
  *             .build());
  * 
+ *         // Create the peering connection request
  *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
  *             .projectId(local.project_id())
  *             .containerId(testNetworkContainer.containerId())
@@ -224,6 +246,7 @@ import javax.annotation.Nullable;
  *             .vnetName(local.AZURE_VNET_NAME())
  *             .build());
  * 
+ *         // Create the cluster once the peering connection is completed
  *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
  *             .projectId(local.project_id())
  *             .clusterType(&#34;REPLICASET&#34;)
@@ -283,6 +306,8 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Create an Atlas cluster, this creates a container if one
+ *         // does not yet exist for this AWS region
  *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
  *             .projectId(local.project_id())
  *             .clusterType(&#34;REPLICASET&#34;)
@@ -301,10 +326,12 @@ import javax.annotation.Nullable;
  *             .providerInstanceSizeName(&#34;M10&#34;)
  *             .build());
  * 
+ *         // the following assumes an AWS provider is configured
  *         var default_ = new DefaultVpc(&#34;default&#34;, DefaultVpcArgs.builder()        
  *             .tags(Map.of(&#34;Name&#34;, &#34;Default VPC&#34;))
  *             .build());
  * 
+ *         // Create the peering connection request
  *         var mongoPeer = new NetworkPeering(&#34;mongoPeer&#34;, NetworkPeeringArgs.builder()        
  *             .accepterRegionName(&#34;us-east-2&#34;)
  *             .projectId(local.project_id())
@@ -315,6 +342,7 @@ import javax.annotation.Nullable;
  *             .awsAccountId(local.AWS_ACCOUNT_ID())
  *             .build());
  * 
+ *         // Accept the connection 
  *         var awsPeer = new VpcPeeringConnectionAccepter(&#34;awsPeer&#34;, VpcPeeringConnectionAccepterArgs.builder()        
  *             .vpcPeeringConnectionId(mongoPeer.connectionId())
  *             .autoAccept(true)
@@ -356,6 +384,8 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Create an Atlas cluster, this creates a container if one
+ *         // does not yet exist for this GCP 
  *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
  *             .projectId(local.project_id())
  *             .clusterType(&#34;REPLICASET&#34;)
@@ -374,6 +404,7 @@ import javax.annotation.Nullable;
  *             .providerInstanceSizeName(&#34;M10&#34;)
  *             .build());
  * 
+ *         // Create the peering connection request
  *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
  *             .projectId(local.project_id())
  *             .atlasCidrBlock(&#34;192.168.0.0/18&#34;)
@@ -387,6 +418,7 @@ import javax.annotation.Nullable;
  *             .name(&#34;default&#34;)
  *             .build());
  * 
+ *         // Create the GCP peer
  *         var peering = new NetworkPeering(&#34;peering&#34;, NetworkPeeringArgs.builder()        
  *             .network(default_.selfLink())
  *             .peerNetwork(Output.tuple(testNetworkPeering.atlasGcpProjectId(), testNetworkPeering.atlasVpcName()).applyValue(values -&gt; {
@@ -428,6 +460,10 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Ensure you have created the required Azure service principal first, see
+ *         // see https://docs.atlas.mongodb.com/security-vpc-peering/
+ *         // Create an Atlas cluster, this creates a container if one
+ *         // does not yet exist for this AZURE region
  *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
  *             .projectId(local.project_id())
  *             .clusterType(&#34;REPLICASET&#34;)
@@ -446,6 +482,7 @@ import javax.annotation.Nullable;
  *             .providerInstanceSizeName(&#34;M10&#34;)
  *             .build());
  * 
+ *         // Create the peering connection request
  *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
  *             .projectId(local.project_id())
  *             .containerId(testCluster.containerId())
