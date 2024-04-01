@@ -151,6 +151,7 @@ import javax.annotation.Nullable;
  *             .x509Type(&#34;CUSTOMER&#34;)
  *             .build());
  * 
+ *         // Make sure to set x509_type = &#34;CUSTOMER&#34;
  *     }
  * }
  * ```

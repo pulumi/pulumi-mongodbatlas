@@ -184,10 +184,12 @@ import javax.annotation.Nullable;
  *             .region(var_.gcp_region())
  *             .build());
  * 
+ *         // Create a Google Network
  *         var defaultNetwork = new Network(&#34;defaultNetwork&#34;, NetworkArgs.builder()        
  *             .project(var_.gcp_project())
  *             .build());
  * 
+ *         // Create a Google Sub Network
  *         var defaultSubnetwork = new Subnetwork(&#34;defaultSubnetwork&#34;, SubnetworkArgs.builder()        
  *             .project(defaultNetwork.project())
  *             .ipCidrRange(&#34;10.0.0.0/16&#34;)
@@ -195,6 +197,7 @@ import javax.annotation.Nullable;
  *             .network(defaultNetwork.id())
  *             .build());
  * 
+ *         // Create Google 50 Addresses
  *         for (var i = 0; i &lt; 50; i++) {
  *             new Address(&#34;defaultAddress-&#34; + i, AddressArgs.builder()            
  *                 .project(defaultSubnetwork.project())
@@ -208,6 +211,7 @@ import javax.annotation.Nullable;
  * 
  *         
  * }
+ *         // Create 50 Forwarding rules
  *         for (var i = 0; i &lt; 50; i++) {
  *             new ForwardingRule(&#34;defaultForwardingRule-&#34; + i, ForwardingRuleArgs.builder()            
  *                 .target(testPrivateLinkEndpoint.serviceAttachmentNames().applyValue(serviceAttachmentNames -&gt; serviceAttachmentNames[range.value()]))
