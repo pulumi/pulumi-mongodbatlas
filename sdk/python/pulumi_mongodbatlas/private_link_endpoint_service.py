@@ -413,14 +413,15 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
+        `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one [Interface Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) to a private endpoint connection in an Atlas project.
 
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
           * Organization Owner
           * Project Owner
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-        **NOTE:** Create and delete wait for all clusters on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation or deletion of this resource. Default timeout is 2hrs.
+
+        > **NOTE:** Create and delete wait for all clusters on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation or deletion of this resource. Default timeout is 2hrs.
 
         ## Example with AWS
 
@@ -505,14 +506,15 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  args: PrivateLinkEndpointServiceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
+        `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one [Interface Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) to a private endpoint connection in an Atlas project.
 
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
           * Organization Owner
           * Project Owner
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-        **NOTE:** Create and delete wait for all clusters on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation or deletion of this resource. Default timeout is 2hrs.
+
+        > **NOTE:** Create and delete wait for all clusters on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation or deletion of this resource. Default timeout is 2hrs.
 
         ## Example with AWS
 

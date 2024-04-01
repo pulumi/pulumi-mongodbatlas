@@ -876,7 +876,7 @@ class AdvancedCluster(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ### Example Multi-Cloud Cluster.
+        ### Example Multi-Cloud Cluster
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
@@ -913,7 +913,7 @@ class AdvancedCluster(pulumi.CustomResource):
             )])
         ```
         <!--End PulumiCodeChooser -->
-        ### Example of a Multi-Cloud Cluster.
+        ### Example of a Multi-Cloud Cluster
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -976,7 +976,7 @@ class AdvancedCluster(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ### Example of a Global Cluster.
+        ### Example of a Global Cluster
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
@@ -1264,7 +1264,7 @@ class AdvancedCluster(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ### Example Multi-Cloud Cluster.
+        ### Example Multi-Cloud Cluster
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
@@ -1301,7 +1301,7 @@ class AdvancedCluster(pulumi.CustomResource):
             )])
         ```
         <!--End PulumiCodeChooser -->
-        ### Example of a Multi-Cloud Cluster.
+        ### Example of a Multi-Cloud Cluster
 
         <!--Start PulumiCodeChooser -->
         ```python
@@ -1364,7 +1364,7 @@ class AdvancedCluster(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ### Example of a Global Cluster.
+        ### Example of a Global Cluster
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi

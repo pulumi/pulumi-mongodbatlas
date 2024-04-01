@@ -168,7 +168,7 @@ import (
 // ```
 // <!--End PulumiCodeChooser -->
 //
-// ### Example Multi-Cloud Cluster.
+// ### Example Multi-Cloud Cluster
 // <!--Start PulumiCodeChooser -->
 // ```go
 // package main
@@ -223,7 +223,7 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-// ### Example of a Multi-Cloud Cluster.
+// ### Example of a Multi-Cloud Cluster
 //
 // <!--Start PulumiCodeChooser -->
 // ```go
@@ -304,7 +304,7 @@ import (
 // ```
 // <!--End PulumiCodeChooser -->
 //
-// ### Example of a Global Cluster.
+// ### Example of a Global Cluster
 // <!--Start PulumiCodeChooser -->
 // ```go
 // package main
