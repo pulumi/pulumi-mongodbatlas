@@ -52,9 +52,6 @@ type LookupLdapConfigurationResult struct {
 	Port      int    `pulumi:"port"`
 	ProjectId string `pulumi:"projectId"`
 	// Maps an LDAP username for authentication to an LDAP Distinguished Name (DN).
-	// * `user_to_dn_mapping.0.match` - A regular expression to match against a provided LDAP username.
-	// * `user_to_dn_mapping.0.substitution` - An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
-	// * `user_to_dn_mapping.0.ldap_query` - An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
 	UserToDnMappings []GetLdapConfigurationUserToDnMapping `pulumi:"userToDnMappings"`
 }
 
@@ -146,9 +143,6 @@ func (o LookupLdapConfigurationResultOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Maps an LDAP username for authentication to an LDAP Distinguished Name (DN).
-// * `user_to_dn_mapping.0.match` - A regular expression to match against a provided LDAP username.
-// * `user_to_dn_mapping.0.substitution` - An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
-// * `user_to_dn_mapping.0.ldap_query` - An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
 func (o LookupLdapConfigurationResultOutput) UserToDnMappings() GetLdapConfigurationUserToDnMappingArrayOutput {
 	return o.ApplyT(func(v LookupLdapConfigurationResult) []GetLdapConfigurationUserToDnMapping { return v.UserToDnMappings }).(GetLdapConfigurationUserToDnMappingArrayOutput)
 }

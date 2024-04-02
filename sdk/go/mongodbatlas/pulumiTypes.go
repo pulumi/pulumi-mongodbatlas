@@ -553,11 +553,24 @@ func (o AdvancedClusterBiConnectorConfigPtrOutput) ReadPreference() pulumi.Strin
 }
 
 type AdvancedClusterConnectionString struct {
-	Private          *string                                          `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private *string `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints []AdvancedClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv       *string                                          `pulumi:"privateSrv"`
-	Standard         *string                                          `pulumi:"standard"`
-	StandardSrv      *string                                          `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv *string `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard *string `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv *string `pulumi:"standardSrv"`
 }
 
 // AdvancedClusterConnectionStringInput is an input type that accepts AdvancedClusterConnectionStringArgs and AdvancedClusterConnectionStringOutput values.
@@ -572,11 +585,24 @@ type AdvancedClusterConnectionStringInput interface {
 }
 
 type AdvancedClusterConnectionStringArgs struct {
-	Private          pulumi.StringPtrInput                                    `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private pulumi.StringPtrInput `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints AdvancedClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv       pulumi.StringPtrInput                                    `pulumi:"privateSrv"`
-	Standard         pulumi.StringPtrInput                                    `pulumi:"standard"`
-	StandardSrv      pulumi.StringPtrInput                                    `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv pulumi.StringPtrInput `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard pulumi.StringPtrInput `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv pulumi.StringPtrInput `pulumi:"standardSrv"`
 }
 
 func (AdvancedClusterConnectionStringArgs) ElementType() reflect.Type {
@@ -630,24 +656,37 @@ func (o AdvancedClusterConnectionStringOutput) ToAdvancedClusterConnectionString
 	return o
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o AdvancedClusterConnectionStringOutput) Private() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionString) *string { return v.Private }).(pulumi.StringPtrOutput)
 }
 
+// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o AdvancedClusterConnectionStringOutput) PrivateEndpoints() AdvancedClusterConnectionStringPrivateEndpointArrayOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionString) []AdvancedClusterConnectionStringPrivateEndpoint {
 		return v.PrivateEndpoints
 	}).(AdvancedClusterConnectionStringPrivateEndpointArrayOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o AdvancedClusterConnectionStringOutput) PrivateSrv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionString) *string { return v.PrivateSrv }).(pulumi.StringPtrOutput)
 }
 
+// Public mongodb:// connection string for this cluster.
 func (o AdvancedClusterConnectionStringOutput) Standard() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionString) *string { return v.Standard }).(pulumi.StringPtrOutput)
 }
 
+// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
 func (o AdvancedClusterConnectionStringOutput) StandardSrv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionString) *string { return v.StandardSrv }).(pulumi.StringPtrOutput)
 }
@@ -6945,11 +6984,24 @@ func (o ClusterBiConnectorConfigPtrOutput) ReadPreference() pulumi.StringPtrOutp
 }
 
 type ClusterConnectionString struct {
-	Private          *string                                  `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private *string `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints []ClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv       *string                                  `pulumi:"privateSrv"`
-	Standard         *string                                  `pulumi:"standard"`
-	StandardSrv      *string                                  `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv *string `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard *string `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv *string `pulumi:"standardSrv"`
 }
 
 // ClusterConnectionStringInput is an input type that accepts ClusterConnectionStringArgs and ClusterConnectionStringOutput values.
@@ -6964,11 +7016,24 @@ type ClusterConnectionStringInput interface {
 }
 
 type ClusterConnectionStringArgs struct {
-	Private          pulumi.StringPtrInput                            `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private pulumi.StringPtrInput `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints ClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv       pulumi.StringPtrInput                            `pulumi:"privateSrv"`
-	Standard         pulumi.StringPtrInput                            `pulumi:"standard"`
-	StandardSrv      pulumi.StringPtrInput                            `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv pulumi.StringPtrInput `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard pulumi.StringPtrInput `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv pulumi.StringPtrInput `pulumi:"standardSrv"`
 }
 
 func (ClusterConnectionStringArgs) ElementType() reflect.Type {
@@ -7022,22 +7087,35 @@ func (o ClusterConnectionStringOutput) ToClusterConnectionStringOutputWithContex
 	return o
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o ClusterConnectionStringOutput) Private() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionString) *string { return v.Private }).(pulumi.StringPtrOutput)
 }
 
+// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o ClusterConnectionStringOutput) PrivateEndpoints() ClusterConnectionStringPrivateEndpointArrayOutput {
 	return o.ApplyT(func(v ClusterConnectionString) []ClusterConnectionStringPrivateEndpoint { return v.PrivateEndpoints }).(ClusterConnectionStringPrivateEndpointArrayOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o ClusterConnectionStringOutput) PrivateSrv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionString) *string { return v.PrivateSrv }).(pulumi.StringPtrOutput)
 }
 
+// Public mongodb:// connection string for this cluster.
 func (o ClusterConnectionStringOutput) Standard() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionString) *string { return v.Standard }).(pulumi.StringPtrOutput)
 }
 
+// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
 func (o ClusterConnectionStringOutput) StandardSrv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionString) *string { return v.StandardSrv }).(pulumi.StringPtrOutput)
 }
@@ -16601,11 +16679,24 @@ func (o GetAdvancedClusterBiConnectorConfigArrayOutput) Index(i pulumi.IntInput)
 }
 
 type GetAdvancedClusterConnectionString struct {
-	Private          string                                              `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private string `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints []GetAdvancedClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv       string                                              `pulumi:"privateSrv"`
-	Standard         string                                              `pulumi:"standard"`
-	StandardSrv      string                                              `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv string `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard string `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv string `pulumi:"standardSrv"`
 }
 
 // GetAdvancedClusterConnectionStringInput is an input type that accepts GetAdvancedClusterConnectionStringArgs and GetAdvancedClusterConnectionStringOutput values.
@@ -16620,11 +16711,24 @@ type GetAdvancedClusterConnectionStringInput interface {
 }
 
 type GetAdvancedClusterConnectionStringArgs struct {
-	Private          pulumi.StringInput                                          `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private pulumi.StringInput `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints GetAdvancedClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv       pulumi.StringInput                                          `pulumi:"privateSrv"`
-	Standard         pulumi.StringInput                                          `pulumi:"standard"`
-	StandardSrv      pulumi.StringInput                                          `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv pulumi.StringInput `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard pulumi.StringInput `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv pulumi.StringInput `pulumi:"standardSrv"`
 }
 
 func (GetAdvancedClusterConnectionStringArgs) ElementType() reflect.Type {
@@ -16678,24 +16782,37 @@ func (o GetAdvancedClusterConnectionStringOutput) ToGetAdvancedClusterConnection
 	return o
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetAdvancedClusterConnectionStringOutput) Private() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionString) string { return v.Private }).(pulumi.StringOutput)
 }
 
+// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o GetAdvancedClusterConnectionStringOutput) PrivateEndpoints() GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionString) []GetAdvancedClusterConnectionStringPrivateEndpoint {
 		return v.PrivateEndpoints
 	}).(GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetAdvancedClusterConnectionStringOutput) PrivateSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionString) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
 
+// Public mongodb:// connection string for this cluster.
 func (o GetAdvancedClusterConnectionStringOutput) Standard() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionString) string { return v.Standard }).(pulumi.StringOutput)
 }
 
+// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
 func (o GetAdvancedClusterConnectionStringOutput) StandardSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionString) string { return v.StandardSrv }).(pulumi.StringOutput)
 }
@@ -18906,11 +19023,24 @@ func (o GetAdvancedClustersResultBiConnectorConfigArrayOutput) Index(i pulumi.In
 }
 
 type GetAdvancedClustersResultConnectionString struct {
-	Private          string                                                     `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private string `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints []GetAdvancedClustersResultConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv       string                                                     `pulumi:"privateSrv"`
-	Standard         string                                                     `pulumi:"standard"`
-	StandardSrv      string                                                     `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv string `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard string `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv string `pulumi:"standardSrv"`
 }
 
 // GetAdvancedClustersResultConnectionStringInput is an input type that accepts GetAdvancedClustersResultConnectionStringArgs and GetAdvancedClustersResultConnectionStringOutput values.
@@ -18925,11 +19055,24 @@ type GetAdvancedClustersResultConnectionStringInput interface {
 }
 
 type GetAdvancedClustersResultConnectionStringArgs struct {
-	Private          pulumi.StringInput                                                 `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private pulumi.StringInput `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints GetAdvancedClustersResultConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv       pulumi.StringInput                                                 `pulumi:"privateSrv"`
-	Standard         pulumi.StringInput                                                 `pulumi:"standard"`
-	StandardSrv      pulumi.StringInput                                                 `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv pulumi.StringInput `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard pulumi.StringInput `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv pulumi.StringInput `pulumi:"standardSrv"`
 }
 
 func (GetAdvancedClustersResultConnectionStringArgs) ElementType() reflect.Type {
@@ -18983,24 +19126,37 @@ func (o GetAdvancedClustersResultConnectionStringOutput) ToGetAdvancedClustersRe
 	return o
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetAdvancedClustersResultConnectionStringOutput) Private() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) string { return v.Private }).(pulumi.StringOutput)
 }
 
+// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o GetAdvancedClustersResultConnectionStringOutput) PrivateEndpoints() GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) []GetAdvancedClustersResultConnectionStringPrivateEndpoint {
 		return v.PrivateEndpoints
 	}).(GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetAdvancedClustersResultConnectionStringOutput) PrivateSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
 
+// Public mongodb:// connection string for this cluster.
 func (o GetAdvancedClustersResultConnectionStringOutput) Standard() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) string { return v.Standard }).(pulumi.StringOutput)
 }
 
+// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
 func (o GetAdvancedClustersResultConnectionStringOutput) StandardSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) string { return v.StandardSrv }).(pulumi.StringOutput)
 }
@@ -26514,13 +26670,25 @@ func (o GetClusterBiConnectorConfigArrayOutput) Index(i pulumi.IntInput) GetClus
 }
 
 type GetClusterConnectionString struct {
-	AwsPrivateLink    map[string]interface{}                      `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv map[string]interface{}                      `pulumi:"awsPrivateLinkSrv"`
-	Private           string                                      `pulumi:"private"`
-	PrivateEndpoints  []GetClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv        string                                      `pulumi:"privateSrv"`
-	Standard          string                                      `pulumi:"standard"`
-	StandardSrv       string                                      `pulumi:"standardSrv"`
+	AwsPrivateLink    map[string]interface{} `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv map[string]interface{} `pulumi:"awsPrivateLinkSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private          string                                      `pulumi:"private"`
+	PrivateEndpoints []GetClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+	PrivateSrv string `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard string `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
+	StandardSrv string `pulumi:"standardSrv"`
 }
 
 // GetClusterConnectionStringInput is an input type that accepts GetClusterConnectionStringArgs and GetClusterConnectionStringOutput values.
@@ -26535,13 +26703,25 @@ type GetClusterConnectionStringInput interface {
 }
 
 type GetClusterConnectionStringArgs struct {
-	AwsPrivateLink    pulumi.MapInput                                     `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv pulumi.MapInput                                     `pulumi:"awsPrivateLinkSrv"`
-	Private           pulumi.StringInput                                  `pulumi:"private"`
-	PrivateEndpoints  GetClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv        pulumi.StringInput                                  `pulumi:"privateSrv"`
-	Standard          pulumi.StringInput                                  `pulumi:"standard"`
-	StandardSrv       pulumi.StringInput                                  `pulumi:"standardSrv"`
+	AwsPrivateLink    pulumi.MapInput `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv pulumi.MapInput `pulumi:"awsPrivateLinkSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private          pulumi.StringInput                                  `pulumi:"private"`
+	PrivateEndpoints GetClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+	PrivateSrv pulumi.StringInput `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard pulumi.StringInput `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
+	StandardSrv pulumi.StringInput `pulumi:"standardSrv"`
 }
 
 func (GetClusterConnectionStringArgs) ElementType() reflect.Type {
@@ -26603,6 +26783,7 @@ func (o GetClusterConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
 	return o.ApplyT(func(v GetClusterConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetClusterConnectionStringOutput) Private() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnectionString) string { return v.Private }).(pulumi.StringOutput)
 }
@@ -26613,14 +26794,25 @@ func (o GetClusterConnectionStringOutput) PrivateEndpoints() GetClusterConnectio
 	}).(GetClusterConnectionStringPrivateEndpointArrayOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o GetClusterConnectionStringOutput) PrivateSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnectionString) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
 
+// Public mongodb:// connection string for this cluster.
 func (o GetClusterConnectionStringOutput) Standard() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnectionString) string { return v.Standard }).(pulumi.StringOutput)
 }
 
+// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
 func (o GetClusterConnectionStringOutput) StandardSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnectionString) string { return v.StandardSrv }).(pulumi.StringOutput)
 }
@@ -27838,18 +28030,6 @@ type GetClustersResult struct {
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType string `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-	// - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
-	// - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-	// - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-	// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
-	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
-	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	ConnectionStrings []GetClustersResultConnectionString `pulumi:"connectionStrings"`
 	// The Network Peering Container ID.
 	ContainerId string `pulumi:"containerId"`
@@ -27953,18 +28133,6 @@ type GetClustersResultArgs struct {
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType pulumi.StringInput `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-	// - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
-	// - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-	// - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-	// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
-	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
-	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	ConnectionStrings GetClustersResultConnectionStringArrayInput `pulumi:"connectionStrings"`
 	// The Network Peering Container ID.
 	ContainerId pulumi.StringInput `pulumi:"containerId"`
@@ -28131,18 +28299,6 @@ func (o GetClustersResultOutput) ClusterType() pulumi.StringOutput {
 }
 
 // Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-// - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
-// - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-// - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
-// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
-// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
-// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o GetClustersResultOutput) ConnectionStrings() GetClustersResultConnectionStringArrayOutput {
 	return o.ApplyT(func(v GetClustersResult) []GetClustersResultConnectionString { return v.ConnectionStrings }).(GetClustersResultConnectionStringArrayOutput)
 }
@@ -28622,13 +28778,25 @@ func (o GetClustersResultBiConnectorConfigArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type GetClustersResultConnectionString struct {
-	AwsPrivateLink    map[string]interface{}                             `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv map[string]interface{}                             `pulumi:"awsPrivateLinkSrv"`
-	Private           string                                             `pulumi:"private"`
-	PrivateEndpoints  []GetClustersResultConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv        string                                             `pulumi:"privateSrv"`
-	Standard          string                                             `pulumi:"standard"`
-	StandardSrv       string                                             `pulumi:"standardSrv"`
+	AwsPrivateLink    map[string]interface{} `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv map[string]interface{} `pulumi:"awsPrivateLinkSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private          string                                             `pulumi:"private"`
+	PrivateEndpoints []GetClustersResultConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+	PrivateSrv string `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard string `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
+	StandardSrv string `pulumi:"standardSrv"`
 }
 
 // GetClustersResultConnectionStringInput is an input type that accepts GetClustersResultConnectionStringArgs and GetClustersResultConnectionStringOutput values.
@@ -28643,13 +28811,25 @@ type GetClustersResultConnectionStringInput interface {
 }
 
 type GetClustersResultConnectionStringArgs struct {
-	AwsPrivateLink    pulumi.MapInput                                            `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv pulumi.MapInput                                            `pulumi:"awsPrivateLinkSrv"`
-	Private           pulumi.StringInput                                         `pulumi:"private"`
-	PrivateEndpoints  GetClustersResultConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv        pulumi.StringInput                                         `pulumi:"privateSrv"`
-	Standard          pulumi.StringInput                                         `pulumi:"standard"`
-	StandardSrv       pulumi.StringInput                                         `pulumi:"standardSrv"`
+	AwsPrivateLink    pulumi.MapInput `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv pulumi.MapInput `pulumi:"awsPrivateLinkSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private          pulumi.StringInput                                         `pulumi:"private"`
+	PrivateEndpoints GetClustersResultConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+	PrivateSrv pulumi.StringInput `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard pulumi.StringInput `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
+	StandardSrv pulumi.StringInput `pulumi:"standardSrv"`
 }
 
 func (GetClustersResultConnectionStringArgs) ElementType() reflect.Type {
@@ -28711,6 +28891,7 @@ func (o GetClustersResultConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapO
 	return o.ApplyT(func(v GetClustersResultConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetClustersResultConnectionStringOutput) Private() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultConnectionString) string { return v.Private }).(pulumi.StringOutput)
 }
@@ -28721,14 +28902,25 @@ func (o GetClustersResultConnectionStringOutput) PrivateEndpoints() GetClustersR
 	}).(GetClustersResultConnectionStringPrivateEndpointArrayOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o GetClustersResultConnectionStringOutput) PrivateSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultConnectionString) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
 
+// Public mongodb:// connection string for this cluster.
 func (o GetClustersResultConnectionStringOutput) Standard() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultConnectionString) string { return v.Standard }).(pulumi.StringOutput)
 }
 
+// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
 func (o GetClustersResultConnectionStringOutput) StandardSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultConnectionString) string { return v.StandardSrv }).(pulumi.StringOutput)
 }
@@ -33424,8 +33616,6 @@ type GetEventTriggersResult struct {
 	// Status of a trigger.
 	Disabled bool `pulumi:"disabled"`
 	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
-	// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
-	// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
 	EventProcessors []GetEventTriggersResultEventProcessor `pulumi:"eventProcessors"`
 	// The ID of the function associated with the trigger.
 	FunctionId string `pulumi:"functionId"`
@@ -33477,8 +33667,6 @@ type GetEventTriggersResultArgs struct {
 	// Status of a trigger.
 	Disabled pulumi.BoolInput `pulumi:"disabled"`
 	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
-	// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
-	// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
 	EventProcessors GetEventTriggersResultEventProcessorArrayInput `pulumi:"eventProcessors"`
 	// The ID of the function associated with the trigger.
 	FunctionId pulumi.StringInput `pulumi:"functionId"`
@@ -33608,8 +33796,6 @@ func (o GetEventTriggersResultOutput) Disabled() pulumi.BoolOutput {
 }
 
 // An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
-// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
-// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
 func (o GetEventTriggersResultOutput) EventProcessors() GetEventTriggersResultEventProcessorArrayOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) []GetEventTriggersResultEventProcessor { return v.EventProcessors }).(GetEventTriggersResultEventProcessorArrayOutput)
 }
@@ -40112,8 +40298,11 @@ func (o GetGlobalClusterConfigManagedNamespaceArrayOutput) Index(i pulumi.IntInp
 }
 
 type GetLdapConfigurationUserToDnMapping struct {
-	LdapQuery    string `pulumi:"ldapQuery"`
-	Match        string `pulumi:"match"`
+	// An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
+	LdapQuery string `pulumi:"ldapQuery"`
+	// A regular expression to match against a provided LDAP username.
+	Match string `pulumi:"match"`
+	// An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
 	Substitution string `pulumi:"substitution"`
 }
 
@@ -40129,8 +40318,11 @@ type GetLdapConfigurationUserToDnMappingInput interface {
 }
 
 type GetLdapConfigurationUserToDnMappingArgs struct {
-	LdapQuery    pulumi.StringInput `pulumi:"ldapQuery"`
-	Match        pulumi.StringInput `pulumi:"match"`
+	// An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
+	LdapQuery pulumi.StringInput `pulumi:"ldapQuery"`
+	// A regular expression to match against a provided LDAP username.
+	Match pulumi.StringInput `pulumi:"match"`
+	// An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
 	Substitution pulumi.StringInput `pulumi:"substitution"`
 }
 
@@ -40185,14 +40377,17 @@ func (o GetLdapConfigurationUserToDnMappingOutput) ToGetLdapConfigurationUserToD
 	return o
 }
 
+// An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
 func (o GetLdapConfigurationUserToDnMappingOutput) LdapQuery() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLdapConfigurationUserToDnMapping) string { return v.LdapQuery }).(pulumi.StringOutput)
 }
 
+// A regular expression to match against a provided LDAP username.
 func (o GetLdapConfigurationUserToDnMappingOutput) Match() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLdapConfigurationUserToDnMapping) string { return v.Match }).(pulumi.StringOutput)
 }
 
+// An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
 func (o GetLdapConfigurationUserToDnMappingOutput) Substitution() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLdapConfigurationUserToDnMapping) string { return v.Substitution }).(pulumi.StringOutput)
 }

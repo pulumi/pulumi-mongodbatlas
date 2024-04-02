@@ -201,8 +201,6 @@ class GetEventTriggerResult:
     def event_processors(self) -> Sequence['outputs.GetEventTriggerEventProcessorResult']:
         """
         An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
-        * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
-        * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
         """
         return pulumi.get(self, "event_processors")
 
