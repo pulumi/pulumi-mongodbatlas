@@ -240,22 +240,27 @@
         "mongodbatlas:index/AdvancedClusterConnectionString:AdvancedClusterConnectionString": {
             "properties": {
                 "private": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n"
                 },
                 "privateEndpoints": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/AdvancedClusterConnectionStringPrivateEndpoint:AdvancedClusterConnectionStringPrivateEndpoint"
-                    }
+                    },
+                    "description": "Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.\n- `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`\n- `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.\n- `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.\n- `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`\n- `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.\n- `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.\n- `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.\n"
                 },
                 "privateSrv": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n"
                 },
                 "standard": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Public mongodb:// connection string for this cluster.\n"
                 },
                 "standardSrv": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.\n"
                 }
             },
             "type": "object",
@@ -1546,22 +1551,27 @@
         "mongodbatlas:index/ClusterConnectionString:ClusterConnectionString": {
             "properties": {
                 "private": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n"
                 },
                 "privateEndpoints": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/ClusterConnectionStringPrivateEndpoint:ClusterConnectionStringPrivateEndpoint"
-                    }
+                    },
+                    "description": "Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.\n- `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`\n- `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.\n- `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.\n- `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`\n- `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.\n- `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.\n- `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.\n"
                 },
                 "privateSrv": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n"
                 },
                 "standard": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Public mongodb:// connection string for this cluster.\n"
                 },
                 "standardSrv": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.\n"
                 }
             },
             "type": "object",
@@ -3455,22 +3465,27 @@
         "mongodbatlas:index/getAdvancedClusterConnectionString:getAdvancedClusterConnectionString": {
             "properties": {
                 "private": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n"
                 },
                 "privateEndpoints": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/getAdvancedClusterConnectionStringPrivateEndpoint:getAdvancedClusterConnectionStringPrivateEndpoint"
-                    }
+                    },
+                    "description": "Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.\n- `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`\n- `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.\n- `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.\n- `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`\n- `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.\n- `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.\n- `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.\n"
                 },
                 "privateSrv": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n"
                 },
                 "standard": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Public mongodb:// connection string for this cluster.\n"
                 },
                 "standardSrv": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.\n"
                 }
             },
             "type": "object",
@@ -4076,22 +4091,27 @@
         "mongodbatlas:index/getAdvancedClustersResultConnectionString:getAdvancedClustersResultConnectionString": {
             "properties": {
                 "private": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n"
                 },
                 "privateEndpoints": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/getAdvancedClustersResultConnectionStringPrivateEndpoint:getAdvancedClustersResultConnectionStringPrivateEndpoint"
-                    }
+                    },
+                    "description": "Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.\n- `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`\n- `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.\n- `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.\n- `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`\n- `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.\n- `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.\n- `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.\n"
                 },
                 "privateSrv": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n"
                 },
                 "standard": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Public mongodb:// connection string for this cluster.\n"
                 },
                 "standardSrv": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.\n"
                 }
             },
             "type": "object",
@@ -6276,7 +6296,8 @@
                     }
                 },
                 "private": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n"
                 },
                 "privateEndpoints": {
                     "type": "array",
@@ -6285,13 +6306,16 @@
                     }
                 },
                 "privateSrv": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n- `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.\n- `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.\n- `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`\n- `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.\n- `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.\n- `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.\n"
                 },
                 "standard": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Public mongodb:// connection string for this cluster.\n"
                 },
                 "standardSrv": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.\n"
                 }
             },
             "type": "object",
@@ -6662,7 +6686,7 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/getClustersResultConnectionString:getClustersResultConnectionString"
                     },
-                    "description": "Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.\n- `connection_strings.standard` -   Public mongodb:// connection string for this cluster.\n- `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.\n- `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n- `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n- `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.\n- `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.\n- `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`\n- `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.\n- `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.\n- `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.\n"
+                    "description": "Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.\n"
                 },
                 "containerId": {
                     "type": "string",
@@ -6954,7 +6978,8 @@
                     }
                 },
                 "private": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n"
                 },
                 "privateEndpoints": {
                     "type": "array",
@@ -6963,13 +6988,16 @@
                     }
                 },
                 "privateSrv": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "[Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n- `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.\n- `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.\n- `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`\n- `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.\n- `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.\n- `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.\n"
                 },
                 "standard": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Public mongodb:// connection string for this cluster.\n"
                 },
                 "standardSrv": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.\n"
                 }
             },
             "type": "object",
@@ -8267,7 +8295,7 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/getEventTriggersResultEventProcessor:getEventTriggersResultEventProcessor"
                     },
-                    "description": "An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.\n* `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.\n* `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.\n"
+                    "description": "An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.\n"
                 },
                 "functionId": {
                     "type": "string",
@@ -10106,13 +10134,16 @@
         "mongodbatlas:index/getLdapConfigurationUserToDnMapping:getLdapConfigurationUserToDnMapping": {
             "properties": {
                 "ldapQuery": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.\n"
                 },
                 "match": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A regular expression to match against a provided LDAP username.\n"
                 },
                 "substitution": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.\n"
                 }
             },
             "type": "object",
@@ -22957,7 +22988,7 @@
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getEventTriggerEventProcessor:getEventTriggerEventProcessor"
                         },
-                        "description": "An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.\n* `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.\n* `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.\n"
+                        "description": "An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.\n"
                     },
                     "functionId": {
                         "type": "string",
@@ -23981,7 +24012,7 @@
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getLdapConfigurationUserToDnMapping:getLdapConfigurationUserToDnMapping"
                         },
-                        "description": "Maps an LDAP username for authentication to an LDAP Distinguished Name (DN).\n* `user_to_dn_mapping.0.match` - A regular expression to match against a provided LDAP username.\n* `user_to_dn_mapping.0.substitution` - An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.\n* `user_to_dn_mapping.0.ldap_query` - An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.\n"
+                        "description": "Maps an LDAP username for authentication to an LDAP Distinguished Name (DN).\n"
                     }
                 },
                 "type": "object",
