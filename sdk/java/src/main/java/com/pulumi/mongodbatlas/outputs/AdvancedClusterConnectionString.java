@@ -13,25 +13,81 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AdvancedClusterConnectionString {
+    /**
+     * @return [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * 
+     */
     private @Nullable String private_;
+    /**
+     * @return Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster&#39;s nodes.
+     * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don&#39;t need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn&#39;t, use `connection_strings.private_endpoint[n].connection_string`
+     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don&#39;t need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn&#39;t, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+     * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+     * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+     * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+     * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+     * 
+     */
     private @Nullable List<AdvancedClusterConnectionStringPrivateEndpoint> privateEndpoints;
+    /**
+     * @return [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * 
+     */
     private @Nullable String privateSrv;
+    /**
+     * @return Public mongodb:// connection string for this cluster.
+     * 
+     */
     private @Nullable String standard;
+    /**
+     * @return Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+     * 
+     */
     private @Nullable String standardSrv;
 
     private AdvancedClusterConnectionString() {}
+    /**
+     * @return [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * 
+     */
     public Optional<String> private_() {
         return Optional.ofNullable(this.private_);
     }
+    /**
+     * @return Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster&#39;s nodes.
+     * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don&#39;t need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn&#39;t, use `connection_strings.private_endpoint[n].connection_string`
+     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don&#39;t need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn&#39;t, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+     * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+     * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+     * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+     * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+     * 
+     */
     public List<AdvancedClusterConnectionStringPrivateEndpoint> privateEndpoints() {
         return this.privateEndpoints == null ? List.of() : this.privateEndpoints;
     }
+    /**
+     * @return [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * 
+     */
     public Optional<String> privateSrv() {
         return Optional.ofNullable(this.privateSrv);
     }
+    /**
+     * @return Public mongodb:// connection string for this cluster.
+     * 
+     */
     public Optional<String> standard() {
         return Optional.ofNullable(this.standard);
     }
+    /**
+     * @return Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+     * 
+     */
     public Optional<String> standardSrv() {
         return Optional.ofNullable(this.standardSrv);
     }

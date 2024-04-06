@@ -73,11 +73,10 @@ class ClusterArgs:
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
                ```
-               <!--End PulumiCodeChooser -->
+               backup_enabled = "false"
+               cloud_backup = "true"
+               ```
                * The default value is false.  M10 and above only.
         :param pulumi.Input['ClusterBiConnectorConfigArgs'] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -304,11 +303,10 @@ class ClusterArgs:
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
         ```
-        <!--End PulumiCodeChooser -->
+        backup_enabled = "false"
+        cloud_backup = "true"
+        ```
         * The default value is false.  M10 and above only.
         """
         return pulumi.get(self, "backup_enabled")
@@ -684,11 +682,10 @@ class _ClusterState:
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
                ```
-               <!--End PulumiCodeChooser -->
+               backup_enabled = "false"
+               cloud_backup = "true"
+               ```
                * The default value is false.  M10 and above only.
         :param pulumi.Input['ClusterBiConnectorConfigArgs'] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_id: The cluster ID.
@@ -923,11 +920,10 @@ class _ClusterState:
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
         ```
-        <!--End PulumiCodeChooser -->
+        backup_enabled = "false"
+        cloud_backup = "true"
+        ```
         * The default value is false.  M10 and above only.
         """
         return pulumi.get(self, "backup_enabled")
@@ -1705,11 +1701,10 @@ class Cluster(pulumi.CustomResource):
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
                ```
-               <!--End PulumiCodeChooser -->
+               backup_enabled = "false"
+               cloud_backup = "true"
+               ```
                * The default value is false.  M10 and above only.
         :param pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -2181,11 +2176,10 @@ class Cluster(pulumi.CustomResource):
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
                ```
-               <!--End PulumiCodeChooser -->
+               backup_enabled = "false"
+               cloud_backup = "true"
+               ```
                * The default value is false.  M10 and above only.
         :param pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_id: The cluster ID.
@@ -2350,11 +2344,10 @@ class Cluster(pulumi.CustomResource):
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
         ```
-        <!--End PulumiCodeChooser -->
+        backup_enabled = "false"
+        cloud_backup = "true"
+        ```
         * The default value is false.  M10 and above only.
         """
         return pulumi.get(self, "backup_enabled")

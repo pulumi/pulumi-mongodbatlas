@@ -10,17 +10,41 @@ import java.util.Objects;
 
 @CustomType
 public final class GetLdapConfigurationUserToDnMapping {
+    /**
+     * @return An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
+     * 
+     */
     private String ldapQuery;
+    /**
+     * @return A regular expression to match against a provided LDAP username.
+     * 
+     */
     private String match;
+    /**
+     * @return An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
+     * 
+     */
     private String substitution;
 
     private GetLdapConfigurationUserToDnMapping() {}
+    /**
+     * @return An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
+     * 
+     */
     public String ldapQuery() {
         return this.ldapQuery;
     }
+    /**
+     * @return A regular expression to match against a provided LDAP username.
+     * 
+     */
     public String match() {
         return this.match;
     }
+    /**
+     * @return An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
+     * 
+     */
     public String substitution() {
         return this.substitution;
     }
