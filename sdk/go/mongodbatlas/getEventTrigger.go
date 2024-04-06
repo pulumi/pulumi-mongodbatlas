@@ -61,8 +61,6 @@ type LookupEventTriggerResult struct {
 	// Status of a trigger.
 	Disabled bool `pulumi:"disabled"`
 	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
-	// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
-	// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
 	EventProcessors []GetEventTriggerEventProcessor `pulumi:"eventProcessors"`
 	// The ID of the function associated with the trigger.
 	FunctionId string `pulumi:"functionId"`
@@ -191,8 +189,6 @@ func (o LookupEventTriggerResultOutput) Disabled() pulumi.BoolOutput {
 }
 
 // An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
-// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
-// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
 func (o LookupEventTriggerResultOutput) EventProcessors() GetEventTriggerEventProcessorArrayOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) []GetEventTriggerEventProcessor { return v.EventProcessors }).(GetEventTriggerEventProcessorArrayOutput)
 }

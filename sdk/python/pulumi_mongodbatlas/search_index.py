@@ -38,11 +38,9 @@ class SearchIndexArgs:
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[str] analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
-               
-               analyzers = \"\"\"[{
+               ```
+               analyzers = <<-EOF
+               [{
                "name": "index_analyzer_test_name",
                "charFilters": [{
                "type": "mapping",
@@ -59,9 +57,8 @@ class SearchIndexArgs:
                "max": 33
                }]
                }]
-               \"\"\"
+               EOF
                ```
-               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
         :param pulumi.Input[str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
@@ -160,11 +157,9 @@ class SearchIndexArgs:
     def analyzers(self) -> Optional[pulumi.Input[str]]:
         """
         [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        analyzers = \"\"\"[{
+        ```
+        analyzers = <<-EOF
+        [{
         "name": "index_analyzer_test_name",
         "charFilters": [{
         "type": "mapping",
@@ -181,9 +176,8 @@ class SearchIndexArgs:
         "max": 33
         }]
         }]
-        \"\"\"
+        EOF
         ```
-        <!--End PulumiCodeChooser -->
         """
         return pulumi.get(self, "analyzers")
 
@@ -308,11 +302,9 @@ class _SearchIndexState:
         Input properties used for looking up and filtering SearchIndex resources.
         :param pulumi.Input[str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[str] analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
-               
-               analyzers = \"\"\"[{
+               ```
+               analyzers = <<-EOF
+               [{
                "name": "index_analyzer_test_name",
                "charFilters": [{
                "type": "mapping",
@@ -329,9 +321,8 @@ class _SearchIndexState:
                "max": 33
                }]
                }]
-               \"\"\"
+               EOF
                ```
-               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] cluster_name: The name of the cluster where you want to create the search index within.
         :param pulumi.Input[str] collection_name: Name of the collection the index is on.
         :param pulumi.Input[str] database: Name of the database the collection is in.
@@ -395,11 +386,9 @@ class _SearchIndexState:
     def analyzers(self) -> Optional[pulumi.Input[str]]:
         """
         [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        analyzers = \"\"\"[{
+        ```
+        analyzers = <<-EOF
+        [{
         "name": "index_analyzer_test_name",
         "charFilters": [{
         "type": "mapping",
@@ -416,9 +405,8 @@ class _SearchIndexState:
         "max": 33
         }]
         }]
-        \"\"\"
+        EOF
         ```
-        <!--End PulumiCodeChooser -->
         """
         return pulumi.get(self, "analyzers")
 
@@ -728,11 +716,9 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[str] analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
-               
-               analyzers = \"\"\"[{
+               ```
+               analyzers = <<-EOF
+               [{
                "name": "index_analyzer_test_name",
                "charFilters": [{
                "type": "mapping",
@@ -749,9 +735,8 @@ class SearchIndex(pulumi.CustomResource):
                "max": 33
                }]
                }]
-               \"\"\"
+               EOF
                ```
-               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] cluster_name: The name of the cluster where you want to create the search index within.
         :param pulumi.Input[str] collection_name: Name of the collection the index is on.
         :param pulumi.Input[str] database: Name of the database the collection is in.
@@ -982,11 +967,9 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[str] analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
-               
-               analyzers = \"\"\"[{
+               ```
+               analyzers = <<-EOF
+               [{
                "name": "index_analyzer_test_name",
                "charFilters": [{
                "type": "mapping",
@@ -1003,9 +986,8 @@ class SearchIndex(pulumi.CustomResource):
                "max": 33
                }]
                }]
-               \"\"\"
+               EOF
                ```
-               <!--End PulumiCodeChooser -->
         :param pulumi.Input[str] cluster_name: The name of the cluster where you want to create the search index within.
         :param pulumi.Input[str] collection_name: Name of the collection the index is on.
         :param pulumi.Input[str] database: Name of the database the collection is in.
@@ -1054,11 +1036,9 @@ class SearchIndex(pulumi.CustomResource):
     def analyzers(self) -> pulumi.Output[Optional[str]]:
         """
         [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        analyzers = \"\"\"[{
+        ```
+        analyzers = <<-EOF
+        [{
         "name": "index_analyzer_test_name",
         "charFilters": [{
         "type": "mapping",
@@ -1075,9 +1055,8 @@ class SearchIndex(pulumi.CustomResource):
         "max": 33
         }]
         }]
-        \"\"\"
+        EOF
         ```
-        <!--End PulumiCodeChooser -->
         """
         return pulumi.get(self, "analyzers")
 

@@ -139,9 +139,6 @@ class GetLdapConfigurationResult:
     def user_to_dn_mappings(self) -> Sequence['outputs.GetLdapConfigurationUserToDnMappingResult']:
         """
         Maps an LDAP username for authentication to an LDAP Distinguished Name (DN).
-        * `user_to_dn_mapping.0.match` - A regular expression to match against a provided LDAP username.
-        * `user_to_dn_mapping.0.substitution` - An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
-        * `user_to_dn_mapping.0.ldap_query` - An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
         """
         return pulumi.get(self, "user_to_dn_mappings")
 

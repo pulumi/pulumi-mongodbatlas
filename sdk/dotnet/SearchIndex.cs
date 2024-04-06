@@ -163,36 +163,27 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var analyzers = @"[{
-        /// ""name"": ""index_analyzer_test_name"",
-        /// ""charFilters"": [{
-        /// ""type"": ""mapping"",
-        /// ""mappings"": {""\\"" : ""/""}
-        /// }],
-        /// ""tokenizer"": {
-        /// ""type"": ""nGram"",
-        /// ""minGram"": 2,
-        /// ""maxGram"": 5
-        /// },
-        /// ""tokenFilters"": [{
-        /// ""type"": ""length"",
-        /// ""min"": 20,
-        /// ""max"": 33
-        /// }]
-        /// }]
-        /// ";
-        /// 
-        /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// analyzers = &lt;&lt;-EOF
+        /// [{
+        /// "name": "index_analyzer_test_name",
+        /// "charFilters": [{
+        /// "type": "mapping",
+        /// "mappings": {"\\" : "/"}
+        /// }],
+        /// "tokenizer": {
+        /// "type": "nGram",
+        /// "minGram": 2,
+        /// "maxGram": 5
+        /// },
+        /// "tokenFilters": [{
+        /// "type": "length",
+        /// "min": 20,
+        /// "max": 33
+        /// }]
+        /// }]
+        /// EOF
+        /// ```
         /// </summary>
         [Output("analyzers")]
         public Output<string?> Analyzers { get; private set; } = null!;
@@ -329,36 +320,27 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var analyzers = @"[{
-        /// ""name"": ""index_analyzer_test_name"",
-        /// ""charFilters"": [{
-        /// ""type"": ""mapping"",
-        /// ""mappings"": {""\\"" : ""/""}
-        /// }],
-        /// ""tokenizer"": {
-        /// ""type"": ""nGram"",
-        /// ""minGram"": 2,
-        /// ""maxGram"": 5
-        /// },
-        /// ""tokenFilters"": [{
-        /// ""type"": ""length"",
-        /// ""min"": 20,
-        /// ""max"": 33
-        /// }]
-        /// }]
-        /// ";
-        /// 
-        /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// analyzers = &lt;&lt;-EOF
+        /// [{
+        /// "name": "index_analyzer_test_name",
+        /// "charFilters": [{
+        /// "type": "mapping",
+        /// "mappings": {"\\" : "/"}
+        /// }],
+        /// "tokenizer": {
+        /// "type": "nGram",
+        /// "minGram": 2,
+        /// "maxGram": 5
+        /// },
+        /// "tokenFilters": [{
+        /// "type": "length",
+        /// "min": 20,
+        /// "max": 33
+        /// }]
+        /// }]
+        /// EOF
+        /// ```
         /// </summary>
         [Input("analyzers")]
         public Input<string>? Analyzers { get; set; }
@@ -454,36 +436,27 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var analyzers = @"[{
-        /// ""name"": ""index_analyzer_test_name"",
-        /// ""charFilters"": [{
-        /// ""type"": ""mapping"",
-        /// ""mappings"": {""\\"" : ""/""}
-        /// }],
-        /// ""tokenizer"": {
-        /// ""type"": ""nGram"",
-        /// ""minGram"": 2,
-        /// ""maxGram"": 5
-        /// },
-        /// ""tokenFilters"": [{
-        /// ""type"": ""length"",
-        /// ""min"": 20,
-        /// ""max"": 33
-        /// }]
-        /// }]
-        /// ";
-        /// 
-        /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// analyzers = &lt;&lt;-EOF
+        /// [{
+        /// "name": "index_analyzer_test_name",
+        /// "charFilters": [{
+        /// "type": "mapping",
+        /// "mappings": {"\\" : "/"}
+        /// }],
+        /// "tokenizer": {
+        /// "type": "nGram",
+        /// "minGram": 2,
+        /// "maxGram": 5
+        /// },
+        /// "tokenFilters": [{
+        /// "type": "length",
+        /// "min": 20,
+        /// "max": 33
+        /// }]
+        /// }]
+        /// EOF
+        /// ```
         /// </summary>
         [Input("analyzers")]
         public Input<string>? Analyzers { get; set; }
