@@ -1,0 +1,19 @@
+name: index_projectB7GgX4FtQukO
+runtime: yaml
+description: ""
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/c393a30c-cb1e-4cde-8007-c91eb4063b33.zip
+resources:
+  my_mongodbatlas_project:
+    properties:
+      isCollectDatabaseSpecificsStatisticsEnabled: true
+      isDataExplorerEnabled: true
+      isExtendedStorageSizesEnabled: true
+      isPerformanceAdvisorEnabled: true
+      isRealtimePerformancePanelEnabled: true
+      isSchemaAdvisorEnabled: true
+      orgId: ${mongodb-atlas-org-id}
+      withDefaultAlertsSettings: true
+    type: mongodbatlas:Project

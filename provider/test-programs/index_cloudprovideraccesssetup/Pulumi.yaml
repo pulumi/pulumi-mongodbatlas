@@ -1,0 +1,20 @@
+name: index_cloudprovideraccesssetupuFB7Annc8ETi
+runtime: yaml
+description: ""
+config:
+  mongodb-atlas-org-id:
+    type: string
+    default: ORG_ID
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/53357df5-70a8-490f-8521-1ef2c5ff7c74.zip
+resources:
+  my_cloud_provider_access_setup:
+    properties:
+      projectId: ${my_project.id}
+      providerName: AWS
+    type: mongodbatlas:CloudProviderAccessSetup
+  my_project:
+    properties:
+      orgId: ${mongodb-atlas-org-id}
+    type: mongodbatlas:Project
