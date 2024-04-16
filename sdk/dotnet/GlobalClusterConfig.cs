@@ -30,6 +30,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.Cluster("test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         Name = "&lt;CLUSTER-NAME&gt;",
     ///         CloudBackup = true,
     ///         ClusterType = "GEOSHARDED",
     ///         ProviderName = "AWS",
@@ -112,6 +113,7 @@ namespace Pulumi.Mongodbatlas
     ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         Name = "cluster-test",
     ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
@@ -139,8 +141,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///     var config = new Mongodbatlas.GlobalClusterConfig("config", new()
     ///     {
-    ///         ProjectId = mongodbatlas_cluster.Test.Project_id,
-    ///         ClusterName = mongodbatlas_cluster.Test.Name,
+    ///         ProjectId = test.ProjectId,
+    ///         ClusterName = test.Name,
     ///         ManagedNamespaces = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs

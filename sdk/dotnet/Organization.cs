@@ -31,8 +31,9 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.Organization("test", new()
     ///     {
-    ///         Description = "test API key from Org Creation Test",
     ///         OrgOwnerId = "6205e5fffff79cde6f",
+    ///         Name = "testCreateORG",
+    ///         Description = "test API key from Org Creation Test",
     ///         RoleNames = new[]
     ///         {
     ///             "ORG_OWNER",

@@ -31,12 +31,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewSearchIndex(ctx, "test-basic-search-index", &mongodbatlas.SearchIndexArgs{
-//				Analyzer:        pulumi.String("lucene.standard"),
+//				Name:            pulumi.String("test-basic-search-index"),
+//				ProjectId:       pulumi.String("<PROJECT_ID>"),
 //				ClusterName:     pulumi.String("<CLUSTER_NAME>"),
+//				Analyzer:        pulumi.String("lucene.standard"),
 //				CollectionName:  pulumi.String("collection_test"),
 //				Database:        pulumi.String("database_test"),
 //				MappingsDynamic: pulumi.Bool(true),
-//				ProjectId:       pulumi.String("<PROJECT_ID>"),
 //				SearchAnalyzer:  pulumi.String("lucene.standard"),
 //			})
 //			if err != nil {
@@ -143,6 +144,7 @@ import (
 //
 // `),
 //
+//				Name:           pulumi.String("test-advanced-search-index"),
 //				SearchAnalyzer: pulumi.String("lucene.standard"),
 //				Analyzers: pulumi.String(` [{
 //	 "name": "index_analyzer_test_name",

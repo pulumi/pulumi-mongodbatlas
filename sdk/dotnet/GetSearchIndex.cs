@@ -30,9 +30,9 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetSearchIndex.Invoke(new()
         ///     {
-        ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
         ///         IndexId = "&lt;INDEX_ID",
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
         ///     });
         /// 
         /// });
@@ -61,9 +61,9 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetSearchIndex.Invoke(new()
         ///     {
-        ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
         ///         IndexId = "&lt;INDEX_ID",
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
         ///     });
         /// 
         /// });

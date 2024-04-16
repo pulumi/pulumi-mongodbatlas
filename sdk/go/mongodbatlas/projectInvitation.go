@@ -30,11 +30,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewProjectInvitation(ctx, "test", &mongodbatlas.ProjectInvitationArgs{
+//				Username:  pulumi.String("test-acc-username"),
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				Roles: pulumi.StringArray{
 //					pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
 //				},
-//				Username: pulumi.String("test-acc-username"),
 //			})
 //			if err != nil {
 //				return err
@@ -60,12 +60,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewProjectInvitation(ctx, "test", &mongodbatlas.ProjectInvitationArgs{
+//				Username:  pulumi.String("test-acc-username"),
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				Roles: pulumi.StringArray{
 //					pulumi.String("GROUP_READ_ONLY"),
 //					pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
 //				},
-//				Username: pulumi.String("test-acc-username"),
 //			})
 //			if err != nil {
 //				return err

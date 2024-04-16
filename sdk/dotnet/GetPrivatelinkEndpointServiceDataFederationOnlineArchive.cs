@@ -29,7 +29,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
         ///     {
-        ///         OrgId = @var.Atlas_org_id,
+        ///         OrgId = atlasOrgId,
+        ///         Name = atlasProjectName,
         ///     });
         /// 
         ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
@@ -73,7 +74,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
         ///     {
-        ///         OrgId = @var.Atlas_org_id,
+        ///         OrgId = atlasOrgId,
+        ///         Name = atlasProjectName,
         ///     });
         /// 
         ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()

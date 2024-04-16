@@ -49,9 +49,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new ProjectIpAccessList(&#34;test&#34;, ProjectIpAccessListArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .cidrBlock(&#34;1.2.3.4/32&#34;)
  *             .comment(&#34;cidr block for tf acc testing&#34;)
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .build());
  * 
  *     }
@@ -83,9 +83,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new ProjectIpAccessList(&#34;test&#34;, ProjectIpAccessListArgs.builder()        
- *             .comment(&#34;ip address for tf acc testing&#34;)
- *             .ipAddress(&#34;2.3.4.5&#34;)
  *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .ipAddress(&#34;2.3.4.5&#34;)
+ *             .comment(&#34;ip address for tf acc testing&#34;)
  *             .build());
  * 
  *     }
@@ -121,7 +121,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testNetworkContainer = new NetworkContainer(&#34;testNetworkContainer&#34;, NetworkContainerArgs.builder()        
+ *         var test = new NetworkContainer(&#34;test&#34;, NetworkContainerArgs.builder()        
  *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .atlasCidrBlock(&#34;192.168.208.0/21&#34;)
  *             .providerName(&#34;AWS&#34;)
@@ -130,7 +130,7 @@ import javax.annotation.Nullable;
  * 
  *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
  *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .containerId(testNetworkContainer.containerId())
+ *             .containerId(test.containerId())
  *             .accepterRegionName(&#34;us-east-1&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .routeTableCidrBlock(&#34;172.31.0.0/16&#34;)
@@ -143,7 +143,7 @@ import javax.annotation.Nullable;
  *             .awsSecurityGroup(&#34;sg-0026348ec11780bd1&#34;)
  *             .comment(&#34;TestAcc for awsSecurityGroup&#34;)
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(&#34;mongodbatlas_network_peering.test&#34;)
+ *                 .dependsOn(testNetworkPeering)
  *                 .build());
  * 
  *     }

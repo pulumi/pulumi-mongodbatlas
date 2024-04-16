@@ -18,8 +18,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", {
+ * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     name: "mongodb_federation_test",
  *     associatedDomains: ["yourdomain.com"],
  *     ssoDebugEnabled: true,
  *     status: "ACTIVE",
@@ -162,8 +163,9 @@ export interface GetFederatedSettingsIdentityProviderResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", {
+ * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     name: "mongodb_federation_test",
  *     associatedDomains: ["yourdomain.com"],
  *     ssoDebugEnabled: true,
  *     status: "ACTIVE",

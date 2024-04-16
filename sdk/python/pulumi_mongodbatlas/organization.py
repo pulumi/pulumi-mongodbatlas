@@ -347,8 +347,9 @@ class Organization(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Organization("test",
-            description="test API key from Org Creation Test",
             org_owner_id="6205e5fffff79cde6f",
+            name="testCreateORG",
+            description="test API key from Org Creation Test",
             role_names=["ORG_OWNER"])
         ```
         <!--End PulumiCodeChooser -->
@@ -386,8 +387,9 @@ class Organization(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Organization("test",
-            description="test API key from Org Creation Test",
             org_owner_id="6205e5fffff79cde6f",
+            name="testCreateORG",
+            description="test API key from Org Creation Test",
             role_names=["ORG_OWNER"])
         ```
         <!--End PulumiCodeChooser -->

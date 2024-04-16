@@ -27,8 +27,25 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.AlertConfiguration("test", new()
     ///     {
-    ///         Enabled = true,
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         EventType = "OUTSIDE_METRIC_THRESHOLD",
+    ///         Enabled = true,
+    ///         Notifications = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///             {
+    ///                 TypeName = "GROUP",
+    ///                 IntervalMin = 5,
+    ///                 DelayMin = 0,
+    ///                 SmsEnabled = false,
+    ///                 EmailEnabled = true,
+    ///                 Roles = new[]
+    ///                 {
+    ///                     "GROUP_CHARTS_ADMIN",
+    ///                     "GROUP_CLUSTER_MANAGER",
+    ///                 },
+    ///             },
+    ///         },
     ///         Matchers = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
@@ -41,28 +58,11 @@ namespace Pulumi.Mongodbatlas
     ///         MetricThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdConfigArgs
     ///         {
     ///             MetricName = "ASSERT_REGULAR",
-    ///             Mode = "AVERAGE",
     ///             Operator = "LESS_THAN",
     ///             Threshold = 99,
     ///             Units = "RAW",
+    ///             Mode = "AVERAGE",
     ///         },
-    ///         Notifications = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
-    ///             {
-    ///                 DelayMin = 0,
-    ///                 EmailEnabled = true,
-    ///                 IntervalMin = 5,
-    ///                 Roles = new[]
-    ///                 {
-    ///                     "GROUP_CHARTS_ADMIN",
-    ///                     "GROUP_CLUSTER_MANAGER",
-    ///                 },
-    ///                 SmsEnabled = false,
-    ///                 TypeName = "GROUP",
-    ///             },
-    ///         },
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///     });
     /// 
     /// });
@@ -82,8 +82,25 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.AlertConfiguration("test", new()
     ///     {
-    ///         Enabled = true,
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         EventType = "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+    ///         Enabled = true,
+    ///         Notifications = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///             {
+    ///                 TypeName = "GROUP",
+    ///                 IntervalMin = 5,
+    ///                 DelayMin = 0,
+    ///                 SmsEnabled = false,
+    ///                 EmailEnabled = true,
+    ///                 Roles = new[]
+    ///                 {
+    ///                     "GROUP_CHARTS_ADMIN",
+    ///                     "GROUP_CLUSTER_MANAGER",
+    ///                 },
+    ///             },
+    ///         },
     ///         Matchers = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
@@ -93,23 +110,6 @@ namespace Pulumi.Mongodbatlas
     ///                 Value = "SECONDARY",
     ///             },
     ///         },
-    ///         Notifications = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
-    ///             {
-    ///                 DelayMin = 0,
-    ///                 EmailEnabled = true,
-    ///                 IntervalMin = 5,
-    ///                 Roles = new[]
-    ///                 {
-    ///                     "GROUP_CHARTS_ADMIN",
-    ///                     "GROUP_CLUSTER_MANAGER",
-    ///                 },
-    ///                 SmsEnabled = false,
-    ///                 TypeName = "GROUP",
-    ///             },
-    ///         },
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         ThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationThresholdConfigArgs
     ///         {
     ///             Operator = "LESS_THAN",
@@ -135,8 +135,34 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.AlertConfiguration("test", new()
     ///     {
-    ///         Enabled = true,
+    ///         ProjectId = "PROJECT ID",
     ///         EventType = "OUTSIDE_METRIC_THRESHOLD",
+    ///         Enabled = true,
+    ///         Notifications = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///             {
+    ///                 TypeName = "GROUP",
+    ///                 IntervalMin = 5,
+    ///                 DelayMin = 0,
+    ///                 SmsEnabled = false,
+    ///                 EmailEnabled = true,
+    ///                 Roles = new[]
+    ///                 {
+    ///                     "GROUP_DATA_ACCESS_READ_ONLY",
+    ///                     "GROUP_CLUSTER_MANAGER",
+    ///                     "GROUP_DATA_ACCESS_ADMIN",
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///             {
+    ///                 TypeName = "ORG",
+    ///                 IntervalMin = 5,
+    ///                 DelayMin = 0,
+    ///                 SmsEnabled = true,
+    ///                 EmailEnabled = false,
+    ///             },
+    ///         },
     ///         Matchers = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
@@ -149,37 +175,11 @@ namespace Pulumi.Mongodbatlas
     ///         MetricThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdConfigArgs
     ///         {
     ///             MetricName = "ASSERT_REGULAR",
-    ///             Mode = "AVERAGE",
     ///             Operator = "LESS_THAN",
     ///             Threshold = 99,
     ///             Units = "RAW",
+    ///             Mode = "AVERAGE",
     ///         },
-    ///         Notifications = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
-    ///             {
-    ///                 DelayMin = 0,
-    ///                 EmailEnabled = true,
-    ///                 IntervalMin = 5,
-    ///                 Roles = new[]
-    ///                 {
-    ///                     "GROUP_DATA_ACCESS_READ_ONLY",
-    ///                     "GROUP_CLUSTER_MANAGER",
-    ///                     "GROUP_DATA_ACCESS_ADMIN",
-    ///                 },
-    ///                 SmsEnabled = false,
-    ///                 TypeName = "GROUP",
-    ///             },
-    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
-    ///             {
-    ///                 DelayMin = 0,
-    ///                 EmailEnabled = false,
-    ///                 IntervalMin = 5,
-    ///                 SmsEnabled = true,
-    ///                 TypeName = "ORG",
-    ///             },
-    ///         },
-    ///         ProjectId = "PROJECT ID",
     ///     });
     /// 
     /// });

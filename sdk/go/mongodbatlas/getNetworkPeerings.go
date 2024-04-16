@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
+//			testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "test", &mongodbatlas.NetworkPeeringArgs{
 //				AccepterRegionName:  pulumi.String("us-east-1"),
 //				ProjectId:           pulumi.String("<YOUR-PROJEC-ID>"),
 //				ContainerId:         pulumi.String("507f1f77bcf86cd799439011"),

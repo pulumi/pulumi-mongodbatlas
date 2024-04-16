@@ -35,9 +35,9 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.MaintenanceWindow("test", new()
     ///     {
+    ///         ProjectId = "&lt;your-project-id&gt;",
     ///         DayOfWeek = 3,
     ///         HourOfDay = 4,
-    ///         ProjectId = "&lt;your-project-id&gt;",
     ///     });
     /// 
     /// });
@@ -55,8 +55,8 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.MaintenanceWindow("test", new()
     ///     {
-    ///         Defer = true,
     ///         ProjectId = "&lt;your-project-id&gt;",
+    ///         Defer = true,
     ///     });
     /// 
     /// });

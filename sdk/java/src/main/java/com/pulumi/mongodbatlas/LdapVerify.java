@@ -49,21 +49,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+ *         var test = new Project(&#34;test&#34;, ProjectArgs.builder()        
+ *             .name(&#34;NAME OF THE PROJECT&#34;)
  *             .orgId(&#34;ORG ID&#34;)
  *             .build());
  * 
  *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
- *             .projectId(testProject.id())
+ *             .projectId(test.id())
+ *             .name(&#34;NAME OF THE CLUSTER&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .providerRegionName(&#34;US_EAST_2&#34;)
  *             .providerInstanceSizeName(&#34;M10&#34;)
  *             .cloudBackup(true)
  *             .build());
  * 
- *         //enable cloud provider snapshots
  *         var testLdapVerify = new LdapVerify(&#34;testLdapVerify&#34;, LdapVerifyArgs.builder()        
- *             .projectId(testProject.id())
+ *             .projectId(test.id())
  *             .hostname(&#34;HOSTNAME&#34;)
  *             .port(636)
  *             .bindUsername(&#34;USERNAME&#34;)

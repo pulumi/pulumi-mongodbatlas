@@ -42,7 +42,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewClusterOutageSimulation(ctx, "outageSimulation", &mongodbatlas.ClusterOutageSimulationArgs{
+//			_, err := mongodbatlas.NewClusterOutageSimulation(ctx, "outage_simulation", &mongodbatlas.ClusterOutageSimulationArgs{
+//				ProjectId:   pulumi.String("64707f06c519c20c3a2b1b03"),
 //				ClusterName: pulumi.String("Cluster0"),
 //				OutageFilters: mongodbatlas.ClusterOutageSimulationOutageFilterArray{
 //					&mongodbatlas.ClusterOutageSimulationOutageFilterArgs{
@@ -54,7 +55,6 @@ import (
 //						RegionName:    pulumi.String("US_EAST_2"),
 //					},
 //				},
-//				ProjectId: pulumi.String("64707f06c519c20c3a2b1b03"),
 //			})
 //			if err != nil {
 //				return err

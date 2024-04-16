@@ -10,6 +10,41 @@ import * as utilities from "./utilities";
  * `mongodbatlas.LdapVerify` describes a LDAP Verify.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORG ID",
+ * });
+ * const testCluster = new mongodbatlas.Cluster("test", {
+ *     projectId: testProject.id,
+ *     name: "NAME OF THE CLUSTER",
+ *     providerName: "AWS",
+ *     providerRegionName: "US_EAST_2",
+ *     providerInstanceSizeName: "M10",
+ *     cloudBackup: true,
+ * });
+ * const testLdapVerify = new mongodbatlas.LdapVerify("test", {
+ *     projectId: testProject.id,
+ *     hostname: "HOSTNAME",
+ *     port: 636,
+ *     bindUsername: "USERNAME",
+ *     bindPassword: "PASSWORD",
+ * }, {
+ *     dependsOn: [testCluster],
+ * });
+ * const test = mongodbatlas.getLdapVerifyOutput({
+ *     projectId: testLdapVerify.projectId,
+ *     requestId: testLdapVerify.requestId,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getLdapVerify(args: GetLdapVerifyArgs, opts?: pulumi.InvokeOptions): Promise<GetLdapVerifyResult> {
 
@@ -76,6 +111,41 @@ export interface GetLdapVerifyResult {
  * `mongodbatlas.LdapVerify` describes a LDAP Verify.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORG ID",
+ * });
+ * const testCluster = new mongodbatlas.Cluster("test", {
+ *     projectId: testProject.id,
+ *     name: "NAME OF THE CLUSTER",
+ *     providerName: "AWS",
+ *     providerRegionName: "US_EAST_2",
+ *     providerInstanceSizeName: "M10",
+ *     cloudBackup: true,
+ * });
+ * const testLdapVerify = new mongodbatlas.LdapVerify("test", {
+ *     projectId: testProject.id,
+ *     hostname: "HOSTNAME",
+ *     port: 636,
+ *     bindUsername: "USERNAME",
+ *     bindPassword: "PASSWORD",
+ * }, {
+ *     dependsOn: [testCluster],
+ * });
+ * const test = mongodbatlas.getLdapVerifyOutput({
+ *     projectId: testLdapVerify.projectId,
+ *     requestId: testLdapVerify.requestId,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getLdapVerifyOutput(args: GetLdapVerifyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLdapVerifyResult> {
     return pulumi.output(args).apply((a: any) => getLdapVerify(a, opts))

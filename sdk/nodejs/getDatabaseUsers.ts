@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
+ * const testDatabaseUser = new mongodbatlas.DatabaseUser("test", {
  *     username: "test-acc-username",
  *     password: "test-acc-password",
  *     projectId: "<PROJECT-ID>",
@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  * });
- * const testDatabaseUsers = mongodbatlas.getDatabaseUsersOutput({
+ * const test = mongodbatlas.getDatabaseUsersOutput({
  *     projectId: testDatabaseUser.projectId,
  * });
  * ```
@@ -58,17 +58,17 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
+ * const testDatabaseUser = new mongodbatlas.DatabaseUser("test", {
+ *     username: "64d613677e1ad50839cce4db/testUserOrGroup",
+ *     projectId: "6414908c207f4d22f4d8f232",
  *     authDatabaseName: "admin",
  *     oidcAuthType: "IDP_GROUP",
- *     projectId: "6414908c207f4d22f4d8f232",
  *     roles: [{
- *         databaseName: "admin",
  *         roleName: "readWriteAnyDatabase",
+ *         databaseName: "admin",
  *     }],
- *     username: "64d613677e1ad50839cce4db/testUserOrGroup",
  * });
- * const testDatabaseUsers = mongodbatlas.getDatabaseUsers({
+ * const test = mongodbatlas.getDatabaseUsers({
  *     projectId: "6414908c207f4d22f4d8f232",
  * });
  * ```
@@ -124,7 +124,7 @@ export interface GetDatabaseUsersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
+ * const testDatabaseUser = new mongodbatlas.DatabaseUser("test", {
  *     username: "test-acc-username",
  *     password: "test-acc-password",
  *     projectId: "<PROJECT-ID>",
@@ -150,7 +150,7 @@ export interface GetDatabaseUsersResult {
  *         },
  *     ],
  * });
- * const testDatabaseUsers = mongodbatlas.getDatabaseUsersOutput({
+ * const test = mongodbatlas.getDatabaseUsersOutput({
  *     projectId: testDatabaseUser.projectId,
  * });
  * ```
@@ -162,17 +162,17 @@ export interface GetDatabaseUsersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
+ * const testDatabaseUser = new mongodbatlas.DatabaseUser("test", {
+ *     username: "64d613677e1ad50839cce4db/testUserOrGroup",
+ *     projectId: "6414908c207f4d22f4d8f232",
  *     authDatabaseName: "admin",
  *     oidcAuthType: "IDP_GROUP",
- *     projectId: "6414908c207f4d22f4d8f232",
  *     roles: [{
- *         databaseName: "admin",
  *         roleName: "readWriteAnyDatabase",
+ *         databaseName: "admin",
  *     }],
- *     username: "64d613677e1ad50839cce4db/testUserOrGroup",
  * });
- * const testDatabaseUsers = mongodbatlas.getDatabaseUsers({
+ * const test = mongodbatlas.getDatabaseUsers({
  *     projectId: "6414908c207f4d22f4d8f232",
  * });
  * ```

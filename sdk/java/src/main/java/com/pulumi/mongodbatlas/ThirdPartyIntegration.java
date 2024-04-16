@@ -52,10 +52,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var testDatadog = new ThirdPartyIntegration(&#34;testDatadog&#34;, ThirdPartyIntegrationArgs.builder()        
- *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
  *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .region(&#34;&lt;REGION&gt;&#34;)
  *             .type(&#34;DATADOG&#34;)
+ *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
+ *             .region(&#34;&lt;REGION&gt;&#34;)
  *             .build());
  * 
  *     }

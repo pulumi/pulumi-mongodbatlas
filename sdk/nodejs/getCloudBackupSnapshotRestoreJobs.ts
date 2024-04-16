@@ -20,13 +20,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", {
+ * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("test", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     clusterName: "MyCluster",
  *     description: "MyDescription",
  *     retentionInDays: 1,
  * });
- * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", {
+ * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("test", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     clusterName: "MyCluster",
  *     snapshotId: testCloudBackupSnapshot.id,
@@ -36,7 +36,7 @@ import * as utilities from "./utilities";
  *         targetProjectId: "5cf5a45a9ccf6400e60981b6",
  *     },
  * });
- * const testCloudBackupSnapshotRestoreJobs = pulumi.all([testCloudBackupSnapshotRestoreJob.projectId, testCloudBackupSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudBackupSnapshotRestoreJobsOutput({
+ * const test = pulumi.all([testCloudBackupSnapshotRestoreJob.projectId, testCloudBackupSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudBackupSnapshotRestoreJobsOutput({
  *     projectId: projectId,
  *     clusterName: clusterName,
  *     pageNum: 1,
@@ -110,13 +110,13 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", {
+ * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("test", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     clusterName: "MyCluster",
  *     description: "MyDescription",
  *     retentionInDays: 1,
  * });
- * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", {
+ * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("test", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     clusterName: "MyCluster",
  *     snapshotId: testCloudBackupSnapshot.id,
@@ -126,7 +126,7 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
  *         targetProjectId: "5cf5a45a9ccf6400e60981b6",
  *     },
  * });
- * const testCloudBackupSnapshotRestoreJobs = pulumi.all([testCloudBackupSnapshotRestoreJob.projectId, testCloudBackupSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudBackupSnapshotRestoreJobsOutput({
+ * const test = pulumi.all([testCloudBackupSnapshotRestoreJob.projectId, testCloudBackupSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudBackupSnapshotRestoreJobsOutput({
  *     projectId: projectId,
  *     clusterName: clusterName,
  *     pageNum: 1,

@@ -19,9 +19,9 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getSearchIndex({
- *     clusterName: "<CLUSTER_NAME>",
  *     indexId: "<INDEX_ID",
  *     projectId: "<PROJECT_ID>",
+ *     clusterName: "<CLUSTER_NAME>",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -168,9 +168,9 @@ export interface GetSearchIndexResult {
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getSearchIndex({
- *     clusterName: "<CLUSTER_NAME>",
  *     indexId: "<INDEX_ID",
  *     projectId: "<PROJECT_ID>",
+ *     clusterName: "<CLUSTER_NAME>",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

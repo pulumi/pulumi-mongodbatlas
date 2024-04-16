@@ -433,6 +433,7 @@ class ServerlessInstance(pulumi.CustomResource):
 
         test = mongodbatlas.ServerlessInstance("test",
             project_id="<PROJECT_ID>",
+            name="<SERVERLESS_INSTANCE_NAME>",
             provider_settings_backing_provider_name="AWS",
             provider_settings_provider_name="SERVERLESS",
             provider_settings_region_name="US_EAST_1")
@@ -492,6 +493,7 @@ class ServerlessInstance(pulumi.CustomResource):
 
         test = mongodbatlas.ServerlessInstance("test",
             project_id="<PROJECT_ID>",
+            name="<SERVERLESS_INSTANCE_NAME>",
             provider_settings_backing_provider_name="AWS",
             provider_settings_provider_name="SERVERLESS",
             provider_settings_region_name="US_EAST_1")

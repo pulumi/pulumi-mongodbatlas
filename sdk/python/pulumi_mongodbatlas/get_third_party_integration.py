@@ -244,7 +244,7 @@ def get_third_party_integration(enabled: Optional[bool] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
+    test_datadog = mongodbatlas.ThirdPartyIntegration("test_datadog",
         project_id="<PROJECT-ID>",
         type="DATADOG",
         api_key="<API-KEY>",
@@ -321,7 +321,7 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
+    test_datadog = mongodbatlas.ThirdPartyIntegration("test_datadog",
         project_id="<PROJECT-ID>",
         type="DATADOG",
         api_key="<API-KEY>",

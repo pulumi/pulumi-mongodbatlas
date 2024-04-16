@@ -18,13 +18,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
  *     projectId: "{PROJECT_ID}",
  *     iamRoleId: "{IAM_ROLE_ID}",
  *     bucketName: "example_bucket",
  *     cloudProvider: "AWS",
  * });
- * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", {
+ * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("test", {
  *     projectId: "{PROJECT_ID}",
  *     clusterName: "{CLUSTER_NAME}",
  *     snapshotId: "{SNAPSHOT_ID}",
@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  *         value: "myName",
  *     }],
  * });
- * const testCloudBackupSnapshotExportJobs = mongodbatlas.getCloudBackupSnapshotExportJobs({
+ * const test = mongodbatlas.getCloudBackupSnapshotExportJobs({
  *     projectId: "{PROJECT_ID}",
  *     clusterName: "{CLUSTER_NAME}",
  * });
@@ -107,13 +107,13 @@ export interface GetCloudBackupSnapshotExportJobsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
  *     projectId: "{PROJECT_ID}",
  *     iamRoleId: "{IAM_ROLE_ID}",
  *     bucketName: "example_bucket",
  *     cloudProvider: "AWS",
  * });
- * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", {
+ * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("test", {
  *     projectId: "{PROJECT_ID}",
  *     clusterName: "{CLUSTER_NAME}",
  *     snapshotId: "{SNAPSHOT_ID}",
@@ -123,7 +123,7 @@ export interface GetCloudBackupSnapshotExportJobsResult {
  *         value: "myName",
  *     }],
  * });
- * const testCloudBackupSnapshotExportJobs = mongodbatlas.getCloudBackupSnapshotExportJobs({
+ * const test = mongodbatlas.getCloudBackupSnapshotExportJobs({
  *     projectId: "{PROJECT_ID}",
  *     clusterName: "{CLUSTER_NAME}",
  * });

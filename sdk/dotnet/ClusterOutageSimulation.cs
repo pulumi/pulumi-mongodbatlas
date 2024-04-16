@@ -36,8 +36,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var outageSimulation = new Mongodbatlas.ClusterOutageSimulation("outageSimulation", new()
+    ///     var outageSimulation = new Mongodbatlas.ClusterOutageSimulation("outage_simulation", new()
     ///     {
+    ///         ProjectId = "64707f06c519c20c3a2b1b03",
     ///         ClusterName = "Cluster0",
     ///         OutageFilters = new[]
     ///         {
@@ -52,7 +53,6 @@ namespace Pulumi.Mongodbatlas
     ///                 RegionName = "US_EAST_2",
     ///             },
     ///         },
-    ///         ProjectId = "64707f06c519c20c3a2b1b03",
     ///     });
     /// 
     /// });

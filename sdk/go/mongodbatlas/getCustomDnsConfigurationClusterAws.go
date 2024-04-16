@@ -14,6 +14,38 @@ import (
 // `CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testCustomDnsConfigurationClusterAws, err := mongodbatlas.NewCustomDnsConfigurationClusterAws(ctx, "test", &mongodbatlas.CustomDnsConfigurationClusterAwsArgs{
+//				ProjectId: pulumi.String("<project-id>"),
+//				Enabled:   pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCustomDnsConfigurationClusterAwsOutput(ctx, mongodbatlas.GetCustomDnsConfigurationClusterAwsOutputArgs{
+//				ProjectId: testCustomDnsConfigurationClusterAws.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func LookupCustomDnsConfigurationClusterAws(ctx *pulumi.Context, args *LookupCustomDnsConfigurationClusterAwsArgs, opts ...pulumi.InvokeOption) (*LookupCustomDnsConfigurationClusterAwsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCustomDnsConfigurationClusterAwsResult

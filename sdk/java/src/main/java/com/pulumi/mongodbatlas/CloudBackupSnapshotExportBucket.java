@@ -43,10 +43,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new CloudBackupSnapshotExportBucket(&#34;test&#34;, CloudBackupSnapshotExportBucketArgs.builder()        
+ *             .projectId(&#34;{PROJECT_ID}&#34;)
+ *             .iamRoleId(&#34;{IAM_ROLE_ID}&#34;)
  *             .bucketName(&#34;example-bucket&#34;)
  *             .cloudProvider(&#34;AWS&#34;)
- *             .iamRoleId(&#34;{IAM_ROLE_ID}&#34;)
- *             .projectId(&#34;{PROJECT_ID}&#34;)
  *             .build());
  * 
  *     }

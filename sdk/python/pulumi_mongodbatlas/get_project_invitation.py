@@ -130,6 +130,22 @@ def get_project_invitation(invitation_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### S
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project_invitation = mongodbatlas.ProjectInvitation("test",
+        username="test-acc-username",
+        project_id="<PROJECT-ID>",
+        roles=["GROUP_DATA_ACCESS_READ_WRITE"])
+    test = mongodbatlas.get_project_invitation_output(project_id=test_project_invitation.project_id,
+        username=test_project_invitation.username)
+    ```
+    <!--End PulumiCodeChooser -->
+
 
     :param str invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
@@ -164,6 +180,22 @@ def get_project_invitation_output(invitation_id: Optional[pulumi.Input[str]] = N
     > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
 
     ## Example Usage
+
+    ### S
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project_invitation = mongodbatlas.ProjectInvitation("test",
+        username="test-acc-username",
+        project_id="<PROJECT-ID>",
+        roles=["GROUP_DATA_ACCESS_READ_WRITE"])
+    test = mongodbatlas.get_project_invitation_output(project_id=test_project_invitation.project_id,
+        username=test_project_invitation.username)
+    ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.

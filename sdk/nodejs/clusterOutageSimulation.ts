@@ -29,7 +29,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const outageSimulation = new mongodbatlas.ClusterOutageSimulation("outageSimulation", {
+ * const outageSimulation = new mongodbatlas.ClusterOutageSimulation("outage_simulation", {
+ *     projectId: "64707f06c519c20c3a2b1b03",
  *     clusterName: "Cluster0",
  *     outageFilters: [
  *         {
@@ -41,7 +42,6 @@ import * as utilities from "./utilities";
  *             regionName: "US_EAST_2",
  *         },
  *     ],
- *     projectId: "64707f06c519c20c3a2b1b03",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

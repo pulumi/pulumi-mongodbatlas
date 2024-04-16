@@ -15,9 +15,9 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test0 = new mongodbatlas.OrgInvitation("test0", {
+ *     username: "test0-acc-username",
  *     orgId: "<ORG-ID>",
  *     roles: ["ORG_OWNER"],
- *     username: "test0-acc-username",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -28,12 +28,12 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test0 = new mongodbatlas.OrgInvitation("test0", {
+ *     username: "test0-acc-username",
  *     orgId: "<ORG-ID>",
  *     roles: [
  *         "ORG_MEMBER",
  *         "ORG_BILLING_ADMIN",
  *     ],
- *     username: "test0-acc-username",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -44,13 +44,13 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test1 = new mongodbatlas.OrgInvitation("test1", {
+ *     username: "test1-acc-username",
  *     orgId: "<ORG-ID>",
- *     roles: ["ORG_MEMBER"],
  *     teamsIds: [
  *         "<TEAM-0-ID>",
  *         "<TEAM-1-ID>",
  *     ],
- *     username: "test1-acc-username",
+ *     roles: ["ORG_MEMBER"],
  * });
  * ```
  * <!--End PulumiCodeChooser -->

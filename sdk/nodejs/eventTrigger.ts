@@ -24,6 +24,7 @@ import * as utilities from "./utilities";
  * const test = new mongodbatlas.EventTrigger("test", {
  *     projectId: "PROJECT ID",
  *     appId: "APPLICATION ID",
+ *     name: "NAME OF THE TRIGGER",
  *     type: "DATABASE",
  *     functionId: "FUNCTION ID",
  *     disabled: false,
@@ -60,31 +61,32 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.EventTrigger("test", {
+ *     projectId: "PROJECT ID",
  *     appId: "APPLICATION ID",
- *     configCollection: "COLLECTION NAME",
- *     configDatabase: "DATABASE NAME",
- *     configFullDocument: false,
- *     configFullDocumentBefore: false,
- *     configMatch: "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
- *     configOperationType: "LOGIN",
+ *     name: "NAME OF THE TRIGGER",
+ *     type: "DATABASE",
+ *     disabled: false,
+ *     unordered: false,
  *     configOperationTypes: [
  *         "INSERT",
  *         "UPDATE",
  *     ],
- *     configProject: "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+ *     configOperationType: "LOGIN",
  *     configProviders: ["anon-user"],
- *     configSchedule: "*",
+ *     configDatabase: "DATABASE NAME",
+ *     configCollection: "COLLECTION NAME",
  *     configServiceId: "1",
- *     disabled: false,
+ *     configMatch: "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+ *     configProject: "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+ *     configFullDocument: false,
+ *     configFullDocumentBefore: false,
+ *     configSchedule: "*",
  *     eventProcessors: {
  *         awsEventbridge: {
  *             configAccountId: "AWS ACCOUNT ID",
  *             configRegion: "AWS REGIOn",
  *         },
  *     },
- *     projectId: "PROJECT ID",
- *     type: "DATABASE",
- *     unordered: false,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -96,13 +98,14 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.EventTrigger("test", {
+ *     projectId: "PROJECT ID",
  *     appId: "APPLICATION ID",
+ *     name: "NAME OF THE TRIGGER",
+ *     type: "AUTHENTICATION",
+ *     functionId: "1",
+ *     disabled: false,
  *     configOperationType: "LOGIN",
  *     configProviders: ["anon-user"],
- *     disabled: false,
- *     functionId: "1",
- *     projectId: "PROJECT ID",
- *     type: "AUTHENTICATION",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -114,12 +117,13 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.EventTrigger("test", {
- *     appId: "APPLICATION ID",
- *     configSchedule: "*",
- *     disabled: false,
- *     functionId: "1",
  *     projectId: "PROJECT ID",
+ *     appId: "APPLICATION ID",
+ *     name: "NAME OF THE TRIGGER",
  *     type: "SCHEDULED",
+ *     functionId: "1",
+ *     disabled: false,
+ *     configSchedule: "*",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

@@ -809,20 +809,21 @@ class AdvancedCluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AdvancedCluster("test",
-            cluster_type="REPLICASET",
             project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
                 region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                        instance_size="M10",
-                        node_count=1,
-                    ),
                     electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
                         instance_size="M10",
                         node_count=3,
                     ),
-                    priority=7,
+                    analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                        instance_size="M10",
+                        node_count=1,
+                    ),
                     provider_name="AWS",
+                    priority=7,
                     region_name="US_EAST_1",
                 )],
             )])
@@ -837,17 +838,18 @@ class AdvancedCluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AdvancedCluster("test",
-            cluster_type="REPLICASET",
             project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
                 region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    backing_provider_name="AWS",
                     electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
                         instance_size="M5",
                     ),
-                    priority=7,
                     provider_name="TENANT",
+                    backing_provider_name="AWS",
                     region_name="US_EAST_1",
+                    priority=7,
                 )],
             )])
         ```
@@ -861,16 +863,17 @@ class AdvancedCluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AdvancedCluster("test",
-            cluster_type="REPLICASET",
             project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
                 region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
                     electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
                         instance_size="M10",
                     ),
-                    priority=7,
                     provider_name="AWS",
                     region_name="US_EAST_1",
+                    priority=7,
                 )],
             )])
         ```
@@ -883,21 +886,22 @@ class AdvancedCluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AdvancedCluster("test",
-            cluster_type="REPLICASET",
             project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
                 region_configs=[
                     mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                            instance_size="M10",
-                            node_count=1,
-                        ),
                         electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
                             instance_size="M10",
                             node_count=3,
                         ),
-                        priority=7,
+                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                            instance_size="M10",
+                            node_count=1,
+                        ),
                         provider_name="AWS",
+                        priority=7,
                         region_name="US_EAST_1",
                     ),
                     mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
@@ -905,8 +909,8 @@ class AdvancedCluster(pulumi.CustomResource):
                             instance_size="M10",
                             node_count=2,
                         ),
-                        priority=6,
                         provider_name="GCP",
+                        priority=6,
                         region_name="NORTH_AMERICA_NORTHEAST_1",
                     ),
                 ],
@@ -921,7 +925,8 @@ class AdvancedCluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster = mongodbatlas.AdvancedCluster("cluster",
-            project_id=mongodbatlas_project["project"]["id"],
+            project_id=project["id"],
+            name=cluster_name,
             cluster_type="SHARDED",
             backup_enabled=True,
             replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
@@ -983,7 +988,8 @@ class AdvancedCluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster = mongodbatlas.AdvancedCluster("cluster",
-            project_id=mongodbatlas_project["project"]["id"],
+            project_id=project["id"],
+            name=cluster_name,
             cluster_type="GEOSHARDED",
             backup_enabled=True,
             replication_specs=[
@@ -1092,7 +1098,7 @@ class AdvancedCluster(pulumi.CustomResource):
         ```python
         import pulumi
 
-        pulumi.export("standard", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard"])
+        pulumi.export("standard", cluster_test["connectionStrings"][0]["standard"])
         ```
         <!--End PulumiCodeChooser -->
         Standard srv
@@ -1100,29 +1106,10 @@ class AdvancedCluster(pulumi.CustomResource):
         ```python
         import pulumi
 
-        pulumi.export("standardSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard_srv"])
+        pulumi.export("standardSrv", cluster_test["connectionStrings"][0]["standardSrv"])
         ```
         <!--End PulumiCodeChooser -->
         Private with Network peering and Custom DNS AWS enabled
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        pulumi.export("private", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private"])
-        # Example return string: private = "mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=atlas-12diht-shard-0"
-        private = "mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net"
-        ```
-        <!--End PulumiCodeChooser -->
-        Private srv with Network peering and Custom DNS AWS enabled
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        pulumi.export("privateSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private_srv"])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        By endpoint_service_id
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -1197,20 +1184,21 @@ class AdvancedCluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AdvancedCluster("test",
-            cluster_type="REPLICASET",
             project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
                 region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                        instance_size="M10",
-                        node_count=1,
-                    ),
                     electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
                         instance_size="M10",
                         node_count=3,
                     ),
-                    priority=7,
+                    analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                        instance_size="M10",
+                        node_count=1,
+                    ),
                     provider_name="AWS",
+                    priority=7,
                     region_name="US_EAST_1",
                 )],
             )])
@@ -1225,17 +1213,18 @@ class AdvancedCluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AdvancedCluster("test",
-            cluster_type="REPLICASET",
             project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
                 region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    backing_provider_name="AWS",
                     electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
                         instance_size="M5",
                     ),
-                    priority=7,
                     provider_name="TENANT",
+                    backing_provider_name="AWS",
                     region_name="US_EAST_1",
+                    priority=7,
                 )],
             )])
         ```
@@ -1249,16 +1238,17 @@ class AdvancedCluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AdvancedCluster("test",
-            cluster_type="REPLICASET",
             project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
                 region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
                     electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
                         instance_size="M10",
                     ),
-                    priority=7,
                     provider_name="AWS",
                     region_name="US_EAST_1",
+                    priority=7,
                 )],
             )])
         ```
@@ -1271,21 +1261,22 @@ class AdvancedCluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AdvancedCluster("test",
-            cluster_type="REPLICASET",
             project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
                 region_configs=[
                     mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                            instance_size="M10",
-                            node_count=1,
-                        ),
                         electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
                             instance_size="M10",
                             node_count=3,
                         ),
-                        priority=7,
+                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
+                            instance_size="M10",
+                            node_count=1,
+                        ),
                         provider_name="AWS",
+                        priority=7,
                         region_name="US_EAST_1",
                     ),
                     mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
@@ -1293,8 +1284,8 @@ class AdvancedCluster(pulumi.CustomResource):
                             instance_size="M10",
                             node_count=2,
                         ),
-                        priority=6,
                         provider_name="GCP",
+                        priority=6,
                         region_name="NORTH_AMERICA_NORTHEAST_1",
                     ),
                 ],
@@ -1309,7 +1300,8 @@ class AdvancedCluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster = mongodbatlas.AdvancedCluster("cluster",
-            project_id=mongodbatlas_project["project"]["id"],
+            project_id=project["id"],
+            name=cluster_name,
             cluster_type="SHARDED",
             backup_enabled=True,
             replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
@@ -1371,7 +1363,8 @@ class AdvancedCluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster = mongodbatlas.AdvancedCluster("cluster",
-            project_id=mongodbatlas_project["project"]["id"],
+            project_id=project["id"],
+            name=cluster_name,
             cluster_type="GEOSHARDED",
             backup_enabled=True,
             replication_specs=[
@@ -1480,7 +1473,7 @@ class AdvancedCluster(pulumi.CustomResource):
         ```python
         import pulumi
 
-        pulumi.export("standard", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard"])
+        pulumi.export("standard", cluster_test["connectionStrings"][0]["standard"])
         ```
         <!--End PulumiCodeChooser -->
         Standard srv
@@ -1488,29 +1481,10 @@ class AdvancedCluster(pulumi.CustomResource):
         ```python
         import pulumi
 
-        pulumi.export("standardSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard_srv"])
+        pulumi.export("standardSrv", cluster_test["connectionStrings"][0]["standardSrv"])
         ```
         <!--End PulumiCodeChooser -->
         Private with Network peering and Custom DNS AWS enabled
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        pulumi.export("private", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private"])
-        # Example return string: private = "mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=atlas-12diht-shard-0"
-        private = "mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net"
-        ```
-        <!--End PulumiCodeChooser -->
-        Private srv with Network peering and Custom DNS AWS enabled
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        pulumi.export("privateSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private_srv"])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        By endpoint_service_id
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

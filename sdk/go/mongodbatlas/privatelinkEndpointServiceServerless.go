@@ -26,7 +26,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2"
+//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws"
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -34,8 +34,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "testServerlessInstance", &mongodbatlas.ServerlessInstanceArgs{
+//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "test", &mongodbatlas.ServerlessInstanceArgs{
 //				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				Name:                                pulumi.String("test-db"),
 //				ProviderSettingsBackingProviderName: pulumi.String("AWS"),
 //				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
 //				ProviderSettingsRegionName:          pulumi.String("US_EAST_1"),
@@ -44,7 +45,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testPrivatelinkEndpointServerless, err := mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "testPrivatelinkEndpointServerless", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
+//			test, err := mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: testServerlessInstance.Name,
 //				ProviderName: pulumi.String("AWS"),
@@ -52,25 +53,25 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ptfeService, err := ec2.NewVpcEndpoint(ctx, "ptfeService", &ec2.VpcEndpointArgs{
-//				VpcId:           pulumi.String("vpc-7fc0a543"),
-//				ServiceName:     testPrivatelinkEndpointServerless.EndpointServiceName,
-//				VpcEndpointType: pulumi.String("Interface"),
-//				SubnetIds: pulumi.StringArray{
-//					pulumi.String("subnet-de0406d2"),
+//			ptfeService, err := aws.NewVpcEndpoint(ctx, "ptfe_service", &aws.VpcEndpointArgs{
+//				VpcId:           "vpc-7fc0a543",
+//				ServiceName:     test.EndpointServiceName,
+//				VpcEndpointType: "Interface",
+//				SubnetIds: []string{
+//					"subnet-de0406d2",
 //				},
-//				SecurityGroupIds: pulumi.StringArray{
-//					pulumi.String("sg-3f238186"),
+//				SecurityGroupIds: []string{
+//					"sg-3f238186",
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "testPrivatelinkEndpointServiceServerless", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
+//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
 //				ProjectId:               pulumi.String("<PROJECT_ID>"),
 //				InstanceName:            testServerlessInstance.Name,
-//				EndpointId:              testPrivatelinkEndpointServerless.EndpointId,
-//				CloudProviderEndpointId: ptfeService.ID(),
+//				EndpointId:              test.EndpointId,
+//				CloudProviderEndpointId: ptfeService.Id,
 //				ProviderName:            pulumi.String("AWS"),
 //				Comment:                 pulumi.String("New serverless endpoint"),
 //			})
@@ -83,6 +84,79 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
+//
+// ## Example with AZURE
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-azurerm/sdk/v1/go/azurerm"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
+//				ProjectId:    pulumi.Any(projectId),
+//				ProviderName: pulumi.String("AZURE"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testPrivateEndpoint, err := index.NewPrivateEndpoint(ctx, "test", &index.PrivateEndpointArgs{
+//				Name:              "endpoint-test",
+//				Location:          testAzurermResourceGroup.Location,
+//				ResourceGroupName: resourceGroupName,
+//				SubnetId:          testAzurermSubnet.Id,
+//				PrivateServiceConnection: []map[string]interface{}{
+//					map[string]interface{}{
+//						"name":                        test.PrivateLinkServiceName,
+//						"privateConnectionResourceId": test.PrivateLinkServiceResourceId,
+//						"isManualConnection":          true,
+//						"requestMessage":              "Azure Private Link test",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "test", &mongodbatlas.ServerlessInstanceArgs{
+//				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				Name:                                pulumi.String("test-db"),
+//				ProviderSettingsBackingProviderName: pulumi.String("AZURE"),
+//				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
+//				ProviderSettingsRegionName:          pulumi.String("US_EAST"),
+//				ContinuousBackupEnabled:             pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
+//				ProjectId:                test.ProjectId,
+//				InstanceName:             testServerlessInstance.Name,
+//				EndpointId:               test.EndpointId,
+//				CloudProviderEndpointId:  testPrivateEndpoint.Id,
+//				PrivateEndpointIpAddress: testPrivateEndpoint.PrivateServiceConnection[0].PrivateIpAddress,
+//				ProviderName:             pulumi.String("AZURE"),
+//				Comment:                  pulumi.String("test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Available complete examples
+// - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
 //
 // ## Import
 //

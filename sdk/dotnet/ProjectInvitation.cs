@@ -25,12 +25,12 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.ProjectInvitation("test", new()
     ///     {
+    ///         Username = "test-acc-username",
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Roles = new[]
     ///         {
     ///             "GROUP_DATA_ACCESS_READ_WRITE",
     ///         },
-    ///         Username = "test-acc-username",
     ///     });
     /// 
     /// });
@@ -48,13 +48,13 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.ProjectInvitation("test", new()
     ///     {
+    ///         Username = "test-acc-username",
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Roles = new[]
     ///         {
     ///             "GROUP_READ_ONLY",
     ///             "GROUP_DATA_ACCESS_READ_ONLY",
     ///         },
-    ///         Username = "test-acc-username",
     ///     });
     /// 
     /// });

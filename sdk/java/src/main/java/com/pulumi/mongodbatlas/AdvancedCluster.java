@@ -71,20 +71,21 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new AdvancedCluster(&#34;test&#34;, AdvancedClusterArgs.builder()        
- *             .clusterType(&#34;REPLICASET&#34;)
  *             .projectId(&#34;PROJECT ID&#34;)
+ *             .name(&#34;NAME OF CLUSTER&#34;)
+ *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
  *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                     .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                         .instanceSize(&#34;M10&#34;)
- *                         .nodeCount(1)
- *                         .build())
  *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
  *                         .instanceSize(&#34;M10&#34;)
  *                         .nodeCount(3)
  *                         .build())
- *                     .priority(7)
+ *                     .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
+ *                         .instanceSize(&#34;M10&#34;)
+ *                         .nodeCount(1)
+ *                         .build())
  *                     .providerName(&#34;AWS&#34;)
+ *                     .priority(7)
  *                     .regionName(&#34;US_EAST_1&#34;)
  *                     .build())
  *                 .build())
@@ -121,17 +122,18 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new AdvancedCluster(&#34;test&#34;, AdvancedClusterArgs.builder()        
- *             .clusterType(&#34;REPLICASET&#34;)
  *             .projectId(&#34;PROJECT ID&#34;)
+ *             .name(&#34;NAME OF CLUSTER&#34;)
+ *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
  *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                     .backingProviderName(&#34;AWS&#34;)
  *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
  *                         .instanceSize(&#34;M5&#34;)
  *                         .build())
- *                     .priority(7)
  *                     .providerName(&#34;TENANT&#34;)
+ *                     .backingProviderName(&#34;AWS&#34;)
  *                     .regionName(&#34;US_EAST_1&#34;)
+ *                     .priority(7)
  *                     .build())
  *                 .build())
  *             .build());
@@ -167,16 +169,17 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new AdvancedCluster(&#34;test&#34;, AdvancedClusterArgs.builder()        
- *             .clusterType(&#34;REPLICASET&#34;)
  *             .projectId(&#34;PROJECT ID&#34;)
+ *             .name(&#34;NAME OF CLUSTER&#34;)
+ *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
  *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
  *                         .instanceSize(&#34;M10&#34;)
  *                         .build())
- *                     .priority(7)
  *                     .providerName(&#34;AWS&#34;)
  *                     .regionName(&#34;US_EAST_1&#34;)
+ *                     .priority(7)
  *                     .build())
  *                 .build())
  *             .build());
@@ -211,21 +214,22 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new AdvancedCluster(&#34;test&#34;, AdvancedClusterArgs.builder()        
- *             .clusterType(&#34;REPLICASET&#34;)
  *             .projectId(&#34;PROJECT ID&#34;)
+ *             .name(&#34;NAME OF CLUSTER&#34;)
+ *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
  *                 .regionConfigs(                
  *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                         .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
- *                             .nodeCount(1)
- *                             .build())
  *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
  *                             .instanceSize(&#34;M10&#34;)
  *                             .nodeCount(3)
  *                             .build())
- *                         .priority(7)
+ *                         .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
+ *                             .instanceSize(&#34;M10&#34;)
+ *                             .nodeCount(1)
+ *                             .build())
  *                         .providerName(&#34;AWS&#34;)
+ *                         .priority(7)
  *                         .regionName(&#34;US_EAST_1&#34;)
  *                         .build(),
  *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
@@ -233,8 +237,8 @@ import javax.annotation.Nullable;
  *                             .instanceSize(&#34;M10&#34;)
  *                             .nodeCount(2)
  *                             .build())
- *                         .priority(6)
  *                         .providerName(&#34;GCP&#34;)
+ *                         .priority(6)
  *                         .regionName(&#34;NORTH_AMERICA_NORTHEAST_1&#34;)
  *                         .build())
  *                 .build())
@@ -271,7 +275,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cluster = new AdvancedCluster(&#34;cluster&#34;, AdvancedClusterArgs.builder()        
- *             .projectId(mongodbatlas_project.project().id())
+ *             .projectId(project.id())
+ *             .name(clusterName)
  *             .clusterType(&#34;SHARDED&#34;)
  *             .backupEnabled(true)
  *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
@@ -355,7 +360,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cluster = new AdvancedCluster(&#34;cluster&#34;, AdvancedClusterArgs.builder()        
- *             .projectId(mongodbatlas_project.project().id())
+ *             .projectId(project.id())
+ *             .name(clusterName)
  *             .clusterType(&#34;GEOSHARDED&#34;)
  *             .backupEnabled(true)
  *             .replicationSpecs(            
@@ -481,7 +487,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export(&#34;standard&#34;, mongodbatlas_cluster.cluster-test().connection_strings()[0].standard());
+ *         ctx.export(&#34;standard&#34;, cluster_test.connectionStrings()[0].standard());
  *     }
  * }
  * ```
@@ -507,68 +513,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export(&#34;standardSrv&#34;, mongodbatlas_cluster.cluster-test().connection_strings()[0].standard_srv());
+ *         ctx.export(&#34;standardSrv&#34;, cluster_test.connectionStrings()[0].standardSrv());
  *     }
  * }
  * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * Private with Network peering and Custom DNS AWS enabled
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         ctx.export(&#34;private&#34;, mongodbatlas_cluster.cluster-test().connection_strings()[0].private());
- *         // Example return string: private = &#34;mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&amp;authSource=admin&amp;replicaSet=atlas-12diht-shard-0&#34;
- *         final var private = &#34;mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net&#34;;
- * 
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * Private srv with Network peering and Custom DNS AWS enabled
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         ctx.export(&#34;privateSrv&#34;, mongodbatlas_cluster.cluster-test().connection_strings()[0].private_srv());
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * By endpoint_service_id
  * ## Import
  * 
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

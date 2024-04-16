@@ -25,11 +25,12 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testRolesOrgId = Mongodbatlas.GetRolesOrgId.Invoke();
+    ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
     /// 
-    ///     var testProject = new Mongodbatlas.Project("testProject", new()
+    ///     var testProject = new Mongodbatlas.Project("test", new()
     ///     {
-    ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+    ///         Name = "project-name",
+    ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
     ///         ProjectOwnerId = "&lt;OWNER_ACCOUNT_ID&gt;",
     ///         Teams = new[]
     ///         {

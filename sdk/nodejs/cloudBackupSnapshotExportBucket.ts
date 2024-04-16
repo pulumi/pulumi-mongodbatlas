@@ -17,10 +17,10 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
+ *     projectId: "{PROJECT_ID}",
+ *     iamRoleId: "{IAM_ROLE_ID}",
  *     bucketName: "example-bucket",
  *     cloudProvider: "AWS",
- *     iamRoleId: "{IAM_ROLE_ID}",
- *     projectId: "{PROJECT_ID}",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

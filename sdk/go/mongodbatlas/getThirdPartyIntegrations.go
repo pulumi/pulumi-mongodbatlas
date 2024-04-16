@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testPagerDuty, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testPagerDuty", &mongodbatlas.ThirdPartyIntegrationArgs{
+//			testPagerDuty, err := mongodbatlas.NewThirdPartyIntegration(ctx, "test_pager_duty", &mongodbatlas.ThirdPartyIntegrationArgs{
 //				ProjectId:  pulumi.String("<PROJECT-ID>"),
 //				Type:       pulumi.String("PAGER_DUTY"),
 //				ServiceKey: pulumi.String("<PAGER-DUTY-SERVICE-KEY>"),
@@ -39,7 +39,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewThirdPartyIntegration(ctx, "testDatadog", &mongodbatlas.ThirdPartyIntegrationArgs{
+//			_, err = mongodbatlas.NewThirdPartyIntegration(ctx, "test_datadog", &mongodbatlas.ThirdPartyIntegrationArgs{
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				Type:      pulumi.String("DATADOG"),
 //				ApiKey:    pulumi.String("<API-KEY>"),

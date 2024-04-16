@@ -84,11 +84,11 @@ def get_third_party_integrations(project_id: Optional[str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_pager_duty = mongodbatlas.ThirdPartyIntegration("testPagerDuty",
+    test_pager_duty = mongodbatlas.ThirdPartyIntegration("test_pager_duty",
         project_id="<PROJECT-ID>",
         type="PAGER_DUTY",
         service_key="<PAGER-DUTY-SERVICE-KEY>")
-    test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
+    test_datadog = mongodbatlas.ThirdPartyIntegration("test_datadog",
         project_id="<PROJECT-ID>",
         type="DATADOG",
         api_key="<API-KEY>",
@@ -127,11 +127,11 @@ def get_third_party_integrations_output(project_id: Optional[pulumi.Input[str]] 
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_pager_duty = mongodbatlas.ThirdPartyIntegration("testPagerDuty",
+    test_pager_duty = mongodbatlas.ThirdPartyIntegration("test_pager_duty",
         project_id="<PROJECT-ID>",
         type="PAGER_DUTY",
         service_key="<PAGER-DUTY-SERVICE-KEY>")
-    test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
+    test_datadog = mongodbatlas.ThirdPartyIntegration("test_datadog",
         project_id="<PROJECT-ID>",
         type="DATADOG",
         api_key="<API-KEY>",

@@ -28,8 +28,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var outageSimulation = Mongodbatlas.GetClusterOutageSimulation.Invoke(new()
         ///     {
-        ///         ClusterName = "Cluster0",
         ///         ProjectId = "64707f06c519c20c3a2b1b03",
+        ///         ClusterName = "Cluster0",
         ///     });
         /// 
         /// });
@@ -56,8 +56,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var outageSimulation = Mongodbatlas.GetClusterOutageSimulation.Invoke(new()
         ///     {
-        ///         ClusterName = "Cluster0",
         ///         ProjectId = "64707f06c519c20c3a2b1b03",
+        ///         ClusterName = "Cluster0",
         ///     });
         /// 
         /// });

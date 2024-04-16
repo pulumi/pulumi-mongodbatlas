@@ -609,12 +609,13 @@ class SearchIndex(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test_basic_search_index = mongodbatlas.SearchIndex("test-basic-search-index",
-            analyzer="lucene.standard",
+            name="test-basic-search-index",
+            project_id="<PROJECT_ID>",
             cluster_name="<CLUSTER_NAME>",
+            analyzer="lucene.standard",
             collection_name="collection_test",
             database="database_test",
             mappings_dynamic=True,
-            project_id="<PROJECT_ID>",
             search_analyzer="lucene.standard")
         ```
         <!--End PulumiCodeChooser -->
@@ -685,6 +686,7 @@ class SearchIndex(pulumi.CustomResource):
               }
         }
         \"\"\",
+            name="test-advanced-search-index",
             search_analyzer="lucene.standard",
             analyzers=\"\"\" [{
          "name": "index_analyzer_test_name",
@@ -767,12 +769,13 @@ class SearchIndex(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test_basic_search_index = mongodbatlas.SearchIndex("test-basic-search-index",
-            analyzer="lucene.standard",
+            name="test-basic-search-index",
+            project_id="<PROJECT_ID>",
             cluster_name="<CLUSTER_NAME>",
+            analyzer="lucene.standard",
             collection_name="collection_test",
             database="database_test",
             mappings_dynamic=True,
-            project_id="<PROJECT_ID>",
             search_analyzer="lucene.standard")
         ```
         <!--End PulumiCodeChooser -->
@@ -843,6 +846,7 @@ class SearchIndex(pulumi.CustomResource):
               }
         }
         \"\"\",
+            name="test-advanced-search-index",
             search_analyzer="lucene.standard",
             analyzers=\"\"\" [{
          "name": "index_analyzer_test_name",

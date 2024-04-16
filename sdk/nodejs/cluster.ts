@@ -17,22 +17,23 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     autoScalingDiskGbEnabled: true,
- *     cloudBackup: true,
- *     clusterType: "REPLICASET",
- *     mongoDbMajorVersion: "4.2",
  *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M40",
- *     providerName: "AWS",
+ *     name: "cluster-test",
+ *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
  *         regionsConfigs: [{
+ *             regionName: "US_EAST_1",
  *             electableNodes: 3,
  *             priority: 7,
  *             readOnlyNodes: 0,
- *             regionName: "US_EAST_1",
  *         }],
  *     }],
+ *     cloudBackup: true,
+ *     autoScalingDiskGbEnabled: true,
+ *     mongoDbMajorVersion: "4.2",
+ *     providerName: "AWS",
+ *     providerInstanceSizeName: "M40",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -45,23 +46,24 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.Cluster("test", {
- *     autoScalingDiskGbEnabled: true,
- *     cloudBackup: true,
- *     clusterType: "REPLICASET",
- *     mongoDbMajorVersion: "4.2",
  *     projectId: "<YOUR-PROJECT-ID>",
- *     providerDiskTypeName: "P6",
- *     providerInstanceSizeName: "M30",
- *     providerName: "AZURE",
+ *     name: "test",
+ *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
  *         regionsConfigs: [{
+ *             regionName: "US_EAST",
  *             electableNodes: 3,
  *             priority: 7,
  *             readOnlyNodes: 0,
- *             regionName: "US_EAST",
  *         }],
  *     }],
+ *     cloudBackup: true,
+ *     autoScalingDiskGbEnabled: true,
+ *     mongoDbMajorVersion: "4.2",
+ *     providerName: "AZURE",
+ *     providerDiskTypeName: "P6",
+ *     providerInstanceSizeName: "M30",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -74,22 +76,23 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.Cluster("test", {
- *     autoScalingDiskGbEnabled: true,
- *     cloudBackup: true,
- *     clusterType: "REPLICASET",
- *     mongoDbMajorVersion: "4.2",
  *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M30",
- *     providerName: "GCP",
+ *     name: "test",
+ *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
  *         regionsConfigs: [{
+ *             regionName: "EASTERN_US",
  *             electableNodes: 3,
  *             priority: 7,
  *             readOnlyNodes: 0,
- *             regionName: "EASTERN_US",
  *         }],
  *     }],
+ *     cloudBackup: true,
+ *     autoScalingDiskGbEnabled: true,
+ *     mongoDbMajorVersion: "4.2",
+ *     providerName: "GCP",
+ *     providerInstanceSizeName: "M30",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -102,32 +105,33 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test-multi-region",
+ *     numShards: 1,
  *     cloudBackup: true,
  *     clusterType: "REPLICASET",
- *     numShards: 1,
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M10",
  *     providerName: "AWS",
+ *     providerInstanceSizeName: "M10",
  *     replicationSpecs: [{
  *         numShards: 1,
  *         regionsConfigs: [
  *             {
+ *                 regionName: "US_EAST_1",
  *                 electableNodes: 3,
  *                 priority: 7,
  *                 readOnlyNodes: 0,
- *                 regionName: "US_EAST_1",
  *             },
  *             {
+ *                 regionName: "US_EAST_2",
  *                 electableNodes: 2,
  *                 priority: 6,
  *                 readOnlyNodes: 0,
- *                 regionName: "US_EAST_2",
  *             },
  *             {
+ *                 regionName: "US_WEST_1",
  *                 electableNodes: 2,
  *                 priority: 5,
  *                 readOnlyNodes: 2,
- *                 regionName: "US_WEST_1",
  *             },
  *         ],
  *     }],
@@ -143,32 +147,33 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test-global",
+ *     numShards: 1,
  *     cloudBackup: true,
  *     clusterType: "GEOSHARDED",
- *     numShards: 1,
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M30",
  *     providerName: "AWS",
+ *     providerInstanceSizeName: "M30",
  *     replicationSpecs: [
  *         {
+ *             zoneName: "Zone 1",
  *             numShards: 2,
  *             regionsConfigs: [{
+ *                 regionName: "US_EAST_1",
  *                 electableNodes: 3,
  *                 priority: 7,
  *                 readOnlyNodes: 0,
- *                 regionName: "US_EAST_1",
  *             }],
- *             zoneName: "Zone 1",
  *         },
  *         {
+ *             zoneName: "Zone 2",
  *             numShards: 2,
  *             regionsConfigs: [{
+ *                 regionName: "EU_CENTRAL_1",
  *                 electableNodes: 3,
  *                 priority: 7,
  *                 readOnlyNodes: 0,
- *                 regionName: "EU_CENTRAL_1",
  *             }],
- *             zoneName: "Zone 2",
  *         },
  *     ],
  * });
@@ -181,11 +186,12 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     backingProviderName: "AWS",
  *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M2",
+ *     name: "cluster-test-global",
  *     providerName: "TENANT",
+ *     backingProviderName: "AWS",
  *     providerRegionName: "US_EAST_1",
+ *     providerInstanceSizeName: "M2",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -196,11 +202,12 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     backingProviderName: "AWS",
  *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M0",
+ *     name: "cluster-test-global",
  *     providerName: "TENANT",
+ *     backingProviderName: "AWS",
  *     providerRegionName: "US_EAST_1",
+ *     providerInstanceSizeName: "M0",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -210,7 +217,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  *
- * export const standard = mongodbatlas_cluster["cluster-test"].connection_strings[0].standard;
+ * export const standard = cluster_test.connectionStrings[0].standard;
  * ```
  * <!--End PulumiCodeChooser -->
  * Standard srv
@@ -218,33 +225,10 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  *
- * export const standardSrv = mongodbatlas_cluster["cluster-test"].connection_strings[0].standard_srv;
+ * export const standardSrv = cluster_test.connectionStrings[0].standardSrv;
  * ```
  * <!--End PulumiCodeChooser -->
  * Private with Network peering and Custom DNS AWS enabled
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- *
- * export = async () => {
- *     // Example return string: private = "mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=atlas-12diht-shard-0"
- *     const private = "mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net";
- *     return {
- *         "private": mongodbatlas_cluster["cluster-test"].connection_strings[0]["private"],
- *     };
- * }
- * ```
- * <!--End PulumiCodeChooser -->
- * Private srv with Network peering and Custom DNS AWS enabled
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- *
- * export const privateSrv = mongodbatlas_cluster["cluster-test"].connection_strings[0].private_srv;
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * By endpointServiceId
  * ## Import
  *
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

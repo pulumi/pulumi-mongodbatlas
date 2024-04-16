@@ -40,23 +40,24 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				Username:         pulumi.String("test-acc-username"),
+//				Password:         pulumi.String("test-acc-password"),
+//				ProjectId:        pulumi.String("<PROJECT-ID>"),
 //				AuthDatabaseName: pulumi.String("admin"),
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("readWrite"),
+//						DatabaseName: pulumi.String("dbforApp"),
+//					},
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("readAnyDatabase"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//				},
 //				Labels: mongodbatlas.DatabaseUserLabelArray{
 //					&mongodbatlas.DatabaseUserLabelArgs{
 //						Key:   pulumi.String("My Key"),
 //						Value: pulumi.String("My Value"),
-//					},
-//				},
-//				Password:  pulumi.String("test-acc-password"),
-//				ProjectId: pulumi.String("<PROJECT-ID>"),
-//				Roles: mongodbatlas.DatabaseUserRoleArray{
-//					&mongodbatlas.DatabaseUserRoleArgs{
-//						DatabaseName: pulumi.String("dbforApp"),
-//						RoleName:     pulumi.String("readWrite"),
-//					},
-//					&mongodbatlas.DatabaseUserRoleArgs{
-//						DatabaseName: pulumi.String("admin"),
-//						RoleName:     pulumi.String("readAnyDatabase"),
 //					},
 //				},
 //				Scopes: mongodbatlas.DatabaseUserScopeArray{
@@ -69,7 +70,6 @@ import (
 //						Type: pulumi.String("CLUSTER"),
 //					},
 //				},
-//				Username: pulumi.String("test-acc-username"),
 //			})
 //			if err != nil {
 //				return err
@@ -95,18 +95,20 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				Username:         pulumi.String("test-acc-username"),
+//				X509Type:         pulumi.String("MANAGED"),
+//				ProjectId:        pulumi.String("<PROJECT-ID>"),
 //				AuthDatabaseName: pulumi.String("$external"),
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("readAnyDatabase"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//				},
 //				Labels: mongodbatlas.DatabaseUserLabelArray{
 //					&mongodbatlas.DatabaseUserLabelArgs{
 //						Key:   pulumi.String("%s"),
 //						Value: pulumi.String("%s"),
-//					},
-//				},
-//				ProjectId: pulumi.String("<PROJECT-ID>"),
-//				Roles: mongodbatlas.DatabaseUserRoleArray{
-//					&mongodbatlas.DatabaseUserRoleArgs{
-//						DatabaseName: pulumi.String("admin"),
-//						RoleName:     pulumi.String("readAnyDatabase"),
 //					},
 //				},
 //				Scopes: mongodbatlas.DatabaseUserScopeArray{
@@ -115,8 +117,6 @@ import (
 //						Type: pulumi.String("CLUSTER"),
 //					},
 //				},
-//				Username: pulumi.String("test-acc-username"),
-//				X509Type: pulumi.String("MANAGED"),
 //			})
 //			if err != nil {
 //				return err
@@ -142,7 +142,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
-//				Username:         pulumi.Any(aws_iam_role.Test.Arn),
+//				Username:         pulumi.Any(testAwsIamRole.Arn),
 //				ProjectId:        pulumi.String("<PROJECT-ID>"),
 //				AuthDatabaseName: pulumi.String("$external"),
 //				AwsIamType:       pulumi.String("ROLE"),
@@ -191,16 +191,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				Username:         pulumi.String("64d613677e1ad50839cce4db/testUserOr"),
+//				ProjectId:        pulumi.String("6414908c207f4d22f4d8f232"),
 //				AuthDatabaseName: pulumi.String("admin"),
 //				OidcAuthType:     pulumi.String("IDP_GROUP"),
-//				ProjectId:        pulumi.String("6414908c207f4d22f4d8f232"),
 //				Roles: mongodbatlas.DatabaseUserRoleArray{
 //					&mongodbatlas.DatabaseUserRoleArgs{
-//						DatabaseName: pulumi.String("admin"),
 //						RoleName:     pulumi.String("readWriteAnyDatabase"),
+//						DatabaseName: pulumi.String("admin"),
 //					},
 //				},
-//				Username: pulumi.String("64d613677e1ad50839cce4db/testUserOr"),
 //			})
 //			if err != nil {
 //				return err

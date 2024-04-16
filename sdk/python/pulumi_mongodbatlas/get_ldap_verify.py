@@ -146,6 +146,35 @@ def get_ldap_verify(project_id: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project = mongodbatlas.Project("test",
+        name="NAME OF THE PROJECT",
+        org_id="ORG ID")
+    test_cluster = mongodbatlas.Cluster("test",
+        project_id=test_project.id,
+        name="NAME OF THE CLUSTER",
+        provider_name="AWS",
+        provider_region_name="US_EAST_2",
+        provider_instance_size_name="M10",
+        cloud_backup=True)
+    test_ldap_verify = mongodbatlas.LdapVerify("test",
+        project_id=test_project.id,
+        hostname="HOSTNAME",
+        port=636,
+        bind_username="USERNAME",
+        bind_password="PASSWORD",
+        opts=pulumi.ResourceOptions(depends_on=[test_cluster]))
+    test = mongodbatlas.get_ldap_verify_output(project_id=test_ldap_verify.project_id,
+        request_id=test_ldap_verify.request_id)
+    ```
+    <!--End PulumiCodeChooser -->
+
 
     :param str project_id: Unique identifier for the Atlas project associated with the verification request.
     :param str request_id: Unique identifier of a request to verify an LDAP configuration.
@@ -176,6 +205,35 @@ def get_ldap_verify_output(project_id: Optional[pulumi.Input[str]] = None,
     `LdapVerify` describes a LDAP Verify.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project = mongodbatlas.Project("test",
+        name="NAME OF THE PROJECT",
+        org_id="ORG ID")
+    test_cluster = mongodbatlas.Cluster("test",
+        project_id=test_project.id,
+        name="NAME OF THE CLUSTER",
+        provider_name="AWS",
+        provider_region_name="US_EAST_2",
+        provider_instance_size_name="M10",
+        cloud_backup=True)
+    test_ldap_verify = mongodbatlas.LdapVerify("test",
+        project_id=test_project.id,
+        hostname="HOSTNAME",
+        port=636,
+        bind_username="USERNAME",
+        bind_password="PASSWORD",
+        opts=pulumi.ResourceOptions(depends_on=[test_cluster]))
+    test = mongodbatlas.get_ldap_verify_output(project_id=test_ldap_verify.project_id,
+        request_id=test_ldap_verify.request_id)
+    ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Unique identifier for the Atlas project associated with the verification request.

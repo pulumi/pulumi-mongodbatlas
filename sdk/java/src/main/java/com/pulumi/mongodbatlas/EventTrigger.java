@@ -54,6 +54,7 @@ import javax.annotation.Nullable;
  *         var test = new EventTrigger(&#34;test&#34;, EventTriggerArgs.builder()        
  *             .projectId(&#34;PROJECT ID&#34;)
  *             .appId(&#34;APPLICATION ID&#34;)
+ *             .name(&#34;NAME OF THE TRIGGER&#34;)
  *             .type(&#34;DATABASE&#34;)
  *             .functionId(&#34;FUNCTION ID&#34;)
  *             .disabled(false)
@@ -112,30 +113,31 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new EventTrigger(&#34;test&#34;, EventTriggerArgs.builder()        
+ *             .projectId(&#34;PROJECT ID&#34;)
  *             .appId(&#34;APPLICATION ID&#34;)
- *             .configCollection(&#34;COLLECTION NAME&#34;)
- *             .configDatabase(&#34;DATABASE NAME&#34;)
- *             .configFullDocument(false)
- *             .configFullDocumentBefore(false)
- *             .configMatch(&#34;{\&#34;updateDescription.updatedFields\&#34;:{\&#34;status\&#34;:\&#34;blocked\&#34;}}&#34;)
- *             .configOperationType(&#34;LOGIN&#34;)
+ *             .name(&#34;NAME OF THE TRIGGER&#34;)
+ *             .type(&#34;DATABASE&#34;)
+ *             .disabled(false)
+ *             .unordered(false)
  *             .configOperationTypes(            
  *                 &#34;INSERT&#34;,
  *                 &#34;UPDATE&#34;)
- *             .configProject(&#34;{\&#34;updateDescription.updatedFields\&#34;:{\&#34;status\&#34;:\&#34;blocked\&#34;}}&#34;)
+ *             .configOperationType(&#34;LOGIN&#34;)
  *             .configProviders(&#34;anon-user&#34;)
- *             .configSchedule(&#34;*&#34;)
+ *             .configDatabase(&#34;DATABASE NAME&#34;)
+ *             .configCollection(&#34;COLLECTION NAME&#34;)
  *             .configServiceId(&#34;1&#34;)
- *             .disabled(false)
+ *             .configMatch(&#34;{\&#34;updateDescription.updatedFields\&#34;:{\&#34;status\&#34;:\&#34;blocked\&#34;}}&#34;)
+ *             .configProject(&#34;{\&#34;updateDescription.updatedFields\&#34;:{\&#34;status\&#34;:\&#34;blocked\&#34;}}&#34;)
+ *             .configFullDocument(false)
+ *             .configFullDocumentBefore(false)
+ *             .configSchedule(&#34;*&#34;)
  *             .eventProcessors(EventTriggerEventProcessorsArgs.builder()
  *                 .awsEventbridge(EventTriggerEventProcessorsAwsEventbridgeArgs.builder()
  *                     .configAccountId(&#34;AWS ACCOUNT ID&#34;)
  *                     .configRegion(&#34;AWS REGIOn&#34;)
  *                     .build())
  *                 .build())
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .type(&#34;DATABASE&#34;)
- *             .unordered(false)
  *             .build());
  * 
  *     }
@@ -167,13 +169,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new EventTrigger(&#34;test&#34;, EventTriggerArgs.builder()        
+ *             .projectId(&#34;PROJECT ID&#34;)
  *             .appId(&#34;APPLICATION ID&#34;)
+ *             .name(&#34;NAME OF THE TRIGGER&#34;)
+ *             .type(&#34;AUTHENTICATION&#34;)
+ *             .functionId(&#34;1&#34;)
+ *             .disabled(false)
  *             .configOperationType(&#34;LOGIN&#34;)
  *             .configProviders(&#34;anon-user&#34;)
- *             .disabled(false)
- *             .functionId(&#34;1&#34;)
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .type(&#34;AUTHENTICATION&#34;)
  *             .build());
  * 
  *     }
@@ -205,12 +208,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new EventTrigger(&#34;test&#34;, EventTriggerArgs.builder()        
- *             .appId(&#34;APPLICATION ID&#34;)
- *             .configSchedule(&#34;*&#34;)
- *             .disabled(false)
- *             .functionId(&#34;1&#34;)
  *             .projectId(&#34;PROJECT ID&#34;)
+ *             .appId(&#34;APPLICATION ID&#34;)
+ *             .name(&#34;NAME OF THE TRIGGER&#34;)
  *             .type(&#34;SCHEDULED&#34;)
+ *             .functionId(&#34;1&#34;)
+ *             .disabled(false)
+ *             .configSchedule(&#34;*&#34;)
  *             .build());
  * 
  *     }

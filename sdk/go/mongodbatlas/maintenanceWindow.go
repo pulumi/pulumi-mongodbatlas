@@ -40,9 +40,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewMaintenanceWindow(ctx, "test", &mongodbatlas.MaintenanceWindowArgs{
+//				ProjectId: pulumi.String("<your-project-id>"),
 //				DayOfWeek: pulumi.Int(3),
 //				HourOfDay: pulumi.Int(4),
-//				ProjectId: pulumi.String("<your-project-id>"),
 //			})
 //			if err != nil {
 //				return err
@@ -68,8 +68,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewMaintenanceWindow(ctx, "test", &mongodbatlas.MaintenanceWindowArgs{
-//				Defer:     pulumi.Bool(true),
 //				ProjectId: pulumi.String("<your-project-id>"),
+//				Defer:     pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err

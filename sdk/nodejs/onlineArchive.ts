@@ -24,10 +24,10 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.OnlineArchive("test", {
- *     projectId: _var.project_id,
- *     clusterName: _var.cluster_name,
- *     collName: _var.collection_name,
- *     dbName: _var.database_name,
+ *     projectId: projectId,
+ *     clusterName: clusterName,
+ *     collName: collectionName,
+ *     dbName: databaseName,
  *     partitionFields: [
  *         {
  *             fieldName: "dateField",
@@ -66,10 +66,10 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.OnlineArchive("test", {
- *     projectId: _var.project_id,
- *     clusterName: _var.cluster_name,
- *     collName: _var.collection_name,
- *     dbName: _var.database_name,
+ *     projectId: projectId,
+ *     clusterName: clusterName,
+ *     collName: collectionName,
+ *     dbName: databaseName,
  *     partitionFields: [
  *         {
  *             fieldName: "firstName",

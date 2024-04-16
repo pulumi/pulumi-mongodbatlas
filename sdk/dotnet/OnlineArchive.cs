@@ -32,10 +32,10 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.OnlineArchive("test", new()
     ///     {
-    ///         ProjectId = @var.Project_id,
-    ///         ClusterName = @var.Cluster_name,
-    ///         CollName = @var.Collection_name,
-    ///         DbName = @var.Database_name,
+    ///         ProjectId = projectId,
+    ///         ClusterName = clusterName,
+    ///         CollName = collectionName,
+    ///         DbName = databaseName,
     ///         PartitionFields = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs
@@ -87,10 +87,10 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.OnlineArchive("test", new()
     ///     {
-    ///         ProjectId = @var.Project_id,
-    ///         ClusterName = @var.Cluster_name,
-    ///         CollName = @var.Collection_name,
-    ///         DbName = @var.Database_name,
+    ///         ProjectId = projectId,
+    ///         ClusterName = clusterName,
+    ///         CollName = collectionName,
+    ///         DbName = databaseName,
     ///         PartitionFields = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs

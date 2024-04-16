@@ -9,6 +9,91 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.Cluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "clusterTest",
+ *     providerName: "AWS",
+ *     providerRegionName: "EU_CENTRAL_1",
+ *     providerInstanceSizeName: "M10",
+ *     cloudBackup: true,
+ * });
+ * const testCloudBackupSchedule = new mongodbatlas.CloudBackupSchedule("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     referenceHourOfDay: 3,
+ *     referenceMinuteOfHour: 45,
+ *     restoreWindowDays: 4,
+ *     policyItemHourly: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemDaily: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemWeeklies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "weeks",
+ *         retentionValue: 4,
+ *     }],
+ *     policyItemMonthlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "months",
+ *         retentionValue: 12,
+ *     }],
+ * });
+ * const test = mongodbatlas.getCloudBackupScheduleOutput({
+ *     projectId: testCloudBackupSchedule.projectId,
+ *     clusterName: testCloudBackupSchedule.clusterName,
+ * });
+ * const backupPolicy = mongodbatlas.getBackupCompliancePolicyOutput({
+ *     projectId: testCloudBackupSchedule.projectId,
+ * });
+ * const backupPolicyBackupCompliancePolicy = new mongodbatlas.BackupCompliancePolicy("backup_policy", {
+ *     projectId: "<PROJECT-ID>",
+ *     authorizedEmail: "user@email.com",
+ *     authorizedUserFirstName: "First",
+ *     authorizedUserLastName: "Last",
+ *     copyProtectionEnabled: false,
+ *     pitEnabled: false,
+ *     encryptionAtRestEnabled: false,
+ *     restoreWindowDays: 7,
+ *     onDemandPolicyItem: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 3,
+ *     },
+ *     policyItemHourly: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemDaily: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemWeeklies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "weeks",
+ *         retentionValue: 4,
+ *     }],
+ *     policyItemMonthlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "months",
+ *         retentionValue: 12,
+ *     }],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Import
  *
  * Backup Compliance Policy entries can be imported using project project_id  in the format `project_id`, e.g.

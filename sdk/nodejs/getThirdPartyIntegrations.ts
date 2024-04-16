@@ -19,12 +19,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testPagerDuty = new mongodbatlas.ThirdPartyIntegration("testPagerDuty", {
+ * const testPagerDuty = new mongodbatlas.ThirdPartyIntegration("test_pager_duty", {
  *     projectId: "<PROJECT-ID>",
  *     type: "PAGER_DUTY",
  *     serviceKey: "<PAGER-DUTY-SERVICE-KEY>",
  * });
- * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("test_datadog", {
  *     projectId: "<PROJECT-ID>",
  *     type: "DATADOG",
  *     apiKey: "<API-KEY>",
@@ -84,12 +84,12 @@ export interface GetThirdPartyIntegrationsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testPagerDuty = new mongodbatlas.ThirdPartyIntegration("testPagerDuty", {
+ * const testPagerDuty = new mongodbatlas.ThirdPartyIntegration("test_pager_duty", {
  *     projectId: "<PROJECT-ID>",
  *     type: "PAGER_DUTY",
  *     serviceKey: "<PAGER-DUTY-SERVICE-KEY>",
  * });
- * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("test_datadog", {
  *     projectId: "<PROJECT-ID>",
  *     type: "DATADOG",
  *     apiKey: "<API-KEY>",

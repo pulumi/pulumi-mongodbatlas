@@ -18,14 +18,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testServerlessInstance = new mongodbatlas.ServerlessInstance("testServerlessInstance", {
+ * const testServerlessInstance = new mongodbatlas.ServerlessInstance("test", {
  *     projectId: "<PROJECT_ID>",
+ *     name: "test-db",
  *     providerSettingsBackingProviderName: "AWS",
  *     providerSettingsProviderName: "SERVERLESS",
  *     providerSettingsRegionName: "US_EAST_1",
  *     continuousBackupEnabled: true,
  * });
- * const testPrivatelinkEndpointServerless = new mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", {
+ * const test = new mongodbatlas.PrivatelinkEndpointServerless("test", {
  *     projectId: "<PROJECT_ID>",
  *     instanceName: testServerlessInstance.name,
  *     providerName: "AWS",

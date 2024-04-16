@@ -21,24 +21,24 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const myCluster = new mongodbatlas.Cluster("myCluster", {
+ * const myCluster = new mongodbatlas.Cluster("my_cluster", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
+ *     name: "MyCluster",
  *     providerName: "AWS",
  *     providerRegionName: "EU_WEST_2",
  *     providerInstanceSizeName: "M10",
  *     cloudBackup: true,
  * });
- * // enable cloud backup snapshots
- * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", {
+ * const test = new mongodbatlas.CloudBackupSnapshot("test", {
  *     projectId: myCluster.projectId,
  *     clusterName: myCluster.name,
  *     description: "myDescription",
  *     retentionInDays: 1,
  * });
- * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", {
- *     projectId: testCloudBackupSnapshot.projectId,
- *     clusterName: testCloudBackupSnapshot.clusterName,
- *     snapshotId: testCloudBackupSnapshot.snapshotId,
+ * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("test", {
+ *     projectId: test.projectId,
+ *     clusterName: test.clusterName,
+ *     snapshotId: test.snapshotId,
  *     deliveryTypeConfig: {
  *         download: true,
  *     },

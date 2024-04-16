@@ -16,6 +16,94 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Mongodbatlas.Cluster("test", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "&lt;CLUSTER-NAME&gt;",
+        ///         CloudBackup = true,
+        ///         ClusterType = "GEOSHARDED",
+        ///         ProviderName = "AWS",
+        ///         ProviderInstanceSizeName = "M30",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+        ///             {
+        ///                 ZoneName = "Zone 1",
+        ///                 NumShards = 2,
+        ///                 RegionsConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+        ///                     {
+        ///                         RegionName = "EU_CENTRAL_1",
+        ///                         ElectableNodes = 3,
+        ///                         Priority = 7,
+        ///                         ReadOnlyNodes = 0,
+        ///                     },
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+        ///             {
+        ///                 ZoneName = "Zone 2",
+        ///                 NumShards = 2,
+        ///                 RegionsConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+        ///                     {
+        ///                         RegionName = "US_EAST_2",
+        ///                         ElectableNodes = 3,
+        ///                         Priority = 7,
+        ///                         ReadOnlyNodes = 0,
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var configGlobalClusterConfig = new Mongodbatlas.GlobalClusterConfig("config", new()
+        ///     {
+        ///         ProjectId = test.ProjectId,
+        ///         ClusterName = test.Name,
+        ///         ManagedNamespaces = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs
+        ///             {
+        ///                 Db = "mydata",
+        ///                 Collection = "publishers",
+        ///                 CustomShardKey = "city",
+        ///             },
+        ///         },
+        ///         CustomZoneMappings = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.GlobalClusterConfigCustomZoneMappingArgs
+        ///             {
+        ///                 Location = "CA",
+        ///                 Zone = "Zone 1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var config = Mongodbatlas.GetGlobalClusterConfig.Invoke(new()
+        ///     {
+        ///         ProjectId = configGlobalClusterConfig.ProjectId,
+        ///         ClusterName = configGlobalClusterConfig.ClusterName,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetGlobalClusterConfigResult> InvokeAsync(GetGlobalClusterConfigArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGlobalClusterConfigResult>("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", args ?? new GetGlobalClusterConfigArgs(), options.WithDefaults());
@@ -25,6 +113,94 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = new Mongodbatlas.Cluster("test", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "&lt;CLUSTER-NAME&gt;",
+        ///         CloudBackup = true,
+        ///         ClusterType = "GEOSHARDED",
+        ///         ProviderName = "AWS",
+        ///         ProviderInstanceSizeName = "M30",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+        ///             {
+        ///                 ZoneName = "Zone 1",
+        ///                 NumShards = 2,
+        ///                 RegionsConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+        ///                     {
+        ///                         RegionName = "EU_CENTRAL_1",
+        ///                         ElectableNodes = 3,
+        ///                         Priority = 7,
+        ///                         ReadOnlyNodes = 0,
+        ///                     },
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+        ///             {
+        ///                 ZoneName = "Zone 2",
+        ///                 NumShards = 2,
+        ///                 RegionsConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+        ///                     {
+        ///                         RegionName = "US_EAST_2",
+        ///                         ElectableNodes = 3,
+        ///                         Priority = 7,
+        ///                         ReadOnlyNodes = 0,
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var configGlobalClusterConfig = new Mongodbatlas.GlobalClusterConfig("config", new()
+        ///     {
+        ///         ProjectId = test.ProjectId,
+        ///         ClusterName = test.Name,
+        ///         ManagedNamespaces = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs
+        ///             {
+        ///                 Db = "mydata",
+        ///                 Collection = "publishers",
+        ///                 CustomShardKey = "city",
+        ///             },
+        ///         },
+        ///         CustomZoneMappings = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.GlobalClusterConfigCustomZoneMappingArgs
+        ///             {
+        ///                 Location = "CA",
+        ///                 Zone = "Zone 1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var config = Mongodbatlas.GetGlobalClusterConfig.Invoke(new()
+        ///     {
+        ///         ProjectId = configGlobalClusterConfig.ProjectId,
+        ///         ClusterName = configGlobalClusterConfig.ClusterName,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetGlobalClusterConfigResult> Invoke(GetGlobalClusterConfigInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetGlobalClusterConfigResult>("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", args ?? new GetGlobalClusterConfigInvokeArgs(), options.WithDefaults());

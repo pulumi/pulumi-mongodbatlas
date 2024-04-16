@@ -23,24 +23,25 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testProject = new Mongodbatlas.Project("testProject", new()
+    ///     var test = new Mongodbatlas.Project("test", new()
     ///     {
+    ///         Name = "NAME OF THE PROJECT",
     ///         OrgId = "ORG ID",
     ///     });
     /// 
-    ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
+    ///     var testCluster = new Mongodbatlas.Cluster("test", new()
     ///     {
-    ///         ProjectId = testProject.Id,
+    ///         ProjectId = test.Id,
+    ///         Name = "NAME OF THE CLUSTER",
     ///         ProviderName = "AWS",
     ///         ProviderRegionName = "US_EAST_2",
     ///         ProviderInstanceSizeName = "M10",
     ///         CloudBackup = true,
     ///     });
     /// 
-    ///     //enable cloud provider snapshots
-    ///     var testLdapVerify = new Mongodbatlas.LdapVerify("testLdapVerify", new()
+    ///     var testLdapVerify = new Mongodbatlas.LdapVerify("test", new()
     ///     {
-    ///         ProjectId = testProject.Id,
+    ///         ProjectId = test.Id,
     ///         Hostname = "HOSTNAME",
     ///         Port = 636,
     ///         BindUsername = "USERNAME",

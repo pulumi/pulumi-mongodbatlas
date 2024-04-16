@@ -32,17 +32,18 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identityProvider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
+//			_, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identity_provider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
+//				FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f14"),
+//				Name:                 pulumi.String("mongodb_federation_test"),
 //				AssociatedDomains: pulumi.StringArray{
 //					pulumi.String("yourdomain.com"),
 //				},
-//				FederationSettingsId:       pulumi.String("627a9687f7f7f7f774de306f14"),
+//				SsoDebugEnabled:            pulumi.Bool(true),
+//				Status:                     pulumi.String("ACTIVE"),
+//				SsoUrl:                     pulumi.String("https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml"),
 //				IssuerUri:                  pulumi.String("http://www.okta.com/exk17q7f7f7f7fp50h8"),
 //				RequestBinding:             pulumi.String("HTTP-POST"),
 //				ResponseSignatureAlgorithm: pulumi.String("SHA-256"),
-//				SsoDebugEnabled:            pulumi.Bool(true),
-//				SsoUrl:                     pulumi.String("https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml"),
-//				Status:                     pulumi.String("ACTIVE"),
 //			})
 //			if err != nil {
 //				return err

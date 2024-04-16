@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("orgConnections", new()
+        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("org_connections", new()
         ///     {
         ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
         ///         OrgId = "627a9683ea7ff7f74de306f14",
@@ -43,7 +43,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()
         ///     {
-        ///         FederationSettingsId = orgConnections.Id,
+        ///         FederationSettingsId = orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,
         ///     });
         /// 
         /// });
@@ -68,7 +68,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("orgConnections", new()
+        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("org_connections", new()
         ///     {
         ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
         ///         OrgId = "627a9683ea7ff7f74de306f14",
@@ -85,7 +85,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()
         ///     {
-        ///         FederationSettingsId = orgConnections.Id,
+        ///         FederationSettingsId = orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,
         ///     });
         /// 
         /// });

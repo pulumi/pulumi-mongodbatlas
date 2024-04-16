@@ -28,26 +28,27 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("testServerlessInstance", new()
+    ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         Name = "test-db",
     ///         ProviderSettingsBackingProviderName = "AWS",
     ///         ProviderSettingsProviderName = "SERVERLESS",
     ///         ProviderSettingsRegionName = "US_EAST_1",
     ///         ContinuousBackupEnabled = true,
     ///     });
     /// 
-    ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", new()
+    ///     var test = new Mongodbatlas.PrivatelinkEndpointServerless("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         InstanceName = testServerlessInstance.Name,
     ///         ProviderName = "AWS",
     ///     });
     /// 
-    ///     var ptfeService = new Aws.Ec2.VpcEndpoint("ptfeService", new()
+    ///     var ptfeService = new Aws.Index.VpcEndpoint("ptfe_service", new()
     ///     {
     ///         VpcId = "vpc-7fc0a543",
-    ///         ServiceName = testPrivatelinkEndpointServerless.EndpointServiceName,
+    ///         ServiceName = test.EndpointServiceName,
     ///         VpcEndpointType = "Interface",
     ///         SubnetIds = new[]
     ///         {
@@ -59,11 +60,11 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", new()
+    ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         InstanceName = testServerlessInstance.Name,
-    ///         EndpointId = testPrivatelinkEndpointServerless.EndpointId,
+    ///         EndpointId = test.EndpointId,
     ///         CloudProviderEndpointId = ptfeService.Id,
     ///         ProviderName = "AWS",
     ///         Comment = "New serverless endpoint",
@@ -72,6 +73,70 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Example with AZURE
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Azurerm = Pulumi.Azurerm;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.PrivatelinkEndpointServerless("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ProviderName = "AZURE",
+    ///     });
+    /// 
+    ///     var testPrivateEndpoint = new Azurerm.Index.PrivateEndpoint("test", new()
+    ///     {
+    ///         Name = "endpoint-test",
+    ///         Location = testAzurermResourceGroup.Location,
+    ///         ResourceGroupName = resourceGroupName,
+    ///         SubnetId = testAzurermSubnet.Id,
+    ///         PrivateServiceConnection = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "name", test.PrivateLinkServiceName },
+    ///                 { "privateConnectionResourceId", test.PrivateLinkServiceResourceId },
+    ///                 { "isManualConnection", true },
+    ///                 { "requestMessage", "Azure Private Link test" },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("test", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         Name = "test-db",
+    ///         ProviderSettingsBackingProviderName = "AZURE",
+    ///         ProviderSettingsProviderName = "SERVERLESS",
+    ///         ProviderSettingsRegionName = "US_EAST",
+    ///         ContinuousBackupEnabled = true,
+    ///     });
+    /// 
+    ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("test", new()
+    ///     {
+    ///         ProjectId = test.ProjectId,
+    ///         InstanceName = testServerlessInstance.Name,
+    ///         EndpointId = test.EndpointId,
+    ///         CloudProviderEndpointId = testPrivateEndpoint.Id,
+    ///         PrivateEndpointIpAddress = testPrivateEndpoint.PrivateServiceConnection[0].PrivateIpAddress,
+    ///         ProviderName = "AZURE",
+    ///         Comment = "test",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Available complete examples
+    /// - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
     /// 
     /// ## Import
     /// 

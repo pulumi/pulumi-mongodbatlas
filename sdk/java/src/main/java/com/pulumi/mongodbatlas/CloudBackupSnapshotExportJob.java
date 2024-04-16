@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket(&#34;testCloudBackupSnapshotExportBucket&#34;, CloudBackupSnapshotExportBucketArgs.builder()        
+ *         var test = new CloudBackupSnapshotExportBucket(&#34;test&#34;, CloudBackupSnapshotExportBucketArgs.builder()        
  *             .projectId(&#34;{PROJECT_ID}&#34;)
  *             .iamRoleId(&#34;{IAM_ROLE_ID}&#34;)
  *             .bucketName(&#34;example_bucket&#34;)
@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  *             .projectId(&#34;{PROJECT_ID}&#34;)
  *             .clusterName(&#34;{CLUSTER_NAME}&#34;)
  *             .snapshotId(&#34;{SNAPSHOT_ID}&#34;)
- *             .exportBucketId(testCloudBackupSnapshotExportBucket.exportBucketId())
+ *             .exportBucketId(test.exportBucketId())
  *             .customDatas(CloudBackupSnapshotExportJobCustomDataArgs.builder()
  *                 .key(&#34;exported by&#34;)
  *                 .value(&#34;myName&#34;)

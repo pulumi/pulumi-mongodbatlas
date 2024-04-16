@@ -31,7 +31,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewProject(ctx, "atlas-project", &mongodbatlas.ProjectArgs{
-//				OrgId: pulumi.Any(_var.Atlas_org_id),
+//				OrgId: pulumi.Any(atlasOrgId),
+//				Name:  pulumi.Any(atlasProjectName),
 //			})
 //			if err != nil {
 //				return err

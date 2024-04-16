@@ -12,6 +12,48 @@ import (
 )
 
 // ## Example Usage
+//
+// ### Using projectId and apiKeyId attribute to query
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewProjectApiKey(ctx, "test", &mongodbatlas.ProjectApiKeyArgs{
+//				Description: pulumi.String("Description of your API key"),
+//				ProjectAssignments: mongodbatlas.ProjectApiKeyProjectAssignmentArray{
+//					&mongodbatlas.ProjectApiKeyProjectAssignmentArgs{
+//						ProjectId: pulumi.String("64259ee860c43338194b0f8e"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_READ_ONLY"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.LookupProjectApiKey(ctx, &mongodbatlas.LookupProjectApiKeyArgs{
+//				ProjectId: "64259ee860c43338194b0f8e",
+//				ApiKeyId:  testMongodbatlasApiKey.ApiKeyId,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func LookupProjectApiKey(ctx *pulumi.Context, args *LookupProjectApiKeyArgs, opts ...pulumi.InvokeOption) (*LookupProjectApiKeyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectApiKeyResult

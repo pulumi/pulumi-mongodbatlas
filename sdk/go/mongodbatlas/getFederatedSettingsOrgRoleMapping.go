@@ -28,8 +28,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			orgGroupRoleMappingImport, err := mongodbatlas.NewFederatedSettingsOrgRoleMapping(ctx, "orgGroupRoleMappingImport", &mongodbatlas.FederatedSettingsOrgRoleMappingArgs{
-//				FederationSettingsId: pulumi.Any(data.Mongodbatlas_federated_settings.Federated_settings.Id),
+//			orgGroupRoleMappingImport, err := mongodbatlas.NewFederatedSettingsOrgRoleMapping(ctx, "org_group_role_mapping_import", &mongodbatlas.FederatedSettingsOrgRoleMappingArgs{
+//				FederationSettingsId: pulumi.Any(federatedSettings.Id),
 //				OrgId:                pulumi.String("627a9683e7f7f7ff7fe306f14"),
 //				ExternalGroupName:    pulumi.String("myGrouptest"),
 //				RoleAssignments: mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArray{

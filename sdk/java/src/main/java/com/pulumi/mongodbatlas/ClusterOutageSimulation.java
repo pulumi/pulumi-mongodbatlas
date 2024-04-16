@@ -57,6 +57,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var outageSimulation = new ClusterOutageSimulation(&#34;outageSimulation&#34;, ClusterOutageSimulationArgs.builder()        
+ *             .projectId(&#34;64707f06c519c20c3a2b1b03&#34;)
  *             .clusterName(&#34;Cluster0&#34;)
  *             .outageFilters(            
  *                 ClusterOutageSimulationOutageFilterArgs.builder()
@@ -67,7 +68,6 @@ import javax.annotation.Nullable;
  *                     .cloudProvider(&#34;AWS&#34;)
  *                     .regionName(&#34;US_EAST_2&#34;)
  *                     .build())
- *             .projectId(&#34;64707f06c519c20c3a2b1b03&#34;)
  *             .build());
  * 
  *     }

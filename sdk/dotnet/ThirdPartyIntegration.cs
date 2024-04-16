@@ -31,12 +31,12 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("testDatadog", new()
+    ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
     ///     {
-    ///         ApiKey = "&lt;API-KEY&gt;",
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         Region = "&lt;REGION&gt;",
     ///         Type = "DATADOG",
+    ///         ApiKey = "&lt;API-KEY&gt;",
+    ///         Region = "&lt;REGION&gt;",
     ///     });
     /// 
     /// });

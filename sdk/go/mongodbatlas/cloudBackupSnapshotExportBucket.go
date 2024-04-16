@@ -32,10 +32,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//				ProjectId:     pulumi.String("{PROJECT_ID}"),
+//				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
 //				BucketName:    pulumi.String("example-bucket"),
 //				CloudProvider: pulumi.String("AWS"),
-//				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
-//				ProjectId:     pulumi.String("{PROJECT_ID}"),
 //			})
 //			if err != nil {
 //				return err

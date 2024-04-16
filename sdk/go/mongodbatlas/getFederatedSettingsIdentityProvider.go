@@ -30,8 +30,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			identityProvider, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identityProvider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
+//			identityProvider, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identity_provider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
 //				FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f14"),
+//				Name:                 pulumi.String("mongodb_federation_test"),
 //				AssociatedDomains: pulumi.StringArray{
 //					pulumi.String("yourdomain.com"),
 //				},

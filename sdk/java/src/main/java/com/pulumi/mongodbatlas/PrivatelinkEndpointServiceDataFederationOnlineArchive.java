@@ -48,7 +48,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var atlas_project = new Project(&#34;atlas-project&#34;, ProjectArgs.builder()        
- *             .orgId(var_.atlas_org_id())
+ *             .orgId(atlasOrgId)
+ *             .name(atlasProjectName)
  *             .build());
  * 
  *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        

@@ -30,6 +30,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.ServerlessInstance("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         Name = "&lt;SERVERLESS_INSTANCE_NAME&gt;",
     ///         ProviderSettingsBackingProviderName = "AWS",
     ///         ProviderSettingsProviderName = "SERVERLESS",
     ///         ProviderSettingsRegionName = "US_EAST_1",

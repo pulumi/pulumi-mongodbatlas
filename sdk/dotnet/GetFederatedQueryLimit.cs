@@ -31,9 +31,9 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedQueryLimit.Invoke(new()
         ///     {
-        ///         LimitName = "LIMIT_NAME",
         ///         ProjectId = "PROJECT_ID",
         ///         TenantName = "FEDERATED_DATABASE_INSTANCE_NAME",
+        ///         LimitName = "LIMIT_NAME",
         ///     });
         /// 
         /// });
@@ -63,9 +63,9 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedQueryLimit.Invoke(new()
         ///     {
-        ///         LimitName = "LIMIT_NAME",
         ///         ProjectId = "PROJECT_ID",
         ///         TenantName = "FEDERATED_DATABASE_INSTANCE_NAME",
+        ///         LimitName = "LIMIT_NAME",
         ///     });
         /// 
         /// });

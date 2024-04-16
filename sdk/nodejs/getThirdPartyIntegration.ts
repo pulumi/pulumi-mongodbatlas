@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("test_datadog", {
  *     projectId: "<PROJECT-ID>",
  *     type: "DATADOG",
  *     apiKey: "<API-KEY>",
@@ -156,7 +156,7 @@ export interface GetThirdPartyIntegrationResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("test_datadog", {
  *     projectId: "<PROJECT-ID>",
  *     type: "DATADOG",
  *     apiKey: "<API-KEY>",

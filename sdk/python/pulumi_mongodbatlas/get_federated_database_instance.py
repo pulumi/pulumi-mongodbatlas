@@ -190,8 +190,8 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_database_instance(name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        project_id="PROJECT ID")
+    test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
+        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
     ```
     <!--End PulumiCodeChooser -->
 
@@ -202,13 +202,13 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_database_instance(cloud_provider_config=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigArgs(
+    test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
+        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+        cloud_provider_config=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigArgs(
             aws=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs(
                 test_s3_bucket="Amazon S3 Bucket Name",
             ),
-        ),
-        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        project_id="PROJECT ID")
+        ))
     ```
     <!--End PulumiCodeChooser -->
 
@@ -256,8 +256,8 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_database_instance(name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        project_id="PROJECT ID")
+    test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
+        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
     ```
     <!--End PulumiCodeChooser -->
 
@@ -268,13 +268,13 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_database_instance(cloud_provider_config=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigArgs(
+    test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
+        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+        cloud_provider_config=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigArgs(
             aws=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs(
                 test_s3_bucket="Amazon S3 Bucket Name",
             ),
-        ),
-        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        project_id="PROJECT ID")
+        ))
     ```
     <!--End PulumiCodeChooser -->
 

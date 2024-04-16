@@ -25,8 +25,8 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.NetworkContainer("test", {
- *     atlasCidrBlock: "10.8.0.0/21",
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     atlasCidrBlock: "10.8.0.0/21",
  *     providerName: "AWS",
  *     regionName: "US_EAST_1",
  * });
@@ -41,8 +41,8 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.NetworkContainer("test", {
- *     atlasCidrBlock: "10.8.0.0/21",
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     atlasCidrBlock: "10.8.0.0/21",
  *     providerName: "GCP",
  *     regions: [
  *         "US_EAST_4",
@@ -60,8 +60,8 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.NetworkContainer("test", {
- *     atlasCidrBlock: "10.8.0.0/21",
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     atlasCidrBlock: "10.8.0.0/21",
  *     providerName: "AZURE",
  *     region: "US_EAST_2",
  * });

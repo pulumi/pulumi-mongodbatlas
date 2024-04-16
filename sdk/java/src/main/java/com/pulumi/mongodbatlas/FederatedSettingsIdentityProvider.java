@@ -47,14 +47,15 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
- *             .associatedDomains(&#34;yourdomain.com&#34;)
  *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+ *             .name(&#34;mongodb_federation_test&#34;)
+ *             .associatedDomains(&#34;yourdomain.com&#34;)
+ *             .ssoDebugEnabled(true)
+ *             .status(&#34;ACTIVE&#34;)
+ *             .ssoUrl(&#34;https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml&#34;)
  *             .issuerUri(&#34;http://www.okta.com/exk17q7f7f7f7fp50h8&#34;)
  *             .requestBinding(&#34;HTTP-POST&#34;)
  *             .responseSignatureAlgorithm(&#34;SHA-256&#34;)
- *             .ssoDebugEnabled(true)
- *             .ssoUrl(&#34;https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml&#34;)
- *             .status(&#34;ACTIVE&#34;)
  *             .build());
  * 
  *     }

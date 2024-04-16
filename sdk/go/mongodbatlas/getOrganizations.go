@@ -29,8 +29,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupOrganizations(ctx, &mongodbatlas.LookupOrganizationsArgs{
-//				ItemsPerPage: pulumi.IntRef(5),
 //				PageNum:      pulumi.IntRef(1),
+//				ItemsPerPage: pulumi.IntRef(5),
 //			}, nil)
 //			if err != nil {
 //				return err

@@ -18,9 +18,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRolesOrgId = mongodbatlas.getRolesOrgId({});
- * const testProject = new mongodbatlas.Project("testProject", {
- *     orgId: testRolesOrgId.then(testRolesOrgId => testRolesOrgId.orgId),
+ * const test = mongodbatlas.getRolesOrgId({});
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "project-name",
+ *     orgId: test.then(test => test.orgId),
  *     teams: [
  *         {
  *             teamId: "5e0fa8c99ccf641c722fe645",
@@ -39,7 +40,7 @@ import * as utilities from "./utilities";
  *         value: 26,
  *     }],
  * });
- * const testProjects = mongodbatlas.getProjects({
+ * const testGetProjects = mongodbatlas.getProjects({
  *     pageNum: 1,
  *     itemsPerPage: 5,
  * });
@@ -95,9 +96,10 @@ export interface GetProjectsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRolesOrgId = mongodbatlas.getRolesOrgId({});
- * const testProject = new mongodbatlas.Project("testProject", {
- *     orgId: testRolesOrgId.then(testRolesOrgId => testRolesOrgId.orgId),
+ * const test = mongodbatlas.getRolesOrgId({});
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "project-name",
+ *     orgId: test.then(test => test.orgId),
  *     teams: [
  *         {
  *             teamId: "5e0fa8c99ccf641c722fe645",
@@ -116,7 +118,7 @@ export interface GetProjectsResult {
  *         value: 26,
  *     }],
  * });
- * const testProjects = mongodbatlas.getProjects({
+ * const testGetProjects = mongodbatlas.getProjects({
  *     pageNum: 1,
  *     itemsPerPage: 5,
  * });

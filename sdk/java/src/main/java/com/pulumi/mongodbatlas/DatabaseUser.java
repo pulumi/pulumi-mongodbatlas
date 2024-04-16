@@ -42,8 +42,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.DatabaseUser;
  * import com.pulumi.mongodbatlas.DatabaseUserArgs;
- * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
  * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
  * import com.pulumi.mongodbatlas.inputs.DatabaseUserScopeArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -59,22 +59,23 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
+ *             .username(&#34;test-acc-username&#34;)
+ *             .password(&#34;test-acc-password&#34;)
+ *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .authDatabaseName(&#34;admin&#34;)
+ *             .roles(            
+ *                 DatabaseUserRoleArgs.builder()
+ *                     .roleName(&#34;readWrite&#34;)
+ *                     .databaseName(&#34;dbforApp&#34;)
+ *                     .build(),
+ *                 DatabaseUserRoleArgs.builder()
+ *                     .roleName(&#34;readAnyDatabase&#34;)
+ *                     .databaseName(&#34;admin&#34;)
+ *                     .build())
  *             .labels(DatabaseUserLabelArgs.builder()
  *                 .key(&#34;My Key&#34;)
  *                 .value(&#34;My Value&#34;)
  *                 .build())
- *             .password(&#34;test-acc-password&#34;)
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .roles(            
- *                 DatabaseUserRoleArgs.builder()
- *                     .databaseName(&#34;dbforApp&#34;)
- *                     .roleName(&#34;readWrite&#34;)
- *                     .build(),
- *                 DatabaseUserRoleArgs.builder()
- *                     .databaseName(&#34;admin&#34;)
- *                     .roleName(&#34;readAnyDatabase&#34;)
- *                     .build())
  *             .scopes(            
  *                 DatabaseUserScopeArgs.builder()
  *                     .name(&#34;My cluster name&#34;)
@@ -84,7 +85,6 @@ import javax.annotation.Nullable;
  *                     .name(&#34;My second cluster name&#34;)
  *                     .type(&#34;CLUSTER&#34;)
  *                     .build())
- *             .username(&#34;test-acc-username&#34;)
  *             .build());
  * 
  *     }
@@ -101,8 +101,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.DatabaseUser;
  * import com.pulumi.mongodbatlas.DatabaseUserArgs;
- * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
  * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
  * import com.pulumi.mongodbatlas.inputs.DatabaseUserScopeArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -118,22 +118,22 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
+ *             .username(&#34;test-acc-username&#34;)
+ *             .x509Type(&#34;MANAGED&#34;)
+ *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .authDatabaseName(&#34;$external&#34;)
+ *             .roles(DatabaseUserRoleArgs.builder()
+ *                 .roleName(&#34;readAnyDatabase&#34;)
+ *                 .databaseName(&#34;admin&#34;)
+ *                 .build())
  *             .labels(DatabaseUserLabelArgs.builder()
  *                 .key(&#34;%s&#34;)
  *                 .value(&#34;%s&#34;)
- *                 .build())
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .roles(DatabaseUserRoleArgs.builder()
- *                 .databaseName(&#34;admin&#34;)
- *                 .roleName(&#34;readAnyDatabase&#34;)
  *                 .build())
  *             .scopes(DatabaseUserScopeArgs.builder()
  *                 .name(&#34;My cluster name&#34;)
  *                 .type(&#34;CLUSTER&#34;)
  *                 .build())
- *             .username(&#34;test-acc-username&#34;)
- *             .x509Type(&#34;MANAGED&#34;)
  *             .build());
  * 
  *     }
@@ -167,7 +167,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
- *             .username(aws_iam_role.test().arn())
+ *             .username(testAwsIamRole.arn())
  *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .authDatabaseName(&#34;$external&#34;)
  *             .awsIamType(&#34;ROLE&#34;)
@@ -216,14 +216,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
+ *             .username(&#34;64d613677e1ad50839cce4db/testUserOr&#34;)
+ *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
  *             .authDatabaseName(&#34;admin&#34;)
  *             .oidcAuthType(&#34;IDP_GROUP&#34;)
- *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
  *             .roles(DatabaseUserRoleArgs.builder()
- *                 .databaseName(&#34;admin&#34;)
  *                 .roleName(&#34;readWriteAnyDatabase&#34;)
+ *                 .databaseName(&#34;admin&#34;)
  *                 .build())
- *             .username(&#34;64d613677e1ad50839cce4db/testUserOr&#34;)
  *             .build());
  * 
  *     }

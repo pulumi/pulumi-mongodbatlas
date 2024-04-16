@@ -29,14 +29,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//			test, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("NAME OF THE PROJECT"),
 //				OrgId: pulumi.String("ORG ID"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
-//				ProjectId:                testProject.ID(),
+//			testCluster, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
+//				ProjectId:                test.ID(),
+//				Name:                     pulumi.String("NAME OF THE CLUSTER"),
 //				ProviderName:             pulumi.String("AWS"),
 //				ProviderRegionName:       pulumi.String("US_EAST_2"),
 //				ProviderInstanceSizeName: pulumi.String("M10"),
@@ -45,8 +47,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewLdapVerify(ctx, "testLdapVerify", &mongodbatlas.LdapVerifyArgs{
-//				ProjectId:    testProject.ID(),
+//			_, err = mongodbatlas.NewLdapVerify(ctx, "test", &mongodbatlas.LdapVerifyArgs{
+//				ProjectId:    test.ID(),
 //				Hostname:     pulumi.String("HOSTNAME"),
 //				Port:         pulumi.Int(636),
 //				BindUsername: pulumi.String("USERNAME"),

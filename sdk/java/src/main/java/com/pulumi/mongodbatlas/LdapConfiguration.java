@@ -47,12 +47,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+ *         var test = new Project(&#34;test&#34;, ProjectArgs.builder()        
+ *             .name(&#34;NAME OF THE PROJECT&#34;)
  *             .orgId(&#34;ORG ID&#34;)
  *             .build());
  * 
  *         var testLdapConfiguration = new LdapConfiguration(&#34;testLdapConfiguration&#34;, LdapConfigurationArgs.builder()        
- *             .projectId(testProject.id())
+ *             .projectId(test.id())
  *             .authenticationEnabled(true)
  *             .hostname(&#34;HOSTNAME&#34;)
  *             .port(636)
@@ -92,12 +93,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+ *         var test = new Project(&#34;test&#34;, ProjectArgs.builder()        
+ *             .name(&#34;NAME OF THE PROJECT&#34;)
  *             .orgId(&#34;ORG ID&#34;)
  *             .build());
  * 
  *         var testLdapConfiguration = new LdapConfiguration(&#34;testLdapConfiguration&#34;, LdapConfigurationArgs.builder()        
- *             .projectId(testProject.id())
+ *             .projectId(test.id())
  *             .authenticationEnabled(true)
  *             .hostname(&#34;HOSTNAME&#34;)
  *             .port(636)

@@ -23,14 +23,15 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testProject = new Mongodbatlas.Project("testProject", new()
+    ///     var test = new Mongodbatlas.Project("test", new()
     ///     {
+    ///         Name = "NAME OF THE PROJECT",
     ///         OrgId = "ORG ID",
     ///     });
     /// 
-    ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("testLdapConfiguration", new()
+    ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("test", new()
     ///     {
-    ///         ProjectId = testProject.Id,
+    ///         ProjectId = test.Id,
     ///         AuthenticationEnabled = true,
     ///         Hostname = "HOSTNAME",
     ///         Port = 636,
@@ -53,14 +54,15 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testProject = new Mongodbatlas.Project("testProject", new()
+    ///     var test = new Mongodbatlas.Project("test", new()
     ///     {
+    ///         Name = "NAME OF THE PROJECT",
     ///         OrgId = "ORG ID",
     ///     });
     /// 
-    ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("testLdapConfiguration", new()
+    ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("test", new()
     ///     {
-    ///         ProjectId = testProject.Id,
+    ///         ProjectId = test.Id,
     ///         AuthenticationEnabled = true,
     ///         Hostname = "HOSTNAME",
     ///         Port = 636,

@@ -50,6 +50,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var testRole = new CustomDbRole(&#34;testRole&#34;, CustomDbRoleArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .roleName(&#34;myCustomRole&#34;)
  *             .actions(            
  *                 CustomDbRoleActionArgs.builder()
  *                     .action(&#34;UPDATE&#34;)
@@ -72,8 +74,6 @@ import javax.annotation.Nullable;
  *                         .databaseName(&#34;anyDatabase&#34;)
  *                         .build())
  *                     .build())
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .roleName(&#34;myCustomRole&#34;)
  *             .build());
  * 
  *     }

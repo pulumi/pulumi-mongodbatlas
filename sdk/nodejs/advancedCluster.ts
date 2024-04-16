@@ -36,20 +36,21 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.AdvancedCluster("test", {
- *     clusterType: "REPLICASET",
  *     projectId: "PROJECT ID",
+ *     name: "NAME OF CLUSTER",
+ *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         regionConfigs: [{
- *             analyticsSpecs: {
- *                 instanceSize: "M10",
- *                 nodeCount: 1,
- *             },
  *             electableSpecs: {
  *                 instanceSize: "M10",
  *                 nodeCount: 3,
  *             },
- *             priority: 7,
+ *             analyticsSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 1,
+ *             },
  *             providerName: "AWS",
+ *             priority: 7,
  *             regionName: "US_EAST_1",
  *         }],
  *     }],
@@ -65,17 +66,18 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.AdvancedCluster("test", {
- *     clusterType: "REPLICASET",
  *     projectId: "PROJECT ID",
+ *     name: "NAME OF CLUSTER",
+ *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         regionConfigs: [{
- *             backingProviderName: "AWS",
  *             electableSpecs: {
  *                 instanceSize: "M5",
  *             },
- *             priority: 7,
  *             providerName: "TENANT",
+ *             backingProviderName: "AWS",
  *             regionName: "US_EAST_1",
+ *             priority: 7,
  *         }],
  *     }],
  * });
@@ -90,16 +92,17 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.AdvancedCluster("test", {
- *     clusterType: "REPLICASET",
  *     projectId: "PROJECT ID",
+ *     name: "NAME OF CLUSTER",
+ *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         regionConfigs: [{
  *             electableSpecs: {
  *                 instanceSize: "M10",
  *             },
- *             priority: 7,
  *             providerName: "AWS",
  *             regionName: "US_EAST_1",
+ *             priority: 7,
  *         }],
  *     }],
  * });
@@ -113,21 +116,22 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.AdvancedCluster("test", {
- *     clusterType: "REPLICASET",
  *     projectId: "PROJECT ID",
+ *     name: "NAME OF CLUSTER",
+ *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         regionConfigs: [
  *             {
- *                 analyticsSpecs: {
- *                     instanceSize: "M10",
- *                     nodeCount: 1,
- *                 },
  *                 electableSpecs: {
  *                     instanceSize: "M10",
  *                     nodeCount: 3,
  *                 },
- *                 priority: 7,
+ *                 analyticsSpecs: {
+ *                     instanceSize: "M10",
+ *                     nodeCount: 1,
+ *                 },
  *                 providerName: "AWS",
+ *                 priority: 7,
  *                 regionName: "US_EAST_1",
  *             },
  *             {
@@ -135,8 +139,8 @@ import * as utilities from "./utilities";
  *                     instanceSize: "M10",
  *                     nodeCount: 2,
  *                 },
- *                 priority: 6,
  *                 providerName: "GCP",
+ *                 priority: 6,
  *                 regionName: "NORTH_AMERICA_NORTHEAST_1",
  *             },
  *         ],
@@ -152,7 +156,8 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const cluster = new mongodbatlas.AdvancedCluster("cluster", {
- *     projectId: mongodbatlas_project.project.id,
+ *     projectId: project.id,
+ *     name: clusterName,
  *     clusterType: "SHARDED",
  *     backupEnabled: true,
  *     replicationSpecs: [{
@@ -215,7 +220,8 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const cluster = new mongodbatlas.AdvancedCluster("cluster", {
- *     projectId: mongodbatlas_project.project.id,
+ *     projectId: project.id,
+ *     name: clusterName,
  *     clusterType: "GEOSHARDED",
  *     backupEnabled: true,
  *     replicationSpecs: [
@@ -325,7 +331,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  *
- * export const standard = mongodbatlas_cluster["cluster-test"].connection_strings[0].standard;
+ * export const standard = cluster_test.connectionStrings[0].standard;
  * ```
  * <!--End PulumiCodeChooser -->
  * Standard srv
@@ -333,33 +339,10 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  *
- * export const standardSrv = mongodbatlas_cluster["cluster-test"].connection_strings[0].standard_srv;
+ * export const standardSrv = cluster_test.connectionStrings[0].standardSrv;
  * ```
  * <!--End PulumiCodeChooser -->
  * Private with Network peering and Custom DNS AWS enabled
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- *
- * export = async () => {
- *     // Example return string: private = "mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=atlas-12diht-shard-0"
- *     const private = "mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net";
- *     return {
- *         "private": mongodbatlas_cluster["cluster-test"].connection_strings[0]["private"],
- *     };
- * }
- * ```
- * <!--End PulumiCodeChooser -->
- * Private srv with Network peering and Custom DNS AWS enabled
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- *
- * export const privateSrv = mongodbatlas_cluster["cluster-test"].connection_strings[0].private_srv;
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * By endpointServiceId
  * ## Import
  *
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

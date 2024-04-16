@@ -29,10 +29,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewFederatedSettingsOrgRoleMapping(ctx, "orgGroupRoleMappingImport", &mongodbatlas.FederatedSettingsOrgRoleMappingArgs{
-//				ExternalGroupName:    pulumi.String("myGrouptest"),
+//			_, err := mongodbatlas.NewFederatedSettingsOrgRoleMapping(ctx, "org_group_role_mapping_import", &mongodbatlas.FederatedSettingsOrgRoleMappingArgs{
 //				FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f14"),
 //				OrgId:                pulumi.String("627a9683e7f7f7ff7fe306f14"),
+//				ExternalGroupName:    pulumi.String("myGrouptest"),
 //				RoleAssignments: mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArray{
 //					&mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
 //						OrgId: pulumi.String("627a9683e7f7f7ff7fe306f14"),

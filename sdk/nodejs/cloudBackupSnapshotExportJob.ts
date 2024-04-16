@@ -20,17 +20,17 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
+ * const test = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
  *     projectId: "{PROJECT_ID}",
  *     iamRoleId: "{IAM_ROLE_ID}",
  *     bucketName: "example_bucket",
  *     cloudProvider: "AWS",
  * });
- * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", {
+ * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("test", {
  *     projectId: "{PROJECT_ID}",
  *     clusterName: "{CLUSTER_NAME}",
  *     snapshotId: "{SNAPSHOT_ID}",
- *     exportBucketId: testCloudBackupSnapshotExportBucket.exportBucketId,
+ *     exportBucketId: test.exportBucketId,
  *     customDatas: [{
  *         key: "exported by",
  *         value: "myName",

@@ -27,7 +27,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("testDatadog", new()
+        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "DATADOG",
@@ -63,7 +63,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("testDatadog", new()
+        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "DATADOG",

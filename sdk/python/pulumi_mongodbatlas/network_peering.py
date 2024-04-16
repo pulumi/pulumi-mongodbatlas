@@ -722,15 +722,15 @@ class NetworkPeering(pulumi.CustomResource):
 
         # Container example provided but not always required, 
         # see network_container documentation for details. 
-        test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
-            project_id=local["project_id"],
+        test = mongodbatlas.NetworkContainer("test",
+            project_id=project_id,
             atlas_cidr_block="10.8.0.0/21",
             provider_name="AWS",
             region_name="US_EAST_1")
         # Create the peering connection request
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
+        test_network_peering = mongodbatlas.NetworkPeering("test",
             accepter_region_name="us-east-1",
-            project_id=local["project_id"],
+            project_id=project_id,
             container_id="507f1f77bcf86cd799439011",
             provider_name="AWS",
             route_table_cidr_block="192.168.0.0/24",
@@ -738,64 +738,9 @@ class NetworkPeering(pulumi.CustomResource):
             aws_account_id="abc123abc123")
         # the following assumes an AWS provider is configured
         # Accept the peering connection request
-        peer = aws.ec2.VpcPeeringConnectionAccepter("peer",
+        peer = aws.index.VpcPeeringConnectionAccepter("peer",
             vpc_peering_connection_id=test_network_peering.connection_id,
             auto_accept=True)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ### Example with GCP
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_gcp as gcp
-        import pulumi_mongodbatlas as mongodbatlas
-
-        # Container example provided but not always required, 
-        # see network_container documentation for details. 
-        test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
-            project_id=local["project_id"],
-            atlas_cidr_block="10.8.0.0/21",
-            provider_name="GCP")
-        # Create the peering connection request
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
-            project_id=local["project_id"],
-            container_id=test_network_container.container_id,
-            provider_name="GCP",
-            gcp_project_id=local["GCP_PROJECT_ID"],
-            network_name="default")
-        default = gcp.compute.get_network(name="default")
-        # Create the GCP peer
-        peering = gcp.compute.NetworkPeering("peering",
-            network=default.self_link,
-            peer_network=pulumi.Output.all(test_network_peering.atlas_gcp_project_id, test_network_peering.atlas_vpc_name).apply(lambda atlas_gcp_project_id, atlas_vpc_name: f"https://www.googleapis.com/compute/v1/projects/{atlas_gcp_project_id}/global/networks/{atlas_vpc_name}"))
-        # Create the cluster once the peering connection is completed
-        test_cluster = mongodbatlas.Cluster("testCluster",
-            project_id=local["project_id"],
-            num_shards=1,
-            cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_4",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
-            auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="4.2",
-            provider_name="GCP",
-            provider_instance_size_name="M10",
-            opts=pulumi.ResourceOptions(depends_on=["google_compute_network_peering.peering"]))
-        #  Private connection strings are not available w/ GCP until the reciprocal
-        #  connection changes to available (i.e. when the status attribute changes
-        #  to AVAILABLE on the 'mongodbatlas_network_peering' resource, which
-        #  happens when the google_compute_network_peering and and
-        #  mongodbatlas_network_peering make a reciprocal connection).  Hence
-        #  since the cluster can be created before this connection completes
-        #  you may need to run `terraform refresh` to obtain the private connection strings.
         ```
         <!--End PulumiCodeChooser -->
 
@@ -810,23 +755,24 @@ class NetworkPeering(pulumi.CustomResource):
         # see https://docs.atlas.mongodb.com/security-vpc-peering/
         # Container example provided but not always required, 
         # see network_container documentation for details. 
-        test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
-            project_id=local["project_id"],
-            atlas_cidr_block=local["ATLAS_CIDR_BLOCK"],
+        test = mongodbatlas.NetworkContainer("test",
+            project_id=project_id,
+            atlas_cidr_block=atla_s__cid_r__block,
             provider_name="AZURE",
             region="US_EAST_2")
         # Create the peering connection request
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
-            project_id=local["project_id"],
-            container_id=test_network_container.container_id,
+        test_network_peering = mongodbatlas.NetworkPeering("test",
+            project_id=project_id,
+            container_id=test.container_id,
             provider_name="AZURE",
-            azure_directory_id=local["AZURE_DIRECTORY_ID"],
-            azure_subscription_id=local["AZURE_SUBSCRIPTION_ID"],
-            resource_group_name=local["AZURE_RESOURCES_GROUP_NAME"],
-            vnet_name=local["AZURE_VNET_NAME"])
+            azure_directory_id=azur_e__director_y__id,
+            azure_subscription_id=azur_e__subscriptio_n__id,
+            resource_group_name=azur_e__resource_s__grou_p__name,
+            vnet_name=azur_e__vne_t__name)
         # Create the cluster once the peering connection is completed
-        test_cluster = mongodbatlas.Cluster("testCluster",
-            project_id=local["project_id"],
+        test_cluster = mongodbatlas.Cluster("test",
+            project_id=project_id,
+            name="terraform-manually-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -842,7 +788,7 @@ class NetworkPeering(pulumi.CustomResource):
             provider_name="AZURE",
             provider_disk_type_name="P4",
             provider_instance_size_name="M10",
-            opts=pulumi.ResourceOptions(depends_on=["mongodbatlas_network_peering.test"]))
+            opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -859,7 +805,8 @@ class NetworkPeering(pulumi.CustomResource):
         # Create an Atlas cluster, this creates a container if one
         # does not yet exist for this AWS region
         test = mongodbatlas.Cluster("test",
-            project_id=local["project_id"],
+            project_id=project_id,
+            name="terraform-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -875,66 +822,25 @@ class NetworkPeering(pulumi.CustomResource):
             provider_name="AWS",
             provider_instance_size_name="M10")
         # the following assumes an AWS provider is configured
-        default = aws.ec2.DefaultVpc("default", tags={
-            "Name": "Default VPC",
+        default = aws.index.DefaultVpc("default", tags={
+            name: Default VPC,
         })
         # Create the peering connection request
-        mongo_peer = mongodbatlas.NetworkPeering("mongoPeer",
+        mongo_peer = mongodbatlas.NetworkPeering("mongo_peer",
             accepter_region_name="us-east-2",
-            project_id=local["project_id"],
+            project_id=project_id,
             container_id=test.container_id,
             provider_name="AWS",
             route_table_cidr_block="172.31.0.0/16",
-            vpc_id=default.id,
-            aws_account_id=local["AWS_ACCOUNT_ID"])
+            vpc_id=default["id"],
+            aws_account_id=aw_s__accoun_t__id)
         # Accept the connection 
-        aws_peer = aws.ec2.VpcPeeringConnectionAccepter("awsPeer",
+        aws_peer = aws.index.VpcPeeringConnectionAccepter("aws_peer",
             vpc_peering_connection_id=mongo_peer.connection_id,
             auto_accept=True,
             tags={
-                "Side": "Accepter",
+                side: Accepter,
             })
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ### Example with GCP
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_gcp as gcp
-        import pulumi_mongodbatlas as mongodbatlas
-
-        # Create an Atlas cluster, this creates a container if one
-        # does not yet exist for this GCP 
-        test_cluster = mongodbatlas.Cluster("testCluster",
-            project_id=local["project_id"],
-            cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_2",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
-            auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="4.2",
-            provider_name="GCP",
-            provider_instance_size_name="M10")
-        # Create the peering connection request
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
-            project_id=local["project_id"],
-            atlas_cidr_block="192.168.0.0/18",
-            container_id=test_cluster.container_id,
-            provider_name="GCP",
-            gcp_project_id=local["GCP_PROJECT_ID"],
-            network_name="default")
-        default = gcp.compute.get_network(name="default")
-        # Create the GCP peer
-        peering = gcp.compute.NetworkPeering("peering",
-            network=default.self_link,
-            peer_network=pulumi.Output.all(test_network_peering.atlas_gcp_project_id, test_network_peering.atlas_vpc_name).apply(lambda atlas_gcp_project_id, atlas_vpc_name: f"https://www.googleapis.com/compute/v1/projects/{atlas_gcp_project_id}/global/networks/{atlas_vpc_name}"))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -949,8 +855,9 @@ class NetworkPeering(pulumi.CustomResource):
         # see https://docs.atlas.mongodb.com/security-vpc-peering/
         # Create an Atlas cluster, this creates a container if one
         # does not yet exist for this AZURE region
-        test_cluster = mongodbatlas.Cluster("testCluster",
-            project_id=local["project_id"],
+        test = mongodbatlas.Cluster("test",
+            project_id=project_id,
+            name="cluster-azure",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -966,14 +873,14 @@ class NetworkPeering(pulumi.CustomResource):
             provider_name="AZURE",
             provider_instance_size_name="M10")
         # Create the peering connection request
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
-            project_id=local["project_id"],
-            container_id=test_cluster.container_id,
+        test_network_peering = mongodbatlas.NetworkPeering("test",
+            project_id=project_id,
+            container_id=test.container_id,
             provider_name="AZURE",
-            azure_directory_id=local["AZURE_DIRECTORY_ID"],
-            azure_subscription_id=local["AZURE_SUBSCRIPTION_ID"],
-            resource_group_name=local["AZURE_RESOURCE_GROUP_NAME"],
-            vnet_name=local["AZURE_VNET_NAME"])
+            azure_directory_id=azur_e__director_y__id,
+            azure_subscription_id=azur_e__subscriptio_n__id,
+            resource_group_name=azur_e__resourc_e__grou_p__name,
+            vnet_name=azur_e__vne_t__name)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1049,15 +956,15 @@ class NetworkPeering(pulumi.CustomResource):
 
         # Container example provided but not always required, 
         # see network_container documentation for details. 
-        test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
-            project_id=local["project_id"],
+        test = mongodbatlas.NetworkContainer("test",
+            project_id=project_id,
             atlas_cidr_block="10.8.0.0/21",
             provider_name="AWS",
             region_name="US_EAST_1")
         # Create the peering connection request
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
+        test_network_peering = mongodbatlas.NetworkPeering("test",
             accepter_region_name="us-east-1",
-            project_id=local["project_id"],
+            project_id=project_id,
             container_id="507f1f77bcf86cd799439011",
             provider_name="AWS",
             route_table_cidr_block="192.168.0.0/24",
@@ -1065,64 +972,9 @@ class NetworkPeering(pulumi.CustomResource):
             aws_account_id="abc123abc123")
         # the following assumes an AWS provider is configured
         # Accept the peering connection request
-        peer = aws.ec2.VpcPeeringConnectionAccepter("peer",
+        peer = aws.index.VpcPeeringConnectionAccepter("peer",
             vpc_peering_connection_id=test_network_peering.connection_id,
             auto_accept=True)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ### Example with GCP
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_gcp as gcp
-        import pulumi_mongodbatlas as mongodbatlas
-
-        # Container example provided but not always required, 
-        # see network_container documentation for details. 
-        test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
-            project_id=local["project_id"],
-            atlas_cidr_block="10.8.0.0/21",
-            provider_name="GCP")
-        # Create the peering connection request
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
-            project_id=local["project_id"],
-            container_id=test_network_container.container_id,
-            provider_name="GCP",
-            gcp_project_id=local["GCP_PROJECT_ID"],
-            network_name="default")
-        default = gcp.compute.get_network(name="default")
-        # Create the GCP peer
-        peering = gcp.compute.NetworkPeering("peering",
-            network=default.self_link,
-            peer_network=pulumi.Output.all(test_network_peering.atlas_gcp_project_id, test_network_peering.atlas_vpc_name).apply(lambda atlas_gcp_project_id, atlas_vpc_name: f"https://www.googleapis.com/compute/v1/projects/{atlas_gcp_project_id}/global/networks/{atlas_vpc_name}"))
-        # Create the cluster once the peering connection is completed
-        test_cluster = mongodbatlas.Cluster("testCluster",
-            project_id=local["project_id"],
-            num_shards=1,
-            cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_4",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
-            auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="4.2",
-            provider_name="GCP",
-            provider_instance_size_name="M10",
-            opts=pulumi.ResourceOptions(depends_on=["google_compute_network_peering.peering"]))
-        #  Private connection strings are not available w/ GCP until the reciprocal
-        #  connection changes to available (i.e. when the status attribute changes
-        #  to AVAILABLE on the 'mongodbatlas_network_peering' resource, which
-        #  happens when the google_compute_network_peering and and
-        #  mongodbatlas_network_peering make a reciprocal connection).  Hence
-        #  since the cluster can be created before this connection completes
-        #  you may need to run `terraform refresh` to obtain the private connection strings.
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1137,23 +989,24 @@ class NetworkPeering(pulumi.CustomResource):
         # see https://docs.atlas.mongodb.com/security-vpc-peering/
         # Container example provided but not always required, 
         # see network_container documentation for details. 
-        test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
-            project_id=local["project_id"],
-            atlas_cidr_block=local["ATLAS_CIDR_BLOCK"],
+        test = mongodbatlas.NetworkContainer("test",
+            project_id=project_id,
+            atlas_cidr_block=atla_s__cid_r__block,
             provider_name="AZURE",
             region="US_EAST_2")
         # Create the peering connection request
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
-            project_id=local["project_id"],
-            container_id=test_network_container.container_id,
+        test_network_peering = mongodbatlas.NetworkPeering("test",
+            project_id=project_id,
+            container_id=test.container_id,
             provider_name="AZURE",
-            azure_directory_id=local["AZURE_DIRECTORY_ID"],
-            azure_subscription_id=local["AZURE_SUBSCRIPTION_ID"],
-            resource_group_name=local["AZURE_RESOURCES_GROUP_NAME"],
-            vnet_name=local["AZURE_VNET_NAME"])
+            azure_directory_id=azur_e__director_y__id,
+            azure_subscription_id=azur_e__subscriptio_n__id,
+            resource_group_name=azur_e__resource_s__grou_p__name,
+            vnet_name=azur_e__vne_t__name)
         # Create the cluster once the peering connection is completed
-        test_cluster = mongodbatlas.Cluster("testCluster",
-            project_id=local["project_id"],
+        test_cluster = mongodbatlas.Cluster("test",
+            project_id=project_id,
+            name="terraform-manually-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -1169,7 +1022,7 @@ class NetworkPeering(pulumi.CustomResource):
             provider_name="AZURE",
             provider_disk_type_name="P4",
             provider_instance_size_name="M10",
-            opts=pulumi.ResourceOptions(depends_on=["mongodbatlas_network_peering.test"]))
+            opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1186,7 +1039,8 @@ class NetworkPeering(pulumi.CustomResource):
         # Create an Atlas cluster, this creates a container if one
         # does not yet exist for this AWS region
         test = mongodbatlas.Cluster("test",
-            project_id=local["project_id"],
+            project_id=project_id,
+            name="terraform-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -1202,66 +1056,25 @@ class NetworkPeering(pulumi.CustomResource):
             provider_name="AWS",
             provider_instance_size_name="M10")
         # the following assumes an AWS provider is configured
-        default = aws.ec2.DefaultVpc("default", tags={
-            "Name": "Default VPC",
+        default = aws.index.DefaultVpc("default", tags={
+            name: Default VPC,
         })
         # Create the peering connection request
-        mongo_peer = mongodbatlas.NetworkPeering("mongoPeer",
+        mongo_peer = mongodbatlas.NetworkPeering("mongo_peer",
             accepter_region_name="us-east-2",
-            project_id=local["project_id"],
+            project_id=project_id,
             container_id=test.container_id,
             provider_name="AWS",
             route_table_cidr_block="172.31.0.0/16",
-            vpc_id=default.id,
-            aws_account_id=local["AWS_ACCOUNT_ID"])
+            vpc_id=default["id"],
+            aws_account_id=aw_s__accoun_t__id)
         # Accept the connection 
-        aws_peer = aws.ec2.VpcPeeringConnectionAccepter("awsPeer",
+        aws_peer = aws.index.VpcPeeringConnectionAccepter("aws_peer",
             vpc_peering_connection_id=mongo_peer.connection_id,
             auto_accept=True,
             tags={
-                "Side": "Accepter",
+                side: Accepter,
             })
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ### Example with GCP
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_gcp as gcp
-        import pulumi_mongodbatlas as mongodbatlas
-
-        # Create an Atlas cluster, this creates a container if one
-        # does not yet exist for this GCP 
-        test_cluster = mongodbatlas.Cluster("testCluster",
-            project_id=local["project_id"],
-            cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_2",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
-            auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="4.2",
-            provider_name="GCP",
-            provider_instance_size_name="M10")
-        # Create the peering connection request
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
-            project_id=local["project_id"],
-            atlas_cidr_block="192.168.0.0/18",
-            container_id=test_cluster.container_id,
-            provider_name="GCP",
-            gcp_project_id=local["GCP_PROJECT_ID"],
-            network_name="default")
-        default = gcp.compute.get_network(name="default")
-        # Create the GCP peer
-        peering = gcp.compute.NetworkPeering("peering",
-            network=default.self_link,
-            peer_network=pulumi.Output.all(test_network_peering.atlas_gcp_project_id, test_network_peering.atlas_vpc_name).apply(lambda atlas_gcp_project_id, atlas_vpc_name: f"https://www.googleapis.com/compute/v1/projects/{atlas_gcp_project_id}/global/networks/{atlas_vpc_name}"))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1276,8 +1089,9 @@ class NetworkPeering(pulumi.CustomResource):
         # see https://docs.atlas.mongodb.com/security-vpc-peering/
         # Create an Atlas cluster, this creates a container if one
         # does not yet exist for this AZURE region
-        test_cluster = mongodbatlas.Cluster("testCluster",
-            project_id=local["project_id"],
+        test = mongodbatlas.Cluster("test",
+            project_id=project_id,
+            name="cluster-azure",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -1293,14 +1107,14 @@ class NetworkPeering(pulumi.CustomResource):
             provider_name="AZURE",
             provider_instance_size_name="M10")
         # Create the peering connection request
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
-            project_id=local["project_id"],
-            container_id=test_cluster.container_id,
+        test_network_peering = mongodbatlas.NetworkPeering("test",
+            project_id=project_id,
+            container_id=test.container_id,
             provider_name="AZURE",
-            azure_directory_id=local["AZURE_DIRECTORY_ID"],
-            azure_subscription_id=local["AZURE_SUBSCRIPTION_ID"],
-            resource_group_name=local["AZURE_RESOURCE_GROUP_NAME"],
-            vnet_name=local["AZURE_VNET_NAME"])
+            azure_directory_id=azur_e__director_y__id,
+            azure_subscription_id=azur_e__subscriptio_n__id,
+            resource_group_name=azur_e__resourc_e__grou_p__name,
+            vnet_name=azur_e__vne_t__name)
         ```
         <!--End PulumiCodeChooser -->
 

@@ -12,6 +12,73 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ *
+ * ### Using projectId attribute to query
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getRolesOrgId({});
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "project-name",
+ *     orgId: test.then(test => test.orgId),
+ *     teams: [
+ *         {
+ *             teamId: "5e0fa8c99ccf641c722fe645",
+ *             roleNames: ["GROUP_OWNER"],
+ *         },
+ *         {
+ *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
+ *             roleNames: [
+ *                 "GROUP_READ_ONLY",
+ *                 "GROUP_DATA_ACCESS_READ_WRITE",
+ *             ],
+ *         },
+ *     ],
+ *     limits: [{
+ *         name: "atlas.project.deployment.clusters",
+ *         value: 26,
+ *     }],
+ * });
+ * const testGetProject = mongodbatlas.getProjectOutput({
+ *     projectId: testProject.id,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Using name attribute to query
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "project-name",
+ *     orgId: "<ORG_ID>",
+ *     teams: [
+ *         {
+ *             teamId: "5e0fa8c99ccf641c722fe645",
+ *             roleNames: ["GROUP_OWNER"],
+ *         },
+ *         {
+ *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
+ *             roleNames: [
+ *                 "GROUP_READ_ONLY",
+ *                 "GROUP_DATA_ACCESS_READ_WRITE",
+ *             ],
+ *         },
+ *     ],
+ *     limits: [{
+ *         name: "atlas.project.deployment.clusters",
+ *         value: 26,
+ *     }],
+ * });
+ * const test = mongodbatlas.getProjectOutput({
+ *     name: testProject.name,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
     args = args || {};
@@ -108,6 +175,73 @@ export interface GetProjectResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
+ *
+ * ### Using projectId attribute to query
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getRolesOrgId({});
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "project-name",
+ *     orgId: test.then(test => test.orgId),
+ *     teams: [
+ *         {
+ *             teamId: "5e0fa8c99ccf641c722fe645",
+ *             roleNames: ["GROUP_OWNER"],
+ *         },
+ *         {
+ *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
+ *             roleNames: [
+ *                 "GROUP_READ_ONLY",
+ *                 "GROUP_DATA_ACCESS_READ_WRITE",
+ *             ],
+ *         },
+ *     ],
+ *     limits: [{
+ *         name: "atlas.project.deployment.clusters",
+ *         value: 26,
+ *     }],
+ * });
+ * const testGetProject = mongodbatlas.getProjectOutput({
+ *     projectId: testProject.id,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Using name attribute to query
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "project-name",
+ *     orgId: "<ORG_ID>",
+ *     teams: [
+ *         {
+ *             teamId: "5e0fa8c99ccf641c722fe645",
+ *             roleNames: ["GROUP_OWNER"],
+ *         },
+ *         {
+ *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
+ *             roleNames: [
+ *                 "GROUP_READ_ONLY",
+ *                 "GROUP_DATA_ACCESS_READ_WRITE",
+ *             ],
+ *         },
+ *     ],
+ *     limits: [{
+ *         name: "atlas.project.deployment.clusters",
+ *         value: 26,
+ *     }],
+ * });
+ * const test = mongodbatlas.getProjectOutput({
+ *     name: testProject.name,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getProjectOutput(args?: GetProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectResult> {
     return pulumi.output(args).apply((a: any) => getProject(a, opts))

@@ -14,6 +14,62 @@ import (
 // `LdapVerify` describes a LDAP Verify.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testProject, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("NAME OF THE PROJECT"),
+//				OrgId: pulumi.String("ORG ID"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testCluster, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
+//				ProjectId:                testProject.ID(),
+//				Name:                     pulumi.String("NAME OF THE CLUSTER"),
+//				ProviderName:             pulumi.String("AWS"),
+//				ProviderRegionName:       pulumi.String("US_EAST_2"),
+//				ProviderInstanceSizeName: pulumi.String("M10"),
+//				CloudBackup:              pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testLdapVerify, err := mongodbatlas.NewLdapVerify(ctx, "test", &mongodbatlas.LdapVerifyArgs{
+//				ProjectId:    testProject.ID(),
+//				Hostname:     pulumi.String("HOSTNAME"),
+//				Port:         pulumi.Int(636),
+//				BindUsername: pulumi.String("USERNAME"),
+//				BindPassword: pulumi.String("PASSWORD"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				testCluster,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupLdapVerifyOutput(ctx, mongodbatlas.GetLdapVerifyOutputArgs{
+//				ProjectId: testLdapVerify.ProjectId,
+//				RequestId: testLdapVerify.RequestId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func LookupLdapVerify(ctx *pulumi.Context, args *LookupLdapVerifyArgs, opts ...pulumi.InvokeOption) (*LookupLdapVerifyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLdapVerifyResult

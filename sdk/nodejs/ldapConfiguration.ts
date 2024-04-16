@@ -16,9 +16,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORG ID"});
- * const testLdapConfiguration = new mongodbatlas.LdapConfiguration("testLdapConfiguration", {
- *     projectId: testProject.id,
+ * const test = new mongodbatlas.Project("test", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORG ID",
+ * });
+ * const testLdapConfiguration = new mongodbatlas.LdapConfiguration("test", {
+ *     projectId: test.id,
  *     authenticationEnabled: true,
  *     hostname: "HOSTNAME",
  *     port: 636,
@@ -35,9 +38,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORG ID"});
- * const testLdapConfiguration = new mongodbatlas.LdapConfiguration("testLdapConfiguration", {
- *     projectId: testProject.id,
+ * const test = new mongodbatlas.Project("test", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORG ID",
+ * });
+ * const testLdapConfiguration = new mongodbatlas.LdapConfiguration("test", {
+ *     projectId: test.id,
  *     authenticationEnabled: true,
  *     hostname: "HOSTNAME",
  *     port: 636,

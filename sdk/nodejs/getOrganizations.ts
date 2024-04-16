@@ -17,8 +17,8 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getOrganizations({
- *     itemsPerPage: 5,
  *     pageNum: 1,
+ *     itemsPerPage: 5,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -86,8 +86,8 @@ export interface GetOrganizationsResult {
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getOrganizations({
- *     itemsPerPage: 5,
  *     pageNum: 1,
+ *     itemsPerPage: 5,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

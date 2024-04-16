@@ -10,6 +10,63 @@ import * as utilities from "./utilities";
  * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.Cluster("test", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "<CLUSTER-NAME>",
+ *     cloudBackup: true,
+ *     clusterType: "GEOSHARDED",
+ *     providerName: "AWS",
+ *     providerInstanceSizeName: "M30",
+ *     replicationSpecs: [
+ *         {
+ *             zoneName: "Zone 1",
+ *             numShards: 2,
+ *             regionsConfigs: [{
+ *                 regionName: "EU_CENTRAL_1",
+ *                 electableNodes: 3,
+ *                 priority: 7,
+ *                 readOnlyNodes: 0,
+ *             }],
+ *         },
+ *         {
+ *             zoneName: "Zone 2",
+ *             numShards: 2,
+ *             regionsConfigs: [{
+ *                 regionName: "US_EAST_2",
+ *                 electableNodes: 3,
+ *                 priority: 7,
+ *                 readOnlyNodes: 0,
+ *             }],
+ *         },
+ *     ],
+ * });
+ * const configGlobalClusterConfig = new mongodbatlas.GlobalClusterConfig("config", {
+ *     projectId: test.projectId,
+ *     clusterName: test.name,
+ *     managedNamespaces: [{
+ *         db: "mydata",
+ *         collection: "publishers",
+ *         customShardKey: "city",
+ *     }],
+ *     customZoneMappings: [{
+ *         location: "CA",
+ *         zone: "Zone 1",
+ *     }],
+ * });
+ * const config = mongodbatlas.getGlobalClusterConfigOutput({
+ *     projectId: configGlobalClusterConfig.projectId,
+ *     clusterName: configGlobalClusterConfig.clusterName,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getGlobalClusterConfig(args: GetGlobalClusterConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetGlobalClusterConfigResult> {
 
@@ -60,6 +117,63 @@ export interface GetGlobalClusterConfigResult {
  * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.Cluster("test", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "<CLUSTER-NAME>",
+ *     cloudBackup: true,
+ *     clusterType: "GEOSHARDED",
+ *     providerName: "AWS",
+ *     providerInstanceSizeName: "M30",
+ *     replicationSpecs: [
+ *         {
+ *             zoneName: "Zone 1",
+ *             numShards: 2,
+ *             regionsConfigs: [{
+ *                 regionName: "EU_CENTRAL_1",
+ *                 electableNodes: 3,
+ *                 priority: 7,
+ *                 readOnlyNodes: 0,
+ *             }],
+ *         },
+ *         {
+ *             zoneName: "Zone 2",
+ *             numShards: 2,
+ *             regionsConfigs: [{
+ *                 regionName: "US_EAST_2",
+ *                 electableNodes: 3,
+ *                 priority: 7,
+ *                 readOnlyNodes: 0,
+ *             }],
+ *         },
+ *     ],
+ * });
+ * const configGlobalClusterConfig = new mongodbatlas.GlobalClusterConfig("config", {
+ *     projectId: test.projectId,
+ *     clusterName: test.name,
+ *     managedNamespaces: [{
+ *         db: "mydata",
+ *         collection: "publishers",
+ *         customShardKey: "city",
+ *     }],
+ *     customZoneMappings: [{
+ *         location: "CA",
+ *         zone: "Zone 1",
+ *     }],
+ * });
+ * const config = mongodbatlas.getGlobalClusterConfigOutput({
+ *     projectId: configGlobalClusterConfig.projectId,
+ *     clusterName: configGlobalClusterConfig.clusterName,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getGlobalClusterConfigOutput(args: GetGlobalClusterConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGlobalClusterConfigResult> {
     return pulumi.output(args).apply((a: any) => getGlobalClusterConfig(a, opts))

@@ -20,6 +20,38 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// ## Example Usage
+        /// 
+        /// ### Basic Example (AWS).
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
+        ///     {
+        ///         AccepterRegionName = "us-east-1",
+        ///         ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
+        ///         ContainerId = "507f1f77bcf86cd799439011",
+        ///         ProviderName = "AWS",
+        ///         RouteTableCidrBlock = "192.168.0.0/24",
+        ///         VpcId = "vpc-abc123abc123",
+        ///         AwsAccountId = "abc123abc123",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetNetworkPeering.Invoke(new()
+        ///     {
+        ///         ProjectId = testNetworkPeering.ProjectId,
+        ///         PeeringId = testNetworkPeering.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetNetworkPeeringResult> InvokeAsync(GetNetworkPeeringArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworkPeeringResult>("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args ?? new GetNetworkPeeringArgs(), options.WithDefaults());
@@ -33,6 +65,38 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// ## Example Usage
+        /// 
+        /// ### Basic Example (AWS).
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
+        ///     {
+        ///         AccepterRegionName = "us-east-1",
+        ///         ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
+        ///         ContainerId = "507f1f77bcf86cd799439011",
+        ///         ProviderName = "AWS",
+        ///         RouteTableCidrBlock = "192.168.0.0/24",
+        ///         VpcId = "vpc-abc123abc123",
+        ///         AwsAccountId = "abc123abc123",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetNetworkPeering.Invoke(new()
+        ///     {
+        ///         ProjectId = testNetworkPeering.ProjectId,
+        ///         PeeringId = testNetworkPeering.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetNetworkPeeringResult> Invoke(GetNetworkPeeringInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkPeeringResult>("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args ?? new GetNetworkPeeringInvokeArgs(), options.WithDefaults());

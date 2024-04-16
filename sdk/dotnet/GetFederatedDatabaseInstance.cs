@@ -33,8 +33,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///     });
         /// 
         /// });
@@ -55,6 +55,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
+        ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
         ///         {
         ///             Aws = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsInputArgs
@@ -62,8 +64,6 @@ namespace Pulumi.Mongodbatlas
         ///                 TestS3Bucket = "Amazon S3 Bucket Name",
         ///             },
         ///         },
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        ///         ProjectId = "PROJECT ID",
         ///     });
         /// 
         /// });
@@ -95,8 +95,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///     });
         /// 
         /// });
@@ -117,6 +117,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
+        ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
         ///         {
         ///             Aws = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsInputArgs
@@ -124,8 +126,6 @@ namespace Pulumi.Mongodbatlas
         ///                 TestS3Bucket = "Amazon S3 Bucket Name",
         ///             },
         ///         },
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        ///         ProjectId = "PROJECT ID",
         ///     });
         /// 
         /// });

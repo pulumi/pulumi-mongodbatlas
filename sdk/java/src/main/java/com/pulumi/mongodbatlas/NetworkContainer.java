@@ -54,8 +54,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new NetworkContainer(&#34;test&#34;, NetworkContainerArgs.builder()        
- *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
  *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .regionName(&#34;US_EAST_1&#34;)
  *             .build());
@@ -90,8 +90,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new NetworkContainer(&#34;test&#34;, NetworkContainerArgs.builder()        
- *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
  *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
  *             .providerName(&#34;GCP&#34;)
  *             .regions(            
  *                 &#34;US_EAST_4&#34;,
@@ -128,8 +128,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new NetworkContainer(&#34;test&#34;, NetworkContainerArgs.builder()        
- *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
  *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
  *             .providerName(&#34;AZURE&#34;)
  *             .region(&#34;US_EAST_2&#34;)
  *             .build());

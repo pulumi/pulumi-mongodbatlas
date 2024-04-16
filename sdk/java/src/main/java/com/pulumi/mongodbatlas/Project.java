@@ -52,10 +52,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
+ *         final var test = MongodbatlasFunctions.getRolesOrgId();
  * 
  *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
- *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
+ *             .name(&#34;project-name&#34;)
+ *             .orgId(test.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
  *             .projectOwnerId(&#34;&lt;OWNER_ACCOUNT_ID&gt;&#34;)
  *             .teams(            
  *                 ProjectTeamArgs.builder()

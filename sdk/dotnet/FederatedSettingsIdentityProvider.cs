@@ -26,19 +26,20 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
+    ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
     ///     {
+    ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+    ///         Name = "mongodb_federation_test",
     ///         AssociatedDomains = new[]
     ///         {
     ///             "yourdomain.com",
     ///         },
-    ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+    ///         SsoDebugEnabled = true,
+    ///         Status = "ACTIVE",
+    ///         SsoUrl = "https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
     ///         IssuerUri = "http://www.okta.com/exk17q7f7f7f7fp50h8",
     ///         RequestBinding = "HTTP-POST",
     ///         ResponseSignatureAlgorithm = "SHA-256",
-    ///         SsoDebugEnabled = true,
-    ///         SsoUrl = "https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
-    ///         Status = "ACTIVE",
     ///     });
     /// 
     /// });

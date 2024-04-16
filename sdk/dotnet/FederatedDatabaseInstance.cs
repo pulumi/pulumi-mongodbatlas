@@ -30,14 +30,17 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.FederatedDatabaseInstance("test", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
+    ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
     ///         StorageDatabases = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseArgs
     ///             {
+    ///                 Name = "VirtualDatabase0",
     ///                 Collections = new[]
     ///                 {
     ///                     new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionArgs
     ///                     {
+    ///                         Name = "NAME OF THE COLLECTION",
     ///                         DataSources = new[]
     ///                         {
     ///                             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs
@@ -47,18 +50,16 @@ namespace Pulumi.Mongodbatlas
     ///                                 StoreName = "CLUSTER NAME",
     ///                             },
     ///                         },
-    ///                         Name = "NAME OF THE COLLECTION",
     ///                     },
     ///                 },
-    ///                 Name = "VirtualDatabase0",
     ///             },
     ///         },
     ///         StorageStores = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageStoreArgs
     ///             {
-    ///                 ClusterName = "CLUSTER NAME",
     ///                 Name = "STORE 1 NAME",
+    ///                 ClusterName = "CLUSTER NAME",
     ///                 ProjectId = "PROJECT ID",
     ///                 Provider = "atlas",
     ///                 ReadPreference = new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs
@@ -86,6 +87,8 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.FederatedDatabaseInstance("test", new()
     ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
     ///         CloudProviderConfig = new Mongodbatlas.Inputs.FederatedDatabaseInstanceCloudProviderConfigArgs
     ///         {
     ///             Aws = new Mongodbatlas.Inputs.FederatedDatabaseInstanceCloudProviderConfigAwsArgs
@@ -94,15 +97,16 @@ namespace Pulumi.Mongodbatlas
     ///                 TestS3Bucket = "S3 BUCKET NAME",
     ///             },
     ///         },
-    ///         ProjectId = "PROJECT ID",
     ///         StorageDatabases = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseArgs
     ///             {
+    ///                 Name = "VirtualDatabase0",
     ///                 Collections = new[]
     ///                 {
     ///                     new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionArgs
     ///                     {
+    ///                         Name = "NAME OF THE COLLECTION",
     ///                         DataSources = new[]
     ///                         {
     ///                             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs
@@ -113,22 +117,20 @@ namespace Pulumi.Mongodbatlas
     ///                             },
     ///                             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs
     ///                             {
-    ///                                 Path = "S3 BUCKET PATH",
     ///                                 StoreName = "S3 BUCKET NAME",
+    ///                                 Path = "S3 BUCKET PATH",
     ///                             },
     ///                         },
-    ///                         Name = "NAME OF THE COLLECTION",
     ///                     },
     ///                 },
-    ///                 Name = "VirtualDatabase0",
     ///             },
     ///         },
     ///         StorageStores = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageStoreArgs
     ///             {
-    ///                 ClusterName = "CLUSTER NAME",
     ///                 Name = "STORE 1 NAME",
+    ///                 ClusterName = "CLUSTER NAME",
     ///                 ProjectId = "PROJECT ID",
     ///                 Provider = "atlas",
     ///                 ReadPreference = new Mongodbatlas.Inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs

@@ -124,8 +124,8 @@ def get_cluster_outage_simulation(cluster_name: Optional[str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    outage_simulation = mongodbatlas.get_cluster_outage_simulation(cluster_name="Cluster0",
-        project_id="64707f06c519c20c3a2b1b03")
+    outage_simulation = mongodbatlas.get_cluster_outage_simulation(project_id="64707f06c519c20c3a2b1b03",
+        cluster_name="Cluster0")
     ```
     <!--End PulumiCodeChooser -->
 
@@ -163,8 +163,8 @@ def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[str
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    outage_simulation = mongodbatlas.get_cluster_outage_simulation(cluster_name="Cluster0",
-        project_id="64707f06c519c20c3a2b1b03")
+    outage_simulation = mongodbatlas.get_cluster_outage_simulation(project_id="64707f06c519c20c3a2b1b03",
+        cluster_name="Cluster0")
     ```
     <!--End PulumiCodeChooser -->
 

@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			orgConnections, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, "orgConnections", &mongodbatlas.FederatedSettingsOrgConfigArgs{
+//			_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, "org_connections", &mongodbatlas.FederatedSettingsOrgConfigArgs{
 //				FederationSettingsId:     pulumi.String("627a9687f7f7f7f774de306f14"),
 //				OrgId:                    pulumi.String("627a9683ea7ff7f74de306f14"),
 //				DomainRestrictionEnabled: pulumi.Bool(false),
@@ -42,9 +42,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupFederatedSettingsOrgConfigsOutput(ctx, mongodbatlas.GetFederatedSettingsOrgConfigsOutputArgs{
-//				FederationSettingsId: orgConnections.ID(),
+//			_, err = mongodbatlas.LookupFederatedSettingsOrgConfigs(ctx, &mongodbatlas.LookupFederatedSettingsOrgConfigsArgs{
+//				FederationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,
 //			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}

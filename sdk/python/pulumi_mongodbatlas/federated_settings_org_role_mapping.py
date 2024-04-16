@@ -173,10 +173,10 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport",
-            external_group_name="myGrouptest",
+        org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import",
             federation_settings_id="627a9687f7f7f7f774de306f14",
             org_id="627a9683e7f7f7ff7fe306f14",
+            external_group_name="myGrouptest",
             role_assignments=[
                 mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
                     org_id="627a9683e7f7f7ff7fe306f14",
@@ -241,10 +241,10 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport",
-            external_group_name="myGrouptest",
+        org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import",
             federation_settings_id="627a9687f7f7f7f774de306f14",
             org_id="627a9683e7f7f7ff7fe306f14",
+            external_group_name="myGrouptest",
             role_assignments=[
                 mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
                     org_id="627a9683e7f7f7ff7fe306f14",

@@ -149,9 +149,9 @@ def get_federated_query_limit(limit_name: Optional[str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_query_limit(limit_name="LIMIT_NAME",
-        project_id="PROJECT_ID",
-        tenant_name="FEDERATED_DATABASE_INSTANCE_NAME")
+    test = mongodbatlas.get_federated_query_limit(project_id="PROJECT_ID",
+        tenant_name="FEDERATED_DATABASE_INSTANCE_NAME",
+        limit_name="LIMIT_NAME")
     ```
     <!--End PulumiCodeChooser -->
 
@@ -203,9 +203,9 @@ def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[str]] = N
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_query_limit(limit_name="LIMIT_NAME",
-        project_id="PROJECT_ID",
-        tenant_name="FEDERATED_DATABASE_INSTANCE_NAME")
+    test = mongodbatlas.get_federated_query_limit(project_id="PROJECT_ID",
+        tenant_name="FEDERATED_DATABASE_INSTANCE_NAME",
+        limit_name="LIMIT_NAME")
     ```
     <!--End PulumiCodeChooser -->
 

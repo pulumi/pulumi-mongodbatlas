@@ -382,9 +382,11 @@ class LdapConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
-        test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
-            project_id=test_project.id,
+        test = mongodbatlas.Project("test",
+            name="NAME OF THE PROJECT",
+            org_id="ORG ID")
+        test_ldap_configuration = mongodbatlas.LdapConfiguration("test",
+            project_id=test.id,
             authentication_enabled=True,
             hostname="HOSTNAME",
             port=636,
@@ -400,9 +402,11 @@ class LdapConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
-        test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
-            project_id=test_project.id,
+        test = mongodbatlas.Project("test",
+            name="NAME OF THE PROJECT",
+            org_id="ORG ID")
+        test_ldap_configuration = mongodbatlas.LdapConfiguration("test",
+            project_id=test.id,
             authentication_enabled=True,
             hostname="HOSTNAME",
             port=636,
@@ -458,9 +462,11 @@ class LdapConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
-        test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
-            project_id=test_project.id,
+        test = mongodbatlas.Project("test",
+            name="NAME OF THE PROJECT",
+            org_id="ORG ID")
+        test_ldap_configuration = mongodbatlas.LdapConfiguration("test",
+            project_id=test.id,
             authentication_enabled=True,
             hostname="HOSTNAME",
             port=636,
@@ -476,9 +482,11 @@ class LdapConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
-        test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
-            project_id=test_project.id,
+        test = mongodbatlas.Project("test",
+            name="NAME OF THE PROJECT",
+            org_id="ORG ID")
+        test_ldap_configuration = mongodbatlas.LdapConfiguration("test",
+            project_id=test.id,
             authentication_enabled=True,
             hostname="HOSTNAME",
             port=636,

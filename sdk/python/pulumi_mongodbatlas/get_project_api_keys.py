@@ -99,8 +99,8 @@ def get_project_api_keys(items_per_page: Optional[int] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_project_api_keys(items_per_page=5,
-        page_num=1,
+    test = mongodbatlas.get_project_api_keys(page_num=1,
+        items_per_page=5,
         project_id="32b6e34b3d91647abb20e7b8")
     ```
     <!--End PulumiCodeChooser -->
@@ -138,8 +138,8 @@ def get_project_api_keys_output(items_per_page: Optional[pulumi.Input[Optional[i
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_project_api_keys(items_per_page=5,
-        page_num=1,
+    test = mongodbatlas.get_project_api_keys(page_num=1,
+        items_per_page=5,
         project_id="32b6e34b3d91647abb20e7b8")
     ```
     <!--End PulumiCodeChooser -->

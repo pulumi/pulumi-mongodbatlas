@@ -18,6 +18,41 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 //
 // ## Example Usage
+//
+// ### Basic Example.
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
+//				ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
+//				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
+//				ProviderName:   pulumi.String("AWS"),
+//				RegionName:     pulumi.String("US_EAST_1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupNetworkContainerOutput(ctx, mongodbatlas.GetNetworkContainerOutputArgs{
+//				ProjectId:   testNetworkContainer.ProjectId,
+//				ContainerId: testNetworkContainer.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func LookupNetworkContainer(ctx *pulumi.Context, args *LookupNetworkContainerArgs, opts ...pulumi.InvokeOption) (*LookupNetworkContainerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNetworkContainerResult

@@ -37,10 +37,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewOnlineArchive(ctx, "test", &mongodbatlas.OnlineArchiveArgs{
-//				ProjectId:   pulumi.Any(_var.Project_id),
-//				ClusterName: pulumi.Any(_var.Cluster_name),
-//				CollName:    pulumi.Any(_var.Collection_name),
-//				DbName:      pulumi.Any(_var.Database_name),
+//				ProjectId:   pulumi.Any(projectId),
+//				ClusterName: pulumi.Any(clusterName),
+//				CollName:    pulumi.Any(collectionName),
+//				DbName:      pulumi.Any(databaseName),
 //				PartitionFields: mongodbatlas.OnlineArchivePartitionFieldArray{
 //					&mongodbatlas.OnlineArchivePartitionFieldArgs{
 //						FieldName: pulumi.String("dateField"),
@@ -94,10 +94,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewOnlineArchive(ctx, "test", &mongodbatlas.OnlineArchiveArgs{
-//				ProjectId:   pulumi.Any(_var.Project_id),
-//				ClusterName: pulumi.Any(_var.Cluster_name),
-//				CollName:    pulumi.Any(_var.Collection_name),
-//				DbName:      pulumi.Any(_var.Database_name),
+//				ProjectId:   pulumi.Any(projectId),
+//				ClusterName: pulumi.Any(clusterName),
+//				CollName:    pulumi.Any(collectionName),
+//				DbName:      pulumi.Any(databaseName),
 //				PartitionFields: mongodbatlas.OnlineArchivePartitionFieldArray{
 //					&mongodbatlas.OnlineArchivePartitionFieldArgs{
 //						FieldName: pulumi.String("firstName"),

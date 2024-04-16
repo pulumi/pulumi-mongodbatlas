@@ -19,10 +19,10 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.FederatedQueryLimit("test", {
- *     limitName: "bytesProcessed.weekly",
- *     overrunPolicy: "BLOCK",
  *     projectId: "64707f06c519c20c3a2b1b03",
  *     tenantName: "FederatedDatabseInstance0",
+ *     limitName: "bytesProcessed.weekly",
+ *     overrunPolicy: "BLOCK",
  *     value: 5147483648,
  * });
  * ```

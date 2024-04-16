@@ -237,9 +237,9 @@ class OrgInvitation(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test0 = mongodbatlas.OrgInvitation("test0",
+            username="test0-acc-username",
             org_id="<ORG-ID>",
-            roles=["ORG_OWNER"],
-            username="test0-acc-username")
+            roles=["ORG_OWNER"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -249,12 +249,12 @@ class OrgInvitation(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test0 = mongodbatlas.OrgInvitation("test0",
+            username="test0-acc-username",
             org_id="<ORG-ID>",
             roles=[
                 "ORG_MEMBER",
                 "ORG_BILLING_ADMIN",
-            ],
-            username="test0-acc-username")
+            ])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -264,13 +264,13 @@ class OrgInvitation(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test1 = mongodbatlas.OrgInvitation("test1",
+            username="test1-acc-username",
             org_id="<ORG-ID>",
-            roles=["ORG_MEMBER"],
             teams_ids=[
                 "<TEAM-0-ID>",
                 "<TEAM-1-ID>",
             ],
-            username="test1-acc-username")
+            roles=["ORG_MEMBER"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -309,9 +309,9 @@ class OrgInvitation(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test0 = mongodbatlas.OrgInvitation("test0",
+            username="test0-acc-username",
             org_id="<ORG-ID>",
-            roles=["ORG_OWNER"],
-            username="test0-acc-username")
+            roles=["ORG_OWNER"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -321,12 +321,12 @@ class OrgInvitation(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test0 = mongodbatlas.OrgInvitation("test0",
+            username="test0-acc-username",
             org_id="<ORG-ID>",
             roles=[
                 "ORG_MEMBER",
                 "ORG_BILLING_ADMIN",
-            ],
-            username="test0-acc-username")
+            ])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -336,13 +336,13 @@ class OrgInvitation(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test1 = mongodbatlas.OrgInvitation("test1",
+            username="test1-acc-username",
             org_id="<ORG-ID>",
-            roles=["ORG_MEMBER"],
             teams_ids=[
                 "<TEAM-0-ID>",
                 "<TEAM-1-ID>",
             ],
-            username="test1-acc-username")
+            roles=["ORG_MEMBER"])
         ```
         <!--End PulumiCodeChooser -->
 

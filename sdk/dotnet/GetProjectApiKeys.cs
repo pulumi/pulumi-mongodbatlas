@@ -25,8 +25,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetProjectApiKeys.Invoke(new()
         ///     {
-        ///         ItemsPerPage = 5,
         ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
         ///         ProjectId = "32b6e34b3d91647abb20e7b8",
         ///     });
         /// 
@@ -51,8 +51,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetProjectApiKeys.Invoke(new()
         ///     {
-        ///         ItemsPerPage = 5,
         ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
         ///         ProjectId = "32b6e34b3d91647abb20e7b8",
         ///     });
         /// 

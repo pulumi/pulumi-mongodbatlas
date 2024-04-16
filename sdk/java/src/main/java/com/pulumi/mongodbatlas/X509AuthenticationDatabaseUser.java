@@ -98,8 +98,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
  * import com.pulumi.mongodbatlas.DatabaseUser;
  * import com.pulumi.mongodbatlas.DatabaseUserArgs;
- * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
  * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -114,44 +114,42 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new X509AuthenticationDatabaseUser(&#34;test&#34;, X509AuthenticationDatabaseUserArgs.builder()        
- *             .customerX509Cas(&#34;&#34;&#34;
- *   -----BEGIN CERTIFICATE-----
- *   MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
- *   VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
- *   c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
- *   SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
- *   MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
- *   VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
- *   BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
- *   c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
- *   iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
- *   cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
- *   Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
- *   SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
- *   7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
- *   iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
- *   -----END CERTIFICATE-----&#34;
- * 
- *             &#34;&#34;&#34;)
  *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .customerX509Cas(&#34;&#34;&#34;
+ * -----BEGIN CERTIFICATE-----
+ * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+ * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+ * c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+ * SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+ * MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+ * VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+ * BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+ * c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+ * iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+ * cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+ * Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+ * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+ * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+ * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+ * -----END CERTIFICATE-----&#34;
+ *             &#34;&#34;&#34;)
  *             .build());
  * 
  *         var user = new DatabaseUser(&#34;user&#34;, DatabaseUserArgs.builder()        
+ *             .projectId(&#34;64b926dd56206839b1c8bae9&#34;)
+ *             .username(&#34;myUsername&#34;)
+ *             .x509Type(&#34;CUSTOMER&#34;)
  *             .databaseName(&#34;$external&#34;)
+ *             .roles(DatabaseUserRoleArgs.builder()
+ *                 .roleName(&#34;atlasAdmin&#34;)
+ *                 .databaseName(&#34;admin&#34;)
+ *                 .build())
  *             .labels(DatabaseUserLabelArgs.builder()
  *                 .key(&#34;My Key&#34;)
  *                 .value(&#34;My Value&#34;)
  *                 .build())
- *             .projectId(&#34;64b926dd56206839b1c8bae9&#34;)
- *             .roles(DatabaseUserRoleArgs.builder()
- *                 .databaseName(&#34;admin&#34;)
- *                 .roleName(&#34;atlasAdmin&#34;)
- *                 .build())
- *             .username(&#34;myUsername&#34;)
- *             .x509Type(&#34;CUSTOMER&#34;)
  *             .build());
  * 
- *         // Make sure to set x509_type = &#34;CUSTOMER&#34;
  *     }
  * }
  * ```

@@ -33,9 +33,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupFederatedQueryLimit(ctx, &mongodbatlas.LookupFederatedQueryLimitArgs{
-//				LimitName:  "LIMIT_NAME",
 //				ProjectId:  "PROJECT_ID",
 //				TenantName: "FEDERATED_DATABASE_INSTANCE_NAME",
+//				LimitName:  "LIMIT_NAME",
 //			}, nil)
 //			if err != nil {
 //				return err

@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRole = new mongodbatlas.CustomDbRole("testRole", {
+ * const testRole = new mongodbatlas.CustomDbRole("test_role", {
  *     projectId: "<PROJECT-ID>",
  *     roleName: "myCustomRole",
  *     actions: [
@@ -98,7 +98,7 @@ export interface GetCustomDbRoleResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRole = new mongodbatlas.CustomDbRole("testRole", {
+ * const testRole = new mongodbatlas.CustomDbRole("test_role", {
  *     projectId: "<PROJECT-ID>",
  *     roleName: "myCustomRole",
  *     actions: [

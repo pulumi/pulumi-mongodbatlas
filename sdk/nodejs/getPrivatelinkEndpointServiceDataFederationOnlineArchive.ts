@@ -16,7 +16,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const atlas_project = new mongodbatlas.Project("atlas-project", {orgId: _var.atlas_org_id});
+ * const atlas_project = new mongodbatlas.Project("atlas-project", {
+ *     orgId: atlasOrgId,
+ *     name: atlasProjectName,
+ * });
  * const test = new mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", {
  *     projectId: atlas_project.id,
  *     endpointId: "vpce-046cf43c79424d4c9",
@@ -98,7 +101,10 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult 
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const atlas_project = new mongodbatlas.Project("atlas-project", {orgId: _var.atlas_org_id});
+ * const atlas_project = new mongodbatlas.Project("atlas-project", {
+ *     orgId: atlasOrgId,
+ *     name: atlasProjectName,
+ * });
  * const test = new mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", {
  *     projectId: atlas_project.id,
  *     endpointId: "vpce-046cf43c79424d4c9",

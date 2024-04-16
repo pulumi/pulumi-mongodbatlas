@@ -15,6 +15,35 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.Auditing` describes a Auditing.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testAuditing = new Mongodbatlas.Auditing("test", new()
+        ///     {
+        ///         ProjectId = "&lt;project-id&gt;",
+        ///         AuditFilter = "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
+        ///         AuditAuthorizationSuccess = false,
+        ///         Enabled = true,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetAuditing.Invoke(new()
+        ///     {
+        ///         ProjectId = testAuditing.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAuditingResult> InvokeAsync(GetAuditingArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuditingResult>("mongodbatlas:index/getAuditing:getAuditing", args ?? new GetAuditingArgs(), options.WithDefaults());
@@ -23,6 +52,35 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.Auditing` describes a Auditing.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testAuditing = new Mongodbatlas.Auditing("test", new()
+        ///     {
+        ///         ProjectId = "&lt;project-id&gt;",
+        ///         AuditFilter = "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
+        ///         AuditAuthorizationSuccess = false,
+        ///         Enabled = true,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetAuditing.Invoke(new()
+        ///     {
+        ///         ProjectId = testAuditing.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAuditingResult> Invoke(GetAuditingInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuditingResult>("mongodbatlas:index/getAuditing:getAuditing", args ?? new GetAuditingInvokeArgs(), options.WithDefaults());

@@ -42,9 +42,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new ProjectInvitation(&#34;test&#34;, ProjectInvitationArgs.builder()        
+ *             .username(&#34;test-acc-username&#34;)
  *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .roles(&#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
- *             .username(&#34;test-acc-username&#34;)
  *             .build());
  * 
  *     }
@@ -75,11 +75,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new ProjectInvitation(&#34;test&#34;, ProjectInvitationArgs.builder()        
+ *             .username(&#34;test-acc-username&#34;)
  *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .roles(            
  *                 &#34;GROUP_READ_ONLY&#34;,
  *                 &#34;GROUP_DATA_ACCESS_READ_ONLY&#34;)
- *             .username(&#34;test-acc-username&#34;)
  *             .build());
  * 
  *     }

@@ -9,39 +9,106 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * ### Example automated delivery type
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.Cluster("my_cluster", {
+ *     projectId: "5cf5a45a9ccf6400e60981b6",
+ *     name: "MyCluster",
+ *     providerName: "AWS",
+ *     providerRegionName: "EU_WEST_2",
+ *     providerInstanceSizeName: "M10",
+ *     cloudBackup: true,
+ * });
+ * const test = new mongodbatlas.index.CloudProviderSnapshot("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     description: "myDescription",
+ *     retentionInDays: 1,
+ * });
+ * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("test", {
+ *     projectId: test.projectId,
+ *     clusterName: test.clusterName,
+ *     snapshotId: test.snapshotId,
+ *     deliveryTypeConfig: {
+ *         automated: true,
+ *         targetClusterName: "MyCluster",
+ *         targetProjectId: "5cf5a45a9ccf6400e60981b6",
+ *     },
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Example download delivery type
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.Cluster("my_cluster", {
+ *     projectId: "5cf5a45a9ccf6400e60981b6",
+ *     name: "MyCluster",
+ *     providerName: "AWS",
+ *     providerRegionName: "EU_WEST_2",
+ *     providerInstanceSizeName: "M10",
+ *     cloudBackup: true,
+ * });
+ * const test = new mongodbatlas.index.CloudProviderSnapshot("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     description: "myDescription",
+ *     retentionInDays: 1,
+ * });
+ * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("test", {
+ *     projectId: test.projectId,
+ *     clusterName: test.clusterName,
+ *     snapshotId: test.snapshotId,
+ *     deliveryTypeConfig: {
+ *         download: true,
+ *     },
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Example of a point in time restore
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const clusterTest = new mongodbatlas.Cluster("clusterTest", {
- *     projectId: mongodbatlas_project.project_test.id,
+ * const clusterTest = new mongodbatlas.Cluster("cluster_test", {
+ *     projectId: projectTest.id,
+ *     name: clusterName,
  *     providerName: "AWS",
  *     providerRegionName: "US_EAST_1",
  *     providerInstanceSizeName: "M10",
  *     cloudBackup: true,
  *     pitEnabled: true,
  * });
- * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", {
+ * const test = new mongodbatlas.CloudBackupSnapshot("test", {
  *     projectId: clusterTest.projectId,
  *     clusterName: clusterTest.name,
  *     description: "My description",
  *     retentionInDays: 1,
  * });
- * let testCloudBackupSnapshotRestoreJob: mongodbatlas.CloudBackupSnapshotRestoreJob | undefined;
- * if ((_var.point_in_time_utc_seconds == 0 ? 0 : 1) == true) {
- *     testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", {
- *         projectId: testCloudBackupSnapshot.projectId,
- *         clusterName: testCloudBackupSnapshot.clusterName,
- *         snapshotId: testCloudBackupSnapshot.id,
+ * const testCloudBackupSnapshotRestoreJob: mongodbatlas.CloudBackupSnapshotRestoreJob[] = [];
+ * for (const range = {value: 0}; range.value < (pointInTimeUtcSeconds == 0 ? 0 : 1); range.value++) {
+ *     testCloudBackupSnapshotRestoreJob.push(new mongodbatlas.CloudBackupSnapshotRestoreJob(`test-${range.value}`, {
+ *         projectId: test.projectId,
+ *         clusterName: test.clusterName,
+ *         snapshotId: test.id,
  *         deliveryTypeConfig: {
  *             pointInTime: true,
  *             targetClusterName: clusterTest.name,
  *             targetProjectId: clusterTest.projectId,
- *             pointInTimeUtcSeconds: _var.point_in_time_utc_seconds,
+ *             pointInTimeUtcSeconds: pointInTimeUtcSeconds,
  *         },
- *     });
+ *     }));
  * }
  * ```
  * <!--End PulumiCodeChooser -->

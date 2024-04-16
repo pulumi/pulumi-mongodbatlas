@@ -25,21 +25,21 @@ import * as utilities from "./utilities";
  * import * as aws from "@pulumi/aws";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", {
+ * const test = new mongodbatlas.PrivateLinkEndpoint("test", {
  *     projectId: "<PROJECT_ID>",
  *     providerName: "AWS",
  *     region: "US_EAST_1",
  * });
- * const ptfeService = new aws.ec2.VpcEndpoint("ptfeService", {
+ * const ptfeService = new aws.index.VpcEndpoint("ptfe_service", {
  *     vpcId: "vpc-7fc0a543",
- *     serviceName: testPrivateLinkEndpoint.endpointServiceName,
+ *     serviceName: test.endpointServiceName,
  *     vpcEndpointType: "Interface",
  *     subnetIds: ["subnet-de0406d2"],
  *     securityGroupIds: ["sg-3f238186"],
  * });
- * const testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", {
- *     projectId: testPrivateLinkEndpoint.projectId,
- *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
+ * const testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("test", {
+ *     projectId: test.projectId,
+ *     privateLinkId: test.privateLinkId,
  *     endpointServiceId: ptfeService.id,
  *     providerName: "AWS",
  * });
@@ -51,34 +51,107 @@ import * as utilities from "./utilities";
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as azure from "@pulumi/azure";
+ * import * as azurerm from "@pulumi/azurerm";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", {
- *     projectId: _var.project_id,
+ * const test = new mongodbatlas.PrivateLinkEndpoint("test", {
+ *     projectId: projectId,
  *     providerName: "AZURE",
  *     region: "eastus2",
  * });
- * const testEndpoint = new azure.privatelink.Endpoint("testEndpoint", {
- *     location: data.azurerm_resource_group.test.location,
- *     resourceGroupName: _var.resource_group_name,
- *     subnetId: azurerm_subnet.test.id,
- *     privateServiceConnection: {
- *         name: testPrivateLinkEndpoint.privateLinkServiceName,
- *         privateConnectionResourceId: testPrivateLinkEndpoint.privateLinkServiceResourceId,
+ * const testPrivateEndpoint = new azurerm.index.PrivateEndpoint("test", {
+ *     name: "endpoint-test",
+ *     location: testAzurermResourceGroup.location,
+ *     resourceGroupName: resourceGroupName,
+ *     subnetId: testAzurermSubnet.id,
+ *     privateServiceConnection: [{
+ *         name: test.privateLinkServiceName,
+ *         privateConnectionResourceId: test.privateLinkServiceResourceId,
  *         isManualConnection: true,
  *         requestMessage: "Azure Private Link test",
- *     },
+ *     }],
  * });
- * const testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", {
- *     projectId: testPrivateLinkEndpoint.projectId,
- *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
- *     endpointServiceId: testEndpoint.id,
- *     privateEndpointIpAddress: testEndpoint.privateServiceConnection.apply(privateServiceConnection => privateServiceConnection.privateIpAddress),
+ * const testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("test", {
+ *     projectId: test.projectId,
+ *     privateLinkId: test.privateLinkId,
+ *     endpointServiceId: testPrivateEndpoint.id,
+ *     privateEndpointIpAddress: testPrivateEndpoint.privateServiceConnection[0].privateIpAddress,
  *     providerName: "AZURE",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
+ *
+ * ## Example with GCP
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as google from "@pulumi/google";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.PrivateLinkEndpoint("test", {
+ *     projectId: projectId,
+ *     providerName: "GCP",
+ *     region: gcpRegion,
+ * });
+ * // Create a Google Network
+ * const _default = new google.index.ComputeNetwork("default", {
+ *     project: gcpProject,
+ *     name: "my-network",
+ * });
+ * // Create a Google Sub Network
+ * const defaultComputeSubnetwork = new google.index.ComputeSubnetwork("default", {
+ *     project: _default.project,
+ *     name: "my-subnet",
+ *     ipCidrRange: "10.0.0.0/16",
+ *     region: gcpRegion,
+ *     network: _default.id,
+ * });
+ * // Create Google 50 Addresses
+ * const defaultComputeAddress: google.index.ComputeAddress[] = [];
+ * for (const range = {value: 0}; range.value < 50; range.value++) {
+ *     defaultComputeAddress.push(new google.index.ComputeAddress(`default-${range.value}`, {
+ *         project: defaultComputeSubnetwork.project,
+ *         name: `tf-test${range.value}`,
+ *         subnetwork: defaultComputeSubnetwork.id,
+ *         addressType: "INTERNAL",
+ *         address: `10.0.42.${range.value}`,
+ *         region: gcpRegion,
+ *     }, {
+ *     dependsOn: [test],
+ * }));
+ * }
+ * // Create 50 Forwarding rules
+ * const defaultComputeForwardingRule: google.index.ComputeForwardingRule[] = [];
+ * for (const range = {value: 0}; range.value < 50; range.value++) {
+ *     defaultComputeForwardingRule.push(new google.index.ComputeForwardingRule(`default-${range.value}`, {
+ *         target: test.serviceAttachmentNames[range.value],
+ *         project: defaultComputeAddress[range.value].project,
+ *         region: defaultComputeAddress[range.value].region,
+ *         name: defaultComputeAddress[range.value].name,
+ *         ipAddress: defaultComputeAddress[range.value].id,
+ *         network: _default.id,
+ *         loadBalancingScheme: "",
+ *     }));
+ * }
+ * const testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("test", {
+ *     endpoints: defaultComputeAddress.map((v, k) => ({key: k, value: v})).map(entry => ({
+ *         ipAddress: entry.value.address,
+ *         endpointName: defaultComputeForwardingRule[entry.key].name,
+ *     })),
+ *     projectId: test.projectId,
+ *     privateLinkId: test.privateLinkId,
+ *     providerName: "GCP",
+ *     endpointServiceId: _default.name,
+ *     gcpProjectId: gcpProject,
+ * }, {
+ *     dependsOn: [defaultComputeForwardingRule],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Available complete examples
+ * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
  *
  * ## Import
  *

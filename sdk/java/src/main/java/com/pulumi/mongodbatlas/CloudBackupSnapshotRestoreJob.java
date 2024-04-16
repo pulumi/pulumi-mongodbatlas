@@ -20,6 +20,126 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * ### Example automated delivery type
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.cloudProviderSnapshot;
+ * import com.pulumi.mongodbatlas.CloudProviderSnapshotArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myCluster = new Cluster(&#34;myCluster&#34;, ClusterArgs.builder()        
+ *             .projectId(&#34;5cf5a45a9ccf6400e60981b6&#34;)
+ *             .name(&#34;MyCluster&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .providerRegionName(&#34;EU_WEST_2&#34;)
+ *             .providerInstanceSizeName(&#34;M10&#34;)
+ *             .cloudBackup(true)
+ *             .build());
+ * 
+ *         var test = new CloudProviderSnapshot(&#34;test&#34;, CloudProviderSnapshotArgs.builder()        
+ *             .projectId(myCluster.projectId())
+ *             .clusterName(myCluster.name())
+ *             .description(&#34;myDescription&#34;)
+ *             .retentionInDays(1)
+ *             .build());
+ * 
+ *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob(&#34;testCloudBackupSnapshotRestoreJob&#34;, CloudBackupSnapshotRestoreJobArgs.builder()        
+ *             .projectId(test.projectId())
+ *             .clusterName(test.clusterName())
+ *             .snapshotId(test.snapshotId())
+ *             .deliveryTypeConfig(CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs.builder()
+ *                 .automated(true)
+ *                 .targetClusterName(&#34;MyCluster&#34;)
+ *                 .targetProjectId(&#34;5cf5a45a9ccf6400e60981b6&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Example download delivery type
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.cloudProviderSnapshot;
+ * import com.pulumi.mongodbatlas.CloudProviderSnapshotArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myCluster = new Cluster(&#34;myCluster&#34;, ClusterArgs.builder()        
+ *             .projectId(&#34;5cf5a45a9ccf6400e60981b6&#34;)
+ *             .name(&#34;MyCluster&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .providerRegionName(&#34;EU_WEST_2&#34;)
+ *             .providerInstanceSizeName(&#34;M10&#34;)
+ *             .cloudBackup(true)
+ *             .build());
+ * 
+ *         var test = new CloudProviderSnapshot(&#34;test&#34;, CloudProviderSnapshotArgs.builder()        
+ *             .projectId(myCluster.projectId())
+ *             .clusterName(myCluster.name())
+ *             .description(&#34;myDescription&#34;)
+ *             .retentionInDays(1)
+ *             .build());
+ * 
+ *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob(&#34;testCloudBackupSnapshotRestoreJob&#34;, CloudBackupSnapshotRestoreJobArgs.builder()        
+ *             .projectId(test.projectId())
+ *             .clusterName(test.clusterName())
+ *             .snapshotId(test.snapshotId())
+ *             .deliveryTypeConfig(CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs.builder()
+ *                 .download(true)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### Example of a point in time restore
  * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
@@ -50,7 +170,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var clusterTest = new Cluster(&#34;clusterTest&#34;, ClusterArgs.builder()        
- *             .projectId(mongodbatlas_project.project_test().id())
+ *             .projectId(projectTest.id())
+ *             .name(clusterName)
  *             .providerName(&#34;AWS&#34;)
  *             .providerRegionName(&#34;US_EAST_1&#34;)
  *             .providerInstanceSizeName(&#34;M10&#34;)
@@ -58,23 +179,23 @@ import javax.annotation.Nullable;
  *             .pitEnabled(true)
  *             .build());
  * 
- *         var testCloudBackupSnapshot = new CloudBackupSnapshot(&#34;testCloudBackupSnapshot&#34;, CloudBackupSnapshotArgs.builder()        
+ *         var test = new CloudBackupSnapshot(&#34;test&#34;, CloudBackupSnapshotArgs.builder()        
  *             .projectId(clusterTest.projectId())
  *             .clusterName(clusterTest.name())
  *             .description(&#34;My description&#34;)
  *             .retentionInDays(&#34;1&#34;)
  *             .build());
  * 
- *         for (var i = 0; i &lt; ((var_.point_in_time_utc_seconds() == 0 ? 0 : 1) == true); i++) {
+ *         for (var i = 0; i &lt; (pointInTimeUtcSeconds == 0 ? 0 : 1); i++) {
  *             new CloudBackupSnapshotRestoreJob(&#34;testCloudBackupSnapshotRestoreJob-&#34; + i, CloudBackupSnapshotRestoreJobArgs.builder()            
- *                 .projectId(testCloudBackupSnapshot.projectId())
- *                 .clusterName(testCloudBackupSnapshot.clusterName())
- *                 .snapshotId(testCloudBackupSnapshot.id())
+ *                 .projectId(test.projectId())
+ *                 .clusterName(test.clusterName())
+ *                 .snapshotId(test.id())
  *                 .deliveryTypeConfig(CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs.builder()
  *                     .pointInTime(true)
  *                     .targetClusterName(clusterTest.name())
  *                     .targetProjectId(clusterTest.projectId())
- *                     .pointInTimeUtcSeconds(var_.point_in_time_utc_seconds())
+ *                     .pointInTimeUtcSeconds(pointInTimeUtcSeconds)
  *                     .build())
  *                 .build());
  * 

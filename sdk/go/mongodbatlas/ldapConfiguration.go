@@ -29,14 +29,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//			test, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("NAME OF THE PROJECT"),
 //				OrgId: pulumi.String("ORG ID"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewLdapConfiguration(ctx, "testLdapConfiguration", &mongodbatlas.LdapConfigurationArgs{
-//				ProjectId:             testProject.ID(),
+//			_, err = mongodbatlas.NewLdapConfiguration(ctx, "test", &mongodbatlas.LdapConfigurationArgs{
+//				ProjectId:             test.ID(),
 //				AuthenticationEnabled: pulumi.Bool(true),
 //				Hostname:              pulumi.String("HOSTNAME"),
 //				Port:                  pulumi.Int(636),
@@ -68,14 +69,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//			test, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("NAME OF THE PROJECT"),
 //				OrgId: pulumi.String("ORG ID"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewLdapConfiguration(ctx, "testLdapConfiguration", &mongodbatlas.LdapConfigurationArgs{
-//				ProjectId:             testProject.ID(),
+//			_, err = mongodbatlas.NewLdapConfiguration(ctx, "test", &mongodbatlas.LdapConfigurationArgs{
+//				ProjectId:             test.ID(),
 //				AuthenticationEnabled: pulumi.Bool(true),
 //				Hostname:              pulumi.String("HOSTNAME"),
 //				Port:                  pulumi.Int(636),

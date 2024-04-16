@@ -229,6 +229,67 @@ def get_project(name: Optional[str] = None,
 
     ## Example Usage
 
+    ### Using project_id attribute to query
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_roles_org_id()
+    test_project = mongodbatlas.Project("test",
+        name="project-name",
+        org_id=test.org_id,
+        teams=[
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e0fa8c99ccf641c722fe645",
+                role_names=["GROUP_OWNER"],
+            ),
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                role_names=[
+                    "GROUP_READ_ONLY",
+                    "GROUP_DATA_ACCESS_READ_WRITE",
+                ],
+            ),
+        ],
+        limits=[mongodbatlas.ProjectLimitArgs(
+            name="atlas.project.deployment.clusters",
+            value=26,
+        )])
+    test_get_project = mongodbatlas.get_project_output(project_id=test_project.id)
+    ```
+    <!--End PulumiCodeChooser -->
+
+    ### Using name attribute to query
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project = mongodbatlas.Project("test",
+        name="project-name",
+        org_id="<ORG_ID>",
+        teams=[
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e0fa8c99ccf641c722fe645",
+                role_names=["GROUP_OWNER"],
+            ),
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                role_names=[
+                    "GROUP_READ_ONLY",
+                    "GROUP_DATA_ACCESS_READ_WRITE",
+                ],
+            ),
+        ],
+        limits=[mongodbatlas.ProjectLimitArgs(
+            name="atlas.project.deployment.clusters",
+            value=26,
+        )])
+    test = mongodbatlas.get_project_output(name=test_project.name)
+    ```
+    <!--End PulumiCodeChooser -->
+
 
     :param str name: The unique ID for the project.
            
@@ -270,6 +331,67 @@ def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
+
+    ### Using project_id attribute to query
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_roles_org_id()
+    test_project = mongodbatlas.Project("test",
+        name="project-name",
+        org_id=test.org_id,
+        teams=[
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e0fa8c99ccf641c722fe645",
+                role_names=["GROUP_OWNER"],
+            ),
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                role_names=[
+                    "GROUP_READ_ONLY",
+                    "GROUP_DATA_ACCESS_READ_WRITE",
+                ],
+            ),
+        ],
+        limits=[mongodbatlas.ProjectLimitArgs(
+            name="atlas.project.deployment.clusters",
+            value=26,
+        )])
+    test_get_project = mongodbatlas.get_project_output(project_id=test_project.id)
+    ```
+    <!--End PulumiCodeChooser -->
+
+    ### Using name attribute to query
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project = mongodbatlas.Project("test",
+        name="project-name",
+        org_id="<ORG_ID>",
+        teams=[
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e0fa8c99ccf641c722fe645",
+                role_names=["GROUP_OWNER"],
+            ),
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                role_names=[
+                    "GROUP_READ_ONLY",
+                    "GROUP_DATA_ACCESS_READ_WRITE",
+                ],
+            ),
+        ],
+        limits=[mongodbatlas.ProjectLimitArgs(
+            name="atlas.project.deployment.clusters",
+            value=26,
+        )])
+    test = mongodbatlas.get_project_output(name=test_project.name)
+    ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The unique ID for the project.
