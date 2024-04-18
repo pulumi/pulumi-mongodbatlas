@@ -23,8 +23,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCluster = new mongodbatlas.Cluster("testCluster", {
+ * const testCluster = new mongodbatlas.Cluster("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -40,7 +41,7 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     providerInstanceSizeName: "M40",
  * });
- * const testClusters = mongodbatlas.getClustersOutput({
+ * const test = mongodbatlas.getClustersOutput({
  *     projectId: testCluster.projectId,
  * });
  * ```
@@ -95,8 +96,9 @@ export interface GetClustersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCluster = new mongodbatlas.Cluster("testCluster", {
+ * const testCluster = new mongodbatlas.Cluster("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -112,7 +114,7 @@ export interface GetClustersResult {
  *     providerName: "AWS",
  *     providerInstanceSizeName: "M40",
  * });
- * const testClusters = mongodbatlas.getClustersOutput({
+ * const test = mongodbatlas.getClustersOutput({
  *     projectId: testCluster.projectId,
  * });
  * ```

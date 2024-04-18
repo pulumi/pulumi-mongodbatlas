@@ -34,8 +34,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
- * import com.pulumi.aws.ec2.VpcEndpoint;
- * import com.pulumi.aws.ec2.VpcEndpointArgs;
+ * import com.pulumi.aws.vpcEndpoint;
+ * import com.pulumi.aws.VpcEndpointArgs;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
  * import java.util.List;
@@ -53,13 +53,14 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
  *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+ *             .name(&#34;test-db&#34;)
  *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
  *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
  *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
  *             .continuousBackupEnabled(true)
  *             .build());
  * 
- *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+ *         var test = new PrivatelinkEndpointServerless(&#34;test&#34;, PrivatelinkEndpointServerlessArgs.builder()        
  *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
  *             .instanceName(testServerlessInstance.name())
  *             .providerName(&#34;AWS&#34;)
@@ -67,7 +68,7 @@ import javax.annotation.Nullable;
  * 
  *         var ptfeService = new VpcEndpoint(&#34;ptfeService&#34;, VpcEndpointArgs.builder()        
  *             .vpcId(&#34;vpc-7fc0a543&#34;)
- *             .serviceName(testPrivatelinkEndpointServerless.endpointServiceName())
+ *             .serviceName(test.endpointServiceName())
  *             .vpcEndpointType(&#34;Interface&#34;)
  *             .subnetIds(&#34;subnet-de0406d2&#34;)
  *             .securityGroupIds(&#34;sg-3f238186&#34;)
@@ -76,7 +77,7 @@ import javax.annotation.Nullable;
  *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
  *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
  *             .instanceName(testServerlessInstance.name())
- *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+ *             .endpointId(test.endpointId())
  *             .cloudProviderEndpointId(ptfeService.id())
  *             .providerName(&#34;AWS&#34;)
  *             .comment(&#34;New serverless endpoint&#34;)
@@ -86,6 +87,76 @@ import javax.annotation.Nullable;
  * }
  * ```
  * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ## Example with AZURE
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+ * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+ * import com.pulumi.azurerm.privateEndpoint;
+ * import com.pulumi.azurerm.PrivateEndpointArgs;
+ * import com.pulumi.mongodbatlas.ServerlessInstance;
+ * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+ * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+ * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new PrivatelinkEndpointServerless(&#34;test&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+ *             .projectId(projectId)
+ *             .providerName(&#34;AZURE&#34;)
+ *             .build());
+ * 
+ *         var testPrivateEndpoint = new PrivateEndpoint(&#34;testPrivateEndpoint&#34;, PrivateEndpointArgs.builder()        
+ *             .name(&#34;endpoint-test&#34;)
+ *             .location(testAzurermResourceGroup.location())
+ *             .resourceGroupName(resourceGroupName)
+ *             .subnetId(testAzurermSubnet.id())
+ *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .build());
+ * 
+ *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+ *             .name(&#34;test-db&#34;)
+ *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+ *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+ *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+ *             .continuousBackupEnabled(true)
+ *             .build());
+ * 
+ *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+ *             .projectId(test.projectId())
+ *             .instanceName(testServerlessInstance.name())
+ *             .endpointId(test.endpointId())
+ *             .cloudProviderEndpointId(testPrivateEndpoint.id())
+ *             .privateEndpointIpAddress(testPrivateEndpoint.privateServiceConnection()[0].privateIpAddress())
+ *             .providerName(&#34;AZURE&#34;)
+ *             .comment(&#34;test&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Available complete examples
+ * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
  * 
  * ## Import
  * 

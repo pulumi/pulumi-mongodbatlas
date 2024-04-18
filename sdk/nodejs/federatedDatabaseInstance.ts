@@ -22,20 +22,21 @@ import * as utilities from "./utilities";
  *
  * const test = new mongodbatlas.FederatedDatabaseInstance("test", {
  *     projectId: "PROJECT ID",
+ *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  *     storageDatabases: [{
+ *         name: "VirtualDatabase0",
  *         collections: [{
+ *             name: "NAME OF THE COLLECTION",
  *             dataSources: [{
  *                 collection: "COLLECTION IN THE CLUSTER",
  *                 database: "DB IN THE CLUSTER",
  *                 storeName: "CLUSTER NAME",
  *             }],
- *             name: "NAME OF THE COLLECTION",
  *         }],
- *         name: "VirtualDatabase0",
  *     }],
  *     storageStores: [{
- *         clusterName: "CLUSTER NAME",
  *         name: "STORE 1 NAME",
+ *         clusterName: "CLUSTER NAME",
  *         projectId: "PROJECT ID",
  *         provider: "atlas",
  *         readPreference: {
@@ -54,15 +55,18 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.FederatedDatabaseInstance("test", {
+ *     projectId: "PROJECT ID",
+ *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  *     cloudProviderConfig: {
  *         aws: {
  *             roleId: "AWS ROLE ID",
  *             testS3Bucket: "S3 BUCKET NAME",
  *         },
  *     },
- *     projectId: "PROJECT ID",
  *     storageDatabases: [{
+ *         name: "VirtualDatabase0",
  *         collections: [{
+ *             name: "NAME OF THE COLLECTION",
  *             dataSources: [
  *                 {
  *                     collection: "COLLECTION IN THE CLUSTER",
@@ -70,18 +74,16 @@ import * as utilities from "./utilities";
  *                     storeName: "CLUSTER NAME",
  *                 },
  *                 {
- *                     path: "S3 BUCKET PATH",
  *                     storeName: "S3 BUCKET NAME",
+ *                     path: "S3 BUCKET PATH",
  *                 },
  *             ],
- *             name: "NAME OF THE COLLECTION",
  *         }],
- *         name: "VirtualDatabase0",
  *     }],
  *     storageStores: [
  *         {
- *             clusterName: "CLUSTER NAME",
  *             name: "STORE 1 NAME",
+ *             clusterName: "CLUSTER NAME",
  *             projectId: "PROJECT ID",
  *             provider: "atlas",
  *             readPreference: {

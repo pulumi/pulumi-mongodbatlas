@@ -207,13 +207,14 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
+        test_serverless_instance = mongodbatlas.ServerlessInstance("test",
             project_id="<PROJECT_ID>",
+            name="test-db",
             provider_settings_backing_provider_name="AWS",
             provider_settings_provider_name="SERVERLESS",
             provider_settings_region_name="US_EAST_1",
             continuous_backup_enabled=True)
-        test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
+        test = mongodbatlas.PrivatelinkEndpointServerless("test",
             project_id="<PROJECT_ID>",
             instance_name=test_serverless_instance.name,
             provider_name="AWS")
@@ -255,13 +256,14 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
+        test_serverless_instance = mongodbatlas.ServerlessInstance("test",
             project_id="<PROJECT_ID>",
+            name="test-db",
             provider_settings_backing_provider_name="AWS",
             provider_settings_provider_name="SERVERLESS",
             provider_settings_region_name="US_EAST_1",
             continuous_backup_enabled=True)
-        test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
+        test = mongodbatlas.PrivatelinkEndpointServerless("test",
             project_id="<PROJECT_ID>",
             instance_name=test_serverless_instance.name,
             provider_name="AWS")

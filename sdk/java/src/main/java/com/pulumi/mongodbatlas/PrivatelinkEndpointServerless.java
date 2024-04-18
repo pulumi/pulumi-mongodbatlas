@@ -48,13 +48,14 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
  *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+ *             .name(&#34;test-db&#34;)
  *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
  *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
  *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
  *             .continuousBackupEnabled(true)
  *             .build());
  * 
- *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+ *         var test = new PrivatelinkEndpointServerless(&#34;test&#34;, PrivatelinkEndpointServerlessArgs.builder()        
  *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
  *             .instanceName(testServerlessInstance.name())
  *             .providerName(&#34;AWS&#34;)

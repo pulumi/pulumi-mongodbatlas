@@ -42,9 +42,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test0 = new OrgInvitation(&#34;test0&#34;, OrgInvitationArgs.builder()        
+ *             .username(&#34;test0-acc-username&#34;)
  *             .orgId(&#34;&lt;ORG-ID&gt;&#34;)
  *             .roles(&#34;ORG_OWNER&#34;)
- *             .username(&#34;test0-acc-username&#34;)
  *             .build());
  * 
  *     }
@@ -75,11 +75,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test0 = new OrgInvitation(&#34;test0&#34;, OrgInvitationArgs.builder()        
+ *             .username(&#34;test0-acc-username&#34;)
  *             .orgId(&#34;&lt;ORG-ID&gt;&#34;)
  *             .roles(            
  *                 &#34;ORG_MEMBER&#34;,
  *                 &#34;ORG_BILLING_ADMIN&#34;)
- *             .username(&#34;test0-acc-username&#34;)
  *             .build());
  * 
  *     }
@@ -110,12 +110,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test1 = new OrgInvitation(&#34;test1&#34;, OrgInvitationArgs.builder()        
+ *             .username(&#34;test1-acc-username&#34;)
  *             .orgId(&#34;&lt;ORG-ID&gt;&#34;)
- *             .roles(&#34;ORG_MEMBER&#34;)
  *             .teamsIds(            
  *                 &#34;&lt;TEAM-0-ID&gt;&#34;,
  *                 &#34;&lt;TEAM-1-ID&gt;&#34;)
- *             .username(&#34;test1-acc-username&#34;)
+ *             .roles(&#34;ORG_MEMBER&#34;)
  *             .build());
  * 
  *     }

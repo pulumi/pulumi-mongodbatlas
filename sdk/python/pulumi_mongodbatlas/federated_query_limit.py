@@ -310,10 +310,10 @@ class FederatedQueryLimit(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.FederatedQueryLimit("test",
-            limit_name="bytesProcessed.weekly",
-            overrun_policy="BLOCK",
             project_id="64707f06c519c20c3a2b1b03",
             tenant_name="FederatedDatabseInstance0",
+            limit_name="bytesProcessed.weekly",
+            overrun_policy="BLOCK",
             value=5147483648)
         ```
         <!--End PulumiCodeChooser -->
@@ -362,10 +362,10 @@ class FederatedQueryLimit(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.FederatedQueryLimit("test",
-            limit_name="bytesProcessed.weekly",
-            overrun_policy="BLOCK",
             project_id="64707f06c519c20c3a2b1b03",
             tenant_name="FederatedDatabseInstance0",
+            limit_name="bytesProcessed.weekly",
+            overrun_policy="BLOCK",
             value=5147483648)
         ```
         <!--End PulumiCodeChooser -->

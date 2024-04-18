@@ -36,8 +36,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewOrganization(ctx, "test", &mongodbatlas.OrganizationArgs{
-//				Description: pulumi.String("test API key from Org Creation Test"),
 //				OrgOwnerId:  pulumi.String("6205e5fffff79cde6f"),
+//				Name:        pulumi.String("testCreateORG"),
+//				Description: pulumi.String("test API key from Org Creation Test"),
 //				RoleNames: pulumi.StringArray{
 //					pulumi.String("ORG_OWNER"),
 //				},

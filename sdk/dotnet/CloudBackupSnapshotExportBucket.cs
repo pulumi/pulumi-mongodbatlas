@@ -27,10 +27,10 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
     ///     {
+    ///         ProjectId = "{PROJECT_ID}",
+    ///         IamRoleId = "{IAM_ROLE_ID}",
     ///         BucketName = "example-bucket",
     ///         CloudProvider = "AWS",
-    ///         IamRoleId = "{IAM_ROLE_ID}",
-    ///         ProjectId = "{PROJECT_ID}",
     ///     });
     /// 
     /// });

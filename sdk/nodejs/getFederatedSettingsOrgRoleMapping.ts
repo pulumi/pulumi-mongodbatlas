@@ -16,8 +16,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", {
- *     federationSettingsId: data.mongodbatlas_federated_settings.federated_settings.id,
+ * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", {
+ *     federationSettingsId: federatedSettings.id,
  *     orgId: "627a9683e7f7f7ff7fe306f14",
  *     externalGroupName: "myGrouptest",
  *     roleAssignments: [
@@ -113,8 +113,8 @@ export interface GetFederatedSettingsOrgRoleMappingResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", {
- *     federationSettingsId: data.mongodbatlas_federated_settings.federated_settings.id,
+ * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", {
+ *     federationSettingsId: federatedSettings.id,
  *     orgId: "627a9683e7f7f7ff7fe306f14",
  *     externalGroupName: "myGrouptest",
  *     roleAssignments: [

@@ -396,23 +396,24 @@ class DatabaseUser(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.DatabaseUser("test",
+            username="test-acc-username",
+            password="test-acc-password",
+            project_id="<PROJECT-ID>",
             auth_database_name="admin",
+            roles=[
+                mongodbatlas.DatabaseUserRoleArgs(
+                    role_name="readWrite",
+                    database_name="dbforApp",
+                ),
+                mongodbatlas.DatabaseUserRoleArgs(
+                    role_name="readAnyDatabase",
+                    database_name="admin",
+                ),
+            ],
             labels=[mongodbatlas.DatabaseUserLabelArgs(
                 key="My Key",
                 value="My Value",
             )],
-            password="test-acc-password",
-            project_id="<PROJECT-ID>",
-            roles=[
-                mongodbatlas.DatabaseUserRoleArgs(
-                    database_name="dbforApp",
-                    role_name="readWrite",
-                ),
-                mongodbatlas.DatabaseUserRoleArgs(
-                    database_name="admin",
-                    role_name="readAnyDatabase",
-                ),
-            ],
             scopes=[
                 mongodbatlas.DatabaseUserScopeArgs(
                     name="My cluster name",
@@ -422,8 +423,7 @@ class DatabaseUser(pulumi.CustomResource):
                     name="My second cluster name",
                     type="CLUSTER",
                 ),
-            ],
-            username="test-acc-username")
+            ])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -433,22 +433,22 @@ class DatabaseUser(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.DatabaseUser("test",
+            username="test-acc-username",
+            x509_type="MANAGED",
+            project_id="<PROJECT-ID>",
             auth_database_name="$external",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                role_name="readAnyDatabase",
+                database_name="admin",
+            )],
             labels=[mongodbatlas.DatabaseUserLabelArgs(
                 key="%s",
                 value="%s",
             )],
-            project_id="<PROJECT-ID>",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
-                role_name="readAnyDatabase",
-            )],
             scopes=[mongodbatlas.DatabaseUserScopeArgs(
                 name="My cluster name",
                 type="CLUSTER",
-            )],
-            username="test-acc-username",
-            x509_type="MANAGED")
+            )])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -458,7 +458,7 @@ class DatabaseUser(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.DatabaseUser("test",
-            username=aws_iam_role["test"]["arn"],
+            username=test_aws_iam_role["arn"],
             project_id="<PROJECT-ID>",
             auth_database_name="$external",
             aws_iam_type="ROLE",
@@ -485,14 +485,14 @@ class DatabaseUser(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.DatabaseUser("test",
+            username="64d613677e1ad50839cce4db/testUserOr",
+            project_id="6414908c207f4d22f4d8f232",
             auth_database_name="admin",
             oidc_auth_type="IDP_GROUP",
-            project_id="6414908c207f4d22f4d8f232",
             roles=[mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
                 role_name="readWriteAnyDatabase",
-            )],
-            username="64d613677e1ad50839cce4db/testUserOr")
+                database_name="admin",
+            )])
         ```
         <!--End PulumiCodeChooser -->
         `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
@@ -547,23 +547,24 @@ class DatabaseUser(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.DatabaseUser("test",
+            username="test-acc-username",
+            password="test-acc-password",
+            project_id="<PROJECT-ID>",
             auth_database_name="admin",
+            roles=[
+                mongodbatlas.DatabaseUserRoleArgs(
+                    role_name="readWrite",
+                    database_name="dbforApp",
+                ),
+                mongodbatlas.DatabaseUserRoleArgs(
+                    role_name="readAnyDatabase",
+                    database_name="admin",
+                ),
+            ],
             labels=[mongodbatlas.DatabaseUserLabelArgs(
                 key="My Key",
                 value="My Value",
             )],
-            password="test-acc-password",
-            project_id="<PROJECT-ID>",
-            roles=[
-                mongodbatlas.DatabaseUserRoleArgs(
-                    database_name="dbforApp",
-                    role_name="readWrite",
-                ),
-                mongodbatlas.DatabaseUserRoleArgs(
-                    database_name="admin",
-                    role_name="readAnyDatabase",
-                ),
-            ],
             scopes=[
                 mongodbatlas.DatabaseUserScopeArgs(
                     name="My cluster name",
@@ -573,8 +574,7 @@ class DatabaseUser(pulumi.CustomResource):
                     name="My second cluster name",
                     type="CLUSTER",
                 ),
-            ],
-            username="test-acc-username")
+            ])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -584,22 +584,22 @@ class DatabaseUser(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.DatabaseUser("test",
+            username="test-acc-username",
+            x509_type="MANAGED",
+            project_id="<PROJECT-ID>",
             auth_database_name="$external",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                role_name="readAnyDatabase",
+                database_name="admin",
+            )],
             labels=[mongodbatlas.DatabaseUserLabelArgs(
                 key="%s",
                 value="%s",
             )],
-            project_id="<PROJECT-ID>",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
-                role_name="readAnyDatabase",
-            )],
             scopes=[mongodbatlas.DatabaseUserScopeArgs(
                 name="My cluster name",
                 type="CLUSTER",
-            )],
-            username="test-acc-username",
-            x509_type="MANAGED")
+            )])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -609,7 +609,7 @@ class DatabaseUser(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.DatabaseUser("test",
-            username=aws_iam_role["test"]["arn"],
+            username=test_aws_iam_role["arn"],
             project_id="<PROJECT-ID>",
             auth_database_name="$external",
             aws_iam_type="ROLE",
@@ -636,14 +636,14 @@ class DatabaseUser(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.DatabaseUser("test",
+            username="64d613677e1ad50839cce4db/testUserOr",
+            project_id="6414908c207f4d22f4d8f232",
             auth_database_name="admin",
             oidc_auth_type="IDP_GROUP",
-            project_id="6414908c207f4d22f4d8f232",
             roles=[mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
                 role_name="readWriteAnyDatabase",
-            )],
-            username="64d613677e1ad50839cce4db/testUserOr")
+                database_name="admin",
+            )])
         ```
         <!--End PulumiCodeChooser -->
         `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name

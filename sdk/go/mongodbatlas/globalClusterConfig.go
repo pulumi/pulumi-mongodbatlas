@@ -35,6 +35,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
 //				ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
+//				Name:                     pulumi.String("<CLUSTER-NAME>"),
 //				CloudBackup:              pulumi.Bool(true),
 //				ClusterType:              pulumi.String("GEOSHARDED"),
 //				ProviderName:             pulumi.String("AWS"),
@@ -115,6 +116,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewCluster(ctx, "cluster-test", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
+//				Name:        pulumi.String("cluster-test"),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 //					&mongodbatlas.ClusterReplicationSpecArgs{
@@ -139,8 +141,8 @@ import (
 //				return err
 //			}
 //			_, err = mongodbatlas.NewGlobalClusterConfig(ctx, "config", &mongodbatlas.GlobalClusterConfigArgs{
-//				ProjectId:   pulumi.Any(mongodbatlas_cluster.Test.Project_id),
-//				ClusterName: pulumi.Any(mongodbatlas_cluster.Test.Name),
+//				ProjectId:   pulumi.Any(test.ProjectId),
+//				ClusterName: pulumi.Any(test.Name),
 //				ManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{
 //					&mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{
 //						Db:             pulumi.String("mydata"),

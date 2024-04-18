@@ -25,6 +25,131 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+ * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemWeeklyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemMonthlyArgs;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
+ * import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyArgs;
+ * import com.pulumi.mongodbatlas.BackupCompliancePolicy;
+ * import com.pulumi.mongodbatlas.BackupCompliancePolicyArgs;
+ * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyOnDemandPolicyItemArgs;
+ * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemHourlyArgs;
+ * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemDailyArgs;
+ * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
+ * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myCluster = new Cluster(&#34;myCluster&#34;, ClusterArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .name(&#34;clusterTest&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .providerRegionName(&#34;EU_CENTRAL_1&#34;)
+ *             .providerInstanceSizeName(&#34;M10&#34;)
+ *             .cloudBackup(true)
+ *             .build());
+ * 
+ *         var testCloudBackupSchedule = new CloudBackupSchedule(&#34;testCloudBackupSchedule&#34;, CloudBackupScheduleArgs.builder()        
+ *             .projectId(myCluster.projectId())
+ *             .clusterName(myCluster.name())
+ *             .referenceHourOfDay(3)
+ *             .referenceMinuteOfHour(45)
+ *             .restoreWindowDays(4)
+ *             .policyItemHourly(CloudBackupSchedulePolicyItemHourlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionValue(7)
+ *                 .build())
+ *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionValue(7)
+ *                 .build())
+ *             .policyItemWeeklies(CloudBackupSchedulePolicyItemWeeklyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit(&#34;weeks&#34;)
+ *                 .retentionValue(4)
+ *                 .build())
+ *             .policyItemMonthlies(CloudBackupSchedulePolicyItemMonthlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit(&#34;months&#34;)
+ *                 .retentionValue(12)
+ *                 .build())
+ *             .build());
+ * 
+ *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
+ *             .projectId(testCloudBackupSchedule.projectId())
+ *             .clusterName(testCloudBackupSchedule.clusterName())
+ *             .build());
+ * 
+ *         final var backupPolicy = MongodbatlasFunctions.getBackupCompliancePolicy(GetBackupCompliancePolicyArgs.builder()
+ *             .projectId(testCloudBackupSchedule.projectId())
+ *             .build());
+ * 
+ *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy(&#34;backupPolicyBackupCompliancePolicy&#34;, BackupCompliancePolicyArgs.builder()        
+ *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .authorizedEmail(&#34;user@email.com&#34;)
+ *             .authorizedUserFirstName(&#34;First&#34;)
+ *             .authorizedUserLastName(&#34;Last&#34;)
+ *             .copyProtectionEnabled(false)
+ *             .pitEnabled(false)
+ *             .encryptionAtRestEnabled(false)
+ *             .restoreWindowDays(7)
+ *             .onDemandPolicyItem(BackupCompliancePolicyOnDemandPolicyItemArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionValue(3)
+ *                 .build())
+ *             .policyItemHourly(BackupCompliancePolicyPolicyItemHourlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionValue(7)
+ *                 .build())
+ *             .policyItemDaily(BackupCompliancePolicyPolicyItemDailyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionValue(7)
+ *                 .build())
+ *             .policyItemWeeklies(BackupCompliancePolicyPolicyItemWeeklyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit(&#34;weeks&#34;)
+ *                 .retentionValue(4)
+ *                 .build())
+ *             .policyItemMonthlies(BackupCompliancePolicyPolicyItemMonthlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit(&#34;months&#34;)
+ *                 .retentionValue(12)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * Backup Compliance Policy entries can be imported using project project_id  in the format `project_id`, e.g.

@@ -34,8 +34,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
+//			myCluster, err := mongodbatlas.NewCluster(ctx, "my_cluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				Name:                     pulumi.String("MyCluster"),
 //				ProviderName:             pulumi.String("AWS"),
 //				ProviderRegionName:       pulumi.String("EU_WEST_2"),
 //				ProviderInstanceSizeName: pulumi.String("M10"),
@@ -44,7 +45,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testCloudBackupSnapshot, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "testCloudBackupSnapshot", &mongodbatlas.CloudBackupSnapshotArgs{
+//			test, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "test", &mongodbatlas.CloudBackupSnapshotArgs{
 //				ProjectId:       myCluster.ProjectId,
 //				ClusterName:     myCluster.Name,
 //				Description:     pulumi.String("myDescription"),
@@ -53,10 +54,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "testCloudBackupSnapshotRestoreJob", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
-//				ProjectId:   testCloudBackupSnapshot.ProjectId,
-//				ClusterName: testCloudBackupSnapshot.ClusterName,
-//				SnapshotId:  testCloudBackupSnapshot.SnapshotId,
+//			_, err = mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
+//				ProjectId:   test.ProjectId,
+//				ClusterName: test.ClusterName,
+//				SnapshotId:  test.SnapshotId,
 //				DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
 //					Download: pulumi.Bool(true),
 //				},

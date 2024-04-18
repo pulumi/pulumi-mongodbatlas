@@ -110,8 +110,8 @@ def get_federated_settings_org_role_mapping(federation_settings_id: Optional[str
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport",
-        federation_settings_id=data["mongodbatlas_federated_settings"]["federated_settings"]["id"],
+    org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import",
+        federation_settings_id=federated_settings["id"],
         org_id="627a9683e7f7f7ff7fe306f14",
         external_group_name="myGrouptest",
         role_assignments=[
@@ -184,8 +184,8 @@ def get_federated_settings_org_role_mapping_output(federation_settings_id: Optio
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport",
-        federation_settings_id=data["mongodbatlas_federated_settings"]["federated_settings"]["id"],
+    org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import",
+        federation_settings_id=federated_settings["id"],
         org_id="627a9683e7f7f7ff7fe306f14",
         external_group_name="myGrouptest",
         role_assignments=[

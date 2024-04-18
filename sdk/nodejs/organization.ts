@@ -21,8 +21,9 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.Organization("test", {
- *     description: "test API key from Org Creation Test",
  *     orgOwnerId: "6205e5fffff79cde6f",
+ *     name: "testCreateORG",
+ *     description: "test API key from Org Creation Test",
  *     roleNames: ["ORG_OWNER"],
  * });
  * ```

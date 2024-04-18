@@ -31,8 +31,8 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.CustomDnsConfigurationClusterAws("test", new()
     ///     {
-    ///         Enabled = true,
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Enabled = true,
     ///     });
     /// 
     /// });

@@ -579,15 +579,16 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
-            associated_domains=["yourdomain.com"],
+        identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identity_provider",
             federation_settings_id="627a9687f7f7f7f774de306f14",
+            name="mongodb_federation_test",
+            associated_domains=["yourdomain.com"],
+            sso_debug_enabled=True,
+            status="ACTIVE",
+            sso_url="https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
             issuer_uri="http://www.okta.com/exk17q7f7f7f7fp50h8",
             request_binding="HTTP-POST",
-            response_signature_algorithm="SHA-256",
-            sso_debug_enabled=True,
-            sso_url="https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
-            status="ACTIVE")
+            response_signature_algorithm="SHA-256")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -641,15 +642,16 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
-            associated_domains=["yourdomain.com"],
+        identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identity_provider",
             federation_settings_id="627a9687f7f7f7f774de306f14",
+            name="mongodb_federation_test",
+            associated_domains=["yourdomain.com"],
+            sso_debug_enabled=True,
+            status="ACTIVE",
+            sso_url="https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
             issuer_uri="http://www.okta.com/exk17q7f7f7f7fp50h8",
             request_binding="HTTP-POST",
-            response_signature_algorithm="SHA-256",
-            sso_debug_enabled=True,
-            sso_url="https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
-            status="ACTIVE")
+            response_signature_algorithm="SHA-256")
         ```
         <!--End PulumiCodeChooser -->
 

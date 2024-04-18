@@ -112,12 +112,12 @@ def get_cloud_backup_snapshot_export_buckets(items_per_page: Optional[int] = Non
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
-        bucket_name="example-bucket",
-        cloud_provider="AWS",
+    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("test",
+        project_id="{PROJECT_ID}",
         iam_role_id="{IAM_ROLE_ID}",
-        project_id="{PROJECT_ID}")
-    test_cloud_backup_snapshot_export_buckets = mongodbatlas.get_cloud_backup_snapshot_export_buckets(project_id="{PROJECT_ID}")
+        bucket_name="example-bucket",
+        cloud_provider="AWS")
+    test = mongodbatlas.get_cloud_backup_snapshot_export_buckets(project_id="{PROJECT_ID}")
     ```
     <!--End PulumiCodeChooser -->
 
@@ -159,12 +159,12 @@ def get_cloud_backup_snapshot_export_buckets_output(items_per_page: Optional[pul
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
-        bucket_name="example-bucket",
-        cloud_provider="AWS",
+    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("test",
+        project_id="{PROJECT_ID}",
         iam_role_id="{IAM_ROLE_ID}",
-        project_id="{PROJECT_ID}")
-    test_cloud_backup_snapshot_export_buckets = mongodbatlas.get_cloud_backup_snapshot_export_buckets(project_id="{PROJECT_ID}")
+        bucket_name="example-bucket",
+        cloud_provider="AWS")
+    test = mongodbatlas.get_cloud_backup_snapshot_export_buckets(project_id="{PROJECT_ID}")
     ```
     <!--End PulumiCodeChooser -->
 

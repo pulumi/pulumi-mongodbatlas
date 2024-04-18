@@ -13,6 +13,79 @@ import * as utilities from "./utilities";
  * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
  *
  * ## Example Usage
+ *
+ * ### Using CIDR Block
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     cidrBlock: "1.2.3.4/32",
+ *     comment: "cidr block for tf acc testing",
+ * });
+ * const test = mongodbatlas.getProjectIpAccessListOutput({
+ *     projectId: testProjectIpAccessList.projectId,
+ *     cidrBlock: testProjectIpAccessList.cidrBlock,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Using IP Address
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     ipAddress: "2.3.4.5",
+ *     comment: "ip address for tf acc testing",
+ * });
+ * const test = mongodbatlas.getProjectIpAccessListOutput({
+ *     projectId: testProjectIpAccessList.projectId,
+ *     ipAddress: testProjectIpAccessList.ipAddress,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Using an AWS Security Group
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testNetworkContainer = new mongodbatlas.NetworkContainer("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     atlasCidrBlock: "192.168.208.0/21",
+ *     providerName: "AWS",
+ *     regionName: "US_EAST_1",
+ * });
+ * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     containerId: testNetworkContainer.containerId,
+ *     accepterRegionName: "us-east-1",
+ *     providerName: "AWS",
+ *     routeTableCidrBlock: "172.31.0.0/16",
+ *     vpcId: "vpc-0d93d6f69f1578bd8",
+ *     awsAccountId: "232589400519",
+ * });
+ * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     awsSecurityGroup: "sg-0026348ec11780bd1",
+ *     comment: "TestAcc for awsSecurityGroup",
+ * }, {
+ *     dependsOn: [testNetworkPeering],
+ * });
+ * const test = mongodbatlas.getProjectIpAccessListOutput({
+ *     projectId: testProjectIpAccessList.projectId,
+ *     awsSecurityGroup: testProjectIpAccessList.awsSecurityGroup,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
  */
 export function getProjectIpAccessList(args: GetProjectIpAccessListArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectIpAccessListResult> {
 
@@ -72,6 +145,79 @@ export interface GetProjectIpAccessListResult {
  * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
  *
  * ## Example Usage
+ *
+ * ### Using CIDR Block
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     cidrBlock: "1.2.3.4/32",
+ *     comment: "cidr block for tf acc testing",
+ * });
+ * const test = mongodbatlas.getProjectIpAccessListOutput({
+ *     projectId: testProjectIpAccessList.projectId,
+ *     cidrBlock: testProjectIpAccessList.cidrBlock,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Using IP Address
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     ipAddress: "2.3.4.5",
+ *     comment: "ip address for tf acc testing",
+ * });
+ * const test = mongodbatlas.getProjectIpAccessListOutput({
+ *     projectId: testProjectIpAccessList.projectId,
+ *     ipAddress: testProjectIpAccessList.ipAddress,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Using an AWS Security Group
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testNetworkContainer = new mongodbatlas.NetworkContainer("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     atlasCidrBlock: "192.168.208.0/21",
+ *     providerName: "AWS",
+ *     regionName: "US_EAST_1",
+ * });
+ * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     containerId: testNetworkContainer.containerId,
+ *     accepterRegionName: "us-east-1",
+ *     providerName: "AWS",
+ *     routeTableCidrBlock: "172.31.0.0/16",
+ *     vpcId: "vpc-0d93d6f69f1578bd8",
+ *     awsAccountId: "232589400519",
+ * });
+ * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     awsSecurityGroup: "sg-0026348ec11780bd1",
+ *     comment: "TestAcc for awsSecurityGroup",
+ * }, {
+ *     dependsOn: [testNetworkPeering],
+ * });
+ * const test = mongodbatlas.getProjectIpAccessListOutput({
+ *     projectId: testProjectIpAccessList.projectId,
+ *     awsSecurityGroup: testProjectIpAccessList.awsSecurityGroup,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
  */
 export function getProjectIpAccessListOutput(args: GetProjectIpAccessListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectIpAccessListResult> {
     return pulumi.output(args).apply((a: any) => getProjectIpAccessList(a, opts))

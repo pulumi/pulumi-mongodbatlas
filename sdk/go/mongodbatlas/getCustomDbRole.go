@@ -30,7 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testRole, err := mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
+//			testRole, err := mongodbatlas.NewCustomDbRole(ctx, "test_role", &mongodbatlas.CustomDbRoleArgs{
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				RoleName:  pulumi.String("myCustomRole"),
 //				Actions: mongodbatlas.CustomDbRoleActionArray{

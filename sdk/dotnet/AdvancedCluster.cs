@@ -44,8 +44,9 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.AdvancedCluster("test", new()
     ///     {
-    ///         ClusterType = "REPLICASET",
     ///         ProjectId = "PROJECT ID",
+    ///         Name = "NAME OF CLUSTER",
+    ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
@@ -54,18 +55,18 @@ namespace Pulumi.Mongodbatlas
     ///                 {
     ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
     ///                     {
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
-    ///                         },
     ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
     ///                         {
     ///                             InstanceSize = "M10",
     ///                             NodeCount = 3,
     ///                         },
-    ///                         Priority = 7,
+    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 1,
+    ///                         },
     ///                         ProviderName = "AWS",
+    ///                         Priority = 7,
     ///                         RegionName = "US_EAST_1",
     ///                     },
     ///                 },
@@ -90,8 +91,9 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.AdvancedCluster("test", new()
     ///     {
-    ///         ClusterType = "REPLICASET",
     ///         ProjectId = "PROJECT ID",
+    ///         Name = "NAME OF CLUSTER",
+    ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
@@ -100,14 +102,14 @@ namespace Pulumi.Mongodbatlas
     ///                 {
     ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
     ///                     {
-    ///                         BackingProviderName = "AWS",
     ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
     ///                         {
     ///                             InstanceSize = "M5",
     ///                         },
-    ///                         Priority = 7,
     ///                         ProviderName = "TENANT",
+    ///                         BackingProviderName = "AWS",
     ///                         RegionName = "US_EAST_1",
+    ///                         Priority = 7,
     ///                     },
     ///                 },
     ///             },
@@ -131,8 +133,9 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.AdvancedCluster("test", new()
     ///     {
-    ///         ClusterType = "REPLICASET",
     ///         ProjectId = "PROJECT ID",
+    ///         Name = "NAME OF CLUSTER",
+    ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
@@ -145,9 +148,9 @@ namespace Pulumi.Mongodbatlas
     ///                         {
     ///                             InstanceSize = "M10",
     ///                         },
-    ///                         Priority = 7,
     ///                         ProviderName = "AWS",
     ///                         RegionName = "US_EAST_1",
+    ///                         Priority = 7,
     ///                     },
     ///                 },
     ///             },
@@ -170,8 +173,9 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.AdvancedCluster("test", new()
     ///     {
-    ///         ClusterType = "REPLICASET",
     ///         ProjectId = "PROJECT ID",
+    ///         Name = "NAME OF CLUSTER",
+    ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
@@ -180,18 +184,18 @@ namespace Pulumi.Mongodbatlas
     ///                 {
     ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
     ///                     {
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
-    ///                         },
     ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
     ///                         {
     ///                             InstanceSize = "M10",
     ///                             NodeCount = 3,
     ///                         },
-    ///                         Priority = 7,
+    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 1,
+    ///                         },
     ///                         ProviderName = "AWS",
+    ///                         Priority = 7,
     ///                         RegionName = "US_EAST_1",
     ///                     },
     ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
@@ -201,8 +205,8 @@ namespace Pulumi.Mongodbatlas
     ///                             InstanceSize = "M10",
     ///                             NodeCount = 2,
     ///                         },
-    ///                         Priority = 6,
     ///                         ProviderName = "GCP",
+    ///                         Priority = 6,
     ///                         RegionName = "NORTH_AMERICA_NORTHEAST_1",
     ///                     },
     ///                 },
@@ -226,7 +230,8 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var cluster = new Mongodbatlas.AdvancedCluster("cluster", new()
     ///     {
-    ///         ProjectId = mongodbatlas_project.Project.Id,
+    ///         ProjectId = project.Id,
+    ///         Name = clusterName,
     ///         ClusterType = "SHARDED",
     ///         BackupEnabled = true,
     ///         ReplicationSpecs = new[]
@@ -311,7 +316,8 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var cluster = new Mongodbatlas.AdvancedCluster("cluster", new()
     ///     {
-    ///         ProjectId = mongodbatlas_project.Project.Id,
+    ///         ProjectId = project.Id,
+    ///         Name = clusterName,
     ///         ClusterType = "GEOSHARDED",
     ///         BackupEnabled = true,
     ///         ReplicationSpecs = new[]
@@ -453,7 +459,7 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     return new Dictionary&lt;string, object?&gt;
     ///     {
-    ///         ["standard"] = mongodbatlas_cluster.Cluster_test.Connection_strings[0].Standard,
+    ///         ["standard"] = cluster_test.ConnectionStrings[0].Standard,
     ///     };
     /// });
     /// ```
@@ -469,48 +475,12 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     return new Dictionary&lt;string, object?&gt;
     ///     {
-    ///         ["standardSrv"] = mongodbatlas_cluster.Cluster_test.Connection_strings[0].Standard_srv,
+    ///         ["standardSrv"] = cluster_test.ConnectionStrings[0].StandardSrv,
     ///     };
     /// });
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// Private with Network peering and Custom DNS AWS enabled
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Example return string: private = "mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&amp;authSource=admin&amp;replicaSet=atlas-12diht-shard-0"
-    ///     var @private = "mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net";
-    /// 
-    ///     return new Dictionary&lt;string, object?&gt;
-    ///     {
-    ///         ["private"] = mongodbatlas_cluster.Cluster_test.Connection_strings[0].Private,
-    ///     };
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// Private srv with Network peering and Custom DNS AWS enabled
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     return new Dictionary&lt;string, object?&gt;
-    ///     {
-    ///         ["privateSrv"] = mongodbatlas_cluster.Cluster_test.Connection_strings[0].Private_srv,
-    ///     };
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// By endpoint_service_id
     /// ## Import
     /// 
     /// Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

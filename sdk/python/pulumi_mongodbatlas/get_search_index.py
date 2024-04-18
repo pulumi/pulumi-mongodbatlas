@@ -239,9 +239,9 @@ def get_search_index(analyzer: Optional[str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_search_index(cluster_name="<CLUSTER_NAME>",
-        index_id="<INDEX_ID",
-        project_id="<PROJECT_ID>")
+    test = mongodbatlas.get_search_index(index_id="<INDEX_ID",
+        project_id="<PROJECT_ID>",
+        cluster_name="<CLUSTER_NAME>")
     ```
     <!--End PulumiCodeChooser -->
 
@@ -321,9 +321,9 @@ def get_search_index_output(analyzer: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_search_index(cluster_name="<CLUSTER_NAME>",
-        index_id="<INDEX_ID",
-        project_id="<PROJECT_ID>")
+    test = mongodbatlas.get_search_index(index_id="<INDEX_ID",
+        project_id="<PROJECT_ID>",
+        cluster_name="<CLUSTER_NAME>")
     ```
     <!--End PulumiCodeChooser -->
 

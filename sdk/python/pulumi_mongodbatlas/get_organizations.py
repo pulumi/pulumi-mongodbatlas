@@ -117,8 +117,8 @@ def get_organizations(include_deleted_orgs: Optional[bool] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_organizations(items_per_page=5,
-        page_num=1)
+    test = mongodbatlas.get_organizations(page_num=1,
+        items_per_page=5)
     ```
     <!--End PulumiCodeChooser -->
 
@@ -161,8 +161,8 @@ def get_organizations_output(include_deleted_orgs: Optional[pulumi.Input[Optiona
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_organizations(items_per_page=5,
-        page_num=1)
+    test = mongodbatlas.get_organizations(page_num=1,
+        items_per_page=5)
     ```
     <!--End PulumiCodeChooser -->
 

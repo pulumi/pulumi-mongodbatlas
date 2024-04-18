@@ -202,7 +202,8 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        outage_simulation = mongodbatlas.ClusterOutageSimulation("outageSimulation",
+        outage_simulation = mongodbatlas.ClusterOutageSimulation("outage_simulation",
+            project_id="64707f06c519c20c3a2b1b03",
             cluster_name="Cluster0",
             outage_filters=[
                 mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
@@ -213,8 +214,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
                     cloud_provider="AWS",
                     region_name="US_EAST_2",
                 ),
-            ],
-            project_id="64707f06c519c20c3a2b1b03")
+            ])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -259,7 +259,8 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        outage_simulation = mongodbatlas.ClusterOutageSimulation("outageSimulation",
+        outage_simulation = mongodbatlas.ClusterOutageSimulation("outage_simulation",
+            project_id="64707f06c519c20c3a2b1b03",
             cluster_name="Cluster0",
             outage_filters=[
                 mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
@@ -270,8 +271,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
                     cloud_provider="AWS",
                     region_name="US_EAST_2",
                 ),
-            ],
-            project_id="64707f06c519c20c3a2b1b03")
+            ])
         ```
         <!--End PulumiCodeChooser -->
 

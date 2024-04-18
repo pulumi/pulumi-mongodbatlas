@@ -15,8 +15,8 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getProjectApiKeys({
- *     itemsPerPage: 5,
  *     pageNum: 1,
+ *     itemsPerPage: 5,
  *     projectId: "32b6e34b3d91647abb20e7b8",
  * });
  * ```
@@ -78,8 +78,8 @@ export interface GetProjectApiKeysResult {
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getProjectApiKeys({
- *     itemsPerPage: 5,
  *     pageNum: 1,
+ *     itemsPerPage: 5,
  *     projectId: "32b6e34b3d91647abb20e7b8",
  * });
  * ```

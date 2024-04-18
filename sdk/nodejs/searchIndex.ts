@@ -18,12 +18,13 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test_basic_search_index = new mongodbatlas.SearchIndex("test-basic-search-index", {
- *     analyzer: "lucene.standard",
+ *     name: "test-basic-search-index",
+ *     projectId: "<PROJECT_ID>",
  *     clusterName: "<CLUSTER_NAME>",
+ *     analyzer: "lucene.standard",
  *     collectionName: "collection_test",
  *     database: "database_test",
  *     mappingsDynamic: true,
- *     projectId: "<PROJECT_ID>",
  *     searchAnalyzer: "lucene.standard",
  * });
  * ```
@@ -96,6 +97,7 @@ import * as utilities from "./utilities";
  *       }
  * }
  * `,
+ *     name: "test-advanced-search-index",
  *     searchAnalyzer: "lucene.standard",
  *     analyzers: ` [{
  *  "name": "index_analyzer_test_name",

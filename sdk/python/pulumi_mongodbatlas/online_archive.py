@@ -468,10 +468,10 @@ class OnlineArchive(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.OnlineArchive("test",
-            project_id=var["project_id"],
-            cluster_name=var["cluster_name"],
-            coll_name=var["collection_name"],
-            db_name=var["database_name"],
+            project_id=project_id,
+            cluster_name=cluster_name,
+            coll_name=collection_name,
+            db_name=database_name,
             partition_fields=[
                 mongodbatlas.OnlineArchivePartitionFieldArgs(
                     field_name="dateField",
@@ -509,10 +509,10 @@ class OnlineArchive(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.OnlineArchive("test",
-            project_id=var["project_id"],
-            cluster_name=var["cluster_name"],
-            coll_name=var["collection_name"],
-            db_name=var["database_name"],
+            project_id=project_id,
+            cluster_name=cluster_name,
+            coll_name=collection_name,
+            db_name=database_name,
             partition_fields=[
                 mongodbatlas.OnlineArchivePartitionFieldArgs(
                     field_name="firstName",
@@ -572,10 +572,10 @@ class OnlineArchive(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.OnlineArchive("test",
-            project_id=var["project_id"],
-            cluster_name=var["cluster_name"],
-            coll_name=var["collection_name"],
-            db_name=var["database_name"],
+            project_id=project_id,
+            cluster_name=cluster_name,
+            coll_name=collection_name,
+            db_name=database_name,
             partition_fields=[
                 mongodbatlas.OnlineArchivePartitionFieldArgs(
                     field_name="dateField",
@@ -613,10 +613,10 @@ class OnlineArchive(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.OnlineArchive("test",
-            project_id=var["project_id"],
-            cluster_name=var["cluster_name"],
-            coll_name=var["collection_name"],
-            db_name=var["database_name"],
+            project_id=project_id,
+            cluster_name=cluster_name,
+            coll_name=collection_name,
+            db_name=database_name,
             partition_fields=[
                 mongodbatlas.OnlineArchivePartitionFieldArgs(
                     field_name="firstName",

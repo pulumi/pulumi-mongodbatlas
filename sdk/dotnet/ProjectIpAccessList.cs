@@ -31,9 +31,9 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.ProjectIpAccessList("test", new()
     ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         CidrBlock = "1.2.3.4/32",
     ///         Comment = "cidr block for tf acc testing",
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///     });
     /// 
     /// });
@@ -52,9 +52,9 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.ProjectIpAccessList("test", new()
     ///     {
-    ///         Comment = "ip address for tf acc testing",
-    ///         IpAddress = "2.3.4.5",
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         IpAddress = "2.3.4.5",
+    ///         Comment = "ip address for tf acc testing",
     ///     });
     /// 
     /// });
@@ -71,7 +71,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new()
+    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         AtlasCidrBlock = "192.168.208.0/21",
@@ -79,10 +79,10 @@ namespace Pulumi.Mongodbatlas
     ///         RegionName = "US_EAST_1",
     ///     });
     /// 
-    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
+    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         ContainerId = testNetworkContainer.ContainerId,
+    ///         ContainerId = test.ContainerId,
     ///         AccepterRegionName = "us-east-1",
     ///         ProviderName = "AWS",
     ///         RouteTableCidrBlock = "172.31.0.0/16",
@@ -90,7 +90,7 @@ namespace Pulumi.Mongodbatlas
     ///         AwsAccountId = "232589400519",
     ///     });
     /// 
-    ///     var testProjectIpAccessList = new Mongodbatlas.ProjectIpAccessList("testProjectIpAccessList", new()
+    ///     var testProjectIpAccessList = new Mongodbatlas.ProjectIpAccessList("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         AwsSecurityGroup = "sg-0026348ec11780bd1",
@@ -99,7 +99,7 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         DependsOn =
     ///         {
-    ///             "mongodbatlas_network_peering.test", 
+    ///             testNetworkPeering, 
     ///         },
     ///     });
     /// 

@@ -20,13 +20,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testNetworkContainer = new mongodbatlas.NetworkContainer("testNetworkContainer", {
+ * const testNetworkContainer = new mongodbatlas.NetworkContainer("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     atlasCidrBlock: "10.8.0.0/21",
  *     providerName: "AWS",
  *     regionName: "US_EAST_1",
  * });
- * const testNetworkContainers = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
+ * const test = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
  *     projectId: projectId,
  *     providerName: providerName,
  * }));
@@ -88,13 +88,13 @@ export interface GetNetworkContainersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testNetworkContainer = new mongodbatlas.NetworkContainer("testNetworkContainer", {
+ * const testNetworkContainer = new mongodbatlas.NetworkContainer("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     atlasCidrBlock: "10.8.0.0/21",
  *     providerName: "AWS",
  *     regionName: "US_EAST_1",
  * });
- * const testNetworkContainers = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
+ * const test = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
  *     projectId: projectId,
  *     providerName: providerName,
  * }));

@@ -21,8 +21,8 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.CustomDnsConfigurationClusterAws("test", {
- *     enabled: true,
  *     projectId: "<PROJECT-ID>",
+ *     enabled: true,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

@@ -32,9 +32,10 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
+        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "cluster-test",
         ///         ClusterType = "REPLICASET",
         ///         ReplicationSpecs = new[]
         ///         {
@@ -59,7 +60,7 @@ namespace Pulumi.Mongodbatlas
         ///         ProviderInstanceSizeName = "M40",
         ///     });
         /// 
-        ///     var testClusters = Mongodbatlas.GetClusters.Invoke(new()
+        ///     var test = Mongodbatlas.GetClusters.Invoke(new()
         ///     {
         ///         ProjectId = testCluster.ProjectId,
         ///     });
@@ -92,9 +93,10 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
+        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "cluster-test",
         ///         ClusterType = "REPLICASET",
         ///         ReplicationSpecs = new[]
         ///         {
@@ -119,7 +121,7 @@ namespace Pulumi.Mongodbatlas
         ///         ProviderInstanceSizeName = "M40",
         ///     });
         /// 
-        ///     var testClusters = Mongodbatlas.GetClusters.Invoke(new()
+        ///     var test = Mongodbatlas.GetClusters.Invoke(new()
         ///     {
         ///         ProjectId = testCluster.ProjectId,
         ///     });

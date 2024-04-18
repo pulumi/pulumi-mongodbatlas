@@ -26,12 +26,13 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test_basic_search_index = new Mongodbatlas.SearchIndex("test-basic-search-index", new()
     ///     {
-    ///         Analyzer = "lucene.standard",
+    ///         Name = "test-basic-search-index",
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
+    ///         Analyzer = "lucene.standard",
     ///         CollectionName = "collection_test",
     ///         Database = "database_test",
     ///         MappingsDynamic = true,
-    ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         SearchAnalyzer = "lucene.standard",
     ///     });
     /// 
@@ -118,6 +119,7 @@ namespace Pulumi.Mongodbatlas
     ///       }
     /// }
     /// ",
+    ///         Name = "test-advanced-search-index",
     ///         SearchAnalyzer = "lucene.standard",
     ///         Analyzers = @" [{
     ///  ""name"": ""index_analyzer_test_name"",

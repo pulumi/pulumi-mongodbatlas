@@ -14,6 +14,114 @@ import (
 
 // ## Example Usage
 //
+// ### Example automated delivery type
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myCluster, err := mongodbatlas.NewCluster(ctx, "my_cluster", &mongodbatlas.ClusterArgs{
+//				ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				Name:                     pulumi.String("MyCluster"),
+//				ProviderName:             pulumi.String("AWS"),
+//				ProviderRegionName:       pulumi.String("EU_WEST_2"),
+//				ProviderInstanceSizeName: pulumi.String("M10"),
+//				CloudBackup:              pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "test", &mongodbatlas.CloudProviderSnapshotArgs{
+//				ProjectId:       myCluster.ProjectId,
+//				ClusterName:     myCluster.Name,
+//				Description:     "myDescription",
+//				RetentionInDays: 1,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
+//				ProjectId:   test.ProjectId,
+//				ClusterName: test.ClusterName,
+//				SnapshotId:  test.SnapshotId,
+//				DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
+//					Automated:         pulumi.Bool(true),
+//					TargetClusterName: pulumi.String("MyCluster"),
+//					TargetProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Example download delivery type
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myCluster, err := mongodbatlas.NewCluster(ctx, "my_cluster", &mongodbatlas.ClusterArgs{
+//				ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				Name:                     pulumi.String("MyCluster"),
+//				ProviderName:             pulumi.String("AWS"),
+//				ProviderRegionName:       pulumi.String("EU_WEST_2"),
+//				ProviderInstanceSizeName: pulumi.String("M10"),
+//				CloudBackup:              pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "test", &mongodbatlas.CloudProviderSnapshotArgs{
+//				ProjectId:       myCluster.ProjectId,
+//				ClusterName:     myCluster.Name,
+//				Description:     "myDescription",
+//				RetentionInDays: 1,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
+//				ProjectId:   test.ProjectId,
+//				ClusterName: test.ClusterName,
+//				SnapshotId:  test.SnapshotId,
+//				DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
+//					Download: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Example of a point in time restore
 // <!--Start PulumiCodeChooser -->
 // ```go
@@ -25,53 +133,60 @@ import (
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// clusterTest, err := mongodbatlas.NewCluster(ctx, "clusterTest", &mongodbatlas.ClusterArgs{
-// ProjectId: pulumi.Any(mongodbatlas_project.Project_test.Id),
-// ProviderName: pulumi.String("AWS"),
-// ProviderRegionName: pulumi.String("US_EAST_1"),
-// ProviderInstanceSizeName: pulumi.String("M10"),
-// CloudBackup: pulumi.Bool(true),
-// PitEnabled: pulumi.Bool(true),
-// })
-// if err != nil {
-// return err
-// }
-// testCloudBackupSnapshot, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "testCloudBackupSnapshot", &mongodbatlas.CloudBackupSnapshotArgs{
-// ProjectId: clusterTest.ProjectId,
-// ClusterName: clusterTest.Name,
-// Description: pulumi.String("My description"),
-// RetentionInDays: pulumi.Int(1),
-// })
-// if err != nil {
-// return err
-// }
-// var testCloudBackupSnapshotRestoreJob []*mongodbatlas.CloudBackupSnapshotRestoreJob
 //
-//	for index := 0; index < ()%!v(PANIC=Format method: fatal: A failure has occurred: unlowered conditional expression @ #-resources-mongodbatlas:index-cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob.pp:18,19-61) == true; index++ {
-//	    key0 := index
-//	    _ := index
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			clusterTest, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
+//				ProjectId:                pulumi.Any(projectTest.Id),
+//				Name:                     pulumi.Any(clusterName),
+//				ProviderName:             pulumi.String("AWS"),
+//				ProviderRegionName:       pulumi.String("US_EAST_1"),
+//				ProviderInstanceSizeName: pulumi.String("M10"),
+//				CloudBackup:              pulumi.Bool(true),
+//				PitEnabled:               pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "test", &mongodbatlas.CloudBackupSnapshotArgs{
+//				ProjectId:       clusterTest.ProjectId,
+//				ClusterName:     clusterTest.Name,
+//				Description:     pulumi.String("My description"),
+//				RetentionInDays: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			var tmp0 float64
+//			if pointInTimeUtcSeconds == 0 {
+//				tmp0 = 0
+//			} else {
+//				tmp0 = 1
+//			}
+//			var testCloudBackupSnapshotRestoreJob []*mongodbatlas.CloudBackupSnapshotRestoreJob
+//			for index := 0; index < tmp0; index++ {
+//				key0 := index
+//				_ := index
+//				__res, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, fmt.Sprintf("test-%v", key0), &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
+//					ProjectId:   test.ProjectId,
+//					ClusterName: test.ClusterName,
+//					SnapshotId:  test.ID(),
+//					DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
+//						PointInTime:           pulumi.Bool(true),
+//						TargetClusterName:     clusterTest.Name,
+//						TargetProjectId:       clusterTest.ProjectId,
+//						PointInTimeUtcSeconds: pulumi.Any(pointInTimeUtcSeconds),
+//					},
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				testCloudBackupSnapshotRestoreJob = append(testCloudBackupSnapshotRestoreJob, __res)
+//			}
+//			return nil
+//		})
+//	}
 //
-// __res, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, fmt.Sprintf("testCloudBackupSnapshotRestoreJob-%v", key0), &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
-// ProjectId: testCloudBackupSnapshot.ProjectId,
-// ClusterName: testCloudBackupSnapshot.ClusterName,
-// SnapshotId: testCloudBackupSnapshot.ID(),
-// DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
-// PointInTime: pulumi.Bool(true),
-// TargetClusterName: clusterTest.Name,
-// TargetProjectId: clusterTest.ProjectId,
-// PointInTimeUtcSeconds: pulumi.Any(_var.Point_in_time_utc_seconds),
-// },
-// })
-// if err != nil {
-// return err
-// }
-// testCloudBackupSnapshotRestoreJob = append(testCloudBackupSnapshotRestoreJob, __res)
-// }
-// return nil
-// })
-// }
 // ```
 // <!--End PulumiCodeChooser -->
 //

@@ -42,10 +42,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new Auditing(&#34;test&#34;, AuditingArgs.builder()        
- *             .auditAuthorizationSuccess(false)
- *             .auditFilter(&#34;{ &#39;atype&#39;: &#39;authenticate&#39;, &#39;param&#39;: {   &#39;user&#39;: &#39;auditAdmin&#39;,   &#39;db&#39;: &#39;admin&#39;,   &#39;mechanism&#39;: &#39;SCRAM-SHA-1&#39; }}&#34;)
- *             .enabled(true)
  *             .projectId(&#34;&lt;project-id&gt;&#34;)
+ *             .auditFilter(&#34;{ &#39;atype&#39;: &#39;authenticate&#39;, &#39;param&#39;: {   &#39;user&#39;: &#39;auditAdmin&#39;,   &#39;db&#39;: &#39;admin&#39;,   &#39;mechanism&#39;: &#39;SCRAM-SHA-1&#39; }}&#34;)
+ *             .auditAuthorizationSuccess(false)
+ *             .enabled(true)
  *             .build());
  * 
  *     }

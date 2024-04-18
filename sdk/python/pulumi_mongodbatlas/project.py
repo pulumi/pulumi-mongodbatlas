@@ -507,9 +507,10 @@ class Project(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_roles_org_id = mongodbatlas.get_roles_org_id()
-        test_project = mongodbatlas.Project("testProject",
-            org_id=test_roles_org_id.org_id,
+        test = mongodbatlas.get_roles_org_id()
+        test_project = mongodbatlas.Project("test",
+            name="project-name",
+            org_id=test.org_id,
             project_owner_id="<OWNER_ACCOUNT_ID>",
             teams=[
                 mongodbatlas.ProjectTeamArgs(
@@ -584,9 +585,10 @@ class Project(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_roles_org_id = mongodbatlas.get_roles_org_id()
-        test_project = mongodbatlas.Project("testProject",
-            org_id=test_roles_org_id.org_id,
+        test = mongodbatlas.get_roles_org_id()
+        test_project = mongodbatlas.Project("test",
+            name="project-name",
+            org_id=test.org_id,
             project_owner_id="<OWNER_ACCOUNT_ID>",
             teams=[
                 mongodbatlas.ProjectTeamArgs(

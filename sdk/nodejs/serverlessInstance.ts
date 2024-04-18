@@ -22,6 +22,7 @@ import * as utilities from "./utilities";
  *
  * const test = new mongodbatlas.ServerlessInstance("test", {
  *     projectId: "<PROJECT_ID>",
+ *     name: "<SERVERLESS_INSTANCE_NAME>",
  *     providerSettingsBackingProviderName: "AWS",
  *     providerSettingsProviderName: "SERVERLESS",
  *     providerSettingsRegionName: "US_EAST_1",

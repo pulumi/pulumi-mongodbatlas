@@ -313,8 +313,20 @@ class AlertConfiguration(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AlertConfiguration("test",
-            enabled=True,
+            project_id="<PROJECT-ID>",
             event_type="OUTSIDE_METRIC_THRESHOLD",
+            enabled=True,
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                type_name="GROUP",
+                interval_min=5,
+                delay_min=0,
+                sms_enabled=False,
+                email_enabled=True,
+                roles=[
+                    "GROUP_CHARTS_ADMIN",
+                    "GROUP_CLUSTER_MANAGER",
+                ],
+            )],
             matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
                 field_name="HOSTNAME_AND_PORT",
                 operator="EQUALS",
@@ -322,23 +334,11 @@ class AlertConfiguration(pulumi.CustomResource):
             )],
             metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
                 metric_name="ASSERT_REGULAR",
-                mode="AVERAGE",
                 operator="LESS_THAN",
                 threshold=99,
                 units="RAW",
-            ),
-            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-                delay_min=0,
-                email_enabled=True,
-                interval_min=5,
-                roles=[
-                    "GROUP_CHARTS_ADMIN",
-                    "GROUP_CLUSTER_MANAGER",
-                ],
-                sms_enabled=False,
-                type_name="GROUP",
-            )],
-            project_id="<PROJECT-ID>")
+                mode="AVERAGE",
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -350,25 +350,25 @@ class AlertConfiguration(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AlertConfiguration("test",
-            enabled=True,
+            project_id="<PROJECT-ID>",
             event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+            enabled=True,
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                type_name="GROUP",
+                interval_min=5,
+                delay_min=0,
+                sms_enabled=False,
+                email_enabled=True,
+                roles=[
+                    "GROUP_CHARTS_ADMIN",
+                    "GROUP_CLUSTER_MANAGER",
+                ],
+            )],
             matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
                 field_name="HOSTNAME_AND_PORT",
                 operator="EQUALS",
                 value="SECONDARY",
             )],
-            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-                delay_min=0,
-                email_enabled=True,
-                interval_min=5,
-                roles=[
-                    "GROUP_CHARTS_ADMIN",
-                    "GROUP_CLUSTER_MANAGER",
-                ],
-                sms_enabled=False,
-                type_name="GROUP",
-            )],
-            project_id="<PROJECT-ID>",
             threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
                 operator="LESS_THAN",
                 threshold=1,
@@ -385,8 +385,30 @@ class AlertConfiguration(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AlertConfiguration("test",
-            enabled=True,
+            project_id="PROJECT ID",
             event_type="OUTSIDE_METRIC_THRESHOLD",
+            enabled=True,
+            notifications=[
+                mongodbatlas.AlertConfigurationNotificationArgs(
+                    type_name="GROUP",
+                    interval_min=5,
+                    delay_min=0,
+                    sms_enabled=False,
+                    email_enabled=True,
+                    roles=[
+                        "GROUP_DATA_ACCESS_READ_ONLY",
+                        "GROUP_CLUSTER_MANAGER",
+                        "GROUP_DATA_ACCESS_ADMIN",
+                    ],
+                ),
+                mongodbatlas.AlertConfigurationNotificationArgs(
+                    type_name="ORG",
+                    interval_min=5,
+                    delay_min=0,
+                    sms_enabled=True,
+                    email_enabled=False,
+                ),
+            ],
             matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
                 field_name="HOSTNAME_AND_PORT",
                 operator="EQUALS",
@@ -394,33 +416,11 @@ class AlertConfiguration(pulumi.CustomResource):
             )],
             metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
                 metric_name="ASSERT_REGULAR",
-                mode="AVERAGE",
                 operator="LESS_THAN",
                 threshold=99,
                 units="RAW",
-            ),
-            notifications=[
-                mongodbatlas.AlertConfigurationNotificationArgs(
-                    delay_min=0,
-                    email_enabled=True,
-                    interval_min=5,
-                    roles=[
-                        "GROUP_DATA_ACCESS_READ_ONLY",
-                        "GROUP_CLUSTER_MANAGER",
-                        "GROUP_DATA_ACCESS_ADMIN",
-                    ],
-                    sms_enabled=False,
-                    type_name="GROUP",
-                ),
-                mongodbatlas.AlertConfigurationNotificationArgs(
-                    delay_min=0,
-                    email_enabled=False,
-                    interval_min=5,
-                    sms_enabled=True,
-                    type_name="ORG",
-                ),
-            ],
-            project_id="PROJECT ID")
+                mode="AVERAGE",
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -465,8 +465,20 @@ class AlertConfiguration(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AlertConfiguration("test",
-            enabled=True,
+            project_id="<PROJECT-ID>",
             event_type="OUTSIDE_METRIC_THRESHOLD",
+            enabled=True,
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                type_name="GROUP",
+                interval_min=5,
+                delay_min=0,
+                sms_enabled=False,
+                email_enabled=True,
+                roles=[
+                    "GROUP_CHARTS_ADMIN",
+                    "GROUP_CLUSTER_MANAGER",
+                ],
+            )],
             matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
                 field_name="HOSTNAME_AND_PORT",
                 operator="EQUALS",
@@ -474,23 +486,11 @@ class AlertConfiguration(pulumi.CustomResource):
             )],
             metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
                 metric_name="ASSERT_REGULAR",
-                mode="AVERAGE",
                 operator="LESS_THAN",
                 threshold=99,
                 units="RAW",
-            ),
-            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-                delay_min=0,
-                email_enabled=True,
-                interval_min=5,
-                roles=[
-                    "GROUP_CHARTS_ADMIN",
-                    "GROUP_CLUSTER_MANAGER",
-                ],
-                sms_enabled=False,
-                type_name="GROUP",
-            )],
-            project_id="<PROJECT-ID>")
+                mode="AVERAGE",
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -502,25 +502,25 @@ class AlertConfiguration(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AlertConfiguration("test",
-            enabled=True,
+            project_id="<PROJECT-ID>",
             event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+            enabled=True,
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                type_name="GROUP",
+                interval_min=5,
+                delay_min=0,
+                sms_enabled=False,
+                email_enabled=True,
+                roles=[
+                    "GROUP_CHARTS_ADMIN",
+                    "GROUP_CLUSTER_MANAGER",
+                ],
+            )],
             matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
                 field_name="HOSTNAME_AND_PORT",
                 operator="EQUALS",
                 value="SECONDARY",
             )],
-            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-                delay_min=0,
-                email_enabled=True,
-                interval_min=5,
-                roles=[
-                    "GROUP_CHARTS_ADMIN",
-                    "GROUP_CLUSTER_MANAGER",
-                ],
-                sms_enabled=False,
-                type_name="GROUP",
-            )],
-            project_id="<PROJECT-ID>",
             threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
                 operator="LESS_THAN",
                 threshold=1,
@@ -537,8 +537,30 @@ class AlertConfiguration(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AlertConfiguration("test",
-            enabled=True,
+            project_id="PROJECT ID",
             event_type="OUTSIDE_METRIC_THRESHOLD",
+            enabled=True,
+            notifications=[
+                mongodbatlas.AlertConfigurationNotificationArgs(
+                    type_name="GROUP",
+                    interval_min=5,
+                    delay_min=0,
+                    sms_enabled=False,
+                    email_enabled=True,
+                    roles=[
+                        "GROUP_DATA_ACCESS_READ_ONLY",
+                        "GROUP_CLUSTER_MANAGER",
+                        "GROUP_DATA_ACCESS_ADMIN",
+                    ],
+                ),
+                mongodbatlas.AlertConfigurationNotificationArgs(
+                    type_name="ORG",
+                    interval_min=5,
+                    delay_min=0,
+                    sms_enabled=True,
+                    email_enabled=False,
+                ),
+            ],
             matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
                 field_name="HOSTNAME_AND_PORT",
                 operator="EQUALS",
@@ -546,33 +568,11 @@ class AlertConfiguration(pulumi.CustomResource):
             )],
             metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
                 metric_name="ASSERT_REGULAR",
-                mode="AVERAGE",
                 operator="LESS_THAN",
                 threshold=99,
                 units="RAW",
-            ),
-            notifications=[
-                mongodbatlas.AlertConfigurationNotificationArgs(
-                    delay_min=0,
-                    email_enabled=True,
-                    interval_min=5,
-                    roles=[
-                        "GROUP_DATA_ACCESS_READ_ONLY",
-                        "GROUP_CLUSTER_MANAGER",
-                        "GROUP_DATA_ACCESS_ADMIN",
-                    ],
-                    sms_enabled=False,
-                    type_name="GROUP",
-                ),
-                mongodbatlas.AlertConfigurationNotificationArgs(
-                    delay_min=0,
-                    email_enabled=False,
-                    interval_min=5,
-                    sms_enabled=True,
-                    type_name="ORG",
-                ),
-            ],
-            project_id="PROJECT ID")
+                mode="AVERAGE",
+            ))
         ```
         <!--End PulumiCodeChooser -->
 

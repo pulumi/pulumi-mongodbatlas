@@ -322,8 +322,9 @@ def get_federated_settings_identity_provider(federation_settings_id: Optional[st
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
+    identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identity_provider",
         federation_settings_id="627a9687f7f7f7f774de306f14",
+        name="mongodb_federation_test",
         associated_domains=["yourdomain.com"],
         sso_debug_enabled=True,
         status="ACTIVE",
@@ -387,8 +388,9 @@ def get_federated_settings_identity_provider_output(federation_settings_id: Opti
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
+    identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identity_provider",
         federation_settings_id="627a9687f7f7f7f774de306f14",
+        name="mongodb_federation_test",
         associated_domains=["yourdomain.com"],
         sso_debug_enabled=True,
         status="ACTIVE",

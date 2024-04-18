@@ -35,8 +35,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
-//				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
 //				ProjectId: "PROJECT ID",
+//				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -64,13 +64,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
+//				ProjectId: "PROJECT ID",
+//				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
 //				CloudProviderConfig: mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfig{
 //					Aws: mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAws{
 //						TestS3Bucket: "Amazon S3 Bucket Name",
 //					},
 //				},
-//				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-//				ProjectId: "PROJECT ID",
 //			}, nil)
 //			if err != nil {
 //				return err

@@ -28,8 +28,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetOrganizations.Invoke(new()
         ///     {
-        ///         ItemsPerPage = 5,
         ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
         ///     });
         /// 
         /// });
@@ -56,8 +56,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetOrganizations.Invoke(new()
         ///     {
-        ///         ItemsPerPage = 5,
         ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
         ///     });
         /// 
         /// });

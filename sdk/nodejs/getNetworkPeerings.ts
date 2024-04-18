@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testNetworkPeering = new mongodbatlas.NetworkPeering("testNetworkPeering", {
+ * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
  *     accepterRegionName: "us-east-1",
  *     projectId: "<YOUR-PROJEC-ID>",
  *     containerId: "507f1f77bcf86cd799439011",
@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  *     vpcId: "vpc-abc123abc123",
  *     awsAccountId: "abc123abc123",
  * });
- * const testNetworkPeerings = mongodbatlas.getNetworkPeeringsOutput({
+ * const test = mongodbatlas.getNetworkPeeringsOutput({
  *     projectId: testNetworkPeering.projectId,
  * });
  * ```
@@ -81,7 +81,7 @@ export interface GetNetworkPeeringsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testNetworkPeering = new mongodbatlas.NetworkPeering("testNetworkPeering", {
+ * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
  *     accepterRegionName: "us-east-1",
  *     projectId: "<YOUR-PROJEC-ID>",
  *     containerId: "507f1f77bcf86cd799439011",
@@ -90,7 +90,7 @@ export interface GetNetworkPeeringsResult {
  *     vpcId: "vpc-abc123abc123",
  *     awsAccountId: "abc123abc123",
  * });
- * const testNetworkPeerings = mongodbatlas.getNetworkPeeringsOutput({
+ * const test = mongodbatlas.getNetworkPeeringsOutput({
  *     projectId: testNetworkPeering.projectId,
  * });
  * ```

@@ -32,17 +32,17 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", new()
+    ///     var test = new Mongodbatlas.PrivateLinkEndpoint("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         ProviderName = "AWS",
     ///         Region = "US_EAST_1",
     ///     });
     /// 
-    ///     var ptfeService = new Aws.Ec2.VpcEndpoint("ptfeService", new()
+    ///     var ptfeService = new Aws.Index.VpcEndpoint("ptfe_service", new()
     ///     {
     ///         VpcId = "vpc-7fc0a543",
-    ///         ServiceName = testPrivateLinkEndpoint.EndpointServiceName,
+    ///         ServiceName = test.EndpointServiceName,
     ///         VpcEndpointType = "Interface",
     ///         SubnetIds = new[]
     ///         {
@@ -54,10 +54,10 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", new()
+    ///     var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("test", new()
     ///     {
-    ///         ProjectId = testPrivateLinkEndpoint.ProjectId,
-    ///         PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
+    ///         ProjectId = test.ProjectId,
+    ///         PrivateLinkId = test.PrivateLinkId,
     ///         EndpointServiceId = ptfeService.Id,
     ///         ProviderName = "AWS",
     ///     });
@@ -73,44 +73,151 @@ namespace Pulumi.Mongodbatlas
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Azure = Pulumi.Azure;
+    /// using Azurerm = Pulumi.Azurerm;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", new()
+    ///     var test = new Mongodbatlas.PrivateLinkEndpoint("test", new()
     ///     {
-    ///         ProjectId = @var.Project_id,
+    ///         ProjectId = projectId,
     ///         ProviderName = "AZURE",
     ///         Region = "eastus2",
     ///     });
     /// 
-    ///     var testEndpoint = new Azure.PrivateLink.Endpoint("testEndpoint", new()
+    ///     var testPrivateEndpoint = new Azurerm.Index.PrivateEndpoint("test", new()
     ///     {
-    ///         Location = data.Azurerm_resource_group.Test.Location,
-    ///         ResourceGroupName = @var.Resource_group_name,
-    ///         SubnetId = azurerm_subnet.Test.Id,
-    ///         PrivateServiceConnection = new Azure.PrivateLink.Inputs.EndpointPrivateServiceConnectionArgs
+    ///         Name = "endpoint-test",
+    ///         Location = testAzurermResourceGroup.Location,
+    ///         ResourceGroupName = resourceGroupName,
+    ///         SubnetId = testAzurermSubnet.Id,
+    ///         PrivateServiceConnection = new[]
     ///         {
-    ///             Name = testPrivateLinkEndpoint.PrivateLinkServiceName,
-    ///             PrivateConnectionResourceId = testPrivateLinkEndpoint.PrivateLinkServiceResourceId,
-    ///             IsManualConnection = true,
-    ///             RequestMessage = "Azure Private Link test",
+    ///             
+    ///             {
+    ///                 { "name", test.PrivateLinkServiceName },
+    ///                 { "privateConnectionResourceId", test.PrivateLinkServiceResourceId },
+    ///                 { "isManualConnection", true },
+    ///                 { "requestMessage", "Azure Private Link test" },
+    ///             },
     ///         },
     ///     });
     /// 
-    ///     var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", new()
+    ///     var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("test", new()
     ///     {
-    ///         ProjectId = testPrivateLinkEndpoint.ProjectId,
-    ///         PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
-    ///         EndpointServiceId = testEndpoint.Id,
-    ///         PrivateEndpointIpAddress = testEndpoint.PrivateServiceConnection.Apply(privateServiceConnection =&gt; privateServiceConnection.PrivateIpAddress),
+    ///         ProjectId = test.ProjectId,
+    ///         PrivateLinkId = test.PrivateLinkId,
+    ///         EndpointServiceId = testPrivateEndpoint.Id,
+    ///         PrivateEndpointIpAddress = testPrivateEndpoint.PrivateServiceConnection[0].PrivateIpAddress,
     ///         ProviderName = "AZURE",
     ///     });
     /// 
     /// });
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Example with GCP
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Google = Pulumi.Google;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.PrivateLinkEndpoint("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ProviderName = "GCP",
+    ///         Region = gcpRegion,
+    ///     });
+    /// 
+    ///     // Create a Google Network
+    ///     var @default = new Google.Index.ComputeNetwork("default", new()
+    ///     {
+    ///         Project = gcpProject,
+    ///         Name = "my-network",
+    ///     });
+    /// 
+    ///     // Create a Google Sub Network
+    ///     var defaultComputeSubnetwork = new Google.Index.ComputeSubnetwork("default", new()
+    ///     {
+    ///         Project = @default.Project,
+    ///         Name = "my-subnet",
+    ///         IpCidrRange = "10.0.0.0/16",
+    ///         Region = gcpRegion,
+    ///         Network = @default.Id,
+    ///     });
+    /// 
+    ///     // Create Google 50 Addresses
+    ///     var defaultComputeAddress = new List&lt;Google.Index.ComputeAddress&gt;();
+    ///     for (var rangeIndex = 0; rangeIndex &lt; 50; rangeIndex++)
+    ///     {
+    ///         var range = new { Value = rangeIndex };
+    ///         defaultComputeAddress.Add(new Google.Index.ComputeAddress($"default-{range.Value}", new()
+    ///         {
+    ///             Project = defaultComputeSubnetwork.Project,
+    ///             Name = $"tf-test{range.Value}",
+    ///             Subnetwork = defaultComputeSubnetwork.Id,
+    ///             AddressType = "INTERNAL",
+    ///             Address = $"10.0.42.{range.Value}",
+    ///             Region = gcpRegion,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn =
+    ///             {
+    ///                 test, 
+    ///             },
+    ///         }));
+    ///     }
+    ///     // Create 50 Forwarding rules
+    ///     var defaultComputeForwardingRule = new List&lt;Google.Index.ComputeForwardingRule&gt;();
+    ///     for (var rangeIndex = 0; rangeIndex &lt; 50; rangeIndex++)
+    ///     {
+    ///         var range = new { Value = rangeIndex };
+    ///         defaultComputeForwardingRule.Add(new Google.Index.ComputeForwardingRule($"default-{range.Value}", new()
+    ///         {
+    ///             Target = test.ServiceAttachmentNames[range.Value],
+    ///             Project = defaultComputeAddress[range.Value].Project,
+    ///             Region = defaultComputeAddress[range.Value].Region,
+    ///             Name = defaultComputeAddress[range.Value].Name,
+    ///             IpAddress = defaultComputeAddress[range.Value].Id,
+    ///             Network = @default.Id,
+    ///             LoadBalancingScheme = "",
+    ///         }));
+    ///     }
+    ///     var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("test", new()
+    ///     {
+    ///         Endpoints = defaultComputeAddress.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
+    ///         {
+    ///             return new Mongodbatlas.Inputs.PrivateLinkEndpointServiceEndpointArgs
+    ///             {
+    ///                 IpAddress = entry.Value.Address,
+    ///                 EndpointName = defaultComputeForwardingRule[entry.Key].Name,
+    ///             };
+    ///         }).ToList(),
+    ///         ProjectId = test.ProjectId,
+    ///         PrivateLinkId = test.PrivateLinkId,
+    ///         ProviderName = "GCP",
+    ///         EndpointServiceId = @default.Name,
+    ///         GcpProjectId = gcpProject,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             defaultComputeForwardingRule, 
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Available complete examples
+    /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
     /// 
     /// ## Import
     /// 

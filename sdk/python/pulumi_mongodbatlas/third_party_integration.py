@@ -589,11 +589,11 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
-            api_key="<API-KEY>",
+        test_datadog = mongodbatlas.ThirdPartyIntegration("test_datadog",
             project_id="<PROJECT-ID>",
-            region="<REGION>",
-            type="DATADOG")
+            type="DATADOG",
+            api_key="<API-KEY>",
+            region="<REGION>")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -654,11 +654,11 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
-            api_key="<API-KEY>",
+        test_datadog = mongodbatlas.ThirdPartyIntegration("test_datadog",
             project_id="<PROJECT-ID>",
-            region="<REGION>",
-            type="DATADOG")
+            type="DATADOG",
+            api_key="<API-KEY>",
+            region="<REGION>")
         ```
         <!--End PulumiCodeChooser -->
 

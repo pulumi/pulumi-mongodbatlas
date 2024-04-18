@@ -10,6 +10,27 @@ import * as utilities from "./utilities";
  * `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("test", {
+ *     projectId: "5d0f1f73cf09a29120e173cf",
+ *     clusterName: "MyClusterTest",
+ *     description: "SomeDescription",
+ *     retentionInDays: 1,
+ * });
+ * const test = mongodbatlas.getCloudBackupSnapshotOutput({
+ *     snapshotId: "5d1285acd5ec13b6c2d1726a",
+ *     projectId: testCloudBackupSnapshot.projectId,
+ *     clusterName: testCloudBackupSnapshot.clusterName,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupSnapshot(args: GetCloudBackupSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotResult> {
 
@@ -107,6 +128,27 @@ export interface GetCloudBackupSnapshotResult {
  * `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("test", {
+ *     projectId: "5d0f1f73cf09a29120e173cf",
+ *     clusterName: "MyClusterTest",
+ *     description: "SomeDescription",
+ *     retentionInDays: 1,
+ * });
+ * const test = mongodbatlas.getCloudBackupSnapshotOutput({
+ *     snapshotId: "5d1285acd5ec13b6c2d1726a",
+ *     projectId: testCloudBackupSnapshot.projectId,
+ *     clusterName: testCloudBackupSnapshot.clusterName,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupSnapshotOutput(args: GetCloudBackupSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotResult> {
     return pulumi.output(args).apply((a: any) => getCloudBackupSnapshot(a, opts))

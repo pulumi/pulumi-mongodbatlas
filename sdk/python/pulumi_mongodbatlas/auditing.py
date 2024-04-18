@@ -205,10 +205,10 @@ class Auditing(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Auditing("test",
-            audit_authorization_success=False,
+            project_id="<project-id>",
             audit_filter="{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
-            enabled=True,
-            project_id="<project-id>")
+            audit_authorization_success=False,
+            enabled=True)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -247,10 +247,10 @@ class Auditing(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Auditing("test",
-            audit_authorization_success=False,
+            project_id="<project-id>",
             audit_filter="{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
-            enabled=True,
-            project_id="<project-id>")
+            audit_authorization_success=False,
+            enabled=True)
         ```
         <!--End PulumiCodeChooser -->
 

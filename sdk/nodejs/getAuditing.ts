@@ -8,6 +8,25 @@ import * as utilities from "./utilities";
  * `mongodbatlas.Auditing` describes a Auditing.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testAuditing = new mongodbatlas.Auditing("test", {
+ *     projectId: "<project-id>",
+ *     auditFilter: "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
+ *     auditAuthorizationSuccess: false,
+ *     enabled: true,
+ * });
+ * const test = mongodbatlas.getAuditingOutput({
+ *     projectId: testAuditing.id,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAuditing(args: GetAuditingArgs, opts?: pulumi.InvokeOptions): Promise<GetAuditingResult> {
 
@@ -57,6 +76,25 @@ export interface GetAuditingResult {
  * `mongodbatlas.Auditing` describes a Auditing.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testAuditing = new mongodbatlas.Auditing("test", {
+ *     projectId: "<project-id>",
+ *     auditFilter: "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
+ *     auditAuthorizationSuccess: false,
+ *     enabled: true,
+ * });
+ * const test = mongodbatlas.getAuditingOutput({
+ *     projectId: testAuditing.id,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAuditingOutput(args: GetAuditingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuditingResult> {
     return pulumi.output(args).apply((a: any) => getAuditing(a, opts))

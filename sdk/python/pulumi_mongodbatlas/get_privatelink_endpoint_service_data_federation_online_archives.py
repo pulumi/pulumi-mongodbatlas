@@ -80,7 +80,9 @@ def get_privatelink_endpoint_service_data_federation_online_archives(project_id:
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    atlas_project = mongodbatlas.Project("atlas-project", org_id=var["atlas_org_id"])
+    atlas_project = mongodbatlas.Project("atlas-project",
+        org_id=atlas_org_id,
+        name=atlas_project_name)
     test = mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test",
         project_id=atlas_project.id,
         endpoint_id="vpce-046cf43c79424d4c9",
@@ -121,7 +123,9 @@ def get_privatelink_endpoint_service_data_federation_online_archives_output(proj
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    atlas_project = mongodbatlas.Project("atlas-project", org_id=var["atlas_org_id"])
+    atlas_project = mongodbatlas.Project("atlas-project",
+        org_id=atlas_org_id,
+        name=atlas_project_name)
     test = mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test",
         project_id=atlas_project.id,
         endpoint_id="vpce-046cf43c79424d4c9",

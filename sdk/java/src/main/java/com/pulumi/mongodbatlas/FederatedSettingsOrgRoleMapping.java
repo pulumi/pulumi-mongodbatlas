@@ -44,9 +44,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping(&#34;orgGroupRoleMappingImport&#34;, FederatedSettingsOrgRoleMappingArgs.builder()        
- *             .externalGroupName(&#34;myGrouptest&#34;)
  *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
  *             .orgId(&#34;627a9683e7f7f7ff7fe306f14&#34;)
+ *             .externalGroupName(&#34;myGrouptest&#34;)
  *             .roleAssignments(            
  *                 FederatedSettingsOrgRoleMappingRoleAssignmentArgs.builder()
  *                     .orgId(&#34;627a9683e7f7f7ff7fe306f14&#34;)

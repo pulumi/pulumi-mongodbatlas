@@ -18,9 +18,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRolesOrgId = mongodbatlas.getRolesOrgId({});
- * const testProject = new mongodbatlas.Project("testProject", {
- *     orgId: testRolesOrgId.then(testRolesOrgId => testRolesOrgId.orgId),
+ * const test = mongodbatlas.getRolesOrgId({});
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "project-name",
+ *     orgId: test.then(test => test.orgId),
  *     projectOwnerId: "<OWNER_ACCOUNT_ID>",
  *     teams: [
  *         {

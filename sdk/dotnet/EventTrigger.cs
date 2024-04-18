@@ -32,6 +32,7 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         AppId = "APPLICATION ID",
+    ///         Name = "NAME OF THE TRIGGER",
     ///         Type = "DATABASE",
     ///         FunctionId = "FUNCTION ID",
     ///         Disabled = false,
@@ -78,26 +79,30 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.EventTrigger("test", new()
     ///     {
+    ///         ProjectId = "PROJECT ID",
     ///         AppId = "APPLICATION ID",
-    ///         ConfigCollection = "COLLECTION NAME",
-    ///         ConfigDatabase = "DATABASE NAME",
-    ///         ConfigFullDocument = false,
-    ///         ConfigFullDocumentBefore = false,
-    ///         ConfigMatch = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
-    ///         ConfigOperationType = "LOGIN",
+    ///         Name = "NAME OF THE TRIGGER",
+    ///         Type = "DATABASE",
+    ///         Disabled = false,
+    ///         Unordered = false,
     ///         ConfigOperationTypes = new[]
     ///         {
     ///             "INSERT",
     ///             "UPDATE",
     ///         },
-    ///         ConfigProject = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+    ///         ConfigOperationType = "LOGIN",
     ///         ConfigProviders = new[]
     ///         {
     ///             "anon-user",
     ///         },
-    ///         ConfigSchedule = "*",
+    ///         ConfigDatabase = "DATABASE NAME",
+    ///         ConfigCollection = "COLLECTION NAME",
     ///         ConfigServiceId = "1",
-    ///         Disabled = false,
+    ///         ConfigMatch = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+    ///         ConfigProject = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+    ///         ConfigFullDocument = false,
+    ///         ConfigFullDocumentBefore = false,
+    ///         ConfigSchedule = "*",
     ///         EventProcessors = new Mongodbatlas.Inputs.EventTriggerEventProcessorsArgs
     ///         {
     ///             AwsEventbridge = new Mongodbatlas.Inputs.EventTriggerEventProcessorsAwsEventbridgeArgs
@@ -106,9 +111,6 @@ namespace Pulumi.Mongodbatlas
     ///                 ConfigRegion = "AWS REGIOn",
     ///             },
     ///         },
-    ///         ProjectId = "PROJECT ID",
-    ///         Type = "DATABASE",
-    ///         Unordered = false,
     ///     });
     /// 
     /// });
@@ -127,16 +129,17 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.EventTrigger("test", new()
     ///     {
+    ///         ProjectId = "PROJECT ID",
     ///         AppId = "APPLICATION ID",
+    ///         Name = "NAME OF THE TRIGGER",
+    ///         Type = "AUTHENTICATION",
+    ///         FunctionId = "1",
+    ///         Disabled = false,
     ///         ConfigOperationType = "LOGIN",
     ///         ConfigProviders = new[]
     ///         {
     ///             "anon-user",
     ///         },
-    ///         Disabled = false,
-    ///         FunctionId = "1",
-    ///         ProjectId = "PROJECT ID",
-    ///         Type = "AUTHENTICATION",
     ///     });
     /// 
     /// });
@@ -155,12 +158,13 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.EventTrigger("test", new()
     ///     {
-    ///         AppId = "APPLICATION ID",
-    ///         ConfigSchedule = "*",
-    ///         Disabled = false,
-    ///         FunctionId = "1",
     ///         ProjectId = "PROJECT ID",
+    ///         AppId = "APPLICATION ID",
+    ///         Name = "NAME OF THE TRIGGER",
     ///         Type = "SCHEDULED",
+    ///         FunctionId = "1",
+    ///         Disabled = false,
+    ///         ConfigSchedule = "*",
     ///     });
     /// 
     /// });

@@ -30,8 +30,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "testServerlessInstance", &mongodbatlas.ServerlessInstanceArgs{
+//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "test", &mongodbatlas.ServerlessInstanceArgs{
 //				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				Name:                                pulumi.String("test-db"),
 //				ProviderSettingsBackingProviderName: pulumi.String("AWS"),
 //				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
 //				ProviderSettingsRegionName:          pulumi.String("US_EAST_1"),
@@ -44,7 +45,7 @@ import (
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: testServerlessInstance.Name,
 //			}, nil)
-//			testPrivatelinkEndpointServerless, err := mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "testPrivatelinkEndpointServerless", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
+//			testPrivatelinkEndpointServerless, err := mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: testServerlessInstance.Name,
 //				ProviderName: pulumi.String("AWS"),
@@ -52,7 +53,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "testPrivatelinkEndpointServiceServerless", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
+//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: pulumi.String("test-db"),
 //				EndpointId:   testPrivatelinkEndpointServerless.EndpointId,
@@ -84,8 +85,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "testServerlessInstance", &mongodbatlas.ServerlessInstanceArgs{
+//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "test", &mongodbatlas.ServerlessInstanceArgs{
 //				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				Name:                                pulumi.String("test-db"),
 //				ProviderSettingsBackingProviderName: pulumi.String("AZURE"),
 //				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
 //				ProviderSettingsRegionName:          pulumi.String("US_EAST"),
@@ -98,7 +100,7 @@ import (
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: testServerlessInstance.Name,
 //			}, nil)
-//			testPrivatelinkEndpointServerless, err := mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "testPrivatelinkEndpointServerless", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
+//			testPrivatelinkEndpointServerless, err := mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: testServerlessInstance.Name,
 //				ProviderName: pulumi.String("AZURE"),
@@ -106,7 +108,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "testPrivatelinkEndpointServiceServerless", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
+//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: pulumi.String("test-db"),
 //				EndpointId:   testPrivatelinkEndpointServerless.EndpointId,

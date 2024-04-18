@@ -8,6 +8,26 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
+ * ### Using projectId and apiKeyId attribute to query
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProjectApiKey = new mongodbatlas.ProjectApiKey("test", {
+ *     description: "Description of your API key",
+ *     projectAssignments: [{
+ *         projectId: "64259ee860c43338194b0f8e",
+ *         roleNames: ["GROUP_READ_ONLY"],
+ *     }],
+ * });
+ * const test = mongodbatlas.getProjectApiKey({
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     apiKeyId: testMongodbatlasApiKey.apiKeyId,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getProjectApiKey(args: GetProjectApiKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectApiKeyResult> {
 
@@ -61,6 +81,26 @@ export interface GetProjectApiKeyResult {
 }
 /**
  * ## Example Usage
+ *
+ * ### Using projectId and apiKeyId attribute to query
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProjectApiKey = new mongodbatlas.ProjectApiKey("test", {
+ *     description: "Description of your API key",
+ *     projectAssignments: [{
+ *         projectId: "64259ee860c43338194b0f8e",
+ *         roleNames: ["GROUP_READ_ONLY"],
+ *     }],
+ * });
+ * const test = mongodbatlas.getProjectApiKey({
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     apiKeyId: testMongodbatlasApiKey.apiKeyId,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getProjectApiKeyOutput(args: GetProjectApiKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectApiKeyResult> {
     return pulumi.output(args).apply((a: any) => getProjectApiKey(a, opts))

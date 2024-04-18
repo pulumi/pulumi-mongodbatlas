@@ -10,6 +10,107 @@ import * as utilities from "./utilities";
  * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testAlertConfiguration = new mongodbatlas.AlertConfiguration("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     eventType: "OUTSIDE_METRIC_THRESHOLD",
+ *     enabled: true,
+ *     notifications: [{
+ *         typeName: "GROUP",
+ *         intervalMin: 5,
+ *         delayMin: 0,
+ *         smsEnabled: false,
+ *         emailEnabled: true,
+ *     }],
+ *     matchers: [{
+ *         fieldName: "HOSTNAME_AND_PORT",
+ *         operator: "EQUALS",
+ *         value: "SECONDARY",
+ *     }],
+ *     metricThresholdConfig: {
+ *         metricName: "ASSERT_REGULAR",
+ *         operator: "LESS_THAN",
+ *         threshold: 99,
+ *         units: "RAW",
+ *         mode: "AVERAGE",
+ *     },
+ * });
+ * const test = mongodbatlas.getAlertConfigurationOutput({
+ *     projectId: testAlertConfiguration.projectId,
+ *     alertConfigurationId: testAlertConfiguration.alertConfigurationId,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testAlertConfiguration = new mongodbatlas.AlertConfiguration("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     eventType: "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+ *     enabled: true,
+ *     notifications: [{
+ *         typeName: "GROUP",
+ *         intervalMin: 5,
+ *         delayMin: 0,
+ *         smsEnabled: false,
+ *         emailEnabled: true,
+ *         roles: [
+ *             "GROUP_CHARTS_ADMIN",
+ *             "GROUP_CLUSTER_MANAGER",
+ *         ],
+ *     }],
+ *     matchers: [{
+ *         fieldName: "HOSTNAME_AND_PORT",
+ *         operator: "EQUALS",
+ *         value: "SECONDARY",
+ *     }],
+ *     thresholdConfig: {
+ *         operator: "LESS_THAN",
+ *         threshold: 1,
+ *         units: "HOURS",
+ *     },
+ * });
+ * const test = mongodbatlas.getAlertConfigurationOutput({
+ *     projectId: testAlertConfiguration.projectId,
+ *     alertConfigurationId: testAlertConfiguration.alertConfigurationId,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * Utilize dataSource to generate resource hcl and import statement. Useful if you have a specific alertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on dataSourceMongodbatlasAlertConfigurations
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getAlertConfiguration({
+ *     projectId: projectId,
+ *     alertConfigurationId: alertConfigurationId,
+ *     outputs: [
+ *         {
+ *             type: "resource_hcl",
+ *             label: "test",
+ *         },
+ *         {
+ *             type: "resource_import",
+ *             label: "test",
+ *         },
+ *     ],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAlertConfiguration(args: GetAlertConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetAlertConfigurationResult> {
 
@@ -82,6 +183,107 @@ export interface GetAlertConfigurationResult {
  * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testAlertConfiguration = new mongodbatlas.AlertConfiguration("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     eventType: "OUTSIDE_METRIC_THRESHOLD",
+ *     enabled: true,
+ *     notifications: [{
+ *         typeName: "GROUP",
+ *         intervalMin: 5,
+ *         delayMin: 0,
+ *         smsEnabled: false,
+ *         emailEnabled: true,
+ *     }],
+ *     matchers: [{
+ *         fieldName: "HOSTNAME_AND_PORT",
+ *         operator: "EQUALS",
+ *         value: "SECONDARY",
+ *     }],
+ *     metricThresholdConfig: {
+ *         metricName: "ASSERT_REGULAR",
+ *         operator: "LESS_THAN",
+ *         threshold: 99,
+ *         units: "RAW",
+ *         mode: "AVERAGE",
+ *     },
+ * });
+ * const test = mongodbatlas.getAlertConfigurationOutput({
+ *     projectId: testAlertConfiguration.projectId,
+ *     alertConfigurationId: testAlertConfiguration.alertConfigurationId,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testAlertConfiguration = new mongodbatlas.AlertConfiguration("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     eventType: "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+ *     enabled: true,
+ *     notifications: [{
+ *         typeName: "GROUP",
+ *         intervalMin: 5,
+ *         delayMin: 0,
+ *         smsEnabled: false,
+ *         emailEnabled: true,
+ *         roles: [
+ *             "GROUP_CHARTS_ADMIN",
+ *             "GROUP_CLUSTER_MANAGER",
+ *         ],
+ *     }],
+ *     matchers: [{
+ *         fieldName: "HOSTNAME_AND_PORT",
+ *         operator: "EQUALS",
+ *         value: "SECONDARY",
+ *     }],
+ *     thresholdConfig: {
+ *         operator: "LESS_THAN",
+ *         threshold: 1,
+ *         units: "HOURS",
+ *     },
+ * });
+ * const test = mongodbatlas.getAlertConfigurationOutput({
+ *     projectId: testAlertConfiguration.projectId,
+ *     alertConfigurationId: testAlertConfiguration.alertConfigurationId,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * Utilize dataSource to generate resource hcl and import statement. Useful if you have a specific alertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on dataSourceMongodbatlasAlertConfigurations
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getAlertConfiguration({
+ *     projectId: projectId,
+ *     alertConfigurationId: alertConfigurationId,
+ *     outputs: [
+ *         {
+ *             type: "resource_hcl",
+ *             label: "test",
+ *         },
+ *         {
+ *             type: "resource_import",
+ *             label: "test",
+ *         },
+ *     ],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAlertConfigurationOutput(args: GetAlertConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlertConfigurationResult> {
     return pulumi.output(args).apply((a: any) => getAlertConfiguration(a, opts))

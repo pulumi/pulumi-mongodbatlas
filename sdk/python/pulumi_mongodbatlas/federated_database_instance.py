@@ -432,20 +432,21 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
 
         test = mongodbatlas.FederatedDatabaseInstance("test",
             project_id="PROJECT ID",
+            name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
             storage_databases=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs(
+                name="VirtualDatabase0",
                 collections=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs(
+                    name="NAME OF THE COLLECTION",
                     data_sources=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
                         collection="COLLECTION IN THE CLUSTER",
                         database="DB IN THE CLUSTER",
                         store_name="CLUSTER NAME",
                     )],
-                    name="NAME OF THE COLLECTION",
                 )],
-                name="VirtualDatabase0",
             )],
             storage_stores=[mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
-                cluster_name="CLUSTER NAME",
                 name="STORE 1 NAME",
+                cluster_name="CLUSTER NAME",
                 project_id="PROJECT ID",
                 provider="atlas",
                 read_preference=mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(
@@ -463,15 +464,18 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.FederatedDatabaseInstance("test",
+            project_id="PROJECT ID",
+            name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
             cloud_provider_config=mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigArgs(
                 aws=mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigAwsArgs(
                     role_id="AWS ROLE ID",
                     test_s3_bucket="S3 BUCKET NAME",
                 ),
             ),
-            project_id="PROJECT ID",
             storage_databases=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs(
+                name="VirtualDatabase0",
                 collections=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs(
+                    name="NAME OF THE COLLECTION",
                     data_sources=[
                         mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
                             collection="COLLECTION IN THE CLUSTER",
@@ -479,18 +483,16 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                             store_name="CLUSTER NAME",
                         ),
                         mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
-                            path="S3 BUCKET PATH",
                             store_name="S3 BUCKET NAME",
+                            path="S3 BUCKET PATH",
                         ),
                     ],
-                    name="NAME OF THE COLLECTION",
                 )],
-                name="VirtualDatabase0",
             )],
             storage_stores=[
                 mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
-                    cluster_name="CLUSTER NAME",
                     name="STORE 1 NAME",
+                    cluster_name="CLUSTER NAME",
                     project_id="PROJECT ID",
                     provider="atlas",
                     read_preference=mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(
@@ -596,20 +598,21 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
 
         test = mongodbatlas.FederatedDatabaseInstance("test",
             project_id="PROJECT ID",
+            name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
             storage_databases=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs(
+                name="VirtualDatabase0",
                 collections=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs(
+                    name="NAME OF THE COLLECTION",
                     data_sources=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
                         collection="COLLECTION IN THE CLUSTER",
                         database="DB IN THE CLUSTER",
                         store_name="CLUSTER NAME",
                     )],
-                    name="NAME OF THE COLLECTION",
                 )],
-                name="VirtualDatabase0",
             )],
             storage_stores=[mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
-                cluster_name="CLUSTER NAME",
                 name="STORE 1 NAME",
+                cluster_name="CLUSTER NAME",
                 project_id="PROJECT ID",
                 provider="atlas",
                 read_preference=mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(
@@ -627,15 +630,18 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.FederatedDatabaseInstance("test",
+            project_id="PROJECT ID",
+            name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
             cloud_provider_config=mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigArgs(
                 aws=mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigAwsArgs(
                     role_id="AWS ROLE ID",
                     test_s3_bucket="S3 BUCKET NAME",
                 ),
             ),
-            project_id="PROJECT ID",
             storage_databases=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs(
+                name="VirtualDatabase0",
                 collections=[mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs(
+                    name="NAME OF THE COLLECTION",
                     data_sources=[
                         mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
                             collection="COLLECTION IN THE CLUSTER",
@@ -643,18 +649,16 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                             store_name="CLUSTER NAME",
                         ),
                         mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs(
-                            path="S3 BUCKET PATH",
                             store_name="S3 BUCKET NAME",
+                            path="S3 BUCKET PATH",
                         ),
                     ],
-                    name="NAME OF THE COLLECTION",
                 )],
-                name="VirtualDatabase0",
             )],
             storage_stores=[
                 mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs(
-                    cluster_name="CLUSTER NAME",
                     name="STORE 1 NAME",
+                    cluster_name="CLUSTER NAME",
                     project_id="PROJECT ID",
                     provider="atlas",
                     read_preference=mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs(

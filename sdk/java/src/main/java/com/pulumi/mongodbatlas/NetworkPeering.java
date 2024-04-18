@@ -48,8 +48,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.NetworkContainerArgs;
  * import com.pulumi.mongodbatlas.NetworkPeering;
  * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
- * import com.pulumi.aws.ec2.VpcPeeringConnectionAccepter;
- * import com.pulumi.aws.ec2.VpcPeeringConnectionAccepterArgs;
+ * import com.pulumi.aws.vpcPeeringConnectionAccepter;
+ * import com.pulumi.aws.VpcPeeringConnectionAccepterArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -65,8 +65,8 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Container example provided but not always required, 
  *         // see network_container documentation for details. 
- *         var testNetworkContainer = new NetworkContainer(&#34;testNetworkContainer&#34;, NetworkContainerArgs.builder()        
- *             .projectId(local.project_id())
+ *         var test = new NetworkContainer(&#34;test&#34;, NetworkContainerArgs.builder()        
+ *             .projectId(projectId)
  *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .regionName(&#34;US_EAST_1&#34;)
@@ -75,7 +75,7 @@ import javax.annotation.Nullable;
  *         // Create the peering connection request
  *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
  *             .accepterRegionName(&#34;us-east-1&#34;)
- *             .projectId(local.project_id())
+ *             .projectId(projectId)
  *             .containerId(&#34;507f1f77bcf86cd799439011&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .routeTableCidrBlock(&#34;192.168.0.0/24&#34;)
@@ -90,105 +90,6 @@ import javax.annotation.Nullable;
  *             .autoAccept(true)
  *             .build());
  * 
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * ### Example with GCP
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.NetworkContainer;
- * import com.pulumi.mongodbatlas.NetworkContainerArgs;
- * import com.pulumi.mongodbatlas.NetworkPeering;
- * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
- * import com.pulumi.gcp.compute.ComputeFunctions;
- * import com.pulumi.gcp.compute.inputs.GetNetworkArgs;
- * import com.pulumi.gcp.compute.NetworkPeering;
- * import com.pulumi.gcp.compute.NetworkPeeringArgs;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
- * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
- * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Container example provided but not always required, 
- *         // see network_container documentation for details. 
- *         var testNetworkContainer = new NetworkContainer(&#34;testNetworkContainer&#34;, NetworkContainerArgs.builder()        
- *             .projectId(local.project_id())
- *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
- *             .providerName(&#34;GCP&#34;)
- *             .build());
- * 
- *         // Create the peering connection request
- *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
- *             .projectId(local.project_id())
- *             .containerId(testNetworkContainer.containerId())
- *             .providerName(&#34;GCP&#34;)
- *             .gcpProjectId(local.GCP_PROJECT_ID())
- *             .networkName(&#34;default&#34;)
- *             .build());
- * 
- *         final var default = ComputeFunctions.getNetwork(GetNetworkArgs.builder()
- *             .name(&#34;default&#34;)
- *             .build());
- * 
- *         // Create the GCP peer
- *         var peering = new NetworkPeering(&#34;peering&#34;, NetworkPeeringArgs.builder()        
- *             .network(default_.selfLink())
- *             .peerNetwork(Output.tuple(testNetworkPeering.atlasGcpProjectId(), testNetworkPeering.atlasVpcName()).applyValue(values -&gt; {
- *                 var atlasGcpProjectId = values.t1;
- *                 var atlasVpcName = values.t2;
- *                 return String.format(&#34;https://www.googleapis.com/compute/v1/projects/%s/global/networks/%s&#34;, atlasGcpProjectId,atlasVpcName);
- *             }))
- *             .build());
- * 
- *         // Create the cluster once the peering connection is completed
- *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
- *             .projectId(local.project_id())
- *             .numShards(1)
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
- *                 .numShards(1)
- *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .regionName(&#34;US_EAST_4&#34;)
- *                     .electableNodes(3)
- *                     .priority(7)
- *                     .readOnlyNodes(0)
- *                     .build())
- *                 .build())
- *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
- *             .providerName(&#34;GCP&#34;)
- *             .providerInstanceSizeName(&#34;M10&#34;)
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(&#34;google_compute_network_peering.peering&#34;)
- *                 .build());
- * 
- *         //  Private connection strings are not available w/ GCP until the reciprocal
- *         //  connection changes to available (i.e. when the status attribute changes
- *         //  to AVAILABLE on the &#39;mongodbatlas_network_peering&#39; resource, which
- *         //  happens when the google_compute_network_peering and and
- *         //  mongodbatlas_network_peering make a reciprocal connection).  Hence
- *         //  since the cluster can be created before this connection completes
- *         //  you may need to run `terraform refresh` to obtain the private connection strings.
  *     }
  * }
  * ```
@@ -228,27 +129,28 @@ import javax.annotation.Nullable;
  *         // see https://docs.atlas.mongodb.com/security-vpc-peering/
  *         // Container example provided but not always required, 
  *         // see network_container documentation for details. 
- *         var testNetworkContainer = new NetworkContainer(&#34;testNetworkContainer&#34;, NetworkContainerArgs.builder()        
- *             .projectId(local.project_id())
- *             .atlasCidrBlock(local.ATLAS_CIDR_BLOCK())
+ *         var test = new NetworkContainer(&#34;test&#34;, NetworkContainerArgs.builder()        
+ *             .projectId(projectId)
+ *             .atlasCidrBlock(ATLAS_CIDR_BLOCK)
  *             .providerName(&#34;AZURE&#34;)
  *             .region(&#34;US_EAST_2&#34;)
  *             .build());
  * 
  *         // Create the peering connection request
  *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
- *             .projectId(local.project_id())
- *             .containerId(testNetworkContainer.containerId())
+ *             .projectId(projectId)
+ *             .containerId(test.containerId())
  *             .providerName(&#34;AZURE&#34;)
- *             .azureDirectoryId(local.AZURE_DIRECTORY_ID())
- *             .azureSubscriptionId(local.AZURE_SUBSCRIPTION_ID())
- *             .resourceGroupName(local.AZURE_RESOURCES_GROUP_NAME())
- *             .vnetName(local.AZURE_VNET_NAME())
+ *             .azureDirectoryId(AZURE_DIRECTORY_ID)
+ *             .azureSubscriptionId(AZURE_SUBSCRIPTION_ID)
+ *             .resourceGroupName(AZURE_RESOURCES_GROUP_NAME)
+ *             .vnetName(AZURE_VNET_NAME)
  *             .build());
  * 
  *         // Create the cluster once the peering connection is completed
  *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
- *             .projectId(local.project_id())
+ *             .projectId(projectId)
+ *             .name(&#34;terraform-manually-test&#34;)
  *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
@@ -265,7 +167,7 @@ import javax.annotation.Nullable;
  *             .providerDiskTypeName(&#34;P4&#34;)
  *             .providerInstanceSizeName(&#34;M10&#34;)
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(&#34;mongodbatlas_network_peering.test&#34;)
+ *                 .dependsOn(testNetworkPeering)
  *                 .build());
  * 
  *     }
@@ -287,12 +189,12 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.Cluster;
  * import com.pulumi.mongodbatlas.ClusterArgs;
  * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
- * import com.pulumi.aws.ec2.DefaultVpc;
- * import com.pulumi.aws.ec2.DefaultVpcArgs;
+ * import com.pulumi.aws.defaultVpc;
+ * import com.pulumi.aws.DefaultVpcArgs;
  * import com.pulumi.mongodbatlas.NetworkPeering;
  * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
- * import com.pulumi.aws.ec2.VpcPeeringConnectionAccepter;
- * import com.pulumi.aws.ec2.VpcPeeringConnectionAccepterArgs;
+ * import com.pulumi.aws.vpcPeeringConnectionAccepter;
+ * import com.pulumi.aws.VpcPeeringConnectionAccepterArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -309,7 +211,8 @@ import javax.annotation.Nullable;
  *         // Create an Atlas cluster, this creates a container if one
  *         // does not yet exist for this AWS region
  *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
- *             .projectId(local.project_id())
+ *             .projectId(projectId)
+ *             .name(&#34;terraform-test&#34;)
  *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
@@ -328,104 +231,25 @@ import javax.annotation.Nullable;
  * 
  *         // the following assumes an AWS provider is configured
  *         var default_ = new DefaultVpc(&#34;default&#34;, DefaultVpcArgs.builder()        
- *             .tags(Map.of(&#34;Name&#34;, &#34;Default VPC&#34;))
+ *             .tags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .build());
  * 
  *         // Create the peering connection request
  *         var mongoPeer = new NetworkPeering(&#34;mongoPeer&#34;, NetworkPeeringArgs.builder()        
  *             .accepterRegionName(&#34;us-east-2&#34;)
- *             .projectId(local.project_id())
+ *             .projectId(projectId)
  *             .containerId(test.containerId())
  *             .providerName(&#34;AWS&#34;)
  *             .routeTableCidrBlock(&#34;172.31.0.0/16&#34;)
  *             .vpcId(default_.id())
- *             .awsAccountId(local.AWS_ACCOUNT_ID())
+ *             .awsAccountId(AWS_ACCOUNT_ID)
  *             .build());
  * 
  *         // Accept the connection 
  *         var awsPeer = new VpcPeeringConnectionAccepter(&#34;awsPeer&#34;, VpcPeeringConnectionAccepterArgs.builder()        
  *             .vpcPeeringConnectionId(mongoPeer.connectionId())
  *             .autoAccept(true)
- *             .tags(Map.of(&#34;Side&#34;, &#34;Accepter&#34;))
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * ### Example with GCP
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
- * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
- * import com.pulumi.mongodbatlas.NetworkPeering;
- * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
- * import com.pulumi.gcp.compute.ComputeFunctions;
- * import com.pulumi.gcp.compute.inputs.GetNetworkArgs;
- * import com.pulumi.gcp.compute.NetworkPeering;
- * import com.pulumi.gcp.compute.NetworkPeeringArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         // Create an Atlas cluster, this creates a container if one
- *         // does not yet exist for this GCP 
- *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
- *             .projectId(local.project_id())
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
- *                 .numShards(1)
- *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .regionName(&#34;US_EAST_2&#34;)
- *                     .electableNodes(3)
- *                     .priority(7)
- *                     .readOnlyNodes(0)
- *                     .build())
- *                 .build())
- *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
- *             .providerName(&#34;GCP&#34;)
- *             .providerInstanceSizeName(&#34;M10&#34;)
- *             .build());
- * 
- *         // Create the peering connection request
- *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
- *             .projectId(local.project_id())
- *             .atlasCidrBlock(&#34;192.168.0.0/18&#34;)
- *             .containerId(testCluster.containerId())
- *             .providerName(&#34;GCP&#34;)
- *             .gcpProjectId(local.GCP_PROJECT_ID())
- *             .networkName(&#34;default&#34;)
- *             .build());
- * 
- *         final var default = ComputeFunctions.getNetwork(GetNetworkArgs.builder()
- *             .name(&#34;default&#34;)
- *             .build());
- * 
- *         // Create the GCP peer
- *         var peering = new NetworkPeering(&#34;peering&#34;, NetworkPeeringArgs.builder()        
- *             .network(default_.selfLink())
- *             .peerNetwork(Output.tuple(testNetworkPeering.atlasGcpProjectId(), testNetworkPeering.atlasVpcName()).applyValue(values -&gt; {
- *                 var atlasGcpProjectId = values.t1;
- *                 var atlasVpcName = values.t2;
- *                 return String.format(&#34;https://www.googleapis.com/compute/v1/projects/%s/global/networks/%s&#34;, atlasGcpProjectId,atlasVpcName);
- *             }))
+ *             .tags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .build());
  * 
  *     }
@@ -464,8 +288,9 @@ import javax.annotation.Nullable;
  *         // see https://docs.atlas.mongodb.com/security-vpc-peering/
  *         // Create an Atlas cluster, this creates a container if one
  *         // does not yet exist for this AZURE region
- *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
- *             .projectId(local.project_id())
+ *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
+ *             .projectId(projectId)
+ *             .name(&#34;cluster-azure&#34;)
  *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
@@ -484,13 +309,13 @@ import javax.annotation.Nullable;
  * 
  *         // Create the peering connection request
  *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
- *             .projectId(local.project_id())
- *             .containerId(testCluster.containerId())
+ *             .projectId(projectId)
+ *             .containerId(test.containerId())
  *             .providerName(&#34;AZURE&#34;)
- *             .azureDirectoryId(local.AZURE_DIRECTORY_ID())
- *             .azureSubscriptionId(local.AZURE_SUBSCRIPTION_ID())
- *             .resourceGroupName(local.AZURE_RESOURCE_GROUP_NAME())
- *             .vnetName(local.AZURE_VNET_NAME())
+ *             .azureDirectoryId(AZURE_DIRECTORY_ID)
+ *             .azureSubscriptionId(AZURE_SUBSCRIPTION_ID)
+ *             .resourceGroupName(AZURE_RESOURCE_GROUP_NAME)
+ *             .vnetName(AZURE_VNET_NAME)
  *             .build());
  * 
  *     }

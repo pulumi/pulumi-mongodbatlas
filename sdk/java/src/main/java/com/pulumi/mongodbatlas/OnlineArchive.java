@@ -59,10 +59,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new OnlineArchive(&#34;test&#34;, OnlineArchiveArgs.builder()        
- *             .projectId(var_.project_id())
- *             .clusterName(var_.cluster_name())
- *             .collName(var_.collection_name())
- *             .dbName(var_.database_name())
+ *             .projectId(projectId)
+ *             .clusterName(clusterName)
+ *             .collName(collectionName)
+ *             .dbName(databaseName)
  *             .partitionFields(            
  *                 OnlineArchivePartitionFieldArgs.builder()
  *                     .fieldName(&#34;dateField&#34;)
@@ -122,10 +122,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new OnlineArchive(&#34;test&#34;, OnlineArchiveArgs.builder()        
- *             .projectId(var_.project_id())
- *             .clusterName(var_.cluster_name())
- *             .collName(var_.collection_name())
- *             .dbName(var_.database_name())
+ *             .projectId(projectId)
+ *             .clusterName(clusterName)
+ *             .collName(collectionName)
+ *             .dbName(databaseName)
  *             .partitionFields(            
  *                 OnlineArchivePartitionFieldArgs.builder()
  *                     .fieldName(&#34;firstName&#34;)

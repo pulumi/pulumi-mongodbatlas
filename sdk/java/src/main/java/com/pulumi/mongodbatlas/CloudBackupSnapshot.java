@@ -55,14 +55,14 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var myCluster = new Cluster(&#34;myCluster&#34;, ClusterArgs.builder()        
  *             .projectId(&#34;5cf5a45a9ccf6400e60981b6&#34;)
+ *             .name(&#34;MyCluster&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .providerRegionName(&#34;EU_WEST_2&#34;)
  *             .providerInstanceSizeName(&#34;M10&#34;)
  *             .cloudBackup(true)
  *             .build());
  * 
- *         // enable cloud backup snapshots
- *         var testCloudBackupSnapshot = new CloudBackupSnapshot(&#34;testCloudBackupSnapshot&#34;, CloudBackupSnapshotArgs.builder()        
+ *         var test = new CloudBackupSnapshot(&#34;test&#34;, CloudBackupSnapshotArgs.builder()        
  *             .projectId(myCluster.projectId())
  *             .clusterName(myCluster.name())
  *             .description(&#34;myDescription&#34;)
@@ -70,9 +70,9 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob(&#34;testCloudBackupSnapshotRestoreJob&#34;, CloudBackupSnapshotRestoreJobArgs.builder()        
- *             .projectId(testCloudBackupSnapshot.projectId())
- *             .clusterName(testCloudBackupSnapshot.clusterName())
- *             .snapshotId(testCloudBackupSnapshot.snapshotId())
+ *             .projectId(test.projectId())
+ *             .clusterName(test.clusterName())
+ *             .snapshotId(test.snapshotId())
  *             .deliveryTypeConfig(CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs.builder()
  *                 .download(true)
  *                 .build())

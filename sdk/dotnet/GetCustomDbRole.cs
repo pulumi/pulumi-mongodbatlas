@@ -27,7 +27,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CustomDbRole("testRole", new()
+        ///     var testRole = new Mongodbatlas.CustomDbRole("test_role", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         RoleName = "myCustomRole",
@@ -89,7 +89,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CustomDbRole("testRole", new()
+        ///     var testRole = new Mongodbatlas.CustomDbRole("test_role", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         RoleName = "myCustomRole",

@@ -6,6 +6,10 @@ env:
   MONGODB_ATLAS_PUBLIC_KEY: ${{ secrets.MONGODB_ATLAS_PUBLIC_KEY }}
 makeTemplate: bridged
 plugins:
+  - name: terraform
+    version: "1.0.16"
+    kind: converter
+
   - name: aws 
     version: "4.0.0"
   - name: azure 
@@ -16,3 +20,4 @@ team: ecosystem
 license:
   ignore:
     - github.com/mongodb/terraform-provider-mongodbatlas/shim
+pulumiConvert: 1

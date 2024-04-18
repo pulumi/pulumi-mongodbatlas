@@ -30,12 +30,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testRolesOrgId, err := mongodbatlas.GetRolesOrgId(ctx, nil, nil)
+//			test, err := mongodbatlas.GetRolesOrgId(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
-//				OrgId: pulumi.String(testRolesOrgId.OrgId),
+//			_, err = mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("project-name"),
+//				OrgId: pulumi.String(test.OrgId),
 //				Teams: mongodbatlas.ProjectTeamArray{
 //					&mongodbatlas.ProjectTeamArgs{
 //						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),

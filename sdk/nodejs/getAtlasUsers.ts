@@ -47,8 +47,8 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getAtlasUsers({
- *     orgId: "<ORG_ID>",
  *     teamId: "<TEAM_ID>",
+ *     orgId: "<ORG_ID>",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -157,8 +157,8 @@ export interface GetAtlasUsersResult {
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getAtlasUsers({
- *     orgId: "<ORG_ID>",
  *     teamId: "<TEAM_ID>",
+ *     orgId: "<ORG_ID>",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

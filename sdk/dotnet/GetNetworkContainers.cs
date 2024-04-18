@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new()
+        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         AtlasCidrBlock = "10.8.0.0/21",
@@ -38,7 +38,7 @@ namespace Pulumi.Mongodbatlas
         ///         RegionName = "US_EAST_1",
         ///     });
         /// 
-        ///     var testNetworkContainers = Mongodbatlas.GetNetworkContainers.Invoke(new()
+        ///     var test = Mongodbatlas.GetNetworkContainers.Invoke(new()
         ///     {
         ///         ProjectId = testNetworkContainer.ProjectId,
         ///         ProviderName = testNetworkContainer.ProviderName,
@@ -70,7 +70,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new()
+        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         AtlasCidrBlock = "10.8.0.0/21",
@@ -78,7 +78,7 @@ namespace Pulumi.Mongodbatlas
         ///         RegionName = "US_EAST_1",
         ///     });
         /// 
-        ///     var testNetworkContainers = Mongodbatlas.GetNetworkContainers.Invoke(new()
+        ///     var test = Mongodbatlas.GetNetworkContainers.Invoke(new()
         ///     {
         ///         ProjectId = testNetworkContainer.ProjectId,
         ///         ProviderName = testNetworkContainer.ProviderName,

@@ -14,6 +14,57 @@ import (
 // `CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testCloudBackupSnapshotExportBucket, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//				ProjectId:     pulumi.String("{PROJECT_ID}"),
+//				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
+//				BucketName:    pulumi.String("example_bucket"),
+//				CloudProvider: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testCloudBackupSnapshotExportJob, err := mongodbatlas.NewCloudBackupSnapshotExportJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportJobArgs{
+//				ProjectId:      pulumi.String("{PROJECT_ID}"),
+//				ClusterName:    pulumi.String("{CLUSTER_NAME}"),
+//				SnapshotId:     pulumi.String("{SNAPSHOT_ID}"),
+//				ExportBucketId: testCloudBackupSnapshotExportBucket.ExportBucketId,
+//				CustomDatas: mongodbatlas.CloudBackupSnapshotExportJobCustomDataArray{
+//					&mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs{
+//						Key:   pulumi.String("exported by"),
+//						Value: pulumi.String("myName"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCloudBackupSnapshotExportJobOutput(ctx, mongodbatlas.GetCloudBackupSnapshotExportJobOutputArgs{
+//				ProjectId:   pulumi.String("{PROJECT_ID}"),
+//				ClusterName: pulumi.String("{CLUSTER_NAME}"),
+//				ExportJobId: testCloudBackupSnapshotExportJob.ExportJobId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func LookupCloudBackupSnapshotExportJob(ctx *pulumi.Context, args *LookupCloudBackupSnapshotExportJobArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotExportJobResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotExportJobResult

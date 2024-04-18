@@ -22,6 +22,7 @@ import * as utilities from "./utilities";
  *
  * const test = new mongodbatlas.Cluster("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "<CLUSTER-NAME>",
  *     cloudBackup: true,
  *     clusterType: "GEOSHARDED",
  *     providerName: "AWS",
@@ -76,6 +77,7 @@ import * as utilities from "./utilities";
  *
  * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -93,8 +95,8 @@ import * as utilities from "./utilities";
  *     providerInstanceSizeName: "M40",
  * });
  * const config = new mongodbatlas.GlobalClusterConfig("config", {
- *     projectId: mongodbatlas_cluster.test.project_id,
- *     clusterName: mongodbatlas_cluster.test.name,
+ *     projectId: test.projectId,
+ *     clusterName: test.name,
  *     managedNamespaces: [{
  *         db: "mydata",
  *         collection: "publishers",

@@ -48,8 +48,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new CustomDnsConfigurationClusterAws(&#34;test&#34;, CustomDnsConfigurationClusterAwsArgs.builder()        
- *             .enabled(true)
  *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *     }

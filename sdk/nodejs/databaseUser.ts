@@ -27,23 +27,24 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.DatabaseUser("test", {
+ *     username: "test-acc-username",
+ *     password: "test-acc-password",
+ *     projectId: "<PROJECT-ID>",
  *     authDatabaseName: "admin",
+ *     roles: [
+ *         {
+ *             roleName: "readWrite",
+ *             databaseName: "dbforApp",
+ *         },
+ *         {
+ *             roleName: "readAnyDatabase",
+ *             databaseName: "admin",
+ *         },
+ *     ],
  *     labels: [{
  *         key: "My Key",
  *         value: "My Value",
  *     }],
- *     password: "test-acc-password",
- *     projectId: "<PROJECT-ID>",
- *     roles: [
- *         {
- *             databaseName: "dbforApp",
- *             roleName: "readWrite",
- *         },
- *         {
- *             databaseName: "admin",
- *             roleName: "readAnyDatabase",
- *         },
- *     ],
  *     scopes: [
  *         {
  *             name: "My cluster name",
@@ -54,7 +55,6 @@ import * as utilities from "./utilities";
  *             type: "CLUSTER",
  *         },
  *     ],
- *     username: "test-acc-username",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -65,22 +65,22 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.DatabaseUser("test", {
+ *     username: "test-acc-username",
+ *     x509Type: "MANAGED",
+ *     projectId: "<PROJECT-ID>",
  *     authDatabaseName: "$external",
+ *     roles: [{
+ *         roleName: "readAnyDatabase",
+ *         databaseName: "admin",
+ *     }],
  *     labels: [{
  *         key: "%s",
  *         value: "%s",
- *     }],
- *     projectId: "<PROJECT-ID>",
- *     roles: [{
- *         databaseName: "admin",
- *         roleName: "readAnyDatabase",
  *     }],
  *     scopes: [{
  *         name: "My cluster name",
  *         type: "CLUSTER",
  *     }],
- *     username: "test-acc-username",
- *     x509Type: "MANAGED",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -91,7 +91,7 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.DatabaseUser("test", {
- *     username: aws_iam_role.test.arn,
+ *     username: testAwsIamRole.arn,
  *     projectId: "<PROJECT-ID>",
  *     authDatabaseName: "$external",
  *     awsIamType: "ROLE",
@@ -119,14 +119,14 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.DatabaseUser("test", {
+ *     username: "64d613677e1ad50839cce4db/testUserOr",
+ *     projectId: "6414908c207f4d22f4d8f232",
  *     authDatabaseName: "admin",
  *     oidcAuthType: "IDP_GROUP",
- *     projectId: "6414908c207f4d22f4d8f232",
  *     roles: [{
- *         databaseName: "admin",
  *         roleName: "readWriteAnyDatabase",
+ *         databaseName: "admin",
  *     }],
- *     username: "64d613677e1ad50839cce4db/testUserOr",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

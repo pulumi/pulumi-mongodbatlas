@@ -328,36 +328,97 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         """
         ## Example Usage
 
+        ### Example automated delivery type
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("my_cluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            name="MyCluster",
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        test = mongodbatlas.index.CloudProviderSnapshot("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description=myDescription,
+            retention_in_days=1)
+        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
+            project_id=test["projectId"],
+            cluster_name=test["clusterName"],
+            snapshot_id=test["snapshotId"],
+            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
+                automated=True,
+                target_cluster_name="MyCluster",
+                target_project_id="5cf5a45a9ccf6400e60981b6",
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Example download delivery type
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("my_cluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            name="MyCluster",
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        test = mongodbatlas.index.CloudProviderSnapshot("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description=myDescription,
+            retention_in_days=1)
+        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
+            project_id=test["projectId"],
+            cluster_name=test["clusterName"],
+            snapshot_id=test["snapshotId"],
+            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
+                download=True,
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
         ### Example of a point in time restore
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        cluster_test = mongodbatlas.Cluster("clusterTest",
-            project_id=mongodbatlas_project["project_test"]["id"],
+        cluster_test = mongodbatlas.Cluster("cluster_test",
+            project_id=project_test["id"],
+            name=cluster_name,
             provider_name="AWS",
             provider_region_name="US_EAST_1",
             provider_instance_size_name="M10",
             cloud_backup=True,
             pit_enabled=True)
-        test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
+        test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=cluster_test.project_id,
             cluster_name=cluster_test.name,
             description="My description",
             retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = None
-        if (0 if var.point_in_time_utc_seconds == 0 else 1) == True:
-            test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-                project_id=test_cloud_backup_snapshot.project_id,
-                cluster_name=test_cloud_backup_snapshot.cluster_name,
-                snapshot_id=test_cloud_backup_snapshot.id,
+        test_cloud_backup_snapshot_restore_job = []
+        for range in [{"value": i} for i in range(0, 0 if point_in_time_utc_seconds == 0 else 1)]:
+            test_cloud_backup_snapshot_restore_job.append(mongodbatlas.CloudBackupSnapshotRestoreJob(f"test-{range['value']}",
+                project_id=test.project_id,
+                cluster_name=test.cluster_name,
+                snapshot_id=test.id,
                 delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
                     point_in_time=True,
                     target_cluster_name=cluster_test.name,
                     target_project_id=cluster_test.project_id,
-                    point_in_time_utc_seconds=var["point_in_time_utc_seconds"],
-                ))
+                    point_in_time_utc_seconds=point_in_time_utc_seconds,
+                )))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -398,36 +459,97 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         """
         ## Example Usage
 
+        ### Example automated delivery type
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("my_cluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            name="MyCluster",
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        test = mongodbatlas.index.CloudProviderSnapshot("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description=myDescription,
+            retention_in_days=1)
+        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
+            project_id=test["projectId"],
+            cluster_name=test["clusterName"],
+            snapshot_id=test["snapshotId"],
+            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
+                automated=True,
+                target_cluster_name="MyCluster",
+                target_project_id="5cf5a45a9ccf6400e60981b6",
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ### Example download delivery type
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("my_cluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            name="MyCluster",
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        test = mongodbatlas.index.CloudProviderSnapshot("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description=myDescription,
+            retention_in_days=1)
+        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
+            project_id=test["projectId"],
+            cluster_name=test["clusterName"],
+            snapshot_id=test["snapshotId"],
+            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
+                download=True,
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
         ### Example of a point in time restore
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        cluster_test = mongodbatlas.Cluster("clusterTest",
-            project_id=mongodbatlas_project["project_test"]["id"],
+        cluster_test = mongodbatlas.Cluster("cluster_test",
+            project_id=project_test["id"],
+            name=cluster_name,
             provider_name="AWS",
             provider_region_name="US_EAST_1",
             provider_instance_size_name="M10",
             cloud_backup=True,
             pit_enabled=True)
-        test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
+        test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=cluster_test.project_id,
             cluster_name=cluster_test.name,
             description="My description",
             retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = None
-        if (0 if var.point_in_time_utc_seconds == 0 else 1) == True:
-            test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-                project_id=test_cloud_backup_snapshot.project_id,
-                cluster_name=test_cloud_backup_snapshot.cluster_name,
-                snapshot_id=test_cloud_backup_snapshot.id,
+        test_cloud_backup_snapshot_restore_job = []
+        for range in [{"value": i} for i in range(0, 0 if point_in_time_utc_seconds == 0 else 1)]:
+            test_cloud_backup_snapshot_restore_job.append(mongodbatlas.CloudBackupSnapshotRestoreJob(f"test-{range['value']}",
+                project_id=test.project_id,
+                cluster_name=test.cluster_name,
+                snapshot_id=test.id,
                 delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
                     point_in_time=True,
                     target_cluster_name=cluster_test.name,
                     target_project_id=cluster_test.project_id,
-                    point_in_time_utc_seconds=var["point_in_time_utc_seconds"],
-                ))
+                    point_in_time_utc_seconds=point_in_time_utc_seconds,
+                )))
         ```
         <!--End PulumiCodeChooser -->
 

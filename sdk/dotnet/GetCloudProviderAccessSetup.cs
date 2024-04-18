@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
         ///     {
         ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ProviderName = "AWS",
@@ -56,7 +56,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
         ///     {
         ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ProviderName = "AZURE",
@@ -102,7 +102,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
         ///     {
         ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ProviderName = "AWS",
@@ -130,7 +130,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
         ///     {
         ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ProviderName = "AZURE",

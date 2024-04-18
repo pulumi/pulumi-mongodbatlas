@@ -23,11 +23,11 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", new()
+    ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
     ///     {
-    ///         ExternalGroupName = "myGrouptest",
     ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
     ///         OrgId = "627a9683e7f7f7ff7fe306f14",
+    ///         ExternalGroupName = "myGrouptest",
     ///         RoleAssignments = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs

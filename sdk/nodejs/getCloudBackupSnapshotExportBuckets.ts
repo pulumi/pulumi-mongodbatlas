@@ -18,13 +18,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
+ *     projectId: "{PROJECT_ID}",
+ *     iamRoleId: "{IAM_ROLE_ID}",
  *     bucketName: "example-bucket",
  *     cloudProvider: "AWS",
- *     iamRoleId: "{IAM_ROLE_ID}",
- *     projectId: "{PROJECT_ID}",
  * });
- * const testCloudBackupSnapshotExportBuckets = mongodbatlas.getCloudBackupSnapshotExportBuckets({
+ * const test = mongodbatlas.getCloudBackupSnapshotExportBuckets({
  *     projectId: "{PROJECT_ID}",
  * });
  * ```
@@ -90,13 +90,13 @@ export interface GetCloudBackupSnapshotExportBucketsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
+ *     projectId: "{PROJECT_ID}",
+ *     iamRoleId: "{IAM_ROLE_ID}",
  *     bucketName: "example-bucket",
  *     cloudProvider: "AWS",
- *     iamRoleId: "{IAM_ROLE_ID}",
- *     projectId: "{PROJECT_ID}",
  * });
- * const testCloudBackupSnapshotExportBuckets = mongodbatlas.getCloudBackupSnapshotExportBuckets({
+ * const test = mongodbatlas.getCloudBackupSnapshotExportBuckets({
  *     projectId: "{PROJECT_ID}",
  * });
  * ```

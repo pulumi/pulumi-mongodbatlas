@@ -16,6 +16,42 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
 //
 // ## Example Usage
+//
+// ### S
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testProjectInvitation, err := mongodbatlas.NewProjectInvitation(ctx, "test", &mongodbatlas.ProjectInvitationArgs{
+//				Username:  pulumi.String("test-acc-username"),
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Roles: pulumi.StringArray{
+//					pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupProjectInvitationOutput(ctx, mongodbatlas.GetProjectInvitationOutputArgs{
+//				ProjectId: testProjectInvitation.ProjectId,
+//				Username:  testProjectInvitation.Username,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func LookupProjectInvitation(ctx *pulumi.Context, args *LookupProjectInvitationArgs, opts ...pulumi.InvokeOption) (*LookupProjectInvitationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectInvitationResult

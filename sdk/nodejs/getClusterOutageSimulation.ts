@@ -17,8 +17,8 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const outageSimulation = mongodbatlas.getClusterOutageSimulation({
- *     clusterName: "Cluster0",
  *     projectId: "64707f06c519c20c3a2b1b03",
+ *     clusterName: "Cluster0",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -84,8 +84,8 @@ export interface GetClusterOutageSimulationResult {
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const outageSimulation = mongodbatlas.getClusterOutageSimulation({
- *     clusterName: "Cluster0",
  *     projectId: "64707f06c519c20c3a2b1b03",
+ *     clusterName: "Cluster0",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

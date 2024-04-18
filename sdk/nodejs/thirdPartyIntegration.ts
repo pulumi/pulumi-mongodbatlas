@@ -22,11 +22,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
- *     apiKey: "<API-KEY>",
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("test_datadog", {
  *     projectId: "<PROJECT-ID>",
- *     region: "<REGION>",
  *     type: "DATADOG",
+ *     apiKey: "<API-KEY>",
+ *     region: "<REGION>",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

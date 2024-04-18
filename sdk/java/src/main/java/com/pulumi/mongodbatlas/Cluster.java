@@ -54,22 +54,23 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .autoScalingDiskGbEnabled(true)
- *             .cloudBackup(true)
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
  *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerInstanceSizeName(&#34;M40&#34;)
- *             .providerName(&#34;AWS&#34;)
+ *             .name(&#34;cluster-test&#34;)
+ *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
  *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                     .regionName(&#34;US_EAST_1&#34;)
  *                     .electableNodes(3)
  *                     .priority(7)
  *                     .readOnlyNodes(0)
- *                     .regionName(&#34;US_EAST_1&#34;)
  *                     .build())
  *                 .build())
+ *             .cloudBackup(true)
+ *             .autoScalingDiskGbEnabled(true)
+ *             .mongoDbMajorVersion(&#34;4.2&#34;)
+ *             .providerName(&#34;AWS&#34;)
+ *             .providerInstanceSizeName(&#34;M40&#34;)
  *             .build());
  * 
  *     }
@@ -103,23 +104,24 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
- *             .autoScalingDiskGbEnabled(true)
- *             .cloudBackup(true)
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
  *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerDiskTypeName(&#34;P6&#34;)
- *             .providerInstanceSizeName(&#34;M30&#34;)
- *             .providerName(&#34;AZURE&#34;)
+ *             .name(&#34;test&#34;)
+ *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
  *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                     .regionName(&#34;US_EAST&#34;)
  *                     .electableNodes(3)
  *                     .priority(7)
  *                     .readOnlyNodes(0)
- *                     .regionName(&#34;US_EAST&#34;)
  *                     .build())
  *                 .build())
+ *             .cloudBackup(true)
+ *             .autoScalingDiskGbEnabled(true)
+ *             .mongoDbMajorVersion(&#34;4.2&#34;)
+ *             .providerName(&#34;AZURE&#34;)
+ *             .providerDiskTypeName(&#34;P6&#34;)
+ *             .providerInstanceSizeName(&#34;M30&#34;)
  *             .build());
  * 
  *     }
@@ -153,22 +155,23 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
- *             .autoScalingDiskGbEnabled(true)
- *             .cloudBackup(true)
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
  *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerInstanceSizeName(&#34;M30&#34;)
- *             .providerName(&#34;GCP&#34;)
+ *             .name(&#34;test&#34;)
+ *             .clusterType(&#34;REPLICASET&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
  *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                     .regionName(&#34;EASTERN_US&#34;)
  *                     .electableNodes(3)
  *                     .priority(7)
  *                     .readOnlyNodes(0)
- *                     .regionName(&#34;EASTERN_US&#34;)
  *                     .build())
  *                 .build())
+ *             .cloudBackup(true)
+ *             .autoScalingDiskGbEnabled(true)
+ *             .mongoDbMajorVersion(&#34;4.2&#34;)
+ *             .providerName(&#34;GCP&#34;)
+ *             .providerInstanceSizeName(&#34;M30&#34;)
  *             .build());
  * 
  *     }
@@ -202,32 +205,33 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
+ *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .name(&#34;cluster-test-multi-region&#34;)
+ *             .numShards(1)
  *             .cloudBackup(true)
  *             .clusterType(&#34;REPLICASET&#34;)
- *             .numShards(1)
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerInstanceSizeName(&#34;M10&#34;)
  *             .providerName(&#34;AWS&#34;)
+ *             .providerInstanceSizeName(&#34;M10&#34;)
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
  *                 .regionsConfigs(                
  *                     ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                         .regionName(&#34;US_EAST_1&#34;)
  *                         .electableNodes(3)
  *                         .priority(7)
  *                         .readOnlyNodes(0)
- *                         .regionName(&#34;US_EAST_1&#34;)
  *                         .build(),
  *                     ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                         .regionName(&#34;US_EAST_2&#34;)
  *                         .electableNodes(2)
  *                         .priority(6)
  *                         .readOnlyNodes(0)
- *                         .regionName(&#34;US_EAST_2&#34;)
  *                         .build(),
  *                     ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                         .regionName(&#34;US_WEST_1&#34;)
  *                         .electableNodes(2)
  *                         .priority(5)
  *                         .readOnlyNodes(2)
- *                         .regionName(&#34;US_WEST_1&#34;)
  *                         .build())
  *                 .build())
  *             .build());
@@ -263,32 +267,33 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
+ *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
+ *             .name(&#34;cluster-test-global&#34;)
+ *             .numShards(1)
  *             .cloudBackup(true)
  *             .clusterType(&#34;GEOSHARDED&#34;)
- *             .numShards(1)
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerInstanceSizeName(&#34;M30&#34;)
  *             .providerName(&#34;AWS&#34;)
+ *             .providerInstanceSizeName(&#34;M30&#34;)
  *             .replicationSpecs(            
  *                 ClusterReplicationSpecArgs.builder()
+ *                     .zoneName(&#34;Zone 1&#34;)
  *                     .numShards(2)
  *                     .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                         .regionName(&#34;US_EAST_1&#34;)
  *                         .electableNodes(3)
  *                         .priority(7)
  *                         .readOnlyNodes(0)
- *                         .regionName(&#34;US_EAST_1&#34;)
  *                         .build())
- *                     .zoneName(&#34;Zone 1&#34;)
  *                     .build(),
  *                 ClusterReplicationSpecArgs.builder()
+ *                     .zoneName(&#34;Zone 2&#34;)
  *                     .numShards(2)
  *                     .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
+ *                         .regionName(&#34;EU_CENTRAL_1&#34;)
  *                         .electableNodes(3)
  *                         .priority(7)
  *                         .readOnlyNodes(0)
- *                         .regionName(&#34;EU_CENTRAL_1&#34;)
  *                         .build())
- *                     .zoneName(&#34;Zone 2&#34;)
  *                     .build())
  *             .build());
  * 
@@ -320,11 +325,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .backingProviderName(&#34;AWS&#34;)
  *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerInstanceSizeName(&#34;M2&#34;)
+ *             .name(&#34;cluster-test-global&#34;)
  *             .providerName(&#34;TENANT&#34;)
+ *             .backingProviderName(&#34;AWS&#34;)
  *             .providerRegionName(&#34;US_EAST_1&#34;)
+ *             .providerInstanceSizeName(&#34;M2&#34;)
  *             .build());
  * 
  *     }
@@ -355,11 +361,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .backingProviderName(&#34;AWS&#34;)
  *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerInstanceSizeName(&#34;M0&#34;)
+ *             .name(&#34;cluster-test-global&#34;)
  *             .providerName(&#34;TENANT&#34;)
+ *             .backingProviderName(&#34;AWS&#34;)
  *             .providerRegionName(&#34;US_EAST_1&#34;)
+ *             .providerInstanceSizeName(&#34;M0&#34;)
  *             .build());
  * 
  *     }
@@ -388,7 +395,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export(&#34;standard&#34;, mongodbatlas_cluster.cluster-test().connection_strings()[0].standard());
+ *         ctx.export(&#34;standard&#34;, cluster_test.connectionStrings()[0].standard());
  *     }
  * }
  * ```
@@ -414,68 +421,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export(&#34;standardSrv&#34;, mongodbatlas_cluster.cluster-test().connection_strings()[0].standard_srv());
+ *         ctx.export(&#34;standardSrv&#34;, cluster_test.connectionStrings()[0].standardSrv());
  *     }
  * }
  * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * Private with Network peering and Custom DNS AWS enabled
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         ctx.export(&#34;private&#34;, mongodbatlas_cluster.cluster-test().connection_strings()[0].private());
- *         // Example return string: private = &#34;mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&amp;authSource=admin&amp;replicaSet=atlas-12diht-shard-0&#34;
- *         final var private = &#34;mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net&#34;;
- * 
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * Private srv with Network peering and Custom DNS AWS enabled
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         ctx.export(&#34;privateSrv&#34;, mongodbatlas_cluster.cluster-test().connection_strings()[0].private_srv());
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * By endpoint_service_id
  * ## Import
  * 
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

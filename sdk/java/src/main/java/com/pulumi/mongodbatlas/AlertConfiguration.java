@@ -36,9 +36,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.AlertConfiguration;
  * import com.pulumi.mongodbatlas.AlertConfigurationArgs;
+ * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMatcherArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMetricThresholdConfigArgs;
- * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -53,8 +53,19 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new AlertConfiguration(&#34;test&#34;, AlertConfigurationArgs.builder()        
- *             .enabled(true)
+ *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .eventType(&#34;OUTSIDE_METRIC_THRESHOLD&#34;)
+ *             .enabled(true)
+ *             .notifications(AlertConfigurationNotificationArgs.builder()
+ *                 .typeName(&#34;GROUP&#34;)
+ *                 .intervalMin(5)
+ *                 .delayMin(0)
+ *                 .smsEnabled(false)
+ *                 .emailEnabled(true)
+ *                 .roles(                
+ *                     &#34;GROUP_CHARTS_ADMIN&#34;,
+ *                     &#34;GROUP_CLUSTER_MANAGER&#34;)
+ *                 .build())
  *             .matchers(AlertConfigurationMatcherArgs.builder()
  *                 .fieldName(&#34;HOSTNAME_AND_PORT&#34;)
  *                 .operator(&#34;EQUALS&#34;)
@@ -62,22 +73,11 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .metricThresholdConfig(AlertConfigurationMetricThresholdConfigArgs.builder()
  *                 .metricName(&#34;ASSERT_REGULAR&#34;)
- *                 .mode(&#34;AVERAGE&#34;)
  *                 .operator(&#34;LESS_THAN&#34;)
  *                 .threshold(99)
  *                 .units(&#34;RAW&#34;)
+ *                 .mode(&#34;AVERAGE&#34;)
  *                 .build())
- *             .notifications(AlertConfigurationNotificationArgs.builder()
- *                 .delayMin(0)
- *                 .emailEnabled(true)
- *                 .intervalMin(5)
- *                 .roles(                
- *                     &#34;GROUP_CHARTS_ADMIN&#34;,
- *                     &#34;GROUP_CLUSTER_MANAGER&#34;)
- *                 .smsEnabled(false)
- *                 .typeName(&#34;GROUP&#34;)
- *                 .build())
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .build());
  * 
  *     }
@@ -96,8 +96,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.AlertConfiguration;
  * import com.pulumi.mongodbatlas.AlertConfigurationArgs;
- * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMatcherArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
+ * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMatcherArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationThresholdConfigArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -113,24 +113,24 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new AlertConfiguration(&#34;test&#34;, AlertConfigurationArgs.builder()        
- *             .enabled(true)
+ *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .eventType(&#34;REPLICATION_OPLOG_WINDOW_RUNNING_OUT&#34;)
+ *             .enabled(true)
+ *             .notifications(AlertConfigurationNotificationArgs.builder()
+ *                 .typeName(&#34;GROUP&#34;)
+ *                 .intervalMin(5)
+ *                 .delayMin(0)
+ *                 .smsEnabled(false)
+ *                 .emailEnabled(true)
+ *                 .roles(                
+ *                     &#34;GROUP_CHARTS_ADMIN&#34;,
+ *                     &#34;GROUP_CLUSTER_MANAGER&#34;)
+ *                 .build())
  *             .matchers(AlertConfigurationMatcherArgs.builder()
  *                 .fieldName(&#34;HOSTNAME_AND_PORT&#34;)
  *                 .operator(&#34;EQUALS&#34;)
  *                 .value(&#34;SECONDARY&#34;)
  *                 .build())
- *             .notifications(AlertConfigurationNotificationArgs.builder()
- *                 .delayMin(0)
- *                 .emailEnabled(true)
- *                 .intervalMin(5)
- *                 .roles(                
- *                     &#34;GROUP_CHARTS_ADMIN&#34;,
- *                     &#34;GROUP_CLUSTER_MANAGER&#34;)
- *                 .smsEnabled(false)
- *                 .typeName(&#34;GROUP&#34;)
- *                 .build())
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .thresholdConfig(AlertConfigurationThresholdConfigArgs.builder()
  *                 .operator(&#34;LESS_THAN&#34;)
  *                 .threshold(1)
@@ -154,9 +154,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.AlertConfiguration;
  * import com.pulumi.mongodbatlas.AlertConfigurationArgs;
+ * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMatcherArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMetricThresholdConfigArgs;
- * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -171,8 +171,28 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new AlertConfiguration(&#34;test&#34;, AlertConfigurationArgs.builder()        
- *             .enabled(true)
+ *             .projectId(&#34;PROJECT ID&#34;)
  *             .eventType(&#34;OUTSIDE_METRIC_THRESHOLD&#34;)
+ *             .enabled(true)
+ *             .notifications(            
+ *                 AlertConfigurationNotificationArgs.builder()
+ *                     .typeName(&#34;GROUP&#34;)
+ *                     .intervalMin(5)
+ *                     .delayMin(0)
+ *                     .smsEnabled(false)
+ *                     .emailEnabled(true)
+ *                     .roles(                    
+ *                         &#34;GROUP_DATA_ACCESS_READ_ONLY&#34;,
+ *                         &#34;GROUP_CLUSTER_MANAGER&#34;,
+ *                         &#34;GROUP_DATA_ACCESS_ADMIN&#34;)
+ *                     .build(),
+ *                 AlertConfigurationNotificationArgs.builder()
+ *                     .typeName(&#34;ORG&#34;)
+ *                     .intervalMin(5)
+ *                     .delayMin(0)
+ *                     .smsEnabled(true)
+ *                     .emailEnabled(false)
+ *                     .build())
  *             .matchers(AlertConfigurationMatcherArgs.builder()
  *                 .fieldName(&#34;HOSTNAME_AND_PORT&#34;)
  *                 .operator(&#34;EQUALS&#34;)
@@ -180,31 +200,11 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .metricThresholdConfig(AlertConfigurationMetricThresholdConfigArgs.builder()
  *                 .metricName(&#34;ASSERT_REGULAR&#34;)
- *                 .mode(&#34;AVERAGE&#34;)
  *                 .operator(&#34;LESS_THAN&#34;)
  *                 .threshold(99)
  *                 .units(&#34;RAW&#34;)
+ *                 .mode(&#34;AVERAGE&#34;)
  *                 .build())
- *             .notifications(            
- *                 AlertConfigurationNotificationArgs.builder()
- *                     .delayMin(0)
- *                     .emailEnabled(true)
- *                     .intervalMin(5)
- *                     .roles(                    
- *                         &#34;GROUP_DATA_ACCESS_READ_ONLY&#34;,
- *                         &#34;GROUP_CLUSTER_MANAGER&#34;,
- *                         &#34;GROUP_DATA_ACCESS_ADMIN&#34;)
- *                     .smsEnabled(false)
- *                     .typeName(&#34;GROUP&#34;)
- *                     .build(),
- *                 AlertConfigurationNotificationArgs.builder()
- *                     .delayMin(0)
- *                     .emailEnabled(false)
- *                     .intervalMin(5)
- *                     .smsEnabled(true)
- *                     .typeName(&#34;ORG&#34;)
- *                     .build())
- *             .projectId(&#34;PROJECT ID&#34;)
  *             .build());
  * 
  *     }

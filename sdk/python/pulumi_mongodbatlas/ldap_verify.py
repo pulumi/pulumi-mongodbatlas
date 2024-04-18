@@ -335,16 +335,18 @@ class LdapVerify(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
-        test_cluster = mongodbatlas.Cluster("testCluster",
-            project_id=test_project.id,
+        test = mongodbatlas.Project("test",
+            name="NAME OF THE PROJECT",
+            org_id="ORG ID")
+        test_cluster = mongodbatlas.Cluster("test",
+            project_id=test.id,
+            name="NAME OF THE CLUSTER",
             provider_name="AWS",
             provider_region_name="US_EAST_2",
             provider_instance_size_name="M10",
             cloud_backup=True)
-        #enable cloud provider snapshots
-        test_ldap_verify = mongodbatlas.LdapVerify("testLdapVerify",
-            project_id=test_project.id,
+        test_ldap_verify = mongodbatlas.LdapVerify("test",
+            project_id=test.id,
             hostname="HOSTNAME",
             port=636,
             bind_username="USERNAME",
@@ -388,16 +390,18 @@ class LdapVerify(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
-        test_cluster = mongodbatlas.Cluster("testCluster",
-            project_id=test_project.id,
+        test = mongodbatlas.Project("test",
+            name="NAME OF THE PROJECT",
+            org_id="ORG ID")
+        test_cluster = mongodbatlas.Cluster("test",
+            project_id=test.id,
+            name="NAME OF THE CLUSTER",
             provider_name="AWS",
             provider_region_name="US_EAST_2",
             provider_instance_size_name="M10",
             cloud_backup=True)
-        #enable cloud provider snapshots
-        test_ldap_verify = mongodbatlas.LdapVerify("testLdapVerify",
-            project_id=test_project.id,
+        test_ldap_verify = mongodbatlas.LdapVerify("test",
+            project_id=test.id,
             hostname="HOSTNAME",
             port=636,
             bind_username="USERNAME",

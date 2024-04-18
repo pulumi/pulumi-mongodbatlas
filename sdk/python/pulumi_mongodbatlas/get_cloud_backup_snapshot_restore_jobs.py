@@ -121,12 +121,12 @@ def get_cloud_backup_snapshot_restore_jobs(cluster_name: Optional[str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
+    test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("test",
         project_id="5cf5a45a9ccf6400e60981b6",
         cluster_name="MyCluster",
         description="MyDescription",
         retention_in_days=1)
-    test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
+    test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
         project_id="5cf5a45a9ccf6400e60981b6",
         cluster_name="MyCluster",
         snapshot_id=test_cloud_backup_snapshot.id,
@@ -135,7 +135,7 @@ def get_cloud_backup_snapshot_restore_jobs(cluster_name: Optional[str] = None,
             target_cluster_name="MyCluster",
             target_project_id="5cf5a45a9ccf6400e60981b6",
         ))
-    test_cloud_backup_snapshot_restore_jobs = pulumi.Output.all(test_cloud_backup_snapshot_restore_job.project_id, test_cloud_backup_snapshot_restore_job.cluster_name).apply(lambda project_id, cluster_name: mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=project_id,
+    test = pulumi.Output.all(test_cloud_backup_snapshot_restore_job.project_id, test_cloud_backup_snapshot_restore_job.cluster_name).apply(lambda project_id, cluster_name: mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=project_id,
         cluster_name=cluster_name,
         page_num=1,
         items_per_page=5))
@@ -186,12 +186,12 @@ def get_cloud_backup_snapshot_restore_jobs_output(cluster_name: Optional[pulumi.
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
+    test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("test",
         project_id="5cf5a45a9ccf6400e60981b6",
         cluster_name="MyCluster",
         description="MyDescription",
         retention_in_days=1)
-    test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
+    test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
         project_id="5cf5a45a9ccf6400e60981b6",
         cluster_name="MyCluster",
         snapshot_id=test_cloud_backup_snapshot.id,
@@ -200,7 +200,7 @@ def get_cloud_backup_snapshot_restore_jobs_output(cluster_name: Optional[pulumi.
             target_cluster_name="MyCluster",
             target_project_id="5cf5a45a9ccf6400e60981b6",
         ))
-    test_cloud_backup_snapshot_restore_jobs = pulumi.Output.all(test_cloud_backup_snapshot_restore_job.project_id, test_cloud_backup_snapshot_restore_job.cluster_name).apply(lambda project_id, cluster_name: mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=project_id,
+    test = pulumi.Output.all(test_cloud_backup_snapshot_restore_job.project_id, test_cloud_backup_snapshot_restore_job.cluster_name).apply(lambda project_id, cluster_name: mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=project_id,
         cluster_name=cluster_name,
         page_num=1,
         items_per_page=5))

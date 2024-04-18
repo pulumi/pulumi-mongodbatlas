@@ -27,6 +27,84 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * ### S
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Project;
+ * import com.pulumi.mongodbatlas.ProjectArgs;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.DataLakePipeline;
+ * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+ * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+ * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+ * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var projectTest = new Project(&#34;projectTest&#34;, ProjectArgs.builder()        
+ *             .name(&#34;NAME OF THE PROJECT&#34;)
+ *             .orgId(&#34;ORGANIZATION ID&#34;)
+ *             .build());
+ * 
+ *         var automatedBackupTest = new AdvancedCluster(&#34;automatedBackupTest&#34;, AdvancedClusterArgs.builder()        
+ *             .projectId(&#34;63f4d4a47baeac59406dc131&#34;)
+ *             .name(&#34;automated-backup-test&#34;)
+ *             .providerName(&#34;GCP&#34;)
+ *             .providerRegionName(&#34;US_EAST_4&#34;)
+ *             .providerInstanceSizeName(&#34;M10&#34;)
+ *             .cloudBackup(true)
+ *             .mongoDbMajorVersion(&#34;7.0&#34;)
+ *             .build());
+ * 
+ *         var pipeline = new DataLakePipeline(&#34;pipeline&#34;, DataLakePipelineArgs.builder()        
+ *             .projectId(projectTest.projectId())
+ *             .name(&#34;DataLakePipelineName&#34;)
+ *             .sink(DataLakePipelineSinkArgs.builder()
+ *                 .type(&#34;DLS&#34;)
+ *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+ *                     .name(&#34;access&#34;)
+ *                     .order(0)
+ *                     .build())
+ *                 .build())
+ *             .source(DataLakePipelineSourceArgs.builder()
+ *                 .type(&#34;ON_DEMAND_CPS&#34;)
+ *                 .clusterName(automatedBackupTestMongodbatlasCluster.name())
+ *                 .databaseName(&#34;sample_airbnb&#34;)
+ *                 .collectionName(&#34;listingsAndReviews&#34;)
+ *                 .build())
+ *             .transformations(            
+ *                 DataLakePipelineTransformationArgs.builder()
+ *                     .field(&#34;test&#34;)
+ *                     .type(&#34;EXCLUDE&#34;)
+ *                     .build(),
+ *                 DataLakePipelineTransformationArgs.builder()
+ *                     .field(&#34;test22&#34;)
+ *                     .type(&#34;EXCLUDE&#34;)
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * Data Lake Pipeline can be imported using project ID, name of the data lake and name of the AWS s3 bucket, in the format `project_id`--`name`, e.g.

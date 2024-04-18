@@ -27,11 +27,12 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRolesOrgId = Mongodbatlas.GetRolesOrgId.Invoke();
+        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
         /// 
-        ///     var testProject = new Mongodbatlas.Project("testProject", new()
+        ///     var testProject = new Mongodbatlas.Project("test", new()
         ///     {
-        ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+        ///         Name = "project-name",
+        ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
         ///         Teams = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.ProjectTeamArgs
@@ -62,7 +63,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testProjects = Mongodbatlas.GetProjects.Invoke(new()
+        ///     var testGetProjects = Mongodbatlas.GetProjects.Invoke(new()
         ///     {
         ///         PageNum = 1,
         ///         ItemsPerPage = 5,
@@ -91,11 +92,12 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRolesOrgId = Mongodbatlas.GetRolesOrgId.Invoke();
+        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
         /// 
-        ///     var testProject = new Mongodbatlas.Project("testProject", new()
+        ///     var testProject = new Mongodbatlas.Project("test", new()
         ///     {
-        ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+        ///         Name = "project-name",
+        ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
         ///         Teams = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.ProjectTeamArgs
@@ -126,7 +128,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testProjects = Mongodbatlas.GetProjects.Invoke(new()
+        ///     var testGetProjects = Mongodbatlas.GetProjects.Invoke(new()
         ///     {
         ///         PageNum = 1,
         ///         ItemsPerPage = 5,

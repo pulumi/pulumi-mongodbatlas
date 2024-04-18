@@ -16,17 +16,20 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORG ID"});
- * const testCluster = new mongodbatlas.Cluster("testCluster", {
- *     projectId: testProject.id,
+ * const test = new mongodbatlas.Project("test", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORG ID",
+ * });
+ * const testCluster = new mongodbatlas.Cluster("test", {
+ *     projectId: test.id,
+ *     name: "NAME OF THE CLUSTER",
  *     providerName: "AWS",
  *     providerRegionName: "US_EAST_2",
  *     providerInstanceSizeName: "M10",
  *     cloudBackup: true,
  * });
- * //enable cloud provider snapshots
- * const testLdapVerify = new mongodbatlas.LdapVerify("testLdapVerify", {
- *     projectId: testProject.id,
+ * const testLdapVerify = new mongodbatlas.LdapVerify("test", {
+ *     projectId: test.id,
  *     hostname: "HOSTNAME",
  *     port: 636,
  *     bindUsername: "USERNAME",

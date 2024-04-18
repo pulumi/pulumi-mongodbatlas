@@ -32,8 +32,22 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewAlertConfiguration(ctx, "test", &mongodbatlas.AlertConfigurationArgs{
-//				Enabled:   pulumi.Bool(true),
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				EventType: pulumi.String("OUTSIDE_METRIC_THRESHOLD"),
+//				Enabled:   pulumi.Bool(true),
+//				Notifications: mongodbatlas.AlertConfigurationNotificationArray{
+//					&mongodbatlas.AlertConfigurationNotificationArgs{
+//						TypeName:     pulumi.String("GROUP"),
+//						IntervalMin:  pulumi.Int(5),
+//						DelayMin:     pulumi.Int(0),
+//						SmsEnabled:   pulumi.Bool(false),
+//						EmailEnabled: pulumi.Bool(true),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("GROUP_CHARTS_ADMIN"),
+//							pulumi.String("GROUP_CLUSTER_MANAGER"),
+//						},
+//					},
+//				},
 //				Matchers: mongodbatlas.AlertConfigurationMatcherArray{
 //					&mongodbatlas.AlertConfigurationMatcherArgs{
 //						FieldName: pulumi.String("HOSTNAME_AND_PORT"),
@@ -43,25 +57,11 @@ import (
 //				},
 //				MetricThresholdConfig: &mongodbatlas.AlertConfigurationMetricThresholdConfigArgs{
 //					MetricName: pulumi.String("ASSERT_REGULAR"),
-//					Mode:       pulumi.String("AVERAGE"),
 //					Operator:   pulumi.String("LESS_THAN"),
 //					Threshold:  pulumi.Float64(99),
 //					Units:      pulumi.String("RAW"),
+//					Mode:       pulumi.String("AVERAGE"),
 //				},
-//				Notifications: mongodbatlas.AlertConfigurationNotificationArray{
-//					&mongodbatlas.AlertConfigurationNotificationArgs{
-//						DelayMin:     pulumi.Int(0),
-//						EmailEnabled: pulumi.Bool(true),
-//						IntervalMin:  pulumi.Int(5),
-//						Roles: pulumi.StringArray{
-//							pulumi.String("GROUP_CHARTS_ADMIN"),
-//							pulumi.String("GROUP_CLUSTER_MANAGER"),
-//						},
-//						SmsEnabled: pulumi.Bool(false),
-//						TypeName:   pulumi.String("GROUP"),
-//					},
-//				},
-//				ProjectId: pulumi.String("<PROJECT-ID>"),
 //			})
 //			if err != nil {
 //				return err
@@ -89,8 +89,22 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewAlertConfiguration(ctx, "test", &mongodbatlas.AlertConfigurationArgs{
-//				Enabled:   pulumi.Bool(true),
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				EventType: pulumi.String("REPLICATION_OPLOG_WINDOW_RUNNING_OUT"),
+//				Enabled:   pulumi.Bool(true),
+//				Notifications: mongodbatlas.AlertConfigurationNotificationArray{
+//					&mongodbatlas.AlertConfigurationNotificationArgs{
+//						TypeName:     pulumi.String("GROUP"),
+//						IntervalMin:  pulumi.Int(5),
+//						DelayMin:     pulumi.Int(0),
+//						SmsEnabled:   pulumi.Bool(false),
+//						EmailEnabled: pulumi.Bool(true),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("GROUP_CHARTS_ADMIN"),
+//							pulumi.String("GROUP_CLUSTER_MANAGER"),
+//						},
+//					},
+//				},
 //				Matchers: mongodbatlas.AlertConfigurationMatcherArray{
 //					&mongodbatlas.AlertConfigurationMatcherArgs{
 //						FieldName: pulumi.String("HOSTNAME_AND_PORT"),
@@ -98,20 +112,6 @@ import (
 //						Value:     pulumi.String("SECONDARY"),
 //					},
 //				},
-//				Notifications: mongodbatlas.AlertConfigurationNotificationArray{
-//					&mongodbatlas.AlertConfigurationNotificationArgs{
-//						DelayMin:     pulumi.Int(0),
-//						EmailEnabled: pulumi.Bool(true),
-//						IntervalMin:  pulumi.Int(5),
-//						Roles: pulumi.StringArray{
-//							pulumi.String("GROUP_CHARTS_ADMIN"),
-//							pulumi.String("GROUP_CLUSTER_MANAGER"),
-//						},
-//						SmsEnabled: pulumi.Bool(false),
-//						TypeName:   pulumi.String("GROUP"),
-//					},
-//				},
-//				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				ThresholdConfig: &mongodbatlas.AlertConfigurationThresholdConfigArgs{
 //					Operator:  pulumi.String("LESS_THAN"),
 //					Threshold: pulumi.Float64(1),
@@ -144,8 +144,30 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewAlertConfiguration(ctx, "test", &mongodbatlas.AlertConfigurationArgs{
-//				Enabled:   pulumi.Bool(true),
+//				ProjectId: pulumi.String("PROJECT ID"),
 //				EventType: pulumi.String("OUTSIDE_METRIC_THRESHOLD"),
+//				Enabled:   pulumi.Bool(true),
+//				Notifications: mongodbatlas.AlertConfigurationNotificationArray{
+//					&mongodbatlas.AlertConfigurationNotificationArgs{
+//						TypeName:     pulumi.String("GROUP"),
+//						IntervalMin:  pulumi.Int(5),
+//						DelayMin:     pulumi.Int(0),
+//						SmsEnabled:   pulumi.Bool(false),
+//						EmailEnabled: pulumi.Bool(true),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
+//							pulumi.String("GROUP_CLUSTER_MANAGER"),
+//							pulumi.String("GROUP_DATA_ACCESS_ADMIN"),
+//						},
+//					},
+//					&mongodbatlas.AlertConfigurationNotificationArgs{
+//						TypeName:     pulumi.String("ORG"),
+//						IntervalMin:  pulumi.Int(5),
+//						DelayMin:     pulumi.Int(0),
+//						SmsEnabled:   pulumi.Bool(true),
+//						EmailEnabled: pulumi.Bool(false),
+//					},
+//				},
 //				Matchers: mongodbatlas.AlertConfigurationMatcherArray{
 //					&mongodbatlas.AlertConfigurationMatcherArgs{
 //						FieldName: pulumi.String("HOSTNAME_AND_PORT"),
@@ -155,33 +177,11 @@ import (
 //				},
 //				MetricThresholdConfig: &mongodbatlas.AlertConfigurationMetricThresholdConfigArgs{
 //					MetricName: pulumi.String("ASSERT_REGULAR"),
-//					Mode:       pulumi.String("AVERAGE"),
 //					Operator:   pulumi.String("LESS_THAN"),
 //					Threshold:  pulumi.Float64(99),
 //					Units:      pulumi.String("RAW"),
+//					Mode:       pulumi.String("AVERAGE"),
 //				},
-//				Notifications: mongodbatlas.AlertConfigurationNotificationArray{
-//					&mongodbatlas.AlertConfigurationNotificationArgs{
-//						DelayMin:     pulumi.Int(0),
-//						EmailEnabled: pulumi.Bool(true),
-//						IntervalMin:  pulumi.Int(5),
-//						Roles: pulumi.StringArray{
-//							pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
-//							pulumi.String("GROUP_CLUSTER_MANAGER"),
-//							pulumi.String("GROUP_DATA_ACCESS_ADMIN"),
-//						},
-//						SmsEnabled: pulumi.Bool(false),
-//						TypeName:   pulumi.String("GROUP"),
-//					},
-//					&mongodbatlas.AlertConfigurationNotificationArgs{
-//						DelayMin:     pulumi.Int(0),
-//						EmailEnabled: pulumi.Bool(false),
-//						IntervalMin:  pulumi.Int(5),
-//						SmsEnabled:   pulumi.Bool(true),
-//						TypeName:     pulumi.String("ORG"),
-//					},
-//				},
-//				ProjectId: pulumi.String("PROJECT ID"),
 //			})
 //			if err != nil {
 //				return err

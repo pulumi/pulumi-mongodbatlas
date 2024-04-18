@@ -45,19 +45,19 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     // Container example provided but not always required, 
     ///     // see network_container documentation for details. 
-    ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new()
+    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
-    ///         ProjectId = local.Project_id,
+    ///         ProjectId = projectId,
     ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProviderName = "AWS",
     ///         RegionName = "US_EAST_1",
     ///     });
     /// 
     ///     // Create the peering connection request
-    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
+    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
     ///     {
     ///         AccepterRegionName = "us-east-1",
-    ///         ProjectId = local.Project_id,
+    ///         ProjectId = projectId,
     ///         ContainerId = "507f1f77bcf86cd799439011",
     ///         ProviderName = "AWS",
     ///         RouteTableCidrBlock = "192.168.0.0/24",
@@ -67,106 +67,12 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///     // the following assumes an AWS provider is configured
     ///     // Accept the peering connection request
-    ///     var peer = new Aws.Ec2.VpcPeeringConnectionAccepter("peer", new()
+    ///     var peer = new Aws.Index.VpcPeeringConnectionAccepter("peer", new()
     ///     {
     ///         VpcPeeringConnectionId = testNetworkPeering.ConnectionId,
     ///         AutoAccept = true,
     ///     });
     /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ### Example with GCP
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Gcp = Pulumi.Gcp;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Container example provided but not always required, 
-    ///     // see network_container documentation for details. 
-    ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new()
-    ///     {
-    ///         ProjectId = local.Project_id,
-    ///         AtlasCidrBlock = "10.8.0.0/21",
-    ///         ProviderName = "GCP",
-    ///     });
-    /// 
-    ///     // Create the peering connection request
-    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
-    ///     {
-    ///         ProjectId = local.Project_id,
-    ///         ContainerId = testNetworkContainer.ContainerId,
-    ///         ProviderName = "GCP",
-    ///         GcpProjectId = local.GCP_PROJECT_ID,
-    ///         NetworkName = "default",
-    ///     });
-    /// 
-    ///     var @default = Gcp.Compute.GetNetwork.Invoke(new()
-    ///     {
-    ///         Name = "default",
-    ///     });
-    /// 
-    ///     // Create the GCP peer
-    ///     var peering = new Gcp.Compute.NetworkPeering("peering", new()
-    ///     {
-    ///         Network = @default.Apply(@default =&gt; @default.Apply(getNetworkResult =&gt; getNetworkResult.SelfLink)),
-    ///         PeerNetwork = Output.Tuple(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).Apply(values =&gt;
-    ///         {
-    ///             var atlasGcpProjectId = values.Item1;
-    ///             var atlasVpcName = values.Item2;
-    ///             return $"https://www.googleapis.com/compute/v1/projects/{atlasGcpProjectId}/global/networks/{atlasVpcName}";
-    ///         }),
-    ///     });
-    /// 
-    ///     // Create the cluster once the peering connection is completed
-    ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
-    ///     {
-    ///         ProjectId = local.Project_id,
-    ///         NumShards = 1,
-    ///         ClusterType = "REPLICASET",
-    ///         ReplicationSpecs = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
-    ///             {
-    ///                 NumShards = 1,
-    ///                 RegionsConfigs = new[]
-    ///                 {
-    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
-    ///                     {
-    ///                         RegionName = "US_EAST_4",
-    ///                         ElectableNodes = 3,
-    ///                         Priority = 7,
-    ///                         ReadOnlyNodes = 0,
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///         AutoScalingDiskGbEnabled = true,
-    ///         MongoDbMajorVersion = "4.2",
-    ///         ProviderName = "GCP",
-    ///         ProviderInstanceSizeName = "M10",
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn =
-    ///         {
-    ///             "google_compute_network_peering.peering", 
-    ///         },
-    ///     });
-    /// 
-    ///     //  Private connection strings are not available w/ GCP until the reciprocal
-    ///     //  connection changes to available (i.e. when the status attribute changes
-    ///     //  to AVAILABLE on the 'mongodbatlas_network_peering' resource, which
-    ///     //  happens when the google_compute_network_peering and and
-    ///     //  mongodbatlas_network_peering make a reciprocal connection).  Hence
-    ///     //  since the cluster can be created before this connection completes
-    ///     //  you may need to run `terraform refresh` to obtain the private connection strings.
     /// });
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
@@ -186,30 +92,31 @@ namespace Pulumi.Mongodbatlas
     ///     // see https://docs.atlas.mongodb.com/security-vpc-peering/
     ///     // Container example provided but not always required, 
     ///     // see network_container documentation for details. 
-    ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new()
+    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
-    ///         ProjectId = local.Project_id,
-    ///         AtlasCidrBlock = local.ATLAS_CIDR_BLOCK,
+    ///         ProjectId = projectId,
+    ///         AtlasCidrBlock = ATLAS_CIDR_BLOCK,
     ///         ProviderName = "AZURE",
     ///         Region = "US_EAST_2",
     ///     });
     /// 
     ///     // Create the peering connection request
-    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
+    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
     ///     {
-    ///         ProjectId = local.Project_id,
-    ///         ContainerId = testNetworkContainer.ContainerId,
+    ///         ProjectId = projectId,
+    ///         ContainerId = test.ContainerId,
     ///         ProviderName = "AZURE",
-    ///         AzureDirectoryId = local.AZURE_DIRECTORY_ID,
-    ///         AzureSubscriptionId = local.AZURE_SUBSCRIPTION_ID,
-    ///         ResourceGroupName = local.AZURE_RESOURCES_GROUP_NAME,
-    ///         VnetName = local.AZURE_VNET_NAME,
+    ///         AzureDirectoryId = AZURE_DIRECTORY_ID,
+    ///         AzureSubscriptionId = AZURE_SUBSCRIPTION_ID,
+    ///         ResourceGroupName = AZURE_RESOURCES_GROUP_NAME,
+    ///         VnetName = AZURE_VNET_NAME,
     ///     });
     /// 
     ///     // Create the cluster once the peering connection is completed
-    ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
+    ///     var testCluster = new Mongodbatlas.Cluster("test", new()
     ///     {
-    ///         ProjectId = local.Project_id,
+    ///         ProjectId = projectId,
+    ///         Name = "terraform-manually-test",
     ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
@@ -237,7 +144,7 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         DependsOn =
     ///         {
-    ///             "mongodbatlas_network_peering.test", 
+    ///             testNetworkPeering, 
     ///         },
     ///     });
     /// 
@@ -263,7 +170,8 @@ namespace Pulumi.Mongodbatlas
     ///     // does not yet exist for this AWS region
     ///     var test = new Mongodbatlas.Cluster("test", new()
     ///     {
-    ///         ProjectId = local.Project_id,
+    ///         ProjectId = projectId,
+    ///         Name = "terraform-test",
     ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
@@ -289,107 +197,35 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // the following assumes an AWS provider is configured
-    ///     var @default = new Aws.Ec2.DefaultVpc("default", new()
+    ///     var @default = new Aws.Index.DefaultVpc("default", new()
     ///     {
     ///         Tags = 
     ///         {
-    ///             { "Name", "Default VPC" },
+    ///             { "name", "Default VPC" },
     ///         },
     ///     });
     /// 
     ///     // Create the peering connection request
-    ///     var mongoPeer = new Mongodbatlas.NetworkPeering("mongoPeer", new()
+    ///     var mongoPeer = new Mongodbatlas.NetworkPeering("mongo_peer", new()
     ///     {
     ///         AccepterRegionName = "us-east-2",
-    ///         ProjectId = local.Project_id,
+    ///         ProjectId = projectId,
     ///         ContainerId = test.ContainerId,
     ///         ProviderName = "AWS",
     ///         RouteTableCidrBlock = "172.31.0.0/16",
     ///         VpcId = @default.Id,
-    ///         AwsAccountId = local.AWS_ACCOUNT_ID,
+    ///         AwsAccountId = AWS_ACCOUNT_ID,
     ///     });
     /// 
     ///     // Accept the connection 
-    ///     var awsPeer = new Aws.Ec2.VpcPeeringConnectionAccepter("awsPeer", new()
+    ///     var awsPeer = new Aws.Index.VpcPeeringConnectionAccepter("aws_peer", new()
     ///     {
     ///         VpcPeeringConnectionId = mongoPeer.ConnectionId,
     ///         AutoAccept = true,
     ///         Tags = 
     ///         {
-    ///             { "Side", "Accepter" },
+    ///             { "side", "Accepter" },
     ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ### Example with GCP
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Gcp = Pulumi.Gcp;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Create an Atlas cluster, this creates a container if one
-    ///     // does not yet exist for this GCP 
-    ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
-    ///     {
-    ///         ProjectId = local.Project_id,
-    ///         ClusterType = "REPLICASET",
-    ///         ReplicationSpecs = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
-    ///             {
-    ///                 NumShards = 1,
-    ///                 RegionsConfigs = new[]
-    ///                 {
-    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
-    ///                     {
-    ///                         RegionName = "US_EAST_2",
-    ///                         ElectableNodes = 3,
-    ///                         Priority = 7,
-    ///                         ReadOnlyNodes = 0,
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///         AutoScalingDiskGbEnabled = true,
-    ///         MongoDbMajorVersion = "4.2",
-    ///         ProviderName = "GCP",
-    ///         ProviderInstanceSizeName = "M10",
-    ///     });
-    /// 
-    ///     // Create the peering connection request
-    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
-    ///     {
-    ///         ProjectId = local.Project_id,
-    ///         AtlasCidrBlock = "192.168.0.0/18",
-    ///         ContainerId = testCluster.ContainerId,
-    ///         ProviderName = "GCP",
-    ///         GcpProjectId = local.GCP_PROJECT_ID,
-    ///         NetworkName = "default",
-    ///     });
-    /// 
-    ///     var @default = Gcp.Compute.GetNetwork.Invoke(new()
-    ///     {
-    ///         Name = "default",
-    ///     });
-    /// 
-    ///     // Create the GCP peer
-    ///     var peering = new Gcp.Compute.NetworkPeering("peering", new()
-    ///     {
-    ///         Network = @default.Apply(@default =&gt; @default.Apply(getNetworkResult =&gt; getNetworkResult.SelfLink)),
-    ///         PeerNetwork = Output.Tuple(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).Apply(values =&gt;
-    ///         {
-    ///             var atlasGcpProjectId = values.Item1;
-    ///             var atlasVpcName = values.Item2;
-    ///             return $"https://www.googleapis.com/compute/v1/projects/{atlasGcpProjectId}/global/networks/{atlasVpcName}";
-    ///         }),
     ///     });
     /// 
     /// });
@@ -411,9 +247,10 @@ namespace Pulumi.Mongodbatlas
     ///     // see https://docs.atlas.mongodb.com/security-vpc-peering/
     ///     // Create an Atlas cluster, this creates a container if one
     ///     // does not yet exist for this AZURE region
-    ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
+    ///     var test = new Mongodbatlas.Cluster("test", new()
     ///     {
-    ///         ProjectId = local.Project_id,
+    ///         ProjectId = projectId,
+    ///         Name = "cluster-azure",
     ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
@@ -439,15 +276,15 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create the peering connection request
-    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
+    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
     ///     {
-    ///         ProjectId = local.Project_id,
-    ///         ContainerId = testCluster.ContainerId,
+    ///         ProjectId = projectId,
+    ///         ContainerId = test.ContainerId,
     ///         ProviderName = "AZURE",
-    ///         AzureDirectoryId = local.AZURE_DIRECTORY_ID,
-    ///         AzureSubscriptionId = local.AZURE_SUBSCRIPTION_ID,
-    ///         ResourceGroupName = local.AZURE_RESOURCE_GROUP_NAME,
-    ///         VnetName = local.AZURE_VNET_NAME,
+    ///         AzureDirectoryId = AZURE_DIRECTORY_ID,
+    ///         AzureSubscriptionId = AZURE_SUBSCRIPTION_ID,
+    ///         ResourceGroupName = AZURE_RESOURCE_GROUP_NAME,
+    ///         VnetName = AZURE_VNET_NAME,
     ///     });
     /// 
     /// });

@@ -34,10 +34,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewFederatedQueryLimit(ctx, "test", &mongodbatlas.FederatedQueryLimitArgs{
-//				LimitName:     pulumi.String("bytesProcessed.weekly"),
-//				OverrunPolicy: pulumi.String("BLOCK"),
 //				ProjectId:     pulumi.String("64707f06c519c20c3a2b1b03"),
 //				TenantName:    pulumi.String("FederatedDatabseInstance0"),
+//				LimitName:     pulumi.String("bytesProcessed.weekly"),
+//				OverrunPolicy: pulumi.String("BLOCK"),
 //				Value:         pulumi.Int(5147483648),
 //			})
 //			if err != nil {

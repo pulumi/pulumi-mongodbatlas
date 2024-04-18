@@ -156,8 +156,8 @@ def get_atlas_users(items_per_page: Optional[int] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_atlas_users(org_id="<ORG_ID>",
-        team_id="<TEAM_ID>")
+    test = mongodbatlas.get_atlas_users(team_id="<TEAM_ID>",
+        org_id="<ORG_ID>")
     ```
     <!--End PulumiCodeChooser -->
 
@@ -233,8 +233,8 @@ def get_atlas_users_output(items_per_page: Optional[pulumi.Input[Optional[int]]]
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_atlas_users(org_id="<ORG_ID>",
-        team_id="<TEAM_ID>")
+    test = mongodbatlas.get_atlas_users(team_id="<TEAM_ID>",
+        org_id="<ORG_ID>")
     ```
     <!--End PulumiCodeChooser -->
 

@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRole = new mongodbatlas.CloudProviderAccessSetup("testRole", {
+ * const testRole = new mongodbatlas.CloudProviderAccessSetup("test_role", {
  *     projectId: "64259ee860c43338194b0f8e",
  *     providerName: "AWS",
  * });
@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRole = new mongodbatlas.CloudProviderAccessSetup("testRole", {
+ * const testRole = new mongodbatlas.CloudProviderAccessSetup("test_role", {
  *     projectId: "64259ee860c43338194b0f8e",
  *     providerName: "AZURE",
  *     azureConfigs: [{
@@ -132,7 +132,7 @@ export interface GetCloudProviderAccessSetupResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRole = new mongodbatlas.CloudProviderAccessSetup("testRole", {
+ * const testRole = new mongodbatlas.CloudProviderAccessSetup("test_role", {
  *     projectId: "64259ee860c43338194b0f8e",
  *     providerName: "AWS",
  * });
@@ -150,7 +150,7 @@ export interface GetCloudProviderAccessSetupResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRole = new mongodbatlas.CloudProviderAccessSetup("testRole", {
+ * const testRole = new mongodbatlas.CloudProviderAccessSetup("test_role", {
  *     projectId: "64259ee860c43338194b0f8e",
  *     providerName: "AZURE",
  *     azureConfigs: [{

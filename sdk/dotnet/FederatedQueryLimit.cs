@@ -29,10 +29,10 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.FederatedQueryLimit("test", new()
     ///     {
-    ///         LimitName = "bytesProcessed.weekly",
-    ///         OverrunPolicy = "BLOCK",
     ///         ProjectId = "64707f06c519c20c3a2b1b03",
     ///         TenantName = "FederatedDatabseInstance0",
+    ///         LimitName = "bytesProcessed.weekly",
+    ///         OverrunPolicy = "BLOCK",
     ///         Value = 5147483648,
     ///     });
     /// 

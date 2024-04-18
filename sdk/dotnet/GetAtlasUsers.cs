@@ -71,8 +71,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
         ///     {
-        ///         OrgId = "&lt;ORG_ID&gt;",
         ///         TeamId = "&lt;TEAM_ID&gt;",
+        ///         OrgId = "&lt;ORG_ID&gt;",
         ///     });
         /// 
         /// });
@@ -142,8 +142,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
         ///     {
-        ///         OrgId = "&lt;ORG_ID&gt;",
         ///         TeamId = "&lt;TEAM_ID&gt;",
+        ///         OrgId = "&lt;ORG_ID&gt;",
         ///     });
         /// 
         /// });

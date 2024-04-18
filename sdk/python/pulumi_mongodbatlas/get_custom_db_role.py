@@ -101,7 +101,7 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[pulumi.InputType['GetC
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_role = mongodbatlas.CustomDbRole("testRole",
+    test_role = mongodbatlas.CustomDbRole("test_role",
         project_id="<PROJECT-ID>",
         role_name="myCustomRole",
         actions=[
@@ -161,7 +161,7 @@ def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Se
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_role = mongodbatlas.CustomDbRole("testRole",
+    test_role = mongodbatlas.CustomDbRole("test_role",
         project_id="<PROJECT-ID>",
         role_name="myCustomRole",
         actions=[

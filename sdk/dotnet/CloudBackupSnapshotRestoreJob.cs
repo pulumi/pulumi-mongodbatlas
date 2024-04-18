@@ -12,6 +12,96 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// ## Example Usage
     /// 
+    /// ### Example automated delivery type
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myCluster = new Mongodbatlas.Cluster("my_cluster", new()
+    ///     {
+    ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         Name = "MyCluster",
+    ///         ProviderName = "AWS",
+    ///         ProviderRegionName = "EU_WEST_2",
+    ///         ProviderInstanceSizeName = "M10",
+    ///         CloudBackup = true,
+    ///     });
+    /// 
+    ///     var test = new Mongodbatlas.Index.CloudProviderSnapshot("test", new()
+    ///     {
+    ///         ProjectId = myCluster.ProjectId,
+    ///         ClusterName = myCluster.Name,
+    ///         Description = "myDescription",
+    ///         RetentionInDays = 1,
+    ///     });
+    /// 
+    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("test", new()
+    ///     {
+    ///         ProjectId = test.ProjectId,
+    ///         ClusterName = test.ClusterName,
+    ///         SnapshotId = test.SnapshotId,
+    ///         DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
+    ///         {
+    ///             Automated = true,
+    ///             TargetClusterName = "MyCluster",
+    ///             TargetProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ### Example download delivery type
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myCluster = new Mongodbatlas.Cluster("my_cluster", new()
+    ///     {
+    ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         Name = "MyCluster",
+    ///         ProviderName = "AWS",
+    ///         ProviderRegionName = "EU_WEST_2",
+    ///         ProviderInstanceSizeName = "M10",
+    ///         CloudBackup = true,
+    ///     });
+    /// 
+    ///     var test = new Mongodbatlas.Index.CloudProviderSnapshot("test", new()
+    ///     {
+    ///         ProjectId = myCluster.ProjectId,
+    ///         ClusterName = myCluster.Name,
+    ///         Description = "myDescription",
+    ///         RetentionInDays = 1,
+    ///     });
+    /// 
+    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("test", new()
+    ///     {
+    ///         ProjectId = test.ProjectId,
+    ///         ClusterName = test.ClusterName,
+    ///         SnapshotId = test.SnapshotId,
+    ///         DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
+    ///         {
+    ///             Download = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Example of a point in time restore
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
@@ -22,9 +112,10 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var clusterTest = new Mongodbatlas.Cluster("clusterTest", new()
+    ///     var clusterTest = new Mongodbatlas.Cluster("cluster_test", new()
     ///     {
-    ///         ProjectId = mongodbatlas_project.Project_test.Id,
+    ///         ProjectId = projectTest.Id,
+    ///         Name = clusterName,
     ///         ProviderName = "AWS",
     ///         ProviderRegionName = "US_EAST_1",
     ///         ProviderInstanceSizeName = "M10",
@@ -32,7 +123,7 @@ namespace Pulumi.Mongodbatlas
     ///         PitEnabled = true,
     ///     });
     /// 
-    ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", new()
+    ///     var test = new Mongodbatlas.CloudBackupSnapshot("test", new()
     ///     {
     ///         ProjectId = clusterTest.ProjectId,
     ///         ClusterName = clusterTest.Name,
@@ -41,20 +132,20 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     var testCloudBackupSnapshotRestoreJob = new List&lt;Mongodbatlas.CloudBackupSnapshotRestoreJob&gt;();
-    ///     for (var rangeIndex = 0; rangeIndex &lt; ((@var.Point_in_time_utc_seconds == 0 ? 0 : 1) == true); rangeIndex++)
+    ///     for (var rangeIndex = 0; rangeIndex &lt; (pointInTimeUtcSeconds == 0 ? 0 : 1); rangeIndex++)
     ///     {
     ///         var range = new { Value = rangeIndex };
-    ///         testCloudBackupSnapshotRestoreJob.Add(new Mongodbatlas.CloudBackupSnapshotRestoreJob($"testCloudBackupSnapshotRestoreJob-{range.Value}", new()
+    ///         testCloudBackupSnapshotRestoreJob.Add(new Mongodbatlas.CloudBackupSnapshotRestoreJob($"test-{range.Value}", new()
     ///         {
-    ///             ProjectId = testCloudBackupSnapshot.ProjectId,
-    ///             ClusterName = testCloudBackupSnapshot.ClusterName,
-    ///             SnapshotId = testCloudBackupSnapshot.Id,
+    ///             ProjectId = test.ProjectId,
+    ///             ClusterName = test.ClusterName,
+    ///             SnapshotId = test.Id,
     ///             DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
     ///             {
     ///                 PointInTime = true,
     ///                 TargetClusterName = clusterTest.Name,
     ///                 TargetProjectId = clusterTest.ProjectId,
-    ///                 PointInTimeUtcSeconds = @var.Point_in_time_utc_seconds,
+    ///                 PointInTimeUtcSeconds = pointInTimeUtcSeconds,
     ///             },
     ///         }));
     ///     }

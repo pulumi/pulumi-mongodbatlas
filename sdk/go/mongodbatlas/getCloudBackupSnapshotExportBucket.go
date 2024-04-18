@@ -14,6 +14,41 @@ import (
 // `CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testCloudBackupSnapshotExportBucket, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//				ProjectId:     pulumi.String("{PROJECT_ID}"),
+//				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
+//				BucketName:    pulumi.String("example-bucket"),
+//				CloudProvider: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCloudBackupSnapshotExportBucketOutput(ctx, mongodbatlas.GetCloudBackupSnapshotExportBucketOutputArgs{
+//				ProjectId:      pulumi.String("{PROJECT_ID}"),
+//				ExportBucketId: testCloudBackupSnapshotExportBucket.ExportBucketId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func LookupCloudBackupSnapshotExportBucket(ctx *pulumi.Context, args *LookupCloudBackupSnapshotExportBucketArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotExportBucketResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotExportBucketResult

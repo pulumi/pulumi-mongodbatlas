@@ -37,11 +37,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testDatadog", &mongodbatlas.ThirdPartyIntegrationArgs{
-//				ApiKey:    pulumi.String("<API-KEY>"),
+//			_, err := mongodbatlas.NewThirdPartyIntegration(ctx, "test_datadog", &mongodbatlas.ThirdPartyIntegrationArgs{
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
-//				Region:    pulumi.String("<REGION>"),
 //				Type:      pulumi.String("DATADOG"),
+//				ApiKey:    pulumi.String("<API-KEY>"),
+//				Region:    pulumi.String("<REGION>"),
 //			})
 //			if err != nil {
 //				return err

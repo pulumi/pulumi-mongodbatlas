@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
         ///     {
         ///         Username = "test-acc-username",
         ///         Password = "test-acc-password",
@@ -63,7 +63,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new()
+        ///     var test = Mongodbatlas.GetDatabaseUsers.Invoke(new()
         ///     {
         ///         ProjectId = testDatabaseUser.ProjectId,
         ///     });
@@ -82,23 +82,23 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
         ///     {
+        ///         Username = "64d613677e1ad50839cce4db/testUserOrGroup",
+        ///         ProjectId = "6414908c207f4d22f4d8f232",
         ///         AuthDatabaseName = "admin",
         ///         OidcAuthType = "IDP_GROUP",
-        ///         ProjectId = "6414908c207f4d22f4d8f232",
         ///         Roles = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
         ///             {
-        ///                 DatabaseName = "admin",
         ///                 RoleName = "readWriteAnyDatabase",
+        ///                 DatabaseName = "admin",
         ///             },
         ///         },
-        ///         Username = "64d613677e1ad50839cce4db/testUserOrGroup",
         ///     });
         /// 
-        ///     var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new()
+        ///     var test = Mongodbatlas.GetDatabaseUsers.Invoke(new()
         ///     {
         ///         ProjectId = "6414908c207f4d22f4d8f232",
         ///     });
@@ -129,7 +129,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
         ///     {
         ///         Username = "test-acc-username",
         ///         Password = "test-acc-password",
@@ -163,7 +163,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new()
+        ///     var test = Mongodbatlas.GetDatabaseUsers.Invoke(new()
         ///     {
         ///         ProjectId = testDatabaseUser.ProjectId,
         ///     });
@@ -182,23 +182,23 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
         ///     {
+        ///         Username = "64d613677e1ad50839cce4db/testUserOrGroup",
+        ///         ProjectId = "6414908c207f4d22f4d8f232",
         ///         AuthDatabaseName = "admin",
         ///         OidcAuthType = "IDP_GROUP",
-        ///         ProjectId = "6414908c207f4d22f4d8f232",
         ///         Roles = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
         ///             {
-        ///                 DatabaseName = "admin",
         ///                 RoleName = "readWriteAnyDatabase",
+        ///                 DatabaseName = "admin",
         ///             },
         ///         },
-        ///         Username = "64d613677e1ad50839cce4db/testUserOrGroup",
         ///     });
         /// 
-        ///     var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new()
+        ///     var test = Mongodbatlas.GetDatabaseUsers.Invoke(new()
         ///     {
         ///         ProjectId = "6414908c207f4d22f4d8f232",
         ///     });

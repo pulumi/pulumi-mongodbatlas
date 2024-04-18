@@ -33,7 +33,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testCloudBackupSnapshotExportBucket, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "testCloudBackupSnapshotExportBucket", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//			test, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
 //				ProjectId:     pulumi.String("{PROJECT_ID}"),
 //				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
 //				BucketName:    pulumi.String("example_bucket"),
@@ -42,11 +42,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewCloudBackupSnapshotExportJob(ctx, "testCloudBackupSnapshotExportJob", &mongodbatlas.CloudBackupSnapshotExportJobArgs{
+//			_, err = mongodbatlas.NewCloudBackupSnapshotExportJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportJobArgs{
 //				ProjectId:      pulumi.String("{PROJECT_ID}"),
 //				ClusterName:    pulumi.String("{CLUSTER_NAME}"),
 //				SnapshotId:     pulumi.String("{SNAPSHOT_ID}"),
-//				ExportBucketId: testCloudBackupSnapshotExportBucket.ExportBucketId,
+//				ExportBucketId: test.ExportBucketId,
 //				CustomDatas: mongodbatlas.CloudBackupSnapshotExportJobCustomDataArray{
 //					&mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs{
 //						Key:   pulumi.String("exported by"),

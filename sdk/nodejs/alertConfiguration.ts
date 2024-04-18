@@ -19,8 +19,20 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.AlertConfiguration("test", {
- *     enabled: true,
+ *     projectId: "<PROJECT-ID>",
  *     eventType: "OUTSIDE_METRIC_THRESHOLD",
+ *     enabled: true,
+ *     notifications: [{
+ *         typeName: "GROUP",
+ *         intervalMin: 5,
+ *         delayMin: 0,
+ *         smsEnabled: false,
+ *         emailEnabled: true,
+ *         roles: [
+ *             "GROUP_CHARTS_ADMIN",
+ *             "GROUP_CLUSTER_MANAGER",
+ *         ],
+ *     }],
  *     matchers: [{
  *         fieldName: "HOSTNAME_AND_PORT",
  *         operator: "EQUALS",
@@ -28,23 +40,11 @@ import * as utilities from "./utilities";
  *     }],
  *     metricThresholdConfig: {
  *         metricName: "ASSERT_REGULAR",
- *         mode: "AVERAGE",
  *         operator: "LESS_THAN",
  *         threshold: 99,
  *         units: "RAW",
+ *         mode: "AVERAGE",
  *     },
- *     notifications: [{
- *         delayMin: 0,
- *         emailEnabled: true,
- *         intervalMin: 5,
- *         roles: [
- *             "GROUP_CHARTS_ADMIN",
- *             "GROUP_CLUSTER_MANAGER",
- *         ],
- *         smsEnabled: false,
- *         typeName: "GROUP",
- *     }],
- *     projectId: "<PROJECT-ID>",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -57,25 +57,25 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.AlertConfiguration("test", {
- *     enabled: true,
+ *     projectId: "<PROJECT-ID>",
  *     eventType: "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+ *     enabled: true,
+ *     notifications: [{
+ *         typeName: "GROUP",
+ *         intervalMin: 5,
+ *         delayMin: 0,
+ *         smsEnabled: false,
+ *         emailEnabled: true,
+ *         roles: [
+ *             "GROUP_CHARTS_ADMIN",
+ *             "GROUP_CLUSTER_MANAGER",
+ *         ],
+ *     }],
  *     matchers: [{
  *         fieldName: "HOSTNAME_AND_PORT",
  *         operator: "EQUALS",
  *         value: "SECONDARY",
  *     }],
- *     notifications: [{
- *         delayMin: 0,
- *         emailEnabled: true,
- *         intervalMin: 5,
- *         roles: [
- *             "GROUP_CHARTS_ADMIN",
- *             "GROUP_CLUSTER_MANAGER",
- *         ],
- *         smsEnabled: false,
- *         typeName: "GROUP",
- *     }],
- *     projectId: "<PROJECT-ID>",
  *     thresholdConfig: {
  *         operator: "LESS_THAN",
  *         threshold: 1,
@@ -93,8 +93,30 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.AlertConfiguration("test", {
- *     enabled: true,
+ *     projectId: "PROJECT ID",
  *     eventType: "OUTSIDE_METRIC_THRESHOLD",
+ *     enabled: true,
+ *     notifications: [
+ *         {
+ *             typeName: "GROUP",
+ *             intervalMin: 5,
+ *             delayMin: 0,
+ *             smsEnabled: false,
+ *             emailEnabled: true,
+ *             roles: [
+ *                 "GROUP_DATA_ACCESS_READ_ONLY",
+ *                 "GROUP_CLUSTER_MANAGER",
+ *                 "GROUP_DATA_ACCESS_ADMIN",
+ *             ],
+ *         },
+ *         {
+ *             typeName: "ORG",
+ *             intervalMin: 5,
+ *             delayMin: 0,
+ *             smsEnabled: true,
+ *             emailEnabled: false,
+ *         },
+ *     ],
  *     matchers: [{
  *         fieldName: "HOSTNAME_AND_PORT",
  *         operator: "EQUALS",
@@ -102,33 +124,11 @@ import * as utilities from "./utilities";
  *     }],
  *     metricThresholdConfig: {
  *         metricName: "ASSERT_REGULAR",
- *         mode: "AVERAGE",
  *         operator: "LESS_THAN",
  *         threshold: 99,
  *         units: "RAW",
+ *         mode: "AVERAGE",
  *     },
- *     notifications: [
- *         {
- *             delayMin: 0,
- *             emailEnabled: true,
- *             intervalMin: 5,
- *             roles: [
- *                 "GROUP_DATA_ACCESS_READ_ONLY",
- *                 "GROUP_CLUSTER_MANAGER",
- *                 "GROUP_DATA_ACCESS_ADMIN",
- *             ],
- *             smsEnabled: false,
- *             typeName: "GROUP",
- *         },
- *         {
- *             delayMin: 0,
- *             emailEnabled: false,
- *             intervalMin: 5,
- *             smsEnabled: true,
- *             typeName: "ORG",
- *         },
- *     ],
- *     projectId: "PROJECT ID",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

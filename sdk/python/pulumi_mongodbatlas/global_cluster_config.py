@@ -197,6 +197,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         test = mongodbatlas.Cluster("test",
             project_id="<YOUR-PROJECT-ID>",
+            name="<CLUSTER-NAME>",
             cloud_backup=True,
             cluster_type="GEOSHARDED",
             provider_name="AWS",
@@ -249,6 +250,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
             project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -265,8 +267,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
             provider_name="AWS",
             provider_instance_size_name="M40")
         config = mongodbatlas.GlobalClusterConfig("config",
-            project_id=mongodbatlas_cluster["test"]["project_id"],
-            cluster_name=mongodbatlas_cluster["test"]["name"],
+            project_id=test["projectId"],
+            cluster_name=test["name"],
             managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
                 db="mydata",
                 collection="publishers",
@@ -317,6 +319,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         test = mongodbatlas.Cluster("test",
             project_id="<YOUR-PROJECT-ID>",
+            name="<CLUSTER-NAME>",
             cloud_backup=True,
             cluster_type="GEOSHARDED",
             provider_name="AWS",
@@ -369,6 +372,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
             project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -385,8 +389,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
             provider_name="AWS",
             provider_instance_size_name="M40")
         config = mongodbatlas.GlobalClusterConfig("config",
-            project_id=mongodbatlas_cluster["test"]["project_id"],
-            cluster_name=mongodbatlas_cluster["test"]["name"],
+            project_id=test["projectId"],
+            cluster_name=test["name"],
             managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
                 db="mydata",
                 collection="publishers",

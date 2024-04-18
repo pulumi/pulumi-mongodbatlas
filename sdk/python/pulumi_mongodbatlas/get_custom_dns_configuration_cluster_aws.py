@@ -72,6 +72,20 @@ def get_custom_dns_configuration_cluster_aws(project_id: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_custom_dns_configuration_cluster_aws = mongodbatlas.CustomDnsConfigurationClusterAws("test",
+        project_id="<project-id>",
+        enabled=True)
+    test = mongodbatlas.get_custom_dns_configuration_cluster_aws_output(project_id=test_custom_dns_configuration_cluster_aws.id)
+    ```
+    <!--End PulumiCodeChooser -->
+
 
     :param str project_id: Unique identifier for the project.
     """
@@ -93,6 +107,20 @@ def get_custom_dns_configuration_cluster_aws_output(project_id: Optional[pulumi.
     `CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_custom_dns_configuration_cluster_aws = mongodbatlas.CustomDnsConfigurationClusterAws("test",
+        project_id="<project-id>",
+        enabled=True)
+    test = mongodbatlas.get_custom_dns_configuration_cluster_aws_output(project_id=test_custom_dns_configuration_cluster_aws.id)
+    ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Unique identifier for the project.

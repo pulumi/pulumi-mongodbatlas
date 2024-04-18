@@ -176,6 +176,66 @@ def get_database_user(auth_database_name: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_database_user = mongodbatlas.DatabaseUser("test",
+        username="test-acc-username",
+        password="test-acc-password",
+        project_id="<PROJECT-ID>",
+        auth_database_name="admin",
+        roles=[
+            mongodbatlas.DatabaseUserRoleArgs(
+                role_name="readWrite",
+                database_name="admin",
+            ),
+            mongodbatlas.DatabaseUserRoleArgs(
+                role_name="atlasAdmin",
+                database_name="admin",
+            ),
+        ],
+        labels=[
+            mongodbatlas.DatabaseUserLabelArgs(
+                key="key 1",
+                value="value 1",
+            ),
+            mongodbatlas.DatabaseUserLabelArgs(
+                key="key 2",
+                value="value 2",
+            ),
+        ])
+    test = mongodbatlas.get_database_user_output(project_id=test_database_user.project_id,
+        username=test_database_user.username)
+    ```
+    <!--End PulumiCodeChooser -->
+
+    **Example of usage with a OIDC federated authentication user**
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_database_user = mongodbatlas.DatabaseUser("test",
+        username="64d613677e1ad50839cce4db/testUserOrGroup",
+        project_id="6414908c207f4d22f4d8f232",
+        auth_database_name="admin",
+        oidc_auth_type="IDP_GROUP",
+        roles=[mongodbatlas.DatabaseUserRoleArgs(
+            role_name="readWriteAnyDatabase",
+            database_name="admin",
+        )])
+    test = mongodbatlas.get_database_user_output(username=test_database_user.username,
+        project_id="6414908c207f4d22f4d8f232",
+        auth_database_name="admin")
+    ```
+    <!--End PulumiCodeChooser -->
+    Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+
 
     :param str auth_database_name: The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
     :param str project_id: The unique ID for the project to create the database user.
@@ -214,6 +274,66 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[str]] = N
     Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_database_user = mongodbatlas.DatabaseUser("test",
+        username="test-acc-username",
+        password="test-acc-password",
+        project_id="<PROJECT-ID>",
+        auth_database_name="admin",
+        roles=[
+            mongodbatlas.DatabaseUserRoleArgs(
+                role_name="readWrite",
+                database_name="admin",
+            ),
+            mongodbatlas.DatabaseUserRoleArgs(
+                role_name="atlasAdmin",
+                database_name="admin",
+            ),
+        ],
+        labels=[
+            mongodbatlas.DatabaseUserLabelArgs(
+                key="key 1",
+                value="value 1",
+            ),
+            mongodbatlas.DatabaseUserLabelArgs(
+                key="key 2",
+                value="value 2",
+            ),
+        ])
+    test = mongodbatlas.get_database_user_output(project_id=test_database_user.project_id,
+        username=test_database_user.username)
+    ```
+    <!--End PulumiCodeChooser -->
+
+    **Example of usage with a OIDC federated authentication user**
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_database_user = mongodbatlas.DatabaseUser("test",
+        username="64d613677e1ad50839cce4db/testUserOrGroup",
+        project_id="6414908c207f4d22f4d8f232",
+        auth_database_name="admin",
+        oidc_auth_type="IDP_GROUP",
+        roles=[mongodbatlas.DatabaseUserRoleArgs(
+            role_name="readWriteAnyDatabase",
+            database_name="admin",
+        )])
+    test = mongodbatlas.get_database_user_output(username=test_database_user.username,
+        project_id="6414908c207f4d22f4d8f232",
+        auth_database_name="admin")
+    ```
+    <!--End PulumiCodeChooser -->
+    Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
 
     :param str auth_database_name: The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.

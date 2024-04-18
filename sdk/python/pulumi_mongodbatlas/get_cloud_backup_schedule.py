@@ -233,6 +233,31 @@ def get_cloud_backup_schedule(cluster_name: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    my_cluster = mongodbatlas.Cluster("my_cluster",
+        project_id="<PROJECT-ID>",
+        name="clusterTest",
+        provider_name="AWS",
+        provider_region_name="EU_CENTRAL_1",
+        provider_instance_size_name="M10",
+        cloud_backup=True)
+    test_cloud_backup_schedule = mongodbatlas.CloudBackupSchedule("test",
+        project_id=my_cluster.project_id,
+        cluster_name=my_cluster.name,
+        reference_hour_of_day=3,
+        reference_minute_of_hour=45,
+        restore_window_days=4)
+    test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
+        cluster_name=test_cloud_backup_schedule.cluster_name)
+    ```
+    <!--End PulumiCodeChooser -->
+
 
     :param str cluster_name: The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
     :param str project_id: The unique identifier of the project for the Atlas cluster.
@@ -271,6 +296,31 @@ def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[str]] =
     `CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    my_cluster = mongodbatlas.Cluster("my_cluster",
+        project_id="<PROJECT-ID>",
+        name="clusterTest",
+        provider_name="AWS",
+        provider_region_name="EU_CENTRAL_1",
+        provider_instance_size_name="M10",
+        cloud_backup=True)
+    test_cloud_backup_schedule = mongodbatlas.CloudBackupSchedule("test",
+        project_id=my_cluster.project_id,
+        cluster_name=my_cluster.name,
+        reference_hour_of_day=3,
+        reference_minute_of_hour=45,
+        restore_window_days=4)
+    test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
+        cluster_name=test_cloud_backup_schedule.cluster_name)
+    ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.

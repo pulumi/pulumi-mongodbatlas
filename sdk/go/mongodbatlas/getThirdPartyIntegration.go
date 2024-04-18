@@ -30,7 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testDatadog, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testDatadog", &mongodbatlas.ThirdPartyIntegrationArgs{
+//			testDatadog, err := mongodbatlas.NewThirdPartyIntegration(ctx, "test_datadog", &mongodbatlas.ThirdPartyIntegrationArgs{
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				Type:      pulumi.String("DATADOG"),
 //				ApiKey:    pulumi.String("<API-KEY>"),

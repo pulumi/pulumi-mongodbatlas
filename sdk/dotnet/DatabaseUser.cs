@@ -35,28 +35,29 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.DatabaseUser("test", new()
     ///     {
+    ///         Username = "test-acc-username",
+    ///         Password = "test-acc-password",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         AuthDatabaseName = "admin",
+    ///         Roles = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///             {
+    ///                 RoleName = "readWrite",
+    ///                 DatabaseName = "dbforApp",
+    ///             },
+    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///             {
+    ///                 RoleName = "readAnyDatabase",
+    ///                 DatabaseName = "admin",
+    ///             },
+    ///         },
     ///         Labels = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
     ///             {
     ///                 Key = "My Key",
     ///                 Value = "My Value",
-    ///             },
-    ///         },
-    ///         Password = "test-acc-password",
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         Roles = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-    ///             {
-    ///                 DatabaseName = "dbforApp",
-    ///                 RoleName = "readWrite",
-    ///             },
-    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-    ///             {
-    ///                 DatabaseName = "admin",
-    ///                 RoleName = "readAnyDatabase",
     ///             },
     ///         },
     ///         Scopes = new[]
@@ -72,7 +73,6 @@ namespace Pulumi.Mongodbatlas
     ///                 Type = "CLUSTER",
     ///             },
     ///         },
-    ///         Username = "test-acc-username",
     ///     });
     /// 
     /// });
@@ -90,22 +90,24 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.DatabaseUser("test", new()
     ///     {
+    ///         Username = "test-acc-username",
+    ///         X509Type = "MANAGED",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         AuthDatabaseName = "$external",
+    ///         Roles = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///             {
+    ///                 RoleName = "readAnyDatabase",
+    ///                 DatabaseName = "admin",
+    ///             },
+    ///         },
     ///         Labels = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
     ///             {
     ///                 Key = "%s",
     ///                 Value = "%s",
-    ///             },
-    ///         },
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         Roles = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-    ///             {
-    ///                 DatabaseName = "admin",
-    ///                 RoleName = "readAnyDatabase",
     ///             },
     ///         },
     ///         Scopes = new[]
@@ -116,8 +118,6 @@ namespace Pulumi.Mongodbatlas
     ///                 Type = "CLUSTER",
     ///             },
     ///         },
-    ///         Username = "test-acc-username",
-    ///         X509Type = "MANAGED",
     ///     });
     /// 
     /// });
@@ -135,7 +135,7 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.DatabaseUser("test", new()
     ///     {
-    ///         Username = aws_iam_role.Test.Arn,
+    ///         Username = testAwsIamRole.Arn,
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         AuthDatabaseName = "$external",
     ///         AwsIamType = "ROLE",
@@ -182,18 +182,18 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.DatabaseUser("test", new()
     ///     {
+    ///         Username = "64d613677e1ad50839cce4db/testUserOr",
+    ///         ProjectId = "6414908c207f4d22f4d8f232",
     ///         AuthDatabaseName = "admin",
     ///         OidcAuthType = "IDP_GROUP",
-    ///         ProjectId = "6414908c207f4d22f4d8f232",
     ///         Roles = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
     ///             {
-    ///                 DatabaseName = "admin",
     ///                 RoleName = "readWriteAnyDatabase",
+    ///                 DatabaseName = "admin",
     ///             },
     ///         },
-    ///         Username = "64d613677e1ad50839cce4db/testUserOr",
     ///     });
     /// 
     /// });

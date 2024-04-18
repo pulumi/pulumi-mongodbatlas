@@ -17,15 +17,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", {
- *     associatedDomains: ["yourdomain.com"],
+ * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     name: "mongodb_federation_test",
+ *     associatedDomains: ["yourdomain.com"],
+ *     ssoDebugEnabled: true,
+ *     status: "ACTIVE",
+ *     ssoUrl: "https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
  *     issuerUri: "http://www.okta.com/exk17q7f7f7f7fp50h8",
  *     requestBinding: "HTTP-POST",
  *     responseSignatureAlgorithm: "SHA-256",
- *     ssoDebugEnabled: true,
- *     ssoUrl: "https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
- *     status: "ACTIVE",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

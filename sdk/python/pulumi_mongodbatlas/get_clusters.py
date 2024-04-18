@@ -85,8 +85,9 @@ def get_clusters(project_id: Optional[str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_cluster = mongodbatlas.Cluster("testCluster",
+    test_cluster = mongodbatlas.Cluster("test",
         project_id="<YOUR-PROJECT-ID>",
+        name="cluster-test",
         cluster_type="REPLICASET",
         replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
             num_shards=1,
@@ -101,7 +102,7 @@ def get_clusters(project_id: Optional[str] = None,
         auto_scaling_disk_gb_enabled=True,
         provider_name="AWS",
         provider_instance_size_name="M40")
-    test_clusters = mongodbatlas.get_clusters_output(project_id=test_cluster.project_id)
+    test = mongodbatlas.get_clusters_output(project_id=test_cluster.project_id)
     ```
     <!--End PulumiCodeChooser -->
 
@@ -139,8 +140,9 @@ def get_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_cluster = mongodbatlas.Cluster("testCluster",
+    test_cluster = mongodbatlas.Cluster("test",
         project_id="<YOUR-PROJECT-ID>",
+        name="cluster-test",
         cluster_type="REPLICASET",
         replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
             num_shards=1,
@@ -155,7 +157,7 @@ def get_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
         auto_scaling_disk_gb_enabled=True,
         provider_name="AWS",
         provider_instance_size_name="M40")
-    test_clusters = mongodbatlas.get_clusters_output(project_id=test_cluster.project_id)
+    test = mongodbatlas.get_clusters_output(project_id=test_cluster.project_id)
     ```
     <!--End PulumiCodeChooser -->
 

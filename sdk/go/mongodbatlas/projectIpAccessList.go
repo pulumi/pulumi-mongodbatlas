@@ -36,9 +36,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewProjectIpAccessList(ctx, "test", &mongodbatlas.ProjectIpAccessListArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				CidrBlock: pulumi.String("1.2.3.4/32"),
 //				Comment:   pulumi.String("cidr block for tf acc testing"),
-//				ProjectId: pulumi.String("<PROJECT-ID>"),
 //			})
 //			if err != nil {
 //				return err
@@ -65,9 +65,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewProjectIpAccessList(ctx, "test", &mongodbatlas.ProjectIpAccessListArgs{
-//				Comment:   pulumi.String("ip address for tf acc testing"),
-//				IpAddress: pulumi.String("2.3.4.5"),
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				IpAddress: pulumi.String("2.3.4.5"),
+//				Comment:   pulumi.String("ip address for tf acc testing"),
 //			})
 //			if err != nil {
 //				return err
@@ -93,7 +93,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "testNetworkContainer", &mongodbatlas.NetworkContainerArgs{
+//			test, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
 //				ProjectId:      pulumi.String("<PROJECT-ID>"),
 //				AtlasCidrBlock: pulumi.String("192.168.208.0/21"),
 //				ProviderName:   pulumi.String("AWS"),
@@ -102,9 +102,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
+//			testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "test", &mongodbatlas.NetworkPeeringArgs{
 //				ProjectId:           pulumi.String("<PROJECT-ID>"),
-//				ContainerId:         testNetworkContainer.ContainerId,
+//				ContainerId:         test.ContainerId,
 //				AccepterRegionName:  pulumi.String("us-east-1"),
 //				ProviderName:        pulumi.String("AWS"),
 //				RouteTableCidrBlock: pulumi.String("172.31.0.0/16"),
@@ -114,12 +114,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewProjectIpAccessList(ctx, "testProjectIpAccessList", &mongodbatlas.ProjectIpAccessListArgs{
+//			_, err = mongodbatlas.NewProjectIpAccessList(ctx, "test", &mongodbatlas.ProjectIpAccessListArgs{
 //				ProjectId:        pulumi.String("<PROJECT-ID>"),
 //				AwsSecurityGroup: pulumi.String("sg-0026348ec11780bd1"),
 //				Comment:          pulumi.String("TestAcc for awsSecurityGroup"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				pulumi.Resource("mongodbatlas_network_peering.test"),
+//				testNetworkPeering,
 //			}))
 //			if err != nil {
 //				return err

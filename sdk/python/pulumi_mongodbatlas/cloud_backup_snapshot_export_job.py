@@ -343,16 +343,16 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
+        test = mongodbatlas.CloudBackupSnapshotExportBucket("test",
             project_id="{PROJECT_ID}",
             iam_role_id="{IAM_ROLE_ID}",
             bucket_name="example_bucket",
             cloud_provider="AWS")
-        test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob",
+        test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("test",
             project_id="{PROJECT_ID}",
             cluster_name="{CLUSTER_NAME}",
             snapshot_id="{SNAPSHOT_ID}",
-            export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id,
+            export_bucket_id=test.export_bucket_id,
             custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
                 key="exported by",
                 value="myName",
@@ -444,16 +444,16 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
+        test = mongodbatlas.CloudBackupSnapshotExportBucket("test",
             project_id="{PROJECT_ID}",
             iam_role_id="{IAM_ROLE_ID}",
             bucket_name="example_bucket",
             cloud_provider="AWS")
-        test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob",
+        test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("test",
             project_id="{PROJECT_ID}",
             cluster_name="{CLUSTER_NAME}",
             snapshot_id="{SNAPSHOT_ID}",
-            export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id,
+            export_bucket_id=test.export_bucket_id,
             custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
                 key="exported by",
                 value="myName",

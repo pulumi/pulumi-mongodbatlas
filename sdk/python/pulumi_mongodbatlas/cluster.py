@@ -1457,22 +1457,23 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M40",
-            provider_name="AWS",
+            name="cluster-test",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="US_EAST_1",
                     electable_nodes=3,
                     priority=7,
                     read_only_nodes=0,
-                    region_name="US_EAST_1",
                 )],
-            )])
+            )],
+            cloud_backup=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="4.2",
+            provider_name="AWS",
+            provider_instance_size_name="M40")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1484,23 +1485,24 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Cluster("test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
-            provider_disk_type_name="P6",
-            provider_instance_size_name="M30",
-            provider_name="AZURE",
+            name="test",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="US_EAST",
                     electable_nodes=3,
                     priority=7,
                     read_only_nodes=0,
-                    region_name="US_EAST",
                 )],
-            )])
+            )],
+            cloud_backup=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="4.2",
+            provider_name="AZURE",
+            provider_disk_type_name="P6",
+            provider_instance_size_name="M30")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1512,22 +1514,23 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Cluster("test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M30",
-            provider_name="GCP",
+            name="test",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="EASTERN_US",
                     electable_nodes=3,
                     priority=7,
                     read_only_nodes=0,
-                    region_name="EASTERN_US",
                 )],
-            )])
+            )],
+            cloud_backup=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="4.2",
+            provider_name="GCP",
+            provider_instance_size_name="M30")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1539,32 +1542,33 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
+            project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test-multi-region",
+            num_shards=1,
             cloud_backup=True,
             cluster_type="REPLICASET",
-            num_shards=1,
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M10",
             provider_name="AWS",
+            provider_instance_size_name="M10",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[
                     mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_1",
                         electable_nodes=3,
                         priority=7,
                         read_only_nodes=0,
-                        region_name="US_EAST_1",
                     ),
                     mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_2",
                         electable_nodes=2,
                         priority=6,
                         read_only_nodes=0,
-                        region_name="US_EAST_2",
                     ),
                     mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_WEST_1",
                         electable_nodes=2,
                         priority=5,
                         read_only_nodes=2,
-                        region_name="US_WEST_1",
                     ),
                 ],
             )])
@@ -1579,32 +1583,33 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
+            project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test-global",
+            num_shards=1,
             cloud_backup=True,
             cluster_type="GEOSHARDED",
-            num_shards=1,
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M30",
             provider_name="AWS",
+            provider_instance_size_name="M30",
             replication_specs=[
                 mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 1",
                     num_shards=2,
                     regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_1",
                         electable_nodes=3,
                         priority=7,
                         read_only_nodes=0,
-                        region_name="US_EAST_1",
                     )],
-                    zone_name="Zone 1",
                 ),
                 mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 2",
                     num_shards=2,
                     regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="EU_CENTRAL_1",
                         electable_nodes=3,
                         priority=7,
                         read_only_nodes=0,
-                        region_name="EU_CENTRAL_1",
                     )],
-                    zone_name="Zone 2",
                 ),
             ])
         ```
@@ -1616,11 +1621,12 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
-            backing_provider_name="AWS",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M2",
+            name="cluster-test-global",
             provider_name="TENANT",
-            provider_region_name="US_EAST_1")
+            backing_provider_name="AWS",
+            provider_region_name="US_EAST_1",
+            provider_instance_size_name="M2")
         ```
         <!--End PulumiCodeChooser -->
         ### Example AWS Free Tier cluster
@@ -1630,11 +1636,12 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
-            backing_provider_name="AWS",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M0",
+            name="cluster-test-global",
             provider_name="TENANT",
-            provider_region_name="US_EAST_1")
+            backing_provider_name="AWS",
+            provider_region_name="US_EAST_1",
+            provider_instance_size_name="M0")
         ```
         <!--End PulumiCodeChooser -->
         ### Example - Return a Connection String
@@ -1643,7 +1650,7 @@ class Cluster(pulumi.CustomResource):
         ```python
         import pulumi
 
-        pulumi.export("standard", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard"])
+        pulumi.export("standard", cluster_test["connectionStrings"][0]["standard"])
         ```
         <!--End PulumiCodeChooser -->
         Standard srv
@@ -1651,29 +1658,10 @@ class Cluster(pulumi.CustomResource):
         ```python
         import pulumi
 
-        pulumi.export("standardSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard_srv"])
+        pulumi.export("standardSrv", cluster_test["connectionStrings"][0]["standardSrv"])
         ```
         <!--End PulumiCodeChooser -->
         Private with Network peering and Custom DNS AWS enabled
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        pulumi.export("private", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private"])
-        # Example return string: private = "mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=atlas-12diht-shard-0"
-        private = "mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net"
-        ```
-        <!--End PulumiCodeChooser -->
-        Private srv with Network peering and Custom DNS AWS enabled
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        pulumi.export("privateSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private_srv"])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        By endpoint_service_id
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -1763,22 +1751,23 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M40",
-            provider_name="AWS",
+            name="cluster-test",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="US_EAST_1",
                     electable_nodes=3,
                     priority=7,
                     read_only_nodes=0,
-                    region_name="US_EAST_1",
                 )],
-            )])
+            )],
+            cloud_backup=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="4.2",
+            provider_name="AWS",
+            provider_instance_size_name="M40")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1790,23 +1779,24 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Cluster("test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
-            provider_disk_type_name="P6",
-            provider_instance_size_name="M30",
-            provider_name="AZURE",
+            name="test",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="US_EAST",
                     electable_nodes=3,
                     priority=7,
                     read_only_nodes=0,
-                    region_name="US_EAST",
                 )],
-            )])
+            )],
+            cloud_backup=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="4.2",
+            provider_name="AZURE",
+            provider_disk_type_name="P6",
+            provider_instance_size_name="M30")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1818,22 +1808,23 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Cluster("test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M30",
-            provider_name="GCP",
+            name="test",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="EASTERN_US",
                     electable_nodes=3,
                     priority=7,
                     read_only_nodes=0,
-                    region_name="EASTERN_US",
                 )],
-            )])
+            )],
+            cloud_backup=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="4.2",
+            provider_name="GCP",
+            provider_instance_size_name="M30")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1845,32 +1836,33 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
+            project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test-multi-region",
+            num_shards=1,
             cloud_backup=True,
             cluster_type="REPLICASET",
-            num_shards=1,
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M10",
             provider_name="AWS",
+            provider_instance_size_name="M10",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[
                     mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_1",
                         electable_nodes=3,
                         priority=7,
                         read_only_nodes=0,
-                        region_name="US_EAST_1",
                     ),
                     mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_2",
                         electable_nodes=2,
                         priority=6,
                         read_only_nodes=0,
-                        region_name="US_EAST_2",
                     ),
                     mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_WEST_1",
                         electable_nodes=2,
                         priority=5,
                         read_only_nodes=2,
-                        region_name="US_WEST_1",
                     ),
                 ],
             )])
@@ -1885,32 +1877,33 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
+            project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test-global",
+            num_shards=1,
             cloud_backup=True,
             cluster_type="GEOSHARDED",
-            num_shards=1,
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M30",
             provider_name="AWS",
+            provider_instance_size_name="M30",
             replication_specs=[
                 mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 1",
                     num_shards=2,
                     regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_1",
                         electable_nodes=3,
                         priority=7,
                         read_only_nodes=0,
-                        region_name="US_EAST_1",
                     )],
-                    zone_name="Zone 1",
                 ),
                 mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 2",
                     num_shards=2,
                     regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="EU_CENTRAL_1",
                         electable_nodes=3,
                         priority=7,
                         read_only_nodes=0,
-                        region_name="EU_CENTRAL_1",
                     )],
-                    zone_name="Zone 2",
                 ),
             ])
         ```
@@ -1922,11 +1915,12 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
-            backing_provider_name="AWS",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M2",
+            name="cluster-test-global",
             provider_name="TENANT",
-            provider_region_name="US_EAST_1")
+            backing_provider_name="AWS",
+            provider_region_name="US_EAST_1",
+            provider_instance_size_name="M2")
         ```
         <!--End PulumiCodeChooser -->
         ### Example AWS Free Tier cluster
@@ -1936,11 +1930,12 @@ class Cluster(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
-            backing_provider_name="AWS",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M0",
+            name="cluster-test-global",
             provider_name="TENANT",
-            provider_region_name="US_EAST_1")
+            backing_provider_name="AWS",
+            provider_region_name="US_EAST_1",
+            provider_instance_size_name="M0")
         ```
         <!--End PulumiCodeChooser -->
         ### Example - Return a Connection String
@@ -1949,7 +1944,7 @@ class Cluster(pulumi.CustomResource):
         ```python
         import pulumi
 
-        pulumi.export("standard", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard"])
+        pulumi.export("standard", cluster_test["connectionStrings"][0]["standard"])
         ```
         <!--End PulumiCodeChooser -->
         Standard srv
@@ -1957,29 +1952,10 @@ class Cluster(pulumi.CustomResource):
         ```python
         import pulumi
 
-        pulumi.export("standardSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard_srv"])
+        pulumi.export("standardSrv", cluster_test["connectionStrings"][0]["standardSrv"])
         ```
         <!--End PulumiCodeChooser -->
         Private with Network peering and Custom DNS AWS enabled
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        pulumi.export("private", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private"])
-        # Example return string: private = "mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=atlas-12diht-shard-0"
-        private = "mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net"
-        ```
-        <!--End PulumiCodeChooser -->
-        Private srv with Network peering and Custom DNS AWS enabled
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        pulumi.export("privateSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private_srv"])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        By endpoint_service_id
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

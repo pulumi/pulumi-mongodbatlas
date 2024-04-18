@@ -10,6 +10,35 @@ import * as utilities from "./utilities";
  * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.Cluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "clusterTest",
+ *     providerName: "AWS",
+ *     providerRegionName: "EU_CENTRAL_1",
+ *     providerInstanceSizeName: "M10",
+ *     cloudBackup: true,
+ * });
+ * const testCloudBackupSchedule = new mongodbatlas.CloudBackupSchedule("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     referenceHourOfDay: 3,
+ *     referenceMinuteOfHour: 45,
+ *     restoreWindowDays: 4,
+ * });
+ * const test = mongodbatlas.getCloudBackupScheduleOutput({
+ *     projectId: testCloudBackupSchedule.projectId,
+ *     clusterName: testCloudBackupSchedule.clusterName,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupSchedule(args: GetCloudBackupScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupScheduleResult> {
 
@@ -99,6 +128,35 @@ export interface GetCloudBackupScheduleResult {
  * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.Cluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "clusterTest",
+ *     providerName: "AWS",
+ *     providerRegionName: "EU_CENTRAL_1",
+ *     providerInstanceSizeName: "M10",
+ *     cloudBackup: true,
+ * });
+ * const testCloudBackupSchedule = new mongodbatlas.CloudBackupSchedule("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     referenceHourOfDay: 3,
+ *     referenceMinuteOfHour: 45,
+ *     restoreWindowDays: 4,
+ * });
+ * const test = mongodbatlas.getCloudBackupScheduleOutput({
+ *     projectId: testCloudBackupSchedule.projectId,
+ *     clusterName: testCloudBackupSchedule.clusterName,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupScheduleOutput(args: GetCloudBackupScheduleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupScheduleResult> {
     return pulumi.output(args).apply((a: any) => getCloudBackupSchedule(a, opts))

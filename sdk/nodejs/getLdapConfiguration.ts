@@ -10,6 +10,31 @@ import * as utilities from "./utilities";
  * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORG ID",
+ * });
+ * const testLdapConfiguration = new mongodbatlas.LdapConfiguration("test", {
+ *     projectId: testProject.id,
+ *     authenticationEnabled: true,
+ *     hostname: "HOSTNAME",
+ *     port: 636,
+ *     bindUsername: "USERNAME",
+ *     bindPassword: "PASSWORD",
+ * });
+ * const test = mongodbatlas.getLdapConfigurationOutput({
+ *     projectId: testLdapConfiguration.id,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getLdapConfiguration(args: GetLdapConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetLdapConfigurationResult> {
 
@@ -79,6 +104,31 @@ export interface GetLdapConfigurationResult {
  * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORG ID",
+ * });
+ * const testLdapConfiguration = new mongodbatlas.LdapConfiguration("test", {
+ *     projectId: testProject.id,
+ *     authenticationEnabled: true,
+ *     hostname: "HOSTNAME",
+ *     port: 636,
+ *     bindUsername: "USERNAME",
+ *     bindPassword: "PASSWORD",
+ * });
+ * const test = mongodbatlas.getLdapConfigurationOutput({
+ *     projectId: testLdapConfiguration.id,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getLdapConfigurationOutput(args: GetLdapConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLdapConfigurationResult> {
     return pulumi.output(args).apply((a: any) => getLdapConfiguration(a, opts))

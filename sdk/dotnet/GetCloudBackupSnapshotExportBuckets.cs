@@ -28,15 +28,15 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
         ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         IamRoleId = "{IAM_ROLE_ID}",
         ///         BucketName = "example-bucket",
         ///         CloudProvider = "AWS",
-        ///         IamRoleId = "{IAM_ROLE_ID}",
-        ///         ProjectId = "{PROJECT_ID}",
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotExportBuckets = Mongodbatlas.GetCloudBackupSnapshotExportBuckets.Invoke(new()
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportBuckets.Invoke(new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///     });
@@ -65,15 +65,15 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
         ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         IamRoleId = "{IAM_ROLE_ID}",
         ///         BucketName = "example-bucket",
         ///         CloudProvider = "AWS",
-        ///         IamRoleId = "{IAM_ROLE_ID}",
-        ///         ProjectId = "{PROJECT_ID}",
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotExportBuckets = Mongodbatlas.GetCloudBackupSnapshotExportBuckets.Invoke(new()
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportBuckets.Invoke(new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///     });

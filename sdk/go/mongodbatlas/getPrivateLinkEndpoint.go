@@ -14,6 +14,44 @@ import (
 // `PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "test", &mongodbatlas.PrivateLinkEndpointArgs{
+//				ProjectId:    pulumi.String("<PROJECT-ID>"),
+//				ProviderName: pulumi.String("AWS"),
+//				Region:       pulumi.String("US_EAST_1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupPrivateLinkEndpointOutput(ctx, mongodbatlas.GetPrivateLinkEndpointOutputArgs{
+//				ProjectId:     testPrivateLinkEndpoint.ProjectId,
+//				PrivateLinkId: testPrivateLinkEndpoint.PrivateLinkId,
+//				ProviderName:  pulumi.String("AWS"),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ### Available complete examples
+// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
 func LookupPrivateLinkEndpoint(ctx *pulumi.Context, args *LookupPrivateLinkEndpointArgs, opts ...pulumi.InvokeOption) (*LookupPrivateLinkEndpointResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivateLinkEndpointResult

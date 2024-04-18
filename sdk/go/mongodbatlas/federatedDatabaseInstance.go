@@ -35,10 +35,13 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewFederatedDatabaseInstance(ctx, "test", &mongodbatlas.FederatedDatabaseInstanceArgs{
 //				ProjectId: pulumi.String("PROJECT ID"),
+//				Name:      pulumi.String("TENANT NAME OF THE FEDERATED DATABASE INSTANCE"),
 //				StorageDatabases: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArray{
 //					&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs{
+//						Name: pulumi.String("VirtualDatabase0"),
 //						Collections: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArray{
 //							&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs{
+//								Name: pulumi.String("NAME OF THE COLLECTION"),
 //								DataSources: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArray{
 //									&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs{
 //										Collection: pulumi.String("COLLECTION IN THE CLUSTER"),
@@ -46,16 +49,14 @@ import (
 //										StoreName:  pulumi.String("CLUSTER NAME"),
 //									},
 //								},
-//								Name: pulumi.String("NAME OF THE COLLECTION"),
 //							},
 //						},
-//						Name: pulumi.String("VirtualDatabase0"),
 //					},
 //				},
 //				StorageStores: mongodbatlas.FederatedDatabaseInstanceStorageStoreArray{
 //					&mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs{
-//						ClusterName: pulumi.String("CLUSTER NAME"),
 //						Name:        pulumi.String("STORE 1 NAME"),
+//						ClusterName: pulumi.String("CLUSTER NAME"),
 //						ProjectId:   pulumi.String("PROJECT ID"),
 //						Provider:    pulumi.String("atlas"),
 //						ReadPreference: &mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs{
@@ -90,17 +91,20 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewFederatedDatabaseInstance(ctx, "test", &mongodbatlas.FederatedDatabaseInstanceArgs{
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				Name:      pulumi.String("TENANT NAME OF THE FEDERATED DATABASE INSTANCE"),
 //				CloudProviderConfig: &mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigArgs{
 //					Aws: &mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigAwsArgs{
 //						RoleId:       pulumi.String("AWS ROLE ID"),
 //						TestS3Bucket: pulumi.String("S3 BUCKET NAME"),
 //					},
 //				},
-//				ProjectId: pulumi.String("PROJECT ID"),
 //				StorageDatabases: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArray{
 //					&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs{
+//						Name: pulumi.String("VirtualDatabase0"),
 //						Collections: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArray{
 //							&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs{
+//								Name: pulumi.String("NAME OF THE COLLECTION"),
 //								DataSources: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArray{
 //									&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs{
 //										Collection: pulumi.String("COLLECTION IN THE CLUSTER"),
@@ -108,20 +112,18 @@ import (
 //										StoreName:  pulumi.String("CLUSTER NAME"),
 //									},
 //									&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs{
-//										Path:      pulumi.String("S3 BUCKET PATH"),
 //										StoreName: pulumi.String("S3 BUCKET NAME"),
+//										Path:      pulumi.String("S3 BUCKET PATH"),
 //									},
 //								},
-//								Name: pulumi.String("NAME OF THE COLLECTION"),
 //							},
 //						},
-//						Name: pulumi.String("VirtualDatabase0"),
 //					},
 //				},
 //				StorageStores: mongodbatlas.FederatedDatabaseInstanceStorageStoreArray{
 //					&mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs{
-//						ClusterName: pulumi.String("CLUSTER NAME"),
 //						Name:        pulumi.String("STORE 1 NAME"),
+//						ClusterName: pulumi.String("CLUSTER NAME"),
 //						ProjectId:   pulumi.String("PROJECT ID"),
 //						Provider:    pulumi.String("atlas"),
 //						ReadPreference: &mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs{

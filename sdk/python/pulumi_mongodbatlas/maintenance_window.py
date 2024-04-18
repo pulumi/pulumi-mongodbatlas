@@ -291,9 +291,9 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.MaintenanceWindow("test",
+            project_id="<your-project-id>",
             day_of_week=3,
-            hour_of_day=4,
-            project_id="<your-project-id>")
+            hour_of_day=4)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -303,8 +303,8 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.MaintenanceWindow("test",
-            defer=True,
-            project_id="<your-project-id>")
+            project_id="<your-project-id>",
+            defer=True)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -353,9 +353,9 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.MaintenanceWindow("test",
+            project_id="<your-project-id>",
             day_of_week=3,
-            hour_of_day=4,
-            project_id="<your-project-id>")
+            hour_of_day=4)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -365,8 +365,8 @@ class MaintenanceWindow(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.MaintenanceWindow("test",
-            defer=True,
-            project_id="<your-project-id>")
+            project_id="<your-project-id>",
+            defer=True)
         ```
         <!--End PulumiCodeChooser -->
 

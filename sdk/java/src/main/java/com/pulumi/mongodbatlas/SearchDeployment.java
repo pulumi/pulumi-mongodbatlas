@@ -26,6 +26,80 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * ### S
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Project;
+ * import com.pulumi.mongodbatlas.ProjectArgs;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.SearchDeployment;
+ * import com.pulumi.mongodbatlas.SearchDeploymentArgs;
+ * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var exampleProject = new Project(&#34;exampleProject&#34;, ProjectArgs.builder()        
+ *             .name(&#34;project-name&#34;)
+ *             .orgId(orgId)
+ *             .build());
+ * 
+ *         var exampleAdvancedCluster = new AdvancedCluster(&#34;exampleAdvancedCluster&#34;, AdvancedClusterArgs.builder()        
+ *             .projectId(exampleProject.id())
+ *             .name(&#34;ClusterExample&#34;)
+ *             .clusterType(&#34;REPLICASET&#34;)
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize(&#34;M10&#34;)
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .providerName(&#34;AWS&#34;)
+ *                     .priority(7)
+ *                     .regionName(&#34;US_EAST_1&#34;)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         var exampleSearchDeployment = new SearchDeployment(&#34;exampleSearchDeployment&#34;, SearchDeploymentArgs.builder()        
+ *             .projectId(exampleProject.id())
+ *             .clusterName(exampleAdvancedCluster.name())
+ *             .specs(SearchDeploymentSpecArgs.builder()
+ *                 .instance_size(&#34;S20_HIGHCPU_NVME&#34;)
+ *                 .node_count(2)
+ *                 .build())
+ *             .build());
+ * 
+ *         final var example = MongodbatlasFunctions.getSearchDeployment(GetSearchDeploymentArgs.builder()
+ *             .projectId(exampleSearchDeployment.projectId())
+ *             .clusterName(exampleSearchDeployment.clusterName())
+ *             .build());
+ * 
+ *         ctx.export(&#34;mongodbatlasSearchDeploymentId&#34;, example.applyValue(getSearchDeploymentResult -&gt; getSearchDeploymentResult).applyValue(example -&gt; example.applyValue(getSearchDeploymentResult -&gt; getSearchDeploymentResult.id())));
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  */
 @ResourceType(type="mongodbatlas:index/searchDeployment:SearchDeployment")
 public class SearchDeployment extends com.pulumi.resources.CustomResource {

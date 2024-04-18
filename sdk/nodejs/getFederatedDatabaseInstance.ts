@@ -23,8 +23,8 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getFederatedDatabaseInstance({
- *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  *     projectId: "PROJECT ID",
+ *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -37,13 +37,13 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getFederatedDatabaseInstance({
+ *     projectId: "PROJECT ID",
+ *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  *     cloudProviderConfig: {
  *         aws: {
  *             testS3Bucket: "Amazon S3 Bucket Name",
  *         },
  *     },
- *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
- *     projectId: "PROJECT ID",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -159,8 +159,8 @@ export interface GetFederatedDatabaseInstanceResult {
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getFederatedDatabaseInstance({
- *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  *     projectId: "PROJECT ID",
+ *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -173,13 +173,13 @@ export interface GetFederatedDatabaseInstanceResult {
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getFederatedDatabaseInstance({
+ *     projectId: "PROJECT ID",
+ *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  *     cloudProviderConfig: {
  *         aws: {
  *             testS3Bucket: "Amazon S3 Bucket Name",
  *         },
  *     },
- *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
- *     projectId: "PROJECT ID",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

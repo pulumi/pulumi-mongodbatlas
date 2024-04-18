@@ -46,12 +46,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test_basic_search_index = new SearchIndex(&#34;test-basic-search-index&#34;, SearchIndexArgs.builder()        
- *             .analyzer(&#34;lucene.standard&#34;)
+ *             .name(&#34;test-basic-search-index&#34;)
+ *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
  *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
+ *             .analyzer(&#34;lucene.standard&#34;)
  *             .collectionName(&#34;collection_test&#34;)
  *             .database(&#34;database_test&#34;)
  *             .mappingsDynamic(true)
- *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
  *             .searchAnalyzer(&#34;lucene.standard&#34;)
  *             .build());
  * 
@@ -167,6 +168,7 @@ import javax.annotation.Nullable;
  *       }
  * }
  *             &#34;&#34;&#34;)
+ *             .name(&#34;test-advanced-search-index&#34;)
  *             .searchAnalyzer(&#34;lucene.standard&#34;)
  *             .analyzers(&#34;&#34;&#34;
  *  [{

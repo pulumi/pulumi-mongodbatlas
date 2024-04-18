@@ -35,8 +35,8 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
-    ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProviderName = "AWS",
     ///         RegionName = "US_EAST_1",
     ///     });
@@ -58,8 +58,8 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
-    ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProviderName = "GCP",
     ///         Regions = new[]
     ///         {
@@ -85,8 +85,8 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
-    ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProviderName = "AZURE",
     ///         Region = "US_EAST_2",
     ///     });

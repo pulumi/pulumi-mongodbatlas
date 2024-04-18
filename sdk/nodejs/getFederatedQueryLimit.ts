@@ -19,9 +19,9 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getFederatedQueryLimit({
- *     limitName: "LIMIT_NAME",
  *     projectId: "PROJECT_ID",
  *     tenantName: "FEDERATED_DATABASE_INSTANCE_NAME",
+ *     limitName: "LIMIT_NAME",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -97,9 +97,9 @@ export interface GetFederatedQueryLimitResult {
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getFederatedQueryLimit({
- *     limitName: "LIMIT_NAME",
  *     projectId: "PROJECT_ID",
  *     tenantName: "FEDERATED_DATABASE_INSTANCE_NAME",
+ *     limitName: "LIMIT_NAME",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
