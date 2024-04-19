@@ -19,7 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### Using user_id attribute to query
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -35,10 +34,8 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### Using username attribute to query
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -54,7 +51,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAtlasUserResult> InvokeAsync(GetAtlasUserArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAtlasUserResult>("mongodbatlas:index/getAtlasUser:getAtlasUser", args ?? new GetAtlasUserArgs(), options.WithDefaults());
@@ -67,7 +63,6 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### Using user_id attribute to query
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -83,10 +78,8 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### Using username attribute to query
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -102,7 +95,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAtlasUserResult> Invoke(GetAtlasUserInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAtlasUserResult>("mongodbatlas:index/getAtlasUser:getAtlasUser", args ?? new GetAtlasUserInvokeArgs(), options.WithDefaults());

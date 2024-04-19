@@ -23,7 +23,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Basic Example (AWS).
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -51,7 +50,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetNetworkPeeringResult> InvokeAsync(GetNetworkPeeringArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworkPeeringResult>("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args ?? new GetNetworkPeeringArgs(), options.WithDefaults());
@@ -68,7 +66,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Basic Example (AWS).
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -96,7 +93,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetNetworkPeeringResult> Invoke(GetNetworkPeeringInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkPeeringResult>("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args ?? new GetNetworkPeeringInvokeArgs(), options.WithDefaults());

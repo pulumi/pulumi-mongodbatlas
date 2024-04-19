@@ -338,7 +338,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
 
         ### Export one snapshot
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -358,11 +357,9 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                 value="myName",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create backup and automatic snapshot export policies
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -405,7 +402,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                 retention_value=12,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -439,7 +435,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
 
         ### Export one snapshot
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -459,11 +454,9 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                 value="myName",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create backup and automatic snapshot export policies
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -506,7 +499,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                 retention_value=12,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -20,7 +20,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### S
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -47,7 +46,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetProjectInvitationResult> InvokeAsync(GetProjectInvitationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationArgs(), options.WithDefaults());
@@ -61,7 +59,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### S
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -88,7 +85,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetProjectInvitationResult> Invoke(GetProjectInvitationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationInvokeArgs(), options.WithDefaults());

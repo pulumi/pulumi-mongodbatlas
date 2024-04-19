@@ -19,7 +19,6 @@ import (
 //
 // ### S
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -51,7 +50,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupProjectInvitation(ctx *pulumi.Context, args *LookupProjectInvitationArgs, opts ...pulumi.InvokeOption) (*LookupProjectInvitationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectInvitationResult

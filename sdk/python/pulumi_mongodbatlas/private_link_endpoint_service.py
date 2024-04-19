@@ -425,7 +425,6 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         ## Example with AWS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -447,11 +446,9 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             endpoint_service_id=ptfe_service["id"],
             provider_name="AWS")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Example with Azure
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_azurerm as azurerm
@@ -479,11 +476,9 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             private_endpoint_ip_address=test_private_endpoint["privateServiceConnection"][0]["privateIpAddress"],
             provider_name="AZURE")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Example with GCP
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_google as google
@@ -538,7 +533,6 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             gcp_project_id=gcp_project,
             opts=pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Available complete examples
         - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
@@ -581,7 +575,6 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         ## Example with AWS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -603,11 +596,9 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             endpoint_service_id=ptfe_service["id"],
             provider_name="AWS")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Example with Azure
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_azurerm as azurerm
@@ -635,11 +626,9 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             private_endpoint_ip_address=test_private_endpoint["privateServiceConnection"][0]["privateIpAddress"],
             provider_name="AZURE")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Example with GCP
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_google as google
@@ -694,7 +683,6 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             gcp_project_id=gcp_project,
             opts=pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Available complete examples
         - Setup private connection to a MongoDB Atlas Cluster with AWS VPC

@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Using CIDR Block
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -30,10 +29,8 @@ import * as utilities from "./utilities";
  *     cidrBlock: testProjectIpAccessList.cidrBlock,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using IP Address
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -48,10 +45,8 @@ import * as utilities from "./utilities";
  *     ipAddress: testProjectIpAccessList.ipAddress,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using an AWS Security Group
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -83,7 +78,6 @@ import * as utilities from "./utilities";
  *     awsSecurityGroup: testProjectIpAccessList.awsSecurityGroup,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
  */
@@ -147,7 +141,6 @@ export interface GetProjectIpAccessListResult {
  * ## Example Usage
  *
  * ### Using CIDR Block
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -162,10 +155,8 @@ export interface GetProjectIpAccessListResult {
  *     cidrBlock: testProjectIpAccessList.cidrBlock,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using IP Address
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -180,10 +171,8 @@ export interface GetProjectIpAccessListResult {
  *     ipAddress: testProjectIpAccessList.ipAddress,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using an AWS Security Group
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -215,7 +204,6 @@ export interface GetProjectIpAccessListResult {
  *     awsSecurityGroup: testProjectIpAccessList.awsSecurityGroup,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
  */

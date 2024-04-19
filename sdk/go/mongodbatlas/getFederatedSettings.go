@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetFederatedSettings(ctx *pulumi.Context, args *GetFederatedSettingsArgs, opts ...pulumi.InvokeOption) (*GetFederatedSettingsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFederatedSettingsResult

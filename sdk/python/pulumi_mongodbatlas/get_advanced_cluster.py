@@ -303,7 +303,6 @@ def get_advanced_cluster(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -326,7 +325,6 @@ def get_advanced_cluster(name: Optional[str] = None,
     example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
         name=example_advanced_cluster.name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
@@ -381,7 +379,6 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -404,7 +401,6 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
     example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
         name=example_advanced_cluster.name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.

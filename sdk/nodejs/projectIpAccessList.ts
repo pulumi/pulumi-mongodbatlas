@@ -17,7 +17,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Using CIDR Block
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -28,10 +27,8 @@ import * as utilities from "./utilities";
  *     comment: "cidr block for tf acc testing",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using IP Address
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -42,10 +39,8 @@ import * as utilities from "./utilities";
  *     comment: "ip address for tf acc testing",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using an AWS Security Group
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -73,7 +68,6 @@ import * as utilities from "./utilities";
  *     dependsOn: [testNetworkPeering],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
  *

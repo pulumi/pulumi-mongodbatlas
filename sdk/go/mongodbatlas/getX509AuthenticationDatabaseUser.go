@@ -20,7 +20,6 @@ import (
 // ### S
 //
 // ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -66,7 +65,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupX509AuthenticationDatabaseUser(ctx *pulumi.Context, args *LookupX509AuthenticationDatabaseUserArgs, opts ...pulumi.InvokeOption) (*LookupX509AuthenticationDatabaseUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupX509AuthenticationDatabaseUserResult

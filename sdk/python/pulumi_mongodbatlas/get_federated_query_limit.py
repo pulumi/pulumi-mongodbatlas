@@ -144,7 +144,6 @@ def get_federated_query_limit(limit_name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -153,7 +152,6 @@ def get_federated_query_limit(limit_name: Optional[str] = None,
         tenant_name="FEDERATED_DATABASE_INSTANCE_NAME",
         limit_name="LIMIT_NAME")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
@@ -198,7 +196,6 @@ def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[str]] = N
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -207,7 +204,6 @@ def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[str]] = N
         tenant_name="FEDERATED_DATABASE_INSTANCE_NAME",
         limit_name="LIMIT_NAME")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:

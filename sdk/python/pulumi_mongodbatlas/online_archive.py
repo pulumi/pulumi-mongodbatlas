@@ -462,7 +462,6 @@ class OnlineArchive(pulumi.CustomResource):
         ## Example Usage
 
         ### S
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -499,11 +498,9 @@ class OnlineArchive(pulumi.CustomResource):
                 start_minute=1,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         For custom criteria example
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -528,7 +525,6 @@ class OnlineArchive(pulumi.CustomResource):
                 query="{ \\"department\\": \\"engineering\\" }",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -566,7 +562,6 @@ class OnlineArchive(pulumi.CustomResource):
         ## Example Usage
 
         ### S
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -603,11 +598,9 @@ class OnlineArchive(pulumi.CustomResource):
                 start_minute=1,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         For custom criteria example
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -632,7 +625,6 @@ class OnlineArchive(pulumi.CustomResource):
                 query="{ \\"department\\": \\"engineering\\" }",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

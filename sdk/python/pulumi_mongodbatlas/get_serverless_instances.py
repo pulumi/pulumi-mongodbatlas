@@ -78,14 +78,12 @@ def get_serverless_instances(project_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
     data_serverless = mongodbatlas.get_serverless_instances(project_id="<PROJECT_ID")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
@@ -114,14 +112,12 @@ def get_serverless_instances_output(project_id: Optional[pulumi.Input[str]] = No
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
     data_serverless = mongodbatlas.get_serverless_instances(project_id="<PROJECT_ID")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.

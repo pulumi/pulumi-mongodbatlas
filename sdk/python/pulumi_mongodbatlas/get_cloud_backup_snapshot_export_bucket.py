@@ -106,7 +106,6 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[str] = No
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -119,7 +118,6 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[str] = No
     test = mongodbatlas.get_cloud_backup_snapshot_export_bucket_output(project_id="{PROJECT_ID}",
         export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str export_bucket_id: Unique identifier of the snapshot export bucket.
@@ -153,7 +151,6 @@ def get_cloud_backup_snapshot_export_bucket_output(export_bucket_id: Optional[pu
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -166,7 +163,6 @@ def get_cloud_backup_snapshot_export_bucket_output(export_bucket_id: Optional[pu
     test = mongodbatlas.get_cloud_backup_snapshot_export_bucket_output(project_id="{PROJECT_ID}",
         export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str export_bucket_id: Unique identifier of the snapshot export bucket.

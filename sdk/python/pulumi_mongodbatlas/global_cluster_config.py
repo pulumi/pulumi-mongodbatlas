@@ -190,7 +190,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         ### Example Global cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -239,11 +238,9 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 zone="Zone 1",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Global cluster config
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -279,7 +276,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 zone="Zone 1",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -312,7 +308,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         ### Example Global cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -361,11 +356,9 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 zone="Zone 1",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Global cluster config
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -401,7 +394,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 zone="Zone 1",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

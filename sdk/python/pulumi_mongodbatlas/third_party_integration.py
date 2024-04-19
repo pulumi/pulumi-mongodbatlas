@@ -584,7 +584,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -595,7 +594,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             api_key="<API-KEY>",
             region="<REGION>")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -649,7 +647,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -660,7 +657,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             api_key="<API-KEY>",
             region="<REGION>")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

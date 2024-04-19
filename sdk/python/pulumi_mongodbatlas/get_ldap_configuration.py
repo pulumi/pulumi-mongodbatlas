@@ -171,7 +171,6 @@ def get_ldap_configuration(project_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -188,7 +187,6 @@ def get_ldap_configuration(project_id: Optional[str] = None,
         bind_password="PASSWORD")
     test = mongodbatlas.get_ldap_configuration_output(project_id=test_ldap_configuration.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
@@ -222,7 +220,6 @@ def get_ldap_configuration_output(project_id: Optional[pulumi.Input[str]] = None
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -239,7 +236,6 @@ def get_ldap_configuration_output(project_id: Optional[pulumi.Input[str]] = None
         bind_password="PASSWORD")
     test = mongodbatlas.get_ldap_configuration_output(project_id=test_ldap_configuration.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.

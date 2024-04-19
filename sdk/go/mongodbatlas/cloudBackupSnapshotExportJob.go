@@ -20,7 +20,6 @@ import (
 //
 // ### Export one snapshot
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -62,11 +61,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Create backup and automatic snapshot export policies
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -133,7 +130,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

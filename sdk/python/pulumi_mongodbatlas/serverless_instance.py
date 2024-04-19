@@ -426,7 +426,6 @@ class ServerlessInstance(pulumi.CustomResource):
         ## Example Usage
 
         ### Basic
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -438,7 +437,6 @@ class ServerlessInstance(pulumi.CustomResource):
             provider_settings_provider_name="SERVERLESS",
             provider_settings_region_name="US_EAST_1")
         ```
-        <!--End PulumiCodeChooser -->
 
         **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
         That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\
@@ -486,7 +484,6 @@ class ServerlessInstance(pulumi.CustomResource):
         ## Example Usage
 
         ### Basic
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -498,7 +495,6 @@ class ServerlessInstance(pulumi.CustomResource):
             provider_settings_provider_name="SERVERLESS",
             provider_settings_region_name="US_EAST_1")
         ```
-        <!--End PulumiCodeChooser -->
 
         **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
         That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\

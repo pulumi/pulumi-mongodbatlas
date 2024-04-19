@@ -208,7 +208,6 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -231,7 +230,6 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
         cluster_name="{CLUSTER_NAME}",
         export_job_id=test_cloud_backup_snapshot_export_job.export_job_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: Name of the Atlas cluster whose export job you want to retrieve.
@@ -277,7 +275,6 @@ def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.In
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -300,7 +297,6 @@ def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.In
         cluster_name="{CLUSTER_NAME}",
         export_job_id=test_cloud_backup_snapshot_export_job.export_job_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: Name of the Atlas cluster whose export job you want to retrieve.

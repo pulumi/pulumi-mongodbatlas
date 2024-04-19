@@ -307,7 +307,6 @@ def get_network_peering(peering_id: Optional[str] = None,
 
     ### Basic Example (AWS).
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -323,7 +322,6 @@ def get_network_peering(peering_id: Optional[str] = None,
     test = mongodbatlas.get_network_peering_output(project_id=test_network_peering.project_id,
         peering_id=test_network_peering.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str peering_id: Atlas assigned unique ID for the peering connection.
@@ -376,7 +374,6 @@ def get_network_peering_output(peering_id: Optional[pulumi.Input[str]] = None,
 
     ### Basic Example (AWS).
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -392,7 +389,6 @@ def get_network_peering_output(peering_id: Optional[pulumi.Input[str]] = None,
     test = mongodbatlas.get_network_peering_output(project_id=test_network_peering.project_id,
         peering_id=test_network_peering.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str peering_id: Atlas assigned unique ID for the peering connection.

@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ### Example AWS cluster
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -36,11 +35,9 @@ import * as utilities from "./utilities";
  *     providerInstanceSizeName: "M40",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Azure cluster.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -66,11 +63,9 @@ import * as utilities from "./utilities";
  *     providerInstanceSizeName: "M30",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example GCP cluster
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -95,11 +90,9 @@ import * as utilities from "./utilities";
  *     providerInstanceSizeName: "M30",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Multi Region cluster
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -137,11 +130,9 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Global cluster
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -178,9 +169,7 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * ### Example AWS Shared Tier (M2/M5) cluster
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -194,9 +183,7 @@ import * as utilities from "./utilities";
  *     providerInstanceSizeName: "M2",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * ### Example AWS Free Tier cluster
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -210,24 +197,19 @@ import * as utilities from "./utilities";
  *     providerInstanceSizeName: "M0",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * ### Example - Return a Connection String
  * Standard
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  *
  * export const standard = cluster_test.connectionStrings[0].standard;
  * ```
- * <!--End PulumiCodeChooser -->
  * Standard srv
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  *
  * export const standardSrv = cluster_test.connectionStrings[0].standardSrv;
  * ```
- * <!--End PulumiCodeChooser -->
  * Private with Network peering and Custom DNS AWS enabled
  * ## Import
  *

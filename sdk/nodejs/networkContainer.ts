@@ -19,7 +19,6 @@ import * as utilities from "./utilities";
  *
  * ### Example with AWS
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -31,11 +30,9 @@ import * as utilities from "./utilities";
  *     regionName: "US_EAST_1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example with GCP
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -50,11 +47,9 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example with Azure
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -66,7 +61,6 @@ import * as utilities from "./utilities";
  *     region: "US_EAST_2",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

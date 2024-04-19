@@ -23,7 +23,6 @@ import (
 // ## Example Usage
 //
 // ### S
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -76,11 +75,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // # For custom criteria example
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -121,7 +118,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

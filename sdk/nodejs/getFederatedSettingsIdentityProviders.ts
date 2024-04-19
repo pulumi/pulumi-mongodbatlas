@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -31,7 +30,6 @@ import * as utilities from "./utilities";
  *     itemsPerPage: 5,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedSettingsIdentityProviders(args: GetFederatedSettingsIdentityProvidersArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsIdentityProvidersResult> {
 
@@ -87,7 +85,6 @@ export interface GetFederatedSettingsIdentityProvidersResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -105,7 +102,6 @@ export interface GetFederatedSettingsIdentityProvidersResult {
  *     itemsPerPage: 5,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedSettingsIdentityProvidersOutput(args: GetFederatedSettingsIdentityProvidersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsIdentityProvidersResult> {
     return pulumi.output(args).apply((a: any) => getFederatedSettingsIdentityProviders(a, opts))

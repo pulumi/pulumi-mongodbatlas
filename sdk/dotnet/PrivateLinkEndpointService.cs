@@ -22,7 +22,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example with AWS
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -64,11 +63,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Example with Azure
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -114,11 +111,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Example with GCP
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -169,7 +164,7 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             DependsOn =
     ///             {
-    ///                 test, 
+    ///                 test,
     ///             },
     ///         }));
     ///     }
@@ -208,13 +203,12 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         DependsOn =
     ///         {
-    ///             defaultComputeForwardingRule, 
+    ///             defaultComputeForwardingRule,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Available complete examples
     /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC

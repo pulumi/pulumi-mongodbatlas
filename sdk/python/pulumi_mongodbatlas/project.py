@@ -502,7 +502,6 @@ class Project(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -542,7 +541,6 @@ class Project(pulumi.CustomResource):
             is_realtime_performance_panel_enabled=True,
             is_schema_advisor_enabled=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -580,7 +578,6 @@ class Project(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -620,7 +617,6 @@ class Project(pulumi.CustomResource):
             is_realtime_performance_panel_enabled=True,
             is_schema_advisor_enabled=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

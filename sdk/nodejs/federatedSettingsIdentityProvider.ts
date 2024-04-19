@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -29,7 +28,6 @@ import * as utilities from "./utilities";
  *     responseSignatureAlgorithm: "SHA-256",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

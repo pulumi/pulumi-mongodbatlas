@@ -197,7 +197,6 @@ class ClusterOutageSimulation(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -216,7 +215,6 @@ class ClusterOutageSimulation(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -254,7 +252,6 @@ class ClusterOutageSimulation(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -273,7 +270,6 @@ class ClusterOutageSimulation(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

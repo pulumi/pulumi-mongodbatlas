@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -92,7 +91,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getBackupCompliancePolicy(args: GetBackupCompliancePolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetBackupCompliancePolicyResult> {
 
@@ -170,7 +168,6 @@ export interface GetBackupCompliancePolicyResult {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -253,7 +250,6 @@ export interface GetBackupCompliancePolicyResult {
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getBackupCompliancePolicyOutput(args: GetBackupCompliancePolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackupCompliancePolicyResult> {
     return pulumi.output(args).apply((a: any) => getBackupCompliancePolicy(a, opts))

@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -49,7 +48,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetFederatedSettingsOrgConfigResult> InvokeAsync(GetFederatedSettingsOrgConfigArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsOrgConfigResult>("mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig", args ?? new GetFederatedSettingsOrgConfigArgs(), options.WithDefaults());
@@ -60,7 +58,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -92,7 +89,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetFederatedSettingsOrgConfigResult> Invoke(GetFederatedSettingsOrgConfigInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgConfigResult>("mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig", args ?? new GetFederatedSettingsOrgConfigInvokeArgs(), options.WithDefaults());

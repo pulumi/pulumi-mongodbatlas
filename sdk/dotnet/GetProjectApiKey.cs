@@ -15,7 +15,6 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### Using project_id and api_key_id attribute to query
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -48,7 +47,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetProjectApiKeyResult> InvokeAsync(GetProjectApiKeyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectApiKeyResult>("mongodbatlas:index/getProjectApiKey:getProjectApiKey", args ?? new GetProjectApiKeyArgs(), options.WithDefaults());
@@ -57,7 +55,6 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### Using project_id and api_key_id attribute to query
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -90,7 +87,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetProjectApiKeyResult> Invoke(GetProjectApiKeyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectApiKeyResult>("mongodbatlas:index/getProjectApiKey:getProjectApiKey", args ?? new GetProjectApiKeyInvokeArgs(), options.WithDefaults());

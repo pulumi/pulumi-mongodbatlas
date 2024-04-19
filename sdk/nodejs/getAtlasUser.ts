@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Using userId attribute to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -23,10 +22,8 @@ import * as utilities from "./utilities";
  *     userId: "<USER_ID>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using username attribute to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -35,7 +32,6 @@ import * as utilities from "./utilities";
  *     username: "<USERNAME>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAtlasUser(args?: GetAtlasUserArgs, opts?: pulumi.InvokeOptions): Promise<GetAtlasUserResult> {
     args = args || {};
@@ -121,7 +117,6 @@ export interface GetAtlasUserResult {
  * ## Example Usage
  *
  * ### Using userId attribute to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -130,10 +125,8 @@ export interface GetAtlasUserResult {
  *     userId: "<USER_ID>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using username attribute to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -142,7 +135,6 @@ export interface GetAtlasUserResult {
  *     username: "<USERNAME>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAtlasUserOutput(args?: GetAtlasUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAtlasUserResult> {
     return pulumi.output(args).apply((a: any) => getAtlasUser(a, opts))

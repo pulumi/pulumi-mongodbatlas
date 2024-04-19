@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -57,7 +56,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx *pulumi.Context, args *LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs, opts ...pulumi.InvokeOption) (*LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult

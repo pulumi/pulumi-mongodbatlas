@@ -24,7 +24,6 @@ import (
 //
 // ## Example with AWS
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,11 +73,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Example with Azure
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -132,7 +129,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

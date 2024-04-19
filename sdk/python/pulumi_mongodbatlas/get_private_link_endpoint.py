@@ -203,7 +203,6 @@ def get_private_link_endpoint(private_link_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -216,7 +215,6 @@ def get_private_link_endpoint(private_link_id: Optional[str] = None,
         private_link_id=test_private_link_endpoint.private_link_id,
         provider_name="AWS")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Available complete examples
     - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
@@ -262,7 +260,6 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[str]
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -275,7 +272,6 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[str]
         private_link_id=test_private_link_endpoint.private_link_id,
         provider_name="AWS")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Available complete examples
     - Setup private connection to a MongoDB Atlas Cluster with AWS VPC

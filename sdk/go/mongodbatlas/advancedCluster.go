@@ -35,7 +35,6 @@ import (
 //
 // ### Example single provider and single region
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -80,11 +79,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Tenant Cluster
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -125,11 +122,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Tenant Cluster Upgrade
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -169,10 +164,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Multi-Cloud Cluster
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -226,10 +219,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // ### Example of a Multi-Cloud Cluster
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -307,10 +298,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example of a Global Cluster
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -434,11 +423,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example - Return a Connection String
 // Standard
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -456,9 +443,7 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // Standard srv
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -476,7 +461,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // Private with Network peering and Custom DNS AWS enabled
 // ## Import
 //

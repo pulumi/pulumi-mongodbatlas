@@ -148,7 +148,6 @@ def get_ldap_verify(project_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -173,7 +172,6 @@ def get_ldap_verify(project_id: Optional[str] = None,
     test = mongodbatlas.get_ldap_verify_output(project_id=test_ldap_verify.project_id,
         request_id=test_ldap_verify.request_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Unique identifier for the Atlas project associated with the verification request.
@@ -208,7 +206,6 @@ def get_ldap_verify_output(project_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -233,7 +230,6 @@ def get_ldap_verify_output(project_id: Optional[pulumi.Input[str]] = None,
     test = mongodbatlas.get_ldap_verify_output(project_id=test_ldap_verify.project_id,
         request_id=test_ldap_verify.request_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Unique identifier for the Atlas project associated with the verification request.

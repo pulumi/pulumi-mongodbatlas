@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Using projectId and apiKeyId attribute to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -27,7 +26,6 @@ import * as utilities from "./utilities";
  *     apiKeyId: testMongodbatlasApiKey.apiKeyId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getProjectApiKey(args: GetProjectApiKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectApiKeyResult> {
 
@@ -83,7 +81,6 @@ export interface GetProjectApiKeyResult {
  * ## Example Usage
  *
  * ### Using projectId and apiKeyId attribute to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -100,7 +97,6 @@ export interface GetProjectApiKeyResult {
  *     apiKeyId: testMongodbatlasApiKey.apiKeyId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getProjectApiKeyOutput(args: GetProjectApiKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectApiKeyResult> {
     return pulumi.output(args).apply((a: any) => getProjectApiKey(a, opts))

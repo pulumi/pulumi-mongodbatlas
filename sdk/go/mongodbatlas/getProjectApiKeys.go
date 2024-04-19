@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupProjectApiKeys(ctx *pulumi.Context, args *LookupProjectApiKeysArgs, opts ...pulumi.InvokeOption) (*LookupProjectApiKeysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectApiKeysResult

@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -66,7 +65,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupCloudBackupSnapshotExportJobs(ctx *pulumi.Context, args *LookupCloudBackupSnapshotExportJobsArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotExportJobsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotExportJobsResult
