@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         DependsOn =
     ///         {
-    ///             testCluster, 
+    ///             testCluster,
     ///         },
     ///     });
     /// 

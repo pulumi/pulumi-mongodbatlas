@@ -55,7 +55,7 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         DependsOn =
         ///         {
-        ///             testCluster, 
+        ///             testCluster,
         ///         },
         ///     });
         /// 
@@ -116,7 +116,7 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         DependsOn =
         ///         {
-        ///             testCluster, 
+        ///             testCluster,
         ///         },
         ///     });
         /// 

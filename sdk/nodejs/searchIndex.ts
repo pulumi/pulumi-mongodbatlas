@@ -104,17 +104,17 @@ import * as utilities from "./utilities";
  *  "charFilters": [{
  * "type": "mapping",
  * "mappings": {"\\\\" : "/"}
- *    	}],
+ *    \x09}],
  *  "tokenizer": {
  *  "type": "nGram",
  *  "minGram": 2,
  *  "maxGram": 5
- * 	},
+ * \x09},
  *  "tokenFilters": [{
  * "type": "length",
  * "min": 20,
  * "max": 33
- *    	}]
+ *    \x09}]
  *  }]
  * `,
  *     synonyms: [{

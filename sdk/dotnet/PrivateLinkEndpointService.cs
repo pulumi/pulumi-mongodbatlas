@@ -169,7 +169,7 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             DependsOn =
     ///             {
-    ///                 test, 
+    ///                 test,
     ///             },
     ///         }));
     ///     }
@@ -208,7 +208,7 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         DependsOn =
     ///         {
-    ///             defaultComputeForwardingRule, 
+    ///             defaultComputeForwardingRule,
     ///         },
     ///     });
     /// 
