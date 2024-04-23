@@ -239,7 +239,6 @@ def get_cloud_backup_snapshot(cluster_name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -253,7 +252,6 @@ def get_cloud_backup_snapshot(cluster_name: Optional[str] = None,
         project_id=test_cloud_backup_snapshot.project_id,
         cluster_name=test_cloud_backup_snapshot.cluster_name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.
@@ -299,7 +297,6 @@ def get_cloud_backup_snapshot_output(cluster_name: Optional[pulumi.Input[str]] =
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -313,7 +310,6 @@ def get_cloud_backup_snapshot_output(cluster_name: Optional[pulumi.Input[str]] =
         project_id=test_cloud_backup_snapshot.project_id,
         cluster_name=test_cloud_backup_snapshot.cluster_name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.

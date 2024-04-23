@@ -24,14 +24,10 @@ func LookupAccessListApiKeys(ctx *pulumi.Context, args *LookupAccessListApiKeysA
 
 // A collection of arguments for invoking getAccessListApiKeys.
 type LookupAccessListApiKeysArgs struct {
-	// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-	// *
-	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` not both.
 	ApiKeyId string `pulumi:"apiKeyId"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-	ItemsPerPage *int `pulumi:"itemsPerPage"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-	OrgId string `pulumi:"orgId"`
+	ItemsPerPage *int   `pulumi:"itemsPerPage"`
+	OrgId        string `pulumi:"orgId"`
 	// The page to return. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
 }
@@ -62,14 +58,10 @@ func LookupAccessListApiKeysOutput(ctx *pulumi.Context, args LookupAccessListApi
 
 // A collection of arguments for invoking getAccessListApiKeys.
 type LookupAccessListApiKeysOutputArgs struct {
-	// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-	// *
-	// > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` not both.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-	OrgId pulumi.StringInput `pulumi:"orgId"`
+	OrgId        pulumi.StringInput `pulumi:"orgId"`
 	// The page to return. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
 }

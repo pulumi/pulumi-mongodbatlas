@@ -12,16 +12,8 @@ import java.util.Objects;
 @CustomType
 public final class GetAccessListApiKeysResult {
     private Integer accessCount;
-    /**
-     * @return Range of IP addresses in CIDR notation to be added to the access list.
-     * 
-     */
     private String cidrBlock;
     private String created;
-    /**
-     * @return Single IP address to be added to the access list.
-     * 
-     */
     private String ipAddress;
     private String lastUsed;
     private String lastUsedAddress;
@@ -30,20 +22,12 @@ public final class GetAccessListApiKeysResult {
     public Integer accessCount() {
         return this.accessCount;
     }
-    /**
-     * @return Range of IP addresses in CIDR notation to be added to the access list.
-     * 
-     */
     public String cidrBlock() {
         return this.cidrBlock;
     }
     public String created() {
         return this.created;
     }
-    /**
-     * @return Single IP address to be added to the access list.
-     * 
-     */
     public String ipAddress() {
         return this.ipAddress;
     }

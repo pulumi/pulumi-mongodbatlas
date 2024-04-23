@@ -193,24 +193,20 @@ def get_atlas_user(user_id: Optional[str] = None,
     ## Example Usage
 
     ### Using user_id attribute to query
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
     test = mongodbatlas.get_atlas_user(user_id="<USER_ID>")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Using username attribute to query
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
     test = mongodbatlas.get_atlas_user(username="<USERNAME>")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str user_id: Unique 24-hexadecimal digit string that identifies this user.
@@ -252,24 +248,20 @@ def get_atlas_user_output(user_id: Optional[pulumi.Input[Optional[str]]] = None,
     ## Example Usage
 
     ### Using user_id attribute to query
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
     test = mongodbatlas.get_atlas_user(user_id="<USER_ID>")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Using username attribute to query
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
     test = mongodbatlas.get_atlas_user(username="<USERNAME>")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str user_id: Unique 24-hexadecimal digit string that identifies this user.

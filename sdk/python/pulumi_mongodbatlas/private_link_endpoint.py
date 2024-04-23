@@ -326,7 +326,6 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -336,7 +335,6 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             provider_name="AWS/AZURE",
             region="US_EAST_1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Available complete examples
         - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
@@ -376,7 +374,6 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -386,7 +383,6 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             provider_name="AWS/AZURE",
             region="US_EAST_1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Available complete examples
         - Setup private connection to a MongoDB Atlas Cluster with AWS VPC

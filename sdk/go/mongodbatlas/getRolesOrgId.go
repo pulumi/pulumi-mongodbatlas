@@ -16,7 +16,6 @@ import (
 // ## Example Usage
 //
 // ### Using data source to query
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetRolesOrgId(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetRolesOrgIdResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRolesOrgIdResult

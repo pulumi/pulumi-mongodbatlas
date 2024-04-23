@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -66,7 +65,6 @@ import * as utilities from "./utilities";
  *     clusterName: configGlobalClusterConfig.clusterName,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getGlobalClusterConfig(args: GetGlobalClusterConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetGlobalClusterConfigResult> {
 
@@ -120,7 +118,6 @@ export interface GetGlobalClusterConfigResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -173,7 +170,6 @@ export interface GetGlobalClusterConfigResult {
  *     clusterName: configGlobalClusterConfig.clusterName,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getGlobalClusterConfigOutput(args: GetGlobalClusterConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGlobalClusterConfigResult> {
     return pulumi.output(args).apply((a: any) => getGlobalClusterConfig(a, opts))

@@ -16,51 +16,23 @@ public final class AlertConfigurationThresholdConfigArgs extends com.pulumi.reso
 
     public static final AlertConfigurationThresholdConfigArgs Empty = new AlertConfigurationThresholdConfigArgs();
 
-    /**
-     * The operator to test the field’s value.
-     * Accepted values are:
-     * 
-     */
     @Import(name="operator")
     private @Nullable Output<String> operator;
 
-    /**
-     * @return The operator to test the field’s value.
-     * Accepted values are:
-     * 
-     */
     public Optional<Output<String>> operator() {
         return Optional.ofNullable(this.operator);
     }
 
-    /**
-     * Threshold value outside of which an alert will be triggered.
-     * 
-     */
     @Import(name="threshold")
     private @Nullable Output<Double> threshold;
 
-    /**
-     * @return Threshold value outside of which an alert will be triggered.
-     * 
-     */
     public Optional<Output<Double>> threshold() {
         return Optional.ofNullable(this.threshold);
     }
 
-    /**
-     * The units for the threshold value. Depends on the type of metric.
-     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-     * 
-     */
     @Import(name="units")
     private @Nullable Output<String> units;
 
-    /**
-     * @return The units for the threshold value. Depends on the type of metric.
-     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-     * 
-     */
     public Optional<Output<String>> units() {
         return Optional.ofNullable(this.units);
     }
@@ -91,69 +63,29 @@ public final class AlertConfigurationThresholdConfigArgs extends com.pulumi.reso
             $ = new AlertConfigurationThresholdConfigArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param operator The operator to test the field’s value.
-         * Accepted values are:
-         * 
-         * @return builder
-         * 
-         */
         public Builder operator(@Nullable Output<String> operator) {
             $.operator = operator;
             return this;
         }
 
-        /**
-         * @param operator The operator to test the field’s value.
-         * Accepted values are:
-         * 
-         * @return builder
-         * 
-         */
         public Builder operator(String operator) {
             return operator(Output.of(operator));
         }
 
-        /**
-         * @param threshold Threshold value outside of which an alert will be triggered.
-         * 
-         * @return builder
-         * 
-         */
         public Builder threshold(@Nullable Output<Double> threshold) {
             $.threshold = threshold;
             return this;
         }
 
-        /**
-         * @param threshold Threshold value outside of which an alert will be triggered.
-         * 
-         * @return builder
-         * 
-         */
         public Builder threshold(Double threshold) {
             return threshold(Output.of(threshold));
         }
 
-        /**
-         * @param units The units for the threshold value. Depends on the type of metric.
-         * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-         * 
-         * @return builder
-         * 
-         */
         public Builder units(@Nullable Output<String> units) {
             $.units = units;
             return this;
         }
 
-        /**
-         * @param units The units for the threshold value. Depends on the type of metric.
-         * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-         * 
-         * @return builder
-         * 
-         */
         public Builder units(String units) {
             return units(Output.of(units));
         }

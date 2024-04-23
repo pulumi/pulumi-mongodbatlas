@@ -208,7 +208,6 @@ def get_network_container(container_id: Optional[str] = None,
 
     ### Basic Example.
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -221,7 +220,6 @@ def get_network_container(container_id: Optional[str] = None,
     test = mongodbatlas.get_network_container_output(project_id=test_network_container.project_id,
         container_id=test_network_container.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str container_id: The Network Peering Container ID.
@@ -265,7 +263,6 @@ def get_network_container_output(container_id: Optional[pulumi.Input[str]] = Non
 
     ### Basic Example.
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -278,7 +275,6 @@ def get_network_container_output(container_id: Optional[pulumi.Input[str]] = Non
     test = mongodbatlas.get_network_container_output(project_id=test_network_container.project_id,
         container_id=test_network_container.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str container_id: The Network Peering Container ID.

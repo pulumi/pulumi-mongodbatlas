@@ -16,7 +16,6 @@ import * as utilities from "./utilities";
  * ### S
  *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -45,7 +44,6 @@ import * as utilities from "./utilities";
  *     projectId: testX509AuthenticationDatabaseUser.projectId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getX509AuthenticationDatabaseUser(args: GetX509AuthenticationDatabaseUserArgs, opts?: pulumi.InvokeOptions): Promise<GetX509AuthenticationDatabaseUserResult> {
 
@@ -96,7 +94,6 @@ export interface GetX509AuthenticationDatabaseUserResult {
  * ### S
  *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -125,7 +122,6 @@ export interface GetX509AuthenticationDatabaseUserResult {
  *     projectId: testX509AuthenticationDatabaseUser.projectId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getX509AuthenticationDatabaseUserOutput(args: GetX509AuthenticationDatabaseUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetX509AuthenticationDatabaseUserResult> {
     return pulumi.output(args).apply((a: any) => getX509AuthenticationDatabaseUser(a, opts))

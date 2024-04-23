@@ -35,9 +35,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string? Provider;
         public readonly string? Public;
         public readonly Outputs.FederatedDatabaseInstanceStorageStoreReadPreference? ReadPreference;
-        /// <summary>
-        /// Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-        /// </summary>
         public readonly string? Region;
         public readonly ImmutableArray<string> Urls;
 

@@ -470,7 +470,6 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -546,7 +545,6 @@ class BackupCompliancePolicy(pulumi.CustomResource):
                 retention_value=12,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -577,7 +575,6 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -653,7 +650,6 @@ class BackupCompliancePolicy(pulumi.CustomResource):
                 retention_value=12,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

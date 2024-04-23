@@ -99,7 +99,6 @@ def get509_authentication_database_user(project_id: Optional[str] = None,
     ### S
 
     ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -125,7 +124,6 @@ def get509_authentication_database_user(project_id: Optional[str] = None,
     \"\"\")
     test = mongodbatlas.get_x509_authentication_database_user_output(project_id=test_x509_authentication_database_user.project_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Identifier for the Atlas project associated with the X.509 configuration.
@@ -160,7 +158,6 @@ def get509_authentication_database_user_output(project_id: Optional[pulumi.Input
     ### S
 
     ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -186,7 +183,6 @@ def get509_authentication_database_user_output(project_id: Optional[pulumi.Input
     \"\"\")
     test = mongodbatlas.get_x509_authentication_database_user_output(project_id=test_x509_authentication_database_user.project_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Identifier for the Atlas project associated with the X.509 configuration.

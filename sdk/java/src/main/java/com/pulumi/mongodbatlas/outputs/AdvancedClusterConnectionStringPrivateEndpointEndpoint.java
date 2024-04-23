@@ -12,11 +12,6 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AdvancedClusterConnectionStringPrivateEndpointEndpoint {
     private @Nullable String endpointId;
-    /**
-     * @return Cloud service provider on which the servers are provisioned.
-     * The possible values are:
-     * 
-     */
     private @Nullable String providerName;
     private @Nullable String region;
 
@@ -24,11 +19,6 @@ public final class AdvancedClusterConnectionStringPrivateEndpointEndpoint {
     public Optional<String> endpointId() {
         return Optional.ofNullable(this.endpointId);
     }
-    /**
-     * @return Cloud service provider on which the servers are provisioned.
-     * The possible values are:
-     * 
-     */
     public Optional<String> providerName() {
         return Optional.ofNullable(this.providerName);
     }

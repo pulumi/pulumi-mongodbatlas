@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
  *
  * ### Example with AWS
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -59,11 +58,9 @@ import * as utilities from "./utilities";
  *     autoAccept: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example with Azure
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -111,13 +108,11 @@ import * as utilities from "./utilities";
  *     dependsOn: [testNetworkPeering],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Peering Connection Only, Container Exists
  * You can create a peering connection if an appropriate container for your cloud provider already exists in your project (see the networkContainer resource for more information).  A container may already exist if you have already created a cluster in your project, if so you may obtain the `containerId` from the cluster resource as shown in the examples below.
  *
  * ### Example with AWS
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -166,11 +161,9 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example with Azure
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -208,7 +201,6 @@ import * as utilities from "./utilities";
  *     vnetName: AZURE_VNET_NAME,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -22,7 +22,6 @@ import (
 // ## Example Usage
 //
 // ### Using CIDR Block
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,10 +47,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Using IP Address
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -77,10 +74,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Using an AWS Security Group
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -129,7 +124,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
 //

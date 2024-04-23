@@ -178,7 +178,6 @@ def get_database_user(auth_database_name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -211,11 +210,9 @@ def get_database_user(auth_database_name: Optional[str] = None,
     test = mongodbatlas.get_database_user_output(project_id=test_database_user.project_id,
         username=test_database_user.username)
     ```
-    <!--End PulumiCodeChooser -->
 
     **Example of usage with a OIDC federated authentication user**
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -233,7 +230,6 @@ def get_database_user(auth_database_name: Optional[str] = None,
         project_id="6414908c207f4d22f4d8f232",
         auth_database_name="admin")
     ```
-    <!--End PulumiCodeChooser -->
     Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
 
@@ -277,7 +273,6 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[str]] = N
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -310,11 +305,9 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[str]] = N
     test = mongodbatlas.get_database_user_output(project_id=test_database_user.project_id,
         username=test_database_user.username)
     ```
-    <!--End PulumiCodeChooser -->
 
     **Example of usage with a OIDC federated authentication user**
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -332,7 +325,6 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[str]] = N
         project_id="6414908c207f4d22f4d8f232",
         auth_database_name="admin")
     ```
-    <!--End PulumiCodeChooser -->
     Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
 

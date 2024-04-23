@@ -174,7 +174,6 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -205,11 +204,9 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
     test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
         alert_configuration_id=test_alert_configuration.alert_configuration_id)
     ```
-    <!--End PulumiCodeChooser -->
 
     > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -242,10 +239,8 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
     test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
         alert_configuration_id=test_alert_configuration.alert_configuration_id)
     ```
-    <!--End PulumiCodeChooser -->
 
     Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -263,7 +258,6 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
             ),
         ])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str alert_configuration_id: Unique identifier for the alert configuration.
@@ -305,7 +299,6 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -336,11 +329,9 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
     test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
         alert_configuration_id=test_alert_configuration.alert_configuration_id)
     ```
-    <!--End PulumiCodeChooser -->
 
     > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -373,10 +364,8 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
     test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
         alert_configuration_id=test_alert_configuration.alert_configuration_id)
     ```
-    <!--End PulumiCodeChooser -->
 
     Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -394,7 +383,6 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
             ),
         ])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str alert_configuration_id: Unique identifier for the alert configuration.

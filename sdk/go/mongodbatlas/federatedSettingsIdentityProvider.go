@@ -19,7 +19,6 @@ import (
 //
 // > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,7 +52,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

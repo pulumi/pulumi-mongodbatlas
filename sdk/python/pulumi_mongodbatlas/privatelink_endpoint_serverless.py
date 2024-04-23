@@ -202,7 +202,6 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
         ## Example Usage
 
         ### AWS Example
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -219,7 +218,6 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
             instance_name=test_serverless_instance.name,
             provider_name="AWS")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -251,7 +249,6 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
         ## Example Usage
 
         ### AWS Example
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -268,7 +265,6 @@ class PrivatelinkEndpointServerless(pulumi.CustomResource):
             instance_name=test_serverless_instance.name,
             provider_name="AWS")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

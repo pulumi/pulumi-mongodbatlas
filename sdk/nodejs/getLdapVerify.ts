@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -44,7 +43,6 @@ import * as utilities from "./utilities";
  *     requestId: testLdapVerify.requestId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLdapVerify(args: GetLdapVerifyArgs, opts?: pulumi.InvokeOptions): Promise<GetLdapVerifyResult> {
 
@@ -114,7 +112,6 @@ export interface GetLdapVerifyResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -145,7 +142,6 @@ export interface GetLdapVerifyResult {
  *     requestId: testLdapVerify.requestId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLdapVerifyOutput(args: GetLdapVerifyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLdapVerifyResult> {
     return pulumi.output(args).apply((a: any) => getLdapVerify(a, opts))

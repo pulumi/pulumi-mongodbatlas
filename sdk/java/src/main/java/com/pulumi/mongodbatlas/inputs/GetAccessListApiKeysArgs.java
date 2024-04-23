@@ -17,21 +17,9 @@ public final class GetAccessListApiKeysArgs extends com.pulumi.resources.InvokeA
 
     public static final GetAccessListApiKeysArgs Empty = new GetAccessListApiKeysArgs();
 
-    /**
-     * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-     * *
-     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
-     * 
-     */
     @Import(name="apiKeyId", required=true)
     private Output<String> apiKeyId;
 
-    /**
-     * @return Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-     * *
-     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
-     * 
-     */
     public Output<String> apiKeyId() {
         return this.apiKeyId;
     }
@@ -51,17 +39,9 @@ public final class GetAccessListApiKeysArgs extends com.pulumi.resources.InvokeA
         return Optional.ofNullable(this.itemsPerPage);
     }
 
-    /**
-     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-     * 
-     */
     @Import(name="orgId", required=true)
     private Output<String> orgId;
 
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-     * 
-     */
     public Output<String> orgId() {
         return this.orgId;
     }
@@ -108,27 +88,11 @@ public final class GetAccessListApiKeysArgs extends com.pulumi.resources.InvokeA
             $ = new GetAccessListApiKeysArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param apiKeyId Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-         * *
-         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
-         * 
-         * @return builder
-         * 
-         */
         public Builder apiKeyId(Output<String> apiKeyId) {
             $.apiKeyId = apiKeyId;
             return this;
         }
 
-        /**
-         * @param apiKeyId Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-         * *
-         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
-         * 
-         * @return builder
-         * 
-         */
         public Builder apiKeyId(String apiKeyId) {
             return apiKeyId(Output.of(apiKeyId));
         }
@@ -154,23 +118,11 @@ public final class GetAccessListApiKeysArgs extends com.pulumi.resources.InvokeA
             return itemsPerPage(Output.of(itemsPerPage));
         }
 
-        /**
-         * @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-         * 
-         * @return builder
-         * 
-         */
         public Builder orgId(Output<String> orgId) {
             $.orgId = orgId;
             return this;
         }
 
-        /**
-         * @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-         * 
-         * @return builder
-         * 
-         */
         public Builder orgId(String orgId) {
             return orgId(Output.of(orgId));
         }

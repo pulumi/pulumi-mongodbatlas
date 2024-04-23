@@ -50,17 +50,9 @@ public final class GetOrganizationsPlainArgs extends com.pulumi.resources.Invoke
         return Optional.ofNullable(this.itemsPerPage);
     }
 
-    /**
-     * Human-readable label that identifies the organization.
-     * 
-     */
     @Import(name="name")
     private @Nullable String name;
 
-    /**
-     * @return Human-readable label that identifies the organization.
-     * 
-     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
@@ -131,12 +123,6 @@ public final class GetOrganizationsPlainArgs extends com.pulumi.resources.Invoke
             return this;
         }
 
-        /**
-         * @param name Human-readable label that identifies the organization.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(@Nullable String name) {
             $.name = name;
             return this;

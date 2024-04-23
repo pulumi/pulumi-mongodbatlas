@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -21,7 +20,6 @@ import * as utilities from "./utilities";
  *     itemsPerPage: 5,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOrganizations(args?: GetOrganizationsArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationsResult> {
     args = args || {};
@@ -47,9 +45,6 @@ export interface GetOrganizationsArgs {
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
     itemsPerPage?: number;
-    /**
-     * Human-readable label that identifies the organization.
-     */
     name?: string;
     /**
      * The page to return. Defaults to `1`.
@@ -80,7 +75,6 @@ export interface GetOrganizationsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -90,7 +84,6 @@ export interface GetOrganizationsResult {
  *     itemsPerPage: 5,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOrganizationsOutput(args?: GetOrganizationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationsResult> {
     return pulumi.output(args).apply((a: any) => getOrganizations(a, opts))
@@ -108,9 +101,6 @@ export interface GetOrganizationsOutputArgs {
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
     itemsPerPage?: pulumi.Input<number>;
-    /**
-     * Human-readable label that identifies the organization.
-     */
     name?: pulumi.Input<string>;
     /**
      * The page to return. Defaults to `1`.

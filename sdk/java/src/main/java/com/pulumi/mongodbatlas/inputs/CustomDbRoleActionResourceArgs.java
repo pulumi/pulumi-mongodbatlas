@@ -30,21 +30,9 @@ public final class CustomDbRoleActionResourceArgs extends com.pulumi.resources.R
         return Optional.ofNullable(this.collectionName);
     }
 
-    /**
-     * Database on which the inherited role is granted.
-     * 
-     * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
-     * 
-     */
     @Import(name="databaseName")
     private @Nullable Output<String> databaseName;
 
-    /**
-     * @return Database on which the inherited role is granted.
-     * 
-     * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
-     * 
-     */
     public Optional<Output<String>> databaseName() {
         return Optional.ofNullable(this.databaseName);
     }
@@ -93,27 +81,11 @@ public final class CustomDbRoleActionResourceArgs extends com.pulumi.resources.R
             return collectionName(Output.of(collectionName));
         }
 
-        /**
-         * @param databaseName Database on which the inherited role is granted.
-         * 
-         * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
-         * 
-         * @return builder
-         * 
-         */
         public Builder databaseName(@Nullable Output<String> databaseName) {
             $.databaseName = databaseName;
             return this;
         }
 
-        /**
-         * @param databaseName Database on which the inherited role is granted.
-         * 
-         * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
-         * 
-         * @return builder
-         * 
-         */
         public Builder databaseName(String databaseName) {
             return databaseName(Output.of(databaseName));
         }

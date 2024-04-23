@@ -99,7 +99,6 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -148,7 +147,6 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
     config = mongodbatlas.get_global_cluster_config_output(project_id=config_global_cluster_config.project_id,
         cluster_name=config_global_cluster_config.cluster_name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
@@ -182,7 +180,6 @@ def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[str]] =
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -231,7 +228,6 @@ def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[str]] =
     config = mongodbatlas.get_global_cluster_config_output(project_id=config_global_cluster_config.project_id,
         cluster_name=config_global_cluster_config.cluster_name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.

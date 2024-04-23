@@ -15,7 +15,6 @@ import (
 // ## Example Usage
 //
 // ### Using CIDR Block
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,10 +40,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Using IP Address
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -70,7 +67,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

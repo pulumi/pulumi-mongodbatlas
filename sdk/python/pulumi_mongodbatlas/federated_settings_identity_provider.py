@@ -574,7 +574,6 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
 
         > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -590,7 +589,6 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             request_binding="HTTP-POST",
             response_signature_algorithm="SHA-256")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -637,7 +635,6 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
 
         > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -653,7 +650,6 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             request_binding="HTTP-POST",
             response_signature_algorithm="SHA-256")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

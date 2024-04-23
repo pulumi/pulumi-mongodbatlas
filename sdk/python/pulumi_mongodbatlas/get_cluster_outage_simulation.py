@@ -119,7 +119,6 @@ def get_cluster_outage_simulation(cluster_name: Optional[str] = None,
 
     ### S
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -127,7 +126,6 @@ def get_cluster_outage_simulation(cluster_name: Optional[str] = None,
     outage_simulation = mongodbatlas.get_cluster_outage_simulation(project_id="64707f06c519c20c3a2b1b03",
         cluster_name="Cluster0")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: Name of the Atlas Cluster that is undergoing outage simulation.
@@ -158,7 +156,6 @@ def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[str
 
     ### S
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -166,7 +163,6 @@ def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[str
     outage_simulation = mongodbatlas.get_cluster_outage_simulation(project_id="64707f06c519c20c3a2b1b03",
         cluster_name="Cluster0")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: Name of the Atlas Cluster that is undergoing outage simulation.

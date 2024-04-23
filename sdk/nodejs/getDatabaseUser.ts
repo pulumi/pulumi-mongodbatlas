@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -51,11 +50,9 @@ import * as utilities from "./utilities";
  *     username: testDatabaseUser.username,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * **Example of usage with a OIDC federated authentication user**
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -76,7 +73,6 @@ import * as utilities from "./utilities";
  *     authDatabaseName: "admin",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  */
 export function getDatabaseUser(args: GetDatabaseUserArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseUserResult> {
@@ -157,7 +153,6 @@ export interface GetDatabaseUserResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -193,11 +188,9 @@ export interface GetDatabaseUserResult {
  *     username: testDatabaseUser.username,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * **Example of usage with a OIDC federated authentication user**
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -218,7 +211,6 @@ export interface GetDatabaseUserResult {
  *     authDatabaseName: "admin",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  */
 export function getDatabaseUserOutput(args: GetDatabaseUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseUserResult> {

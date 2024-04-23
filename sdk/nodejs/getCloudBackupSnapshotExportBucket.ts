@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -27,7 +26,6 @@ import * as utilities from "./utilities";
  *     exportBucketId: testCloudBackupSnapshotExportBucket.exportBucketId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupSnapshotExportBucket(args: GetCloudBackupSnapshotExportBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotExportBucketResult> {
 
@@ -81,7 +79,6 @@ export interface GetCloudBackupSnapshotExportBucketResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -97,7 +94,6 @@ export interface GetCloudBackupSnapshotExportBucketResult {
  *     exportBucketId: testCloudBackupSnapshotExportBucket.exportBucketId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupSnapshotExportBucketOutput(args: GetCloudBackupSnapshotExportBucketOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportBucketResult> {
     return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotExportBucket(a, opts))

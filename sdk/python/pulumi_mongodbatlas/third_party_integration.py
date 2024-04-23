@@ -41,18 +41,6 @@ class ThirdPartyIntegrationArgs:
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
-        :param pulumi.Input[str] api_key: Your API Key.
-        :param pulumi.Input[bool] enabled: Whether your cluster has Prometheus enabled.
-        :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
-        :param pulumi.Input[str] password: Your Prometheus password.
-        :param pulumi.Input[str] region: Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-        :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
-        :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
-        :param pulumi.Input[str] secret: An optional field for your webhook secret.
-        :param pulumi.Input[str] service_discovery: Indicates which service discovery method is used, either file or http.
-        :param pulumi.Input[str] service_key: Your Service Key.
-        :param pulumi.Input[str] url: Your webhook URL.
-        :param pulumi.Input[str] user_name: Your Prometheus username.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "type", type)
@@ -119,9 +107,6 @@ class ThirdPartyIntegrationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your API Key.
-        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -140,9 +125,6 @@ class ThirdPartyIntegrationArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Whether your cluster has Prometheus enabled.
-        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -152,9 +134,6 @@ class ThirdPartyIntegrationArgs:
     @property
     @pulumi.getter(name="microsoftTeamsWebhookUrl")
     def microsoft_teams_webhook_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your Microsoft Teams incoming webhook URL.
-        """
         return pulumi.get(self, "microsoft_teams_webhook_url")
 
     @microsoft_teams_webhook_url.setter
@@ -164,9 +143,6 @@ class ThirdPartyIntegrationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your Prometheus password.
-        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -176,9 +152,6 @@ class ThirdPartyIntegrationArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
-        """
-        Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -188,9 +161,6 @@ class ThirdPartyIntegrationArgs:
     @property
     @pulumi.getter(name="routingKey")
     def routing_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        An optional field for your Routing Key.
-        """
         return pulumi.get(self, "routing_key")
 
     @routing_key.setter
@@ -200,9 +170,6 @@ class ThirdPartyIntegrationArgs:
     @property
     @pulumi.getter
     def scheme(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your Prometheus protocol scheme configured for requests.
-        """
         return pulumi.get(self, "scheme")
 
     @scheme.setter
@@ -212,9 +179,6 @@ class ThirdPartyIntegrationArgs:
     @property
     @pulumi.getter
     def secret(self) -> Optional[pulumi.Input[str]]:
-        """
-        An optional field for your webhook secret.
-        """
         return pulumi.get(self, "secret")
 
     @secret.setter
@@ -224,9 +188,6 @@ class ThirdPartyIntegrationArgs:
     @property
     @pulumi.getter(name="serviceDiscovery")
     def service_discovery(self) -> Optional[pulumi.Input[str]]:
-        """
-        Indicates which service discovery method is used, either file or http.
-        """
         return pulumi.get(self, "service_discovery")
 
     @service_discovery.setter
@@ -236,9 +197,6 @@ class ThirdPartyIntegrationArgs:
     @property
     @pulumi.getter(name="serviceKey")
     def service_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your Service Key.
-        """
         return pulumi.get(self, "service_key")
 
     @service_key.setter
@@ -257,9 +215,6 @@ class ThirdPartyIntegrationArgs:
     @property
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your webhook URL.
-        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -269,9 +224,6 @@ class ThirdPartyIntegrationArgs:
     @property
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your Prometheus username.
-        """
         return pulumi.get(self, "user_name")
 
     @user_name.setter
@@ -300,17 +252,7 @@ class _ThirdPartyIntegrationState:
                  user_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ThirdPartyIntegration resources.
-        :param pulumi.Input[str] api_key: Your API Key.
-        :param pulumi.Input[bool] enabled: Whether your cluster has Prometheus enabled.
-        :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
-        :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] region: Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-        :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
-        :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
-        :param pulumi.Input[str] secret: An optional field for your webhook secret.
-        :param pulumi.Input[str] service_discovery: Indicates which service discovery method is used, either file or http.
-        :param pulumi.Input[str] service_key: Your Service Key.
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
@@ -319,8 +261,6 @@ class _ThirdPartyIntegrationState:
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
-        :param pulumi.Input[str] url: Your webhook URL.
-        :param pulumi.Input[str] user_name: Your Prometheus username.
         """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
@@ -358,9 +298,6 @@ class _ThirdPartyIntegrationState:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your API Key.
-        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -379,9 +316,6 @@ class _ThirdPartyIntegrationState:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Whether your cluster has Prometheus enabled.
-        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -391,9 +325,6 @@ class _ThirdPartyIntegrationState:
     @property
     @pulumi.getter(name="microsoftTeamsWebhookUrl")
     def microsoft_teams_webhook_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your Microsoft Teams incoming webhook URL.
-        """
         return pulumi.get(self, "microsoft_teams_webhook_url")
 
     @microsoft_teams_webhook_url.setter
@@ -403,9 +334,6 @@ class _ThirdPartyIntegrationState:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your Prometheus password.
-        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -427,9 +355,6 @@ class _ThirdPartyIntegrationState:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
-        """
-        Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -439,9 +364,6 @@ class _ThirdPartyIntegrationState:
     @property
     @pulumi.getter(name="routingKey")
     def routing_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        An optional field for your Routing Key.
-        """
         return pulumi.get(self, "routing_key")
 
     @routing_key.setter
@@ -451,9 +373,6 @@ class _ThirdPartyIntegrationState:
     @property
     @pulumi.getter
     def scheme(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your Prometheus protocol scheme configured for requests.
-        """
         return pulumi.get(self, "scheme")
 
     @scheme.setter
@@ -463,9 +382,6 @@ class _ThirdPartyIntegrationState:
     @property
     @pulumi.getter
     def secret(self) -> Optional[pulumi.Input[str]]:
-        """
-        An optional field for your webhook secret.
-        """
         return pulumi.get(self, "secret")
 
     @secret.setter
@@ -475,9 +391,6 @@ class _ThirdPartyIntegrationState:
     @property
     @pulumi.getter(name="serviceDiscovery")
     def service_discovery(self) -> Optional[pulumi.Input[str]]:
-        """
-        Indicates which service discovery method is used, either file or http.
-        """
         return pulumi.get(self, "service_discovery")
 
     @service_discovery.setter
@@ -487,9 +400,6 @@ class _ThirdPartyIntegrationState:
     @property
     @pulumi.getter(name="serviceKey")
     def service_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your Service Key.
-        """
         return pulumi.get(self, "service_key")
 
     @service_key.setter
@@ -527,9 +437,6 @@ class _ThirdPartyIntegrationState:
     @property
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your webhook URL.
-        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -539,9 +446,6 @@ class _ThirdPartyIntegrationState:
     @property
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Your Prometheus username.
-        """
         return pulumi.get(self, "user_name")
 
     @user_name.setter
@@ -584,7 +488,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -595,7 +498,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             api_key="<API-KEY>",
             region="<REGION>")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -608,17 +510,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] api_key: Your API Key.
-        :param pulumi.Input[bool] enabled: Whether your cluster has Prometheus enabled.
-        :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
-        :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] region: Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-        :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
-        :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
-        :param pulumi.Input[str] secret: An optional field for your webhook secret.
-        :param pulumi.Input[str] service_discovery: Indicates which service discovery method is used, either file or http.
-        :param pulumi.Input[str] service_key: Your Service Key.
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
@@ -627,8 +519,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
-        :param pulumi.Input[str] url: Your webhook URL.
-        :param pulumi.Input[str] user_name: Your Prometheus username.
         """
         ...
     @overload
@@ -649,7 +539,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -660,7 +549,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             api_key="<API-KEY>",
             region="<REGION>")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -766,17 +654,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] api_key: Your API Key.
-        :param pulumi.Input[bool] enabled: Whether your cluster has Prometheus enabled.
-        :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
-        :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
-        :param pulumi.Input[str] region: Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-        :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
-        :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
-        :param pulumi.Input[str] secret: An optional field for your webhook secret.
-        :param pulumi.Input[str] service_discovery: Indicates which service discovery method is used, either file or http.
-        :param pulumi.Input[str] service_key: Your Service Key.
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
@@ -785,8 +663,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
-        :param pulumi.Input[str] url: Your webhook URL.
-        :param pulumi.Input[str] user_name: Your Prometheus username.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -813,9 +689,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[str]:
-        """
-        Your API Key.
-        """
         return pulumi.get(self, "api_key")
 
     @property
@@ -826,25 +699,16 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Output[bool]:
-        """
-        Whether your cluster has Prometheus enabled.
-        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="microsoftTeamsWebhookUrl")
     def microsoft_teams_webhook_url(self) -> pulumi.Output[str]:
-        """
-        Your Microsoft Teams incoming webhook URL.
-        """
         return pulumi.get(self, "microsoft_teams_webhook_url")
 
     @property
     @pulumi.getter
     def password(self) -> pulumi.Output[str]:
-        """
-        Your Prometheus password.
-        """
         return pulumi.get(self, "password")
 
     @property
@@ -858,49 +722,31 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @property
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
-        """
-        Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="routingKey")
     def routing_key(self) -> pulumi.Output[str]:
-        """
-        An optional field for your Routing Key.
-        """
         return pulumi.get(self, "routing_key")
 
     @property
     @pulumi.getter
     def scheme(self) -> pulumi.Output[str]:
-        """
-        Your Prometheus protocol scheme configured for requests.
-        """
         return pulumi.get(self, "scheme")
 
     @property
     @pulumi.getter
     def secret(self) -> pulumi.Output[Optional[str]]:
-        """
-        An optional field for your webhook secret.
-        """
         return pulumi.get(self, "secret")
 
     @property
     @pulumi.getter(name="serviceDiscovery")
     def service_discovery(self) -> pulumi.Output[str]:
-        """
-        Indicates which service discovery method is used, either file or http.
-        """
         return pulumi.get(self, "service_discovery")
 
     @property
     @pulumi.getter(name="serviceKey")
     def service_key(self) -> pulumi.Output[str]:
-        """
-        Your Service Key.
-        """
         return pulumi.get(self, "service_key")
 
     @property
@@ -926,16 +772,10 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @property
     @pulumi.getter
     def url(self) -> pulumi.Output[str]:
-        """
-        Your webhook URL.
-        """
         return pulumi.get(self, "url")
 
     @property
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Output[str]:
-        """
-        Your Prometheus username.
-        """
         return pulumi.get(self, "user_name")
 

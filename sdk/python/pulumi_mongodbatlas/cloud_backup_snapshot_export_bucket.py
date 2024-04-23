@@ -184,7 +184,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -195,7 +194,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             bucket_name="example-bucket",
             cloud_provider="AWS")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -226,7 +224,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -237,7 +234,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             bucket_name="example-bucket",
             cloud_provider="AWS")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

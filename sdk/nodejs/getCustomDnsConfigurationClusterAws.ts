@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -24,7 +23,6 @@ import * as utilities from "./utilities";
  *     projectId: testCustomDnsConfigurationClusterAws.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCustomDnsConfigurationClusterAws(args: GetCustomDnsConfigurationClusterAwsArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDnsConfigurationClusterAwsResult> {
 
@@ -65,7 +63,6 @@ export interface GetCustomDnsConfigurationClusterAwsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -78,7 +75,6 @@ export interface GetCustomDnsConfigurationClusterAwsResult {
  *     projectId: testCustomDnsConfigurationClusterAws.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCustomDnsConfigurationClusterAwsOutput(args: GetCustomDnsConfigurationClusterAwsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDnsConfigurationClusterAwsResult> {
     return pulumi.output(args).apply((a: any) => getCustomDnsConfigurationClusterAws(a, opts))

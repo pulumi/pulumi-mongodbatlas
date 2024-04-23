@@ -13,25 +13,10 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class CloudBackupScheduleCopySetting
     {
-        /// <summary>
-        /// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
-        /// </summary>
         public readonly string? CloudProvider;
-        /// <summary>
-        /// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
-        /// </summary>
         public readonly ImmutableArray<string> Frequencies;
-        /// <summary>
-        /// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        /// </summary>
         public readonly string? RegionName;
-        /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
-        /// </summary>
         public readonly string? ReplicationSpecId;
-        /// <summary>
-        /// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
-        /// </summary>
         public readonly bool? ShouldCopyOplogs;
 
         [OutputConstructor]

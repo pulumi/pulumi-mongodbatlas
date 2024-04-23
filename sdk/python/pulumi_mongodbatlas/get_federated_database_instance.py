@@ -185,7 +185,6 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
 
     ### S With MongoDB Atlas Cluster As Storage Database
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -193,11 +192,9 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
     test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
         name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### S With Amazon S3 Bucket As Storage Database
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -210,7 +207,6 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
             ),
         ))
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the Atlas Federated Database Instance.
@@ -251,7 +247,6 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
 
     ### S With MongoDB Atlas Cluster As Storage Database
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -259,11 +254,9 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
     test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
         name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### S With Amazon S3 Bucket As Storage Database
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -276,7 +269,6 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
             ),
         ))
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the Atlas Federated Database Instance.

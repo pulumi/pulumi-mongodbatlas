@@ -304,7 +304,6 @@ class FederatedQueryLimit(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -316,7 +315,6 @@ class FederatedQueryLimit(pulumi.CustomResource):
             overrun_policy="BLOCK",
             value=5147483648)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -356,7 +354,6 @@ class FederatedQueryLimit(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -368,7 +365,6 @@ class FederatedQueryLimit(pulumi.CustomResource):
             overrun_policy="BLOCK",
             value=5147483648)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

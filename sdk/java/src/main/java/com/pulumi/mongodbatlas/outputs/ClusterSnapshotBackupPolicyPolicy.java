@@ -13,18 +13,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ClusterSnapshotBackupPolicyPolicy {
-    /**
-     * @return Unique identifer of the replication document for a zone in a Global Cluster.
-     * 
-     */
     private @Nullable String id;
     private @Nullable List<ClusterSnapshotBackupPolicyPolicyPolicyItem> policyItems;
 
     private ClusterSnapshotBackupPolicyPolicy() {}
-    /**
-     * @return Unique identifer of the replication document for a zone in a Global Cluster.
-     * 
-     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }

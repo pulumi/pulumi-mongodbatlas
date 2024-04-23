@@ -390,7 +390,6 @@ class DatabaseUser(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -425,9 +424,7 @@ class DatabaseUser(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -450,9 +447,7 @@ class DatabaseUser(pulumi.CustomResource):
                 type="CLUSTER",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -475,11 +470,9 @@ class DatabaseUser(pulumi.CustomResource):
                 type="CLUSTER",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Example of how to create a OIDC federated authentication user
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -494,7 +487,6 @@ class DatabaseUser(pulumi.CustomResource):
                 database_name="admin",
             )])
         ```
-        <!--End PulumiCodeChooser -->
         `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
 
         Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
@@ -541,7 +533,6 @@ class DatabaseUser(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -576,9 +567,7 @@ class DatabaseUser(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -601,9 +590,7 @@ class DatabaseUser(pulumi.CustomResource):
                 type="CLUSTER",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -626,11 +613,9 @@ class DatabaseUser(pulumi.CustomResource):
                 type="CLUSTER",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Example of how to create a OIDC federated authentication user
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -645,7 +630,6 @@ class DatabaseUser(pulumi.CustomResource):
                 database_name="admin",
             )])
         ```
-        <!--End PulumiCodeChooser -->
         `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
 
         Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).

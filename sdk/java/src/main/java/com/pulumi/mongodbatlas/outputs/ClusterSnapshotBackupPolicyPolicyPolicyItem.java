@@ -14,10 +14,6 @@ import javax.annotation.Nullable;
 public final class ClusterSnapshotBackupPolicyPolicyPolicyItem {
     private @Nullable Integer frequencyInterval;
     private @Nullable String frequencyType;
-    /**
-     * @return Unique identifer of the replication document for a zone in a Global Cluster.
-     * 
-     */
     private @Nullable String id;
     private @Nullable String retentionUnit;
     private @Nullable Integer retentionValue;
@@ -29,10 +25,6 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItem {
     public Optional<String> frequencyType() {
         return Optional.ofNullable(this.frequencyType);
     }
-    /**
-     * @return Unique identifer of the replication document for a zone in a Global Cluster.
-     * 
-     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }

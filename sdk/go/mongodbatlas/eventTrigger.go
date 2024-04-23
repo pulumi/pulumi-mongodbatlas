@@ -21,7 +21,6 @@ import (
 // ### S
 //
 // ### Example Usage: Database Trigger with Function
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,10 +73,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Usage: Database Trigger with EventBridge
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -128,10 +125,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Usage: Authentication Trigger
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -164,10 +159,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Usage: Scheduled Trigger
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -197,7 +190,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

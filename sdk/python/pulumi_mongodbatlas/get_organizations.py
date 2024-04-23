@@ -112,7 +112,6 @@ def get_organizations(include_deleted_orgs: Optional[bool] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -120,11 +119,9 @@ def get_organizations(include_deleted_orgs: Optional[bool] = None,
     test = mongodbatlas.get_organizations(page_num=1,
         items_per_page=5)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-    :param str name: Human-readable label that identifies the organization.
     :param int page_num: The page to return. Defaults to `1`.
     """
     __args__ = dict()
@@ -156,7 +153,6 @@ def get_organizations_output(include_deleted_orgs: Optional[pulumi.Input[Optiona
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -164,11 +160,9 @@ def get_organizations_output(include_deleted_orgs: Optional[pulumi.Input[Optiona
     test = mongodbatlas.get_organizations(page_num=1,
         items_per_page=5)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-    :param str name: Human-readable label that identifies the organization.
     :param int page_num: The page to return. Defaults to `1`.
     """
     ...

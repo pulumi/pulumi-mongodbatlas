@@ -16,7 +16,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -25,7 +24,6 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT_ID",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getServerlessInstances(args: GetServerlessInstancesArgs, opts?: pulumi.InvokeOptions): Promise<GetServerlessInstancesResult> {
 
@@ -69,7 +67,6 @@ export interface GetServerlessInstancesResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -78,7 +75,6 @@ export interface GetServerlessInstancesResult {
  *     projectId: "<PROJECT_ID",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getServerlessInstancesOutput(args: GetServerlessInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServerlessInstancesResult> {
     return pulumi.output(args).apply((a: any) => getServerlessInstances(a, opts))

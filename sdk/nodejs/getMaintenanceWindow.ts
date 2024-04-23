@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Examples Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -26,9 +25,7 @@ import * as utilities from "./utilities";
  *     projectId: testMaintenanceWindow.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -41,7 +38,6 @@ import * as utilities from "./utilities";
  *     projectId: testMaintenanceWindow.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getMaintenanceWindow(args: GetMaintenanceWindowArgs, opts?: pulumi.InvokeOptions): Promise<GetMaintenanceWindowResult> {
 
@@ -99,7 +95,6 @@ export interface GetMaintenanceWindowResult {
  *
  * ## Examples Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -114,9 +109,7 @@ export interface GetMaintenanceWindowResult {
  *     projectId: testMaintenanceWindow.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -129,7 +122,6 @@ export interface GetMaintenanceWindowResult {
  *     projectId: testMaintenanceWindow.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getMaintenanceWindowOutput(args: GetMaintenanceWindowOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMaintenanceWindowResult> {
     return pulumi.output(args).apply((a: any) => getMaintenanceWindow(a, opts))

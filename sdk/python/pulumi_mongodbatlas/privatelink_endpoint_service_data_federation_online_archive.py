@@ -253,7 +253,6 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -269,7 +268,6 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
             region="US_EAST_1",
             customer_endpoint_dns_name="vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -304,7 +302,6 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -320,7 +317,6 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
             region="US_EAST_1",
             customer_endpoint_dns_name="vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

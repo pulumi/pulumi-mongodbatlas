@@ -330,7 +330,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
 
         ### Example automated delivery type
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -357,11 +356,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                 target_project_id="5cf5a45a9ccf6400e60981b6",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example download delivery type
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -386,10 +383,8 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                 download=True,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example of a point in time restore
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -420,7 +415,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                     point_in_time_utc_seconds=point_in_time_utc_seconds,
                 )))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Available complete examples
         - Restore from backup snapshot at point in time
@@ -461,7 +455,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
 
         ### Example automated delivery type
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -488,11 +481,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                 target_project_id="5cf5a45a9ccf6400e60981b6",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example download delivery type
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -517,10 +508,8 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                 download=True,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example of a point in time restore
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -551,7 +540,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                     point_in_time_utc_seconds=point_in_time_utc_seconds,
                 )))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Available complete examples
         - Restore from backup snapshot at point in time

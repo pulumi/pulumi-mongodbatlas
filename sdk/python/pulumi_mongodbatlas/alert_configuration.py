@@ -307,7 +307,6 @@ class AlertConfiguration(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -340,11 +339,9 @@ class AlertConfiguration(pulumi.CustomResource):
                 mode="AVERAGE",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -375,11 +372,9 @@ class AlertConfiguration(pulumi.CustomResource):
                 units="HOURS",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create an alert with two notifications using Email and SMS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -422,7 +417,6 @@ class AlertConfiguration(pulumi.CustomResource):
                 mode="AVERAGE",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -459,7 +453,6 @@ class AlertConfiguration(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -492,11 +485,9 @@ class AlertConfiguration(pulumi.CustomResource):
                 mode="AVERAGE",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -527,11 +518,9 @@ class AlertConfiguration(pulumi.CustomResource):
                 units="HOURS",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create an alert with two notifications using Email and SMS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -574,7 +563,6 @@ class AlertConfiguration(pulumi.CustomResource):
                 mode="AVERAGE",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
