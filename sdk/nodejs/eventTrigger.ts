@@ -16,7 +16,6 @@ import * as utilities from "./utilities";
  * ### S
  *
  * ### Example Usage: Database Trigger with Function
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -52,10 +51,8 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Usage: Database Trigger with EventBridge
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -89,10 +86,8 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Usage: Authentication Trigger
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -108,10 +103,8 @@ import * as utilities from "./utilities";
  *     configProviders: ["anon-user"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Usage: Scheduled Trigger
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -126,7 +119,6 @@ import * as utilities from "./utilities";
  *     configSchedule: "*",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

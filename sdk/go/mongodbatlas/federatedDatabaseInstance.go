@@ -20,7 +20,6 @@ import (
 //
 // ### S With MongoDB Atlas Cluster As Storage Database
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,11 +72,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### S With Amazon S3 Bucket As Storage Database
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -148,7 +145,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

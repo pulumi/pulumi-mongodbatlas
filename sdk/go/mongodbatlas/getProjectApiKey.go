@@ -14,7 +14,6 @@ import (
 // ## Example Usage
 //
 // ### Using projectId and apiKeyId attribute to query
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,7 +52,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupProjectApiKey(ctx *pulumi.Context, args *LookupProjectApiKeyArgs, opts ...pulumi.InvokeOption) (*LookupProjectApiKeyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectApiKeyResult

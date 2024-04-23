@@ -189,7 +189,6 @@ class ProjectApiKey(pulumi.CustomResource):
 
         ### Create And Assign PAK Together
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -201,11 +200,9 @@ class ProjectApiKey(pulumi.CustomResource):
                 role_names=["GROUP_OWNER"],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create And Assign PAK To Multiple Projects
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -226,7 +223,6 @@ class ProjectApiKey(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -255,7 +251,6 @@ class ProjectApiKey(pulumi.CustomResource):
 
         ### Create And Assign PAK Together
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -267,11 +262,9 @@ class ProjectApiKey(pulumi.CustomResource):
                 role_names=["GROUP_OWNER"],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create And Assign PAK To Multiple Projects
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -292,7 +285,6 @@ class ProjectApiKey(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

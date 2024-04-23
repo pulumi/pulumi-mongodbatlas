@@ -317,7 +317,6 @@ def get_federated_settings_identity_provider(federation_settings_id: Optional[st
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -335,7 +334,6 @@ def get_federated_settings_identity_provider(federation_settings_id: Optional[st
     identity_provider_ds = mongodbatlas.get_federated_settings_identity_provider_output(federation_settings_id=identity_provider.id,
         identity_provider_id="0oad47f7fXnk1297")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -383,7 +381,6 @@ def get_federated_settings_identity_provider_output(federation_settings_id: Opti
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -401,7 +398,6 @@ def get_federated_settings_identity_provider_output(federation_settings_id: Opti
     identity_provider_ds = mongodbatlas.get_federated_settings_identity_provider_output(federation_settings_id=identity_provider.id,
         identity_provider_id="0oad47f7fXnk1297")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.

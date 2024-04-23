@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -44,7 +43,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

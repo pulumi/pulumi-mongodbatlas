@@ -12,15 +12,9 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class FederatedDatabaseInstanceDataProcessRegionGetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Name of the cloud service provider. Atlas Federated Database only supports AWS.
-        /// </summary>
         [Input("cloudProvider", required: true)]
         public Input<string> CloudProvider { get; set; } = null!;
 
-        /// <summary>
-        /// Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-        /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
 

@@ -20,7 +20,6 @@ import (
 //
 // ### Example Global cluster
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -97,11 +96,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Global cluster config
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -165,7 +162,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

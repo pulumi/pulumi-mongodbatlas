@@ -231,7 +231,6 @@ class OrgInvitation(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -241,9 +240,7 @@ class OrgInvitation(pulumi.CustomResource):
             org_id="<ORG-ID>",
             roles=["ORG_OWNER"])
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -256,9 +253,7 @@ class OrgInvitation(pulumi.CustomResource):
                 "ORG_BILLING_ADMIN",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -272,7 +267,6 @@ class OrgInvitation(pulumi.CustomResource):
             ],
             roles=["ORG_MEMBER"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -303,7 +297,6 @@ class OrgInvitation(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -313,9 +306,7 @@ class OrgInvitation(pulumi.CustomResource):
             org_id="<ORG-ID>",
             roles=["ORG_OWNER"])
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -328,9 +319,7 @@ class OrgInvitation(pulumi.CustomResource):
                 "ORG_BILLING_ADMIN",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -344,7 +333,6 @@ class OrgInvitation(pulumi.CustomResource):
             ],
             roles=["ORG_MEMBER"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

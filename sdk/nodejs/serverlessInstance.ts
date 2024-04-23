@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Basic
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -28,7 +27,6 @@ import * as utilities from "./utilities";
  *     providerSettingsRegionName: "US_EAST_1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
  * That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\

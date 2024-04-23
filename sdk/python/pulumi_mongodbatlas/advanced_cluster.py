@@ -803,7 +803,6 @@ class AdvancedCluster(pulumi.CustomResource):
 
         ### Example single provider and single region
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -828,11 +827,9 @@ class AdvancedCluster(pulumi.CustomResource):
                 )],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Tenant Cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -853,11 +850,9 @@ class AdvancedCluster(pulumi.CustomResource):
                 )],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Tenant Cluster Upgrade
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -877,10 +872,8 @@ class AdvancedCluster(pulumi.CustomResource):
                 )],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Multi-Cloud Cluster
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -916,10 +909,8 @@ class AdvancedCluster(pulumi.CustomResource):
                 ],
             )])
         ```
-        <!--End PulumiCodeChooser -->
         ### Example of a Multi-Cloud Cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -979,10 +970,8 @@ class AdvancedCluster(pulumi.CustomResource):
                 sample_refresh_interval_bi_connector=300,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example of a Global Cluster
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1090,25 +1079,20 @@ class AdvancedCluster(pulumi.CustomResource):
                 sample_refresh_interval_bi_connector=300,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example - Return a Connection String
         Standard
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
 
         pulumi.export("standard", cluster_test["connectionStrings"][0]["standard"])
         ```
-        <!--End PulumiCodeChooser -->
         Standard srv
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
 
         pulumi.export("standardSrv", cluster_test["connectionStrings"][0]["standardSrv"])
         ```
-        <!--End PulumiCodeChooser -->
         Private with Network peering and Custom DNS AWS enabled
         ## Import
 
@@ -1178,7 +1162,6 @@ class AdvancedCluster(pulumi.CustomResource):
 
         ### Example single provider and single region
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1203,11 +1186,9 @@ class AdvancedCluster(pulumi.CustomResource):
                 )],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Tenant Cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1228,11 +1209,9 @@ class AdvancedCluster(pulumi.CustomResource):
                 )],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Tenant Cluster Upgrade
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1252,10 +1231,8 @@ class AdvancedCluster(pulumi.CustomResource):
                 )],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Multi-Cloud Cluster
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1291,10 +1268,8 @@ class AdvancedCluster(pulumi.CustomResource):
                 ],
             )])
         ```
-        <!--End PulumiCodeChooser -->
         ### Example of a Multi-Cloud Cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1354,10 +1329,8 @@ class AdvancedCluster(pulumi.CustomResource):
                 sample_refresh_interval_bi_connector=300,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example of a Global Cluster
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1465,25 +1438,20 @@ class AdvancedCluster(pulumi.CustomResource):
                 sample_refresh_interval_bi_connector=300,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example - Return a Connection String
         Standard
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
 
         pulumi.export("standard", cluster_test["connectionStrings"][0]["standard"])
         ```
-        <!--End PulumiCodeChooser -->
         Standard srv
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
 
         pulumi.export("standardSrv", cluster_test["connectionStrings"][0]["standardSrv"])
         ```
-        <!--End PulumiCodeChooser -->
         Private with Network peering and Custom DNS AWS enabled
         ## Import
 

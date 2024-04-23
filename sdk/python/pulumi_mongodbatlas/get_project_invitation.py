@@ -132,7 +132,6 @@ def get_project_invitation(invitation_id: Optional[str] = None,
 
     ### S
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -144,7 +143,6 @@ def get_project_invitation(invitation_id: Optional[str] = None,
     test = mongodbatlas.get_project_invitation_output(project_id=test_project_invitation.project_id,
         username=test_project_invitation.username)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
@@ -183,7 +181,6 @@ def get_project_invitation_output(invitation_id: Optional[pulumi.Input[str]] = N
 
     ### S
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -195,7 +192,6 @@ def get_project_invitation_output(invitation_id: Optional[pulumi.Input[str]] = N
     test = mongodbatlas.get_project_invitation_output(project_id=test_project_invitation.project_id,
         username=test_project_invitation.username)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.

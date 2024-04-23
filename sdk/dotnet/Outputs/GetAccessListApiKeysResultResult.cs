@@ -14,14 +14,8 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAccessListApiKeysResultResult
     {
         public readonly int AccessCount;
-        /// <summary>
-        /// Range of IP addresses in CIDR notation to be added to the access list.
-        /// </summary>
         public readonly string CidrBlock;
         public readonly string Created;
-        /// <summary>
-        /// Single IP address to be added to the access list.
-        /// </summary>
         public readonly string IpAddress;
         public readonly string LastUsed;
         public readonly string LastUsedAddress;

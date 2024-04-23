@@ -107,7 +107,6 @@ def get_cloud_backup_snapshot_export_buckets(items_per_page: Optional[int] = Non
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -119,7 +118,6 @@ def get_cloud_backup_snapshot_export_buckets(items_per_page: Optional[int] = Non
         cloud_provider="AWS")
     test = mongodbatlas.get_cloud_backup_snapshot_export_buckets(project_id="{PROJECT_ID}")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -154,7 +152,6 @@ def get_cloud_backup_snapshot_export_buckets_output(items_per_page: Optional[pul
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -166,7 +163,6 @@ def get_cloud_backup_snapshot_export_buckets_output(items_per_page: Optional[pul
         cloud_provider="AWS")
     test = mongodbatlas.get_cloud_backup_snapshot_export_buckets(project_id="{PROJECT_ID}")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.

@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -33,7 +32,6 @@ import * as utilities from "./utilities";
  *     endpointId: test.endpointId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPrivatelinkEndpointServiceDataFederationOnlineArchive(args: GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> {
 
@@ -96,7 +94,6 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult 
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -118,7 +115,6 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult 
  *     endpointId: test.endpointId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput(args: GetPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> {
     return pulumi.output(args).apply((a: any) => getPrivatelinkEndpointServiceDataFederationOnlineArchive(a, opts))

@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example with AWS
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -43,11 +42,9 @@ import * as utilities from "./utilities";
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Example with AZURE
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -77,7 +74,6 @@ import * as utilities from "./utilities";
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPrivatelinkEndpointsServiceServerless(args: GetPrivatelinkEndpointsServiceServerlessArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivatelinkEndpointsServiceServerlessResult> {
 
@@ -142,7 +138,6 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
  *
  * ## Example with AWS
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -172,11 +167,9 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Example with AZURE
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -206,7 +199,6 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPrivatelinkEndpointsServiceServerlessOutput(args: GetPrivatelinkEndpointsServiceServerlessOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointsServiceServerlessResult> {
     return pulumi.output(args).apply((a: any) => getPrivatelinkEndpointsServiceServerless(a, opts))

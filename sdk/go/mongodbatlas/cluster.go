@@ -16,7 +16,6 @@ import (
 //
 // ### Example AWS cluster
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -60,11 +59,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Azure cluster.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -109,11 +106,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example GCP cluster
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -157,11 +152,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Multi Region cluster
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -216,11 +209,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Global cluster
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -276,9 +267,7 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // ### Example AWS Shared Tier (M2/M5) cluster
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -307,9 +296,7 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // ### Example AWS Free Tier cluster
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -338,10 +325,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // ### Example - Return a Connection String
 // Standard
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -359,9 +344,7 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // Standard srv
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -379,7 +362,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // Private with Network peering and Custom DNS AWS enabled
 // ## Import
 //

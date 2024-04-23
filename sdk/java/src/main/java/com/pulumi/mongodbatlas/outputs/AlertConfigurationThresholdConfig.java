@@ -12,45 +12,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AlertConfigurationThresholdConfig {
-    /**
-     * @return The operator to test the field’s value.
-     * Accepted values are:
-     * 
-     */
     private @Nullable String operator;
-    /**
-     * @return Threshold value outside of which an alert will be triggered.
-     * 
-     */
     private @Nullable Double threshold;
-    /**
-     * @return The units for the threshold value. Depends on the type of metric.
-     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-     * 
-     */
     private @Nullable String units;
 
     private AlertConfigurationThresholdConfig() {}
-    /**
-     * @return The operator to test the field’s value.
-     * Accepted values are:
-     * 
-     */
     public Optional<String> operator() {
         return Optional.ofNullable(this.operator);
     }
-    /**
-     * @return Threshold value outside of which an alert will be triggered.
-     * 
-     */
     public Optional<Double> threshold() {
         return Optional.ofNullable(this.threshold);
     }
-    /**
-     * @return The units for the threshold value. Depends on the type of metric.
-     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-     * 
-     */
     public Optional<String> units() {
         return Optional.ofNullable(this.units);
     }

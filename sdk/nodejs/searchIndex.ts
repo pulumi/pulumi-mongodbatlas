@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Basic search index
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -28,10 +27,8 @@ import * as utilities from "./utilities";
  *     searchAnalyzer: "lucene.standard",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Basic vector index
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -51,10 +48,8 @@ import * as utilities from "./utilities";
  * `,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Advanced search index (with custom analyzers)
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -104,17 +99,17 @@ import * as utilities from "./utilities";
  *  "charFilters": [{
  * "type": "mapping",
  * "mappings": {"\\\\" : "/"}
- *    	}],
+ *    \x09}],
  *  "tokenizer": {
  *  "type": "nGram",
  *  "minGram": 2,
  *  "maxGram": 5
- * 	},
+ * \x09},
  *  "tokenFilters": [{
  * "type": "length",
  * "min": 20,
  * "max": 33
- *    	}]
+ *    \x09}]
  *  }]
  * `,
  *     synonyms: [{
@@ -124,7 +119,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class SearchIndex extends pulumi.CustomResource {
     /**

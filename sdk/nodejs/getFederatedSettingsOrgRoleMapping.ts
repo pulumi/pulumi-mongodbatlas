@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -56,7 +55,6 @@ import * as utilities from "./utilities";
  *     roleMappingId: "627a9673e7f7f7ff7fe306f14",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedSettingsOrgRoleMapping(args: GetFederatedSettingsOrgRoleMappingArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgRoleMappingResult> {
 
@@ -108,7 +106,6 @@ export interface GetFederatedSettingsOrgRoleMappingResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -153,7 +150,6 @@ export interface GetFederatedSettingsOrgRoleMappingResult {
  *     roleMappingId: "627a9673e7f7f7ff7fe306f14",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedSettingsOrgRoleMappingOutput(args: GetFederatedSettingsOrgRoleMappingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsOrgRoleMappingResult> {
     return pulumi.output(args).apply((a: any) => getFederatedSettingsOrgRoleMapping(a, opts))

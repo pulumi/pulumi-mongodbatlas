@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic Example (AWS).
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -34,7 +33,6 @@ import * as utilities from "./utilities";
  *     peeringId: testNetworkPeering.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNetworkPeering(args: GetNetworkPeeringArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkPeeringResult> {
 
@@ -152,7 +150,6 @@ export interface GetNetworkPeeringResult {
  *
  * ### Basic Example (AWS).
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -171,7 +168,6 @@ export interface GetNetworkPeeringResult {
  *     peeringId: testNetworkPeering.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNetworkPeeringOutput(args: GetNetworkPeeringOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkPeeringResult> {
     return pulumi.output(args).apply((a: any) => getNetworkPeering(a, opts))

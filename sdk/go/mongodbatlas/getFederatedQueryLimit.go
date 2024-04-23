@@ -19,7 +19,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,7 +44,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupFederatedQueryLimit(ctx *pulumi.Context, args *LookupFederatedQueryLimitArgs, opts ...pulumi.InvokeOption) (*LookupFederatedQueryLimitResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedQueryLimitResult

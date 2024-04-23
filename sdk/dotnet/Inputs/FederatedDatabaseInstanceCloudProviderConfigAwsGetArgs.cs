@@ -34,15 +34,11 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? IamUserArn { get; set; }
 
         /// <summary>
-        /// Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
+        /// Unique identifier of the role that the data lake can use to access the data stores.
         /// </summary>
         [Input("roleId", required: true)]
         public Input<string> RoleId { get; set; } = null!;
 
-        /// <summary>
-        /// Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-        /// ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
-        /// </summary>
         [Input("testS3Bucket", required: true)]
         public Input<string> TestS3Bucket { get; set; } = null!;
 

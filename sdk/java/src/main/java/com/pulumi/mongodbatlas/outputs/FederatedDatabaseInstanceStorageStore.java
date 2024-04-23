@@ -44,10 +44,6 @@ public final class FederatedDatabaseInstanceStorageStore {
     private @Nullable String provider;
     private @Nullable String public_;
     private @Nullable FederatedDatabaseInstanceStorageStoreReadPreference readPreference;
-    /**
-     * @return Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-     * 
-     */
     private @Nullable String region;
     private @Nullable List<String> urls;
 
@@ -110,10 +106,6 @@ public final class FederatedDatabaseInstanceStorageStore {
     public Optional<FederatedDatabaseInstanceStorageStoreReadPreference> readPreference() {
         return Optional.ofNullable(this.readPreference);
     }
-    /**
-     * @return Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-     * 
-     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }

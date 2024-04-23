@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -26,7 +25,6 @@ import * as utilities from "./utilities";
  *     projectId: testDatadog.projectId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationResult> {
 
@@ -151,7 +149,6 @@ export interface GetThirdPartyIntegrationResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -166,7 +163,6 @@ export interface GetThirdPartyIntegrationResult {
  *     projectId: testDatadog.projectId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationResult> {
     return pulumi.output(args).apply((a: any) => getThirdPartyIntegration(a, opts))

@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
         /// ### S
         /// 
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,7 +33,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClusterOutageSimulationResult> InvokeAsync(GetClusterOutageSimulationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClusterOutageSimulationResult>("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", args ?? new GetClusterOutageSimulationArgs(), options.WithDefaults());
@@ -45,7 +43,6 @@ namespace Pulumi.Mongodbatlas
         /// ### S
         /// 
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,7 +59,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClusterOutageSimulationResult> Invoke(GetClusterOutageSimulationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClusterOutageSimulationResult>("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", args ?? new GetClusterOutageSimulationInvokeArgs(), options.WithDefaults());

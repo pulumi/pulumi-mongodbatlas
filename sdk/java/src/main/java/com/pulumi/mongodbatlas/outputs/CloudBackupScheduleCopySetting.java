@@ -13,65 +13,25 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class CloudBackupScheduleCopySetting {
-    /**
-     * @return Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. &#34;AWS&#34; &#34;AZURE&#34; &#34;GCP&#34;
-     * 
-     */
     private @Nullable String cloudProvider;
-    /**
-     * @return List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;ON_DEMAND&#34;
-     * 
-     */
     private @Nullable List<String> frequencies;
-    /**
-     * @return Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ &#39;regions&#39; link
-     * 
-     */
     private @Nullable String regionName;
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
-     * 
-     */
     private @Nullable String replicationSpecId;
-    /**
-     * @return Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
-     * 
-     */
     private @Nullable Boolean shouldCopyOplogs;
 
     private CloudBackupScheduleCopySetting() {}
-    /**
-     * @return Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. &#34;AWS&#34; &#34;AZURE&#34; &#34;GCP&#34;
-     * 
-     */
     public Optional<String> cloudProvider() {
         return Optional.ofNullable(this.cloudProvider);
     }
-    /**
-     * @return List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;ON_DEMAND&#34;
-     * 
-     */
     public List<String> frequencies() {
         return this.frequencies == null ? List.of() : this.frequencies;
     }
-    /**
-     * @return Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ &#39;regions&#39; link
-     * 
-     */
     public Optional<String> regionName() {
         return Optional.ofNullable(this.regionName);
     }
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
-     * 
-     */
     public Optional<String> replicationSpecId() {
         return Optional.ofNullable(this.replicationSpecId);
     }
-    /**
-     * @return Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
-     * 
-     */
     public Optional<Boolean> shouldCopyOplogs() {
         return Optional.ofNullable(this.shouldCopyOplogs);
     }

@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  *
  * ### Basic Example.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -31,7 +30,6 @@ import * as utilities from "./utilities";
  *     containerId: testNetworkContainer.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNetworkContainer(args: GetNetworkContainerArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkContainerResult> {
 
@@ -122,7 +120,6 @@ export interface GetNetworkContainerResult {
  *
  * ### Basic Example.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -138,7 +135,6 @@ export interface GetNetworkContainerResult {
  *     containerId: testNetworkContainer.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNetworkContainerOutput(args: GetNetworkContainerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkContainerResult> {
     return pulumi.output(args).apply((a: any) => getNetworkContainer(a, opts))

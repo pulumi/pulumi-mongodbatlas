@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -26,7 +25,6 @@ import * as utilities from "./utilities";
  *     value: 5147483648,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

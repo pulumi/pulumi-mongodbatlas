@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -26,7 +25,6 @@ import * as utilities from "./utilities";
  *     projectId: testAuditing.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAuditing(args: GetAuditingArgs, opts?: pulumi.InvokeOptions): Promise<GetAuditingResult> {
 
@@ -79,7 +77,6 @@ export interface GetAuditingResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -94,7 +91,6 @@ export interface GetAuditingResult {
  *     projectId: testAuditing.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAuditingOutput(args: GetAuditingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuditingResult> {
     return pulumi.output(args).apply((a: any) => getAuditing(a, opts))

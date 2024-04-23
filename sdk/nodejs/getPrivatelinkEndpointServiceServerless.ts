@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example with AWS
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -42,11 +41,9 @@ import * as utilities from "./utilities";
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Example with AZURE
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -77,7 +74,6 @@ import * as utilities from "./utilities";
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Available complete examples
  * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
@@ -148,7 +144,6 @@ export interface GetPrivatelinkEndpointServiceServerlessResult {
  *
  * ## Example with AWS
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -179,11 +174,9 @@ export interface GetPrivatelinkEndpointServiceServerlessResult {
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Example with AZURE
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -214,7 +207,6 @@ export interface GetPrivatelinkEndpointServiceServerlessResult {
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Available complete examples
  * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC

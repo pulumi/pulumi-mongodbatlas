@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Using CIDR Block
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -19,10 +18,8 @@ import * as utilities from "./utilities";
  *     apiKeyId: "a29120e123cd",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using IP Address
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -33,7 +30,6 @@ import * as utilities from "./utilities";
  *     apiKeyId: "a29120e123cd",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

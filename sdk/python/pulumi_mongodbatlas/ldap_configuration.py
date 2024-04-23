@@ -377,7 +377,6 @@ class LdapConfiguration(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -393,11 +392,9 @@ class LdapConfiguration(pulumi.CustomResource):
             bind_username="USERNAME",
             bind_password="PASSWORD")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### LDAP With User To DN Mapping
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -419,7 +416,6 @@ class LdapConfiguration(pulumi.CustomResource):
                 ldap_query="DC=example,DC=com??sub?(userPrincipalName={0})",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -457,7 +453,6 @@ class LdapConfiguration(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -473,11 +468,9 @@ class LdapConfiguration(pulumi.CustomResource):
             bind_username="USERNAME",
             bind_password="PASSWORD")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### LDAP With User To DN Mapping
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -499,7 +492,6 @@ class LdapConfiguration(pulumi.CustomResource):
                 ldap_query="DC=example,DC=com??sub?(userPrincipalName={0})",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

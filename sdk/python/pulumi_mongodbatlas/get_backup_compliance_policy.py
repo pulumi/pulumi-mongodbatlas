@@ -224,7 +224,6 @@ def get_backup_compliance_policy(project_id: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -300,7 +299,6 @@ def get_backup_compliance_policy(project_id: Optional[str] = None,
             retention_value=12,
         )])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project
@@ -336,7 +334,6 @@ def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[str]] 
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -412,7 +409,6 @@ def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[str]] 
             retention_value=12,
         )])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Unique 24-hexadecimal digit string that identifies your project

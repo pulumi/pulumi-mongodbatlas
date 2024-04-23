@@ -17,81 +17,37 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
 
     public static final AlertConfigurationMetricThresholdConfigArgs Empty = new AlertConfigurationMetricThresholdConfigArgs();
 
-    /**
-     * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
-     * 
-     */
     @Import(name="metricName", required=true)
     private Output<String> metricName;
 
-    /**
-     * @return Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
-     * 
-     */
     public Output<String> metricName() {
         return this.metricName;
     }
 
-    /**
-     * This must be set to AVERAGE. Atlas computes the current metric value as an average.
-     * 
-     */
     @Import(name="mode")
     private @Nullable Output<String> mode;
 
-    /**
-     * @return This must be set to AVERAGE. Atlas computes the current metric value as an average.
-     * 
-     */
     public Optional<Output<String>> mode() {
         return Optional.ofNullable(this.mode);
     }
 
-    /**
-     * The operator to test the field’s value.
-     * Accepted values are:
-     * 
-     */
     @Import(name="operator")
     private @Nullable Output<String> operator;
 
-    /**
-     * @return The operator to test the field’s value.
-     * Accepted values are:
-     * 
-     */
     public Optional<Output<String>> operator() {
         return Optional.ofNullable(this.operator);
     }
 
-    /**
-     * Threshold value outside of which an alert will be triggered.
-     * 
-     */
     @Import(name="threshold")
     private @Nullable Output<Double> threshold;
 
-    /**
-     * @return Threshold value outside of which an alert will be triggered.
-     * 
-     */
     public Optional<Output<Double>> threshold() {
         return Optional.ofNullable(this.threshold);
     }
 
-    /**
-     * The units for the threshold value. Depends on the type of metric.
-     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-     * 
-     */
     @Import(name="units")
     private @Nullable Output<String> units;
 
-    /**
-     * @return The units for the threshold value. Depends on the type of metric.
-     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-     * 
-     */
     public Optional<Output<String>> units() {
         return Optional.ofNullable(this.units);
     }
@@ -124,111 +80,47 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
             $ = new AlertConfigurationMetricThresholdConfigArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param metricName Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
-         * 
-         * @return builder
-         * 
-         */
         public Builder metricName(Output<String> metricName) {
             $.metricName = metricName;
             return this;
         }
 
-        /**
-         * @param metricName Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
-         * 
-         * @return builder
-         * 
-         */
         public Builder metricName(String metricName) {
             return metricName(Output.of(metricName));
         }
 
-        /**
-         * @param mode This must be set to AVERAGE. Atlas computes the current metric value as an average.
-         * 
-         * @return builder
-         * 
-         */
         public Builder mode(@Nullable Output<String> mode) {
             $.mode = mode;
             return this;
         }
 
-        /**
-         * @param mode This must be set to AVERAGE. Atlas computes the current metric value as an average.
-         * 
-         * @return builder
-         * 
-         */
         public Builder mode(String mode) {
             return mode(Output.of(mode));
         }
 
-        /**
-         * @param operator The operator to test the field’s value.
-         * Accepted values are:
-         * 
-         * @return builder
-         * 
-         */
         public Builder operator(@Nullable Output<String> operator) {
             $.operator = operator;
             return this;
         }
 
-        /**
-         * @param operator The operator to test the field’s value.
-         * Accepted values are:
-         * 
-         * @return builder
-         * 
-         */
         public Builder operator(String operator) {
             return operator(Output.of(operator));
         }
 
-        /**
-         * @param threshold Threshold value outside of which an alert will be triggered.
-         * 
-         * @return builder
-         * 
-         */
         public Builder threshold(@Nullable Output<Double> threshold) {
             $.threshold = threshold;
             return this;
         }
 
-        /**
-         * @param threshold Threshold value outside of which an alert will be triggered.
-         * 
-         * @return builder
-         * 
-         */
         public Builder threshold(Double threshold) {
             return threshold(Output.of(threshold));
         }
 
-        /**
-         * @param units The units for the threshold value. Depends on the type of metric.
-         * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-         * 
-         * @return builder
-         * 
-         */
         public Builder units(@Nullable Output<String> units) {
             $.units = units;
             return this;
         }
 
-        /**
-         * @param units The units for the threshold value. Depends on the type of metric.
-         * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-         * 
-         * @return builder
-         * 
-         */
         public Builder units(String units) {
             return units(Output.of(units));
         }

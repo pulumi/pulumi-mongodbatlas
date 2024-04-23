@@ -199,7 +199,6 @@ class Auditing(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -210,7 +209,6 @@ class Auditing(pulumi.CustomResource):
             audit_authorization_success=False,
             enabled=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -241,7 +239,6 @@ class Auditing(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -252,7 +249,6 @@ class Auditing(pulumi.CustomResource):
             audit_authorization_success=False,
             enabled=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

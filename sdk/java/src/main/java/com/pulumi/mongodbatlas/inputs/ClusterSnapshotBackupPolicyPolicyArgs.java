@@ -17,17 +17,9 @@ public final class ClusterSnapshotBackupPolicyPolicyArgs extends com.pulumi.reso
 
     public static final ClusterSnapshotBackupPolicyPolicyArgs Empty = new ClusterSnapshotBackupPolicyPolicyArgs();
 
-    /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
-     * 
-     */
     @Import(name="id")
     private @Nullable Output<String> id;
 
-    /**
-     * @return Unique identifer of the replication document for a zone in a Global Cluster.
-     * 
-     */
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
     }
@@ -64,23 +56,11 @@ public final class ClusterSnapshotBackupPolicyPolicyArgs extends com.pulumi.reso
             $ = new ClusterSnapshotBackupPolicyPolicyArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param id Unique identifer of the replication document for a zone in a Global Cluster.
-         * 
-         * @return builder
-         * 
-         */
         public Builder id(@Nullable Output<String> id) {
             $.id = id;
             return this;
         }
 
-        /**
-         * @param id Unique identifer of the replication document for a zone in a Global Cluster.
-         * 
-         * @return builder
-         * 
-         */
         public Builder id(String id) {
             return id(Output.of(id));
         }

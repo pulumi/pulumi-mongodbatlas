@@ -230,7 +230,6 @@ def get_project(name: Optional[str] = None,
     ## Example Usage
 
     ### Using project_id attribute to query
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -258,10 +257,8 @@ def get_project(name: Optional[str] = None,
         )])
     test_get_project = mongodbatlas.get_project_output(project_id=test_project.id)
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Using name attribute to query
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -288,7 +285,6 @@ def get_project(name: Optional[str] = None,
         )])
     test = mongodbatlas.get_project_output(name=test_project.name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The unique ID for the project.
@@ -333,7 +329,6 @@ def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     ## Example Usage
 
     ### Using project_id attribute to query
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -361,10 +356,8 @@ def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
         )])
     test_get_project = mongodbatlas.get_project_output(project_id=test_project.id)
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Using name attribute to query
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -391,7 +384,6 @@ def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
         )])
     test = mongodbatlas.get_project_output(name=test_project.name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The unique ID for the project.

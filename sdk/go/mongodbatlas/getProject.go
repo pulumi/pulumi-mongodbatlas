@@ -18,7 +18,6 @@ import (
 // ## Example Usage
 //
 // ### Using projectId attribute to query
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -71,10 +70,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Using name attribute to query
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -123,7 +120,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.InvokeOption) (*LookupProjectResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectResult

@@ -19,7 +19,6 @@ import (
 //
 // ### Basic Example.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -54,7 +53,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupNetworkContainers(ctx *pulumi.Context, args *LookupNetworkContainersArgs, opts ...pulumi.InvokeOption) (*LookupNetworkContainersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNetworkContainersResult
