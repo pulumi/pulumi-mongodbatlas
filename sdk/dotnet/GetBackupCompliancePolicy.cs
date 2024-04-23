@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -133,7 +132,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetBackupCompliancePolicyResult> InvokeAsync(GetBackupCompliancePolicyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBackupCompliancePolicyResult>("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", args ?? new GetBackupCompliancePolicyArgs(), options.WithDefaults());
@@ -141,7 +139,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -260,7 +257,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetBackupCompliancePolicyResult> Invoke(GetBackupCompliancePolicyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBackupCompliancePolicyResult>("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", args ?? new GetBackupCompliancePolicyInvokeArgs(), options.WithDefaults());

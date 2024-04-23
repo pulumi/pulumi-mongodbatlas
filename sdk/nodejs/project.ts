@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -54,7 +53,6 @@ import * as utilities from "./utilities";
  *     isSchemaAdvisorEnabled: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

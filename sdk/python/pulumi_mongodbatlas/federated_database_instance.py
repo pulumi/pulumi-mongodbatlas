@@ -425,7 +425,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
 
         ### S With MongoDB Atlas Cluster As Storage Database
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -454,11 +453,9 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                 ),
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### S With Amazon S3 Bucket As Storage Database
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -509,7 +506,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -591,7 +587,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
 
         ### S With MongoDB Atlas Cluster As Storage Database
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -620,11 +615,9 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                 ),
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### S With Amazon S3 Bucket As Storage Database
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -675,7 +668,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

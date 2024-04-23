@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -20,9 +19,7 @@ import * as utilities from "./utilities";
  *     roles: ["GROUP_DATA_ACCESS_READ_WRITE"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -36,7 +33,6 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

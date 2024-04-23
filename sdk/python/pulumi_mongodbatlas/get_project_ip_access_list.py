@@ -105,7 +105,6 @@ def get_project_ip_access_list(aws_security_group: Optional[str] = None,
     ## Example Usage
 
     ### Using CIDR Block
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -117,10 +116,8 @@ def get_project_ip_access_list(aws_security_group: Optional[str] = None,
     test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
         cidr_block=test_project_ip_access_list.cidr_block)
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Using IP Address
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -132,10 +129,8 @@ def get_project_ip_access_list(aws_security_group: Optional[str] = None,
     test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
         ip_address=test_project_ip_access_list.ip_address)
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Using an AWS Security Group
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -161,7 +156,6 @@ def get_project_ip_access_list(aws_security_group: Optional[str] = None,
     test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
         aws_security_group=test_project_ip_access_list.aws_security_group)
     ```
-    <!--End PulumiCodeChooser -->
 
     > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
 
@@ -207,7 +201,6 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
     ## Example Usage
 
     ### Using CIDR Block
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -219,10 +212,8 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
     test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
         cidr_block=test_project_ip_access_list.cidr_block)
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Using IP Address
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -234,10 +225,8 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
     test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
         ip_address=test_project_ip_access_list.ip_address)
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Using an AWS Security Group
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -263,7 +252,6 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
     test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
         aws_security_group=test_project_ip_access_list.aws_security_group)
     ```
-    <!--End PulumiCodeChooser -->
 
     > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
 

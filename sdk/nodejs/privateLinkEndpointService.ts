@@ -19,7 +19,6 @@ import * as utilities from "./utilities";
  *
  * ## Example with AWS
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -44,11 +43,9 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Example with Azure
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as azurerm from "@pulumi/azurerm";
@@ -79,11 +76,9 @@ import * as utilities from "./utilities";
  *     providerName: "AZURE",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Example with GCP
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as google from "@pulumi/google";
@@ -148,7 +143,6 @@ import * as utilities from "./utilities";
  *     dependsOn: [defaultComputeForwardingRule],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Available complete examples
  * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC

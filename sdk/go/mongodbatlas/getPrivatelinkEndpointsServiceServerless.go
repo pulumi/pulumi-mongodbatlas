@@ -17,7 +17,6 @@ import (
 //
 // ## Example with AWS
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -68,11 +67,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Example with AZURE
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -123,7 +120,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupPrivatelinkEndpointsServiceServerless(ctx *pulumi.Context, args *LookupPrivatelinkEndpointsServiceServerlessArgs, opts ...pulumi.InvokeOption) (*LookupPrivatelinkEndpointsServiceServerlessResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivatelinkEndpointsServiceServerlessResult

@@ -19,7 +19,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -70,11 +69,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // **Example of usage with a OIDC federated authentication user**
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -112,7 +109,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 func LookupDatabaseUser(ctx *pulumi.Context, args *LookupDatabaseUserArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

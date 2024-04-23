@@ -301,7 +301,6 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
 
         ## Example with AWS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -332,11 +331,9 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
             provider_name="AWS",
             comment="New serverless endpoint")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Example with AZURE
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_azurerm as azurerm
@@ -372,7 +369,6 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
             provider_name="AZURE",
             comment="test")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Available complete examples
         - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
@@ -411,7 +407,6 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
 
         ## Example with AWS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -442,11 +437,9 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
             provider_name="AWS",
             comment="New serverless endpoint")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Example with AZURE
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_azurerm as azurerm
@@ -482,7 +475,6 @@ class PrivatelinkEndpointServiceServerless(pulumi.CustomResource):
             provider_name="AZURE",
             comment="test")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Available complete examples
         - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC

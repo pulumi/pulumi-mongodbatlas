@@ -20,7 +20,6 @@ import (
 // ### S
 //
 // ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -66,7 +65,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Deprecated: mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser
 func Get509AuthenticationDatabaseUser(ctx *pulumi.Context, args *Get509AuthenticationDatabaseUserArgs, opts ...pulumi.InvokeOption) (*Get509AuthenticationDatabaseUserResult, error) {

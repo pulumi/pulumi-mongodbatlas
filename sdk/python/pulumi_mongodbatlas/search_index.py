@@ -603,7 +603,6 @@ class SearchIndex(pulumi.CustomResource):
         ## Example Usage
 
         ### Basic search index
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -618,10 +617,8 @@ class SearchIndex(pulumi.CustomResource):
             mappings_dynamic=True,
             search_analyzer="lucene.standard")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Basic vector index
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -640,10 +637,8 @@ class SearchIndex(pulumi.CustomResource):
         }]
         \"\"\")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Advanced search index (with custom analyzers)
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -693,17 +688,17 @@ class SearchIndex(pulumi.CustomResource):
          "charFilters": [{
         "type": "mapping",
         "mappings": {"\\\\" : "/"}
-           	}],
+           \\x09}],
          "tokenizer": {
          "type": "nGram",
          "minGram": 2,
          "maxGram": 5
-        	},
+        \\x09},
          "tokenFilters": [{
         "type": "length",
         "min": 20,
         "max": 33
-           	}]
+           \\x09}]
          }]
         \"\"\",
             synonyms=[mongodbatlas.SearchIndexSynonymArgs(
@@ -712,7 +707,6 @@ class SearchIndex(pulumi.CustomResource):
                 source_collection="collection_test",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -763,7 +757,6 @@ class SearchIndex(pulumi.CustomResource):
         ## Example Usage
 
         ### Basic search index
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -778,10 +771,8 @@ class SearchIndex(pulumi.CustomResource):
             mappings_dynamic=True,
             search_analyzer="lucene.standard")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Basic vector index
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -800,10 +791,8 @@ class SearchIndex(pulumi.CustomResource):
         }]
         \"\"\")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Advanced search index (with custom analyzers)
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -853,17 +842,17 @@ class SearchIndex(pulumi.CustomResource):
          "charFilters": [{
         "type": "mapping",
         "mappings": {"\\\\" : "/"}
-           	}],
+           \\x09}],
          "tokenizer": {
          "type": "nGram",
          "minGram": 2,
          "maxGram": 5
-        	},
+        \\x09},
          "tokenFilters": [{
         "type": "length",
         "min": 20,
         "max": 33
-           	}]
+           \\x09}]
          }]
         \"\"\",
             synonyms=[mongodbatlas.SearchIndexSynonymArgs(
@@ -872,7 +861,6 @@ class SearchIndex(pulumi.CustomResource):
                 source_collection="collection_test",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SearchIndexArgs args: The arguments to use to populate this resource's properties.

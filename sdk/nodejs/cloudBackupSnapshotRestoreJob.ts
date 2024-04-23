@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ### Example automated delivery type
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -41,11 +40,9 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example download delivery type
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -73,10 +70,8 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example of a point in time restore
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -111,7 +106,6 @@ import * as utilities from "./utilities";
  *     }));
  * }
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Available complete examples
  * - Restore from backup snapshot at point in time

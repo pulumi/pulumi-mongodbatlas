@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,7 +39,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupOrganizations(ctx *pulumi.Context, args *LookupOrganizationsArgs, opts ...pulumi.InvokeOption) (*LookupOrganizationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOrganizationsResult
@@ -56,9 +54,8 @@ type LookupOrganizationsArgs struct {
 	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
 	IncludeDeletedOrgs *bool `pulumi:"includeDeletedOrgs"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-	ItemsPerPage *int `pulumi:"itemsPerPage"`
-	// Human-readable label that identifies the organization.
-	Name *string `pulumi:"name"`
+	ItemsPerPage *int    `pulumi:"itemsPerPage"`
+	Name         *string `pulumi:"name"`
 	// The page to return. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
 }
@@ -94,9 +91,8 @@ type LookupOrganizationsOutputArgs struct {
 	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
 	IncludeDeletedOrgs pulumi.BoolPtrInput `pulumi:"includeDeletedOrgs"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
-	// Human-readable label that identifies the organization.
-	Name pulumi.StringPtrInput `pulumi:"name"`
+	ItemsPerPage pulumi.IntPtrInput    `pulumi:"itemsPerPage"`
+	Name         pulumi.StringPtrInput `pulumi:"name"`
 	// The page to return. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
 }

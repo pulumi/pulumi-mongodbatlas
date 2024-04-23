@@ -12,23 +12,12 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class AlertConfigurationThresholdConfigArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The operator to test the field’s value.
-        /// Accepted values are:
-        /// </summary>
         [Input("operator")]
         public Input<string>? Operator { get; set; }
 
-        /// <summary>
-        /// Threshold value outside of which an alert will be triggered.
-        /// </summary>
         [Input("threshold")]
         public Input<double>? Threshold { get; set; }
 
-        /// <summary>
-        /// The units for the threshold value. Depends on the type of metric.
-        /// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-        /// </summary>
         [Input("units")]
         public Input<string>? Units { get; set; }
 

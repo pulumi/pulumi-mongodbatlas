@@ -17,7 +17,6 @@ import (
 // ## Example Usage
 //
 // ### Basic search index
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,10 +47,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Basic vector index
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -88,10 +85,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Advanced search index (with custom analyzers)
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -186,7 +181,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type SearchIndex struct {
 	pulumi.CustomResourceState
 

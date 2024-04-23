@@ -19,7 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -43,7 +42,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetCloudBackupSnapshotExportBucketsResult> InvokeAsync(GetCloudBackupSnapshotExportBucketsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportBucketsResult>("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", args ?? new GetCloudBackupSnapshotExportBucketsArgs(), options.WithDefaults());
@@ -56,7 +54,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -80,7 +77,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetCloudBackupSnapshotExportBucketsResult> Invoke(GetCloudBackupSnapshotExportBucketsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportBucketsResult>("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", args ?? new GetCloudBackupSnapshotExportBucketsInvokeArgs(), options.WithDefaults());

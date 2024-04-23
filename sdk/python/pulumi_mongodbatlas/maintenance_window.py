@@ -285,7 +285,6 @@ class MaintenanceWindow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -295,9 +294,7 @@ class MaintenanceWindow(pulumi.CustomResource):
             day_of_week=3,
             hour_of_day=4)
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -306,7 +303,6 @@ class MaintenanceWindow(pulumi.CustomResource):
             project_id="<your-project-id>",
             defer=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -347,7 +343,6 @@ class MaintenanceWindow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -357,9 +352,7 @@ class MaintenanceWindow(pulumi.CustomResource):
             day_of_week=3,
             hour_of_day=4)
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -368,7 +361,6 @@ class MaintenanceWindow(pulumi.CustomResource):
             project_id="<your-project-id>",
             defer=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

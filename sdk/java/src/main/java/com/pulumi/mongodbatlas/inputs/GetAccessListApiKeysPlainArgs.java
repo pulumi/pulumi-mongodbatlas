@@ -16,21 +16,9 @@ public final class GetAccessListApiKeysPlainArgs extends com.pulumi.resources.In
 
     public static final GetAccessListApiKeysPlainArgs Empty = new GetAccessListApiKeysPlainArgs();
 
-    /**
-     * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-     * *
-     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
-     * 
-     */
     @Import(name="apiKeyId", required=true)
     private String apiKeyId;
 
-    /**
-     * @return Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-     * *
-     * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
-     * 
-     */
     public String apiKeyId() {
         return this.apiKeyId;
     }
@@ -50,17 +38,9 @@ public final class GetAccessListApiKeysPlainArgs extends com.pulumi.resources.In
         return Optional.ofNullable(this.itemsPerPage);
     }
 
-    /**
-     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-     * 
-     */
     @Import(name="orgId", required=true)
     private String orgId;
 
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-     * 
-     */
     public String orgId() {
         return this.orgId;
     }
@@ -107,14 +87,6 @@ public final class GetAccessListApiKeysPlainArgs extends com.pulumi.resources.In
             $ = new GetAccessListApiKeysPlainArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param apiKeyId Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-         * *
-         * &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
-         * 
-         * @return builder
-         * 
-         */
         public Builder apiKeyId(String apiKeyId) {
             $.apiKeyId = apiKeyId;
             return this;
@@ -131,12 +103,6 @@ public final class GetAccessListApiKeysPlainArgs extends com.pulumi.resources.In
             return this;
         }
 
-        /**
-         * @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-         * 
-         * @return builder
-         * 
-         */
         public Builder orgId(String orgId) {
             $.orgId = orgId;
             return this;

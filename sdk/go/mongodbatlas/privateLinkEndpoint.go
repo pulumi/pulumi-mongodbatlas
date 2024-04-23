@@ -24,7 +24,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,7 +49,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Available complete examples
 // - Setup private connection to a MongoDB Atlas Cluster with AWS VPC

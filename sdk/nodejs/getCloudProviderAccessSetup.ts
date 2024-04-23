@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### With AWS
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -29,10 +28,8 @@ import * as utilities from "./utilities";
  *     roleId: testRole.roleId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### With AZURE
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -52,7 +49,6 @@ import * as utilities from "./utilities";
  *     roleId: testRole.roleId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudProviderAccessSetup(args: GetCloudProviderAccessSetupArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderAccessSetupResult> {
 
@@ -127,7 +123,6 @@ export interface GetCloudProviderAccessSetupResult {
  * ## Example Usage
  *
  * ### With AWS
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -142,10 +137,8 @@ export interface GetCloudProviderAccessSetupResult {
  *     roleId: testRole.roleId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### With AZURE
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -165,7 +158,6 @@ export interface GetCloudProviderAccessSetupResult {
  *     roleId: testRole.roleId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudProviderAccessSetupOutput(args: GetCloudProviderAccessSetupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderAccessSetupResult> {
     return pulumi.output(args).apply((a: any) => getCloudProviderAccessSetup(a, opts))

@@ -19,7 +19,6 @@ import (
 //
 // First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -69,7 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupCloudBackupSnapshotRestoreJobs(ctx *pulumi.Context, args *LookupCloudBackupSnapshotRestoreJobsArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotRestoreJobsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotRestoreJobsResult

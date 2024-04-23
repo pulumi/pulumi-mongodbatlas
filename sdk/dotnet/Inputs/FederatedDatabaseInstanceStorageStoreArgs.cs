@@ -67,9 +67,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("readPreference")]
         public Input<Inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs>? ReadPreference { get; set; }
 
-        /// <summary>
-        /// Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 

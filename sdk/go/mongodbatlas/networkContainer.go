@@ -26,7 +26,6 @@ import (
 //
 // ### Example with AWS
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,11 +52,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example with GCP
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -87,11 +84,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example with Azure
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -118,7 +113,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

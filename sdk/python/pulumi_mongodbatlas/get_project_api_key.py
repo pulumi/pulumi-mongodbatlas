@@ -118,7 +118,6 @@ def get_project_api_key(api_key_id: Optional[str] = None,
     ## Example Usage
 
     ### Using project_id and api_key_id attribute to query
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -132,7 +131,6 @@ def get_project_api_key(api_key_id: Optional[str] = None,
     test = mongodbatlas.get_project_api_key(project_id="64259ee860c43338194b0f8e",
         api_key_id=test_mongodbatlas_api_key["apiKeyId"])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str api_key_id: Unique identifier for this Project API key.
@@ -162,7 +160,6 @@ def get_project_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
     ## Example Usage
 
     ### Using project_id and api_key_id attribute to query
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -176,7 +173,6 @@ def get_project_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
     test = mongodbatlas.get_project_api_key(project_id="64259ee860c43338194b0f8e",
         api_key_id=test_mongodbatlas_api_key["apiKeyId"])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str api_key_id: Unique identifier for this Project API key.

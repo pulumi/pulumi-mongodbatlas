@@ -198,7 +198,6 @@ class ProjectInvitation(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -208,9 +207,7 @@ class ProjectInvitation(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             roles=["GROUP_DATA_ACCESS_READ_WRITE"])
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -223,7 +220,6 @@ class ProjectInvitation(pulumi.CustomResource):
                 "GROUP_DATA_ACCESS_READ_ONLY",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -253,7 +249,6 @@ class ProjectInvitation(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -263,9 +258,7 @@ class ProjectInvitation(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             roles=["GROUP_DATA_ACCESS_READ_WRITE"])
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -278,7 +271,6 @@ class ProjectInvitation(pulumi.CustomResource):
                 "GROUP_DATA_ACCESS_READ_ONLY",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

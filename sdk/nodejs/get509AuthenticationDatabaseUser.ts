@@ -16,7 +16,6 @@ import * as utilities from "./utilities";
  * ### S
  *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -45,7 +44,6 @@ import * as utilities from "./utilities";
  *     projectId: testX509AuthenticationDatabaseUser.projectId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 /** @deprecated mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser */
 export function get509AuthenticationDatabaseUser(args: Get509AuthenticationDatabaseUserArgs, opts?: pulumi.InvokeOptions): Promise<Get509AuthenticationDatabaseUserResult> {
@@ -98,7 +96,6 @@ export interface Get509AuthenticationDatabaseUserResult {
  * ### S
  *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -127,7 +124,6 @@ export interface Get509AuthenticationDatabaseUserResult {
  *     projectId: testX509AuthenticationDatabaseUser.projectId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 /** @deprecated mongodbatlas.index/get509authenticationdatabaseuser.get509AuthenticationDatabaseUser has been deprecated in favor of mongodbatlas.index/getx509authenticationdatabaseuser.getX509AuthenticationDatabaseUser */
 export function get509AuthenticationDatabaseUserOutput(args: Get509AuthenticationDatabaseUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Get509AuthenticationDatabaseUserResult> {

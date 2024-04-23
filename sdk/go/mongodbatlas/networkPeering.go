@@ -37,7 +37,6 @@ import (
 //
 // ### Example with AWS
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -89,11 +88,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example with Azure
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -166,13 +163,11 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Peering Connection Only, Container Exists
 // You can create a peering connection if an appropriate container for your cloud provider already exists in your project (see the networkContainer resource for more information).  A container may already exist if you have already created a cluster in your project, if so you may obtain the `containerId` from the cluster resource as shown in the examples below.
 //
 // ### Example with AWS
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -251,11 +246,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example with Azure
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -315,7 +308,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

@@ -235,7 +235,6 @@ def get_cloud_backup_schedule(cluster_name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -256,7 +255,6 @@ def get_cloud_backup_schedule(cluster_name: Optional[str] = None,
     test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
         cluster_name=test_cloud_backup_schedule.cluster_name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
@@ -299,7 +297,6 @@ def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[str]] =
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -320,7 +317,6 @@ def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[str]] =
     test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
         cluster_name=test_cloud_backup_schedule.cluster_name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.

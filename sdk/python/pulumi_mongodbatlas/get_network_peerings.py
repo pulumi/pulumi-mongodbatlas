@@ -77,7 +77,6 @@ def get_network_peerings(project_id: Optional[str] = None,
 
     ### Basic Example (AWS).
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -92,7 +91,6 @@ def get_network_peerings(project_id: Optional[str] = None,
         aws_account_id="abc123abc123")
     test = mongodbatlas.get_network_peerings_output(project_id=test_network_peering.project_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: The unique ID for the project to create the database user.
@@ -120,7 +118,6 @@ def get_network_peerings_output(project_id: Optional[pulumi.Input[str]] = None,
 
     ### Basic Example (AWS).
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -135,7 +132,6 @@ def get_network_peerings_output(project_id: Optional[pulumi.Input[str]] = None,
         aws_account_id="abc123abc123")
     test = mongodbatlas.get_network_peerings_output(project_id=test_network_peering.project_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: The unique ID for the project to create the database user.

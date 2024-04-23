@@ -22,7 +22,6 @@ namespace Pulumi.Mongodbatlas
         /// ### S
         /// 
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -60,7 +59,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<Get509AuthenticationDatabaseUserResult> InvokeAsync(Get509AuthenticationDatabaseUserArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<Get509AuthenticationDatabaseUserResult>("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", args ?? new Get509AuthenticationDatabaseUserArgs(), options.WithDefaults());
@@ -75,7 +73,6 @@ namespace Pulumi.Mongodbatlas
         /// ### S
         /// 
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -113,7 +110,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<Get509AuthenticationDatabaseUserResult> Invoke(Get509AuthenticationDatabaseUserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Get509AuthenticationDatabaseUserResult>("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", args ?? new Get509AuthenticationDatabaseUserInvokeArgs(), options.WithDefaults());

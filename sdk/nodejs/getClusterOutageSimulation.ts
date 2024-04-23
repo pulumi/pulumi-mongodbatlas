@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -21,7 +20,6 @@ import * as utilities from "./utilities";
  *     clusterName: "Cluster0",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClusterOutageSimulation(args: GetClusterOutageSimulationArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterOutageSimulationResult> {
 
@@ -78,7 +76,6 @@ export interface GetClusterOutageSimulationResult {
  *
  * ### S
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -88,7 +85,6 @@ export interface GetClusterOutageSimulationResult {
  *     clusterName: "Cluster0",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClusterOutageSimulationOutput(args: GetClusterOutageSimulationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterOutageSimulationResult> {
     return pulumi.output(args).apply((a: any) => getClusterOutageSimulation(a, opts))

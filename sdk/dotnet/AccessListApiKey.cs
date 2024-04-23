@@ -13,7 +13,6 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ### Using CIDR Block
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,10 +30,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Using IP Address
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -52,7 +49,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

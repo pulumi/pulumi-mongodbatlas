@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -24,7 +23,6 @@ import * as utilities from "./utilities";
  *     clusterName: "<CLUSTER_NAME>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getSearchIndex(args: GetSearchIndexArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchIndexResult> {
 
@@ -162,7 +160,6 @@ export interface GetSearchIndexResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -173,7 +170,6 @@ export interface GetSearchIndexResult {
  *     clusterName: "<CLUSTER_NAME>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getSearchIndexOutput(args: GetSearchIndexOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSearchIndexResult> {
     return pulumi.output(args).apply((a: any) => getSearchIndex(a, opts))

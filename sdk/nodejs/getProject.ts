@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Using projectId attribute to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -45,10 +44,8 @@ import * as utilities from "./utilities";
  *     projectId: testProject.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using name attribute to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -78,7 +75,6 @@ import * as utilities from "./utilities";
  *     name: testProject.name,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
     args = args || {};
@@ -177,7 +173,6 @@ export interface GetProjectResult {
  * ## Example Usage
  *
  * ### Using projectId attribute to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -208,10 +203,8 @@ export interface GetProjectResult {
  *     projectId: testProject.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using name attribute to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -241,7 +234,6 @@ export interface GetProjectResult {
  *     name: testProject.name,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getProjectOutput(args?: GetProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectResult> {
     return pulumi.output(args).apply((a: any) => getProject(a, opts))

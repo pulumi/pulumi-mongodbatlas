@@ -13,7 +13,13 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetEventTriggerEventProcessorAwsEventbridgeResult
     {
+        /// <summary>
+        /// AWS Account ID.
+        /// </summary>
         public readonly string ConfigAccountId;
+        /// <summary>
+        /// Region of AWS Account.
+        /// </summary>
         public readonly string ConfigRegion;
 
         [OutputConstructor]

@@ -330,7 +330,6 @@ class LdapVerify(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -353,7 +352,6 @@ class LdapVerify(pulumi.CustomResource):
             bind_password="PASSWORD",
             opts=pulumi.ResourceOptions(depends_on=[test_cluster]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -385,7 +383,6 @@ class LdapVerify(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -408,7 +405,6 @@ class LdapVerify(pulumi.CustomResource):
             bind_password="PASSWORD",
             opts=pulumi.ResourceOptions(depends_on=[test_cluster]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

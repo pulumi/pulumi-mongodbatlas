@@ -19,7 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -43,7 +42,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAuditingResult> InvokeAsync(GetAuditingArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuditingResult>("mongodbatlas:index/getAuditing:getAuditing", args ?? new GetAuditingArgs(), options.WithDefaults());
@@ -56,7 +54,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -80,7 +77,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAuditingResult> Invoke(GetAuditingInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuditingResult>("mongodbatlas:index/getAuditing:getAuditing", args ?? new GetAuditingInvokeArgs(), options.WithDefaults());

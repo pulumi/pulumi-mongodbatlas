@@ -111,7 +111,6 @@ def get_privatelink_endpoints_service_serverless(instance_name: Optional[str] = 
 
     ## Example with AWS
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -136,11 +135,9 @@ def get_privatelink_endpoints_service_serverless(instance_name: Optional[str] = 
         provider_name="AWS",
         comment="New serverless endpoint")
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Example with AZURE
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -165,7 +162,6 @@ def get_privatelink_endpoints_service_serverless(instance_name: Optional[str] = 
         provider_name="AZURE",
         comment="New serverless endpoint")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str instance_name: Human-readable label that identifies the serverless instance
@@ -201,7 +197,6 @@ def get_privatelink_endpoints_service_serverless_output(instance_name: Optional[
 
     ## Example with AWS
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -226,11 +221,9 @@ def get_privatelink_endpoints_service_serverless_output(instance_name: Optional[
         provider_name="AWS",
         comment="New serverless endpoint")
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Example with AZURE
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -255,7 +248,6 @@ def get_privatelink_endpoints_service_serverless_output(instance_name: Optional[
         provider_name="AZURE",
         comment="New serverless endpoint")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str instance_name: Human-readable label that identifies the serverless instance

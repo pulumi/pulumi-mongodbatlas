@@ -19,7 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -51,7 +50,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetLdapConfigurationResult> InvokeAsync(GetLdapConfigurationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLdapConfigurationResult>("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args ?? new GetLdapConfigurationArgs(), options.WithDefaults());
@@ -64,7 +62,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -96,7 +93,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetLdapConfigurationResult> Invoke(GetLdapConfigurationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLdapConfigurationResult>("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args ?? new GetLdapConfigurationInvokeArgs(), options.WithDefaults());

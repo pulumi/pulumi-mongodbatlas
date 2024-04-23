@@ -11,49 +11,21 @@ import java.util.Objects;
 
 @CustomType
 public final class GetApiKeysResult {
-    /**
-     * @return Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
-     * 
-     */
     private String apiKeyId;
-    /**
-     * @return Description of this Organization API key.
-     * 
-     */
     private String description;
     private String publicKey;
-    /**
-     * @return Name of the role. This resource returns all the roles the user has in Atlas.
-     * 
-     * The following are valid roles:
-     * 
-     */
     private List<String> roleNames;
 
     private GetApiKeysResult() {}
-    /**
-     * @return Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
-     * 
-     */
     public String apiKeyId() {
         return this.apiKeyId;
     }
-    /**
-     * @return Description of this Organization API key.
-     * 
-     */
     public String description() {
         return this.description;
     }
     public String publicKey() {
         return this.publicKey;
     }
-    /**
-     * @return Name of the role. This resource returns all the roles the user has in Atlas.
-     * 
-     * The following are valid roles:
-     * 
-     */
     public List<String> roleNames() {
         return this.roleNames;
     }

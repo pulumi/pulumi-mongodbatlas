@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -34,7 +33,6 @@ import * as utilities from "./utilities";
  *     projectId: testLdapConfiguration.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLdapConfiguration(args: GetLdapConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetLdapConfigurationResult> {
 
@@ -107,7 +105,6 @@ export interface GetLdapConfigurationResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -128,7 +125,6 @@ export interface GetLdapConfigurationResult {
  *     projectId: testLdapConfiguration.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLdapConfigurationOutput(args: GetLdapConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLdapConfigurationResult> {
     return pulumi.output(args).apply((a: any) => getLdapConfiguration(a, opts))

@@ -23,7 +23,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Basic Example.
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -48,7 +47,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetNetworkContainerResult> InvokeAsync(GetNetworkContainerArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworkContainerResult>("mongodbatlas:index/getNetworkContainer:getNetworkContainer", args ?? new GetNetworkContainerArgs(), options.WithDefaults());
@@ -65,7 +63,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Basic Example.
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -90,7 +87,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetNetworkContainerResult> Invoke(GetNetworkContainerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkContainerResult>("mongodbatlas:index/getNetworkContainer:getNetworkContainer", args ?? new GetNetworkContainerInvokeArgs(), options.WithDefaults());

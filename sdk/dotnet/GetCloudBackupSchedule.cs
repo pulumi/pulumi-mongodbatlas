@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -54,7 +53,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetCloudBackupScheduleResult> InvokeAsync(GetCloudBackupScheduleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupScheduleResult>("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args ?? new GetCloudBackupScheduleArgs(), options.WithDefaults());
@@ -66,7 +64,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -102,7 +99,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetCloudBackupScheduleResult> Invoke(GetCloudBackupScheduleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupScheduleResult>("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args ?? new GetCloudBackupScheduleInvokeArgs(), options.WithDefaults());

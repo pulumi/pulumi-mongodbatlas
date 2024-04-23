@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -78,7 +77,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetFederatedSettingsOrgRoleMappingResult> InvokeAsync(GetFederatedSettingsOrgRoleMappingArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsOrgRoleMappingResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", args ?? new GetFederatedSettingsOrgRoleMappingArgs(), options.WithDefaults());
@@ -89,7 +87,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -150,7 +147,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetFederatedSettingsOrgRoleMappingResult> Invoke(GetFederatedSettingsOrgRoleMappingInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgRoleMappingResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", args ?? new GetFederatedSettingsOrgRoleMappingInvokeArgs(), options.WithDefaults());

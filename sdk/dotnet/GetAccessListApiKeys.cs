@@ -27,11 +27,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetAccessListApiKeysArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-        /// *
-        /// &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
-        /// </summary>
         [Input("apiKeyId", required: true)]
         public string ApiKeyId { get; set; } = null!;
 
@@ -41,9 +36,6 @@ namespace Pulumi.Mongodbatlas
         [Input("itemsPerPage")]
         public int? ItemsPerPage { get; set; }
 
-        /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-        /// </summary>
         [Input("orgId", required: true)]
         public string OrgId { get; set; } = null!;
 
@@ -61,11 +53,6 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetAccessListApiKeysInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-        /// *
-        /// &gt; **NOTE:** One of the following attributes must set: `cidr_block`  or `ip_address` not both.
-        /// </summary>
         [Input("apiKeyId", required: true)]
         public Input<string> ApiKeyId { get; set; } = null!;
 
@@ -75,9 +62,6 @@ namespace Pulumi.Mongodbatlas
         [Input("itemsPerPage")]
         public Input<int>? ItemsPerPage { get; set; }
 
-        /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-        /// </summary>
         [Input("orgId", required: true)]
         public Input<string> OrgId { get; set; } = null!;
 

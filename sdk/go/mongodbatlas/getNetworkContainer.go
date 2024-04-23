@@ -21,7 +21,6 @@ import (
 //
 // ### Basic Example.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,7 +51,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupNetworkContainer(ctx *pulumi.Context, args *LookupNetworkContainerArgs, opts ...pulumi.InvokeOption) (*LookupNetworkContainerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNetworkContainerResult

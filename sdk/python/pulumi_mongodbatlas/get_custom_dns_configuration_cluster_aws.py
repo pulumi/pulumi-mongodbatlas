@@ -74,7 +74,6 @@ def get_custom_dns_configuration_cluster_aws(project_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -84,7 +83,6 @@ def get_custom_dns_configuration_cluster_aws(project_id: Optional[str] = None,
         enabled=True)
     test = mongodbatlas.get_custom_dns_configuration_cluster_aws_output(project_id=test_custom_dns_configuration_cluster_aws.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Unique identifier for the project.
@@ -110,7 +108,6 @@ def get_custom_dns_configuration_cluster_aws_output(project_id: Optional[pulumi.
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -120,7 +117,6 @@ def get_custom_dns_configuration_cluster_aws_output(project_id: Optional[pulumi.
         enabled=True)
     test = mongodbatlas.get_custom_dns_configuration_cluster_aws_output(project_id=test_custom_dns_configuration_cluster_aws.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: Unique identifier for the project.

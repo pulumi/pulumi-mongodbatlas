@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,7 +44,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupCustomDnsConfigurationClusterAws(ctx *pulumi.Context, args *LookupCustomDnsConfigurationClusterAwsArgs, opts ...pulumi.InvokeOption) (*LookupCustomDnsConfigurationClusterAwsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCustomDnsConfigurationClusterAwsResult

@@ -18,7 +18,6 @@ import (
 // ## Example Usage
 //
 // ### With AWS
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,10 +47,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### With AZURE
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -88,7 +85,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupCloudProviderAccessSetup(ctx *pulumi.Context, args *LookupCloudProviderAccessSetupArgs, opts ...pulumi.InvokeOption) (*LookupCloudProviderAccessSetupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudProviderAccessSetupResult

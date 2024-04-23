@@ -19,7 +19,6 @@ import (
 //
 // ### Using orgId attribute to query Organization Atlas Users
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,11 +42,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Using projectId attribute to query Project Atlas Users
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -71,11 +68,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Using teamId and orgId attribute to query Team Atlas Users
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -100,7 +95,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupAtlasUsers(ctx *pulumi.Context, args *LookupAtlasUsersArgs, opts ...pulumi.InvokeOption) (*LookupAtlasUsersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAtlasUsersResult

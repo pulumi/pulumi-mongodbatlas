@@ -243,7 +243,6 @@ class ProjectIpAccessList(pulumi.CustomResource):
         ## Example Usage
 
         ### Using CIDR Block
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -253,10 +252,8 @@ class ProjectIpAccessList(pulumi.CustomResource):
             cidr_block="1.2.3.4/32",
             comment="cidr block for tf acc testing")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Using IP Address
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -266,10 +263,8 @@ class ProjectIpAccessList(pulumi.CustomResource):
             ip_address="2.3.4.5",
             comment="ip address for tf acc testing")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Using an AWS Security Group
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -293,7 +288,6 @@ class ProjectIpAccessList(pulumi.CustomResource):
             comment="TestAcc for awsSecurityGroup",
             opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
-        <!--End PulumiCodeChooser -->
 
         > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
 
@@ -333,7 +327,6 @@ class ProjectIpAccessList(pulumi.CustomResource):
         ## Example Usage
 
         ### Using CIDR Block
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -343,10 +336,8 @@ class ProjectIpAccessList(pulumi.CustomResource):
             cidr_block="1.2.3.4/32",
             comment="cidr block for tf acc testing")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Using IP Address
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -356,10 +347,8 @@ class ProjectIpAccessList(pulumi.CustomResource):
             ip_address="2.3.4.5",
             comment="ip address for tf acc testing")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Using an AWS Security Group
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -383,7 +372,6 @@ class ProjectIpAccessList(pulumi.CustomResource):
             comment="TestAcc for awsSecurityGroup",
             opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
-        <!--End PulumiCodeChooser -->
 
         > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
 

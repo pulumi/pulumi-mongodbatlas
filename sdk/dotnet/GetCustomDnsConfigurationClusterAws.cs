@@ -19,7 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -41,7 +40,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetCustomDnsConfigurationClusterAwsResult> InvokeAsync(GetCustomDnsConfigurationClusterAwsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCustomDnsConfigurationClusterAwsResult>("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args ?? new GetCustomDnsConfigurationClusterAwsArgs(), options.WithDefaults());
@@ -54,7 +52,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -76,7 +73,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetCustomDnsConfigurationClusterAwsResult> Invoke(GetCustomDnsConfigurationClusterAwsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCustomDnsConfigurationClusterAwsResult>("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args ?? new GetCustomDnsConfigurationClusterAwsInvokeArgs(), options.WithDefaults());

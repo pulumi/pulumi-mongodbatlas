@@ -714,7 +714,6 @@ class NetworkPeering(pulumi.CustomResource):
 
         ### Example with AWS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -742,11 +741,9 @@ class NetworkPeering(pulumi.CustomResource):
             vpc_peering_connection_id=test_network_peering.connection_id,
             auto_accept=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with Azure
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -790,13 +787,11 @@ class NetworkPeering(pulumi.CustomResource):
             provider_instance_size_name="M10",
             opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Peering Connection Only, Container Exists
         You can create a peering connection if an appropriate container for your cloud provider already exists in your project (see the network_container resource for more information).  A container may already exist if you have already created a cluster in your project, if so you may obtain the `container_id` from the cluster resource as shown in the examples below.
 
         ### Example with AWS
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -842,11 +837,9 @@ class NetworkPeering(pulumi.CustomResource):
                 side: Accepter,
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with Azure
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -882,7 +875,6 @@ class NetworkPeering(pulumi.CustomResource):
             resource_group_name=azur_e__resourc_e__grou_p__name,
             vnet_name=azur_e__vne_t__name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -948,7 +940,6 @@ class NetworkPeering(pulumi.CustomResource):
 
         ### Example with AWS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -976,11 +967,9 @@ class NetworkPeering(pulumi.CustomResource):
             vpc_peering_connection_id=test_network_peering.connection_id,
             auto_accept=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with Azure
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1024,13 +1013,11 @@ class NetworkPeering(pulumi.CustomResource):
             provider_instance_size_name="M10",
             opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Peering Connection Only, Container Exists
         You can create a peering connection if an appropriate container for your cloud provider already exists in your project (see the network_container resource for more information).  A container may already exist if you have already created a cluster in your project, if so you may obtain the `container_id` from the cluster resource as shown in the examples below.
 
         ### Example with AWS
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -1076,11 +1063,9 @@ class NetworkPeering(pulumi.CustomResource):
                 side: Accepter,
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with Azure
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1116,7 +1101,6 @@ class NetworkPeering(pulumi.CustomResource):
             resource_group_name=azur_e__resourc_e__grou_p__name,
             vnet_name=azur_e__vne_t__name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

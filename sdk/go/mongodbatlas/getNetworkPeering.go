@@ -21,7 +21,6 @@ import (
 //
 // ### Basic Example (AWS).
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,7 +54,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupNetworkPeering(ctx *pulumi.Context, args *LookupNetworkPeeringArgs, opts ...pulumi.InvokeOption) (*LookupNetworkPeeringResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNetworkPeeringResult

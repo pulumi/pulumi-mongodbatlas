@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -28,7 +27,6 @@ import * as utilities from "./utilities";
  *     username: testProjectInvitation.username,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getProjectInvitation(args: GetProjectInvitationArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectInvitationResult> {
 
@@ -95,7 +93,6 @@ export interface GetProjectInvitationResult {
  *
  * ### S
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -110,7 +107,6 @@ export interface GetProjectInvitationResult {
  *     username: testProjectInvitation.username,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getProjectInvitationOutput(args: GetProjectInvitationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectInvitationResult> {
     return pulumi.output(args).apply((a: any) => getProjectInvitation(a, opts))

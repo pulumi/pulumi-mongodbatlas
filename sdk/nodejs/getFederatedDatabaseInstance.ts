@@ -17,7 +17,6 @@ import * as utilities from "./utilities";
  *
  * ### S With MongoDB Atlas Cluster As Storage Database
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -27,11 +26,9 @@ import * as utilities from "./utilities";
  *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### S With Amazon S3 Bucket As Storage Database
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -46,7 +43,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedDatabaseInstance(args: GetFederatedDatabaseInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedDatabaseInstanceResult> {
 
@@ -153,7 +149,6 @@ export interface GetFederatedDatabaseInstanceResult {
  *
  * ### S With MongoDB Atlas Cluster As Storage Database
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -163,11 +158,9 @@ export interface GetFederatedDatabaseInstanceResult {
  *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### S With Amazon S3 Bucket As Storage Database
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -182,7 +175,6 @@ export interface GetFederatedDatabaseInstanceResult {
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedDatabaseInstanceOutput(args: GetFederatedDatabaseInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedDatabaseInstanceResult> {
     return pulumi.output(args).apply((a: any) => getFederatedDatabaseInstance(a, opts))

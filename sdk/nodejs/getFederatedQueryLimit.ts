@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -24,7 +23,6 @@ import * as utilities from "./utilities";
  *     limitName: "LIMIT_NAME",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedQueryLimit(args: GetFederatedQueryLimitArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedQueryLimitResult> {
 
@@ -91,7 +89,6 @@ export interface GetFederatedQueryLimitResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -102,7 +99,6 @@ export interface GetFederatedQueryLimitResult {
  *     limitName: "LIMIT_NAME",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedQueryLimitOutput(args: GetFederatedQueryLimitOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedQueryLimitResult> {
     return pulumi.output(args).apply((a: any) => getFederatedQueryLimit(a, opts))

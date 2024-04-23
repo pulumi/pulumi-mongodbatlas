@@ -1451,7 +1451,6 @@ class Cluster(pulumi.CustomResource):
 
         ### Example AWS cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1475,11 +1474,9 @@ class Cluster(pulumi.CustomResource):
             provider_name="AWS",
             provider_instance_size_name="M40")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Azure cluster.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1504,11 +1501,9 @@ class Cluster(pulumi.CustomResource):
             provider_disk_type_name="P6",
             provider_instance_size_name="M30")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example GCP cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1532,11 +1527,9 @@ class Cluster(pulumi.CustomResource):
             provider_name="GCP",
             provider_instance_size_name="M30")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Multi Region cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1573,11 +1566,9 @@ class Cluster(pulumi.CustomResource):
                 ],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Global cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1613,9 +1604,7 @@ class Cluster(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
         ### Example AWS Shared Tier (M2/M5) cluster
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1628,9 +1617,7 @@ class Cluster(pulumi.CustomResource):
             provider_region_name="US_EAST_1",
             provider_instance_size_name="M2")
         ```
-        <!--End PulumiCodeChooser -->
         ### Example AWS Free Tier cluster
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1643,24 +1630,19 @@ class Cluster(pulumi.CustomResource):
             provider_region_name="US_EAST_1",
             provider_instance_size_name="M0")
         ```
-        <!--End PulumiCodeChooser -->
         ### Example - Return a Connection String
         Standard
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
 
         pulumi.export("standard", cluster_test["connectionStrings"][0]["standard"])
         ```
-        <!--End PulumiCodeChooser -->
         Standard srv
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
 
         pulumi.export("standardSrv", cluster_test["connectionStrings"][0]["standardSrv"])
         ```
-        <!--End PulumiCodeChooser -->
         Private with Network peering and Custom DNS AWS enabled
         ## Import
 
@@ -1745,7 +1727,6 @@ class Cluster(pulumi.CustomResource):
 
         ### Example AWS cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1769,11 +1750,9 @@ class Cluster(pulumi.CustomResource):
             provider_name="AWS",
             provider_instance_size_name="M40")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Azure cluster.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1798,11 +1777,9 @@ class Cluster(pulumi.CustomResource):
             provider_disk_type_name="P6",
             provider_instance_size_name="M30")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example GCP cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1826,11 +1803,9 @@ class Cluster(pulumi.CustomResource):
             provider_name="GCP",
             provider_instance_size_name="M30")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Multi Region cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1867,11 +1842,9 @@ class Cluster(pulumi.CustomResource):
                 ],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Global cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1907,9 +1880,7 @@ class Cluster(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
         ### Example AWS Shared Tier (M2/M5) cluster
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1922,9 +1893,7 @@ class Cluster(pulumi.CustomResource):
             provider_region_name="US_EAST_1",
             provider_instance_size_name="M2")
         ```
-        <!--End PulumiCodeChooser -->
         ### Example AWS Free Tier cluster
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -1937,24 +1906,19 @@ class Cluster(pulumi.CustomResource):
             provider_region_name="US_EAST_1",
             provider_instance_size_name="M0")
         ```
-        <!--End PulumiCodeChooser -->
         ### Example - Return a Connection String
         Standard
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
 
         pulumi.export("standard", cluster_test["connectionStrings"][0]["standard"])
         ```
-        <!--End PulumiCodeChooser -->
         Standard srv
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
 
         pulumi.export("standardSrv", cluster_test["connectionStrings"][0]["standardSrv"])
         ```
-        <!--End PulumiCodeChooser -->
         Private with Network peering and Custom DNS AWS enabled
         ## Import
 

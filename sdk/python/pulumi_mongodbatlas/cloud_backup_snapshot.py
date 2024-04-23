@@ -381,7 +381,6 @@ class CloudBackupSnapshot(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -406,7 +405,6 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                 download=True,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -440,7 +438,6 @@ class CloudBackupSnapshot(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -465,7 +462,6 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                 download=True,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

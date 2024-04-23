@@ -21,7 +21,6 @@ namespace Pulumi.Mongodbatlas
         /// ### S
         /// 
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -38,7 +37,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetFederatedQueryLimitsResult> InvokeAsync(GetFederatedQueryLimitsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedQueryLimitsResult>("mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits", args ?? new GetFederatedQueryLimitsArgs(), options.WithDefaults());
@@ -53,7 +51,6 @@ namespace Pulumi.Mongodbatlas
         /// ### S
         /// 
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -70,7 +67,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetFederatedQueryLimitsResult> Invoke(GetFederatedQueryLimitsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedQueryLimitsResult>("mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits", args ?? new GetFederatedQueryLimitsInvokeArgs(), options.WithDefaults());

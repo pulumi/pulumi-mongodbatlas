@@ -218,7 +218,6 @@ def get_serverless_instance(continuous_backup_enabled: Optional[bool] = None,
     ## Example Usage
 
     ### Basic
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -226,7 +225,6 @@ def get_serverless_instance(continuous_backup_enabled: Optional[bool] = None,
     test_two = mongodbatlas.get_serverless_instance(name="<SERVERLESS_INSTANCE_NAME>",
         project_id="<PROJECT_ID >")
     ```
-    <!--End PulumiCodeChooser -->
 
     **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
     That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\
@@ -287,7 +285,6 @@ def get_serverless_instance_output(continuous_backup_enabled: Optional[pulumi.In
     ## Example Usage
 
     ### Basic
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -295,7 +292,6 @@ def get_serverless_instance_output(continuous_backup_enabled: Optional[pulumi.In
     test_two = mongodbatlas.get_serverless_instance(name="<SERVERLESS_INSTANCE_NAME>",
         project_id="<PROJECT_ID >")
     ```
-    <!--End PulumiCodeChooser -->
 
     **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
     That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\

@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -38,7 +37,6 @@ import * as utilities from "./utilities";
  *     clusterName: testCloudBackupSchedule.clusterName,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupSchedule(args: GetCloudBackupScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupScheduleResult> {
 
@@ -131,7 +129,6 @@ export interface GetCloudBackupScheduleResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -156,7 +153,6 @@ export interface GetCloudBackupScheduleResult {
  *     clusterName: testCloudBackupSchedule.clusterName,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupScheduleOutput(args: GetCloudBackupScheduleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupScheduleResult> {
     return pulumi.output(args).apply((a: any) => getCloudBackupSchedule(a, opts))

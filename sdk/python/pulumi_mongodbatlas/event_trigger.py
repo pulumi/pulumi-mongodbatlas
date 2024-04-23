@@ -717,7 +717,6 @@ class EventTrigger(pulumi.CustomResource):
         ### S
 
         ### Example Usage: Database Trigger with Function
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -752,10 +751,8 @@ class EventTrigger(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage: Database Trigger with EventBridge
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -788,10 +785,8 @@ class EventTrigger(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage: Authentication Trigger
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -806,10 +801,8 @@ class EventTrigger(pulumi.CustomResource):
             config_operation_type="LOGIN",
             config_providers=["anon-user"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage: Scheduled Trigger
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -823,7 +816,6 @@ class EventTrigger(pulumi.CustomResource):
             disabled=False,
             config_schedule="*")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -874,7 +866,6 @@ class EventTrigger(pulumi.CustomResource):
         ### S
 
         ### Example Usage: Database Trigger with Function
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -909,10 +900,8 @@ class EventTrigger(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage: Database Trigger with EventBridge
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -945,10 +934,8 @@ class EventTrigger(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage: Authentication Trigger
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -963,10 +950,8 @@ class EventTrigger(pulumi.CustomResource):
             config_operation_type="LOGIN",
             config_providers=["anon-user"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage: Scheduled Trigger
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -980,7 +965,6 @@ class EventTrigger(pulumi.CustomResource):
             disabled=False,
             config_schedule="*")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

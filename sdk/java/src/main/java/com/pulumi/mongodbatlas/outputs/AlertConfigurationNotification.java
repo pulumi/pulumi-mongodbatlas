@@ -15,317 +15,101 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AlertConfigurationNotification {
-    /**
-     * @return Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     * 
-     */
     private @Nullable String apiToken;
-    /**
-     * @return Slack channel name. Required for the SLACK notifications type.
-     * 
-     */
     private @Nullable String channelName;
-    /**
-     * @return Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-     * 
-     */
     private @Nullable String datadogApiKey;
-    /**
-     * @return Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
-     * 
-     */
     private @Nullable String datadogRegion;
-    /**
-     * @return Number of minutes to wait after an alert condition is detected before sending out the first notification.
-     * 
-     */
     private @Nullable Integer delayMin;
-    /**
-     * @return Email address to which alert notifications are sent. Required for the EMAIL notifications type.
-     * 
-     */
     private @Nullable String emailAddress;
-    /**
-     * @return Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-     * 
-     */
     private @Nullable Boolean emailEnabled;
-    /**
-     * @return Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
-     * 
-     */
     private @Nullable Integer intervalMin;
-    /**
-     * @return Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
-     * 
-     */
     private @Nullable String microsoftTeamsWebhookUrl;
-    /**
-     * @return Mobile number to which alert notifications are sent. Required for the SMS notifications type.
-     * 
-     */
     private @Nullable String mobileNumber;
-    /**
-     * @return The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
-     * 
-     */
     private @Nullable String notifierId;
-    /**
-     * @return Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     * 
-     */
     private @Nullable String opsGenieApiKey;
-    /**
-     * @return Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
-     * 
-     */
     private @Nullable String opsGenieRegion;
-    /**
-     * @return Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-     * Accepted values are:
-     * 
-     * | Project roles                   | Organization roles  |
-     * |:----------                      |:-----------         |
-     * | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-     * | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-     * | `GROUP_OWNER`                   |                     |
-     * | `GROUP_READ_ONLY`               |                     |
-     * 
-     */
     private @Nullable List<String> roles;
-    /**
-     * @return PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-     * 
-     */
     private @Nullable String serviceKey;
-    /**
-     * @return Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-     * 
-     */
     private @Nullable Boolean smsEnabled;
-    /**
-     * @return Unique identifier of a team.
-     * 
-     */
     private @Nullable String teamId;
-    /**
-     * @return Label for the team that receives this notification.
-     * 
-     */
     private @Nullable String teamName;
-    /**
-     * @return Type of alert notification.
-     * Accepted values are:
-     * 
-     */
     private String typeName;
-    /**
-     * @return Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
-     * 
-     */
     private @Nullable String username;
-    /**
-     * @return VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-     * 
-     */
     private @Nullable String victorOpsApiKey;
-    /**
-     * @return VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-     * 
-     */
     private @Nullable String victorOpsRoutingKey;
-    /**
-     * @return Optional authentication secret for the `WEBHOOK` notifications type.
-     * 
-     */
     private @Nullable String webhookSecret;
-    /**
-     * @return Target URL  for the `WEBHOOK` notifications type.
-     * 
-     */
     private @Nullable String webhookUrl;
 
     private AlertConfigurationNotification() {}
-    /**
-     * @return Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     * 
-     */
     public Optional<String> apiToken() {
         return Optional.ofNullable(this.apiToken);
     }
-    /**
-     * @return Slack channel name. Required for the SLACK notifications type.
-     * 
-     */
     public Optional<String> channelName() {
         return Optional.ofNullable(this.channelName);
     }
-    /**
-     * @return Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-     * 
-     */
     public Optional<String> datadogApiKey() {
         return Optional.ofNullable(this.datadogApiKey);
     }
-    /**
-     * @return Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
-     * 
-     */
     public Optional<String> datadogRegion() {
         return Optional.ofNullable(this.datadogRegion);
     }
-    /**
-     * @return Number of minutes to wait after an alert condition is detected before sending out the first notification.
-     * 
-     */
     public Optional<Integer> delayMin() {
         return Optional.ofNullable(this.delayMin);
     }
-    /**
-     * @return Email address to which alert notifications are sent. Required for the EMAIL notifications type.
-     * 
-     */
     public Optional<String> emailAddress() {
         return Optional.ofNullable(this.emailAddress);
     }
-    /**
-     * @return Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-     * 
-     */
     public Optional<Boolean> emailEnabled() {
         return Optional.ofNullable(this.emailEnabled);
     }
-    /**
-     * @return Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
-     * 
-     */
     public Optional<Integer> intervalMin() {
         return Optional.ofNullable(this.intervalMin);
     }
-    /**
-     * @return Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
-     * 
-     */
     public Optional<String> microsoftTeamsWebhookUrl() {
         return Optional.ofNullable(this.microsoftTeamsWebhookUrl);
     }
-    /**
-     * @return Mobile number to which alert notifications are sent. Required for the SMS notifications type.
-     * 
-     */
     public Optional<String> mobileNumber() {
         return Optional.ofNullable(this.mobileNumber);
     }
-    /**
-     * @return The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
-     * 
-     */
     public Optional<String> notifierId() {
         return Optional.ofNullable(this.notifierId);
     }
-    /**
-     * @return Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-     * 
-     */
     public Optional<String> opsGenieApiKey() {
         return Optional.ofNullable(this.opsGenieApiKey);
     }
-    /**
-     * @return Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
-     * 
-     */
     public Optional<String> opsGenieRegion() {
         return Optional.ofNullable(this.opsGenieRegion);
     }
-    /**
-     * @return Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-     * Accepted values are:
-     * 
-     * | Project roles                   | Organization roles  |
-     * |:----------                      |:-----------         |
-     * | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-     * | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-     * | `GROUP_OWNER`                   |                     |
-     * | `GROUP_READ_ONLY`               |                     |
-     * 
-     */
     public List<String> roles() {
         return this.roles == null ? List.of() : this.roles;
     }
-    /**
-     * @return PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-     * 
-     */
     public Optional<String> serviceKey() {
         return Optional.ofNullable(this.serviceKey);
     }
-    /**
-     * @return Flag indicating if text message notifications should be sent to this user&#39;s mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-     * 
-     */
     public Optional<Boolean> smsEnabled() {
         return Optional.ofNullable(this.smsEnabled);
     }
-    /**
-     * @return Unique identifier of a team.
-     * 
-     */
     public Optional<String> teamId() {
         return Optional.ofNullable(this.teamId);
     }
-    /**
-     * @return Label for the team that receives this notification.
-     * 
-     */
     public Optional<String> teamName() {
         return Optional.ofNullable(this.teamName);
     }
-    /**
-     * @return Type of alert notification.
-     * Accepted values are:
-     * 
-     */
     public String typeName() {
         return this.typeName;
     }
-    /**
-     * @return Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
-     * 
-     */
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
     }
-    /**
-     * @return VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-     * 
-     */
     public Optional<String> victorOpsApiKey() {
         return Optional.ofNullable(this.victorOpsApiKey);
     }
-    /**
-     * @return VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-     * 
-     */
     public Optional<String> victorOpsRoutingKey() {
         return Optional.ofNullable(this.victorOpsRoutingKey);
     }
-    /**
-     * @return Optional authentication secret for the `WEBHOOK` notifications type.
-     * 
-     */
     public Optional<String> webhookSecret() {
         return Optional.ofNullable(this.webhookSecret);
     }
-    /**
-     * @return Target URL  for the `WEBHOOK` notifications type.
-     * 
-     */
     public Optional<String> webhookUrl() {
         return Optional.ofNullable(this.webhookUrl);
     }

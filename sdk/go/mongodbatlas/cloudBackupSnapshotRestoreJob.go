@@ -16,7 +16,6 @@ import (
 //
 // ### Example automated delivery type
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -67,11 +66,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example download delivery type
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -120,10 +117,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example of a point in time restore
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -188,7 +183,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Available complete examples
 // - Restore from backup snapshot at point in time

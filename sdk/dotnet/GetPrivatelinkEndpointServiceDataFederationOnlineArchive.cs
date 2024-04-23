@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -51,7 +50,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> InvokeAsync(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult>("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", args ?? new GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs(), options.WithDefaults());
@@ -63,7 +61,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -96,7 +93,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> Invoke(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult>("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", args ?? new GetPrivatelinkEndpointServiceDataFederationOnlineArchiveInvokeArgs(), options.WithDefaults());

@@ -14,10 +14,6 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class AdvancedClusterConnectionStringPrivateEndpointEndpoint
     {
         public readonly string? EndpointId;
-        /// <summary>
-        /// Cloud service provider on which the servers are provisioned.
-        /// The possible values are:
-        /// </summary>
         public readonly string? ProviderName;
         public readonly string? Region;
 
