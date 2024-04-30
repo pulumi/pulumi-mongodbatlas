@@ -125,6 +125,9 @@
                     },
                     "policy_item_weekly": {
                         "maxItemsOne": false
+                    },
+                    "policy_item_yearly": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -155,6 +158,9 @@
                         "maxItemsOne": false
                     },
                     "policy_item_weekly": {
+                        "maxItemsOne": false
+                    },
+                    "policy_item_yearly": {
                         "maxItemsOne": false
                     }
                 }
@@ -737,6 +743,10 @@
                 "current": "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList",
                 "majorVersion": 3
             },
+            "mongodbatlas_push_based_log_export": {
+                "current": "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport",
+                "majorVersion": 3
+            },
             "mongodbatlas_search_deployment": {
                 "current": "mongodbatlas:index/searchDeployment:SearchDeployment",
                 "majorVersion": 3,
@@ -766,6 +776,19 @@
                         "maxItemsOne": false
                     },
                     "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_stream_connection": {
+                "current": "mongodbatlas:index/streamConnection:StreamConnection",
+                "majorVersion": 3
+            },
+            "mongodbatlas_stream_instance": {
+                "current": "mongodbatlas:index/streamInstance:StreamInstance",
+                "majorVersion": 3,
+                "fields": {
+                    "hostnames": {
                         "maxItemsOne": false
                     }
                 }
@@ -1104,6 +1127,9 @@
                     },
                     "policy_item_weekly": {
                         "maxItemsOne": false
+                    },
+                    "policy_item_yearly": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1134,6 +1160,9 @@
                         "maxItemsOne": false
                     },
                     "policy_item_weekly": {
+                        "maxItemsOne": false
+                    },
+                    "policy_item_yearly": {
                         "maxItemsOne": false
                     }
                 }
@@ -2348,6 +2377,10 @@
                     }
                 }
             },
+            "mongodbatlas_push_based_log_export": {
+                "current": "mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport",
+                "majorVersion": 3
+            },
             "mongodbatlas_roles_org_id": {
                 "current": "mongodbatlas:index/getRolesOrgId:getRolesOrgId",
                 "majorVersion": 3
@@ -2446,6 +2479,44 @@
                 "fields": {
                     "results": {
                         "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_stream_connection": {
+                "current": "mongodbatlas:index/getStreamConnection:getStreamConnection",
+                "majorVersion": 3
+            },
+            "mongodbatlas_stream_connections": {
+                "current": "mongodbatlas:index/getStreamConnections:getStreamConnections",
+                "majorVersion": 3,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_stream_instance": {
+                "current": "mongodbatlas:index/getStreamInstance:getStreamInstance",
+                "majorVersion": 3,
+                "fields": {
+                    "hostnames": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_stream_instances": {
+                "current": "mongodbatlas:index/getStreamInstances:getStreamInstances",
+                "majorVersion": 3,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "hostnames": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -2561,9 +2632,12 @@
             "mongodbatlas:index/projectApiKey:ProjectApiKey": 0,
             "mongodbatlas:index/projectInvitation:ProjectInvitation": 0,
             "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList": 1,
+            "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport": 1,
             "mongodbatlas:index/searchDeployment:SearchDeployment": 1,
             "mongodbatlas:index/searchIndex:SearchIndex": 0,
             "mongodbatlas:index/serverlessInstance:ServerlessInstance": 0,
+            "mongodbatlas:index/streamConnection:StreamConnection": 1,
+            "mongodbatlas:index/streamInstance:StreamInstance": 1,
             "mongodbatlas:index/team:Team": 0,
             "mongodbatlas:index/teams:Teams": 0,
             "mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration": 0,
@@ -2644,6 +2718,7 @@
             "mongodbatlas:index/getProjectInvitation:getProjectInvitation": 0,
             "mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList": 1,
             "mongodbatlas:index/getProjects:getProjects": 1,
+            "mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport": 1,
             "mongodbatlas:index/getRolesOrgId:getRolesOrgId": 0,
             "mongodbatlas:index/getSearchDeployment:getSearchDeployment": 1,
             "mongodbatlas:index/getSearchIndex:getSearchIndex": 0,
@@ -2654,6 +2729,10 @@
             "mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs": 0,
             "mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot": 0,
             "mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots": 0,
+            "mongodbatlas:index/getStreamConnection:getStreamConnection": 1,
+            "mongodbatlas:index/getStreamConnections:getStreamConnections": 1,
+            "mongodbatlas:index/getStreamInstance:getStreamInstance": 1,
+            "mongodbatlas:index/getStreamInstances:getStreamInstances": 1,
             "mongodbatlas:index/getTeam:getTeam": 0,
             "mongodbatlas:index/getTeams:getTeams": 0,
             "mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration": 0,
