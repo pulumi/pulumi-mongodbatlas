@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
 import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
 import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemMonthlyArgs;
 import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemWeeklyArgs;
+import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemYearlyArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -26,9 +27,8 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
 
     /**
      * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     * 
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+     * * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      * 
      */
     @Import(name="autoExportEnabled")
@@ -36,9 +36,8 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
 
     /**
      * @return Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     * 
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+     * * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      * 
      */
     public Optional<Output<Boolean>> autoExportEnabled() {
@@ -180,6 +179,21 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
     }
 
     /**
+     * Yearly policy item
+     * 
+     */
+    @Import(name="policyItemYearlies")
+    private @Nullable Output<List<CloudBackupSchedulePolicyItemYearlyArgs>> policyItemYearlies;
+
+    /**
+     * @return Yearly policy item
+     * 
+     */
+    public Optional<Output<List<CloudBackupSchedulePolicyItemYearlyArgs>>> policyItemYearlies() {
+        return Optional.ofNullable(this.policyItemYearlies);
+    }
+
+    /**
      * The unique identifier of the project for the Atlas cluster.
      * 
      */
@@ -275,6 +289,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
         this.policyItemHourly = $.policyItemHourly;
         this.policyItemMonthlies = $.policyItemMonthlies;
         this.policyItemWeeklies = $.policyItemWeeklies;
+        this.policyItemYearlies = $.policyItemYearlies;
         this.projectId = $.projectId;
         this.referenceHourOfDay = $.referenceHourOfDay;
         this.referenceMinuteOfHour = $.referenceMinuteOfHour;
@@ -303,9 +318,8 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
 
         /**
          * @param autoExportEnabled Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-         * 
-         * true - enables automatic export of cloud backup snapshots to the AWS bucket
-         * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+         * * true - enables automatic export of cloud backup snapshots to the AWS bucket
+         * * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
          * 
          * @return builder
          * 
@@ -317,9 +331,8 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
 
         /**
          * @param autoExportEnabled Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-         * 
-         * true - enables automatic export of cloud backup snapshots to the AWS bucket
-         * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+         * * true - enables automatic export of cloud backup snapshots to the AWS bucket
+         * * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
          * 
          * @return builder
          * 
@@ -536,6 +549,37 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
          */
         public Builder policyItemWeeklies(CloudBackupSchedulePolicyItemWeeklyArgs... policyItemWeeklies) {
             return policyItemWeeklies(List.of(policyItemWeeklies));
+        }
+
+        /**
+         * @param policyItemYearlies Yearly policy item
+         * 
+         * @return builder
+         * 
+         */
+        public Builder policyItemYearlies(@Nullable Output<List<CloudBackupSchedulePolicyItemYearlyArgs>> policyItemYearlies) {
+            $.policyItemYearlies = policyItemYearlies;
+            return this;
+        }
+
+        /**
+         * @param policyItemYearlies Yearly policy item
+         * 
+         * @return builder
+         * 
+         */
+        public Builder policyItemYearlies(List<CloudBackupSchedulePolicyItemYearlyArgs> policyItemYearlies) {
+            return policyItemYearlies(Output.of(policyItemYearlies));
+        }
+
+        /**
+         * @param policyItemYearlies Yearly policy item
+         * 
+         * @return builder
+         * 
+         */
+        public Builder policyItemYearlies(CloudBackupSchedulePolicyItemYearlyArgs... policyItemYearlies) {
+            return policyItemYearlies(List.of(policyItemYearlies));
         }
 
         /**

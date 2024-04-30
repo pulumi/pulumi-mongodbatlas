@@ -180,6 +180,40 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Create third party notification using credentials from existing third party integration
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         Type = "PAGER_DUTY",
+    ///     });
+    /// 
+    ///     var testAlertConfiguration = new Mongodbatlas.AlertConfiguration("test", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         Enabled = true,
+    ///         EventType = "USERS_WITHOUT_MULTI_FACTOR_AUTH",
+    ///         Notifications = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///             {
+    ///                 TypeName = "PAGER_DUTY",
+    ///                 IntegrationId = test.Apply(getThirdPartyIntegrationResult =&gt; getThirdPartyIntegrationResult.Id),
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.

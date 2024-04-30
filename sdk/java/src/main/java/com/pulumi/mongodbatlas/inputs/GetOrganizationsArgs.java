@@ -5,7 +5,6 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -16,25 +15,6 @@ import javax.annotation.Nullable;
 public final class GetOrganizationsArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetOrganizationsArgs Empty = new GetOrganizationsArgs();
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    @Import(name="includeDeletedOrgs")
-    private @Nullable Output<Boolean> includeDeletedOrgs;
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    public Optional<Output<Boolean>> includeDeletedOrgs() {
-        return Optional.ofNullable(this.includeDeletedOrgs);
-    }
 
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -76,7 +56,6 @@ public final class GetOrganizationsArgs extends com.pulumi.resources.InvokeArgs 
     private GetOrganizationsArgs() {}
 
     private GetOrganizationsArgs(GetOrganizationsArgs $) {
-        this.includeDeletedOrgs = $.includeDeletedOrgs;
         this.itemsPerPage = $.itemsPerPage;
         this.name = $.name;
         this.pageNum = $.pageNum;
@@ -98,31 +77,6 @@ public final class GetOrganizationsArgs extends com.pulumi.resources.InvokeArgs 
 
         public Builder(GetOrganizationsArgs defaults) {
             $ = new GetOrganizationsArgs(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in version 1.16.0
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-        public Builder includeDeletedOrgs(@Nullable Output<Boolean> includeDeletedOrgs) {
-            $.includeDeletedOrgs = includeDeletedOrgs;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in version 1.16.0
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-        public Builder includeDeletedOrgs(Boolean includeDeletedOrgs) {
-            return includeDeletedOrgs(Output.of(includeDeletedOrgs));
         }
 
         /**

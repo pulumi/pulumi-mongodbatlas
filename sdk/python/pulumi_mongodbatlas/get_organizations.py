@@ -22,13 +22,10 @@ class GetOrganizationsResult:
     """
     A collection of values returned by getOrganizations.
     """
-    def __init__(__self__, id=None, include_deleted_orgs=None, items_per_page=None, name=None, page_num=None, results=None, total_count=None):
+    def __init__(__self__, id=None, items_per_page=None, name=None, page_num=None, results=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if include_deleted_orgs and not isinstance(include_deleted_orgs, bool):
-            raise TypeError("Expected argument 'include_deleted_orgs' to be a bool")
-        pulumi.set(__self__, "include_deleted_orgs", include_deleted_orgs)
         if items_per_page and not isinstance(items_per_page, int):
             raise TypeError("Expected argument 'items_per_page' to be a int")
         pulumi.set(__self__, "items_per_page", items_per_page)
@@ -52,14 +49,6 @@ class GetOrganizationsResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="includeDeletedOrgs")
-    def include_deleted_orgs(self) -> Optional[bool]:
-        warnings.warn("""this parameter is deprecated and will be removed in version 1.16.0""", DeprecationWarning)
-        pulumi.log.warn("""include_deleted_orgs is deprecated: this parameter is deprecated and will be removed in version 1.16.0""")
-
-        return pulumi.get(self, "include_deleted_orgs")
 
     @property
     @pulumi.getter(name="itemsPerPage")
@@ -94,7 +83,6 @@ class AwaitableGetOrganizationsResult(GetOrganizationsResult):
             yield self
         return GetOrganizationsResult(
             id=self.id,
-            include_deleted_orgs=self.include_deleted_orgs,
             items_per_page=self.items_per_page,
             name=self.name,
             page_num=self.page_num,
@@ -102,8 +90,7 @@ class AwaitableGetOrganizationsResult(GetOrganizationsResult):
             total_count=self.total_count)
 
 
-def get_organizations(include_deleted_orgs: Optional[bool] = None,
-                      items_per_page: Optional[int] = None,
+def get_organizations(items_per_page: Optional[int] = None,
                       name: Optional[str] = None,
                       page_num: Optional[int] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationsResult:
@@ -125,7 +112,6 @@ def get_organizations(include_deleted_orgs: Optional[bool] = None,
     :param int page_num: The page to return. Defaults to `1`.
     """
     __args__ = dict()
-    __args__['includeDeletedOrgs'] = include_deleted_orgs
     __args__['itemsPerPage'] = items_per_page
     __args__['name'] = name
     __args__['pageNum'] = page_num
@@ -134,7 +120,6 @@ def get_organizations(include_deleted_orgs: Optional[bool] = None,
 
     return AwaitableGetOrganizationsResult(
         id=pulumi.get(__ret__, 'id'),
-        include_deleted_orgs=pulumi.get(__ret__, 'include_deleted_orgs'),
         items_per_page=pulumi.get(__ret__, 'items_per_page'),
         name=pulumi.get(__ret__, 'name'),
         page_num=pulumi.get(__ret__, 'page_num'),
@@ -143,8 +128,7 @@ def get_organizations(include_deleted_orgs: Optional[bool] = None,
 
 
 @_utilities.lift_output_func(get_organizations)
-def get_organizations_output(include_deleted_orgs: Optional[pulumi.Input[Optional[bool]]] = None,
-                             items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
+def get_organizations_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                              name: Optional[pulumi.Input[Optional[str]]] = None,
                              page_num: Optional[pulumi.Input[Optional[int]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationsResult]:

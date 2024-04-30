@@ -80,6 +80,8 @@ type LookupCloudBackupScheduleArgs struct {
 // A collection of values returned by getCloudBackupSchedule.
 type LookupCloudBackupScheduleResult struct {
 	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+	// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+	// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled bool `pulumi:"autoExportEnabled"`
 	// Unique identifier of the Atlas cluster.
 	ClusterId    string                              `pulumi:"clusterId"`
@@ -100,6 +102,8 @@ type LookupCloudBackupScheduleResult struct {
 	PolicyItemMonthlies []GetCloudBackupSchedulePolicyItemMonthly `pulumi:"policyItemMonthlies"`
 	// Weekly policy item
 	PolicyItemWeeklies []GetCloudBackupSchedulePolicyItemWeekly `pulumi:"policyItemWeeklies"`
+	// Yearly policy item
+	PolicyItemYearlies []GetCloudBackupSchedulePolicyItemYearly `pulumi:"policyItemYearlies"`
 	ProjectId          string                                   `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.
 	ReferenceHourOfDay int `pulumi:"referenceHourOfDay"`
@@ -152,6 +156,8 @@ func (o LookupCloudBackupScheduleResultOutput) ToLookupCloudBackupScheduleResult
 }
 
 // Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 func (o LookupCloudBackupScheduleResultOutput) AutoExportEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) bool { return v.AutoExportEnabled }).(pulumi.BoolOutput)
 }
@@ -214,6 +220,13 @@ func (o LookupCloudBackupScheduleResultOutput) PolicyItemWeeklies() GetCloudBack
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) []GetCloudBackupSchedulePolicyItemWeekly {
 		return v.PolicyItemWeeklies
 	}).(GetCloudBackupSchedulePolicyItemWeeklyArrayOutput)
+}
+
+// Yearly policy item
+func (o LookupCloudBackupScheduleResultOutput) PolicyItemYearlies() GetCloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return o.ApplyT(func(v LookupCloudBackupScheduleResult) []GetCloudBackupSchedulePolicyItemYearly {
+		return v.PolicyItemYearlies
+	}).(GetCloudBackupSchedulePolicyItemYearlyArrayOutput)
 }
 
 func (o LookupCloudBackupScheduleResultOutput) ProjectId() pulumi.StringOutput {

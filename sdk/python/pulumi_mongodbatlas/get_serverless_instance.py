@@ -23,7 +23,10 @@ class GetServerlessInstanceResult:
     """
     A collection of values returned by getServerlessInstance.
     """
-    def __init__(__self__, connection_strings_private_endpoint_srvs=None, connection_strings_standard_srv=None, continuous_backup_enabled=None, create_date=None, id=None, links=None, mongo_db_version=None, name=None, project_id=None, provider_settings_backing_provider_name=None, provider_settings_provider_name=None, provider_settings_region_name=None, state_name=None, tags=None, termination_protection_enabled=None):
+    def __init__(__self__, auto_indexing=None, connection_strings_private_endpoint_srvs=None, connection_strings_standard_srv=None, continuous_backup_enabled=None, create_date=None, id=None, links=None, mongo_db_version=None, name=None, project_id=None, provider_settings_backing_provider_name=None, provider_settings_provider_name=None, provider_settings_region_name=None, state_name=None, tags=None, termination_protection_enabled=None):
+        if auto_indexing and not isinstance(auto_indexing, bool):
+            raise TypeError("Expected argument 'auto_indexing' to be a bool")
+        pulumi.set(__self__, "auto_indexing", auto_indexing)
         if connection_strings_private_endpoint_srvs and not isinstance(connection_strings_private_endpoint_srvs, list):
             raise TypeError("Expected argument 'connection_strings_private_endpoint_srvs' to be a list")
         pulumi.set(__self__, "connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
@@ -69,6 +72,14 @@ class GetServerlessInstanceResult:
         if termination_protection_enabled and not isinstance(termination_protection_enabled, bool):
             raise TypeError("Expected argument 'termination_protection_enabled' to be a bool")
         pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+
+    @property
+    @pulumi.getter(name="autoIndexing")
+    def auto_indexing(self) -> bool:
+        """
+        Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+        """
+        return pulumi.get(self, "auto_indexing")
 
     @property
     @pulumi.getter(name="connectionStringsPrivateEndpointSrvs")
@@ -185,6 +196,7 @@ class AwaitableGetServerlessInstanceResult(GetServerlessInstanceResult):
         if False:
             yield self
         return GetServerlessInstanceResult(
+            auto_indexing=self.auto_indexing,
             connection_strings_private_endpoint_srvs=self.connection_strings_private_endpoint_srvs,
             connection_strings_standard_srv=self.connection_strings_standard_srv,
             continuous_backup_enabled=self.continuous_backup_enabled,
@@ -202,7 +214,8 @@ class AwaitableGetServerlessInstanceResult(GetServerlessInstanceResult):
             termination_protection_enabled=self.termination_protection_enabled)
 
 
-def get_serverless_instance(continuous_backup_enabled: Optional[bool] = None,
+def get_serverless_instance(auto_indexing: Optional[bool] = None,
+                            continuous_backup_enabled: Optional[bool] = None,
                             links: Optional[Sequence[pulumi.InputType['GetServerlessInstanceLinkArgs']]] = None,
                             name: Optional[str] = None,
                             project_id: Optional[str] = None,
@@ -236,12 +249,14 @@ def get_serverless_instance(continuous_backup_enabled: Optional[bool] = None,
     Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
 
 
+    :param bool auto_indexing: Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
     :param bool continuous_backup_enabled: Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
     :param str name: Human-readable label that identifies your serverless instance.
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
     :param str state_name: Stage of deployment of this serverless instance when the resource made its request.
     """
     __args__ = dict()
+    __args__['autoIndexing'] = auto_indexing
     __args__['continuousBackupEnabled'] = continuous_backup_enabled
     __args__['links'] = links
     __args__['name'] = name
@@ -251,6 +266,7 @@ def get_serverless_instance(continuous_backup_enabled: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getServerlessInstance:getServerlessInstance', __args__, opts=opts, typ=GetServerlessInstanceResult).value
 
     return AwaitableGetServerlessInstanceResult(
+        auto_indexing=pulumi.get(__ret__, 'auto_indexing'),
         connection_strings_private_endpoint_srvs=pulumi.get(__ret__, 'connection_strings_private_endpoint_srvs'),
         connection_strings_standard_srv=pulumi.get(__ret__, 'connection_strings_standard_srv'),
         continuous_backup_enabled=pulumi.get(__ret__, 'continuous_backup_enabled'),
@@ -269,7 +285,8 @@ def get_serverless_instance(continuous_backup_enabled: Optional[bool] = None,
 
 
 @_utilities.lift_output_func(get_serverless_instance)
-def get_serverless_instance_output(continuous_backup_enabled: Optional[pulumi.Input[Optional[bool]]] = None,
+def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional[bool]]] = None,
+                                   continuous_backup_enabled: Optional[pulumi.Input[Optional[bool]]] = None,
                                    links: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetServerlessInstanceLinkArgs']]]]] = None,
                                    name: Optional[pulumi.Input[str]] = None,
                                    project_id: Optional[pulumi.Input[str]] = None,
@@ -303,6 +320,7 @@ def get_serverless_instance_output(continuous_backup_enabled: Optional[pulumi.In
     Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
 
 
+    :param bool auto_indexing: Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
     :param bool continuous_backup_enabled: Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
     :param str name: Human-readable label that identifies your serverless instance.
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.

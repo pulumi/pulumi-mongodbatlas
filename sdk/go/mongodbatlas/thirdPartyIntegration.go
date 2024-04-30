@@ -68,9 +68,10 @@ type ThirdPartyIntegration struct {
 	MicrosoftTeamsWebhookUrl pulumi.StringOutput `pulumi:"microsoftTeamsWebhookUrl"`
 	Password                 pulumi.StringOutput `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
-	ProjectId        pulumi.StringOutput    `pulumi:"projectId"`
-	Region           pulumi.StringOutput    `pulumi:"region"`
-	RoutingKey       pulumi.StringOutput    `pulumi:"routingKey"`
+	ProjectId  pulumi.StringOutput `pulumi:"projectId"`
+	Region     pulumi.StringOutput `pulumi:"region"`
+	RoutingKey pulumi.StringOutput `pulumi:"routingKey"`
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme           pulumi.StringOutput    `pulumi:"scheme"`
 	Secret           pulumi.StringPtrOutput `pulumi:"secret"`
 	ServiceDiscovery pulumi.StringOutput    `pulumi:"serviceDiscovery"`
@@ -166,9 +167,10 @@ type thirdPartyIntegrationState struct {
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	Password                 *string `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
-	ProjectId        *string `pulumi:"projectId"`
-	Region           *string `pulumi:"region"`
-	RoutingKey       *string `pulumi:"routingKey"`
+	ProjectId  *string `pulumi:"projectId"`
+	Region     *string `pulumi:"region"`
+	RoutingKey *string `pulumi:"routingKey"`
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme           *string `pulumi:"scheme"`
 	Secret           *string `pulumi:"secret"`
 	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
@@ -194,9 +196,10 @@ type ThirdPartyIntegrationState struct {
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput
 	Password                 pulumi.StringPtrInput
 	// The unique ID for the project to get all Third-Party service integrations
-	ProjectId        pulumi.StringPtrInput
-	Region           pulumi.StringPtrInput
-	RoutingKey       pulumi.StringPtrInput
+	ProjectId  pulumi.StringPtrInput
+	Region     pulumi.StringPtrInput
+	RoutingKey pulumi.StringPtrInput
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme           pulumi.StringPtrInput
 	Secret           pulumi.StringPtrInput
 	ServiceDiscovery pulumi.StringPtrInput
@@ -226,9 +229,10 @@ type thirdPartyIntegrationArgs struct {
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	Password                 *string `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
-	ProjectId        string  `pulumi:"projectId"`
-	Region           *string `pulumi:"region"`
-	RoutingKey       *string `pulumi:"routingKey"`
+	ProjectId  string  `pulumi:"projectId"`
+	Region     *string `pulumi:"region"`
+	RoutingKey *string `pulumi:"routingKey"`
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme           *string `pulumi:"scheme"`
 	Secret           *string `pulumi:"secret"`
 	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
@@ -255,9 +259,10 @@ type ThirdPartyIntegrationArgs struct {
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput
 	Password                 pulumi.StringPtrInput
 	// The unique ID for the project to get all Third-Party service integrations
-	ProjectId        pulumi.StringInput
-	Region           pulumi.StringPtrInput
-	RoutingKey       pulumi.StringPtrInput
+	ProjectId  pulumi.StringInput
+	Region     pulumi.StringPtrInput
+	RoutingKey pulumi.StringPtrInput
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme           pulumi.StringPtrInput
 	Secret           pulumi.StringPtrInput
 	ServiceDiscovery pulumi.StringPtrInput
@@ -396,6 +401,7 @@ func (o ThirdPartyIntegrationOutput) RoutingKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.RoutingKey }).(pulumi.StringOutput)
 }
 
+// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 func (o ThirdPartyIntegrationOutput) Scheme() pulumi.StringOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.Scheme }).(pulumi.StringOutput)
 }

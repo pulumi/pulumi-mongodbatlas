@@ -6,7 +6,6 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetOrganizationsResult;
-import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -21,13 +20,6 @@ public final class GetOrganizationsInvokeResult {
      * 
      */
     private String id;
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    private @Nullable Boolean includeDeletedOrgs;
     private @Nullable Integer itemsPerPage;
     private @Nullable String name;
     private @Nullable Integer pageNum;
@@ -41,15 +33,6 @@ public final class GetOrganizationsInvokeResult {
      */
     public String id() {
         return this.id;
-    }
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    public Optional<Boolean> includeDeletedOrgs() {
-        return Optional.ofNullable(this.includeDeletedOrgs);
     }
     public Optional<Integer> itemsPerPage() {
         return Optional.ofNullable(this.itemsPerPage);
@@ -77,7 +60,6 @@ public final class GetOrganizationsInvokeResult {
     @CustomType.Builder
     public static final class Builder {
         private String id;
-        private @Nullable Boolean includeDeletedOrgs;
         private @Nullable Integer itemsPerPage;
         private @Nullable String name;
         private @Nullable Integer pageNum;
@@ -87,7 +69,6 @@ public final class GetOrganizationsInvokeResult {
         public Builder(GetOrganizationsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
-    	      this.includeDeletedOrgs = defaults.includeDeletedOrgs;
     	      this.itemsPerPage = defaults.itemsPerPage;
     	      this.name = defaults.name;
     	      this.pageNum = defaults.pageNum;
@@ -101,12 +82,6 @@ public final class GetOrganizationsInvokeResult {
               throw new MissingRequiredPropertyException("GetOrganizationsInvokeResult", "id");
             }
             this.id = id;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder includeDeletedOrgs(@Nullable Boolean includeDeletedOrgs) {
-
-            this.includeDeletedOrgs = includeDeletedOrgs;
             return this;
         }
         @CustomType.Setter
@@ -149,7 +124,6 @@ public final class GetOrganizationsInvokeResult {
         public GetOrganizationsInvokeResult build() {
             final var _resultValue = new GetOrganizationsInvokeResult();
             _resultValue.id = id;
-            _resultValue.includeDeletedOrgs = includeDeletedOrgs;
             _resultValue.itemsPerPage = itemsPerPage;
             _resultValue.name = name;
             _resultValue.pageNum = pageNum;

@@ -127,6 +127,27 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Create third party notification using credentials from existing third party integration
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getThirdPartyIntegration({
+ *     projectId: "PROJECT ID",
+ *     type: "PAGER_DUTY",
+ * });
+ * const testAlertConfiguration = new mongodbatlas.AlertConfiguration("test", {
+ *     projectId: "PROJECT ID",
+ *     enabled: true,
+ *     eventType: "USERS_WITHOUT_MULTI_FACTOR_AUTH",
+ *     notifications: [{
+ *         typeName: "PAGER_DUTY",
+ *         integrationId: test.then(test => test.id),
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.

@@ -187,6 +187,47 @@ import (
 //
 // ```
 //
+// ### Create third party notification using credentials from existing third party integration
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := mongodbatlas.LookupThirdPartyIntegration(ctx, &mongodbatlas.LookupThirdPartyIntegrationArgs{
+//				ProjectId: "PROJECT ID",
+//				Type:      "PAGER_DUTY",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewAlertConfiguration(ctx, "test", &mongodbatlas.AlertConfigurationArgs{
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				Enabled:   pulumi.Bool(true),
+//				EventType: pulumi.String("USERS_WITHOUT_MULTI_FACTOR_AUTH"),
+//				Notifications: mongodbatlas.AlertConfigurationNotificationArray{
+//					&mongodbatlas.AlertConfigurationNotificationArgs{
+//						TypeName:      pulumi.String("PAGER_DUTY"),
+//						IntegrationId: pulumi.String(test.Id),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.

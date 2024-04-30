@@ -67,6 +67,15 @@ namespace Pulumi.Mongodbatlas
     ///                 RetentionValue = 12,
     ///             },
     ///         },
+    ///         PolicyItemYearlies = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemYearlyArgs
+    ///             {
+    ///                 FrequencyInterval = 1,
+    ///                 RetentionUnit = "years",
+    ///                 RetentionValue = 1,
+    ///             },
+    ///         },
     ///     });
     /// 
     ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
@@ -124,6 +133,15 @@ namespace Pulumi.Mongodbatlas
     ///                 FrequencyInterval = 1,
     ///                 RetentionUnit = "months",
     ///                 RetentionValue = 12,
+    ///             },
+    ///         },
+    ///         PolicyItemYearlies = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.BackupCompliancePolicyPolicyItemYearlyArgs
+    ///             {
+    ///                 FrequencyInterval = 1,
+    ///                 RetentionUnit = "years",
+    ///                 RetentionValue = 1,
     ///             },
     ///         },
     ///     });
@@ -193,6 +211,9 @@ namespace Pulumi.Mongodbatlas
 
         [Output("policyItemWeeklies")]
         public Output<ImmutableArray<Outputs.BackupCompliancePolicyPolicyItemWeekly>> PolicyItemWeeklies { get; private set; } = null!;
+
+        [Output("policyItemYearlies")]
+        public Output<ImmutableArray<Outputs.BackupCompliancePolicyPolicyItemYearly>> PolicyItemYearlies { get; private set; } = null!;
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project.
@@ -331,6 +352,14 @@ namespace Pulumi.Mongodbatlas
             set => _policyItemWeeklies = value;
         }
 
+        [Input("policyItemYearlies")]
+        private InputList<Inputs.BackupCompliancePolicyPolicyItemYearlyArgs>? _policyItemYearlies;
+        public InputList<Inputs.BackupCompliancePolicyPolicyItemYearlyArgs> PolicyItemYearlies
+        {
+            get => _policyItemYearlies ?? (_policyItemYearlies = new InputList<Inputs.BackupCompliancePolicyPolicyItemYearlyArgs>());
+            set => _policyItemYearlies = value;
+        }
+
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
@@ -410,6 +439,14 @@ namespace Pulumi.Mongodbatlas
         {
             get => _policyItemWeeklies ?? (_policyItemWeeklies = new InputList<Inputs.BackupCompliancePolicyPolicyItemWeeklyGetArgs>());
             set => _policyItemWeeklies = value;
+        }
+
+        [Input("policyItemYearlies")]
+        private InputList<Inputs.BackupCompliancePolicyPolicyItemYearlyGetArgs>? _policyItemYearlies;
+        public InputList<Inputs.BackupCompliancePolicyPolicyItemYearlyGetArgs> PolicyItemYearlies
+        {
+            get => _policyItemYearlies ?? (_policyItemYearlies = new InputList<Inputs.BackupCompliancePolicyPolicyItemYearlyGetArgs>());
+            set => _policyItemYearlies = value;
         }
 
         /// <summary>

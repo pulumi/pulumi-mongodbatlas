@@ -13,6 +13,10 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetServerlessInstancesResultResult
     {
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+        /// </summary>
+        public readonly bool AutoIndexing;
         public readonly ImmutableArray<string> ConnectionStringsPrivateEndpointSrvs;
         /// <summary>
         /// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
@@ -67,6 +71,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetServerlessInstancesResultResult(
+            bool autoIndexing,
+
             ImmutableArray<string> connectionStringsPrivateEndpointSrvs,
 
             string connectionStringsStandardSrv,
@@ -97,6 +103,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool terminationProtectionEnabled)
         {
+            AutoIndexing = autoIndexing;
             ConnectionStringsPrivateEndpointSrvs = connectionStringsPrivateEndpointSrvs;
             ConnectionStringsStandardSrv = connectionStringsStandardSrv;
             ContinuousBackupEnabled = continuousBackupEnabled;

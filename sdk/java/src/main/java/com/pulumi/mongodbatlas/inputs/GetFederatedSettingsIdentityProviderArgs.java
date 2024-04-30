@@ -29,9 +29,17 @@ public final class GetFederatedSettingsIdentityProviderArgs extends com.pulumi.r
         return this.federationSettingsId;
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies the IdP.
+     * 
+     */
     @Import(name="identityProviderId", required=true)
     private Output<String> identityProviderId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the IdP.
+     * 
+     */
     public Output<String> identityProviderId() {
         return this.identityProviderId;
     }
@@ -82,11 +90,23 @@ public final class GetFederatedSettingsIdentityProviderArgs extends com.pulumi.r
             return federationSettingsId(Output.of(federationSettingsId));
         }
 
+        /**
+         * @param identityProviderId Unique 24-hexadecimal digit string that identifies the IdP.
+         * 
+         * @return builder
+         * 
+         */
         public Builder identityProviderId(Output<String> identityProviderId) {
             $.identityProviderId = identityProviderId;
             return this;
         }
 
+        /**
+         * @param identityProviderId Unique 24-hexadecimal digit string that identifies the IdP.
+         * 
+         * @return builder
+         * 
+         */
         public Builder identityProviderId(String identityProviderId) {
             return identityProviderId(Output.of(identityProviderId));
         }

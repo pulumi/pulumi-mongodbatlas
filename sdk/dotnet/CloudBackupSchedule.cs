@@ -24,9 +24,8 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-        /// 
-        /// true - enables automatic export of cloud backup snapshots to the AWS bucket
-        /// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        /// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+        /// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         /// </summary>
         [Output("autoExportEnabled")]
         public Output<bool> AutoExportEnabled { get; private set; } = null!;
@@ -84,6 +83,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("policyItemWeeklies")]
         public Output<ImmutableArray<Outputs.CloudBackupSchedulePolicyItemWeekly>> PolicyItemWeeklies { get; private set; } = null!;
+
+        /// <summary>
+        /// Yearly policy item
+        /// </summary>
+        [Output("policyItemYearlies")]
+        public Output<ImmutableArray<Outputs.CloudBackupSchedulePolicyItemYearly>> PolicyItemYearlies { get; private set; } = null!;
 
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
@@ -166,9 +171,8 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-        /// 
-        /// true - enables automatic export of cloud backup snapshots to the AWS bucket
-        /// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        /// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+        /// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         /// </summary>
         [Input("autoExportEnabled")]
         public Input<bool>? AutoExportEnabled { get; set; }
@@ -226,6 +230,18 @@ namespace Pulumi.Mongodbatlas
             set => _policyItemWeeklies = value;
         }
 
+        [Input("policyItemYearlies")]
+        private InputList<Inputs.CloudBackupSchedulePolicyItemYearlyArgs>? _policyItemYearlies;
+
+        /// <summary>
+        /// Yearly policy item
+        /// </summary>
+        public InputList<Inputs.CloudBackupSchedulePolicyItemYearlyArgs> PolicyItemYearlies
+        {
+            get => _policyItemYearlies ?? (_policyItemYearlies = new InputList<Inputs.CloudBackupSchedulePolicyItemYearlyArgs>());
+            set => _policyItemYearlies = value;
+        }
+
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
         /// </summary>
@@ -269,9 +285,8 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-        /// 
-        /// true - enables automatic export of cloud backup snapshots to the AWS bucket
-        /// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        /// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+        /// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         /// </summary>
         [Input("autoExportEnabled")]
         public Input<bool>? AutoExportEnabled { get; set; }
@@ -345,6 +360,18 @@ namespace Pulumi.Mongodbatlas
         {
             get => _policyItemWeeklies ?? (_policyItemWeeklies = new InputList<Inputs.CloudBackupSchedulePolicyItemWeeklyGetArgs>());
             set => _policyItemWeeklies = value;
+        }
+
+        [Input("policyItemYearlies")]
+        private InputList<Inputs.CloudBackupSchedulePolicyItemYearlyGetArgs>? _policyItemYearlies;
+
+        /// <summary>
+        /// Yearly policy item
+        /// </summary>
+        public InputList<Inputs.CloudBackupSchedulePolicyItemYearlyGetArgs> PolicyItemYearlies
+        {
+            get => _policyItemYearlies ?? (_policyItemYearlies = new InputList<Inputs.CloudBackupSchedulePolicyItemYearlyGetArgs>());
+            set => _policyItemYearlies = value;
         }
 
         /// <summary>

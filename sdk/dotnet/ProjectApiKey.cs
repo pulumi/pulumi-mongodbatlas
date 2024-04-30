@@ -109,14 +109,6 @@ namespace Pulumi.Mongodbatlas
         [Output("projectAssignments")]
         public Output<ImmutableArray<Outputs.ProjectApiKeyProjectAssignment>> ProjectAssignments { get; private set; } = null!;
 
-        /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-        /// 
-        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-        /// </summary>
-        [Output("projectId")]
-        public Output<string> ProjectId { get; private set; } = null!;
-
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
 
@@ -184,14 +176,6 @@ namespace Pulumi.Mongodbatlas
             set => _projectAssignments = value;
         }
 
-        /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-        /// 
-        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-        /// </summary>
-        [Input("projectId")]
-        public Input<string>? ProjectId { get; set; }
-
         public ProjectApiKeyArgs()
         {
         }
@@ -231,14 +215,6 @@ namespace Pulumi.Mongodbatlas
             get => _projectAssignments ?? (_projectAssignments = new InputList<Inputs.ProjectApiKeyProjectAssignmentGetArgs>());
             set => _projectAssignments = value;
         }
-
-        /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-        /// 
-        /// &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-        /// </summary>
-        [Input("projectId")]
-        public Input<string>? ProjectId { get; set; }
 
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }

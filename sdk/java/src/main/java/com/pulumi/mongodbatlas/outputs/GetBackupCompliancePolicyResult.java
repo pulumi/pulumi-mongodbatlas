@@ -10,6 +10,7 @@ import com.pulumi.mongodbatlas.outputs.GetBackupCompliancePolicyPolicyItemDaily;
 import com.pulumi.mongodbatlas.outputs.GetBackupCompliancePolicyPolicyItemHourly;
 import com.pulumi.mongodbatlas.outputs.GetBackupCompliancePolicyPolicyItemMonthly;
 import com.pulumi.mongodbatlas.outputs.GetBackupCompliancePolicyPolicyItemWeekly;
+import com.pulumi.mongodbatlas.outputs.GetBackupCompliancePolicyPolicyItemYearly;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -58,6 +59,7 @@ public final class GetBackupCompliancePolicyResult {
     private GetBackupCompliancePolicyPolicyItemHourly policyItemHourly;
     private List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies;
     private List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies;
+    private List<GetBackupCompliancePolicyPolicyItemYearly> policyItemYearlies;
     private String projectId;
     /**
      * @return Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can&#39;t exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -145,6 +147,9 @@ public final class GetBackupCompliancePolicyResult {
     public List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies() {
         return this.policyItemWeeklies;
     }
+    public List<GetBackupCompliancePolicyPolicyItemYearly> policyItemYearlies() {
+        return this.policyItemYearlies;
+    }
     public String projectId() {
         return this.projectId;
     }
@@ -198,6 +203,7 @@ public final class GetBackupCompliancePolicyResult {
         private GetBackupCompliancePolicyPolicyItemHourly policyItemHourly;
         private List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies;
         private List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies;
+        private List<GetBackupCompliancePolicyPolicyItemYearly> policyItemYearlies;
         private String projectId;
         private Integer restoreWindowDays;
         private String state;
@@ -218,6 +224,7 @@ public final class GetBackupCompliancePolicyResult {
     	      this.policyItemHourly = defaults.policyItemHourly;
     	      this.policyItemMonthlies = defaults.policyItemMonthlies;
     	      this.policyItemWeeklies = defaults.policyItemWeeklies;
+    	      this.policyItemYearlies = defaults.policyItemYearlies;
     	      this.projectId = defaults.projectId;
     	      this.restoreWindowDays = defaults.restoreWindowDays;
     	      this.state = defaults.state;
@@ -328,6 +335,17 @@ public final class GetBackupCompliancePolicyResult {
             return policyItemWeeklies(List.of(policyItemWeeklies));
         }
         @CustomType.Setter
+        public Builder policyItemYearlies(List<GetBackupCompliancePolicyPolicyItemYearly> policyItemYearlies) {
+            if (policyItemYearlies == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "policyItemYearlies");
+            }
+            this.policyItemYearlies = policyItemYearlies;
+            return this;
+        }
+        public Builder policyItemYearlies(GetBackupCompliancePolicyPolicyItemYearly... policyItemYearlies) {
+            return policyItemYearlies(List.of(policyItemYearlies));
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "projectId");
@@ -381,6 +399,7 @@ public final class GetBackupCompliancePolicyResult {
             _resultValue.policyItemHourly = policyItemHourly;
             _resultValue.policyItemMonthlies = policyItemMonthlies;
             _resultValue.policyItemWeeklies = policyItemWeeklies;
+            _resultValue.policyItemYearlies = policyItemYearlies;
             _resultValue.projectId = projectId;
             _resultValue.restoreWindowDays = restoreWindowDays;
             _resultValue.state = state;

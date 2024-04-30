@@ -153,28 +153,6 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
     public Output<List<ProjectApiKeyProjectAssignment>> projectAssignments() {
         return this.projectAssignments;
     }
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    @Export(name="projectId", refs={String.class}, tree="[0]")
-    private Output<String> projectId;
-
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
-     */
-    public Output<String> projectId() {
-        return this.projectId;
-    }
     @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output<String> publicKey;
 

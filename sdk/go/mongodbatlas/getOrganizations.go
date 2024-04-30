@@ -51,8 +51,6 @@ func LookupOrganizations(ctx *pulumi.Context, args *LookupOrganizationsArgs, opt
 
 // A collection of arguments for invoking getOrganizations.
 type LookupOrganizationsArgs struct {
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	IncludeDeletedOrgs *bool `pulumi:"includeDeletedOrgs"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
 	ItemsPerPage *int    `pulumi:"itemsPerPage"`
 	Name         *string `pulumi:"name"`
@@ -63,14 +61,12 @@ type LookupOrganizationsArgs struct {
 // A collection of values returned by getOrganizations.
 type LookupOrganizationsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	IncludeDeletedOrgs *bool                    `pulumi:"includeDeletedOrgs"`
-	ItemsPerPage       *int                     `pulumi:"itemsPerPage"`
-	Name               *string                  `pulumi:"name"`
-	PageNum            *int                     `pulumi:"pageNum"`
-	Results            []GetOrganizationsResult `pulumi:"results"`
-	TotalCount         int                      `pulumi:"totalCount"`
+	Id           string                   `pulumi:"id"`
+	ItemsPerPage *int                     `pulumi:"itemsPerPage"`
+	Name         *string                  `pulumi:"name"`
+	PageNum      *int                     `pulumi:"pageNum"`
+	Results      []GetOrganizationsResult `pulumi:"results"`
+	TotalCount   int                      `pulumi:"totalCount"`
 }
 
 func LookupOrganizationsOutput(ctx *pulumi.Context, args LookupOrganizationsOutputArgs, opts ...pulumi.InvokeOption) LookupOrganizationsResultOutput {
@@ -88,8 +84,6 @@ func LookupOrganizationsOutput(ctx *pulumi.Context, args LookupOrganizationsOutp
 
 // A collection of arguments for invoking getOrganizations.
 type LookupOrganizationsOutputArgs struct {
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	IncludeDeletedOrgs pulumi.BoolPtrInput `pulumi:"includeDeletedOrgs"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
 	ItemsPerPage pulumi.IntPtrInput    `pulumi:"itemsPerPage"`
 	Name         pulumi.StringPtrInput `pulumi:"name"`
@@ -119,11 +113,6 @@ func (o LookupOrganizationsResultOutput) ToLookupOrganizationsResultOutputWithCo
 // The provider-assigned unique ID for this managed resource.
 func (o LookupOrganizationsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationsResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-func (o LookupOrganizationsResultOutput) IncludeDeletedOrgs() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupOrganizationsResult) *bool { return v.IncludeDeletedOrgs }).(pulumi.BoolPtrOutput)
 }
 
 func (o LookupOrganizationsResultOutput) ItemsPerPage() pulumi.IntPtrOutput {

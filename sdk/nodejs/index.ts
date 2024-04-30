@@ -505,6 +505,11 @@ export const getProjects: typeof import("./getProjects").getProjects = null as a
 export const getProjectsOutput: typeof import("./getProjects").getProjectsOutput = null as any;
 utilities.lazyLoad(exports, ["getProjects","getProjectsOutput"], () => require("./getProjects"));
 
+export { GetPushBasedLogExportArgs, GetPushBasedLogExportResult, GetPushBasedLogExportOutputArgs } from "./getPushBasedLogExport";
+export const getPushBasedLogExport: typeof import("./getPushBasedLogExport").getPushBasedLogExport = null as any;
+export const getPushBasedLogExportOutput: typeof import("./getPushBasedLogExport").getPushBasedLogExportOutput = null as any;
+utilities.lazyLoad(exports, ["getPushBasedLogExport","getPushBasedLogExportOutput"], () => require("./getPushBasedLogExport"));
+
 export { GetRolesOrgIdResult } from "./getRolesOrgId";
 export const getRolesOrgId: typeof import("./getRolesOrgId").getRolesOrgId = null as any;
 export const getRolesOrgIdOutput: typeof import("./getRolesOrgId").getRolesOrgIdOutput = null as any;
@@ -554,6 +559,26 @@ export { GetSharedTierSnapshotsArgs, GetSharedTierSnapshotsResult, GetSharedTier
 export const getSharedTierSnapshots: typeof import("./getSharedTierSnapshots").getSharedTierSnapshots = null as any;
 export const getSharedTierSnapshotsOutput: typeof import("./getSharedTierSnapshots").getSharedTierSnapshotsOutput = null as any;
 utilities.lazyLoad(exports, ["getSharedTierSnapshots","getSharedTierSnapshotsOutput"], () => require("./getSharedTierSnapshots"));
+
+export { GetStreamConnectionArgs, GetStreamConnectionResult, GetStreamConnectionOutputArgs } from "./getStreamConnection";
+export const getStreamConnection: typeof import("./getStreamConnection").getStreamConnection = null as any;
+export const getStreamConnectionOutput: typeof import("./getStreamConnection").getStreamConnectionOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamConnection","getStreamConnectionOutput"], () => require("./getStreamConnection"));
+
+export { GetStreamConnectionsArgs, GetStreamConnectionsResult, GetStreamConnectionsOutputArgs } from "./getStreamConnections";
+export const getStreamConnections: typeof import("./getStreamConnections").getStreamConnections = null as any;
+export const getStreamConnectionsOutput: typeof import("./getStreamConnections").getStreamConnectionsOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamConnections","getStreamConnectionsOutput"], () => require("./getStreamConnections"));
+
+export { GetStreamInstanceArgs, GetStreamInstanceResult, GetStreamInstanceOutputArgs } from "./getStreamInstance";
+export const getStreamInstance: typeof import("./getStreamInstance").getStreamInstance = null as any;
+export const getStreamInstanceOutput: typeof import("./getStreamInstance").getStreamInstanceOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamInstance","getStreamInstanceOutput"], () => require("./getStreamInstance"));
+
+export { GetStreamInstancesArgs, GetStreamInstancesResult, GetStreamInstancesOutputArgs } from "./getStreamInstances";
+export const getStreamInstances: typeof import("./getStreamInstances").getStreamInstances = null as any;
+export const getStreamInstancesOutput: typeof import("./getStreamInstances").getStreamInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamInstances","getStreamInstancesOutput"], () => require("./getStreamInstances"));
 
 export { GetTeamArgs, GetTeamResult, GetTeamOutputArgs } from "./getTeam";
 export const getTeam: typeof import("./getTeam").getTeam = null as any;
@@ -680,6 +705,11 @@ export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
+export { PushBasedLogExportArgs, PushBasedLogExportState } from "./pushBasedLogExport";
+export type PushBasedLogExport = import("./pushBasedLogExport").PushBasedLogExport;
+export const PushBasedLogExport: typeof import("./pushBasedLogExport").PushBasedLogExport = null as any;
+utilities.lazyLoad(exports, ["PushBasedLogExport"], () => require("./pushBasedLogExport"));
+
 export { SearchDeploymentArgs, SearchDeploymentState } from "./searchDeployment";
 export type SearchDeployment = import("./searchDeployment").SearchDeployment;
 export const SearchDeployment: typeof import("./searchDeployment").SearchDeployment = null as any;
@@ -694,6 +724,16 @@ export { ServerlessInstanceArgs, ServerlessInstanceState } from "./serverlessIns
 export type ServerlessInstance = import("./serverlessInstance").ServerlessInstance;
 export const ServerlessInstance: typeof import("./serverlessInstance").ServerlessInstance = null as any;
 utilities.lazyLoad(exports, ["ServerlessInstance"], () => require("./serverlessInstance"));
+
+export { StreamConnectionArgs, StreamConnectionState } from "./streamConnection";
+export type StreamConnection = import("./streamConnection").StreamConnection;
+export const StreamConnection: typeof import("./streamConnection").StreamConnection = null as any;
+utilities.lazyLoad(exports, ["StreamConnection"], () => require("./streamConnection"));
+
+export { StreamInstanceArgs, StreamInstanceState } from "./streamInstance";
+export type StreamInstance = import("./streamInstance").StreamInstance;
+export const StreamInstance: typeof import("./streamInstance").StreamInstance = null as any;
+utilities.lazyLoad(exports, ["StreamInstance"], () => require("./streamInstance"));
 
 export { TeamArgs, TeamState } from "./team";
 export type Team = import("./team").Team;
@@ -819,12 +859,18 @@ const _module = {
                 return new ProjectInvitation(name, <any>undefined, { urn })
             case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
                 return new ProjectIpAccessList(name, <any>undefined, { urn })
+            case "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport":
+                return new PushBasedLogExport(name, <any>undefined, { urn })
             case "mongodbatlas:index/searchDeployment:SearchDeployment":
                 return new SearchDeployment(name, <any>undefined, { urn })
             case "mongodbatlas:index/searchIndex:SearchIndex":
                 return new SearchIndex(name, <any>undefined, { urn })
             case "mongodbatlas:index/serverlessInstance:ServerlessInstance":
                 return new ServerlessInstance(name, <any>undefined, { urn })
+            case "mongodbatlas:index/streamConnection:StreamConnection":
+                return new StreamConnection(name, <any>undefined, { urn })
+            case "mongodbatlas:index/streamInstance:StreamInstance":
+                return new StreamInstance(name, <any>undefined, { urn })
             case "mongodbatlas:index/team:Team":
                 return new Team(name, <any>undefined, { urn })
             case "mongodbatlas:index/teams:Teams":
@@ -883,9 +929,12 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/project", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectApiKey", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectInvitation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpAccessList", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/pushBasedLogExport", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchDeployment", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchIndex", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/serverlessInstance", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamConnection", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamInstance", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/team", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/teams", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/thirdPartyIntegration", _module)

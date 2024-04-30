@@ -33,12 +33,14 @@ __all__ = [
     'BackupCompliancePolicyPolicyItemHourlyArgs',
     'BackupCompliancePolicyPolicyItemMonthlyArgs',
     'BackupCompliancePolicyPolicyItemWeeklyArgs',
+    'BackupCompliancePolicyPolicyItemYearlyArgs',
     'CloudBackupScheduleCopySettingArgs',
     'CloudBackupScheduleExportArgs',
     'CloudBackupSchedulePolicyItemDailyArgs',
     'CloudBackupSchedulePolicyItemHourlyArgs',
     'CloudBackupSchedulePolicyItemMonthlyArgs',
     'CloudBackupSchedulePolicyItemWeeklyArgs',
+    'CloudBackupSchedulePolicyItemYearlyArgs',
     'CloudBackupSnapshotExportJobComponentArgs',
     'CloudBackupSnapshotExportJobCustomDataArgs',
     'CloudBackupSnapshotMemberArgs',
@@ -109,11 +111,17 @@ __all__ = [
     'ProjectLimitArgs',
     'ProjectTeamArgs',
     'ProviderAssumeRoleArgs',
+    'PushBasedLogExportTimeoutsArgs',
     'SearchDeploymentSpecArgs',
     'SearchDeploymentTimeoutsArgs',
     'SearchIndexSynonymArgs',
     'ServerlessInstanceLinkArgs',
     'ServerlessInstanceTagArgs',
+    'StreamConnectionAuthenticationArgs',
+    'StreamConnectionDbRoleToExecuteArgs',
+    'StreamConnectionSecurityArgs',
+    'StreamInstanceDataProcessRegionArgs',
+    'StreamInstanceStreamConfigArgs',
     'X509AuthenticationDatabaseUserCertificateArgs',
     'GetAlertConfigurationOutputArgs',
     'GetAlertConfigurationsListOptionArgs',
@@ -1331,6 +1339,7 @@ class AlertConfigurationNotificationArgs:
                  delay_min: Optional[pulumi.Input[int]] = None,
                  email_address: Optional[pulumi.Input[str]] = None,
                  email_enabled: Optional[pulumi.Input[bool]] = None,
+                 integration_id: Optional[pulumi.Input[str]] = None,
                  interval_min: Optional[pulumi.Input[int]] = None,
                  microsoft_teams_webhook_url: Optional[pulumi.Input[str]] = None,
                  mobile_number: Optional[pulumi.Input[str]] = None,
@@ -1362,6 +1371,8 @@ class AlertConfigurationNotificationArgs:
             pulumi.set(__self__, "email_address", email_address)
         if email_enabled is not None:
             pulumi.set(__self__, "email_enabled", email_enabled)
+        if integration_id is not None:
+            pulumi.set(__self__, "integration_id", integration_id)
         if interval_min is not None:
             pulumi.set(__self__, "interval_min", interval_min)
         if microsoft_teams_webhook_url is not None:
@@ -1466,6 +1477,15 @@ class AlertConfigurationNotificationArgs:
     @email_enabled.setter
     def email_enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "email_enabled", value)
+
+    @property
+    @pulumi.getter(name="integrationId")
+    def integration_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "integration_id")
+
+    @integration_id.setter
+    def integration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "integration_id", value)
 
     @property
     @pulumi.getter(name="intervalMin")
@@ -1662,10 +1682,10 @@ class BackupCompliancePolicyOnDemandPolicyItemArgs:
                  frequency_type: Optional[pulumi.Input[str]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
@@ -1680,7 +1700,7 @@ class BackupCompliancePolicyOnDemandPolicyItemArgs:
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> pulumi.Input[int]:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -1692,7 +1712,7 @@ class BackupCompliancePolicyOnDemandPolicyItemArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -1704,7 +1724,7 @@ class BackupCompliancePolicyOnDemandPolicyItemArgs:
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> pulumi.Input[int]:
         """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
         """
         return pulumi.get(self, "retention_value")
 
@@ -1716,7 +1736,7 @@ class BackupCompliancePolicyOnDemandPolicyItemArgs:
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -1746,10 +1766,10 @@ class BackupCompliancePolicyPolicyItemDailyArgs:
                  frequency_type: Optional[pulumi.Input[str]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
@@ -1764,7 +1784,7 @@ class BackupCompliancePolicyPolicyItemDailyArgs:
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> pulumi.Input[int]:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -1776,7 +1796,7 @@ class BackupCompliancePolicyPolicyItemDailyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -1788,7 +1808,7 @@ class BackupCompliancePolicyPolicyItemDailyArgs:
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> pulumi.Input[int]:
         """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
         """
         return pulumi.get(self, "retention_value")
 
@@ -1800,7 +1820,7 @@ class BackupCompliancePolicyPolicyItemDailyArgs:
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -1830,10 +1850,10 @@ class BackupCompliancePolicyPolicyItemHourlyArgs:
                  frequency_type: Optional[pulumi.Input[str]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
@@ -1848,7 +1868,7 @@ class BackupCompliancePolicyPolicyItemHourlyArgs:
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> pulumi.Input[int]:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -1860,7 +1880,7 @@ class BackupCompliancePolicyPolicyItemHourlyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -1872,7 +1892,7 @@ class BackupCompliancePolicyPolicyItemHourlyArgs:
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> pulumi.Input[int]:
         """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
         """
         return pulumi.get(self, "retention_value")
 
@@ -1884,7 +1904,7 @@ class BackupCompliancePolicyPolicyItemHourlyArgs:
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -1914,10 +1934,10 @@ class BackupCompliancePolicyPolicyItemMonthlyArgs:
                  frequency_type: Optional[pulumi.Input[str]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
@@ -1932,7 +1952,7 @@ class BackupCompliancePolicyPolicyItemMonthlyArgs:
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> pulumi.Input[int]:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -1944,7 +1964,7 @@ class BackupCompliancePolicyPolicyItemMonthlyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -1956,7 +1976,7 @@ class BackupCompliancePolicyPolicyItemMonthlyArgs:
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> pulumi.Input[int]:
         """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
         """
         return pulumi.get(self, "retention_value")
 
@@ -1968,7 +1988,7 @@ class BackupCompliancePolicyPolicyItemMonthlyArgs:
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -1998,10 +2018,10 @@ class BackupCompliancePolicyPolicyItemWeeklyArgs:
                  frequency_type: Optional[pulumi.Input[str]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
@@ -2016,7 +2036,7 @@ class BackupCompliancePolicyPolicyItemWeeklyArgs:
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> pulumi.Input[int]:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -2028,7 +2048,7 @@ class BackupCompliancePolicyPolicyItemWeeklyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2040,7 +2060,7 @@ class BackupCompliancePolicyPolicyItemWeeklyArgs:
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> pulumi.Input[int]:
         """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
         """
         return pulumi.get(self, "retention_value")
 
@@ -2052,7 +2072,91 @@ class BackupCompliancePolicyPolicyItemWeeklyArgs:
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        """
+        return pulumi.get(self, "frequency_type")
+
+    @frequency_type.setter
+    def frequency_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the backup policy item.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+
+@pulumi.input_type
+class BackupCompliancePolicyPolicyItemYearlyArgs:
+    def __init__(__self__, *,
+                 frequency_interval: pulumi.Input[int],
+                 retention_unit: pulumi.Input[str],
+                 retention_value: pulumi.Input[int],
+                 frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[str] id: Unique identifier of the backup policy item.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> pulumi.Input[int]:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @frequency_interval.setter
+    def frequency_interval(self, value: pulumi.Input[int]):
+        pulumi.set(self, "frequency_interval", value)
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> pulumi.Input[str]:
+        """
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @retention_unit.setter
+    def retention_unit(self, value: pulumi.Input[str]):
+        pulumi.set(self, "retention_unit", value)
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> pulumi.Input[int]:
+        """
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @retention_value.setter
+    def retention_value(self, value: pulumi.Input[int]):
+        pulumi.set(self, "retention_value", value)
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -2187,7 +2291,7 @@ class CloudBackupSchedulePolicyItemDailyArgs:
                  id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
         :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
@@ -2216,7 +2320,7 @@ class CloudBackupSchedulePolicyItemDailyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2271,7 +2375,7 @@ class CloudBackupSchedulePolicyItemHourlyArgs:
                  id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`.
         :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
@@ -2300,7 +2404,7 @@ class CloudBackupSchedulePolicyItemHourlyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2355,7 +2459,7 @@ class CloudBackupSchedulePolicyItemMonthlyArgs:
                  id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
@@ -2384,7 +2488,7 @@ class CloudBackupSchedulePolicyItemMonthlyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2439,7 +2543,7 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
                  id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (weekly in this case). The supported values for weekly policies are `1` through `7`, where `1` represents Monday and `7` represents Sunday.
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
         :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
@@ -2468,7 +2572,7 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2493,6 +2597,90 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
         Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        """
+        return pulumi.get(self, "frequency_type")
+
+    @frequency_type.setter
+    def frequency_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the backup policy item.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+
+@pulumi.input_type
+class CloudBackupSchedulePolicyItemYearlyArgs:
+    def __init__(__self__, *,
+                 frequency_interval: pulumi.Input[int],
+                 retention_unit: pulumi.Input[str],
+                 retention_value: pulumi.Input[int],
+                 frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[str] id: Unique identifier of the backup policy item.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> pulumi.Input[int]:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @frequency_interval.setter
+    def frequency_interval(self, value: pulumi.Input[int]):
+        pulumi.set(self, "frequency_interval", value)
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> pulumi.Input[str]:
+        """
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @retention_unit.setter
+    def retention_unit(self, value: pulumi.Input[str]):
+        pulumi.set(self, "retention_unit", value)
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> pulumi.Input[int]:
+        """
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @retention_value.setter
+    def retention_value(self, value: pulumi.Input[int]):
+        pulumi.set(self, "retention_value", value)
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -4871,11 +5059,17 @@ class EventTriggerEventProcessorsAwsEventbridgeArgs:
 class FederatedDatabaseInstanceCloudProviderConfigArgs:
     def __init__(__self__, *,
                  aws: pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']):
+        """
+        :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs'] aws: Name of the cloud service that hosts the data lake's data stores.
+        """
         pulumi.set(__self__, "aws", aws)
 
     @property
     @pulumi.getter
     def aws(self) -> pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']:
+        """
+        Name of the cloud service that hosts the data lake's data stores.
+        """
         return pulumi.get(self, "aws")
 
     @aws.setter
@@ -5006,8 +5200,6 @@ class FederatedDatabaseInstanceStorageDatabaseArgs:
                  views: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         if collections is not None:
             pulumi.set(__self__, "collections", collections)
@@ -5041,8 +5233,6 @@ class FederatedDatabaseInstanceStorageDatabaseArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5067,8 +5257,6 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         if data_sources is not None:
             pulumi.set(__self__, "data_sources", data_sources)
@@ -5089,8 +5277,6 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5244,8 +5430,6 @@ class FederatedDatabaseInstanceStorageDatabaseViewArgs:
                  source: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -5259,8 +5443,6 @@ class FederatedDatabaseInstanceStorageDatabaseViewArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5308,8 +5490,6 @@ class FederatedDatabaseInstanceStorageStoreArgs:
                  urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         :param pulumi.Input[str] project_id: The unique ID for the project to create a Federated Database Instance.
         """
         if additional_storage_classes is not None:
@@ -5319,8 +5499,8 @@ class FederatedDatabaseInstanceStorageStoreArgs:
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
         if cluster_id is not None:
-            warnings.warn("""this parameter is deprecated and will be removed by September 2024""", DeprecationWarning)
-            pulumi.log.warn("""cluster_id is deprecated: this parameter is deprecated and will be removed by September 2024""")
+            warnings.warn("""This parameter is deprecated and will be removed by September 2024.""", DeprecationWarning)
+            pulumi.log.warn("""cluster_id is deprecated: This parameter is deprecated and will be removed by September 2024.""")
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
         if cluster_name is not None:
@@ -5378,8 +5558,8 @@ class FederatedDatabaseInstanceStorageStoreArgs:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
-        warnings.warn("""this parameter is deprecated and will be removed by September 2024""", DeprecationWarning)
-        pulumi.log.warn("""cluster_id is deprecated: this parameter is deprecated and will be removed by September 2024""")
+        warnings.warn("""This parameter is deprecated and will be removed by September 2024.""", DeprecationWarning)
+        pulumi.log.warn("""cluster_id is deprecated: This parameter is deprecated and will be removed by September 2024.""")
 
         return pulumi.get(self, "cluster_id")
 
@@ -5428,8 +5608,6 @@ class FederatedDatabaseInstanceStorageStoreArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5568,8 +5746,6 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs:
                  value: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -5581,8 +5757,6 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5979,7 +6153,7 @@ class OnlineArchiveDataProcessRegionArgs:
                  cloud_provider: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] cloud_provider: Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+        :param pulumi.Input[str] cloud_provider: Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
         :param pulumi.Input[str] region: Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
         """
         if cloud_provider is not None:
@@ -5991,7 +6165,7 @@ class OnlineArchiveDataProcessRegionArgs:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> Optional[pulumi.Input[str]]:
         """
-        Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+        Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -6657,6 +6831,61 @@ class ProviderAssumeRoleArgs:
 
 
 @pulumi.input_type
+class PushBasedLogExportTimeoutsArgs:
+    def __init__(__self__, *,
+                 create: Optional[pulumi.Input[str]] = None,
+                 delete: Optional[pulumi.Input[str]] = None,
+                 update: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param pulumi.Input[str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param pulumi.Input[str] update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @property
+    @pulumi.getter
+    def create(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "create", value)
+
+    @property
+    @pulumi.getter
+    def delete(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "delete", value)
+
+    @property
+    @pulumi.getter
+    def update(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update", value)
+
+
+@pulumi.input_type
 class SearchDeploymentSpecArgs:
     def __init__(__self__, *,
                  instance_size: pulumi.Input[str],
@@ -6868,6 +7097,193 @@ class ServerlessInstanceTagArgs:
     @value.setter
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class StreamConnectionAuthenticationArgs:
+    def __init__(__self__, *,
+                 mechanism: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] mechanism: Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        :param pulumi.Input[str] password: Password of the account to connect to the Kafka cluster.
+        :param pulumi.Input[str] username: Username of the account to connect to the Kafka cluster.
+        """
+        if mechanism is not None:
+            pulumi.set(__self__, "mechanism", mechanism)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def mechanism(self) -> Optional[pulumi.Input[str]]:
+        """
+        Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        """
+        return pulumi.get(self, "mechanism")
+
+    @mechanism.setter
+    def mechanism(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mechanism", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password of the account to connect to the Kafka cluster.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username of the account to connect to the Kafka cluster.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class StreamConnectionDbRoleToExecuteArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] type: Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class StreamConnectionSecurityArgs:
+    def __init__(__self__, *,
+                 broker_public_certificate: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] broker_public_certificate: A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+        :param pulumi.Input[str] protocol: Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        """
+        if broker_public_certificate is not None:
+            pulumi.set(__self__, "broker_public_certificate", broker_public_certificate)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+
+    @property
+    @pulumi.getter(name="brokerPublicCertificate")
+    def broker_public_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+        """
+        return pulumi.get(self, "broker_public_certificate")
+
+    @broker_public_certificate.setter
+    def broker_public_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "broker_public_certificate", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
+
+
+@pulumi.input_type
+class StreamInstanceDataProcessRegionArgs:
+    def __init__(__self__, *,
+                 cloud_provider: pulumi.Input[str],
+                 region: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] cloud_provider: Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+        :param pulumi.Input[str] region: Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> pulumi.Input[str]:
+        """
+        Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @cloud_provider.setter
+    def cloud_provider(self, value: pulumi.Input[str]):
+        pulumi.set(self, "cloud_provider", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[str]:
+        """
+        Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[str]):
+        pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class StreamInstanceStreamConfigArgs:
+    def __init__(__self__, *,
+                 tier: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] tier: Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+        """
+        if tier is not None:
+            pulumi.set(__self__, "tier", tier)
+
+    @property
+    @pulumi.getter
+    def tier(self) -> Optional[pulumi.Input[str]]:
+        """
+        Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+        """
+        return pulumi.get(self, "tier")
+
+    @tier.setter
+    def tier(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tier", value)
 
 
 @pulumi.input_type

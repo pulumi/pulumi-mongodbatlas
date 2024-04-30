@@ -4,7 +4,6 @@
 package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
-import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -15,25 +14,6 @@ import javax.annotation.Nullable;
 public final class GetOrganizationsPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetOrganizationsPlainArgs Empty = new GetOrganizationsPlainArgs();
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    @Import(name="includeDeletedOrgs")
-    private @Nullable Boolean includeDeletedOrgs;
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    public Optional<Boolean> includeDeletedOrgs() {
-        return Optional.ofNullable(this.includeDeletedOrgs);
-    }
 
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -75,7 +55,6 @@ public final class GetOrganizationsPlainArgs extends com.pulumi.resources.Invoke
     private GetOrganizationsPlainArgs() {}
 
     private GetOrganizationsPlainArgs(GetOrganizationsPlainArgs $) {
-        this.includeDeletedOrgs = $.includeDeletedOrgs;
         this.itemsPerPage = $.itemsPerPage;
         this.name = $.name;
         this.pageNum = $.pageNum;
@@ -97,19 +76,6 @@ public final class GetOrganizationsPlainArgs extends com.pulumi.resources.Invoke
 
         public Builder(GetOrganizationsPlainArgs defaults) {
             $ = new GetOrganizationsPlainArgs(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in version 1.16.0
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-        public Builder includeDeletedOrgs(@Nullable Boolean includeDeletedOrgs) {
-            $.includeDeletedOrgs = includeDeletedOrgs;
-            return this;
         }
 
         /**

@@ -161,6 +161,10 @@ export interface GetProjectResult {
      */
     readonly regionUsageRestrictions: string;
     /**
+     * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
+     */
+    readonly tags: {[key: string]: string};
+    /**
      * Returns all teams to which the authenticated user has access in the project. See Teams.
      */
     readonly teams: outputs.GetProjectTeam[];

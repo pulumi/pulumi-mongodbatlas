@@ -26,7 +26,6 @@ export function getOrganizations(args?: GetOrganizationsArgs, opts?: pulumi.Invo
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getOrganizations:getOrganizations", {
-        "includeDeletedOrgs": args.includeDeletedOrgs,
         "itemsPerPage": args.itemsPerPage,
         "name": args.name,
         "pageNum": args.pageNum,
@@ -37,10 +36,6 @@ export function getOrganizations(args?: GetOrganizationsArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getOrganizations.
  */
 export interface GetOrganizationsArgs {
-    /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
-     */
-    includeDeletedOrgs?: boolean;
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
@@ -60,10 +55,6 @@ export interface GetOrganizationsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
-     */
-    readonly includeDeletedOrgs?: boolean;
     readonly itemsPerPage?: number;
     readonly name?: string;
     readonly pageNum?: number;
@@ -93,10 +84,6 @@ export function getOrganizationsOutput(args?: GetOrganizationsOutputArgs, opts?:
  * A collection of arguments for invoking getOrganizations.
  */
 export interface GetOrganizationsOutputArgs {
-    /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
-     */
-    includeDeletedOrgs?: pulumi.Input<boolean>;
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */

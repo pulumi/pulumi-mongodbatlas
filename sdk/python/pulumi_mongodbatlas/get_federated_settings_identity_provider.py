@@ -332,11 +332,12 @@ def get_federated_settings_identity_provider(federation_settings_id: Optional[st
         request_binding="HTTP-POST",
         response_signature_algorithm="SHA-256")
     identity_provider_ds = mongodbatlas.get_federated_settings_identity_provider_output(federation_settings_id=identity_provider.id,
-        identity_provider_id="0oad47f7fXnk1297")
+        identity_provider_id="0oad4fas87jL5Xnk12971234")
     ```
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+    :param str identity_provider_id: Unique 24-hexadecimal digit string that identifies the IdP.
     """
     __args__ = dict()
     __args__['federationSettingsId'] = federation_settings_id
@@ -396,10 +397,11 @@ def get_federated_settings_identity_provider_output(federation_settings_id: Opti
         request_binding="HTTP-POST",
         response_signature_algorithm="SHA-256")
     identity_provider_ds = mongodbatlas.get_federated_settings_identity_provider_output(federation_settings_id=identity_provider.id,
-        identity_provider_id="0oad47f7fXnk1297")
+        identity_provider_id="0oad4fas87jL5Xnk12971234")
     ```
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+    :param str identity_provider_id: Unique 24-hexadecimal digit string that identifies the IdP.
     """
     ...

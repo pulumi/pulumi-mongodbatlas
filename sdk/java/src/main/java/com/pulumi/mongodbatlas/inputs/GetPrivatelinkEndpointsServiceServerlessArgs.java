@@ -34,38 +34,38 @@ public final class GetPrivatelinkEndpointsServiceServerlessArgs extends com.pulu
 
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed in version 1.17.0
+     * This parameter is deprecated and will be removed in version 1.17.0.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
     @Import(name="itemsPerPage")
     private @Nullable Output<Integer> itemsPerPage;
 
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed in version 1.17.0
+     * This parameter is deprecated and will be removed in version 1.17.0.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
     public Optional<Output<Integer>> itemsPerPage() {
         return Optional.ofNullable(this.itemsPerPage);
     }
 
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed in version 1.17.0
+     * This parameter is deprecated and will be removed in version 1.17.0.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
     @Import(name="pageNum")
     private @Nullable Output<Integer> pageNum;
 
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed in version 1.17.0
+     * This parameter is deprecated and will be removed in version 1.17.0.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
     public Optional<Output<Integer>> pageNum() {
         return Optional.ofNullable(this.pageNum);
     }
@@ -137,10 +137,10 @@ public final class GetPrivatelinkEndpointsServiceServerlessArgs extends com.pulu
          * @return builder
          * 
          * @deprecated
-         * this parameter is deprecated and will be removed in version 1.17.0
+         * This parameter is deprecated and will be removed in version 1.17.0.
          * 
          */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
         public Builder itemsPerPage(@Nullable Output<Integer> itemsPerPage) {
             $.itemsPerPage = itemsPerPage;
             return this;
@@ -150,10 +150,10 @@ public final class GetPrivatelinkEndpointsServiceServerlessArgs extends com.pulu
          * @return builder
          * 
          * @deprecated
-         * this parameter is deprecated and will be removed in version 1.17.0
+         * This parameter is deprecated and will be removed in version 1.17.0.
          * 
          */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
         public Builder itemsPerPage(Integer itemsPerPage) {
             return itemsPerPage(Output.of(itemsPerPage));
         }
@@ -162,10 +162,10 @@ public final class GetPrivatelinkEndpointsServiceServerlessArgs extends com.pulu
          * @return builder
          * 
          * @deprecated
-         * this parameter is deprecated and will be removed in version 1.17.0
+         * This parameter is deprecated and will be removed in version 1.17.0.
          * 
          */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
         public Builder pageNum(@Nullable Output<Integer> pageNum) {
             $.pageNum = pageNum;
             return this;
@@ -175,10 +175,10 @@ public final class GetPrivatelinkEndpointsServiceServerlessArgs extends com.pulu
          * @return builder
          * 
          * @deprecated
-         * this parameter is deprecated and will be removed in version 1.17.0
+         * This parameter is deprecated and will be removed in version 1.17.0.
          * 
          */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
         public Builder pageNum(Integer pageNum) {
             return pageNum(Output.of(pageNum));
         }

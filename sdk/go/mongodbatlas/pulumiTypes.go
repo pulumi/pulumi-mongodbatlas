@@ -2728,6 +2728,7 @@ type AlertConfigurationNotification struct {
 	DelayMin                 *int     `pulumi:"delayMin"`
 	EmailAddress             *string  `pulumi:"emailAddress"`
 	EmailEnabled             *bool    `pulumi:"emailEnabled"`
+	IntegrationId            *string  `pulumi:"integrationId"`
 	IntervalMin              *int     `pulumi:"intervalMin"`
 	MicrosoftTeamsWebhookUrl *string  `pulumi:"microsoftTeamsWebhookUrl"`
 	MobileNumber             *string  `pulumi:"mobileNumber"`
@@ -2766,6 +2767,7 @@ type AlertConfigurationNotificationArgs struct {
 	DelayMin                 pulumi.IntPtrInput      `pulumi:"delayMin"`
 	EmailAddress             pulumi.StringPtrInput   `pulumi:"emailAddress"`
 	EmailEnabled             pulumi.BoolPtrInput     `pulumi:"emailEnabled"`
+	IntegrationId            pulumi.StringPtrInput   `pulumi:"integrationId"`
 	IntervalMin              pulumi.IntPtrInput      `pulumi:"intervalMin"`
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput   `pulumi:"microsoftTeamsWebhookUrl"`
 	MobileNumber             pulumi.StringPtrInput   `pulumi:"mobileNumber"`
@@ -2862,6 +2864,10 @@ func (o AlertConfigurationNotificationOutput) EmailAddress() pulumi.StringPtrOut
 
 func (o AlertConfigurationNotificationOutput) EmailEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *bool { return v.EmailEnabled }).(pulumi.BoolPtrOutput)
+}
+
+func (o AlertConfigurationNotificationOutput) IntegrationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.IntegrationId }).(pulumi.StringPtrOutput)
 }
 
 func (o AlertConfigurationNotificationOutput) IntervalMin() pulumi.IntPtrOutput {
@@ -3116,15 +3122,15 @@ func (o AlertConfigurationThresholdConfigPtrOutput) Units() pulumi.StringPtrOutp
 }
 
 type BackupCompliancePolicyOnDemandPolicyItem struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -3140,15 +3146,15 @@ type BackupCompliancePolicyOnDemandPolicyItemInput interface {
 }
 
 type BackupCompliancePolicyOnDemandPolicyItemArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -3229,12 +3235,12 @@ func (o BackupCompliancePolicyOnDemandPolicyItemOutput) ToBackupCompliancePolicy
 	}).(BackupCompliancePolicyOnDemandPolicyItemPtrOutput)
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyOnDemandPolicyItemOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyOnDemandPolicyItemOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -3244,12 +3250,12 @@ func (o BackupCompliancePolicyOnDemandPolicyItemOutput) Id() pulumi.StringPtrOut
 	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyOnDemandPolicyItemOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyOnDemandPolicyItemOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -3278,7 +3284,7 @@ func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) Elem() BackupComplian
 	}).(BackupCompliancePolicyOnDemandPolicyItemOutput)
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *int {
 		if v == nil {
@@ -3288,7 +3294,7 @@ func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) FrequencyInterval() p
 	}).(pulumi.IntPtrOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *string {
 		if v == nil {
@@ -3308,7 +3314,7 @@ func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) Id() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *string {
 		if v == nil {
@@ -3318,7 +3324,7 @@ func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) RetentionUnit() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) RetentionValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *int {
 		if v == nil {
@@ -3329,15 +3335,15 @@ func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) RetentionValue() pulu
 }
 
 type BackupCompliancePolicyPolicyItemDaily struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -3353,15 +3359,15 @@ type BackupCompliancePolicyPolicyItemDailyInput interface {
 }
 
 type BackupCompliancePolicyPolicyItemDailyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -3442,12 +3448,12 @@ func (o BackupCompliancePolicyPolicyItemDailyOutput) ToBackupCompliancePolicyPol
 	}).(BackupCompliancePolicyPolicyItemDailyPtrOutput)
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyPolicyItemDailyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyPolicyItemDailyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -3457,12 +3463,12 @@ func (o BackupCompliancePolicyPolicyItemDailyOutput) Id() pulumi.StringPtrOutput
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyPolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyPolicyItemDailyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -3491,7 +3497,7 @@ func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) Elem() BackupComplianceP
 	}).(BackupCompliancePolicyPolicyItemDailyOutput)
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *int {
 		if v == nil {
@@ -3501,7 +3507,7 @@ func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) FrequencyInterval() pulu
 	}).(pulumi.IntPtrOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *string {
 		if v == nil {
@@ -3521,7 +3527,7 @@ func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) Id() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *string {
 		if v == nil {
@@ -3531,7 +3537,7 @@ func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) RetentionUnit() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *int {
 		if v == nil {
@@ -3542,15 +3548,15 @@ func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) RetentionValue() pulumi.
 }
 
 type BackupCompliancePolicyPolicyItemHourly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -3566,15 +3572,15 @@ type BackupCompliancePolicyPolicyItemHourlyInput interface {
 }
 
 type BackupCompliancePolicyPolicyItemHourlyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -3655,12 +3661,12 @@ func (o BackupCompliancePolicyPolicyItemHourlyOutput) ToBackupCompliancePolicyPo
 	}).(BackupCompliancePolicyPolicyItemHourlyPtrOutput)
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyPolicyItemHourlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyPolicyItemHourlyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -3670,12 +3676,12 @@ func (o BackupCompliancePolicyPolicyItemHourlyOutput) Id() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyPolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyPolicyItemHourlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -3704,7 +3710,7 @@ func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) Elem() BackupCompliance
 	}).(BackupCompliancePolicyPolicyItemHourlyOutput)
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *int {
 		if v == nil {
@@ -3714,7 +3720,7 @@ func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) FrequencyInterval() pul
 	}).(pulumi.IntPtrOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *string {
 		if v == nil {
@@ -3734,7 +3740,7 @@ func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) Id() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *string {
 		if v == nil {
@@ -3744,7 +3750,7 @@ func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) RetentionUnit() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *int {
 		if v == nil {
@@ -3755,15 +3761,15 @@ func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) RetentionValue() pulumi
 }
 
 type BackupCompliancePolicyPolicyItemMonthly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -3779,15 +3785,15 @@ type BackupCompliancePolicyPolicyItemMonthlyInput interface {
 }
 
 type BackupCompliancePolicyPolicyItemMonthlyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -3842,12 +3848,12 @@ func (o BackupCompliancePolicyPolicyItemMonthlyOutput) ToBackupCompliancePolicyP
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyPolicyItemMonthlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyPolicyItemMonthlyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -3857,12 +3863,12 @@ func (o BackupCompliancePolicyPolicyItemMonthlyOutput) Id() pulumi.StringPtrOutp
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyPolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyPolicyItemMonthlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -3888,15 +3894,15 @@ func (o BackupCompliancePolicyPolicyItemMonthlyArrayOutput) Index(i pulumi.IntIn
 }
 
 type BackupCompliancePolicyPolicyItemWeekly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -3912,15 +3918,15 @@ type BackupCompliancePolicyPolicyItemWeeklyInput interface {
 }
 
 type BackupCompliancePolicyPolicyItemWeeklyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -3975,12 +3981,12 @@ func (o BackupCompliancePolicyPolicyItemWeeklyOutput) ToBackupCompliancePolicyPo
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyPolicyItemWeeklyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyPolicyItemWeeklyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -3990,12 +3996,12 @@ func (o BackupCompliancePolicyPolicyItemWeeklyOutput) Id() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyPolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyPolicyItemWeeklyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -4018,6 +4024,139 @@ func (o BackupCompliancePolicyPolicyItemWeeklyArrayOutput) Index(i pulumi.IntInp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BackupCompliancePolicyPolicyItemWeekly {
 		return vs[0].([]BackupCompliancePolicyPolicyItemWeekly)[vs[1].(int)]
 	}).(BackupCompliancePolicyPolicyItemWeeklyOutput)
+}
+
+type BackupCompliancePolicyPolicyItemYearly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType *string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id *string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// BackupCompliancePolicyPolicyItemYearlyInput is an input type that accepts BackupCompliancePolicyPolicyItemYearlyArgs and BackupCompliancePolicyPolicyItemYearlyOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyPolicyItemYearlyInput` via:
+//
+//	BackupCompliancePolicyPolicyItemYearlyArgs{...}
+type BackupCompliancePolicyPolicyItemYearlyInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyPolicyItemYearlyOutput() BackupCompliancePolicyPolicyItemYearlyOutput
+	ToBackupCompliancePolicyPolicyItemYearlyOutputWithContext(context.Context) BackupCompliancePolicyPolicyItemYearlyOutput
+}
+
+type BackupCompliancePolicyPolicyItemYearlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (BackupCompliancePolicyPolicyItemYearlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (i BackupCompliancePolicyPolicyItemYearlyArgs) ToBackupCompliancePolicyPolicyItemYearlyOutput() BackupCompliancePolicyPolicyItemYearlyOutput {
+	return i.ToBackupCompliancePolicyPolicyItemYearlyOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyPolicyItemYearlyArgs) ToBackupCompliancePolicyPolicyItemYearlyOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemYearlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemYearlyOutput)
+}
+
+// BackupCompliancePolicyPolicyItemYearlyArrayInput is an input type that accepts BackupCompliancePolicyPolicyItemYearlyArray and BackupCompliancePolicyPolicyItemYearlyArrayOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyPolicyItemYearlyArrayInput` via:
+//
+//	BackupCompliancePolicyPolicyItemYearlyArray{ BackupCompliancePolicyPolicyItemYearlyArgs{...} }
+type BackupCompliancePolicyPolicyItemYearlyArrayInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyPolicyItemYearlyArrayOutput() BackupCompliancePolicyPolicyItemYearlyArrayOutput
+	ToBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(context.Context) BackupCompliancePolicyPolicyItemYearlyArrayOutput
+}
+
+type BackupCompliancePolicyPolicyItemYearlyArray []BackupCompliancePolicyPolicyItemYearlyInput
+
+func (BackupCompliancePolicyPolicyItemYearlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (i BackupCompliancePolicyPolicyItemYearlyArray) ToBackupCompliancePolicyPolicyItemYearlyArrayOutput() BackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return i.ToBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyPolicyItemYearlyArray) ToBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemYearlyArrayOutput)
+}
+
+type BackupCompliancePolicyPolicyItemYearlyOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyPolicyItemYearlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) ToBackupCompliancePolicyPolicyItemYearlyOutput() BackupCompliancePolicyPolicyItemYearlyOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) ToBackupCompliancePolicyPolicyItemYearlyOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemYearlyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemYearly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemYearly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemYearly) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemYearly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemYearly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type BackupCompliancePolicyPolicyItemYearlyArrayOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyPolicyItemYearlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyPolicyItemYearlyArrayOutput) ToBackupCompliancePolicyPolicyItemYearlyArrayOutput() BackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemYearlyArrayOutput) ToBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemYearlyArrayOutput) Index(i pulumi.IntInput) BackupCompliancePolicyPolicyItemYearlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BackupCompliancePolicyPolicyItemYearly {
+		return vs[0].([]BackupCompliancePolicyPolicyItemYearly)[vs[1].(int)]
+	}).(BackupCompliancePolicyPolicyItemYearlyOutput)
 }
 
 type CloudBackupScheduleCopySetting struct {
@@ -4301,7 +4440,7 @@ type CloudBackupSchedulePolicyItemDaily struct {
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
 	RetentionValue int `pulumi:"retentionValue"`
@@ -4325,7 +4464,7 @@ type CloudBackupSchedulePolicyItemDailyArgs struct {
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
@@ -4423,7 +4562,7 @@ func (o CloudBackupSchedulePolicyItemDailyOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o CloudBackupSchedulePolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
@@ -4487,7 +4626,7 @@ func (o CloudBackupSchedulePolicyItemDailyPtrOutput) Id() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o CloudBackupSchedulePolicyItemDailyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemDaily) *string {
 		if v == nil {
@@ -4514,7 +4653,7 @@ type CloudBackupSchedulePolicyItemHourly struct {
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
 	RetentionValue int `pulumi:"retentionValue"`
@@ -4538,7 +4677,7 @@ type CloudBackupSchedulePolicyItemHourlyArgs struct {
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
@@ -4636,7 +4775,7 @@ func (o CloudBackupSchedulePolicyItemHourlyOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemHourly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o CloudBackupSchedulePolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
@@ -4700,7 +4839,7 @@ func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) Id() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemHourly) *string {
 		if v == nil {
@@ -4727,7 +4866,7 @@ type CloudBackupSchedulePolicyItemMonthly struct {
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
 	RetentionValue int `pulumi:"retentionValue"`
@@ -4751,7 +4890,7 @@ type CloudBackupSchedulePolicyItemMonthlyArgs struct {
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
@@ -4823,7 +4962,7 @@ func (o CloudBackupSchedulePolicyItemMonthlyOutput) Id() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o CloudBackupSchedulePolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
@@ -4860,7 +4999,7 @@ type CloudBackupSchedulePolicyItemWeekly struct {
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
 	RetentionValue int `pulumi:"retentionValue"`
@@ -4884,7 +5023,7 @@ type CloudBackupSchedulePolicyItemWeeklyArgs struct {
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
@@ -4956,7 +5095,7 @@ func (o CloudBackupSchedulePolicyItemWeeklyOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o CloudBackupSchedulePolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
@@ -4984,6 +5123,139 @@ func (o CloudBackupSchedulePolicyItemWeeklyArrayOutput) Index(i pulumi.IntInput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupSchedulePolicyItemWeekly {
 		return vs[0].([]CloudBackupSchedulePolicyItemWeekly)[vs[1].(int)]
 	}).(CloudBackupSchedulePolicyItemWeeklyOutput)
+}
+
+type CloudBackupSchedulePolicyItemYearly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType *string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id *string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// CloudBackupSchedulePolicyItemYearlyInput is an input type that accepts CloudBackupSchedulePolicyItemYearlyArgs and CloudBackupSchedulePolicyItemYearlyOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemYearlyInput` via:
+//
+//	CloudBackupSchedulePolicyItemYearlyArgs{...}
+type CloudBackupSchedulePolicyItemYearlyInput interface {
+	pulumi.Input
+
+	ToCloudBackupSchedulePolicyItemYearlyOutput() CloudBackupSchedulePolicyItemYearlyOutput
+	ToCloudBackupSchedulePolicyItemYearlyOutputWithContext(context.Context) CloudBackupSchedulePolicyItemYearlyOutput
+}
+
+type CloudBackupSchedulePolicyItemYearlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (CloudBackupSchedulePolicyItemYearlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (i CloudBackupSchedulePolicyItemYearlyArgs) ToCloudBackupSchedulePolicyItemYearlyOutput() CloudBackupSchedulePolicyItemYearlyOutput {
+	return i.ToCloudBackupSchedulePolicyItemYearlyOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSchedulePolicyItemYearlyArgs) ToCloudBackupSchedulePolicyItemYearlyOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemYearlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemYearlyOutput)
+}
+
+// CloudBackupSchedulePolicyItemYearlyArrayInput is an input type that accepts CloudBackupSchedulePolicyItemYearlyArray and CloudBackupSchedulePolicyItemYearlyArrayOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemYearlyArrayInput` via:
+//
+//	CloudBackupSchedulePolicyItemYearlyArray{ CloudBackupSchedulePolicyItemYearlyArgs{...} }
+type CloudBackupSchedulePolicyItemYearlyArrayInput interface {
+	pulumi.Input
+
+	ToCloudBackupSchedulePolicyItemYearlyArrayOutput() CloudBackupSchedulePolicyItemYearlyArrayOutput
+	ToCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(context.Context) CloudBackupSchedulePolicyItemYearlyArrayOutput
+}
+
+type CloudBackupSchedulePolicyItemYearlyArray []CloudBackupSchedulePolicyItemYearlyInput
+
+func (CloudBackupSchedulePolicyItemYearlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (i CloudBackupSchedulePolicyItemYearlyArray) ToCloudBackupSchedulePolicyItemYearlyArrayOutput() CloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return i.ToCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSchedulePolicyItemYearlyArray) ToCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemYearlyArrayOutput)
+}
+
+type CloudBackupSchedulePolicyItemYearlyOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSchedulePolicyItemYearlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (o CloudBackupSchedulePolicyItemYearlyOutput) ToCloudBackupSchedulePolicyItemYearlyOutput() CloudBackupSchedulePolicyItemYearlyOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemYearlyOutput) ToCloudBackupSchedulePolicyItemYearlyOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemYearlyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+func (o CloudBackupSchedulePolicyItemYearlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemYearly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o CloudBackupSchedulePolicyItemYearlyOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemYearly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o CloudBackupSchedulePolicyItemYearlyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemYearly) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+func (o CloudBackupSchedulePolicyItemYearlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemYearly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+func (o CloudBackupSchedulePolicyItemYearlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemYearly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type CloudBackupSchedulePolicyItemYearlyArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSchedulePolicyItemYearlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (o CloudBackupSchedulePolicyItemYearlyArrayOutput) ToCloudBackupSchedulePolicyItemYearlyArrayOutput() CloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemYearlyArrayOutput) ToCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemYearlyArrayOutput) Index(i pulumi.IntInput) CloudBackupSchedulePolicyItemYearlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupSchedulePolicyItemYearly {
+		return vs[0].([]CloudBackupSchedulePolicyItemYearly)[vs[1].(int)]
+	}).(CloudBackupSchedulePolicyItemYearlyOutput)
 }
 
 type CloudBackupSnapshotExportJobComponent struct {
@@ -10512,6 +10784,7 @@ func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) ConfigRegion() pulum
 }
 
 type FederatedDatabaseInstanceCloudProviderConfig struct {
+	// Name of the cloud service that hosts the data lake's data stores.
 	Aws FederatedDatabaseInstanceCloudProviderConfigAws `pulumi:"aws"`
 }
 
@@ -10527,6 +10800,7 @@ type FederatedDatabaseInstanceCloudProviderConfigInput interface {
 }
 
 type FederatedDatabaseInstanceCloudProviderConfigArgs struct {
+	// Name of the cloud service that hosts the data lake's data stores.
 	Aws FederatedDatabaseInstanceCloudProviderConfigAwsInput `pulumi:"aws"`
 }
 
@@ -10607,6 +10881,7 @@ func (o FederatedDatabaseInstanceCloudProviderConfigOutput) ToFederatedDatabaseI
 	}).(FederatedDatabaseInstanceCloudProviderConfigPtrOutput)
 }
 
+// Name of the cloud service that hosts the data lake's data stores.
 func (o FederatedDatabaseInstanceCloudProviderConfigOutput) Aws() FederatedDatabaseInstanceCloudProviderConfigAwsOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfig) FederatedDatabaseInstanceCloudProviderConfigAws {
 		return v.Aws
@@ -10637,6 +10912,7 @@ func (o FederatedDatabaseInstanceCloudProviderConfigPtrOutput) Elem() FederatedD
 	}).(FederatedDatabaseInstanceCloudProviderConfigOutput)
 }
 
+// Name of the cloud service that hosts the data lake's data stores.
 func (o FederatedDatabaseInstanceCloudProviderConfigPtrOutput) Aws() FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfig) *FederatedDatabaseInstanceCloudProviderConfigAws {
 		if v == nil {
@@ -11019,8 +11295,6 @@ type FederatedDatabaseInstanceStorageDatabase struct {
 	Collections            []FederatedDatabaseInstanceStorageDatabaseCollection `pulumi:"collections"`
 	MaxWildcardCollections *int                                                 `pulumi:"maxWildcardCollections"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name  *string                                        `pulumi:"name"`
 	Views []FederatedDatabaseInstanceStorageDatabaseView `pulumi:"views"`
 }
@@ -11040,8 +11314,6 @@ type FederatedDatabaseInstanceStorageDatabaseArgs struct {
 	Collections            FederatedDatabaseInstanceStorageDatabaseCollectionArrayInput `pulumi:"collections"`
 	MaxWildcardCollections pulumi.IntPtrInput                                           `pulumi:"maxWildcardCollections"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name  pulumi.StringPtrInput                                  `pulumi:"name"`
 	Views FederatedDatabaseInstanceStorageDatabaseViewArrayInput `pulumi:"views"`
 }
@@ -11108,8 +11380,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseOutput) MaxWildcardCollections()
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageDatabaseOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageDatabase) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -11143,8 +11413,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseArrayOutput) Index(i pulumi.IntI
 type FederatedDatabaseInstanceStorageDatabaseCollection struct {
 	DataSources []FederatedDatabaseInstanceStorageDatabaseCollectionDataSource `pulumi:"dataSources"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name *string `pulumi:"name"`
 }
 
@@ -11162,8 +11430,6 @@ type FederatedDatabaseInstanceStorageDatabaseCollectionInput interface {
 type FederatedDatabaseInstanceStorageDatabaseCollectionArgs struct {
 	DataSources FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArrayInput `pulumi:"dataSources"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -11225,8 +11491,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseCollectionOutput) DataSources() 
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageDatabaseCollectionOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageDatabaseCollection) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -11409,8 +11673,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArrayOutput)
 
 type FederatedDatabaseInstanceStorageDatabaseView struct {
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name     *string `pulumi:"name"`
 	Pipeline *string `pulumi:"pipeline"`
 	Source   *string `pulumi:"source"`
@@ -11429,8 +11691,6 @@ type FederatedDatabaseInstanceStorageDatabaseViewInput interface {
 
 type FederatedDatabaseInstanceStorageDatabaseViewArgs struct {
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name     pulumi.StringPtrInput `pulumi:"name"`
 	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
 	Source   pulumi.StringPtrInput `pulumi:"source"`
@@ -11488,8 +11748,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseViewOutput) ToFederatedDatabaseI
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageDatabaseViewOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageDatabaseView) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -11526,15 +11784,13 @@ type FederatedDatabaseInstanceStorageStore struct {
 	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
 	AllowInsecure            *bool    `pulumi:"allowInsecure"`
 	Bucket                   *string  `pulumi:"bucket"`
-	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	// Deprecated: This parameter is deprecated and will be removed by September 2024.
 	ClusterId     *string `pulumi:"clusterId"`
 	ClusterName   *string `pulumi:"clusterName"`
 	DefaultFormat *string `pulumi:"defaultFormat"`
 	Delimiter     *string `pulumi:"delimiter"`
 	IncludeTags   *bool   `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name   *string `pulumi:"name"`
 	Prefix *string `pulumi:"prefix"`
 	// The unique ID for the project to create a Federated Database Instance.
@@ -11561,15 +11817,13 @@ type FederatedDatabaseInstanceStorageStoreArgs struct {
 	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
 	AllowInsecure            pulumi.BoolPtrInput     `pulumi:"allowInsecure"`
 	Bucket                   pulumi.StringPtrInput   `pulumi:"bucket"`
-	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	// Deprecated: This parameter is deprecated and will be removed by September 2024.
 	ClusterId     pulumi.StringPtrInput `pulumi:"clusterId"`
 	ClusterName   pulumi.StringPtrInput `pulumi:"clusterName"`
 	DefaultFormat pulumi.StringPtrInput `pulumi:"defaultFormat"`
 	Delimiter     pulumi.StringPtrInput `pulumi:"delimiter"`
 	IncludeTags   pulumi.BoolPtrInput   `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name   pulumi.StringPtrInput `pulumi:"name"`
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 	// The unique ID for the project to create a Federated Database Instance.
@@ -11644,7 +11898,7 @@ func (o FederatedDatabaseInstanceStorageStoreOutput) Bucket() pulumi.StringPtrOu
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.Bucket }).(pulumi.StringPtrOutput)
 }
 
-// Deprecated: this parameter is deprecated and will be removed by September 2024
+// Deprecated: This parameter is deprecated and will be removed by September 2024.
 func (o FederatedDatabaseInstanceStorageStoreOutput) ClusterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.ClusterId }).(pulumi.StringPtrOutput)
 }
@@ -11666,8 +11920,6 @@ func (o FederatedDatabaseInstanceStorageStoreOutput) IncludeTags() pulumi.BoolPt
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageStoreOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -11986,8 +12238,6 @@ func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput) In
 
 type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag struct {
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name  *string `pulumi:"name"`
 	Value *string `pulumi:"value"`
 }
@@ -12005,8 +12255,6 @@ type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput interface
 
 type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs struct {
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name  pulumi.StringPtrInput `pulumi:"name"`
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
@@ -12063,8 +12311,6 @@ func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) ToFe
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -13113,7 +13359,7 @@ func (o OnlineArchiveDataExpirationRulePtrOutput) ExpireAfterDays() pulumi.IntPt
 }
 
 type OnlineArchiveDataProcessRegion struct {
-	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
 	CloudProvider *string `pulumi:"cloudProvider"`
 	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
 	Region *string `pulumi:"region"`
@@ -13131,7 +13377,7 @@ type OnlineArchiveDataProcessRegionInput interface {
 }
 
 type OnlineArchiveDataProcessRegionArgs struct {
-	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
 	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
 	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -13214,7 +13460,7 @@ func (o OnlineArchiveDataProcessRegionOutput) ToOnlineArchiveDataProcessRegionPt
 	}).(OnlineArchiveDataProcessRegionPtrOutput)
 }
 
-// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
 func (o OnlineArchiveDataProcessRegionOutput) CloudProvider() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OnlineArchiveDataProcessRegion) *string { return v.CloudProvider }).(pulumi.StringPtrOutput)
 }
@@ -13248,7 +13494,7 @@ func (o OnlineArchiveDataProcessRegionPtrOutput) Elem() OnlineArchiveDataProcess
 	}).(OnlineArchiveDataProcessRegionOutput)
 }
 
-// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
 func (o OnlineArchiveDataProcessRegionPtrOutput) CloudProvider() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OnlineArchiveDataProcessRegion) *string {
 		if v == nil {
@@ -14908,6 +15154,181 @@ func (o ProviderAssumeRolePtrOutput) TransitiveTagKeys() pulumi.StringArrayOutpu
 	}).(pulumi.StringArrayOutput)
 }
 
+type PushBasedLogExportTimeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create *string `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete *string `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update *string `pulumi:"update"`
+}
+
+// PushBasedLogExportTimeoutsInput is an input type that accepts PushBasedLogExportTimeoutsArgs and PushBasedLogExportTimeoutsOutput values.
+// You can construct a concrete instance of `PushBasedLogExportTimeoutsInput` via:
+//
+//	PushBasedLogExportTimeoutsArgs{...}
+type PushBasedLogExportTimeoutsInput interface {
+	pulumi.Input
+
+	ToPushBasedLogExportTimeoutsOutput() PushBasedLogExportTimeoutsOutput
+	ToPushBasedLogExportTimeoutsOutputWithContext(context.Context) PushBasedLogExportTimeoutsOutput
+}
+
+type PushBasedLogExportTimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update pulumi.StringPtrInput `pulumi:"update"`
+}
+
+func (PushBasedLogExportTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PushBasedLogExportTimeouts)(nil)).Elem()
+}
+
+func (i PushBasedLogExportTimeoutsArgs) ToPushBasedLogExportTimeoutsOutput() PushBasedLogExportTimeoutsOutput {
+	return i.ToPushBasedLogExportTimeoutsOutputWithContext(context.Background())
+}
+
+func (i PushBasedLogExportTimeoutsArgs) ToPushBasedLogExportTimeoutsOutputWithContext(ctx context.Context) PushBasedLogExportTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PushBasedLogExportTimeoutsOutput)
+}
+
+func (i PushBasedLogExportTimeoutsArgs) ToPushBasedLogExportTimeoutsPtrOutput() PushBasedLogExportTimeoutsPtrOutput {
+	return i.ToPushBasedLogExportTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i PushBasedLogExportTimeoutsArgs) ToPushBasedLogExportTimeoutsPtrOutputWithContext(ctx context.Context) PushBasedLogExportTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PushBasedLogExportTimeoutsOutput).ToPushBasedLogExportTimeoutsPtrOutputWithContext(ctx)
+}
+
+// PushBasedLogExportTimeoutsPtrInput is an input type that accepts PushBasedLogExportTimeoutsArgs, PushBasedLogExportTimeoutsPtr and PushBasedLogExportTimeoutsPtrOutput values.
+// You can construct a concrete instance of `PushBasedLogExportTimeoutsPtrInput` via:
+//
+//	        PushBasedLogExportTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PushBasedLogExportTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToPushBasedLogExportTimeoutsPtrOutput() PushBasedLogExportTimeoutsPtrOutput
+	ToPushBasedLogExportTimeoutsPtrOutputWithContext(context.Context) PushBasedLogExportTimeoutsPtrOutput
+}
+
+type pushBasedLogExportTimeoutsPtrType PushBasedLogExportTimeoutsArgs
+
+func PushBasedLogExportTimeoutsPtr(v *PushBasedLogExportTimeoutsArgs) PushBasedLogExportTimeoutsPtrInput {
+	return (*pushBasedLogExportTimeoutsPtrType)(v)
+}
+
+func (*pushBasedLogExportTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PushBasedLogExportTimeouts)(nil)).Elem()
+}
+
+func (i *pushBasedLogExportTimeoutsPtrType) ToPushBasedLogExportTimeoutsPtrOutput() PushBasedLogExportTimeoutsPtrOutput {
+	return i.ToPushBasedLogExportTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *pushBasedLogExportTimeoutsPtrType) ToPushBasedLogExportTimeoutsPtrOutputWithContext(ctx context.Context) PushBasedLogExportTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PushBasedLogExportTimeoutsPtrOutput)
+}
+
+type PushBasedLogExportTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (PushBasedLogExportTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PushBasedLogExportTimeouts)(nil)).Elem()
+}
+
+func (o PushBasedLogExportTimeoutsOutput) ToPushBasedLogExportTimeoutsOutput() PushBasedLogExportTimeoutsOutput {
+	return o
+}
+
+func (o PushBasedLogExportTimeoutsOutput) ToPushBasedLogExportTimeoutsOutputWithContext(ctx context.Context) PushBasedLogExportTimeoutsOutput {
+	return o
+}
+
+func (o PushBasedLogExportTimeoutsOutput) ToPushBasedLogExportTimeoutsPtrOutput() PushBasedLogExportTimeoutsPtrOutput {
+	return o.ToPushBasedLogExportTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o PushBasedLogExportTimeoutsOutput) ToPushBasedLogExportTimeoutsPtrOutputWithContext(ctx context.Context) PushBasedLogExportTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PushBasedLogExportTimeouts) *PushBasedLogExportTimeouts {
+		return &v
+	}).(PushBasedLogExportTimeoutsPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PushBasedLogExportTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PushBasedLogExportTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o PushBasedLogExportTimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PushBasedLogExportTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PushBasedLogExportTimeoutsOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PushBasedLogExportTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
+}
+
+type PushBasedLogExportTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (PushBasedLogExportTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PushBasedLogExportTimeouts)(nil)).Elem()
+}
+
+func (o PushBasedLogExportTimeoutsPtrOutput) ToPushBasedLogExportTimeoutsPtrOutput() PushBasedLogExportTimeoutsPtrOutput {
+	return o
+}
+
+func (o PushBasedLogExportTimeoutsPtrOutput) ToPushBasedLogExportTimeoutsPtrOutputWithContext(ctx context.Context) PushBasedLogExportTimeoutsPtrOutput {
+	return o
+}
+
+func (o PushBasedLogExportTimeoutsPtrOutput) Elem() PushBasedLogExportTimeoutsOutput {
+	return o.ApplyT(func(v *PushBasedLogExportTimeouts) PushBasedLogExportTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret PushBasedLogExportTimeouts
+		return ret
+	}).(PushBasedLogExportTimeoutsOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PushBasedLogExportTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PushBasedLogExportTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o PushBasedLogExportTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PushBasedLogExportTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PushBasedLogExportTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PushBasedLogExportTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(pulumi.StringPtrOutput)
+}
+
 type SearchDeploymentSpec struct {
 	// Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
 	InstanceSize string `pulumi:"instanceSize"`
@@ -15514,6 +15935,782 @@ func (o ServerlessInstanceTagArrayOutput) Index(i pulumi.IntInput) ServerlessIns
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerlessInstanceTag {
 		return vs[0].([]ServerlessInstanceTag)[vs[1].(int)]
 	}).(ServerlessInstanceTagOutput)
+}
+
+type StreamConnectionAuthentication struct {
+	// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	Mechanism *string `pulumi:"mechanism"`
+	// Password of the account to connect to the Kafka cluster.
+	Password *string `pulumi:"password"`
+	// Username of the account to connect to the Kafka cluster.
+	Username *string `pulumi:"username"`
+}
+
+// StreamConnectionAuthenticationInput is an input type that accepts StreamConnectionAuthenticationArgs and StreamConnectionAuthenticationOutput values.
+// You can construct a concrete instance of `StreamConnectionAuthenticationInput` via:
+//
+//	StreamConnectionAuthenticationArgs{...}
+type StreamConnectionAuthenticationInput interface {
+	pulumi.Input
+
+	ToStreamConnectionAuthenticationOutput() StreamConnectionAuthenticationOutput
+	ToStreamConnectionAuthenticationOutputWithContext(context.Context) StreamConnectionAuthenticationOutput
+}
+
+type StreamConnectionAuthenticationArgs struct {
+	// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	Mechanism pulumi.StringPtrInput `pulumi:"mechanism"`
+	// Password of the account to connect to the Kafka cluster.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Username of the account to connect to the Kafka cluster.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (StreamConnectionAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionAuthentication)(nil)).Elem()
+}
+
+func (i StreamConnectionAuthenticationArgs) ToStreamConnectionAuthenticationOutput() StreamConnectionAuthenticationOutput {
+	return i.ToStreamConnectionAuthenticationOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionAuthenticationArgs) ToStreamConnectionAuthenticationOutputWithContext(ctx context.Context) StreamConnectionAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAuthenticationOutput)
+}
+
+func (i StreamConnectionAuthenticationArgs) ToStreamConnectionAuthenticationPtrOutput() StreamConnectionAuthenticationPtrOutput {
+	return i.ToStreamConnectionAuthenticationPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionAuthenticationArgs) ToStreamConnectionAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionAuthenticationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAuthenticationOutput).ToStreamConnectionAuthenticationPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionAuthenticationPtrInput is an input type that accepts StreamConnectionAuthenticationArgs, StreamConnectionAuthenticationPtr and StreamConnectionAuthenticationPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionAuthenticationPtrInput` via:
+//
+//	        StreamConnectionAuthenticationArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionAuthenticationPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionAuthenticationPtrOutput() StreamConnectionAuthenticationPtrOutput
+	ToStreamConnectionAuthenticationPtrOutputWithContext(context.Context) StreamConnectionAuthenticationPtrOutput
+}
+
+type streamConnectionAuthenticationPtrType StreamConnectionAuthenticationArgs
+
+func StreamConnectionAuthenticationPtr(v *StreamConnectionAuthenticationArgs) StreamConnectionAuthenticationPtrInput {
+	return (*streamConnectionAuthenticationPtrType)(v)
+}
+
+func (*streamConnectionAuthenticationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionAuthentication)(nil)).Elem()
+}
+
+func (i *streamConnectionAuthenticationPtrType) ToStreamConnectionAuthenticationPtrOutput() StreamConnectionAuthenticationPtrOutput {
+	return i.ToStreamConnectionAuthenticationPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionAuthenticationPtrType) ToStreamConnectionAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionAuthenticationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAuthenticationPtrOutput)
+}
+
+type StreamConnectionAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionAuthentication)(nil)).Elem()
+}
+
+func (o StreamConnectionAuthenticationOutput) ToStreamConnectionAuthenticationOutput() StreamConnectionAuthenticationOutput {
+	return o
+}
+
+func (o StreamConnectionAuthenticationOutput) ToStreamConnectionAuthenticationOutputWithContext(ctx context.Context) StreamConnectionAuthenticationOutput {
+	return o
+}
+
+func (o StreamConnectionAuthenticationOutput) ToStreamConnectionAuthenticationPtrOutput() StreamConnectionAuthenticationPtrOutput {
+	return o.ToStreamConnectionAuthenticationPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionAuthenticationOutput) ToStreamConnectionAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionAuthenticationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionAuthentication) *StreamConnectionAuthentication {
+		return &v
+	}).(StreamConnectionAuthenticationPtrOutput)
+}
+
+// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+func (o StreamConnectionAuthenticationOutput) Mechanism() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionAuthentication) *string { return v.Mechanism }).(pulumi.StringPtrOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o StreamConnectionAuthenticationOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionAuthentication) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o StreamConnectionAuthenticationOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionAuthentication) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionAuthenticationPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionAuthenticationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionAuthentication)(nil)).Elem()
+}
+
+func (o StreamConnectionAuthenticationPtrOutput) ToStreamConnectionAuthenticationPtrOutput() StreamConnectionAuthenticationPtrOutput {
+	return o
+}
+
+func (o StreamConnectionAuthenticationPtrOutput) ToStreamConnectionAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionAuthenticationPtrOutput {
+	return o
+}
+
+func (o StreamConnectionAuthenticationPtrOutput) Elem() StreamConnectionAuthenticationOutput {
+	return o.ApplyT(func(v *StreamConnectionAuthentication) StreamConnectionAuthentication {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionAuthentication
+		return ret
+	}).(StreamConnectionAuthenticationOutput)
+}
+
+// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+func (o StreamConnectionAuthenticationPtrOutput) Mechanism() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Mechanism
+	}).(pulumi.StringPtrOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o StreamConnectionAuthenticationPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o StreamConnectionAuthenticationPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionDbRoleToExecute struct {
+	Role string `pulumi:"role"`
+	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+	Type string `pulumi:"type"`
+}
+
+// StreamConnectionDbRoleToExecuteInput is an input type that accepts StreamConnectionDbRoleToExecuteArgs and StreamConnectionDbRoleToExecuteOutput values.
+// You can construct a concrete instance of `StreamConnectionDbRoleToExecuteInput` via:
+//
+//	StreamConnectionDbRoleToExecuteArgs{...}
+type StreamConnectionDbRoleToExecuteInput interface {
+	pulumi.Input
+
+	ToStreamConnectionDbRoleToExecuteOutput() StreamConnectionDbRoleToExecuteOutput
+	ToStreamConnectionDbRoleToExecuteOutputWithContext(context.Context) StreamConnectionDbRoleToExecuteOutput
+}
+
+type StreamConnectionDbRoleToExecuteArgs struct {
+	Role pulumi.StringInput `pulumi:"role"`
+	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (StreamConnectionDbRoleToExecuteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionDbRoleToExecute)(nil)).Elem()
+}
+
+func (i StreamConnectionDbRoleToExecuteArgs) ToStreamConnectionDbRoleToExecuteOutput() StreamConnectionDbRoleToExecuteOutput {
+	return i.ToStreamConnectionDbRoleToExecuteOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionDbRoleToExecuteArgs) ToStreamConnectionDbRoleToExecuteOutputWithContext(ctx context.Context) StreamConnectionDbRoleToExecuteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionDbRoleToExecuteOutput)
+}
+
+func (i StreamConnectionDbRoleToExecuteArgs) ToStreamConnectionDbRoleToExecutePtrOutput() StreamConnectionDbRoleToExecutePtrOutput {
+	return i.ToStreamConnectionDbRoleToExecutePtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionDbRoleToExecuteArgs) ToStreamConnectionDbRoleToExecutePtrOutputWithContext(ctx context.Context) StreamConnectionDbRoleToExecutePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionDbRoleToExecuteOutput).ToStreamConnectionDbRoleToExecutePtrOutputWithContext(ctx)
+}
+
+// StreamConnectionDbRoleToExecutePtrInput is an input type that accepts StreamConnectionDbRoleToExecuteArgs, StreamConnectionDbRoleToExecutePtr and StreamConnectionDbRoleToExecutePtrOutput values.
+// You can construct a concrete instance of `StreamConnectionDbRoleToExecutePtrInput` via:
+//
+//	        StreamConnectionDbRoleToExecuteArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionDbRoleToExecutePtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionDbRoleToExecutePtrOutput() StreamConnectionDbRoleToExecutePtrOutput
+	ToStreamConnectionDbRoleToExecutePtrOutputWithContext(context.Context) StreamConnectionDbRoleToExecutePtrOutput
+}
+
+type streamConnectionDbRoleToExecutePtrType StreamConnectionDbRoleToExecuteArgs
+
+func StreamConnectionDbRoleToExecutePtr(v *StreamConnectionDbRoleToExecuteArgs) StreamConnectionDbRoleToExecutePtrInput {
+	return (*streamConnectionDbRoleToExecutePtrType)(v)
+}
+
+func (*streamConnectionDbRoleToExecutePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionDbRoleToExecute)(nil)).Elem()
+}
+
+func (i *streamConnectionDbRoleToExecutePtrType) ToStreamConnectionDbRoleToExecutePtrOutput() StreamConnectionDbRoleToExecutePtrOutput {
+	return i.ToStreamConnectionDbRoleToExecutePtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionDbRoleToExecutePtrType) ToStreamConnectionDbRoleToExecutePtrOutputWithContext(ctx context.Context) StreamConnectionDbRoleToExecutePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionDbRoleToExecutePtrOutput)
+}
+
+type StreamConnectionDbRoleToExecuteOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionDbRoleToExecuteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionDbRoleToExecute)(nil)).Elem()
+}
+
+func (o StreamConnectionDbRoleToExecuteOutput) ToStreamConnectionDbRoleToExecuteOutput() StreamConnectionDbRoleToExecuteOutput {
+	return o
+}
+
+func (o StreamConnectionDbRoleToExecuteOutput) ToStreamConnectionDbRoleToExecuteOutputWithContext(ctx context.Context) StreamConnectionDbRoleToExecuteOutput {
+	return o
+}
+
+func (o StreamConnectionDbRoleToExecuteOutput) ToStreamConnectionDbRoleToExecutePtrOutput() StreamConnectionDbRoleToExecutePtrOutput {
+	return o.ToStreamConnectionDbRoleToExecutePtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionDbRoleToExecuteOutput) ToStreamConnectionDbRoleToExecutePtrOutputWithContext(ctx context.Context) StreamConnectionDbRoleToExecutePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionDbRoleToExecute) *StreamConnectionDbRoleToExecute {
+		return &v
+	}).(StreamConnectionDbRoleToExecutePtrOutput)
+}
+
+func (o StreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+func (o StreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type StreamConnectionDbRoleToExecutePtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionDbRoleToExecutePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionDbRoleToExecute)(nil)).Elem()
+}
+
+func (o StreamConnectionDbRoleToExecutePtrOutput) ToStreamConnectionDbRoleToExecutePtrOutput() StreamConnectionDbRoleToExecutePtrOutput {
+	return o
+}
+
+func (o StreamConnectionDbRoleToExecutePtrOutput) ToStreamConnectionDbRoleToExecutePtrOutputWithContext(ctx context.Context) StreamConnectionDbRoleToExecutePtrOutput {
+	return o
+}
+
+func (o StreamConnectionDbRoleToExecutePtrOutput) Elem() StreamConnectionDbRoleToExecuteOutput {
+	return o.ApplyT(func(v *StreamConnectionDbRoleToExecute) StreamConnectionDbRoleToExecute {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionDbRoleToExecute
+		return ret
+	}).(StreamConnectionDbRoleToExecuteOutput)
+}
+
+func (o StreamConnectionDbRoleToExecutePtrOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionDbRoleToExecute) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Role
+	}).(pulumi.StringPtrOutput)
+}
+
+// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+func (o StreamConnectionDbRoleToExecutePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionDbRoleToExecute) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionSecurity struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate *string `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	Protocol *string `pulumi:"protocol"`
+}
+
+// StreamConnectionSecurityInput is an input type that accepts StreamConnectionSecurityArgs and StreamConnectionSecurityOutput values.
+// You can construct a concrete instance of `StreamConnectionSecurityInput` via:
+//
+//	StreamConnectionSecurityArgs{...}
+type StreamConnectionSecurityInput interface {
+	pulumi.Input
+
+	ToStreamConnectionSecurityOutput() StreamConnectionSecurityOutput
+	ToStreamConnectionSecurityOutputWithContext(context.Context) StreamConnectionSecurityOutput
+}
+
+type StreamConnectionSecurityArgs struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate pulumi.StringPtrInput `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+}
+
+func (StreamConnectionSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionSecurity)(nil)).Elem()
+}
+
+func (i StreamConnectionSecurityArgs) ToStreamConnectionSecurityOutput() StreamConnectionSecurityOutput {
+	return i.ToStreamConnectionSecurityOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionSecurityArgs) ToStreamConnectionSecurityOutputWithContext(ctx context.Context) StreamConnectionSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionSecurityOutput)
+}
+
+func (i StreamConnectionSecurityArgs) ToStreamConnectionSecurityPtrOutput() StreamConnectionSecurityPtrOutput {
+	return i.ToStreamConnectionSecurityPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionSecurityArgs) ToStreamConnectionSecurityPtrOutputWithContext(ctx context.Context) StreamConnectionSecurityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionSecurityOutput).ToStreamConnectionSecurityPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionSecurityPtrInput is an input type that accepts StreamConnectionSecurityArgs, StreamConnectionSecurityPtr and StreamConnectionSecurityPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionSecurityPtrInput` via:
+//
+//	        StreamConnectionSecurityArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionSecurityPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionSecurityPtrOutput() StreamConnectionSecurityPtrOutput
+	ToStreamConnectionSecurityPtrOutputWithContext(context.Context) StreamConnectionSecurityPtrOutput
+}
+
+type streamConnectionSecurityPtrType StreamConnectionSecurityArgs
+
+func StreamConnectionSecurityPtr(v *StreamConnectionSecurityArgs) StreamConnectionSecurityPtrInput {
+	return (*streamConnectionSecurityPtrType)(v)
+}
+
+func (*streamConnectionSecurityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionSecurity)(nil)).Elem()
+}
+
+func (i *streamConnectionSecurityPtrType) ToStreamConnectionSecurityPtrOutput() StreamConnectionSecurityPtrOutput {
+	return i.ToStreamConnectionSecurityPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionSecurityPtrType) ToStreamConnectionSecurityPtrOutputWithContext(ctx context.Context) StreamConnectionSecurityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionSecurityPtrOutput)
+}
+
+type StreamConnectionSecurityOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionSecurity)(nil)).Elem()
+}
+
+func (o StreamConnectionSecurityOutput) ToStreamConnectionSecurityOutput() StreamConnectionSecurityOutput {
+	return o
+}
+
+func (o StreamConnectionSecurityOutput) ToStreamConnectionSecurityOutputWithContext(ctx context.Context) StreamConnectionSecurityOutput {
+	return o
+}
+
+func (o StreamConnectionSecurityOutput) ToStreamConnectionSecurityPtrOutput() StreamConnectionSecurityPtrOutput {
+	return o.ToStreamConnectionSecurityPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionSecurityOutput) ToStreamConnectionSecurityPtrOutputWithContext(ctx context.Context) StreamConnectionSecurityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionSecurity) *StreamConnectionSecurity {
+		return &v
+	}).(StreamConnectionSecurityPtrOutput)
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+func (o StreamConnectionSecurityOutput) BrokerPublicCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionSecurity) *string { return v.BrokerPublicCertificate }).(pulumi.StringPtrOutput)
+}
+
+// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+func (o StreamConnectionSecurityOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionSecurity) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionSecurityPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionSecurityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionSecurity)(nil)).Elem()
+}
+
+func (o StreamConnectionSecurityPtrOutput) ToStreamConnectionSecurityPtrOutput() StreamConnectionSecurityPtrOutput {
+	return o
+}
+
+func (o StreamConnectionSecurityPtrOutput) ToStreamConnectionSecurityPtrOutputWithContext(ctx context.Context) StreamConnectionSecurityPtrOutput {
+	return o
+}
+
+func (o StreamConnectionSecurityPtrOutput) Elem() StreamConnectionSecurityOutput {
+	return o.ApplyT(func(v *StreamConnectionSecurity) StreamConnectionSecurity {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionSecurity
+		return ret
+	}).(StreamConnectionSecurityOutput)
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+func (o StreamConnectionSecurityPtrOutput) BrokerPublicCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionSecurity) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BrokerPublicCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
+// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+func (o StreamConnectionSecurityPtrOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionSecurity) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Protocol
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamInstanceDataProcessRegion struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region string `pulumi:"region"`
+}
+
+// StreamInstanceDataProcessRegionInput is an input type that accepts StreamInstanceDataProcessRegionArgs and StreamInstanceDataProcessRegionOutput values.
+// You can construct a concrete instance of `StreamInstanceDataProcessRegionInput` via:
+//
+//	StreamInstanceDataProcessRegionArgs{...}
+type StreamInstanceDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToStreamInstanceDataProcessRegionOutput() StreamInstanceDataProcessRegionOutput
+	ToStreamInstanceDataProcessRegionOutputWithContext(context.Context) StreamInstanceDataProcessRegionOutput
+}
+
+type StreamInstanceDataProcessRegionArgs struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (StreamInstanceDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (i StreamInstanceDataProcessRegionArgs) ToStreamInstanceDataProcessRegionOutput() StreamInstanceDataProcessRegionOutput {
+	return i.ToStreamInstanceDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i StreamInstanceDataProcessRegionArgs) ToStreamInstanceDataProcessRegionOutputWithContext(ctx context.Context) StreamInstanceDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamInstanceDataProcessRegionOutput)
+}
+
+func (i StreamInstanceDataProcessRegionArgs) ToStreamInstanceDataProcessRegionPtrOutput() StreamInstanceDataProcessRegionPtrOutput {
+	return i.ToStreamInstanceDataProcessRegionPtrOutputWithContext(context.Background())
+}
+
+func (i StreamInstanceDataProcessRegionArgs) ToStreamInstanceDataProcessRegionPtrOutputWithContext(ctx context.Context) StreamInstanceDataProcessRegionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamInstanceDataProcessRegionOutput).ToStreamInstanceDataProcessRegionPtrOutputWithContext(ctx)
+}
+
+// StreamInstanceDataProcessRegionPtrInput is an input type that accepts StreamInstanceDataProcessRegionArgs, StreamInstanceDataProcessRegionPtr and StreamInstanceDataProcessRegionPtrOutput values.
+// You can construct a concrete instance of `StreamInstanceDataProcessRegionPtrInput` via:
+//
+//	        StreamInstanceDataProcessRegionArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamInstanceDataProcessRegionPtrInput interface {
+	pulumi.Input
+
+	ToStreamInstanceDataProcessRegionPtrOutput() StreamInstanceDataProcessRegionPtrOutput
+	ToStreamInstanceDataProcessRegionPtrOutputWithContext(context.Context) StreamInstanceDataProcessRegionPtrOutput
+}
+
+type streamInstanceDataProcessRegionPtrType StreamInstanceDataProcessRegionArgs
+
+func StreamInstanceDataProcessRegionPtr(v *StreamInstanceDataProcessRegionArgs) StreamInstanceDataProcessRegionPtrInput {
+	return (*streamInstanceDataProcessRegionPtrType)(v)
+}
+
+func (*streamInstanceDataProcessRegionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (i *streamInstanceDataProcessRegionPtrType) ToStreamInstanceDataProcessRegionPtrOutput() StreamInstanceDataProcessRegionPtrOutput {
+	return i.ToStreamInstanceDataProcessRegionPtrOutputWithContext(context.Background())
+}
+
+func (i *streamInstanceDataProcessRegionPtrType) ToStreamInstanceDataProcessRegionPtrOutputWithContext(ctx context.Context) StreamInstanceDataProcessRegionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamInstanceDataProcessRegionPtrOutput)
+}
+
+type StreamInstanceDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (StreamInstanceDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (o StreamInstanceDataProcessRegionOutput) ToStreamInstanceDataProcessRegionOutput() StreamInstanceDataProcessRegionOutput {
+	return o
+}
+
+func (o StreamInstanceDataProcessRegionOutput) ToStreamInstanceDataProcessRegionOutputWithContext(ctx context.Context) StreamInstanceDataProcessRegionOutput {
+	return o
+}
+
+func (o StreamInstanceDataProcessRegionOutput) ToStreamInstanceDataProcessRegionPtrOutput() StreamInstanceDataProcessRegionPtrOutput {
+	return o.ToStreamInstanceDataProcessRegionPtrOutputWithContext(context.Background())
+}
+
+func (o StreamInstanceDataProcessRegionOutput) ToStreamInstanceDataProcessRegionPtrOutputWithContext(ctx context.Context) StreamInstanceDataProcessRegionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamInstanceDataProcessRegion) *StreamInstanceDataProcessRegion {
+		return &v
+	}).(StreamInstanceDataProcessRegionPtrOutput)
+}
+
+// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o StreamInstanceDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamInstanceDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o StreamInstanceDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamInstanceDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type StreamInstanceDataProcessRegionPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamInstanceDataProcessRegionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (o StreamInstanceDataProcessRegionPtrOutput) ToStreamInstanceDataProcessRegionPtrOutput() StreamInstanceDataProcessRegionPtrOutput {
+	return o
+}
+
+func (o StreamInstanceDataProcessRegionPtrOutput) ToStreamInstanceDataProcessRegionPtrOutputWithContext(ctx context.Context) StreamInstanceDataProcessRegionPtrOutput {
+	return o
+}
+
+func (o StreamInstanceDataProcessRegionPtrOutput) Elem() StreamInstanceDataProcessRegionOutput {
+	return o.ApplyT(func(v *StreamInstanceDataProcessRegion) StreamInstanceDataProcessRegion {
+		if v != nil {
+			return *v
+		}
+		var ret StreamInstanceDataProcessRegion
+		return ret
+	}).(StreamInstanceDataProcessRegionOutput)
+}
+
+// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o StreamInstanceDataProcessRegionPtrOutput) CloudProvider() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamInstanceDataProcessRegion) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.CloudProvider
+	}).(pulumi.StringPtrOutput)
+}
+
+// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o StreamInstanceDataProcessRegionPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamInstanceDataProcessRegion) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamInstanceStreamConfig struct {
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier *string `pulumi:"tier"`
+}
+
+// StreamInstanceStreamConfigInput is an input type that accepts StreamInstanceStreamConfigArgs and StreamInstanceStreamConfigOutput values.
+// You can construct a concrete instance of `StreamInstanceStreamConfigInput` via:
+//
+//	StreamInstanceStreamConfigArgs{...}
+type StreamInstanceStreamConfigInput interface {
+	pulumi.Input
+
+	ToStreamInstanceStreamConfigOutput() StreamInstanceStreamConfigOutput
+	ToStreamInstanceStreamConfigOutputWithContext(context.Context) StreamInstanceStreamConfigOutput
+}
+
+type StreamInstanceStreamConfigArgs struct {
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier pulumi.StringPtrInput `pulumi:"tier"`
+}
+
+func (StreamInstanceStreamConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (i StreamInstanceStreamConfigArgs) ToStreamInstanceStreamConfigOutput() StreamInstanceStreamConfigOutput {
+	return i.ToStreamInstanceStreamConfigOutputWithContext(context.Background())
+}
+
+func (i StreamInstanceStreamConfigArgs) ToStreamInstanceStreamConfigOutputWithContext(ctx context.Context) StreamInstanceStreamConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamInstanceStreamConfigOutput)
+}
+
+func (i StreamInstanceStreamConfigArgs) ToStreamInstanceStreamConfigPtrOutput() StreamInstanceStreamConfigPtrOutput {
+	return i.ToStreamInstanceStreamConfigPtrOutputWithContext(context.Background())
+}
+
+func (i StreamInstanceStreamConfigArgs) ToStreamInstanceStreamConfigPtrOutputWithContext(ctx context.Context) StreamInstanceStreamConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamInstanceStreamConfigOutput).ToStreamInstanceStreamConfigPtrOutputWithContext(ctx)
+}
+
+// StreamInstanceStreamConfigPtrInput is an input type that accepts StreamInstanceStreamConfigArgs, StreamInstanceStreamConfigPtr and StreamInstanceStreamConfigPtrOutput values.
+// You can construct a concrete instance of `StreamInstanceStreamConfigPtrInput` via:
+//
+//	        StreamInstanceStreamConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamInstanceStreamConfigPtrInput interface {
+	pulumi.Input
+
+	ToStreamInstanceStreamConfigPtrOutput() StreamInstanceStreamConfigPtrOutput
+	ToStreamInstanceStreamConfigPtrOutputWithContext(context.Context) StreamInstanceStreamConfigPtrOutput
+}
+
+type streamInstanceStreamConfigPtrType StreamInstanceStreamConfigArgs
+
+func StreamInstanceStreamConfigPtr(v *StreamInstanceStreamConfigArgs) StreamInstanceStreamConfigPtrInput {
+	return (*streamInstanceStreamConfigPtrType)(v)
+}
+
+func (*streamInstanceStreamConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (i *streamInstanceStreamConfigPtrType) ToStreamInstanceStreamConfigPtrOutput() StreamInstanceStreamConfigPtrOutput {
+	return i.ToStreamInstanceStreamConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *streamInstanceStreamConfigPtrType) ToStreamInstanceStreamConfigPtrOutputWithContext(ctx context.Context) StreamInstanceStreamConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamInstanceStreamConfigPtrOutput)
+}
+
+type StreamInstanceStreamConfigOutput struct{ *pulumi.OutputState }
+
+func (StreamInstanceStreamConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (o StreamInstanceStreamConfigOutput) ToStreamInstanceStreamConfigOutput() StreamInstanceStreamConfigOutput {
+	return o
+}
+
+func (o StreamInstanceStreamConfigOutput) ToStreamInstanceStreamConfigOutputWithContext(ctx context.Context) StreamInstanceStreamConfigOutput {
+	return o
+}
+
+func (o StreamInstanceStreamConfigOutput) ToStreamInstanceStreamConfigPtrOutput() StreamInstanceStreamConfigPtrOutput {
+	return o.ToStreamInstanceStreamConfigPtrOutputWithContext(context.Background())
+}
+
+func (o StreamInstanceStreamConfigOutput) ToStreamInstanceStreamConfigPtrOutputWithContext(ctx context.Context) StreamInstanceStreamConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamInstanceStreamConfig) *StreamInstanceStreamConfig {
+		return &v
+	}).(StreamInstanceStreamConfigPtrOutput)
+}
+
+// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o StreamInstanceStreamConfigOutput) Tier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamInstanceStreamConfig) *string { return v.Tier }).(pulumi.StringPtrOutput)
+}
+
+type StreamInstanceStreamConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamInstanceStreamConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (o StreamInstanceStreamConfigPtrOutput) ToStreamInstanceStreamConfigPtrOutput() StreamInstanceStreamConfigPtrOutput {
+	return o
+}
+
+func (o StreamInstanceStreamConfigPtrOutput) ToStreamInstanceStreamConfigPtrOutputWithContext(ctx context.Context) StreamInstanceStreamConfigPtrOutput {
+	return o
+}
+
+func (o StreamInstanceStreamConfigPtrOutput) Elem() StreamInstanceStreamConfigOutput {
+	return o.ApplyT(func(v *StreamInstanceStreamConfig) StreamInstanceStreamConfig {
+		if v != nil {
+			return *v
+		}
+		var ret StreamInstanceStreamConfig
+		return ret
+	}).(StreamInstanceStreamConfigOutput)
+}
+
+// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o StreamInstanceStreamConfigPtrOutput) Tier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamInstanceStreamConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Tier
+	}).(pulumi.StringPtrOutput)
 }
 
 type X509AuthenticationDatabaseUserCertificate struct {
@@ -17967,7 +19164,7 @@ type GetAdvancedClustersResult struct {
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 	//
-	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 	Labels []GetAdvancedClustersResultLabel `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -18020,7 +19217,7 @@ type GetAdvancedClustersResultArgs struct {
 	EncryptionAtRestProvider pulumi.StringInput `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 	//
-	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 	Labels GetAdvancedClustersResultLabelArrayInput `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion pulumi.StringInput `pulumi:"mongoDbMajorVersion"`
@@ -18142,7 +19339,7 @@ func (o GetAdvancedClustersResultOutput) EncryptionAtRestProvider() pulumi.Strin
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 //
-// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 func (o GetAdvancedClustersResultOutput) Labels() GetAdvancedClustersResultLabelArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultLabel { return v.Labels }).(GetAdvancedClustersResultLabelArrayOutput)
 }
@@ -20574,13 +21771,15 @@ type GetAlertConfigurationNotification struct {
 	EmailAddress string `pulumi:"emailAddress"`
 	// Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
 	EmailEnabled bool `pulumi:"emailEnabled"`
+	// The ID of the associated integration, the credentials of which to use for requests.
+	IntegrationId string `pulumi:"integrationId"`
 	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 	IntervalMin int `pulumi:"intervalMin"`
 	// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
 	MicrosoftTeamsWebhookUrl string `pulumi:"microsoftTeamsWebhookUrl"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber string `pulumi:"mobileNumber"`
-	// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+	// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 	NotifierId string `pulumi:"notifierId"`
 	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 	OpsGenieApiKey string `pulumi:"opsGenieApiKey"`
@@ -20637,13 +21836,15 @@ type GetAlertConfigurationNotificationArgs struct {
 	EmailAddress pulumi.StringInput `pulumi:"emailAddress"`
 	// Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
 	EmailEnabled pulumi.BoolInput `pulumi:"emailEnabled"`
+	// The ID of the associated integration, the credentials of which to use for requests.
+	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
 	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 	IntervalMin pulumi.IntInput `pulumi:"intervalMin"`
 	// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
 	MicrosoftTeamsWebhookUrl pulumi.StringInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber pulumi.StringInput `pulumi:"mobileNumber"`
-	// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+	// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 	NotifierId pulumi.StringInput `pulumi:"notifierId"`
 	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 	OpsGenieApiKey pulumi.StringInput `pulumi:"opsGenieApiKey"`
@@ -20760,6 +21961,11 @@ func (o GetAlertConfigurationNotificationOutput) EmailEnabled() pulumi.BoolOutpu
 	return o.ApplyT(func(v GetAlertConfigurationNotification) bool { return v.EmailEnabled }).(pulumi.BoolOutput)
 }
 
+// The ID of the associated integration, the credentials of which to use for requests.
+func (o GetAlertConfigurationNotificationOutput) IntegrationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.IntegrationId }).(pulumi.StringOutput)
+}
+
 // Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 func (o GetAlertConfigurationNotificationOutput) IntervalMin() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) int { return v.IntervalMin }).(pulumi.IntOutput)
@@ -20775,7 +21981,7 @@ func (o GetAlertConfigurationNotificationOutput) MobileNumber() pulumi.StringOut
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.MobileNumber }).(pulumi.StringOutput)
 }
 
-// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 func (o GetAlertConfigurationNotificationOutput) NotifierId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.NotifierId }).(pulumi.StringOutput)
 }
@@ -21670,13 +22876,15 @@ type GetAlertConfigurationsResultNotification struct {
 	EmailAddress string `pulumi:"emailAddress"`
 	// Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
 	EmailEnabled bool `pulumi:"emailEnabled"`
+	// The ID of the associated integration, the credentials of which to use for requests.
+	IntegrationId string `pulumi:"integrationId"`
 	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 	IntervalMin int `pulumi:"intervalMin"`
 	// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
 	MicrosoftTeamsWebhookUrl string `pulumi:"microsoftTeamsWebhookUrl"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber string `pulumi:"mobileNumber"`
-	// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+	// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 	NotifierId string `pulumi:"notifierId"`
 	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 	OpsGenieApiKey string `pulumi:"opsGenieApiKey"`
@@ -21733,13 +22941,15 @@ type GetAlertConfigurationsResultNotificationArgs struct {
 	EmailAddress pulumi.StringInput `pulumi:"emailAddress"`
 	// Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
 	EmailEnabled pulumi.BoolInput `pulumi:"emailEnabled"`
+	// The ID of the associated integration, the credentials of which to use for requests.
+	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
 	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 	IntervalMin pulumi.IntInput `pulumi:"intervalMin"`
 	// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
 	MicrosoftTeamsWebhookUrl pulumi.StringInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber pulumi.StringInput `pulumi:"mobileNumber"`
-	// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+	// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 	NotifierId pulumi.StringInput `pulumi:"notifierId"`
 	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 	OpsGenieApiKey pulumi.StringInput `pulumi:"opsGenieApiKey"`
@@ -21856,6 +23066,11 @@ func (o GetAlertConfigurationsResultNotificationOutput) EmailEnabled() pulumi.Bo
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) bool { return v.EmailEnabled }).(pulumi.BoolOutput)
 }
 
+// The ID of the associated integration, the credentials of which to use for requests.
+func (o GetAlertConfigurationsResultNotificationOutput) IntegrationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.IntegrationId }).(pulumi.StringOutput)
+}
+
 // Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 func (o GetAlertConfigurationsResultNotificationOutput) IntervalMin() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) int { return v.IntervalMin }).(pulumi.IntOutput)
@@ -21871,7 +23086,7 @@ func (o GetAlertConfigurationsResultNotificationOutput) MobileNumber() pulumi.St
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.MobileNumber }).(pulumi.StringOutput)
 }
 
-// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 func (o GetAlertConfigurationsResultNotificationOutput) NotifierId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.NotifierId }).(pulumi.StringOutput)
 }
@@ -22931,15 +24146,15 @@ func (o GetAtlasUsersResultRoleArrayOutput) Index(i pulumi.IntInput) GetAtlasUse
 }
 
 type GetBackupCompliancePolicyOnDemandPolicyItem struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -22955,15 +24170,15 @@ type GetBackupCompliancePolicyOnDemandPolicyItemInput interface {
 }
 
 type GetBackupCompliancePolicyOnDemandPolicyItemArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -22993,12 +24208,12 @@ func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) ToGetBackupCompliance
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23008,26 +24223,26 @@ func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) Id() pulumi.StringOut
 	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
 
 type GetBackupCompliancePolicyPolicyItemDaily struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -23043,15 +24258,15 @@ type GetBackupCompliancePolicyPolicyItemDailyInput interface {
 }
 
 type GetBackupCompliancePolicyPolicyItemDailyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -23081,12 +24296,12 @@ func (o GetBackupCompliancePolicyPolicyItemDailyOutput) ToGetBackupCompliancePol
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetBackupCompliancePolicyPolicyItemDailyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetBackupCompliancePolicyPolicyItemDailyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23096,26 +24311,26 @@ func (o GetBackupCompliancePolicyPolicyItemDailyOutput) Id() pulumi.StringOutput
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetBackupCompliancePolicyPolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetBackupCompliancePolicyPolicyItemDailyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
 
 type GetBackupCompliancePolicyPolicyItemHourly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -23131,15 +24346,15 @@ type GetBackupCompliancePolicyPolicyItemHourlyInput interface {
 }
 
 type GetBackupCompliancePolicyPolicyItemHourlyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -23169,12 +24384,12 @@ func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) ToGetBackupCompliancePo
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23184,26 +24399,26 @@ func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) Id() pulumi.StringOutpu
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
 
 type GetBackupCompliancePolicyPolicyItemMonthly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -23219,15 +24434,15 @@ type GetBackupCompliancePolicyPolicyItemMonthlyInput interface {
 }
 
 type GetBackupCompliancePolicyPolicyItemMonthlyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -23282,12 +24497,12 @@ func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) ToGetBackupComplianceP
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23297,12 +24512,12 @@ func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) Id() pulumi.StringOutp
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -23328,15 +24543,15 @@ func (o GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput) Index(i pulumi.In
 }
 
 type GetBackupCompliancePolicyPolicyItemWeekly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -23352,15 +24567,15 @@ type GetBackupCompliancePolicyPolicyItemWeeklyInput interface {
 }
 
 type GetBackupCompliancePolicyPolicyItemWeeklyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -23415,12 +24630,12 @@ func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) ToGetBackupCompliancePo
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23430,12 +24645,12 @@ func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) Id() pulumi.StringOutpu
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -23460,10 +24675,143 @@ func (o GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput) Index(i pulumi.Int
 	}).(GetBackupCompliancePolicyPolicyItemWeeklyOutput)
 }
 
+type GetBackupCompliancePolicyPolicyItemYearly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetBackupCompliancePolicyPolicyItemYearlyInput is an input type that accepts GetBackupCompliancePolicyPolicyItemYearlyArgs and GetBackupCompliancePolicyPolicyItemYearlyOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyPolicyItemYearlyInput` via:
+//
+//	GetBackupCompliancePolicyPolicyItemYearlyArgs{...}
+type GetBackupCompliancePolicyPolicyItemYearlyInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyPolicyItemYearlyOutput() GetBackupCompliancePolicyPolicyItemYearlyOutput
+	ToGetBackupCompliancePolicyPolicyItemYearlyOutputWithContext(context.Context) GetBackupCompliancePolicyPolicyItemYearlyOutput
+}
+
+type GetBackupCompliancePolicyPolicyItemYearlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetBackupCompliancePolicyPolicyItemYearlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (i GetBackupCompliancePolicyPolicyItemYearlyArgs) ToGetBackupCompliancePolicyPolicyItemYearlyOutput() GetBackupCompliancePolicyPolicyItemYearlyOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemYearlyOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyPolicyItemYearlyArgs) ToGetBackupCompliancePolicyPolicyItemYearlyOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemYearlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemYearlyOutput)
+}
+
+// GetBackupCompliancePolicyPolicyItemYearlyArrayInput is an input type that accepts GetBackupCompliancePolicyPolicyItemYearlyArray and GetBackupCompliancePolicyPolicyItemYearlyArrayOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyPolicyItemYearlyArrayInput` via:
+//
+//	GetBackupCompliancePolicyPolicyItemYearlyArray{ GetBackupCompliancePolicyPolicyItemYearlyArgs{...} }
+type GetBackupCompliancePolicyPolicyItemYearlyArrayInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutput() GetBackupCompliancePolicyPolicyItemYearlyArrayOutput
+	ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(context.Context) GetBackupCompliancePolicyPolicyItemYearlyArrayOutput
+}
+
+type GetBackupCompliancePolicyPolicyItemYearlyArray []GetBackupCompliancePolicyPolicyItemYearlyInput
+
+func (GetBackupCompliancePolicyPolicyItemYearlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (i GetBackupCompliancePolicyPolicyItemYearlyArray) ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutput() GetBackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyPolicyItemYearlyArray) ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemYearlyArrayOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemYearlyOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyPolicyItemYearlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) ToGetBackupCompliancePolicyPolicyItemYearlyOutput() GetBackupCompliancePolicyPolicyItemYearlyOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) ToGetBackupCompliancePolicyPolicyItemYearlyOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemYearlyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemYearly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemYearly) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemYearly) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemYearly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemYearly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemYearlyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyPolicyItemYearlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyPolicyItemYearlyArrayOutput) ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutput() GetBackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemYearlyArrayOutput) ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemYearlyArrayOutput) Index(i pulumi.IntInput) GetBackupCompliancePolicyPolicyItemYearlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackupCompliancePolicyPolicyItemYearly {
+		return vs[0].([]GetBackupCompliancePolicyPolicyItemYearly)[vs[1].(int)]
+	}).(GetBackupCompliancePolicyPolicyItemYearlyOutput)
+}
+
 type GetCloudBackupScheduleCopySetting struct {
 	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
 	CloudProvider string `pulumi:"cloudProvider"`
-	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
 	Frequencies []string `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName string `pulumi:"regionName"`
@@ -23487,7 +24835,7 @@ type GetCloudBackupScheduleCopySettingInput interface {
 type GetCloudBackupScheduleCopySettingArgs struct {
 	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName pulumi.StringInput `pulumi:"regionName"`
@@ -23553,7 +24901,7 @@ func (o GetCloudBackupScheduleCopySettingOutput) CloudProvider() pulumi.StringOu
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
-// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
 func (o GetCloudBackupScheduleCopySettingOutput) Frequencies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) []string { return v.Frequencies }).(pulumi.StringArrayOutput)
 }
@@ -23596,7 +24944,7 @@ func (o GetCloudBackupScheduleCopySettingArrayOutput) Index(i pulumi.IntInput) G
 type GetCloudBackupScheduleExport struct {
 	// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
 	ExportBucketId string `pulumi:"exportBucketId"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 }
 
@@ -23614,7 +24962,7 @@ type GetCloudBackupScheduleExportInput interface {
 type GetCloudBackupScheduleExportArgs struct {
 	// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
 	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 }
 
@@ -23674,7 +25022,7 @@ func (o GetCloudBackupScheduleExportOutput) ExportBucketId() pulumi.StringOutput
 	return o.ApplyT(func(v GetCloudBackupScheduleExport) string { return v.ExportBucketId }).(pulumi.StringOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetCloudBackupScheduleExportOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupScheduleExport) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23700,15 +25048,15 @@ func (o GetCloudBackupScheduleExportArrayOutput) Index(i pulumi.IntInput) GetClo
 }
 
 type GetCloudBackupSchedulePolicyItemDaily struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -23724,15 +25072,15 @@ type GetCloudBackupSchedulePolicyItemDailyInput interface {
 }
 
 type GetCloudBackupSchedulePolicyItemDailyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -23787,12 +25135,12 @@ func (o GetCloudBackupSchedulePolicyItemDailyOutput) ToGetCloudBackupSchedulePol
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetCloudBackupSchedulePolicyItemDailyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetCloudBackupSchedulePolicyItemDailyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23802,12 +25150,12 @@ func (o GetCloudBackupSchedulePolicyItemDailyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetCloudBackupSchedulePolicyItemDailyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -23833,15 +25181,15 @@ func (o GetCloudBackupSchedulePolicyItemDailyArrayOutput) Index(i pulumi.IntInpu
 }
 
 type GetCloudBackupSchedulePolicyItemHourly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -23857,15 +25205,15 @@ type GetCloudBackupSchedulePolicyItemHourlyInput interface {
 }
 
 type GetCloudBackupSchedulePolicyItemHourlyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -23920,12 +25268,12 @@ func (o GetCloudBackupSchedulePolicyItemHourlyOutput) ToGetCloudBackupSchedulePo
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetCloudBackupSchedulePolicyItemHourlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetCloudBackupSchedulePolicyItemHourlyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23935,12 +25283,12 @@ func (o GetCloudBackupSchedulePolicyItemHourlyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetCloudBackupSchedulePolicyItemHourlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -23966,15 +25314,15 @@ func (o GetCloudBackupSchedulePolicyItemHourlyArrayOutput) Index(i pulumi.IntInp
 }
 
 type GetCloudBackupSchedulePolicyItemMonthly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -23990,15 +25338,15 @@ type GetCloudBackupSchedulePolicyItemMonthlyInput interface {
 }
 
 type GetCloudBackupSchedulePolicyItemMonthlyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -24053,12 +25401,12 @@ func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) ToGetCloudBackupScheduleP
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -24068,12 +25416,12 @@ func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) Id() pulumi.StringOutput 
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -24099,15 +25447,15 @@ func (o GetCloudBackupSchedulePolicyItemMonthlyArrayOutput) Index(i pulumi.IntIn
 }
 
 type GetCloudBackupSchedulePolicyItemWeekly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -24123,15 +25471,15 @@ type GetCloudBackupSchedulePolicyItemWeeklyInput interface {
 }
 
 type GetCloudBackupSchedulePolicyItemWeeklyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -24186,12 +25534,12 @@ func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) ToGetCloudBackupSchedulePo
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -24201,12 +25549,12 @@ func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -24229,6 +25577,139 @@ func (o GetCloudBackupSchedulePolicyItemWeeklyArrayOutput) Index(i pulumi.IntInp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSchedulePolicyItemWeekly {
 		return vs[0].([]GetCloudBackupSchedulePolicyItemWeekly)[vs[1].(int)]
 	}).(GetCloudBackupSchedulePolicyItemWeeklyOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemYearly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetCloudBackupSchedulePolicyItemYearlyInput is an input type that accepts GetCloudBackupSchedulePolicyItemYearlyArgs and GetCloudBackupSchedulePolicyItemYearlyOutput values.
+// You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemYearlyInput` via:
+//
+//	GetCloudBackupSchedulePolicyItemYearlyArgs{...}
+type GetCloudBackupSchedulePolicyItemYearlyInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSchedulePolicyItemYearlyOutput() GetCloudBackupSchedulePolicyItemYearlyOutput
+	ToGetCloudBackupSchedulePolicyItemYearlyOutputWithContext(context.Context) GetCloudBackupSchedulePolicyItemYearlyOutput
+}
+
+type GetCloudBackupSchedulePolicyItemYearlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetCloudBackupSchedulePolicyItemYearlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (i GetCloudBackupSchedulePolicyItemYearlyArgs) ToGetCloudBackupSchedulePolicyItemYearlyOutput() GetCloudBackupSchedulePolicyItemYearlyOutput {
+	return i.ToGetCloudBackupSchedulePolicyItemYearlyOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSchedulePolicyItemYearlyArgs) ToGetCloudBackupSchedulePolicyItemYearlyOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemYearlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSchedulePolicyItemYearlyOutput)
+}
+
+// GetCloudBackupSchedulePolicyItemYearlyArrayInput is an input type that accepts GetCloudBackupSchedulePolicyItemYearlyArray and GetCloudBackupSchedulePolicyItemYearlyArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemYearlyArrayInput` via:
+//
+//	GetCloudBackupSchedulePolicyItemYearlyArray{ GetCloudBackupSchedulePolicyItemYearlyArgs{...} }
+type GetCloudBackupSchedulePolicyItemYearlyArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSchedulePolicyItemYearlyArrayOutput() GetCloudBackupSchedulePolicyItemYearlyArrayOutput
+	ToGetCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(context.Context) GetCloudBackupSchedulePolicyItemYearlyArrayOutput
+}
+
+type GetCloudBackupSchedulePolicyItemYearlyArray []GetCloudBackupSchedulePolicyItemYearlyInput
+
+func (GetCloudBackupSchedulePolicyItemYearlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (i GetCloudBackupSchedulePolicyItemYearlyArray) ToGetCloudBackupSchedulePolicyItemYearlyArrayOutput() GetCloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return i.ToGetCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSchedulePolicyItemYearlyArray) ToGetCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSchedulePolicyItemYearlyArrayOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemYearlyOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSchedulePolicyItemYearlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) ToGetCloudBackupSchedulePolicyItemYearlyOutput() GetCloudBackupSchedulePolicyItemYearlyOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) ToGetCloudBackupSchedulePolicyItemYearlyOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemYearlyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemYearlyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSchedulePolicyItemYearlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (o GetCloudBackupSchedulePolicyItemYearlyArrayOutput) ToGetCloudBackupSchedulePolicyItemYearlyArrayOutput() GetCloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemYearlyArrayOutput) ToGetCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemYearlyArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSchedulePolicyItemYearlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSchedulePolicyItemYearly {
+		return vs[0].([]GetCloudBackupSchedulePolicyItemYearly)[vs[1].(int)]
+	}).(GetCloudBackupSchedulePolicyItemYearlyOutput)
 }
 
 type GetCloudBackupSnapshotExportBucketsResult struct {
@@ -27515,7 +28996,7 @@ type GetClustersResult struct {
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 	//
-	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 	Labels []GetClustersResultLabel `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -27618,7 +29099,7 @@ type GetClustersResultArgs struct {
 	EncryptionAtRestProvider pulumi.StringInput `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 	//
-	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 	Labels GetClustersResultLabelArrayInput `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.
 	MongoDbMajorVersion pulumi.StringInput `pulumi:"mongoDbMajorVersion"`
@@ -27796,7 +29277,7 @@ func (o GetClustersResultOutput) EncryptionAtRestProvider() pulumi.StringOutput 
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 //
-// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 func (o GetClustersResultOutput) Labels() GetClustersResultLabelArrayOutput {
 	return o.ApplyT(func(v GetClustersResult) []GetClustersResultLabel { return v.Labels }).(GetClustersResultLabelArrayOutput)
 }
@@ -32363,8 +33844,6 @@ type GetDatabaseUsersResult struct {
 	LdapAuthType string `pulumi:"ldapAuthType"`
 	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 	OidcAuthType string `pulumi:"oidcAuthType"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	Password string `pulumi:"password"`
 	// The unique ID for the project to get all database users.
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -32401,8 +33880,6 @@ type GetDatabaseUsersResultArgs struct {
 	LdapAuthType pulumi.StringInput `pulumi:"ldapAuthType"`
 	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 	OidcAuthType pulumi.StringInput `pulumi:"oidcAuthType"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	Password pulumi.StringInput `pulumi:"password"`
 	// The unique ID for the project to get all database users.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -32494,11 +33971,6 @@ func (o GetDatabaseUsersResultOutput) LdapAuthType() pulumi.StringOutput {
 // (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 func (o GetDatabaseUsersResultOutput) OidcAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.OidcAuthType }).(pulumi.StringOutput)
-}
-
-// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-func (o GetDatabaseUsersResultOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
 // The unique ID for the project to get all database users.
@@ -34490,7 +35962,7 @@ type GetFederatedDatabaseInstanceStorageStore struct {
 	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
 	AllowInsecure            bool     `pulumi:"allowInsecure"`
 	Bucket                   string   `pulumi:"bucket"`
-	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	// Deprecated: This parameter is deprecated and will be removed by September 2024.
 	ClusterId     string `pulumi:"clusterId"`
 	ClusterName   string `pulumi:"clusterName"`
 	DefaultFormat string `pulumi:"defaultFormat"`
@@ -34524,7 +35996,7 @@ type GetFederatedDatabaseInstanceStorageStoreArgs struct {
 	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
 	AllowInsecure            pulumi.BoolInput        `pulumi:"allowInsecure"`
 	Bucket                   pulumi.StringInput      `pulumi:"bucket"`
-	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	// Deprecated: This parameter is deprecated and will be removed by September 2024.
 	ClusterId     pulumi.StringInput `pulumi:"clusterId"`
 	ClusterName   pulumi.StringInput `pulumi:"clusterName"`
 	DefaultFormat pulumi.StringInput `pulumi:"defaultFormat"`
@@ -34606,7 +36078,7 @@ func (o GetFederatedDatabaseInstanceStorageStoreOutput) Bucket() pulumi.StringOu
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStore) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// Deprecated: this parameter is deprecated and will be removed by September 2024
+// Deprecated: This parameter is deprecated and will be removed by September 2024.
 func (o GetFederatedDatabaseInstanceStorageStoreOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStore) string { return v.ClusterId }).(pulumi.StringOutput)
 }
@@ -36024,7 +37496,7 @@ type GetFederatedDatabaseInstancesResultStorageStore struct {
 	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
 	AllowInsecure            bool     `pulumi:"allowInsecure"`
 	Bucket                   string   `pulumi:"bucket"`
-	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	// Deprecated: This parameter is deprecated and will be removed by September 2024.
 	ClusterId     string `pulumi:"clusterId"`
 	ClusterName   string `pulumi:"clusterName"`
 	DefaultFormat string `pulumi:"defaultFormat"`
@@ -36057,7 +37529,7 @@ type GetFederatedDatabaseInstancesResultStorageStoreArgs struct {
 	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
 	AllowInsecure            pulumi.BoolInput        `pulumi:"allowInsecure"`
 	Bucket                   pulumi.StringInput      `pulumi:"bucket"`
-	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	// Deprecated: This parameter is deprecated and will be removed by September 2024.
 	ClusterId     pulumi.StringInput `pulumi:"clusterId"`
 	ClusterName   pulumi.StringInput `pulumi:"clusterName"`
 	DefaultFormat pulumi.StringInput `pulumi:"defaultFormat"`
@@ -36138,7 +37610,7 @@ func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) Bucket() pulumi.S
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStore) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// Deprecated: this parameter is deprecated and will be removed by September 2024
+// Deprecated: This parameter is deprecated and will be removed by September 2024.
 func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStore) string { return v.ClusterId }).(pulumi.StringOutput)
 }
@@ -36679,8 +38151,9 @@ type GetFederatedSettingsIdentityProviderAssociatedOrg struct {
 	// List that contains the approved domains from which organization users can log in.
 	DomainAllowLists []string `pulumi:"domainAllowLists"`
 	// Flag that indicates whether domain restriction is enabled for the connected organization.
-	DomainRestrictionEnabled bool   `pulumi:"domainRestrictionEnabled"`
-	IdentityProviderId       string `pulumi:"identityProviderId"`
+	DomainRestrictionEnabled bool `pulumi:"domainRestrictionEnabled"`
+	// Unique 24-hexadecimal digit string that identifies the IdP.
+	IdentityProviderId string `pulumi:"identityProviderId"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId string `pulumi:"orgId"`
 	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
@@ -36704,8 +38177,9 @@ type GetFederatedSettingsIdentityProviderAssociatedOrgArgs struct {
 	// List that contains the approved domains from which organization users can log in.
 	DomainAllowLists pulumi.StringArrayInput `pulumi:"domainAllowLists"`
 	// Flag that indicates whether domain restriction is enabled for the connected organization.
-	DomainRestrictionEnabled pulumi.BoolInput   `pulumi:"domainRestrictionEnabled"`
-	IdentityProviderId       pulumi.StringInput `pulumi:"identityProviderId"`
+	DomainRestrictionEnabled pulumi.BoolInput `pulumi:"domainRestrictionEnabled"`
+	// Unique 24-hexadecimal digit string that identifies the IdP.
+	IdentityProviderId pulumi.StringInput `pulumi:"identityProviderId"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
 	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
@@ -36775,6 +38249,7 @@ func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) DomainRestricti
 	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrg) bool { return v.DomainRestrictionEnabled }).(pulumi.BoolOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the IdP.
 func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) IdentityProviderId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrg) string { return v.IdentityProviderId }).(pulumi.StringOutput)
 }
@@ -37424,7 +38899,7 @@ type GetFederatedSettingsIdentityProvidersResult struct {
 	DisplayName string `pulumi:"displayName"`
 	// Identifier of the claim which contains IdP Group IDs in the token.
 	GroupsClaim string `pulumi:"groupsClaim"`
-	// Unique 20-hexadecimal digit string that identifies the IdP.
+	// Unique 24-hexadecimal digit string that identifies the IdP.
 	IdpId string `pulumi:"idpId"`
 	// Identifier for the issuer of the SAML Assertion.
 	IssuerUri    string                                                   `pulumi:"issuerUri"`
@@ -37480,7 +38955,7 @@ type GetFederatedSettingsIdentityProvidersResultArgs struct {
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// Identifier of the claim which contains IdP Group IDs in the token.
 	GroupsClaim pulumi.StringInput `pulumi:"groupsClaim"`
-	// Unique 20-hexadecimal digit string that identifies the IdP.
+	// Unique 24-hexadecimal digit string that identifies the IdP.
 	IdpId pulumi.StringInput `pulumi:"idpId"`
 	// Identifier for the issuer of the SAML Assertion.
 	IssuerUri    pulumi.StringInput                                               `pulumi:"issuerUri"`
@@ -37601,7 +39076,7 @@ func (o GetFederatedSettingsIdentityProvidersResultOutput) GroupsClaim() pulumi.
 	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.GroupsClaim }).(pulumi.StringOutput)
 }
 
-// Unique 20-hexadecimal digit string that identifies the IdP.
+// Unique 24-hexadecimal digit string that identifies the IdP.
 func (o GetFederatedSettingsIdentityProvidersResultOutput) IdpId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.IdpId }).(pulumi.StringOutput)
 }
@@ -43407,6 +44882,7 @@ type GetProjectsResult struct {
 	OrgId                                       string                       `pulumi:"orgId"`
 	ProjectId                                   string                       `pulumi:"projectId"`
 	RegionUsageRestrictions                     string                       `pulumi:"regionUsageRestrictions"`
+	Tags                                        map[string]string            `pulumi:"tags"`
 	Teams                                       []GetProjectsResultTeam      `pulumi:"teams"`
 }
 
@@ -43438,6 +44914,7 @@ type GetProjectsResultArgs struct {
 	OrgId                                       pulumi.StringInput                `pulumi:"orgId"`
 	ProjectId                                   pulumi.StringInput                `pulumi:"projectId"`
 	RegionUsageRestrictions                     pulumi.StringInput                `pulumi:"regionUsageRestrictions"`
+	Tags                                        pulumi.StringMapInput             `pulumi:"tags"`
 	Teams                                       GetProjectsResultTeamArrayInput   `pulumi:"teams"`
 }
 
@@ -43551,6 +45028,10 @@ func (o GetProjectsResultOutput) ProjectId() pulumi.StringOutput {
 
 func (o GetProjectsResultOutput) RegionUsageRestrictions() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.RegionUsageRestrictions }).(pulumi.StringOutput)
+}
+
+func (o GetProjectsResultOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetProjectsResult) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
 
 func (o GetProjectsResultOutput) Teams() GetProjectsResultTeamArrayOutput {
@@ -44788,6 +46269,8 @@ func (o GetServerlessInstanceTagArrayOutput) Index(i pulumi.IntInput) GetServerl
 }
 
 type GetServerlessInstancesResult struct {
+	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+	AutoIndexing                         bool     `pulumi:"autoIndexing"`
 	ConnectionStringsPrivateEndpointSrvs []string `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv string `pulumi:"connectionStringsStandardSrv"`
@@ -44829,6 +46312,8 @@ type GetServerlessInstancesResultInput interface {
 }
 
 type GetServerlessInstancesResultArgs struct {
+	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+	AutoIndexing                         pulumi.BoolInput        `pulumi:"autoIndexing"`
 	ConnectionStringsPrivateEndpointSrvs pulumi.StringArrayInput `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv pulumi.StringInput `pulumi:"connectionStringsStandardSrv"`
@@ -44907,6 +46392,11 @@ func (o GetServerlessInstancesResultOutput) ToGetServerlessInstancesResultOutput
 
 func (o GetServerlessInstancesResultOutput) ToGetServerlessInstancesResultOutputWithContext(ctx context.Context) GetServerlessInstancesResultOutput {
 	return o
+}
+
+// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+func (o GetServerlessInstancesResultOutput) AutoIndexing() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) bool { return v.AutoIndexing }).(pulumi.BoolOutput)
 }
 
 func (o GetServerlessInstancesResultOutput) ConnectionStringsPrivateEndpointSrvs() pulumi.StringArrayOutput {
@@ -45491,6 +46981,939 @@ func (o GetSharedTierSnapshotsResultArrayOutput) Index(i pulumi.IntInput) GetSha
 	}).(GetSharedTierSnapshotsResultOutput)
 }
 
+type GetStreamConnectionAuthentication struct {
+	// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	Mechanism string `pulumi:"mechanism"`
+	// Password of the account to connect to the Kafka cluster.
+	Password string `pulumi:"password"`
+	// Username of the account to connect to the Kafka cluster.
+	Username string `pulumi:"username"`
+}
+
+// GetStreamConnectionAuthenticationInput is an input type that accepts GetStreamConnectionAuthenticationArgs and GetStreamConnectionAuthenticationOutput values.
+// You can construct a concrete instance of `GetStreamConnectionAuthenticationInput` via:
+//
+//	GetStreamConnectionAuthenticationArgs{...}
+type GetStreamConnectionAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionAuthenticationOutput() GetStreamConnectionAuthenticationOutput
+	ToGetStreamConnectionAuthenticationOutputWithContext(context.Context) GetStreamConnectionAuthenticationOutput
+}
+
+type GetStreamConnectionAuthenticationArgs struct {
+	// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	Mechanism pulumi.StringInput `pulumi:"mechanism"`
+	// Password of the account to connect to the Kafka cluster.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Username of the account to connect to the Kafka cluster.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetStreamConnectionAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionAuthentication)(nil)).Elem()
+}
+
+func (i GetStreamConnectionAuthenticationArgs) ToGetStreamConnectionAuthenticationOutput() GetStreamConnectionAuthenticationOutput {
+	return i.ToGetStreamConnectionAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionAuthenticationArgs) ToGetStreamConnectionAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionAuthenticationOutput)
+}
+
+type GetStreamConnectionAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionAuthentication)(nil)).Elem()
+}
+
+func (o GetStreamConnectionAuthenticationOutput) ToGetStreamConnectionAuthenticationOutput() GetStreamConnectionAuthenticationOutput {
+	return o
+}
+
+func (o GetStreamConnectionAuthenticationOutput) ToGetStreamConnectionAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionAuthenticationOutput {
+	return o
+}
+
+// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+func (o GetStreamConnectionAuthenticationOutput) Mechanism() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionAuthenticationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionAuthenticationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionDbRoleToExecute struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role string `pulumi:"role"`
+	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionDbRoleToExecuteInput is an input type that accepts GetStreamConnectionDbRoleToExecuteArgs and GetStreamConnectionDbRoleToExecuteOutput values.
+// You can construct a concrete instance of `GetStreamConnectionDbRoleToExecuteInput` via:
+//
+//	GetStreamConnectionDbRoleToExecuteArgs{...}
+type GetStreamConnectionDbRoleToExecuteInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionDbRoleToExecuteOutput() GetStreamConnectionDbRoleToExecuteOutput
+	ToGetStreamConnectionDbRoleToExecuteOutputWithContext(context.Context) GetStreamConnectionDbRoleToExecuteOutput
+}
+
+type GetStreamConnectionDbRoleToExecuteArgs struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role pulumi.StringInput `pulumi:"role"`
+	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionDbRoleToExecuteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionDbRoleToExecute)(nil)).Elem()
+}
+
+func (i GetStreamConnectionDbRoleToExecuteArgs) ToGetStreamConnectionDbRoleToExecuteOutput() GetStreamConnectionDbRoleToExecuteOutput {
+	return i.ToGetStreamConnectionDbRoleToExecuteOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionDbRoleToExecuteArgs) ToGetStreamConnectionDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionDbRoleToExecuteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionDbRoleToExecuteOutput)
+}
+
+type GetStreamConnectionDbRoleToExecuteOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionDbRoleToExecuteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionDbRoleToExecute)(nil)).Elem()
+}
+
+func (o GetStreamConnectionDbRoleToExecuteOutput) ToGetStreamConnectionDbRoleToExecuteOutput() GetStreamConnectionDbRoleToExecuteOutput {
+	return o
+}
+
+func (o GetStreamConnectionDbRoleToExecuteOutput) ToGetStreamConnectionDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionDbRoleToExecuteOutput {
+	return o
+}
+
+// The name of the role to use. Can be a built in role or a custom role.
+func (o GetStreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+func (o GetStreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionSecurity struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	Protocol string `pulumi:"protocol"`
+}
+
+// GetStreamConnectionSecurityInput is an input type that accepts GetStreamConnectionSecurityArgs and GetStreamConnectionSecurityOutput values.
+// You can construct a concrete instance of `GetStreamConnectionSecurityInput` via:
+//
+//	GetStreamConnectionSecurityArgs{...}
+type GetStreamConnectionSecurityInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionSecurityOutput() GetStreamConnectionSecurityOutput
+	ToGetStreamConnectionSecurityOutputWithContext(context.Context) GetStreamConnectionSecurityOutput
+}
+
+type GetStreamConnectionSecurityArgs struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+}
+
+func (GetStreamConnectionSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionSecurity)(nil)).Elem()
+}
+
+func (i GetStreamConnectionSecurityArgs) ToGetStreamConnectionSecurityOutput() GetStreamConnectionSecurityOutput {
+	return i.ToGetStreamConnectionSecurityOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionSecurityArgs) ToGetStreamConnectionSecurityOutputWithContext(ctx context.Context) GetStreamConnectionSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionSecurityOutput)
+}
+
+type GetStreamConnectionSecurityOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionSecurity)(nil)).Elem()
+}
+
+func (o GetStreamConnectionSecurityOutput) ToGetStreamConnectionSecurityOutput() GetStreamConnectionSecurityOutput {
+	return o
+}
+
+func (o GetStreamConnectionSecurityOutput) ToGetStreamConnectionSecurityOutputWithContext(ctx context.Context) GetStreamConnectionSecurityOutput {
+	return o
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+func (o GetStreamConnectionSecurityOutput) BrokerPublicCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
+}
+
+// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+func (o GetStreamConnectionSecurityOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionSecurity) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResult struct {
+	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
+	Authentication GetStreamConnectionsResultAuthentication `pulumi:"authentication"`
+	// Comma separated list of server addresses.
+	BootstrapServers string `pulumi:"bootstrapServers"`
+	// Name of the cluster configured for this connection.
+	ClusterName string `pulumi:"clusterName"`
+	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	Config map[string]string `pulumi:"config"`
+	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	ConnectionName string `pulumi:"connectionName"`
+	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
+	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecute `pulumi:"dbRoleToExecute"`
+	Id              string                                    `pulumi:"id"`
+	// Human-readable label that identifies the stream instance.
+	InstanceName string `pulumi:"instanceName"`
+	// Unique 24-hexadecimal digit string that identifies your project.
+	ProjectId string `pulumi:"projectId"`
+	// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+	Security GetStreamConnectionsResultSecurity `pulumi:"security"`
+	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionsResultInput is an input type that accepts GetStreamConnectionsResultArgs and GetStreamConnectionsResultOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultInput` via:
+//
+//	GetStreamConnectionsResultArgs{...}
+type GetStreamConnectionsResultInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultOutput() GetStreamConnectionsResultOutput
+	ToGetStreamConnectionsResultOutputWithContext(context.Context) GetStreamConnectionsResultOutput
+}
+
+type GetStreamConnectionsResultArgs struct {
+	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
+	Authentication GetStreamConnectionsResultAuthenticationInput `pulumi:"authentication"`
+	// Comma separated list of server addresses.
+	BootstrapServers pulumi.StringInput `pulumi:"bootstrapServers"`
+	// Name of the cluster configured for this connection.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	Config pulumi.StringMapInput `pulumi:"config"`
+	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
+	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
+	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecuteInput `pulumi:"dbRoleToExecute"`
+	Id              pulumi.StringInput                             `pulumi:"id"`
+	// Human-readable label that identifies the stream instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Unique 24-hexadecimal digit string that identifies your project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+	Security GetStreamConnectionsResultSecurityInput `pulumi:"security"`
+	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResult)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultArgs) ToGetStreamConnectionsResultOutput() GetStreamConnectionsResultOutput {
+	return i.ToGetStreamConnectionsResultOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultArgs) ToGetStreamConnectionsResultOutputWithContext(ctx context.Context) GetStreamConnectionsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultOutput)
+}
+
+// GetStreamConnectionsResultArrayInput is an input type that accepts GetStreamConnectionsResultArray and GetStreamConnectionsResultArrayOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultArrayInput` via:
+//
+//	GetStreamConnectionsResultArray{ GetStreamConnectionsResultArgs{...} }
+type GetStreamConnectionsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultArrayOutput() GetStreamConnectionsResultArrayOutput
+	ToGetStreamConnectionsResultArrayOutputWithContext(context.Context) GetStreamConnectionsResultArrayOutput
+}
+
+type GetStreamConnectionsResultArray []GetStreamConnectionsResultInput
+
+func (GetStreamConnectionsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamConnectionsResult)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultArray) ToGetStreamConnectionsResultArrayOutput() GetStreamConnectionsResultArrayOutput {
+	return i.ToGetStreamConnectionsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultArray) ToGetStreamConnectionsResultArrayOutputWithContext(ctx context.Context) GetStreamConnectionsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultArrayOutput)
+}
+
+type GetStreamConnectionsResultOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResult)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultOutput) ToGetStreamConnectionsResultOutput() GetStreamConnectionsResultOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultOutput) ToGetStreamConnectionsResultOutputWithContext(ctx context.Context) GetStreamConnectionsResultOutput {
+	return o
+}
+
+// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
+func (o GetStreamConnectionsResultOutput) Authentication() GetStreamConnectionsResultAuthenticationOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAuthentication { return v.Authentication }).(GetStreamConnectionsResultAuthenticationOutput)
+}
+
+// Comma separated list of server addresses.
+func (o GetStreamConnectionsResultOutput) BootstrapServers() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.BootstrapServers }).(pulumi.StringOutput)
+}
+
+// Name of the cluster configured for this connection.
+func (o GetStreamConnectionsResultOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+func (o GetStreamConnectionsResultOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) map[string]string { return v.Config }).(pulumi.StringMapOutput)
+}
+
+// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+func (o GetStreamConnectionsResultOutput) ConnectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ConnectionName }).(pulumi.StringOutput)
+}
+
+// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
+func (o GetStreamConnectionsResultOutput) DbRoleToExecute() GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultDbRoleToExecute { return v.DbRoleToExecute }).(GetStreamConnectionsResultDbRoleToExecuteOutput)
+}
+
+func (o GetStreamConnectionsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the stream instance.
+func (o GetStreamConnectionsResultOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project.
+func (o GetStreamConnectionsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+func (o GetStreamConnectionsResultOutput) Security() GetStreamConnectionsResultSecurityOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultSecurity { return v.Security }).(GetStreamConnectionsResultSecurityOutput)
+}
+
+// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+func (o GetStreamConnectionsResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamConnectionsResult)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultArrayOutput) ToGetStreamConnectionsResultArrayOutput() GetStreamConnectionsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultArrayOutput) ToGetStreamConnectionsResultArrayOutputWithContext(ctx context.Context) GetStreamConnectionsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultArrayOutput) Index(i pulumi.IntInput) GetStreamConnectionsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamConnectionsResult {
+		return vs[0].([]GetStreamConnectionsResult)[vs[1].(int)]
+	}).(GetStreamConnectionsResultOutput)
+}
+
+type GetStreamConnectionsResultAuthentication struct {
+	// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	Mechanism string `pulumi:"mechanism"`
+	// Password of the account to connect to the Kafka cluster.
+	Password string `pulumi:"password"`
+	// Username of the account to connect to the Kafka cluster.
+	Username string `pulumi:"username"`
+}
+
+// GetStreamConnectionsResultAuthenticationInput is an input type that accepts GetStreamConnectionsResultAuthenticationArgs and GetStreamConnectionsResultAuthenticationOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultAuthenticationInput` via:
+//
+//	GetStreamConnectionsResultAuthenticationArgs{...}
+type GetStreamConnectionsResultAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultAuthenticationOutput() GetStreamConnectionsResultAuthenticationOutput
+	ToGetStreamConnectionsResultAuthenticationOutputWithContext(context.Context) GetStreamConnectionsResultAuthenticationOutput
+}
+
+type GetStreamConnectionsResultAuthenticationArgs struct {
+	// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	Mechanism pulumi.StringInput `pulumi:"mechanism"`
+	// Password of the account to connect to the Kafka cluster.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Username of the account to connect to the Kafka cluster.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetStreamConnectionsResultAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAuthentication)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultAuthenticationArgs) ToGetStreamConnectionsResultAuthenticationOutput() GetStreamConnectionsResultAuthenticationOutput {
+	return i.ToGetStreamConnectionsResultAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultAuthenticationArgs) ToGetStreamConnectionsResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAuthenticationOutput)
+}
+
+type GetStreamConnectionsResultAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAuthentication)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultAuthenticationOutput) ToGetStreamConnectionsResultAuthenticationOutput() GetStreamConnectionsResultAuthenticationOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultAuthenticationOutput) ToGetStreamConnectionsResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationOutput {
+	return o
+}
+
+// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+func (o GetStreamConnectionsResultAuthenticationOutput) Mechanism() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionsResultAuthenticationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionsResultAuthenticationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultDbRoleToExecute struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role string `pulumi:"role"`
+	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionsResultDbRoleToExecuteInput is an input type that accepts GetStreamConnectionsResultDbRoleToExecuteArgs and GetStreamConnectionsResultDbRoleToExecuteOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultDbRoleToExecuteInput` via:
+//
+//	GetStreamConnectionsResultDbRoleToExecuteArgs{...}
+type GetStreamConnectionsResultDbRoleToExecuteInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultDbRoleToExecuteOutput() GetStreamConnectionsResultDbRoleToExecuteOutput
+	ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(context.Context) GetStreamConnectionsResultDbRoleToExecuteOutput
+}
+
+type GetStreamConnectionsResultDbRoleToExecuteArgs struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role pulumi.StringInput `pulumi:"role"`
+	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionsResultDbRoleToExecuteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecute)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultDbRoleToExecuteArgs) ToGetStreamConnectionsResultDbRoleToExecuteOutput() GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return i.ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultDbRoleToExecuteArgs) ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultDbRoleToExecuteOutput)
+}
+
+type GetStreamConnectionsResultDbRoleToExecuteOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultDbRoleToExecuteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecute)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultDbRoleToExecuteOutput) ToGetStreamConnectionsResultDbRoleToExecuteOutput() GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultDbRoleToExecuteOutput) ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return o
+}
+
+// The name of the role to use. Can be a built in role or a custom role.
+func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultSecurity struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	Protocol string `pulumi:"protocol"`
+}
+
+// GetStreamConnectionsResultSecurityInput is an input type that accepts GetStreamConnectionsResultSecurityArgs and GetStreamConnectionsResultSecurityOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultSecurityInput` via:
+//
+//	GetStreamConnectionsResultSecurityArgs{...}
+type GetStreamConnectionsResultSecurityInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultSecurityOutput() GetStreamConnectionsResultSecurityOutput
+	ToGetStreamConnectionsResultSecurityOutputWithContext(context.Context) GetStreamConnectionsResultSecurityOutput
+}
+
+type GetStreamConnectionsResultSecurityArgs struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+}
+
+func (GetStreamConnectionsResultSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultSecurity)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultSecurityArgs) ToGetStreamConnectionsResultSecurityOutput() GetStreamConnectionsResultSecurityOutput {
+	return i.ToGetStreamConnectionsResultSecurityOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultSecurityArgs) ToGetStreamConnectionsResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionsResultSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultSecurityOutput)
+}
+
+type GetStreamConnectionsResultSecurityOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultSecurity)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultSecurityOutput) ToGetStreamConnectionsResultSecurityOutput() GetStreamConnectionsResultSecurityOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultSecurityOutput) ToGetStreamConnectionsResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionsResultSecurityOutput {
+	return o
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+func (o GetStreamConnectionsResultSecurityOutput) BrokerPublicCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
+}
+
+// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+func (o GetStreamConnectionsResultSecurityOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultSecurity) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+type GetStreamInstanceDataProcessRegion struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region string `pulumi:"region"`
+}
+
+// GetStreamInstanceDataProcessRegionInput is an input type that accepts GetStreamInstanceDataProcessRegionArgs and GetStreamInstanceDataProcessRegionOutput values.
+// You can construct a concrete instance of `GetStreamInstanceDataProcessRegionInput` via:
+//
+//	GetStreamInstanceDataProcessRegionArgs{...}
+type GetStreamInstanceDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToGetStreamInstanceDataProcessRegionOutput() GetStreamInstanceDataProcessRegionOutput
+	ToGetStreamInstanceDataProcessRegionOutputWithContext(context.Context) GetStreamInstanceDataProcessRegionOutput
+}
+
+type GetStreamInstanceDataProcessRegionArgs struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetStreamInstanceDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetStreamInstanceDataProcessRegionArgs) ToGetStreamInstanceDataProcessRegionOutput() GetStreamInstanceDataProcessRegionOutput {
+	return i.ToGetStreamInstanceDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstanceDataProcessRegionArgs) ToGetStreamInstanceDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstanceDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstanceDataProcessRegionOutput)
+}
+
+type GetStreamInstanceDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstanceDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetStreamInstanceDataProcessRegionOutput) ToGetStreamInstanceDataProcessRegionOutput() GetStreamInstanceDataProcessRegionOutput {
+	return o
+}
+
+func (o GetStreamInstanceDataProcessRegionOutput) ToGetStreamInstanceDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstanceDataProcessRegionOutput {
+	return o
+}
+
+// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstanceDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstanceDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstanceDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstanceDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetStreamInstanceStreamConfig struct {
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier string `pulumi:"tier"`
+}
+
+// GetStreamInstanceStreamConfigInput is an input type that accepts GetStreamInstanceStreamConfigArgs and GetStreamInstanceStreamConfigOutput values.
+// You can construct a concrete instance of `GetStreamInstanceStreamConfigInput` via:
+//
+//	GetStreamInstanceStreamConfigArgs{...}
+type GetStreamInstanceStreamConfigInput interface {
+	pulumi.Input
+
+	ToGetStreamInstanceStreamConfigOutput() GetStreamInstanceStreamConfigOutput
+	ToGetStreamInstanceStreamConfigOutputWithContext(context.Context) GetStreamInstanceStreamConfigOutput
+}
+
+type GetStreamInstanceStreamConfigArgs struct {
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier pulumi.StringInput `pulumi:"tier"`
+}
+
+func (GetStreamInstanceStreamConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (i GetStreamInstanceStreamConfigArgs) ToGetStreamInstanceStreamConfigOutput() GetStreamInstanceStreamConfigOutput {
+	return i.ToGetStreamInstanceStreamConfigOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstanceStreamConfigArgs) ToGetStreamInstanceStreamConfigOutputWithContext(ctx context.Context) GetStreamInstanceStreamConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstanceStreamConfigOutput)
+}
+
+type GetStreamInstanceStreamConfigOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstanceStreamConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (o GetStreamInstanceStreamConfigOutput) ToGetStreamInstanceStreamConfigOutput() GetStreamInstanceStreamConfigOutput {
+	return o
+}
+
+func (o GetStreamInstanceStreamConfigOutput) ToGetStreamInstanceStreamConfigOutputWithContext(ctx context.Context) GetStreamInstanceStreamConfigOutput {
+	return o
+}
+
+// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstanceStreamConfigOutput) Tier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstanceStreamConfig) string { return v.Tier }).(pulumi.StringOutput)
+}
+
+type GetStreamInstancesResult struct {
+	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+	DataProcessRegion GetStreamInstancesResultDataProcessRegion `pulumi:"dataProcessRegion"`
+	// List that contains the hostnames assigned to the stream instance.
+	Hostnames []string `pulumi:"hostnames"`
+	Id        string   `pulumi:"id"`
+	// Human-readable label that identifies the stream instance.
+	InstanceName string `pulumi:"instanceName"`
+	// Unique 24-hexadecimal digit string that identifies your project.
+	ProjectId string `pulumi:"projectId"`
+	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+	StreamConfig GetStreamInstancesResultStreamConfig `pulumi:"streamConfig"`
+}
+
+// GetStreamInstancesResultInput is an input type that accepts GetStreamInstancesResultArgs and GetStreamInstancesResultOutput values.
+// You can construct a concrete instance of `GetStreamInstancesResultInput` via:
+//
+//	GetStreamInstancesResultArgs{...}
+type GetStreamInstancesResultInput interface {
+	pulumi.Input
+
+	ToGetStreamInstancesResultOutput() GetStreamInstancesResultOutput
+	ToGetStreamInstancesResultOutputWithContext(context.Context) GetStreamInstancesResultOutput
+}
+
+type GetStreamInstancesResultArgs struct {
+	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+	DataProcessRegion GetStreamInstancesResultDataProcessRegionInput `pulumi:"dataProcessRegion"`
+	// List that contains the hostnames assigned to the stream instance.
+	Hostnames pulumi.StringArrayInput `pulumi:"hostnames"`
+	Id        pulumi.StringInput      `pulumi:"id"`
+	// Human-readable label that identifies the stream instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Unique 24-hexadecimal digit string that identifies your project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+	StreamConfig GetStreamInstancesResultStreamConfigInput `pulumi:"streamConfig"`
+}
+
+func (GetStreamInstancesResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResult)(nil)).Elem()
+}
+
+func (i GetStreamInstancesResultArgs) ToGetStreamInstancesResultOutput() GetStreamInstancesResultOutput {
+	return i.ToGetStreamInstancesResultOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstancesResultArgs) ToGetStreamInstancesResultOutputWithContext(ctx context.Context) GetStreamInstancesResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultOutput)
+}
+
+// GetStreamInstancesResultArrayInput is an input type that accepts GetStreamInstancesResultArray and GetStreamInstancesResultArrayOutput values.
+// You can construct a concrete instance of `GetStreamInstancesResultArrayInput` via:
+//
+//	GetStreamInstancesResultArray{ GetStreamInstancesResultArgs{...} }
+type GetStreamInstancesResultArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamInstancesResultArrayOutput() GetStreamInstancesResultArrayOutput
+	ToGetStreamInstancesResultArrayOutputWithContext(context.Context) GetStreamInstancesResultArrayOutput
+}
+
+type GetStreamInstancesResultArray []GetStreamInstancesResultInput
+
+func (GetStreamInstancesResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamInstancesResult)(nil)).Elem()
+}
+
+func (i GetStreamInstancesResultArray) ToGetStreamInstancesResultArrayOutput() GetStreamInstancesResultArrayOutput {
+	return i.ToGetStreamInstancesResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstancesResultArray) ToGetStreamInstancesResultArrayOutputWithContext(ctx context.Context) GetStreamInstancesResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultArrayOutput)
+}
+
+type GetStreamInstancesResultOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstancesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResult)(nil)).Elem()
+}
+
+func (o GetStreamInstancesResultOutput) ToGetStreamInstancesResultOutput() GetStreamInstancesResultOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultOutput) ToGetStreamInstancesResultOutputWithContext(ctx context.Context) GetStreamInstancesResultOutput {
+	return o
+}
+
+// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+func (o GetStreamInstancesResultOutput) DataProcessRegion() GetStreamInstancesResultDataProcessRegionOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) GetStreamInstancesResultDataProcessRegion { return v.DataProcessRegion }).(GetStreamInstancesResultDataProcessRegionOutput)
+}
+
+// List that contains the hostnames assigned to the stream instance.
+func (o GetStreamInstancesResultOutput) Hostnames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) []string { return v.Hostnames }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStreamInstancesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the stream instance.
+func (o GetStreamInstancesResultOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project.
+func (o GetStreamInstancesResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+func (o GetStreamInstancesResultOutput) StreamConfig() GetStreamInstancesResultStreamConfigOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) GetStreamInstancesResultStreamConfig { return v.StreamConfig }).(GetStreamInstancesResultStreamConfigOutput)
+}
+
+type GetStreamInstancesResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstancesResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamInstancesResult)(nil)).Elem()
+}
+
+func (o GetStreamInstancesResultArrayOutput) ToGetStreamInstancesResultArrayOutput() GetStreamInstancesResultArrayOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultArrayOutput) ToGetStreamInstancesResultArrayOutputWithContext(ctx context.Context) GetStreamInstancesResultArrayOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultArrayOutput) Index(i pulumi.IntInput) GetStreamInstancesResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamInstancesResult {
+		return vs[0].([]GetStreamInstancesResult)[vs[1].(int)]
+	}).(GetStreamInstancesResultOutput)
+}
+
+type GetStreamInstancesResultDataProcessRegion struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region string `pulumi:"region"`
+}
+
+// GetStreamInstancesResultDataProcessRegionInput is an input type that accepts GetStreamInstancesResultDataProcessRegionArgs and GetStreamInstancesResultDataProcessRegionOutput values.
+// You can construct a concrete instance of `GetStreamInstancesResultDataProcessRegionInput` via:
+//
+//	GetStreamInstancesResultDataProcessRegionArgs{...}
+type GetStreamInstancesResultDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToGetStreamInstancesResultDataProcessRegionOutput() GetStreamInstancesResultDataProcessRegionOutput
+	ToGetStreamInstancesResultDataProcessRegionOutputWithContext(context.Context) GetStreamInstancesResultDataProcessRegionOutput
+}
+
+type GetStreamInstancesResultDataProcessRegionArgs struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetStreamInstancesResultDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetStreamInstancesResultDataProcessRegionArgs) ToGetStreamInstancesResultDataProcessRegionOutput() GetStreamInstancesResultDataProcessRegionOutput {
+	return i.ToGetStreamInstancesResultDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstancesResultDataProcessRegionArgs) ToGetStreamInstancesResultDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstancesResultDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultDataProcessRegionOutput)
+}
+
+type GetStreamInstancesResultDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstancesResultDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetStreamInstancesResultDataProcessRegionOutput) ToGetStreamInstancesResultDataProcessRegionOutput() GetStreamInstancesResultDataProcessRegionOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultDataProcessRegionOutput) ToGetStreamInstancesResultDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstancesResultDataProcessRegionOutput {
+	return o
+}
+
+// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstancesResultDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResultDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstancesResultDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResultDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetStreamInstancesResultStreamConfig struct {
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier string `pulumi:"tier"`
+}
+
+// GetStreamInstancesResultStreamConfigInput is an input type that accepts GetStreamInstancesResultStreamConfigArgs and GetStreamInstancesResultStreamConfigOutput values.
+// You can construct a concrete instance of `GetStreamInstancesResultStreamConfigInput` via:
+//
+//	GetStreamInstancesResultStreamConfigArgs{...}
+type GetStreamInstancesResultStreamConfigInput interface {
+	pulumi.Input
+
+	ToGetStreamInstancesResultStreamConfigOutput() GetStreamInstancesResultStreamConfigOutput
+	ToGetStreamInstancesResultStreamConfigOutputWithContext(context.Context) GetStreamInstancesResultStreamConfigOutput
+}
+
+type GetStreamInstancesResultStreamConfigArgs struct {
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier pulumi.StringInput `pulumi:"tier"`
+}
+
+func (GetStreamInstancesResultStreamConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResultStreamConfig)(nil)).Elem()
+}
+
+func (i GetStreamInstancesResultStreamConfigArgs) ToGetStreamInstancesResultStreamConfigOutput() GetStreamInstancesResultStreamConfigOutput {
+	return i.ToGetStreamInstancesResultStreamConfigOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstancesResultStreamConfigArgs) ToGetStreamInstancesResultStreamConfigOutputWithContext(ctx context.Context) GetStreamInstancesResultStreamConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultStreamConfigOutput)
+}
+
+type GetStreamInstancesResultStreamConfigOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstancesResultStreamConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResultStreamConfig)(nil)).Elem()
+}
+
+func (o GetStreamInstancesResultStreamConfigOutput) ToGetStreamInstancesResultStreamConfigOutput() GetStreamInstancesResultStreamConfigOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultStreamConfigOutput) ToGetStreamInstancesResultStreamConfigOutputWithContext(ctx context.Context) GetStreamInstancesResultStreamConfigOutput {
+	return o
+}
+
+// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstancesResultStreamConfigOutput) Tier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResultStreamConfig) string { return v.Tier }).(pulumi.StringOutput)
+}
+
 type GetThirdPartyIntegrationsResult struct {
 	AccountId string `pulumi:"accountId"`
 	// Your API Key.
@@ -45498,6 +47921,8 @@ type GetThirdPartyIntegrationsResult struct {
 	ChannelName string `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
 	Enabled *bool `pulumi:"enabled"`
+	// Unique identifier of the integration.
+	Id string `pulumi:"id"`
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
@@ -45506,7 +47931,9 @@ type GetThirdPartyIntegrationsResult struct {
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey string `pulumi:"routingKey"`
-	// Your Prometheus protocol scheme configured for requests.
+	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme *string `pulumi:"scheme"`
 	// An optional field for your webhook secret.
 	Secret string `pulumi:"secret"`
@@ -45515,7 +47942,7 @@ type GetThirdPartyIntegrationsResult struct {
 	// Your Service Key.
 	ServiceKey string `pulumi:"serviceKey"`
 	TeamName   string `pulumi:"teamName"`
-	// (Required) Thirt-Party service integration type.
+	// Thirt-Party service integration type.
 	Type string `pulumi:"type"`
 	// Your webhook URL.
 	Url string `pulumi:"url"`
@@ -45541,6 +47968,8 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	ChannelName pulumi.StringInput `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Unique identifier of the integration.
+	Id pulumi.StringInput `pulumi:"id"`
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
@@ -45549,7 +47978,9 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	Region pulumi.StringInput `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey pulumi.StringInput `pulumi:"routingKey"`
-	// Your Prometheus protocol scheme configured for requests.
+	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme pulumi.StringPtrInput `pulumi:"scheme"`
 	// An optional field for your webhook secret.
 	Secret pulumi.StringInput `pulumi:"secret"`
@@ -45558,7 +47989,7 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// Your Service Key.
 	ServiceKey pulumi.StringInput `pulumi:"serviceKey"`
 	TeamName   pulumi.StringInput `pulumi:"teamName"`
-	// (Required) Thirt-Party service integration type.
+	// Thirt-Party service integration type.
 	Type pulumi.StringInput `pulumi:"type"`
 	// Your webhook URL.
 	Url pulumi.StringInput `pulumi:"url"`
@@ -45635,6 +48066,11 @@ func (o GetThirdPartyIntegrationsResultOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
+// Unique identifier of the integration.
+func (o GetThirdPartyIntegrationsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
 // Your Microsoft Teams incoming webhook URL.
 func (o GetThirdPartyIntegrationsResultOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
@@ -45655,7 +48091,9 @@ func (o GetThirdPartyIntegrationsResultOutput) RoutingKey() pulumi.StringOutput 
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.RoutingKey }).(pulumi.StringOutput)
 }
 
-// Your Prometheus protocol scheme configured for requests.
+// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 func (o GetThirdPartyIntegrationsResultOutput) Scheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.Scheme }).(pulumi.StringPtrOutput)
 }
@@ -45679,7 +48117,7 @@ func (o GetThirdPartyIntegrationsResultOutput) TeamName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.TeamName }).(pulumi.StringOutput)
 }
 
-// (Required) Thirt-Party service integration type.
+// Thirt-Party service integration type.
 func (o GetThirdPartyIntegrationsResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -45879,6 +48317,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemMonthlyArrayInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemMonthlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemWeeklyInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemWeeklyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemWeeklyArrayInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemWeeklyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemYearlyInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemYearlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemYearlyArrayInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemYearlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleCopySettingInput)(nil)).Elem(), CloudBackupScheduleCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleCopySettingArrayInput)(nil)).Elem(), CloudBackupScheduleCopySettingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleExportInput)(nil)).Elem(), CloudBackupScheduleExportArgs{})
@@ -45891,6 +48331,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemMonthlyArrayInput)(nil)).Elem(), CloudBackupSchedulePolicyItemMonthlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemWeeklyInput)(nil)).Elem(), CloudBackupSchedulePolicyItemWeeklyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemWeeklyArrayInput)(nil)).Elem(), CloudBackupSchedulePolicyItemWeeklyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemYearlyInput)(nil)).Elem(), CloudBackupSchedulePolicyItemYearlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemYearlyArrayInput)(nil)).Elem(), CloudBackupSchedulePolicyItemYearlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobComponentInput)(nil)).Elem(), CloudBackupSnapshotExportJobComponentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobComponentArrayInput)(nil)).Elem(), CloudBackupSnapshotExportJobComponentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobCustomDataInput)(nil)).Elem(), CloudBackupSnapshotExportJobCustomDataArgs{})
@@ -46031,6 +48473,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamArrayInput)(nil)).Elem(), ProjectTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAssumeRoleInput)(nil)).Elem(), ProviderAssumeRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAssumeRolePtrInput)(nil)).Elem(), ProviderAssumeRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PushBasedLogExportTimeoutsInput)(nil)).Elem(), PushBasedLogExportTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PushBasedLogExportTimeoutsPtrInput)(nil)).Elem(), PushBasedLogExportTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentSpecInput)(nil)).Elem(), SearchDeploymentSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentSpecArrayInput)(nil)).Elem(), SearchDeploymentSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentTimeoutsInput)(nil)).Elem(), SearchDeploymentTimeoutsArgs{})
@@ -46041,6 +48485,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceLinkArrayInput)(nil)).Elem(), ServerlessInstanceLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceTagInput)(nil)).Elem(), ServerlessInstanceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceTagArrayInput)(nil)).Elem(), ServerlessInstanceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationInput)(nil)).Elem(), StreamConnectionAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationPtrInput)(nil)).Elem(), StreamConnectionAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionDbRoleToExecuteInput)(nil)).Elem(), StreamConnectionDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionDbRoleToExecutePtrInput)(nil)).Elem(), StreamConnectionDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSecurityInput)(nil)).Elem(), StreamConnectionSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSecurityPtrInput)(nil)).Elem(), StreamConnectionSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceDataProcessRegionInput)(nil)).Elem(), StreamInstanceDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceDataProcessRegionPtrInput)(nil)).Elem(), StreamInstanceDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceStreamConfigInput)(nil)).Elem(), StreamInstanceStreamConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceStreamConfigPtrInput)(nil)).Elem(), StreamInstanceStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateArrayInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Get509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), Get509AuthenticationDatabaseUserCertificateArgs{})
@@ -46148,6 +48602,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemMonthlyArrayInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemMonthlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemWeeklyInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemWeeklyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemWeeklyArrayInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemWeeklyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemYearlyInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemYearlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemYearlyArrayInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemYearlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleCopySettingInput)(nil)).Elem(), GetCloudBackupScheduleCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleCopySettingArrayInput)(nil)).Elem(), GetCloudBackupScheduleCopySettingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleExportInput)(nil)).Elem(), GetCloudBackupScheduleExportArgs{})
@@ -46160,6 +48616,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemMonthlyArrayInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemMonthlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemWeeklyInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemWeeklyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemWeeklyArrayInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemWeeklyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemYearlyInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemYearlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemYearlyArrayInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemYearlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportBucketsResultInput)(nil)).Elem(), GetCloudBackupSnapshotExportBucketsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportBucketsResultArrayInput)(nil)).Elem(), GetCloudBackupSnapshotExportBucketsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobComponentInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobComponentArgs{})
@@ -46486,6 +48944,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierRestoreJobsResultArrayInput)(nil)).Elem(), GetSharedTierRestoreJobsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultInput)(nil)).Elem(), GetSharedTierSnapshotsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultArrayInput)(nil)).Elem(), GetSharedTierSnapshotsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAuthenticationInput)(nil)).Elem(), GetStreamConnectionAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionSecurityInput)(nil)).Elem(), GetStreamConnectionSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultInput)(nil)).Elem(), GetStreamConnectionsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultArrayInput)(nil)).Elem(), GetStreamConnectionsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionsResultDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultSecurityInput)(nil)).Elem(), GetStreamConnectionsResultSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstanceDataProcessRegionInput)(nil)).Elem(), GetStreamInstanceDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstanceStreamConfigInput)(nil)).Elem(), GetStreamInstanceStreamConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultInput)(nil)).Elem(), GetStreamInstancesResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultArrayInput)(nil)).Elem(), GetStreamInstancesResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultDataProcessRegionInput)(nil)).Elem(), GetStreamInstancesResultDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultStreamConfigInput)(nil)).Elem(), GetStreamInstancesResultStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultArrayInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArgs{})
@@ -46536,6 +49008,8 @@ func init() {
 	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemMonthlyArrayOutput{})
 	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemWeeklyOutput{})
 	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemWeeklyArrayOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemYearlyOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemYearlyArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleCopySettingOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleCopySettingArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleExportOutput{})
@@ -46548,6 +49022,8 @@ func init() {
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemMonthlyArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemWeeklyOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemWeeklyArrayOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemYearlyOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemYearlyArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobComponentOutput{})
 	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobComponentArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobCustomDataOutput{})
@@ -46688,6 +49164,8 @@ func init() {
 	pulumi.RegisterOutputType(ProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(ProviderAssumeRoleOutput{})
 	pulumi.RegisterOutputType(ProviderAssumeRolePtrOutput{})
+	pulumi.RegisterOutputType(PushBasedLogExportTimeoutsOutput{})
+	pulumi.RegisterOutputType(PushBasedLogExportTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(SearchDeploymentSpecOutput{})
 	pulumi.RegisterOutputType(SearchDeploymentSpecArrayOutput{})
 	pulumi.RegisterOutputType(SearchDeploymentTimeoutsOutput{})
@@ -46698,6 +49176,16 @@ func init() {
 	pulumi.RegisterOutputType(ServerlessInstanceLinkArrayOutput{})
 	pulumi.RegisterOutputType(ServerlessInstanceTagOutput{})
 	pulumi.RegisterOutputType(ServerlessInstanceTagArrayOutput{})
+	pulumi.RegisterOutputType(StreamConnectionAuthenticationOutput{})
+	pulumi.RegisterOutputType(StreamConnectionAuthenticationPtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(StreamConnectionDbRoleToExecutePtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionSecurityOutput{})
+	pulumi.RegisterOutputType(StreamConnectionSecurityPtrOutput{})
+	pulumi.RegisterOutputType(StreamInstanceDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(StreamInstanceDataProcessRegionPtrOutput{})
+	pulumi.RegisterOutputType(StreamInstanceStreamConfigOutput{})
+	pulumi.RegisterOutputType(StreamInstanceStreamConfigPtrOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateArrayOutput{})
 	pulumi.RegisterOutputType(Get509AuthenticationDatabaseUserCertificateOutput{})
@@ -46805,6 +49293,8 @@ func init() {
 	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput{})
 	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemWeeklyOutput{})
 	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemYearlyOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemYearlyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleCopySettingOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleCopySettingArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleExportOutput{})
@@ -46817,6 +49307,8 @@ func init() {
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemMonthlyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemWeeklyOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemWeeklyArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemYearlyOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemYearlyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportBucketsResultOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportBucketsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobComponentOutput{})
@@ -47143,6 +49635,20 @@ func init() {
 	pulumi.RegisterOutputType(GetSharedTierRestoreJobsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultOutput{})
 	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionSecurityOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultSecurityOutput{})
+	pulumi.RegisterOutputType(GetStreamInstanceDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(GetStreamInstanceStreamConfigOutput{})
+	pulumi.RegisterOutputType(GetStreamInstancesResultOutput{})
+	pulumi.RegisterOutputType(GetStreamInstancesResultArrayOutput{})
+	pulumi.RegisterOutputType(GetStreamInstancesResultDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(GetStreamInstancesResultStreamConfigOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetX509AuthenticationDatabaseUserCertificateOutput{})

@@ -26,7 +26,7 @@ public final class GetThirdPartyIntegrationResult {
      */
     private @Nullable Boolean enabled;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Unique identifier of the integration.
      * 
      */
     private String id;
@@ -47,9 +47,13 @@ public final class GetThirdPartyIntegrationResult {
      */
     private String routingKey;
     /**
-     * @return Your Prometheus protocol scheme configured for requests.
+     * @return Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     private @Nullable String scheme;
     /**
      * @return An optional field for your webhook secret.
@@ -67,10 +71,6 @@ public final class GetThirdPartyIntegrationResult {
      */
     private String serviceKey;
     private String teamName;
-    /**
-     * @return Property equal to its own integration type
-     * 
-     */
     private String type;
     /**
      * @return Your webhook URL.
@@ -105,7 +105,7 @@ public final class GetThirdPartyIntegrationResult {
         return Optional.ofNullable(this.enabled);
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Unique identifier of the integration.
      * 
      */
     public String id() {
@@ -136,9 +136,13 @@ public final class GetThirdPartyIntegrationResult {
         return this.routingKey;
     }
     /**
-     * @return Your Prometheus protocol scheme configured for requests.
+     * @return Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<String> scheme() {
         return Optional.ofNullable(this.scheme);
     }
@@ -166,10 +170,6 @@ public final class GetThirdPartyIntegrationResult {
     public String teamName() {
         return this.teamName;
     }
-    /**
-     * @return Property equal to its own integration type
-     * 
-     */
     public String type() {
         return this.type;
     }

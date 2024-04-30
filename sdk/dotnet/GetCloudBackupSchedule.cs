@@ -151,6 +151,8 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+        /// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+        /// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         /// </summary>
         public readonly bool AutoExportEnabled;
         /// <summary>
@@ -188,6 +190,10 @@ namespace Pulumi.Mongodbatlas
         /// Weekly policy item
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemWeeklyResult> PolicyItemWeeklies;
+        /// <summary>
+        /// Yearly policy item
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemYearlyResult> PolicyItemYearlies;
         public readonly string ProjectId;
         /// <summary>
         /// UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.
@@ -232,6 +238,8 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemWeeklyResult> policyItemWeeklies,
 
+            ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemYearlyResult> policyItemYearlies,
+
             string projectId,
 
             int referenceHourOfDay,
@@ -254,6 +262,7 @@ namespace Pulumi.Mongodbatlas
             PolicyItemHourlies = policyItemHourlies;
             PolicyItemMonthlies = policyItemMonthlies;
             PolicyItemWeeklies = policyItemWeeklies;
+            PolicyItemYearlies = policyItemYearlies;
             ProjectId = projectId;
             ReferenceHourOfDay = referenceHourOfDay;
             ReferenceMinuteOfHour = referenceMinuteOfHour;

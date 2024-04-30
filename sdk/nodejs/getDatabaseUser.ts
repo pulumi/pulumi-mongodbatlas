@@ -125,10 +125,6 @@ export interface GetDatabaseUserResult {
      * (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      */
     readonly oidcAuthType: string;
-    /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
-     */
-    readonly password: string;
     readonly projectId: string;
     /**
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.

@@ -150,7 +150,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .backupEnabled(true)
  *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion(&#34;4.0&#34;)
+ *             .mongoDbMajorVersion(&#34;7.0&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .providerInstanceSizeName(&#34;M40&#34;)
  *             .build());

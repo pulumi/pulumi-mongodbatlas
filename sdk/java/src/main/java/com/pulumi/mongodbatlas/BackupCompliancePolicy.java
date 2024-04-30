@@ -15,6 +15,7 @@ import com.pulumi.mongodbatlas.outputs.BackupCompliancePolicyPolicyItemDaily;
 import com.pulumi.mongodbatlas.outputs.BackupCompliancePolicyPolicyItemHourly;
 import com.pulumi.mongodbatlas.outputs.BackupCompliancePolicyPolicyItemMonthly;
 import com.pulumi.mongodbatlas.outputs.BackupCompliancePolicyPolicyItemWeekly;
+import com.pulumi.mongodbatlas.outputs.BackupCompliancePolicyPolicyItemYearly;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -40,6 +41,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
  * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemWeeklyArgs;
  * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemMonthlyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemYearlyArgs;
  * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
  * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
  * import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyArgs;
@@ -50,6 +52,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemDailyArgs;
  * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
  * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
+ * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -98,6 +101,11 @@ import javax.annotation.Nullable;
  *                 .retentionUnit(&#34;months&#34;)
  *                 .retentionValue(12)
  *                 .build())
+ *             .policyItemYearlies(CloudBackupSchedulePolicyItemYearlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit(&#34;years&#34;)
+ *                 .retentionValue(1)
+ *                 .build())
  *             .build());
  * 
  *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
@@ -142,6 +150,11 @@ import javax.annotation.Nullable;
  *                 .frequencyInterval(1)
  *                 .retentionUnit(&#34;months&#34;)
  *                 .retentionValue(12)
+ *                 .build())
+ *             .policyItemYearlies(BackupCompliancePolicyPolicyItemYearlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit(&#34;years&#34;)
+ *                 .retentionValue(1)
  *                 .build())
  *             .build());
  * 
@@ -275,6 +288,12 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
 
     public Output<Optional<List<BackupCompliancePolicyPolicyItemWeekly>>> policyItemWeeklies() {
         return Codegen.optional(this.policyItemWeeklies);
+    }
+    @Export(name="policyItemYearlies", refs={List.class,BackupCompliancePolicyPolicyItemYearly.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<BackupCompliancePolicyPolicyItemYearly>> policyItemYearlies;
+
+    public Output<Optional<List<BackupCompliancePolicyPolicyItemYearly>>> policyItemYearlies() {
+        return Codegen.optional(this.policyItemYearlies);
     }
     /**
      * Unique 24-hexadecimal digit string that identifies your project.

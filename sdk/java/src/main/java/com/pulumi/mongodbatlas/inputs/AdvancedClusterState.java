@@ -180,10 +180,10 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
     @Import(name="labels")
     private @Nullable Output<List<AdvancedClusterLabelArgs>> labels;
 
@@ -191,23 +191,23 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
     public Optional<Output<List<AdvancedClusterLabelArgs>>> labels() {
         return Optional.ofNullable(this.labels);
     }
 
     /**
-     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
      * 
      */
     @Import(name="mongoDbMajorVersion")
     private @Nullable Output<String> mongoDbMajorVersion;
 
     /**
-     * @return Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+     * @return Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
      * 
      */
     public Optional<Output<String>> mongoDbMajorVersion() {
@@ -665,10 +665,10 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          * @deprecated
-         * this parameter is deprecated and will be removed by September 2024, please transition to tags
+         * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
          * 
          */
-        @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+        @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
         public Builder labels(@Nullable Output<List<AdvancedClusterLabelArgs>> labels) {
             $.labels = labels;
             return this;
@@ -680,10 +680,10 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          * @deprecated
-         * this parameter is deprecated and will be removed by September 2024, please transition to tags
+         * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
          * 
          */
-        @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+        @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
         public Builder labels(List<AdvancedClusterLabelArgs> labels) {
             return labels(Output.of(labels));
         }
@@ -694,16 +694,16 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          * @deprecated
-         * this parameter is deprecated and will be removed by September 2024, please transition to tags
+         * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
          * 
          */
-        @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+        @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
         public Builder labels(AdvancedClusterLabelArgs... labels) {
             return labels(List.of(labels));
         }
 
         /**
-         * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+         * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
          * 
          * @return builder
          * 
@@ -714,7 +714,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+         * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
          * 
          * @return builder
          * 

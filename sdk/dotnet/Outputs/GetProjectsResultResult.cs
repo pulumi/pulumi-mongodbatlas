@@ -31,6 +31,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string OrgId;
         public readonly string ProjectId;
         public readonly string RegionUsageRestrictions;
+        public readonly ImmutableDictionary<string, string> Tags;
         public readonly ImmutableArray<Outputs.GetProjectsResultTeamResult> Teams;
 
         [OutputConstructor]
@@ -65,6 +66,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string regionUsageRestrictions,
 
+            ImmutableDictionary<string, string> tags,
+
             ImmutableArray<Outputs.GetProjectsResultTeamResult> teams)
         {
             ClusterCount = clusterCount;
@@ -82,6 +85,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             OrgId = orgId;
             ProjectId = projectId;
             RegionUsageRestrictions = regionUsageRestrictions;
+            Tags = tags;
             Teams = teams;
         }
     }

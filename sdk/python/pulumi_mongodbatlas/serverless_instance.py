@@ -20,6 +20,7 @@ class ServerlessInstanceArgs:
                  provider_settings_backing_provider_name: pulumi.Input[str],
                  provider_settings_provider_name: pulumi.Input[str],
                  provider_settings_region_name: pulumi.Input[str],
+                 auto_indexing: Optional[pulumi.Input[bool]] = None,
                  continuous_backup_enabled: Optional[pulumi.Input[bool]] = None,
                  links: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -32,6 +33,7 @@ class ServerlessInstanceArgs:
         :param pulumi.Input[str] provider_settings_backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
+        :param pulumi.Input[bool] auto_indexing: Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
         :param pulumi.Input[bool] continuous_backup_enabled: Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
         :param pulumi.Input[str] name: Human-readable label that identifies the serverless instance.
         :param pulumi.Input[str] state_name: Stage of deployment of this serverless instance when the resource made its request.
@@ -42,6 +44,8 @@ class ServerlessInstanceArgs:
         pulumi.set(__self__, "provider_settings_backing_provider_name", provider_settings_backing_provider_name)
         pulumi.set(__self__, "provider_settings_provider_name", provider_settings_provider_name)
         pulumi.set(__self__, "provider_settings_region_name", provider_settings_region_name)
+        if auto_indexing is not None:
+            pulumi.set(__self__, "auto_indexing", auto_indexing)
         if continuous_backup_enabled is not None:
             pulumi.set(__self__, "continuous_backup_enabled", continuous_backup_enabled)
         if links is not None:
@@ -102,6 +106,18 @@ class ServerlessInstanceArgs:
     @provider_settings_region_name.setter
     def provider_settings_region_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "provider_settings_region_name", value)
+
+    @property
+    @pulumi.getter(name="autoIndexing")
+    def auto_indexing(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+        """
+        return pulumi.get(self, "auto_indexing")
+
+    @auto_indexing.setter
+    def auto_indexing(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_indexing", value)
 
     @property
     @pulumi.getter(name="continuousBackupEnabled")
@@ -176,6 +192,7 @@ class ServerlessInstanceArgs:
 @pulumi.input_type
 class _ServerlessInstanceState:
     def __init__(__self__, *,
+                 auto_indexing: Optional[pulumi.Input[bool]] = None,
                  connection_strings_private_endpoint_srvs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  connection_strings_standard_srv: Optional[pulumi.Input[str]] = None,
                  continuous_backup_enabled: Optional[pulumi.Input[bool]] = None,
@@ -192,6 +209,7 @@ class _ServerlessInstanceState:
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering ServerlessInstance resources.
+        :param pulumi.Input[bool] auto_indexing: Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] connection_strings_private_endpoint_srvs: List of Serverless Private Endpoint Connections
         :param pulumi.Input[str] connection_strings_standard_srv: Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
         :param pulumi.Input[bool] continuous_backup_enabled: Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
@@ -206,6 +224,8 @@ class _ServerlessInstanceState:
         :param pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
+        if auto_indexing is not None:
+            pulumi.set(__self__, "auto_indexing", auto_indexing)
         if connection_strings_private_endpoint_srvs is not None:
             pulumi.set(__self__, "connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
         if connection_strings_standard_srv is not None:
@@ -234,6 +254,18 @@ class _ServerlessInstanceState:
             pulumi.set(__self__, "tags", tags)
         if termination_protection_enabled is not None:
             pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+
+    @property
+    @pulumi.getter(name="autoIndexing")
+    def auto_indexing(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+        """
+        return pulumi.get(self, "auto_indexing")
+
+    @auto_indexing.setter
+    def auto_indexing(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_indexing", value)
 
     @property
     @pulumi.getter(name="connectionStringsPrivateEndpointSrvs")
@@ -406,6 +438,7 @@ class ServerlessInstance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_indexing: Optional[pulumi.Input[bool]] = None,
                  continuous_backup_enabled: Optional[pulumi.Input[bool]] = None,
                  links: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerlessInstanceLinkArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -459,6 +492,7 @@ class ServerlessInstance(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] auto_indexing: Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
         :param pulumi.Input[bool] continuous_backup_enabled: Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
         :param pulumi.Input[str] name: Human-readable label that identifies the serverless instance.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the serverless instance within.
@@ -530,6 +564,7 @@ class ServerlessInstance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_indexing: Optional[pulumi.Input[bool]] = None,
                  continuous_backup_enabled: Optional[pulumi.Input[bool]] = None,
                  links: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerlessInstanceLinkArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -549,6 +584,7 @@ class ServerlessInstance(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ServerlessInstanceArgs.__new__(ServerlessInstanceArgs)
 
+            __props__.__dict__["auto_indexing"] = auto_indexing
             __props__.__dict__["continuous_backup_enabled"] = continuous_backup_enabled
             __props__.__dict__["links"] = links
             __props__.__dict__["name"] = name
@@ -581,6 +617,7 @@ class ServerlessInstance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            auto_indexing: Optional[pulumi.Input[bool]] = None,
             connection_strings_private_endpoint_srvs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             connection_strings_standard_srv: Optional[pulumi.Input[str]] = None,
             continuous_backup_enabled: Optional[pulumi.Input[bool]] = None,
@@ -602,6 +639,7 @@ class ServerlessInstance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] auto_indexing: Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] connection_strings_private_endpoint_srvs: List of Serverless Private Endpoint Connections
         :param pulumi.Input[str] connection_strings_standard_srv: Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
         :param pulumi.Input[bool] continuous_backup_enabled: Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
@@ -620,6 +658,7 @@ class ServerlessInstance(pulumi.CustomResource):
 
         __props__ = _ServerlessInstanceState.__new__(_ServerlessInstanceState)
 
+        __props__.__dict__["auto_indexing"] = auto_indexing
         __props__.__dict__["connection_strings_private_endpoint_srvs"] = connection_strings_private_endpoint_srvs
         __props__.__dict__["connection_strings_standard_srv"] = connection_strings_standard_srv
         __props__.__dict__["continuous_backup_enabled"] = continuous_backup_enabled
@@ -635,6 +674,14 @@ class ServerlessInstance(pulumi.CustomResource):
         __props__.__dict__["tags"] = tags
         __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
         return ServerlessInstance(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="autoIndexing")
+    def auto_indexing(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+        """
+        return pulumi.get(self, "auto_indexing")
 
     @property
     @pulumi.getter(name="connectionStringsPrivateEndpointSrvs")

@@ -148,7 +148,7 @@ import (
 //					},
 //				},
 //				AutoScalingDiskGbEnabled: pulumi.Bool(true),
-//				MongoDbMajorVersion:      pulumi.String("4.2"),
+//				MongoDbMajorVersion:      pulumi.String("7.0"),
 //				ProviderName:             pulumi.String("AZURE"),
 //				ProviderDiskTypeName:     pulumi.String("P4"),
 //				ProviderInstanceSizeName: pulumi.String("M10"),
@@ -201,7 +201,7 @@ import (
 //					},
 //				},
 //				AutoScalingDiskGbEnabled: pulumi.Bool(false),
-//				MongoDbMajorVersion:      pulumi.String("4.2"),
+//				MongoDbMajorVersion:      pulumi.String("7.0"),
 //				ProviderName:             pulumi.String("AWS"),
 //				ProviderInstanceSizeName: pulumi.String("M10"),
 //			})
@@ -283,7 +283,7 @@ import (
 //					},
 //				},
 //				AutoScalingDiskGbEnabled: pulumi.Bool(false),
-//				MongoDbMajorVersion:      pulumi.String("4.2"),
+//				MongoDbMajorVersion:      pulumi.String("7.0"),
 //				ProviderName:             pulumi.String("AZURE"),
 //				ProviderInstanceSizeName: pulumi.String("M10"),
 //			})

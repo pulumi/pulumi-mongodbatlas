@@ -134,7 +134,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+        /// ID of the Atlas project the Third-Party Service Integration belongs to.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

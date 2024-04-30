@@ -104,7 +104,7 @@ class GetThirdPartyIntegrationResult:
     @pulumi.getter
     def id(self) -> str:
         """
-        The provider-assigned unique ID for this managed resource.
+        Unique identifier of the integration.
         """
         return pulumi.get(self, "id")
 
@@ -141,8 +141,11 @@ class GetThirdPartyIntegrationResult:
     @pulumi.getter
     def scheme(self) -> Optional[str]:
         """
-        Your Prometheus protocol scheme configured for requests.
+        Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         """
+        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
+        pulumi.log.warn("""scheme is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
+
         return pulumi.get(self, "scheme")
 
     @property
@@ -177,9 +180,6 @@ class GetThirdPartyIntegrationResult:
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        Property equal to its own integration type
-        """
         return pulumi.get(self, "type")
 
     @property
@@ -248,14 +248,15 @@ def get_third_party_integration(enabled: Optional[bool] = None,
         type="DATADOG",
         api_key="<API-KEY>",
         region="<REGION>")
-    test = mongodbatlas.get_third_party_integration_output(project_id=test_datadog.project_id)
+    test = mongodbatlas.get_third_party_integration_output(project_id=test_datadog.project_id,
+        type="DATADOG")
     ```
 
 
     :param bool enabled: Whether your cluster has Prometheus enabled.
     :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
     :param str project_id: The unique ID for the project to get all Third-Party service integrations
-    :param str scheme: Your Prometheus protocol scheme configured for requests.
+    :param str scheme: Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
     :param str service_discovery: Indicates which service discovery method is used, either file or http.
     :param str type: Third-Party service integration type
            * PAGER_DUTY
@@ -323,14 +324,15 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
         type="DATADOG",
         api_key="<API-KEY>",
         region="<REGION>")
-    test = mongodbatlas.get_third_party_integration_output(project_id=test_datadog.project_id)
+    test = mongodbatlas.get_third_party_integration_output(project_id=test_datadog.project_id,
+        type="DATADOG")
     ```
 
 
     :param bool enabled: Whether your cluster has Prometheus enabled.
     :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
     :param str project_id: The unique ID for the project to get all Third-Party service integrations
-    :param str scheme: Your Prometheus protocol scheme configured for requests.
+    :param str scheme: Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
     :param str service_discovery: Indicates which service discovery method is used, either file or http.
     :param str type: Third-Party service integration type
            * PAGER_DUTY

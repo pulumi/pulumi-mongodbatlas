@@ -47,7 +47,7 @@ import (
 //			}
 //			_ = mongodbatlas.LookupFederatedSettingsIdentityProviderOutput(ctx, mongodbatlas.GetFederatedSettingsIdentityProviderOutputArgs{
 //				FederationSettingsId: identityProvider.ID(),
-//				IdentityProviderId:   pulumi.String("0oad47f7fXnk1297"),
+//				IdentityProviderId:   pulumi.String("0oad4fas87jL5Xnk12971234"),
 //			}, nil)
 //			return nil
 //		})
@@ -68,7 +68,8 @@ func LookupFederatedSettingsIdentityProvider(ctx *pulumi.Context, args *LookupFe
 type LookupFederatedSettingsIdentityProviderArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId string `pulumi:"federationSettingsId"`
-	IdentityProviderId   string `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the IdP.
+	IdentityProviderId string `pulumi:"identityProviderId"`
 }
 
 // A collection of values returned by getFederatedSettingsIdentityProvider.
@@ -140,7 +141,8 @@ func LookupFederatedSettingsIdentityProviderOutput(ctx *pulumi.Context, args Loo
 type LookupFederatedSettingsIdentityProviderOutputArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId pulumi.StringInput `pulumi:"federationSettingsId"`
-	IdentityProviderId   pulumi.StringInput `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the IdP.
+	IdentityProviderId pulumi.StringInput `pulumi:"identityProviderId"`
 }
 
 func (LookupFederatedSettingsIdentityProviderOutputArgs) ElementType() reflect.Type {

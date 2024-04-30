@@ -18,14 +18,14 @@ public final class BackupCompliancePolicyPolicyItemHourlyArgs extends com.pulumi
     public static final BackupCompliancePolicyPolicyItemHourlyArgs Empty = new BackupCompliancePolicyPolicyItemHourlyArgs();
 
     /**
-     * Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
      * 
      */
     @Import(name="frequencyInterval", required=true)
     private Output<Integer> frequencyInterval;
 
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+     * @return Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
      * 
      */
     public Output<Integer> frequencyInterval() {
@@ -33,14 +33,14 @@ public final class BackupCompliancePolicyPolicyItemHourlyArgs extends com.pulumi
     }
 
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     @Import(name="frequencyType")
     private @Nullable Output<String> frequencyType;
 
     /**
-     * @return Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * @return Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     public Optional<Output<String>> frequencyType() {
@@ -63,14 +63,14 @@ public final class BackupCompliancePolicyPolicyItemHourlyArgs extends com.pulumi
     }
 
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      * 
      */
     @Import(name="retentionUnit", required=true)
     private Output<String> retentionUnit;
 
     /**
-     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * @return Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      * 
      */
     public Output<String> retentionUnit() {
@@ -78,14 +78,14 @@ public final class BackupCompliancePolicyPolicyItemHourlyArgs extends com.pulumi
     }
 
     /**
-     * Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
      * 
      */
     @Import(name="retentionValue", required=true)
     private Output<Integer> retentionValue;
 
     /**
-     * @return Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * @return Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
      * 
      */
     public Output<Integer> retentionValue() {
@@ -121,7 +121,7 @@ public final class BackupCompliancePolicyPolicyItemHourlyArgs extends com.pulumi
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
          * 
          * @return builder
          * 
@@ -132,7 +132,7 @@ public final class BackupCompliancePolicyPolicyItemHourlyArgs extends com.pulumi
         }
 
         /**
-         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+         * @param frequencyInterval Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
          * 
          * @return builder
          * 
@@ -142,7 +142,7 @@ public final class BackupCompliancePolicyPolicyItemHourlyArgs extends com.pulumi
         }
 
         /**
-         * @param frequencyType Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+         * @param frequencyType Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
          * 
          * @return builder
          * 
@@ -153,7 +153,7 @@ public final class BackupCompliancePolicyPolicyItemHourlyArgs extends com.pulumi
         }
 
         /**
-         * @param frequencyType Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+         * @param frequencyType Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
          * 
          * @return builder
          * 
@@ -184,7 +184,7 @@ public final class BackupCompliancePolicyPolicyItemHourlyArgs extends com.pulumi
         }
 
         /**
-         * @param retentionUnit Scope of the backup policy item: `days`, `weeks`, or `months`.
+         * @param retentionUnit Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
          * 
          * @return builder
          * 
@@ -195,7 +195,7 @@ public final class BackupCompliancePolicyPolicyItemHourlyArgs extends com.pulumi
         }
 
         /**
-         * @param retentionUnit Scope of the backup policy item: `days`, `weeks`, or `months`.
+         * @param retentionUnit Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
          * 
          * @return builder
          * 
@@ -205,7 +205,7 @@ public final class BackupCompliancePolicyPolicyItemHourlyArgs extends com.pulumi
         }
 
         /**
-         * @param retentionValue Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+         * @param retentionValue Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
          * 
          * @return builder
          * 
@@ -216,7 +216,7 @@ public final class BackupCompliancePolicyPolicyItemHourlyArgs extends com.pulumi
         }
 
         /**
-         * @param retentionValue Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+         * @param retentionValue Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
          * 
          * @return builder
          * 

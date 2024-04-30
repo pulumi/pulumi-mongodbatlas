@@ -13,7 +13,7 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class OnlineArchiveDataProcessRegionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+        /// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
         /// </summary>
         [Input("cloudProvider")]
         public Input<string>? CloudProvider { get; set; }

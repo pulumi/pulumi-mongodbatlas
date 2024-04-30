@@ -39,6 +39,7 @@ export function getServerlessInstance(args: GetServerlessInstanceArgs, opts?: pu
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getServerlessInstance:getServerlessInstance", {
+        "autoIndexing": args.autoIndexing,
         "continuousBackupEnabled": args.continuousBackupEnabled,
         "links": args.links,
         "name": args.name,
@@ -51,6 +52,10 @@ export function getServerlessInstance(args: GetServerlessInstanceArgs, opts?: pu
  * A collection of arguments for invoking getServerlessInstance.
  */
 export interface GetServerlessInstanceArgs {
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     */
+    autoIndexing?: boolean;
     /**
      * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
      */
@@ -74,6 +79,10 @@ export interface GetServerlessInstanceArgs {
  * A collection of values returned by getServerlessInstance.
  */
 export interface GetServerlessInstanceResult {
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     */
+    readonly autoIndexing: boolean;
     /**
      * List of Serverless Private Endpoint Connections
      */
@@ -160,6 +169,10 @@ export function getServerlessInstanceOutput(args: GetServerlessInstanceOutputArg
  * A collection of arguments for invoking getServerlessInstance.
  */
 export interface GetServerlessInstanceOutputArgs {
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     */
+    autoIndexing?: pulumi.Input<boolean>;
     /**
      * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
      */

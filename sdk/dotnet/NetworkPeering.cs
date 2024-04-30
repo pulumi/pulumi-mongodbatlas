@@ -133,7 +133,7 @@ namespace Pulumi.Mongodbatlas
     ///             },
     ///         },
     ///         AutoScalingDiskGbEnabled = true,
-    ///         MongoDbMajorVersion = "4.2",
+    ///         MongoDbMajorVersion = "7.0",
     ///         ProviderName = "AZURE",
     ///         ProviderDiskTypeName = "P4",
     ///         ProviderInstanceSizeName = "M10",
@@ -186,7 +186,7 @@ namespace Pulumi.Mongodbatlas
     ///             },
     ///         },
     ///         AutoScalingDiskGbEnabled = false,
-    ///         MongoDbMajorVersion = "4.2",
+    ///         MongoDbMajorVersion = "7.0",
     ///         ProviderName = "AWS",
     ///         ProviderInstanceSizeName = "M10",
     ///     });
@@ -263,7 +263,7 @@ namespace Pulumi.Mongodbatlas
     ///             },
     ///         },
     ///         AutoScalingDiskGbEnabled = false,
-    ///         MongoDbMajorVersion = "4.2",
+    ///         MongoDbMajorVersion = "7.0",
     ///         ProviderName = "AZURE",
     ///         ProviderInstanceSizeName = "M10",
     ///     });

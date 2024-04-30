@@ -95,11 +95,11 @@ export interface GetPrivatelinkEndpointsServiceServerlessArgs {
      */
     instanceName: string;
     /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.17.0
+     * @deprecated This parameter is deprecated and will be removed in version 1.17.0.
      */
     itemsPerPage?: number;
     /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.17.0
+     * @deprecated This parameter is deprecated and will be removed in version 1.17.0.
      */
     pageNum?: number;
     /**
@@ -118,11 +118,11 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
     readonly id: string;
     readonly instanceName: string;
     /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.17.0
+     * @deprecated This parameter is deprecated and will be removed in version 1.17.0.
      */
     readonly itemsPerPage?: number;
     /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.17.0
+     * @deprecated This parameter is deprecated and will be removed in version 1.17.0.
      */
     readonly pageNum?: number;
     readonly projectId: string;
@@ -213,11 +213,11 @@ export interface GetPrivatelinkEndpointsServiceServerlessOutputArgs {
      */
     instanceName: pulumi.Input<string>;
     /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.17.0
+     * @deprecated This parameter is deprecated and will be removed in version 1.17.0.
      */
     itemsPerPage?: pulumi.Input<number>;
     /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.17.0
+     * @deprecated This parameter is deprecated and will be removed in version 1.17.0.
      */
     pageNum?: pulumi.Input<number>;
     /**

@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
         ///     {
-        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f",
         ///         Name = "mongodb_federation_test",
         ///         AssociatedDomains = new[]
         ///         {
@@ -68,7 +68,7 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
         ///     {
-        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f",
         ///         Name = "mongodb_federation_test",
         ///         AssociatedDomains = new[]
         ///         {
@@ -102,13 +102,13 @@ namespace Pulumi.Mongodbatlas
         public string FederationSettingsId { get; set; } = null!;
 
         /// <summary>
-        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
         /// </summary>
         [Input("itemsPerPage")]
         public int? ItemsPerPage { get; set; }
 
         /// <summary>
-        /// The page to return. Defaults to `1`.
+        /// The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
         /// </summary>
         [Input("pageNum")]
         public int? PageNum { get; set; }
@@ -128,13 +128,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string> FederationSettingsId { get; set; } = null!;
 
         /// <summary>
-        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
         /// </summary>
         [Input("itemsPerPage")]
         public Input<int>? ItemsPerPage { get; set; }
 
         /// <summary>
-        /// The page to return. Defaults to `1`.
+        /// The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
         /// </summary>
         [Input("pageNum")]
         public Input<int>? PageNum { get; set; }

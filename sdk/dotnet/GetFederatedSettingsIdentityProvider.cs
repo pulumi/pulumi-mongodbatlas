@@ -45,7 +45,7 @@ namespace Pulumi.Mongodbatlas
         ///     var identityProviderDs = Mongodbatlas.GetFederatedSettingsIdentityProvider.Invoke(new()
         ///     {
         ///         FederationSettingsId = identityProvider.Id,
-        ///         IdentityProviderId = "0oad47f7fXnk1297",
+        ///         IdentityProviderId = "0oad4fas87jL5Xnk12971234",
         ///     });
         /// 
         /// });
@@ -88,7 +88,7 @@ namespace Pulumi.Mongodbatlas
         ///     var identityProviderDs = Mongodbatlas.GetFederatedSettingsIdentityProvider.Invoke(new()
         ///     {
         ///         FederationSettingsId = identityProvider.Id,
-        ///         IdentityProviderId = "0oad47f7fXnk1297",
+        ///         IdentityProviderId = "0oad4fas87jL5Xnk12971234",
         ///     });
         /// 
         /// });
@@ -107,6 +107,9 @@ namespace Pulumi.Mongodbatlas
         [Input("federationSettingsId", required: true)]
         public string FederationSettingsId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the IdP.
+        /// </summary>
         [Input("identityProviderId", required: true)]
         public string IdentityProviderId { get; set; } = null!;
 
@@ -124,6 +127,9 @@ namespace Pulumi.Mongodbatlas
         [Input("federationSettingsId", required: true)]
         public Input<string> FederationSettingsId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the IdP.
+        /// </summary>
         [Input("identityProviderId", required: true)]
         public Input<string> IdentityProviderId { get; set; } = null!;
 

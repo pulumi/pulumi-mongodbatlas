@@ -87,7 +87,7 @@ import * as utilities from "./utilities";
  *     }],
  *     backupEnabled: true,
  *     autoScalingDiskGbEnabled: true,
- *     mongoDbMajorVersion: "4.0",
+ *     mongoDbMajorVersion: "7.0",
  *     providerName: "AWS",
  *     providerInstanceSizeName: "M40",
  * });

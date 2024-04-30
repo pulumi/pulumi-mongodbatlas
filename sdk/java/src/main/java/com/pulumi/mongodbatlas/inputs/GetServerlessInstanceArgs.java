@@ -20,6 +20,21 @@ public final class GetServerlessInstanceArgs extends com.pulumi.resources.Invoke
     public static final GetServerlessInstanceArgs Empty = new GetServerlessInstanceArgs();
 
     /**
+     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * 
+     */
+    @Import(name="autoIndexing")
+    private @Nullable Output<Boolean> autoIndexing;
+
+    /**
+     * @return Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * 
+     */
+    public Optional<Output<Boolean>> autoIndexing() {
+        return Optional.ofNullable(this.autoIndexing);
+    }
+
+    /**
      * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
      * 
      */
@@ -89,6 +104,7 @@ public final class GetServerlessInstanceArgs extends com.pulumi.resources.Invoke
     private GetServerlessInstanceArgs() {}
 
     private GetServerlessInstanceArgs(GetServerlessInstanceArgs $) {
+        this.autoIndexing = $.autoIndexing;
         this.continuousBackupEnabled = $.continuousBackupEnabled;
         this.links = $.links;
         this.name = $.name;
@@ -112,6 +128,27 @@ public final class GetServerlessInstanceArgs extends com.pulumi.resources.Invoke
 
         public Builder(GetServerlessInstanceArgs defaults) {
             $ = new GetServerlessInstanceArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param autoIndexing Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoIndexing(@Nullable Output<Boolean> autoIndexing) {
+            $.autoIndexing = autoIndexing;
+            return this;
+        }
+
+        /**
+         * @param autoIndexing Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoIndexing(Boolean autoIndexing) {
+            return autoIndexing(Output.of(autoIndexing));
         }
 
         /**

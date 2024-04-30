@@ -75,7 +75,7 @@ type LookupThirdPartyIntegrationsArgs struct {
 type LookupThirdPartyIntegrationsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+	// ID of the Atlas project the Third-Party Service Integration belongs to.
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Third-Party service integration.
 	Results []GetThirdPartyIntegrationsResult `pulumi:"results"`
@@ -124,7 +124,7 @@ func (o LookupThirdPartyIntegrationsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+// ID of the Atlas project the Third-Party Service Integration belongs to.
 func (o LookupThirdPartyIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

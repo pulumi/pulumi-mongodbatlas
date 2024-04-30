@@ -32,31 +32,47 @@ public final class GetFederatedSettingsIdentityProvidersPlainArgs extends com.pu
     }
 
     /**
-     * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+     * Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     @Import(name="itemsPerPage")
     private @Nullable Integer itemsPerPage;
 
     /**
-     * @return Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+     * @return Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<Integer> itemsPerPage() {
         return Optional.ofNullable(this.itemsPerPage);
     }
 
     /**
-     * The page to return. Defaults to `1`.
+     * The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     @Import(name="pageNum")
     private @Nullable Integer pageNum;
 
     /**
-     * @return The page to return. Defaults to `1`.
+     * @return The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<Integer> pageNum() {
         return Optional.ofNullable(this.pageNum);
     }
@@ -99,22 +115,30 @@ public final class GetFederatedSettingsIdentityProvidersPlainArgs extends com.pu
         }
 
         /**
-         * @param itemsPerPage Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+         * @param itemsPerPage Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
             $.itemsPerPage = itemsPerPage;
             return this;
         }
 
         /**
-         * @param pageNum The page to return. Defaults to `1`.
+         * @param pageNum The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder pageNum(@Nullable Integer pageNum) {
             $.pageNum = pageNum;
             return this;

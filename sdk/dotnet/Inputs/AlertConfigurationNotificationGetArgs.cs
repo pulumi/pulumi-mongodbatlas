@@ -51,6 +51,9 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("emailEnabled")]
         public Input<bool>? EmailEnabled { get; set; }
 
+        [Input("integrationId")]
+        public Input<string>? IntegrationId { get; set; }
+
         [Input("intervalMin")]
         public Input<int>? IntervalMin { get; set; }
 

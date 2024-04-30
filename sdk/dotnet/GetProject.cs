@@ -344,6 +344,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string RegionUsageRestrictions;
         /// <summary>
+        /// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
+        /// </summary>
+        public readonly ImmutableDictionary<string, string> Tags;
+        /// <summary>
         /// Returns all teams to which the authenticated user has access in the project. See Teams.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetProjectTeamResult> Teams;
@@ -380,6 +384,8 @@ namespace Pulumi.Mongodbatlas
 
             string regionUsageRestrictions,
 
+            ImmutableDictionary<string, string> tags,
+
             ImmutableArray<Outputs.GetProjectTeamResult> teams)
         {
             ClusterCount = clusterCount;
@@ -397,6 +403,7 @@ namespace Pulumi.Mongodbatlas
             OrgId = orgId;
             ProjectId = projectId;
             RegionUsageRestrictions = regionUsageRestrictions;
+            Tags = tags;
             Teams = teams;
         }
     }

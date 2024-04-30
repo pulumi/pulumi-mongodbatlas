@@ -37,6 +37,7 @@ namespace Pulumi.Mongodbatlas
         ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
         ///     {
         ///         ProjectId = testDatadog.ProjectId,
+        ///         Type = "DATADOG",
         ///     });
         /// 
         /// });
@@ -71,6 +72,7 @@ namespace Pulumi.Mongodbatlas
         ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
         ///     {
         ///         ProjectId = testDatadog.ProjectId,
+        ///         Type = "DATADOG",
         ///     });
         /// 
         /// });
@@ -108,7 +110,7 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Your Prometheus protocol scheme configured for requests.
+        /// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         /// </summary>
         [Input("scheme")]
         public string? Scheme { get; set; }
@@ -187,7 +189,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Your Prometheus protocol scheme configured for requests.
+        /// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         /// </summary>
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }
@@ -258,7 +260,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// Unique identifier of the integration.
         /// </summary>
         public readonly string Id;
         /// <summary>
@@ -275,7 +277,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string RoutingKey;
         /// <summary>
-        /// Your Prometheus protocol scheme configured for requests.
+        /// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         /// </summary>
         public readonly string? Scheme;
         /// <summary>
@@ -291,9 +293,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ServiceKey;
         public readonly string TeamName;
-        /// <summary>
-        /// Property equal to its own integration type
-        /// </summary>
         public readonly string Type;
         /// <summary>
         /// Your webhook URL.

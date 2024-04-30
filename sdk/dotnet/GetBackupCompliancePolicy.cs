@@ -69,6 +69,15 @@ namespace Pulumi.Mongodbatlas
         ///                 RetentionValue = 4,
         ///             },
         ///         },
+        ///         PolicyItemYearlies = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemYearlyArgs
+        ///             {
+        ///                 FrequencyInterval = 1,
+        ///                 RetentionUnit = "years",
+        ///                 RetentionValue = 1,
+        ///             },
+        ///         },
         ///     });
         /// 
         ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
@@ -126,6 +135,15 @@ namespace Pulumi.Mongodbatlas
         ///                 FrequencyInterval = 0,
         ///                 RetentionUnit = "months",
         ///                 RetentionValue = 12,
+        ///             },
+        ///         },
+        ///         PolicyItemYearlies = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.BackupCompliancePolicyPolicyItemYearlyArgs
+        ///             {
+        ///                 FrequencyInterval = 1,
+        ///                 RetentionUnit = "years",
+        ///                 RetentionValue = 1,
         ///             },
         ///         },
         ///     });
@@ -194,6 +212,15 @@ namespace Pulumi.Mongodbatlas
         ///                 RetentionValue = 4,
         ///             },
         ///         },
+        ///         PolicyItemYearlies = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemYearlyArgs
+        ///             {
+        ///                 FrequencyInterval = 1,
+        ///                 RetentionUnit = "years",
+        ///                 RetentionValue = 1,
+        ///             },
+        ///         },
         ///     });
         /// 
         ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
@@ -251,6 +278,15 @@ namespace Pulumi.Mongodbatlas
         ///                 FrequencyInterval = 0,
         ///                 RetentionUnit = "months",
         ///                 RetentionValue = 12,
+        ///             },
+        ///         },
+        ///         PolicyItemYearlies = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.BackupCompliancePolicyPolicyItemYearlyArgs
+        ///             {
+        ///                 FrequencyInterval = 1,
+        ///                 RetentionUnit = "years",
+        ///                 RetentionValue = 1,
         ///             },
         ///         },
         ///     });
@@ -328,6 +364,7 @@ namespace Pulumi.Mongodbatlas
         public readonly Outputs.GetBackupCompliancePolicyPolicyItemHourlyResult PolicyItemHourly;
         public readonly ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemMonthlyResult> PolicyItemMonthlies;
         public readonly ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemWeeklyResult> PolicyItemWeeklies;
+        public readonly ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemYearlyResult> PolicyItemYearlies;
         public readonly string ProjectId;
         /// <summary>
         /// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -372,6 +409,8 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemWeeklyResult> policyItemWeeklies,
 
+            ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemYearlyResult> policyItemYearlies,
+
             string projectId,
 
             int restoreWindowDays,
@@ -394,6 +433,7 @@ namespace Pulumi.Mongodbatlas
             PolicyItemHourly = policyItemHourly;
             PolicyItemMonthlies = policyItemMonthlies;
             PolicyItemWeeklies = policyItemWeeklies;
+            PolicyItemYearlies = policyItemYearlies;
             ProjectId = projectId;
             RestoreWindowDays = restoreWindowDays;
             State = state;

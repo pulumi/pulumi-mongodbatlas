@@ -22,7 +22,7 @@ class GetBackupCompliancePolicyResult:
     """
     A collection of values returned by getBackupCompliancePolicy.
     """
-    def __init__(__self__, authorized_email=None, authorized_user_first_name=None, authorized_user_last_name=None, copy_protection_enabled=None, encryption_at_rest_enabled=None, id=None, on_demand_policy_item=None, pit_enabled=None, policy_item_daily=None, policy_item_hourly=None, policy_item_monthlies=None, policy_item_weeklies=None, project_id=None, restore_window_days=None, state=None, updated_date=None, updated_user=None):
+    def __init__(__self__, authorized_email=None, authorized_user_first_name=None, authorized_user_last_name=None, copy_protection_enabled=None, encryption_at_rest_enabled=None, id=None, on_demand_policy_item=None, pit_enabled=None, policy_item_daily=None, policy_item_hourly=None, policy_item_monthlies=None, policy_item_weeklies=None, policy_item_yearlies=None, project_id=None, restore_window_days=None, state=None, updated_date=None, updated_user=None):
         if authorized_email and not isinstance(authorized_email, str):
             raise TypeError("Expected argument 'authorized_email' to be a str")
         pulumi.set(__self__, "authorized_email", authorized_email)
@@ -59,6 +59,9 @@ class GetBackupCompliancePolicyResult:
         if policy_item_weeklies and not isinstance(policy_item_weeklies, list):
             raise TypeError("Expected argument 'policy_item_weeklies' to be a list")
         pulumi.set(__self__, "policy_item_weeklies", policy_item_weeklies)
+        if policy_item_yearlies and not isinstance(policy_item_yearlies, list):
+            raise TypeError("Expected argument 'policy_item_yearlies' to be a list")
+        pulumi.set(__self__, "policy_item_yearlies", policy_item_yearlies)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -157,6 +160,11 @@ class GetBackupCompliancePolicyResult:
         return pulumi.get(self, "policy_item_weeklies")
 
     @property
+    @pulumi.getter(name="policyItemYearlies")
+    def policy_item_yearlies(self) -> Sequence['outputs.GetBackupCompliancePolicyPolicyItemYearlyResult']:
+        return pulumi.get(self, "policy_item_yearlies")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
@@ -212,6 +220,7 @@ class AwaitableGetBackupCompliancePolicyResult(GetBackupCompliancePolicyResult):
             policy_item_hourly=self.policy_item_hourly,
             policy_item_monthlies=self.policy_item_monthlies,
             policy_item_weeklies=self.policy_item_weeklies,
+            policy_item_yearlies=self.policy_item_yearlies,
             project_id=self.project_id,
             restore_window_days=self.restore_window_days,
             state=self.state,
@@ -260,6 +269,11 @@ def get_backup_compliance_policy(project_id: Optional[str] = None,
             frequency_interval=5,
             retention_unit="months",
             retention_value=4,
+        )],
+        policy_item_yearlies=[mongodbatlas.CloudBackupSchedulePolicyItemYearlyArgs(
+            frequency_interval=1,
+            retention_unit="years",
+            retention_value=1,
         )])
     test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
         cluster_name=test_cloud_backup_schedule.cluster_name)
@@ -297,6 +311,11 @@ def get_backup_compliance_policy(project_id: Optional[str] = None,
             frequency_interval=0,
             retention_unit="months",
             retention_value=12,
+        )],
+        policy_item_yearlies=[mongodbatlas.BackupCompliancePolicyPolicyItemYearlyArgs(
+            frequency_interval=1,
+            retention_unit="years",
+            retention_value=1,
         )])
     ```
 
@@ -321,6 +340,7 @@ def get_backup_compliance_policy(project_id: Optional[str] = None,
         policy_item_hourly=pulumi.get(__ret__, 'policy_item_hourly'),
         policy_item_monthlies=pulumi.get(__ret__, 'policy_item_monthlies'),
         policy_item_weeklies=pulumi.get(__ret__, 'policy_item_weeklies'),
+        policy_item_yearlies=pulumi.get(__ret__, 'policy_item_yearlies'),
         project_id=pulumi.get(__ret__, 'project_id'),
         restore_window_days=pulumi.get(__ret__, 'restore_window_days'),
         state=pulumi.get(__ret__, 'state'),
@@ -370,6 +390,11 @@ def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[str]] 
             frequency_interval=5,
             retention_unit="months",
             retention_value=4,
+        )],
+        policy_item_yearlies=[mongodbatlas.CloudBackupSchedulePolicyItemYearlyArgs(
+            frequency_interval=1,
+            retention_unit="years",
+            retention_value=1,
         )])
     test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
         cluster_name=test_cloud_backup_schedule.cluster_name)
@@ -407,6 +432,11 @@ def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[str]] 
             frequency_interval=0,
             retention_unit="months",
             retention_value=12,
+        )],
+        policy_item_yearlies=[mongodbatlas.BackupCompliancePolicyPolicyItemYearlyArgs(
+            frequency_interval=1,
+            retention_unit="years",
+            retention_value=1,
         )])
     ```
 
