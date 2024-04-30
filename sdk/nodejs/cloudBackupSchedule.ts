@@ -46,9 +46,8 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
 
     /**
      * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     *
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+     * * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      */
     public readonly autoExportEnabled!: pulumi.Output<boolean>;
     /**
@@ -85,6 +84,10 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      * Weekly policy item
      */
     public readonly policyItemWeeklies!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemWeekly[] | undefined>;
+    /**
+     * Yearly policy item
+     */
+    public readonly policyItemYearlies!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemYearly[] | undefined>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
@@ -131,6 +134,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
             resourceInputs["policyItemHourly"] = state ? state.policyItemHourly : undefined;
             resourceInputs["policyItemMonthlies"] = state ? state.policyItemMonthlies : undefined;
             resourceInputs["policyItemWeeklies"] = state ? state.policyItemWeeklies : undefined;
+            resourceInputs["policyItemYearlies"] = state ? state.policyItemYearlies : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["referenceHourOfDay"] = state ? state.referenceHourOfDay : undefined;
             resourceInputs["referenceMinuteOfHour"] = state ? state.referenceMinuteOfHour : undefined;
@@ -153,6 +157,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
             resourceInputs["policyItemHourly"] = args ? args.policyItemHourly : undefined;
             resourceInputs["policyItemMonthlies"] = args ? args.policyItemMonthlies : undefined;
             resourceInputs["policyItemWeeklies"] = args ? args.policyItemWeeklies : undefined;
+            resourceInputs["policyItemYearlies"] = args ? args.policyItemYearlies : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["referenceHourOfDay"] = args ? args.referenceHourOfDay : undefined;
             resourceInputs["referenceMinuteOfHour"] = args ? args.referenceMinuteOfHour : undefined;
@@ -174,9 +179,8 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
 export interface CloudBackupScheduleState {
     /**
      * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     *
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+     * * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      */
     autoExportEnabled?: pulumi.Input<boolean>;
     /**
@@ -214,6 +218,10 @@ export interface CloudBackupScheduleState {
      */
     policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemWeekly>[]>;
     /**
+     * Yearly policy item
+     */
+    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemYearly>[]>;
+    /**
      * The unique identifier of the project for the Atlas cluster.
      */
     projectId?: pulumi.Input<string>;
@@ -242,9 +250,8 @@ export interface CloudBackupScheduleState {
 export interface CloudBackupScheduleArgs {
     /**
      * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     *
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+     * * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      */
     autoExportEnabled?: pulumi.Input<boolean>;
     /**
@@ -269,6 +276,10 @@ export interface CloudBackupScheduleArgs {
      * Weekly policy item
      */
     policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemWeekly>[]>;
+    /**
+     * Yearly policy item
+     */
+    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemYearly>[]>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */

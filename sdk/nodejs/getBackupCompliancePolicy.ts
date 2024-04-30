@@ -47,6 +47,11 @@ import * as utilities from "./utilities";
  *         retentionUnit: "months",
  *         retentionValue: 4,
  *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
+ *     }],
  * });
  * const test = mongodbatlas.getCloudBackupScheduleOutput({
  *     projectId: testCloudBackupSchedule.projectId,
@@ -88,6 +93,11 @@ import * as utilities from "./utilities";
  *         frequencyInterval: 0,
  *         retentionUnit: "months",
  *         retentionValue: 12,
+ *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
  *     }],
  * });
  * ```
@@ -147,6 +157,7 @@ export interface GetBackupCompliancePolicyResult {
     readonly policyItemHourly: outputs.GetBackupCompliancePolicyPolicyItemHourly;
     readonly policyItemMonthlies: outputs.GetBackupCompliancePolicyPolicyItemMonthly[];
     readonly policyItemWeeklies: outputs.GetBackupCompliancePolicyPolicyItemWeekly[];
+    readonly policyItemYearlies: outputs.GetBackupCompliancePolicyPolicyItemYearly[];
     readonly projectId: string;
     /**
      * Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -206,6 +217,11 @@ export interface GetBackupCompliancePolicyResult {
  *         retentionUnit: "months",
  *         retentionValue: 4,
  *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
+ *     }],
  * });
  * const test = mongodbatlas.getCloudBackupScheduleOutput({
  *     projectId: testCloudBackupSchedule.projectId,
@@ -247,6 +263,11 @@ export interface GetBackupCompliancePolicyResult {
  *         frequencyInterval: 0,
  *         retentionUnit: "months",
  *         retentionValue: 12,
+ *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
  *     }],
  * });
  * ```

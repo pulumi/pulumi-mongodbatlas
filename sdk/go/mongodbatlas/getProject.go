@@ -170,6 +170,8 @@ type LookupProjectResult struct {
 	ProjectId *string `pulumi:"projectId"`
 	// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions string `pulumi:"regionUsageRestrictions"`
+	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
+	Tags map[string]string `pulumi:"tags"`
 	// Returns all teams to which the authenticated user has access in the project. See Teams.
 	Teams []GetProjectTeam `pulumi:"teams"`
 }
@@ -287,6 +289,11 @@ func (o LookupProjectResultOutput) ProjectId() pulumi.StringPtrOutput {
 // If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 func (o LookupProjectResultOutput) RegionUsageRestrictions() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.RegionUsageRestrictions }).(pulumi.StringOutput)
+}
+
+// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
+func (o LookupProjectResultOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupProjectResult) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
 
 // Returns all teams to which the authenticated user has access in the project. See Teams.

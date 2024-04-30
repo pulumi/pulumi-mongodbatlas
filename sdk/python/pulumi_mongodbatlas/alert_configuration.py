@@ -418,6 +418,24 @@ class AlertConfiguration(pulumi.CustomResource):
             ))
         ```
 
+        ### Create third party notification using credentials from existing third party integration
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.get_third_party_integration(project_id="PROJECT ID",
+            type="PAGER_DUTY")
+        test_alert_configuration = mongodbatlas.AlertConfiguration("test",
+            project_id="PROJECT ID",
+            enabled=True,
+            event_type="USERS_WITHOUT_MULTI_FACTOR_AUTH",
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                type_name="PAGER_DUTY",
+                integration_id=test.id,
+            )])
+        ```
+
         ## Import
 
         Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.
@@ -562,6 +580,24 @@ class AlertConfiguration(pulumi.CustomResource):
                 units="RAW",
                 mode="AVERAGE",
             ))
+        ```
+
+        ### Create third party notification using credentials from existing third party integration
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.get_third_party_integration(project_id="PROJECT ID",
+            type="PAGER_DUTY")
+        test_alert_configuration = mongodbatlas.AlertConfiguration("test",
+            project_id="PROJECT ID",
+            enabled=True,
+            event_type="USERS_WITHOUT_MULTI_FACTOR_AUTH",
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                type_name="PAGER_DUTY",
+                integration_id=test.id,
+            )])
         ```
 
         ## Import

@@ -96,6 +96,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetServerlessInstanceArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+        /// </summary>
+        [Input("autoIndexing")]
+        public bool? AutoIndexing { get; set; }
+
+        /// <summary>
         /// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
         /// </summary>
         [Input("continuousBackupEnabled")]
@@ -135,6 +141,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetServerlessInstanceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+        /// </summary>
+        [Input("autoIndexing")]
+        public Input<bool>? AutoIndexing { get; set; }
+
         /// <summary>
         /// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
         /// </summary>
@@ -177,6 +189,10 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetServerlessInstanceResult
     {
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+        /// </summary>
+        public readonly bool AutoIndexing;
         /// <summary>
         /// List of Serverless Private Endpoint Connections
         /// </summary>
@@ -228,6 +244,8 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetServerlessInstanceResult(
+            bool autoIndexing,
+
             ImmutableArray<string> connectionStringsPrivateEndpointSrvs,
 
             string connectionStringsStandardSrv,
@@ -258,6 +276,7 @@ namespace Pulumi.Mongodbatlas
 
             bool terminationProtectionEnabled)
         {
+            AutoIndexing = autoIndexing;
             ConnectionStringsPrivateEndpointSrvs = connectionStringsPrivateEndpointSrvs;
             ConnectionStringsStandardSrv = connectionStringsStandardSrv;
             ContinuousBackupEnabled = continuousBackupEnabled;

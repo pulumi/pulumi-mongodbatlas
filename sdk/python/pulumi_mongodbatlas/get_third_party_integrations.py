@@ -45,7 +45,7 @@ class GetThirdPartyIntegrationsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+        ID of the Atlas project the Third-Party Service Integration belongs to.
         """
         return pulumi.get(self, "project_id")
 

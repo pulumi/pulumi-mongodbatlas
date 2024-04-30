@@ -84,6 +84,32 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * Defining custom provider and region example
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.OnlineArchive("test", {
+ *     projectId: projectId,
+ *     clusterName: clusterName,
+ *     collName: collectionName,
+ *     dbName: databaseName,
+ *     dataProcessRegion: {
+ *         cloudProvider: "AZURE",
+ *         region: "US_EAST_2",
+ *     },
+ *     partitionFields: [{
+ *         fieldName: "firstName",
+ *         order: 0,
+ *     }],
+ *     criteria: {
+ *         type: "CUSTOM",
+ *         query: "{ \"department\": \"engineering\" }",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.

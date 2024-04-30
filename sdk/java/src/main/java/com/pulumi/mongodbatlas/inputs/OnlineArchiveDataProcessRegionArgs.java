@@ -16,14 +16,14 @@ public final class OnlineArchiveDataProcessRegionArgs extends com.pulumi.resourc
     public static final OnlineArchiveDataProcessRegionArgs Empty = new OnlineArchiveDataProcessRegionArgs();
 
     /**
-     * Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
      * 
      */
     @Import(name="cloudProvider")
     private @Nullable Output<String> cloudProvider;
 
     /**
-     * @return Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * @return Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
      * 
      */
     public Optional<Output<String>> cloudProvider() {
@@ -71,7 +71,7 @@ public final class OnlineArchiveDataProcessRegionArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param cloudProvider Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+         * @param cloudProvider Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class OnlineArchiveDataProcessRegionArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param cloudProvider Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+         * @param cloudProvider Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
          * 
          * @return builder
          * 

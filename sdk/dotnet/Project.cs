@@ -168,6 +168,12 @@ namespace Pulumi.Mongodbatlas
         [Output("regionUsageRestrictions")]
         public Output<string?> RegionUsageRestrictions { get; private set; } = null!;
 
+        /// <summary>
+        /// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
+
         [Output("teams")]
         public Output<ImmutableArray<Outputs.ProjectTeam>> Teams { get; private set; } = null!;
 
@@ -291,6 +297,18 @@ namespace Pulumi.Mongodbatlas
         [Input("regionUsageRestrictions")]
         public Input<string>? RegionUsageRestrictions { get; set; }
 
+        [Input("tags")]
+        private InputMap<string>? _tags;
+
+        /// <summary>
+        /// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+        /// </summary>
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
+
         [Input("teams")]
         private InputList<Inputs.ProjectTeamArgs>? _teams;
         public InputList<Inputs.ProjectTeamArgs> Teams
@@ -398,6 +416,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("regionUsageRestrictions")]
         public Input<string>? RegionUsageRestrictions { get; set; }
+
+        [Input("tags")]
+        private InputMap<string>? _tags;
+
+        /// <summary>
+        /// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+        /// </summary>
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
 
         [Input("teams")]
         private InputList<Inputs.ProjectTeamGetArgs>? _teams;

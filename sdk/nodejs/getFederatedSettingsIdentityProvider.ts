@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  * });
  * const identityProviderDs = mongodbatlas.getFederatedSettingsIdentityProviderOutput({
  *     federationSettingsId: identityProvider.id,
- *     identityProviderId: "0oad47f7fXnk1297",
+ *     identityProviderId: "0oad4fas87jL5Xnk12971234",
  * });
  * ```
  */
@@ -51,6 +51,9 @@ export interface GetFederatedSettingsIdentityProviderArgs {
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
     federationSettingsId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the IdP.
+     */
     identityProviderId: string;
 }
 
@@ -173,7 +176,7 @@ export interface GetFederatedSettingsIdentityProviderResult {
  * });
  * const identityProviderDs = mongodbatlas.getFederatedSettingsIdentityProviderOutput({
  *     federationSettingsId: identityProvider.id,
- *     identityProviderId: "0oad47f7fXnk1297",
+ *     identityProviderId: "0oad4fas87jL5Xnk12971234",
  * });
  * ```
  */
@@ -189,5 +192,8 @@ export interface GetFederatedSettingsIdentityProviderOutputArgs {
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
     federationSettingsId: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the IdP.
+     */
     identityProviderId: pulumi.Input<string>;
 }

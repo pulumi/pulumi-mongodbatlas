@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", {
- *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     federationSettingsId: "627a9687f7f7f7f774de306f",
  *     name: "mongodb_federation_test",
  *     associatedDomains: ["yourdomain.com"],
  *     ssoDebugEnabled: true,
@@ -50,11 +50,15 @@ export interface GetFederatedSettingsIdentityProvidersArgs {
      */
     federationSettingsId: string;
     /**
-     * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+     * Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     itemsPerPage?: number;
     /**
-     * The page to return. Defaults to `1`.
+     * The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     pageNum?: number;
 }
@@ -71,7 +75,13 @@ export interface GetFederatedSettingsIdentityProvidersResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
+     */
     readonly itemsPerPage?: number;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
+     */
     readonly pageNum?: number;
     /**
      * Includes cloudProviderSnapshot object for each item detailed in the results array section.
@@ -90,7 +100,7 @@ export interface GetFederatedSettingsIdentityProvidersResult {
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", {
- *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     federationSettingsId: "627a9687f7f7f7f774de306f",
  *     name: "mongodb_federation_test",
  *     associatedDomains: ["yourdomain.com"],
  *     ssoDebugEnabled: true,
@@ -116,11 +126,15 @@ export interface GetFederatedSettingsIdentityProvidersOutputArgs {
      */
     federationSettingsId: pulumi.Input<string>;
     /**
-     * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+     * Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     itemsPerPage?: pulumi.Input<number>;
     /**
-     * The page to return. Defaults to `1`.
+     * The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     pageNum?: pulumi.Input<number>;
 }

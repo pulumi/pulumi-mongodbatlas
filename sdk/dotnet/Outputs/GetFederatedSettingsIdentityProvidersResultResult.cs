@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string GroupsClaim;
         /// <summary>
-        /// Unique 20-hexadecimal digit string that identifies the IdP.
+        /// Unique 24-hexadecimal digit string that identifies the IdP.
         /// </summary>
         public readonly string IdpId;
         /// <summary>

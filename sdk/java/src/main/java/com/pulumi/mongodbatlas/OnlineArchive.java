@@ -146,6 +146,57 @@ import javax.annotation.Nullable;
  * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * Defining custom provider and region example
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.OnlineArchive;
+ * import com.pulumi.mongodbatlas.OnlineArchiveArgs;
+ * import com.pulumi.mongodbatlas.inputs.OnlineArchiveDataProcessRegionArgs;
+ * import com.pulumi.mongodbatlas.inputs.OnlineArchivePartitionFieldArgs;
+ * import com.pulumi.mongodbatlas.inputs.OnlineArchiveCriteriaArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new OnlineArchive(&#34;test&#34;, OnlineArchiveArgs.builder()        
+ *             .projectId(projectId)
+ *             .clusterName(clusterName)
+ *             .collName(collectionName)
+ *             .dbName(databaseName)
+ *             .dataProcessRegion(OnlineArchiveDataProcessRegionArgs.builder()
+ *                 .cloudProvider(&#34;AZURE&#34;)
+ *                 .region(&#34;US_EAST_2&#34;)
+ *                 .build())
+ *             .partitionFields(OnlineArchivePartitionFieldArgs.builder()
+ *                 .fieldName(&#34;firstName&#34;)
+ *                 .order(0)
+ *                 .build())
+ *             .criteria(OnlineArchiveCriteriaArgs.builder()
+ *                 .type(&#34;CUSTOM&#34;)
+ *                 .query(&#34;{ \&#34;department\&#34;: \&#34;engineering\&#34; }&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.

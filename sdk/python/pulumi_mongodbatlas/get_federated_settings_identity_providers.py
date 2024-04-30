@@ -58,11 +58,17 @@ class GetFederatedSettingsIdentityProvidersResult:
     @property
     @pulumi.getter(name="itemsPerPage")
     def items_per_page(self) -> Optional[int]:
+        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
+        pulumi.log.warn("""items_per_page is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
+
         return pulumi.get(self, "items_per_page")
 
     @property
     @pulumi.getter(name="pageNum")
     def page_num(self) -> Optional[int]:
+        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
+        pulumi.log.warn("""page_num is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
+
         return pulumi.get(self, "page_num")
 
     @property
@@ -103,7 +109,7 @@ def get_federated_settings_identity_providers(federation_settings_id: Optional[s
     import pulumi_mongodbatlas as mongodbatlas
 
     identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identity_provider",
-        federation_settings_id="627a9687f7f7f7f774de306f14",
+        federation_settings_id="627a9687f7f7f7f774de306f",
         name="mongodb_federation_test",
         associated_domains=["yourdomain.com"],
         sso_debug_enabled=True,
@@ -115,8 +121,8 @@ def get_federated_settings_identity_providers(federation_settings_id: Optional[s
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
-    :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-    :param int page_num: The page to return. Defaults to `1`.
+    :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
+    :param int page_num: The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
     """
     __args__ = dict()
     __args__['federationSettingsId'] = federation_settings_id
@@ -150,7 +156,7 @@ def get_federated_settings_identity_providers_output(federation_settings_id: Opt
     import pulumi_mongodbatlas as mongodbatlas
 
     identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identity_provider",
-        federation_settings_id="627a9687f7f7f7f774de306f14",
+        federation_settings_id="627a9687f7f7f7f774de306f",
         name="mongodb_federation_test",
         associated_domains=["yourdomain.com"],
         sso_debug_enabled=True,
@@ -162,7 +168,7 @@ def get_federated_settings_identity_providers_output(federation_settings_id: Opt
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
-    :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-    :param int page_num: The page to return. Defaults to `1`.
+    :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
+    :param int page_num: The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
     """
     ...

@@ -47,6 +47,11 @@ import * as utilities from "./utilities";
  *         retentionUnit: "months",
  *         retentionValue: 12,
  *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
+ *     }],
  * });
  * const test = mongodbatlas.getCloudBackupScheduleOutput({
  *     projectId: testCloudBackupSchedule.projectId,
@@ -88,6 +93,11 @@ import * as utilities from "./utilities";
  *         frequencyInterval: 1,
  *         retentionUnit: "months",
  *         retentionValue: 12,
+ *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
  *     }],
  * });
  * ```
@@ -158,6 +168,7 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
     public readonly policyItemHourly!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemHourly | undefined>;
     public readonly policyItemMonthlies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemMonthly[] | undefined>;
     public readonly policyItemWeeklies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemWeekly[] | undefined>;
+    public readonly policyItemYearlies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemYearly[] | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
@@ -203,6 +214,7 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
             resourceInputs["policyItemHourly"] = state ? state.policyItemHourly : undefined;
             resourceInputs["policyItemMonthlies"] = state ? state.policyItemMonthlies : undefined;
             resourceInputs["policyItemWeeklies"] = state ? state.policyItemWeeklies : undefined;
+            resourceInputs["policyItemYearlies"] = state ? state.policyItemYearlies : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["restoreWindowDays"] = state ? state.restoreWindowDays : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
@@ -236,6 +248,7 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
             resourceInputs["policyItemHourly"] = args ? args.policyItemHourly : undefined;
             resourceInputs["policyItemMonthlies"] = args ? args.policyItemMonthlies : undefined;
             resourceInputs["policyItemWeeklies"] = args ? args.policyItemWeeklies : undefined;
+            resourceInputs["policyItemYearlies"] = args ? args.policyItemYearlies : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["restoreWindowDays"] = args ? args.restoreWindowDays : undefined;
             resourceInputs["state"] = undefined /*out*/;
@@ -280,6 +293,7 @@ export interface BackupCompliancePolicyState {
     policyItemHourly?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemHourly>;
     policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemMonthly>[]>;
     policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemWeekly>[]>;
+    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemYearly>[]>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
@@ -335,6 +349,7 @@ export interface BackupCompliancePolicyArgs {
     policyItemHourly?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemHourly>;
     policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemMonthly>[]>;
     policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemWeekly>[]>;
+    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemYearly>[]>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */

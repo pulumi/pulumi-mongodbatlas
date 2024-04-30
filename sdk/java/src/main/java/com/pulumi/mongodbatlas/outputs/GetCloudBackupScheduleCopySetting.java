@@ -18,7 +18,7 @@ public final class GetCloudBackupScheduleCopySetting {
      */
     private String cloudProvider;
     /**
-     * @return List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;ON_DEMAND&#34;
+     * @return List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;YEARLY&#34; &#34;ON_DEMAND&#34;
      * 
      */
     private List<String> frequencies;
@@ -47,7 +47,7 @@ public final class GetCloudBackupScheduleCopySetting {
         return this.cloudProvider;
     }
     /**
-     * @return List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;ON_DEMAND&#34;
+     * @return List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;YEARLY&#34; &#34;ON_DEMAND&#34;
      * 
      */
     public List<String> frequencies() {

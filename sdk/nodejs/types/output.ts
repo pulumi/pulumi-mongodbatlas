@@ -286,6 +286,7 @@ export interface AlertConfigurationNotification {
     delayMin: number;
     emailAddress?: string;
     emailEnabled: boolean;
+    integrationId?: string;
     intervalMin: number;
     microsoftTeamsWebhookUrl?: string;
     mobileNumber?: string;
@@ -313,11 +314,11 @@ export interface AlertConfigurationThresholdConfig {
 
 export interface BackupCompliancePolicyOnDemandPolicyItem {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -325,22 +326,22 @@ export interface BackupCompliancePolicyOnDemandPolicyItem {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
 
 export interface BackupCompliancePolicyPolicyItemDaily {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -348,22 +349,22 @@ export interface BackupCompliancePolicyPolicyItemDaily {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
 
 export interface BackupCompliancePolicyPolicyItemHourly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -371,22 +372,22 @@ export interface BackupCompliancePolicyPolicyItemHourly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
 
 export interface BackupCompliancePolicyPolicyItemMonthly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -394,22 +395,22 @@ export interface BackupCompliancePolicyPolicyItemMonthly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
 
 export interface BackupCompliancePolicyPolicyItemWeekly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -417,11 +418,34 @@ export interface BackupCompliancePolicyPolicyItemWeekly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+     */
+    retentionValue: number;
+}
+
+export interface BackupCompliancePolicyPolicyItemYearly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
@@ -459,7 +483,7 @@ export interface CloudBackupSchedulePolicyItemDaily {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
@@ -482,7 +506,7 @@ export interface CloudBackupSchedulePolicyItemHourly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
@@ -505,7 +529,7 @@ export interface CloudBackupSchedulePolicyItemMonthly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
@@ -528,11 +552,34 @@ export interface CloudBackupSchedulePolicyItemWeekly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
      * Value to associate with `retentionUnit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
+     */
+    retentionValue: number;
+}
+
+export interface CloudBackupSchedulePolicyItemYearly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
@@ -1032,6 +1079,9 @@ export interface EventTriggerEventProcessorsAwsEventbridge {
 }
 
 export interface FederatedDatabaseInstanceCloudProviderConfig {
+    /**
+     * Name of the cloud service that hosts the data lake's data stores.
+     */
     aws: outputs.FederatedDatabaseInstanceCloudProviderConfigAws;
 }
 
@@ -1068,8 +1118,6 @@ export interface FederatedDatabaseInstanceStorageDatabase {
     maxWildcardCollections: number;
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name: string;
     views: outputs.FederatedDatabaseInstanceStorageDatabaseView[];
@@ -1079,8 +1127,6 @@ export interface FederatedDatabaseInstanceStorageDatabaseCollection {
     dataSources?: outputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSource[];
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name: string;
 }
@@ -1102,8 +1148,6 @@ export interface FederatedDatabaseInstanceStorageDatabaseCollectionDataSource {
 export interface FederatedDatabaseInstanceStorageDatabaseView {
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name: string;
     pipeline: string;
@@ -1115,7 +1159,7 @@ export interface FederatedDatabaseInstanceStorageStore {
     allowInsecure: boolean;
     bucket: string;
     /**
-     * @deprecated this parameter is deprecated and will be removed by September 2024
+     * @deprecated This parameter is deprecated and will be removed by September 2024.
      */
     clusterId: string;
     clusterName: string;
@@ -1124,8 +1168,6 @@ export interface FederatedDatabaseInstanceStorageStore {
     includeTags: boolean;
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name: string;
     prefix: string;
@@ -1153,8 +1195,6 @@ export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
 export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name: string;
     value: string;
@@ -1515,7 +1555,7 @@ export interface GetAdvancedClustersResult {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      *
-     * @deprecated this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      */
     labels: outputs.GetAdvancedClustersResultLabel[];
     /**
@@ -1919,6 +1959,10 @@ export interface GetAlertConfigurationNotification {
      */
     emailEnabled: boolean;
     /**
+     * The ID of the associated integration, the credentials of which to use for requests.
+     */
+    integrationId: string;
+    /**
      * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
      */
     intervalMin: number;
@@ -1931,7 +1975,7 @@ export interface GetAlertConfigurationNotification {
      */
     mobileNumber: string;
     /**
-     * The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     * The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
      */
     notifierId: string;
     /**
@@ -2137,6 +2181,10 @@ export interface GetAlertConfigurationsResultNotification {
      */
     emailEnabled: boolean;
     /**
+     * The ID of the associated integration, the credentials of which to use for requests.
+     */
+    integrationId: string;
+    /**
      * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
      */
     intervalMin: number;
@@ -2149,7 +2197,7 @@ export interface GetAlertConfigurationsResultNotification {
      */
     mobileNumber: string;
     /**
-     * The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     * The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
      */
     notifierId: string;
     /**
@@ -2318,11 +2366,11 @@ export interface GetAtlasUsersResultRole {
 
 export interface GetBackupCompliancePolicyOnDemandPolicyItem {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -2330,22 +2378,22 @@ export interface GetBackupCompliancePolicyOnDemandPolicyItem {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
 
 export interface GetBackupCompliancePolicyPolicyItemDaily {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -2353,22 +2401,22 @@ export interface GetBackupCompliancePolicyPolicyItemDaily {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
 
 export interface GetBackupCompliancePolicyPolicyItemHourly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -2376,22 +2424,22 @@ export interface GetBackupCompliancePolicyPolicyItemHourly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
 
 export interface GetBackupCompliancePolicyPolicyItemMonthly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -2399,22 +2447,22 @@ export interface GetBackupCompliancePolicyPolicyItemMonthly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
 
 export interface GetBackupCompliancePolicyPolicyItemWeekly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -2422,11 +2470,34 @@ export interface GetBackupCompliancePolicyPolicyItemWeekly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+     */
+    retentionValue: number;
+}
+
+export interface GetBackupCompliancePolicyPolicyItemYearly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
@@ -2437,7 +2508,7 @@ export interface GetCloudBackupScheduleCopySetting {
      */
     cloudProvider: string;
     /**
-     * List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+     * List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
      */
     frequencies: string[];
     /**
@@ -2460,18 +2531,18 @@ export interface GetCloudBackupScheduleExport {
      */
     exportBucketId: string;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
 }
 
 export interface GetCloudBackupSchedulePolicyItemDaily {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -2479,22 +2550,22 @@ export interface GetCloudBackupSchedulePolicyItemDaily {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
 
 export interface GetCloudBackupSchedulePolicyItemHourly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -2502,22 +2573,22 @@ export interface GetCloudBackupSchedulePolicyItemHourly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
 
 export interface GetCloudBackupSchedulePolicyItemMonthly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -2525,22 +2596,22 @@ export interface GetCloudBackupSchedulePolicyItemMonthly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
 
 export interface GetCloudBackupSchedulePolicyItemWeekly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType: string;
     /**
@@ -2548,11 +2619,34 @@ export interface GetCloudBackupSchedulePolicyItemWeekly {
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+     */
+    retentionValue: number;
+}
+
+export interface GetCloudBackupSchedulePolicyItemYearly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
 }
@@ -3098,7 +3192,7 @@ export interface GetClustersResult {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      *
-     * @deprecated this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      */
     labels: outputs.GetClustersResultLabel[];
     /**
@@ -3790,10 +3884,6 @@ export interface GetDatabaseUsersResult {
      */
     oidcAuthType: string;
     /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
-     */
-    password: string;
-    /**
      * The unique ID for the project to get all database users.
      */
     projectId: string;
@@ -4037,7 +4127,7 @@ export interface GetFederatedDatabaseInstanceStorageStore {
     allowInsecure: boolean;
     bucket: string;
     /**
-     * @deprecated this parameter is deprecated and will be removed by September 2024
+     * @deprecated This parameter is deprecated and will be removed by September 2024.
      */
     clusterId: string;
     clusterName: string;
@@ -4223,7 +4313,7 @@ export interface GetFederatedDatabaseInstancesResultStorageStore {
     allowInsecure: boolean;
     bucket: string;
     /**
-     * @deprecated this parameter is deprecated and will be removed by September 2024
+     * @deprecated This parameter is deprecated and will be removed by September 2024.
      */
     clusterId: string;
     clusterName: string;
@@ -4294,6 +4384,9 @@ export interface GetFederatedSettingsIdentityProviderAssociatedOrg {
      * Flag that indicates whether domain restriction is enabled for the connected organization.
      */
     domainRestrictionEnabled: boolean;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the IdP.
+     */
     identityProviderId: string;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
@@ -4413,7 +4506,7 @@ export interface GetFederatedSettingsIdentityProvidersResult {
      */
     groupsClaim: string;
     /**
-     * Unique 20-hexadecimal digit string that identifies the IdP.
+     * Unique 24-hexadecimal digit string that identifies the IdP.
      */
     idpId: string;
     /**
@@ -5210,6 +5303,7 @@ export interface GetProjectsResult {
     orgId: string;
     projectId: string;
     regionUsageRestrictions: string;
+    tags: {[key: string]: string};
     teams: outputs.GetProjectsResultTeam[];
 }
 
@@ -5371,6 +5465,10 @@ export interface GetServerlessInstanceTag {
 }
 
 export interface GetServerlessInstancesResult {
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     */
+    autoIndexing: boolean;
     connectionStringsPrivateEndpointSrvs: string[];
     /**
      * Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
@@ -5464,6 +5562,184 @@ export interface GetSharedTierSnapshotsResult {
     status: string;
 }
 
+export interface GetStreamConnectionAuthentication {
+    /**
+     * Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     */
+    mechanism: string;
+    /**
+     * Password of the account to connect to the Kafka cluster.
+     */
+    password: string;
+    /**
+     * Username of the account to connect to the Kafka cluster.
+     */
+    username: string;
+}
+
+export interface GetStreamConnectionDbRoleToExecute {
+    /**
+     * The name of the role to use. Can be a built in role or a custom role.
+     */
+    role: string;
+    /**
+     * Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     */
+    type: string;
+}
+
+export interface GetStreamConnectionSecurity {
+    /**
+     * A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+     */
+    brokerPublicCertificate: string;
+    /**
+     * Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     */
+    protocol: string;
+}
+
+export interface GetStreamConnectionsResult {
+    /**
+     * User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
+     */
+    authentication: outputs.GetStreamConnectionsResultAuthentication;
+    /**
+     * Comma separated list of server addresses.
+     */
+    bootstrapServers: string;
+    /**
+     * Name of the cluster configured for this connection.
+     */
+    clusterName: string;
+    /**
+     * A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+     */
+    config: {[key: string]: string};
+    /**
+     * Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     */
+    connectionName: string;
+    /**
+     * The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
+     */
+    dbRoleToExecute: outputs.GetStreamConnectionsResultDbRoleToExecute;
+    id: string;
+    /**
+     * Human-readable label that identifies the stream instance.
+     */
+    instanceName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project.
+     */
+    projectId: string;
+    /**
+     * Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+     */
+    security: outputs.GetStreamConnectionsResultSecurity;
+    /**
+     * Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     */
+    type: string;
+}
+
+export interface GetStreamConnectionsResultAuthentication {
+    /**
+     * Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     */
+    mechanism: string;
+    /**
+     * Password of the account to connect to the Kafka cluster.
+     */
+    password: string;
+    /**
+     * Username of the account to connect to the Kafka cluster.
+     */
+    username: string;
+}
+
+export interface GetStreamConnectionsResultDbRoleToExecute {
+    /**
+     * The name of the role to use. Can be a built in role or a custom role.
+     */
+    role: string;
+    /**
+     * Type of the DB role. Can be either BUILT_IN or CUSTOM.
+     */
+    type: string;
+}
+
+export interface GetStreamConnectionsResultSecurity {
+    /**
+     * A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+     */
+    brokerPublicCertificate: string;
+    /**
+     * Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     */
+    protocol: string;
+}
+
+export interface GetStreamInstanceDataProcessRegion {
+    /**
+     * Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+     */
+    cloudProvider: string;
+    /**
+     * Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+     */
+    region: string;
+}
+
+export interface GetStreamInstanceStreamConfig {
+    /**
+     * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+     */
+    tier: string;
+}
+
+export interface GetStreamInstancesResult {
+    /**
+     * Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+     */
+    dataProcessRegion: outputs.GetStreamInstancesResultDataProcessRegion;
+    /**
+     * List that contains the hostnames assigned to the stream instance.
+     */
+    hostnames: string[];
+    id: string;
+    /**
+     * Human-readable label that identifies the stream instance.
+     */
+    instanceName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project.
+     */
+    projectId: string;
+    /**
+     * Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+     */
+    streamConfig: outputs.GetStreamInstancesResultStreamConfig;
+}
+
+export interface GetStreamInstancesResultDataProcessRegion {
+    /**
+     * Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+     */
+    cloudProvider: string;
+    /**
+     * Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+     */
+    region: string;
+}
+
+export interface GetStreamInstancesResultStreamConfig {
+    /**
+     * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+     */
+    tier: string;
+}
+
 export interface GetThirdPartyIntegrationsResult {
     accountId: string;
     /**
@@ -5475,6 +5751,10 @@ export interface GetThirdPartyIntegrationsResult {
      * Whether your cluster has Prometheus enabled.
      */
     enabled?: boolean;
+    /**
+     * Unique identifier of the integration.
+     */
+    id: string;
     /**
      * Your Microsoft Teams incoming webhook URL.
      */
@@ -5492,7 +5772,9 @@ export interface GetThirdPartyIntegrationsResult {
      */
     routingKey: string;
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     scheme?: string;
     /**
@@ -5509,7 +5791,7 @@ export interface GetThirdPartyIntegrationsResult {
     serviceKey: string;
     teamName: string;
     /**
-     * (Required) Thirt-Party service integration type.
+     * Thirt-Party service integration type.
      */
     type: string;
     /**
@@ -5600,7 +5882,7 @@ export interface OnlineArchiveDataExpirationRule {
 
 export interface OnlineArchiveDataProcessRegion {
     /**
-     * Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
      */
     cloudProvider: string;
     /**
@@ -5728,6 +6010,21 @@ export interface ProjectTeam {
     teamId: string;
 }
 
+export interface PushBasedLogExportTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
+    delete?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    update?: string;
+}
+
 export interface SearchDeploymentSpec {
     /**
      * Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
@@ -5785,6 +6082,58 @@ export interface ServerlessInstanceTag {
      * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
      */
     value: string;
+}
+
+export interface StreamConnectionAuthentication {
+    /**
+     * Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     */
+    mechanism?: string;
+    /**
+     * Password of the account to connect to the Kafka cluster.
+     */
+    password?: string;
+    /**
+     * Username of the account to connect to the Kafka cluster.
+     */
+    username?: string;
+}
+
+export interface StreamConnectionDbRoleToExecute {
+    role: string;
+    /**
+     * Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+     */
+    type: string;
+}
+
+export interface StreamConnectionSecurity {
+    /**
+     * A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+     */
+    brokerPublicCertificate?: string;
+    /**
+     * Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     */
+    protocol?: string;
+}
+
+export interface StreamInstanceDataProcessRegion {
+    /**
+     * Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+     */
+    cloudProvider: string;
+    /**
+     * Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+     */
+    region: string;
+}
+
+export interface StreamInstanceStreamConfig {
+    /**
+     * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+     */
+    tier: string;
 }
 
 export interface X509AuthenticationDatabaseUserCertificate {

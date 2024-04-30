@@ -781,7 +781,7 @@ class NetworkPeering(pulumi.CustomResource):
                 )],
             )],
             auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="4.2",
+            mongo_db_major_version="7.0",
             provider_name="AZURE",
             provider_disk_type_name="P4",
             provider_instance_size_name="M10",
@@ -813,7 +813,7 @@ class NetworkPeering(pulumi.CustomResource):
                 )],
             )],
             auto_scaling_disk_gb_enabled=False,
-            mongo_db_major_version="4.2",
+            mongo_db_major_version="7.0",
             provider_name="AWS",
             provider_instance_size_name="M10")
         # the following assumes an AWS provider is configured
@@ -862,7 +862,7 @@ class NetworkPeering(pulumi.CustomResource):
                 )],
             )],
             auto_scaling_disk_gb_enabled=False,
-            mongo_db_major_version="4.2",
+            mongo_db_major_version="7.0",
             provider_name="AZURE",
             provider_instance_size_name="M10")
         # Create the peering connection request
@@ -1007,7 +1007,7 @@ class NetworkPeering(pulumi.CustomResource):
                 )],
             )],
             auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="4.2",
+            mongo_db_major_version="7.0",
             provider_name="AZURE",
             provider_disk_type_name="P4",
             provider_instance_size_name="M10",
@@ -1039,7 +1039,7 @@ class NetworkPeering(pulumi.CustomResource):
                 )],
             )],
             auto_scaling_disk_gb_enabled=False,
-            mongo_db_major_version="4.2",
+            mongo_db_major_version="7.0",
             provider_name="AWS",
             provider_instance_size_name="M10")
         # the following assumes an AWS provider is configured
@@ -1088,7 +1088,7 @@ class NetworkPeering(pulumi.CustomResource):
                 )],
             )],
             auto_scaling_disk_gb_enabled=False,
-            mongo_db_major_version="4.2",
+            mongo_db_major_version="7.0",
             provider_name="AZURE",
             provider_instance_size_name="M10")
         # Create the peering connection request

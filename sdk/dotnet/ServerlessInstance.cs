@@ -61,6 +61,12 @@ namespace Pulumi.Mongodbatlas
     public partial class ServerlessInstance : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+        /// </summary>
+        [Output("autoIndexing")]
+        public Output<bool> AutoIndexing { get; private set; } = null!;
+
+        /// <summary>
         /// List of Serverless Private Endpoint Connections
         /// </summary>
         [Output("connectionStringsPrivateEndpointSrvs")]
@@ -188,6 +194,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class ServerlessInstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+        /// </summary>
+        [Input("autoIndexing")]
+        public Input<bool>? AutoIndexing { get; set; }
+
+        /// <summary>
         /// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
         /// </summary>
         [Input("continuousBackupEnabled")]
@@ -263,6 +275,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class ServerlessInstanceState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+        /// </summary>
+        [Input("autoIndexing")]
+        public Input<bool>? AutoIndexing { get; set; }
+
         [Input("connectionStringsPrivateEndpointSrvs")]
         private InputList<string>? _connectionStringsPrivateEndpointSrvs;
 

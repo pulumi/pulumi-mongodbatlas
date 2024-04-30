@@ -131,6 +131,12 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     public Output<String> routingKey() {
         return this.routingKey;
     }
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     @Export(name="scheme", refs={String.class}, tree="[0]")
     private Output<String> scheme;
 

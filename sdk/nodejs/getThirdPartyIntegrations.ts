@@ -61,7 +61,7 @@ export interface GetThirdPartyIntegrationsResult {
      */
     readonly id: string;
     /**
-     * (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+     * ID of the Atlas project the Third-Party Service Integration belongs to.
      */
     readonly projectId: string;
     /**

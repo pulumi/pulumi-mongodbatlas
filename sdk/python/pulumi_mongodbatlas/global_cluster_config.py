@@ -260,7 +260,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
             )],
             backup_enabled=True,
             auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="4.0",
+            mongo_db_major_version="7.0",
             provider_name="AWS",
             provider_instance_size_name="M40")
         config = mongodbatlas.GlobalClusterConfig("config",
@@ -378,7 +378,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
             )],
             backup_enabled=True,
             auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="4.0",
+            mongo_db_major_version="7.0",
             provider_name="AWS",
             provider_instance_size_name="M40")
         config = mongodbatlas.GlobalClusterConfig("config",

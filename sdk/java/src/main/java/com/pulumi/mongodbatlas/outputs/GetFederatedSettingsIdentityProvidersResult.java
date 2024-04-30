@@ -55,7 +55,7 @@ public final class GetFederatedSettingsIdentityProvidersResult {
      */
     private String groupsClaim;
     /**
-     * @return Unique 20-hexadecimal digit string that identifies the IdP.
+     * @return Unique 24-hexadecimal digit string that identifies the IdP.
      * 
      */
     private String idpId;
@@ -169,7 +169,7 @@ public final class GetFederatedSettingsIdentityProvidersResult {
         return this.groupsClaim;
     }
     /**
-     * @return Unique 20-hexadecimal digit string that identifies the IdP.
+     * @return Unique 24-hexadecimal digit string that identifies the IdP.
      * 
      */
     public String idpId() {

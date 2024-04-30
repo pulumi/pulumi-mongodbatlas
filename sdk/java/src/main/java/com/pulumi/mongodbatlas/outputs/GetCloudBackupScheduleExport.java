@@ -16,7 +16,7 @@ public final class GetCloudBackupScheduleExport {
      */
     private String exportBucketId;
     /**
-     * @return Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * @return Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     private String frequencyType;
@@ -30,7 +30,7 @@ public final class GetCloudBackupScheduleExport {
         return this.exportBucketId;
     }
     /**
-     * @return Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * @return Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     public String frequencyType() {

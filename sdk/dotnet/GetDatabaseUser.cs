@@ -287,7 +287,6 @@ namespace Pulumi.Mongodbatlas
         /// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         /// </summary>
         public readonly string OidcAuthType;
-        public readonly string Password;
         public readonly string ProjectId;
         /// <summary>
         /// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -317,8 +316,6 @@ namespace Pulumi.Mongodbatlas
 
             string oidcAuthType,
 
-            string password,
-
             string projectId,
 
             ImmutableArray<Outputs.GetDatabaseUserRoleResult> roles,
@@ -335,7 +332,6 @@ namespace Pulumi.Mongodbatlas
             Labels = labels;
             LdapAuthType = ldapAuthType;
             OidcAuthType = oidcAuthType;
-            Password = password;
             ProjectId = projectId;
             Roles = roles;
             Scopes = scopes;

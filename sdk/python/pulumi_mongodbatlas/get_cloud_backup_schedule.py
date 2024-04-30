@@ -22,7 +22,7 @@ class GetCloudBackupScheduleResult:
     """
     A collection of values returned by getCloudBackupSchedule.
     """
-    def __init__(__self__, auto_export_enabled=None, cluster_id=None, cluster_name=None, copy_settings=None, exports=None, id=None, id_policy=None, next_snapshot=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None, use_org_and_group_names_in_export_prefix=None):
+    def __init__(__self__, auto_export_enabled=None, cluster_id=None, cluster_name=None, copy_settings=None, exports=None, id=None, id_policy=None, next_snapshot=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, policy_item_yearlies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None, use_org_and_group_names_in_export_prefix=None):
         if auto_export_enabled and not isinstance(auto_export_enabled, bool):
             raise TypeError("Expected argument 'auto_export_enabled' to be a bool")
         pulumi.set(__self__, "auto_export_enabled", auto_export_enabled)
@@ -59,6 +59,9 @@ class GetCloudBackupScheduleResult:
         if policy_item_weeklies and not isinstance(policy_item_weeklies, list):
             raise TypeError("Expected argument 'policy_item_weeklies' to be a list")
         pulumi.set(__self__, "policy_item_weeklies", policy_item_weeklies)
+        if policy_item_yearlies and not isinstance(policy_item_yearlies, list):
+            raise TypeError("Expected argument 'policy_item_yearlies' to be a list")
+        pulumi.set(__self__, "policy_item_yearlies", policy_item_yearlies)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -80,6 +83,8 @@ class GetCloudBackupScheduleResult:
     def auto_export_enabled(self) -> bool:
         """
         Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+        * true - enables automatic export of cloud backup snapshots to the AWS bucket
+        * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         """
         return pulumi.get(self, "auto_export_enabled")
 
@@ -163,6 +168,14 @@ class GetCloudBackupScheduleResult:
         return pulumi.get(self, "policy_item_weeklies")
 
     @property
+    @pulumi.getter(name="policyItemYearlies")
+    def policy_item_yearlies(self) -> Sequence['outputs.GetCloudBackupSchedulePolicyItemYearlyResult']:
+        """
+        Yearly policy item
+        """
+        return pulumi.get(self, "policy_item_yearlies")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
@@ -218,6 +231,7 @@ class AwaitableGetCloudBackupScheduleResult(GetCloudBackupScheduleResult):
             policy_item_hourlies=self.policy_item_hourlies,
             policy_item_monthlies=self.policy_item_monthlies,
             policy_item_weeklies=self.policy_item_weeklies,
+            policy_item_yearlies=self.policy_item_yearlies,
             project_id=self.project_id,
             reference_hour_of_day=self.reference_hour_of_day,
             reference_minute_of_hour=self.reference_minute_of_hour,
@@ -279,6 +293,7 @@ def get_cloud_backup_schedule(cluster_name: Optional[str] = None,
         policy_item_hourlies=pulumi.get(__ret__, 'policy_item_hourlies'),
         policy_item_monthlies=pulumi.get(__ret__, 'policy_item_monthlies'),
         policy_item_weeklies=pulumi.get(__ret__, 'policy_item_weeklies'),
+        policy_item_yearlies=pulumi.get(__ret__, 'policy_item_yearlies'),
         project_id=pulumi.get(__ret__, 'project_id'),
         reference_hour_of_day=pulumi.get(__ret__, 'reference_hour_of_day'),
         reference_minute_of_hour=pulumi.get(__ret__, 'reference_minute_of_hour'),

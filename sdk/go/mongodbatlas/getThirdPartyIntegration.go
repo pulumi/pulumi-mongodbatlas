@@ -40,6 +40,7 @@ import (
 //			}
 //			_ = mongodbatlas.LookupThirdPartyIntegrationOutput(ctx, mongodbatlas.GetThirdPartyIntegrationOutputArgs{
 //				ProjectId: testDatadog.ProjectId,
+//				Type:      pulumi.String("DATADOG"),
 //			}, nil)
 //			return nil
 //		})
@@ -64,7 +65,9 @@ type LookupThirdPartyIntegrationArgs struct {
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
-	// Your Prometheus protocol scheme configured for requests.
+	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme *string `pulumi:"scheme"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
@@ -89,7 +92,7 @@ type LookupThirdPartyIntegrationResult struct {
 	ChannelName string `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
 	Enabled *bool `pulumi:"enabled"`
-	// The provider-assigned unique ID for this managed resource.
+	// Unique identifier of the integration.
 	Id string `pulumi:"id"`
 	// Your Microsoft Teams incoming webhook URL.
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
@@ -98,7 +101,9 @@ type LookupThirdPartyIntegrationResult struct {
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
 	RoutingKey string `pulumi:"routingKey"`
-	// Your Prometheus protocol scheme configured for requests.
+	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme *string `pulumi:"scheme"`
 	// An optional field for your webhook secret.
 	Secret string `pulumi:"secret"`
@@ -107,8 +112,7 @@ type LookupThirdPartyIntegrationResult struct {
 	// Your Service Key.
 	ServiceKey string `pulumi:"serviceKey"`
 	TeamName   string `pulumi:"teamName"`
-	// Property equal to its own integration type
-	Type string `pulumi:"type"`
+	Type       string `pulumi:"type"`
 	// Your webhook URL.
 	Url string `pulumi:"url"`
 	// Your Prometheus username.
@@ -136,7 +140,9 @@ type LookupThirdPartyIntegrationOutputArgs struct {
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Your Prometheus protocol scheme configured for requests.
+	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme pulumi.StringPtrInput `pulumi:"scheme"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery pulumi.StringPtrInput `pulumi:"serviceDiscovery"`
@@ -190,7 +196,7 @@ func (o LookupThirdPartyIntegrationResultOutput) Enabled() pulumi.BoolPtrOutput 
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// Unique identifier of the integration.
 func (o LookupThirdPartyIntegrationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -214,7 +220,9 @@ func (o LookupThirdPartyIntegrationResultOutput) RoutingKey() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.RoutingKey }).(pulumi.StringOutput)
 }
 
-// Your Prometheus protocol scheme configured for requests.
+// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 func (o LookupThirdPartyIntegrationResultOutput) Scheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) *string { return v.Scheme }).(pulumi.StringPtrOutput)
 }
@@ -238,7 +246,6 @@ func (o LookupThirdPartyIntegrationResultOutput) TeamName() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.TeamName }).(pulumi.StringOutput)
 }
 
-// Property equal to its own integration type
 func (o LookupThirdPartyIntegrationResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Type }).(pulumi.StringOutput)
 }

@@ -13,6 +13,9 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class FederatedDatabaseInstanceCloudProviderConfig
     {
+        /// <summary>
+        /// Name of the cloud service that hosts the data lake's data stores.
+        /// </summary>
         public readonly Outputs.FederatedDatabaseInstanceCloudProviderConfigAws Aws;
 
         [OutputConstructor]

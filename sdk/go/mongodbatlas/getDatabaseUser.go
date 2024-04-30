@@ -142,9 +142,7 @@ type LookupDatabaseUserResult struct {
 	LdapAuthType string `pulumi:"ldapAuthType"`
 	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 	OidcAuthType string `pulumi:"oidcAuthType"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	Password  string `pulumi:"password"`
-	ProjectId string `pulumi:"projectId"`
+	ProjectId    string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles []GetDatabaseUserRole `pulumi:"roles"`
 	// Array of clusters and Atlas Data Lakes that this user has access to.
@@ -222,11 +220,6 @@ func (o LookupDatabaseUserResultOutput) LdapAuthType() pulumi.StringOutput {
 // (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 func (o LookupDatabaseUserResultOutput) OidcAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.OidcAuthType }).(pulumi.StringOutput)
-}
-
-// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-func (o LookupDatabaseUserResultOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
 func (o LookupDatabaseUserResultOutput) ProjectId() pulumi.StringOutput {

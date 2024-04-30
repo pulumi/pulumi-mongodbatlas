@@ -85,6 +85,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/serverlessInstance:ServerlessInstance")
 public class ServerlessInstance extends com.pulumi.resources.CustomResource {
     /**
+     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+     * 
+     */
+    @Export(name="autoIndexing", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> autoIndexing;
+
+    /**
+     * @return Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+     * 
+     */
+    public Output<Boolean> autoIndexing() {
+        return this.autoIndexing;
+    }
+    /**
      * List of Serverless Private Endpoint Connections
      * 
      */

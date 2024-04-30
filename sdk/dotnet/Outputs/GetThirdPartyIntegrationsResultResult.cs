@@ -24,6 +24,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
+        /// Unique identifier of the integration.
+        /// </summary>
+        public readonly string Id;
+        /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
         /// </summary>
         public readonly string? MicrosoftTeamsWebhookUrl;
@@ -40,7 +44,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string RoutingKey;
         /// <summary>
-        /// Your Prometheus protocol scheme configured for requests.
+        /// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         /// </summary>
         public readonly string? Scheme;
         /// <summary>
@@ -57,7 +61,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string ServiceKey;
         public readonly string TeamName;
         /// <summary>
-        /// (Required) Thirt-Party service integration type.
+        /// Thirt-Party service integration type.
         /// </summary>
         public readonly string Type;
         /// <summary>
@@ -78,6 +82,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             string channelName,
 
             bool? enabled,
+
+            string id,
 
             string? microsoftTeamsWebhookUrl,
 
@@ -107,6 +113,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ApiKey = apiKey;
             ChannelName = channelName;
             Enabled = enabled;
+            Id = id;
             MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             ProjectId = projectId;
             Region = region;

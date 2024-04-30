@@ -111,6 +111,45 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// Defining custom provider and region example
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.OnlineArchive("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ClusterName = clusterName,
+    ///         CollName = collectionName,
+    ///         DbName = databaseName,
+    ///         DataProcessRegion = new Mongodbatlas.Inputs.OnlineArchiveDataProcessRegionArgs
+    ///         {
+    ///             CloudProvider = "AZURE",
+    ///             Region = "US_EAST_2",
+    ///         },
+    ///         PartitionFields = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs
+    ///             {
+    ///                 FieldName = "firstName",
+    ///                 Order = 0,
+    ///             },
+    ///         },
+    ///         Criteria = new Mongodbatlas.Inputs.OnlineArchiveCriteriaArgs
+    ///         {
+    ///             Type = "CUSTOM",
+    ///             Query = "{ \"department\": \"engineering\" }",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.

@@ -60,10 +60,10 @@ public final class GetAdvancedClusterResult {
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
     private List<GetAdvancedClusterLabel> labels;
     /**
      * @return Version of the cluster to deploy.
@@ -178,10 +178,10 @@ public final class GetAdvancedClusterResult {
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
     public List<GetAdvancedClusterLabel> labels() {
         return this.labels;
     }

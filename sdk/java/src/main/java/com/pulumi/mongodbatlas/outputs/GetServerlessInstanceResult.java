@@ -15,6 +15,11 @@ import java.util.Objects;
 @CustomType
 public final class GetServerlessInstanceResult {
     /**
+     * @return Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * 
+     */
+    private Boolean autoIndexing;
+    /**
      * @return List of Serverless Private Endpoint Connections
      * 
      */
@@ -75,6 +80,13 @@ public final class GetServerlessInstanceResult {
     private Boolean terminationProtectionEnabled;
 
     private GetServerlessInstanceResult() {}
+    /**
+     * @return Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * 
+     */
+    public Boolean autoIndexing() {
+        return this.autoIndexing;
+    }
     /**
      * @return List of Serverless Private Endpoint Connections
      * 
@@ -174,6 +186,7 @@ public final class GetServerlessInstanceResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Boolean autoIndexing;
         private List<String> connectionStringsPrivateEndpointSrvs;
         private String connectionStringsStandardSrv;
         private Boolean continuousBackupEnabled;
@@ -192,6 +205,7 @@ public final class GetServerlessInstanceResult {
         public Builder() {}
         public Builder(GetServerlessInstanceResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.autoIndexing = defaults.autoIndexing;
     	      this.connectionStringsPrivateEndpointSrvs = defaults.connectionStringsPrivateEndpointSrvs;
     	      this.connectionStringsStandardSrv = defaults.connectionStringsStandardSrv;
     	      this.continuousBackupEnabled = defaults.continuousBackupEnabled;
@@ -209,6 +223,14 @@ public final class GetServerlessInstanceResult {
     	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
         }
 
+        @CustomType.Setter
+        public Builder autoIndexing(Boolean autoIndexing) {
+            if (autoIndexing == null) {
+              throw new MissingRequiredPropertyException("GetServerlessInstanceResult", "autoIndexing");
+            }
+            this.autoIndexing = autoIndexing;
+            return this;
+        }
         @CustomType.Setter
         public Builder connectionStringsPrivateEndpointSrvs(List<String> connectionStringsPrivateEndpointSrvs) {
             if (connectionStringsPrivateEndpointSrvs == null) {
@@ -340,6 +362,7 @@ public final class GetServerlessInstanceResult {
         }
         public GetServerlessInstanceResult build() {
             final var _resultValue = new GetServerlessInstanceResult();
+            _resultValue.autoIndexing = autoIndexing;
             _resultValue.connectionStringsPrivateEndpointSrvs = connectionStringsPrivateEndpointSrvs;
             _resultValue.connectionStringsStandardSrv = connectionStringsStandardSrv;
             _resultValue.continuousBackupEnabled = continuousBackupEnabled;

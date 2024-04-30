@@ -66,6 +66,13 @@ import (
 //						RetentionValue:    pulumi.Int(4),
 //					},
 //				},
+//				PolicyItemYearlies: mongodbatlas.CloudBackupSchedulePolicyItemYearlyArray{
+//					&mongodbatlas.CloudBackupSchedulePolicyItemYearlyArgs{
+//						FrequencyInterval: pulumi.Int(1),
+//						RetentionUnit:     pulumi.String("years"),
+//						RetentionValue:    pulumi.Int(1),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -115,6 +122,13 @@ import (
 //						RetentionValue:    pulumi.Int(12),
 //					},
 //				},
+//				PolicyItemYearlies: mongodbatlas.BackupCompliancePolicyPolicyItemYearlyArray{
+//					&mongodbatlas.BackupCompliancePolicyPolicyItemYearlyArgs{
+//						FrequencyInterval: pulumi.Int(1),
+//						RetentionUnit:     pulumi.String("years"),
+//						RetentionValue:    pulumi.Int(1),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -161,6 +175,7 @@ type LookupBackupCompliancePolicyResult struct {
 	PolicyItemHourly    GetBackupCompliancePolicyPolicyItemHourly    `pulumi:"policyItemHourly"`
 	PolicyItemMonthlies []GetBackupCompliancePolicyPolicyItemMonthly `pulumi:"policyItemMonthlies"`
 	PolicyItemWeeklies  []GetBackupCompliancePolicyPolicyItemWeekly  `pulumi:"policyItemWeeklies"`
+	PolicyItemYearlies  []GetBackupCompliancePolicyPolicyItemYearly  `pulumi:"policyItemYearlies"`
 	ProjectId           string                                       `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
 	RestoreWindowDays int `pulumi:"restoreWindowDays"`
@@ -273,6 +288,12 @@ func (o LookupBackupCompliancePolicyResultOutput) PolicyItemWeeklies() GetBackup
 	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) []GetBackupCompliancePolicyPolicyItemWeekly {
 		return v.PolicyItemWeeklies
 	}).(GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput)
+}
+
+func (o LookupBackupCompliancePolicyResultOutput) PolicyItemYearlies() GetBackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) []GetBackupCompliancePolicyPolicyItemYearly {
+		return v.PolicyItemYearlies
+	}).(GetBackupCompliancePolicyPolicyItemYearlyArrayOutput)
 }
 
 func (o LookupBackupCompliancePolicyResultOutput) ProjectId() pulumi.StringOutput {

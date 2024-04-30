@@ -156,6 +156,8 @@ import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
+import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
 import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
@@ -174,6 +176,14 @@ import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotArgs;
 import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotsArgs;
 import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamConnectionPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamInstancePlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamInstancesPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
 import com.pulumi.mongodbatlas.inputs.GetTeamPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetTeamsArgs;
@@ -258,6 +268,7 @@ import com.pulumi.mongodbatlas.outputs.GetProjectInvitationResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectIpAccessListResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetPushBasedLogExportResult;
 import com.pulumi.mongodbatlas.outputs.GetRolesOrgIdResult;
 import com.pulumi.mongodbatlas.outputs.GetSearchDeploymentResult;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexResult;
@@ -268,6 +279,10 @@ import com.pulumi.mongodbatlas.outputs.GetSharedTierRestoreJobResult;
 import com.pulumi.mongodbatlas.outputs.GetSharedTierRestoreJobsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetSharedTierSnapshotResult;
 import com.pulumi.mongodbatlas.outputs.GetSharedTierSnapshotsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamConnectionResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamInstanceResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamInstancesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetTeamResult;
 import com.pulumi.mongodbatlas.outputs.GetTeamsResult;
 import com.pulumi.mongodbatlas.outputs.GetThirdPartyIntegrationResult;
@@ -4187,6 +4202,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemMonthlyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemYearlyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyArgs;
@@ -4197,6 +4213,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
+     * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -4245,6 +4262,11 @@ public final class MongodbatlasFunctions {
      *                 .retentionUnit(&#34;months&#34;)
      *                 .retentionValue(4)
      *                 .build())
+     *             .policyItemYearlies(CloudBackupSchedulePolicyItemYearlyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit(&#34;years&#34;)
+     *                 .retentionValue(1)
+     *                 .build())
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
@@ -4289,6 +4311,11 @@ public final class MongodbatlasFunctions {
      *                 .frequencyInterval(0)
      *                 .retentionUnit(&#34;months&#34;)
      *                 .retentionValue(12)
+     *                 .build())
+     *             .policyItemYearlies(BackupCompliancePolicyPolicyItemYearlyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit(&#34;years&#34;)
+     *                 .retentionValue(1)
      *                 .build())
      *             .build());
      * 
@@ -4319,6 +4346,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemMonthlyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemYearlyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyArgs;
@@ -4329,6 +4357,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
+     * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -4377,6 +4406,11 @@ public final class MongodbatlasFunctions {
      *                 .retentionUnit(&#34;months&#34;)
      *                 .retentionValue(4)
      *                 .build())
+     *             .policyItemYearlies(CloudBackupSchedulePolicyItemYearlyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit(&#34;years&#34;)
+     *                 .retentionValue(1)
+     *                 .build())
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
@@ -4421,6 +4455,11 @@ public final class MongodbatlasFunctions {
      *                 .frequencyInterval(0)
      *                 .retentionUnit(&#34;months&#34;)
      *                 .retentionValue(12)
+     *                 .build())
+     *             .policyItemYearlies(BackupCompliancePolicyPolicyItemYearlyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit(&#34;years&#34;)
+     *                 .retentionValue(1)
      *                 .build())
      *             .build());
      * 
@@ -4451,6 +4490,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemMonthlyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemYearlyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyArgs;
@@ -4461,6 +4501,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
+     * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -4509,6 +4550,11 @@ public final class MongodbatlasFunctions {
      *                 .retentionUnit(&#34;months&#34;)
      *                 .retentionValue(4)
      *                 .build())
+     *             .policyItemYearlies(CloudBackupSchedulePolicyItemYearlyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit(&#34;years&#34;)
+     *                 .retentionValue(1)
+     *                 .build())
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
@@ -4553,6 +4599,11 @@ public final class MongodbatlasFunctions {
      *                 .frequencyInterval(0)
      *                 .retentionUnit(&#34;months&#34;)
      *                 .retentionValue(12)
+     *                 .build())
+     *             .policyItemYearlies(BackupCompliancePolicyPolicyItemYearlyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit(&#34;years&#34;)
+     *                 .retentionValue(1)
      *                 .build())
      *             .build());
      * 
@@ -4583,6 +4634,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemMonthlyArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemYearlyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyArgs;
@@ -4593,6 +4645,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
+     * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -4641,6 +4694,11 @@ public final class MongodbatlasFunctions {
      *                 .retentionUnit(&#34;months&#34;)
      *                 .retentionValue(4)
      *                 .build())
+     *             .policyItemYearlies(CloudBackupSchedulePolicyItemYearlyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit(&#34;years&#34;)
+     *                 .retentionValue(1)
+     *                 .build())
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
@@ -4685,6 +4743,11 @@ public final class MongodbatlasFunctions {
      *                 .frequencyInterval(0)
      *                 .retentionUnit(&#34;months&#34;)
      *                 .retentionValue(12)
+     *                 .build())
+     *             .policyItemYearlies(BackupCompliancePolicyPolicyItemYearlyArgs.builder()
+     *                 .frequencyInterval(1)
+     *                 .retentionUnit(&#34;years&#34;)
+     *                 .retentionValue(1)
      *                 .build())
      *             .build());
      * 
@@ -11878,7 +11941,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var identityProviderDs = MongodbatlasFunctions.getFederatedSettingsIdentityProvider(GetFederatedSettingsIdentityProviderArgs.builder()
      *             .federationSettingsId(identityProvider.id())
-     *             .identityProviderId(&#34;0oad47f7fXnk1297&#34;)
+     *             .identityProviderId(&#34;0oad4fas87jL5Xnk12971234&#34;)
      *             .build());
      * 
      *     }
@@ -11935,7 +11998,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var identityProviderDs = MongodbatlasFunctions.getFederatedSettingsIdentityProvider(GetFederatedSettingsIdentityProviderArgs.builder()
      *             .federationSettingsId(identityProvider.id())
-     *             .identityProviderId(&#34;0oad47f7fXnk1297&#34;)
+     *             .identityProviderId(&#34;0oad4fas87jL5Xnk12971234&#34;)
      *             .build());
      * 
      *     }
@@ -11992,7 +12055,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var identityProviderDs = MongodbatlasFunctions.getFederatedSettingsIdentityProvider(GetFederatedSettingsIdentityProviderArgs.builder()
      *             .federationSettingsId(identityProvider.id())
-     *             .identityProviderId(&#34;0oad47f7fXnk1297&#34;)
+     *             .identityProviderId(&#34;0oad4fas87jL5Xnk12971234&#34;)
      *             .build());
      * 
      *     }
@@ -12049,7 +12112,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var identityProviderDs = MongodbatlasFunctions.getFederatedSettingsIdentityProvider(GetFederatedSettingsIdentityProviderArgs.builder()
      *             .federationSettingsId(identityProvider.id())
-     *             .identityProviderId(&#34;0oad47f7fXnk1297&#34;)
+     *             .identityProviderId(&#34;0oad4fas87jL5Xnk12971234&#34;)
      *             .build());
      * 
      *     }
@@ -12093,7 +12156,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
-     *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+     *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f&#34;)
      *             .name(&#34;mongodb_federation_test&#34;)
      *             .associatedDomains(&#34;yourdomain.com&#34;)
      *             .ssoDebugEnabled(true)
@@ -12147,7 +12210,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
-     *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+     *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f&#34;)
      *             .name(&#34;mongodb_federation_test&#34;)
      *             .associatedDomains(&#34;yourdomain.com&#34;)
      *             .ssoDebugEnabled(true)
@@ -12201,7 +12264,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
-     *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+     *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f&#34;)
      *             .name(&#34;mongodb_federation_test&#34;)
      *             .associatedDomains(&#34;yourdomain.com&#34;)
      *             .ssoDebugEnabled(true)
@@ -12255,7 +12318,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
-     *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
+     *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f&#34;)
      *             .name(&#34;mongodb_federation_test&#34;)
      *             .associatedDomains(&#34;yourdomain.com&#34;)
      *             .ssoDebugEnabled(true)
@@ -21068,6 +21131,314 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjects:getProjects", TypeShape.of(GetProjectsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+     * import com.pulumi.mongodbatlas.PushBasedLogExport;
+     * import com.pulumi.mongodbatlas.PushBasedLogExportArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var project_tf = new Project(&#34;project-tf&#34;, ProjectArgs.builder()        
+     *             .name(atlasProjectName)
+     *             .orgId(atlasOrgId)
+     *             .build());
+     * 
+     *         // Set up cloud provider access in Atlas using the created IAM role
+     *         var setupOnly = new CloudProviderAccessSetup(&#34;setupOnly&#34;, CloudProviderAccessSetupArgs.builder()        
+     *             .projectId(project_tf.id())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         var authRole = new CloudProviderAccessAuthorization(&#34;authRole&#34;, CloudProviderAccessAuthorizationArgs.builder()        
+     *             .projectId(project_tf.id())
+     *             .roleId(setupOnly.roleId())
+     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .build())
+     *             .build());
+     * 
+     *         // Set up push-based log export with authorized IAM role
+     *         var testPushBasedLogExport = new PushBasedLogExport(&#34;testPushBasedLogExport&#34;, PushBasedLogExportArgs.builder()        
+     *             .projectId(project_tf.id())
+     *             .bucketName(logBucket.bucket())
+     *             .iamRoleId(authRole.roleId())
+     *             .prefixPath(&#34;push-based-log-test&#34;)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getPushBasedLogExport(GetPushBasedLogExportArgs.builder()
+     *             .projectId(testPushBasedLogExport.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPushBasedLogExportResult> getPushBasedLogExport(GetPushBasedLogExportArgs args) {
+        return getPushBasedLogExport(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+     * import com.pulumi.mongodbatlas.PushBasedLogExport;
+     * import com.pulumi.mongodbatlas.PushBasedLogExportArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var project_tf = new Project(&#34;project-tf&#34;, ProjectArgs.builder()        
+     *             .name(atlasProjectName)
+     *             .orgId(atlasOrgId)
+     *             .build());
+     * 
+     *         // Set up cloud provider access in Atlas using the created IAM role
+     *         var setupOnly = new CloudProviderAccessSetup(&#34;setupOnly&#34;, CloudProviderAccessSetupArgs.builder()        
+     *             .projectId(project_tf.id())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         var authRole = new CloudProviderAccessAuthorization(&#34;authRole&#34;, CloudProviderAccessAuthorizationArgs.builder()        
+     *             .projectId(project_tf.id())
+     *             .roleId(setupOnly.roleId())
+     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .build())
+     *             .build());
+     * 
+     *         // Set up push-based log export with authorized IAM role
+     *         var testPushBasedLogExport = new PushBasedLogExport(&#34;testPushBasedLogExport&#34;, PushBasedLogExportArgs.builder()        
+     *             .projectId(project_tf.id())
+     *             .bucketName(logBucket.bucket())
+     *             .iamRoleId(authRole.roleId())
+     *             .prefixPath(&#34;push-based-log-test&#34;)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getPushBasedLogExport(GetPushBasedLogExportArgs.builder()
+     *             .projectId(testPushBasedLogExport.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetPushBasedLogExportResult> getPushBasedLogExportPlain(GetPushBasedLogExportPlainArgs args) {
+        return getPushBasedLogExportPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+     * import com.pulumi.mongodbatlas.PushBasedLogExport;
+     * import com.pulumi.mongodbatlas.PushBasedLogExportArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var project_tf = new Project(&#34;project-tf&#34;, ProjectArgs.builder()        
+     *             .name(atlasProjectName)
+     *             .orgId(atlasOrgId)
+     *             .build());
+     * 
+     *         // Set up cloud provider access in Atlas using the created IAM role
+     *         var setupOnly = new CloudProviderAccessSetup(&#34;setupOnly&#34;, CloudProviderAccessSetupArgs.builder()        
+     *             .projectId(project_tf.id())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         var authRole = new CloudProviderAccessAuthorization(&#34;authRole&#34;, CloudProviderAccessAuthorizationArgs.builder()        
+     *             .projectId(project_tf.id())
+     *             .roleId(setupOnly.roleId())
+     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .build())
+     *             .build());
+     * 
+     *         // Set up push-based log export with authorized IAM role
+     *         var testPushBasedLogExport = new PushBasedLogExport(&#34;testPushBasedLogExport&#34;, PushBasedLogExportArgs.builder()        
+     *             .projectId(project_tf.id())
+     *             .bucketName(logBucket.bucket())
+     *             .iamRoleId(authRole.roleId())
+     *             .prefixPath(&#34;push-based-log-test&#34;)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getPushBasedLogExport(GetPushBasedLogExportArgs.builder()
+     *             .projectId(testPushBasedLogExport.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetPushBasedLogExportResult> getPushBasedLogExport(GetPushBasedLogExportArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", TypeShape.of(GetPushBasedLogExportResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+     * import com.pulumi.mongodbatlas.PushBasedLogExport;
+     * import com.pulumi.mongodbatlas.PushBasedLogExportArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var project_tf = new Project(&#34;project-tf&#34;, ProjectArgs.builder()        
+     *             .name(atlasProjectName)
+     *             .orgId(atlasOrgId)
+     *             .build());
+     * 
+     *         // Set up cloud provider access in Atlas using the created IAM role
+     *         var setupOnly = new CloudProviderAccessSetup(&#34;setupOnly&#34;, CloudProviderAccessSetupArgs.builder()        
+     *             .projectId(project_tf.id())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         var authRole = new CloudProviderAccessAuthorization(&#34;authRole&#34;, CloudProviderAccessAuthorizationArgs.builder()        
+     *             .projectId(project_tf.id())
+     *             .roleId(setupOnly.roleId())
+     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .build())
+     *             .build());
+     * 
+     *         // Set up push-based log export with authorized IAM role
+     *         var testPushBasedLogExport = new PushBasedLogExport(&#34;testPushBasedLogExport&#34;, PushBasedLogExportArgs.builder()        
+     *             .projectId(project_tf.id())
+     *             .bucketName(logBucket.bucket())
+     *             .iamRoleId(authRole.roleId())
+     *             .prefixPath(&#34;push-based-log-test&#34;)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getPushBasedLogExport(GetPushBasedLogExportArgs.builder()
+     *             .projectId(testPushBasedLogExport.projectId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetPushBasedLogExportResult> getPushBasedLogExportPlain(GetPushBasedLogExportPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", TypeShape.of(GetPushBasedLogExportResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
      * 
      * ## Example Usage
@@ -22433,6 +22804,662 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetSharedTierSnapshotsInvokeResult> getSharedTierSnapshotsPlain(GetSharedTierSnapshotsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", TypeShape.of(GetSharedTierSnapshotsInvokeResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.StreamConnection` describes a stream connection.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getStreamConnection(GetStreamConnectionArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;&lt;INSTANCE_NAME&gt;&#34;)
+     *             .connectionName(&#34;&lt;CONNECTION_NAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamConnectionResult> getStreamConnection(GetStreamConnectionArgs args) {
+        return getStreamConnection(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.StreamConnection` describes a stream connection.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getStreamConnection(GetStreamConnectionArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;&lt;INSTANCE_NAME&gt;&#34;)
+     *             .connectionName(&#34;&lt;CONNECTION_NAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamConnectionResult> getStreamConnectionPlain(GetStreamConnectionPlainArgs args) {
+        return getStreamConnectionPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.StreamConnection` describes a stream connection.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getStreamConnection(GetStreamConnectionArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;&lt;INSTANCE_NAME&gt;&#34;)
+     *             .connectionName(&#34;&lt;CONNECTION_NAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamConnectionResult> getStreamConnection(GetStreamConnectionArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamConnection:getStreamConnection", TypeShape.of(GetStreamConnectionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.StreamConnection` describes a stream connection.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getStreamConnection(GetStreamConnectionArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;&lt;INSTANCE_NAME&gt;&#34;)
+     *             .connectionName(&#34;&lt;CONNECTION_NAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamConnectionResult> getStreamConnectionPlain(GetStreamConnectionPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamConnection:getStreamConnection", TypeShape.of(GetStreamConnectionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getStreamConnections(GetStreamConnectionsArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;&lt;INSTANCE_NAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamConnectionsInvokeResult> getStreamConnections(GetStreamConnectionsArgs args) {
+        return getStreamConnections(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getStreamConnections(GetStreamConnectionsArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;&lt;INSTANCE_NAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamConnectionsInvokeResult> getStreamConnectionsPlain(GetStreamConnectionsPlainArgs args) {
+        return getStreamConnectionsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getStreamConnections(GetStreamConnectionsArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;&lt;INSTANCE_NAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamConnectionsInvokeResult> getStreamConnections(GetStreamConnectionsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamConnections:getStreamConnections", TypeShape.of(GetStreamConnectionsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getStreamConnections(GetStreamConnectionsArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;&lt;INSTANCE_NAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamConnectionsInvokeResult> getStreamConnectionsPlain(GetStreamConnectionsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamConnections:getStreamConnections", TypeShape.of(GetStreamConnectionsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.StreamInstance` describes a stream instance.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getStreamInstance(GetStreamInstanceArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;&lt;INSTANCE_NAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamInstanceResult> getStreamInstance(GetStreamInstanceArgs args) {
+        return getStreamInstance(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.StreamInstance` describes a stream instance.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getStreamInstance(GetStreamInstanceArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;&lt;INSTANCE_NAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamInstanceResult> getStreamInstancePlain(GetStreamInstancePlainArgs args) {
+        return getStreamInstancePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.StreamInstance` describes a stream instance.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getStreamInstance(GetStreamInstanceArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;&lt;INSTANCE_NAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamInstanceResult> getStreamInstance(GetStreamInstanceArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamInstance:getStreamInstance", TypeShape.of(GetStreamInstanceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.StreamInstance` describes a stream instance.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getStreamInstance(GetStreamInstanceArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;&lt;INSTANCE_NAME&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamInstanceResult> getStreamInstancePlain(GetStreamInstancePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamInstance:getStreamInstance", TypeShape.of(GetStreamInstanceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getStreamInstances` describes the stream instances defined in a project.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getStreamInstances(GetStreamInstancesArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamInstancesInvokeResult> getStreamInstances(GetStreamInstancesArgs args) {
+        return getStreamInstances(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getStreamInstances` describes the stream instances defined in a project.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getStreamInstances(GetStreamInstancesArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamInstancesInvokeResult> getStreamInstancesPlain(GetStreamInstancesPlainArgs args) {
+        return getStreamInstancesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getStreamInstances` describes the stream instances defined in a project.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getStreamInstances(GetStreamInstancesArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetStreamInstancesInvokeResult> getStreamInstances(GetStreamInstancesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamInstances:getStreamInstances", TypeShape.of(GetStreamInstancesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getStreamInstances` describes the stream instances defined in a project.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getStreamInstances(GetStreamInstancesArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetStreamInstancesInvokeResult> getStreamInstancesPlain(GetStreamInstancesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamInstances:getStreamInstances", TypeShape.of(GetStreamInstancesInvokeResult.class), args, Utilities.withVersion(options));
+    }
     public static Output<GetTeamResult> getTeam(GetTeamArgs args) {
         return getTeam(args, InvokeOptions.Empty);
     }
@@ -22497,6 +23524,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var test = MongodbatlasFunctions.getThirdPartyIntegration(GetThirdPartyIntegrationArgs.builder()
      *             .projectId(testDatadog.projectId())
+     *             .type(&#34;DATADOG&#34;)
      *             .build());
      * 
      *     }
@@ -22548,6 +23576,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var test = MongodbatlasFunctions.getThirdPartyIntegration(GetThirdPartyIntegrationArgs.builder()
      *             .projectId(testDatadog.projectId())
+     *             .type(&#34;DATADOG&#34;)
      *             .build());
      * 
      *     }
@@ -22599,6 +23628,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var test = MongodbatlasFunctions.getThirdPartyIntegration(GetThirdPartyIntegrationArgs.builder()
      *             .projectId(testDatadog.projectId())
+     *             .type(&#34;DATADOG&#34;)
      *             .build());
      * 
      *     }
@@ -22650,6 +23680,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var test = MongodbatlasFunctions.getThirdPartyIntegration(GetThirdPartyIntegrationArgs.builder()
      *             .projectId(testDatadog.projectId())
+     *             .type(&#34;DATADOG&#34;)
      *             .build());
      * 
      *     }

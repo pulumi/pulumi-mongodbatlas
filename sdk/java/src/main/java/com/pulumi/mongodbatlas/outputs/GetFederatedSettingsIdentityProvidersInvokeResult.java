@@ -25,7 +25,19 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
      * 
      */
     private String id;
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     private @Nullable Integer itemsPerPage;
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     private @Nullable Integer pageNum;
     /**
      * @return Includes cloudProviderSnapshot object for each item detailed in the results array section.
@@ -48,9 +60,21 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<Integer> itemsPerPage() {
         return Optional.ofNullable(this.itemsPerPage);
     }
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<Integer> pageNum() {
         return Optional.ofNullable(this.pageNum);
     }

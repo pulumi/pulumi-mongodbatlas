@@ -286,6 +286,7 @@ export interface AlertConfigurationNotification {
     delayMin?: pulumi.Input<number>;
     emailAddress?: pulumi.Input<string>;
     emailEnabled?: pulumi.Input<boolean>;
+    integrationId?: pulumi.Input<string>;
     intervalMin?: pulumi.Input<number>;
     microsoftTeamsWebhookUrl?: pulumi.Input<string>;
     mobileNumber?: pulumi.Input<string>;
@@ -313,11 +314,11 @@ export interface AlertConfigurationThresholdConfig {
 
 export interface BackupCompliancePolicyOnDemandPolicyItem {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: pulumi.Input<number>;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType?: pulumi.Input<string>;
     /**
@@ -325,22 +326,22 @@ export interface BackupCompliancePolicyOnDemandPolicyItem {
      */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: pulumi.Input<number>;
 }
 
 export interface BackupCompliancePolicyPolicyItemDaily {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: pulumi.Input<number>;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType?: pulumi.Input<string>;
     /**
@@ -348,22 +349,22 @@ export interface BackupCompliancePolicyPolicyItemDaily {
      */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: pulumi.Input<number>;
 }
 
 export interface BackupCompliancePolicyPolicyItemHourly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: pulumi.Input<number>;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType?: pulumi.Input<string>;
     /**
@@ -371,22 +372,22 @@ export interface BackupCompliancePolicyPolicyItemHourly {
      */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: pulumi.Input<number>;
 }
 
 export interface BackupCompliancePolicyPolicyItemMonthly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: pulumi.Input<number>;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType?: pulumi.Input<string>;
     /**
@@ -394,22 +395,22 @@ export interface BackupCompliancePolicyPolicyItemMonthly {
      */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: pulumi.Input<number>;
 }
 
 export interface BackupCompliancePolicyPolicyItemWeekly {
     /**
-     * Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
      */
     frequencyInterval: pulumi.Input<number>;
     /**
-     * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
     frequencyType?: pulumi.Input<string>;
     /**
@@ -417,11 +418,34 @@ export interface BackupCompliancePolicyPolicyItemWeekly {
      */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
-     * Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
+export interface BackupCompliancePolicyPolicyItemYearly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+     */
+    frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: pulumi.Input<number>;
 }
@@ -459,7 +483,7 @@ export interface CloudBackupSchedulePolicyItemDaily {
      */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
@@ -482,7 +506,7 @@ export interface CloudBackupSchedulePolicyItemHourly {
      */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
@@ -505,7 +529,7 @@ export interface CloudBackupSchedulePolicyItemMonthly {
      */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
@@ -528,11 +552,34 @@ export interface CloudBackupSchedulePolicyItemWeekly {
      */
     id?: pulumi.Input<string>;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: pulumi.Input<string>;
     /**
      * Value to associate with `retentionUnit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
+export interface CloudBackupSchedulePolicyItemYearly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+     */
+    frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     */
+    frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: pulumi.Input<number>;
 }
@@ -1032,6 +1079,9 @@ export interface EventTriggerEventProcessorsAwsEventbridge {
 }
 
 export interface FederatedDatabaseInstanceCloudProviderConfig {
+    /**
+     * Name of the cloud service that hosts the data lake's data stores.
+     */
     aws: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfigAws>;
 }
 
@@ -1068,8 +1118,6 @@ export interface FederatedDatabaseInstanceStorageDatabase {
     maxWildcardCollections?: pulumi.Input<number>;
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name?: pulumi.Input<string>;
     views?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseView>[]>;
@@ -1079,8 +1127,6 @@ export interface FederatedDatabaseInstanceStorageDatabaseCollection {
     dataSources?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSource>[]>;
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name?: pulumi.Input<string>;
 }
@@ -1102,8 +1148,6 @@ export interface FederatedDatabaseInstanceStorageDatabaseCollectionDataSource {
 export interface FederatedDatabaseInstanceStorageDatabaseView {
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name?: pulumi.Input<string>;
     pipeline?: pulumi.Input<string>;
@@ -1115,7 +1159,7 @@ export interface FederatedDatabaseInstanceStorageStore {
     allowInsecure?: pulumi.Input<boolean>;
     bucket?: pulumi.Input<string>;
     /**
-     * @deprecated this parameter is deprecated and will be removed by September 2024
+     * @deprecated This parameter is deprecated and will be removed by September 2024.
      */
     clusterId?: pulumi.Input<string>;
     clusterName?: pulumi.Input<string>;
@@ -1124,8 +1168,6 @@ export interface FederatedDatabaseInstanceStorageStore {
     includeTags?: pulumi.Input<boolean>;
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name?: pulumi.Input<string>;
     prefix?: pulumi.Input<string>;
@@ -1153,8 +1195,6 @@ export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
 export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
      */
     name?: pulumi.Input<string>;
     value?: pulumi.Input<string>;
@@ -1438,7 +1478,7 @@ export interface OnlineArchiveDataExpirationRule {
 
 export interface OnlineArchiveDataProcessRegion {
     /**
-     * Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+     * Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
      */
     cloudProvider?: pulumi.Input<string>;
     /**
@@ -1605,6 +1645,21 @@ export interface ProviderAssumeRole {
     transitiveTagKeys?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface PushBasedLogExportTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: pulumi.Input<string>;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
+    delete?: pulumi.Input<string>;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    update?: pulumi.Input<string>;
+}
+
 export interface SearchDeploymentSpec {
     /**
      * Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
@@ -1662,6 +1717,58 @@ export interface ServerlessInstanceTag {
      * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
      */
     value: pulumi.Input<string>;
+}
+
+export interface StreamConnectionAuthentication {
+    /**
+     * Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     */
+    mechanism?: pulumi.Input<string>;
+    /**
+     * Password of the account to connect to the Kafka cluster.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * Username of the account to connect to the Kafka cluster.
+     */
+    username?: pulumi.Input<string>;
+}
+
+export interface StreamConnectionDbRoleToExecute {
+    role: pulumi.Input<string>;
+    /**
+     * Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface StreamConnectionSecurity {
+    /**
+     * A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+     */
+    brokerPublicCertificate?: pulumi.Input<string>;
+    /**
+     * Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+     */
+    protocol?: pulumi.Input<string>;
+}
+
+export interface StreamInstanceDataProcessRegion {
+    /**
+     * Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+     */
+    cloudProvider: pulumi.Input<string>;
+    /**
+     * Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+     */
+    region: pulumi.Input<string>;
+}
+
+export interface StreamInstanceStreamConfig {
+    /**
+     * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+     */
+    tier?: pulumi.Input<string>;
 }
 
 export interface X509AuthenticationDatabaseUserCertificate {

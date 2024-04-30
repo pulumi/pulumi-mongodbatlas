@@ -17,6 +17,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -290,6 +291,20 @@ public class Project extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> regionUsageRestrictions() {
         return Codegen.optional(this.regionUsageRestrictions);
+    }
+    /**
+     * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+     * 
+     */
+    @Export(name="tags", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> tags;
+
+    /**
+     * @return Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> tags() {
+        return Codegen.optional(this.tags);
     }
     @Export(name="teams", refs={List.class,ProjectTeam.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ProjectTeam>> teams;

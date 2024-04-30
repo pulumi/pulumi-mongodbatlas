@@ -63,16 +63,24 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
     }
 
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     @Import(name="scheme")
     private @Nullable Output<String> scheme;
 
     /**
-     * @return Your Prometheus protocol scheme configured for requests.
+     * @return Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<Output<String>> scheme() {
         return Optional.ofNullable(this.scheme);
     }
@@ -230,22 +238,30 @@ public final class GetThirdPartyIntegrationArgs extends com.pulumi.resources.Inv
         }
 
         /**
-         * @param scheme Your Prometheus protocol scheme configured for requests.
+         * @param scheme Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder scheme(@Nullable Output<String> scheme) {
             $.scheme = scheme;
             return this;
         }
 
         /**
-         * @param scheme Your Prometheus protocol scheme configured for requests.
+         * @param scheme Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder scheme(String scheme) {
             return scheme(Output.of(scheme));
         }

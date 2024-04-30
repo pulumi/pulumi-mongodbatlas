@@ -68,7 +68,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .cloudBackup(true)
  *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
+ *             .mongoDbMajorVersion(&#34;7.0&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .providerInstanceSizeName(&#34;M40&#34;)
  *             .build());
@@ -118,7 +118,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .cloudBackup(true)
  *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
+ *             .mongoDbMajorVersion(&#34;7.0&#34;)
  *             .providerName(&#34;AZURE&#34;)
  *             .providerDiskTypeName(&#34;P6&#34;)
  *             .providerInstanceSizeName(&#34;M30&#34;)
@@ -169,7 +169,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .cloudBackup(true)
  *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
+ *             .mongoDbMajorVersion(&#34;7.0&#34;)
  *             .providerName(&#34;GCP&#34;)
  *             .providerInstanceSizeName(&#34;M30&#34;)
  *             .build());
@@ -665,10 +665,10 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
     @Export(name="labels", refs={List.class,ClusterLabel.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ClusterLabel>> labels;
 
@@ -680,14 +680,14 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.labels);
     }
     /**
-     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
      * 
      */
     @Export(name="mongoDbMajorVersion", refs={String.class}, tree="[0]")
     private Output<String> mongoDbMajorVersion;
 
     /**
-     * @return Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+     * @return Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
      * 
      */
     public Output<String> mongoDbMajorVersion() {

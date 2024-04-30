@@ -20,6 +20,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly int? DelayMin;
         public readonly string? EmailAddress;
         public readonly bool? EmailEnabled;
+        public readonly string? IntegrationId;
         public readonly int? IntervalMin;
         public readonly string? MicrosoftTeamsWebhookUrl;
         public readonly string? MobileNumber;
@@ -53,6 +54,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             string? emailAddress,
 
             bool? emailEnabled,
+
+            string? integrationId,
 
             int? intervalMin,
 
@@ -95,6 +98,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             DelayMin = delayMin;
             EmailAddress = emailAddress;
             EmailEnabled = emailEnabled;
+            IntegrationId = integrationId;
             IntervalMin = intervalMin;
             MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             MobileNumber = mobileNumber;

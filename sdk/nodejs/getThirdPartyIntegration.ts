@@ -23,6 +23,7 @@ import * as utilities from "./utilities";
  * });
  * const test = mongodbatlas.getThirdPartyIntegrationOutput({
  *     projectId: testDatadog.projectId,
+ *     type: "DATADOG",
  * });
  * ```
  */
@@ -57,7 +58,9 @@ export interface GetThirdPartyIntegrationArgs {
      */
     projectId: string;
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     scheme?: string;
     /**
@@ -96,7 +99,7 @@ export interface GetThirdPartyIntegrationResult {
      */
     readonly enabled?: boolean;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * Unique identifier of the integration.
      */
     readonly id: string;
     /**
@@ -113,7 +116,9 @@ export interface GetThirdPartyIntegrationResult {
      */
     readonly routingKey: string;
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     readonly scheme?: string;
     /**
@@ -129,9 +134,6 @@ export interface GetThirdPartyIntegrationResult {
      */
     readonly serviceKey: string;
     readonly teamName: string;
-    /**
-     * Property equal to its own integration type
-     */
     readonly type: string;
     /**
      * Your webhook URL.
@@ -161,6 +163,7 @@ export interface GetThirdPartyIntegrationResult {
  * });
  * const test = mongodbatlas.getThirdPartyIntegrationOutput({
  *     projectId: testDatadog.projectId,
+ *     type: "DATADOG",
  * });
  * ```
  */
@@ -185,7 +188,9 @@ export interface GetThirdPartyIntegrationOutputArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     scheme?: pulumi.Input<string>;
     /**

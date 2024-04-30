@@ -162,7 +162,7 @@ import javax.annotation.Nullable;
  *                     .build())
  *                 .build())
  *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
+ *             .mongoDbMajorVersion(&#34;7.0&#34;)
  *             .providerName(&#34;AZURE&#34;)
  *             .providerDiskTypeName(&#34;P4&#34;)
  *             .providerInstanceSizeName(&#34;M10&#34;)
@@ -224,7 +224,7 @@ import javax.annotation.Nullable;
  *                     .build())
  *                 .build())
  *             .autoScalingDiskGbEnabled(false)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
+ *             .mongoDbMajorVersion(&#34;7.0&#34;)
  *             .providerName(&#34;AWS&#34;)
  *             .providerInstanceSizeName(&#34;M10&#34;)
  *             .build());
@@ -302,7 +302,7 @@ import javax.annotation.Nullable;
  *                     .build())
  *                 .build())
  *             .autoScalingDiskGbEnabled(false)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
+ *             .mongoDbMajorVersion(&#34;7.0&#34;)
  *             .providerName(&#34;AZURE&#34;)
  *             .providerInstanceSizeName(&#34;M10&#34;)
  *             .build());

@@ -12,6 +12,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @CustomType
@@ -35,6 +36,7 @@ public final class GetProjectsResult {
     private String orgId;
     private String projectId;
     private String regionUsageRestrictions;
+    private Map<String,String> tags;
     private List<GetProjectsResultTeam> teams;
 
     private GetProjectsResult() {}
@@ -87,6 +89,9 @@ public final class GetProjectsResult {
     public String regionUsageRestrictions() {
         return this.regionUsageRestrictions;
     }
+    public Map<String,String> tags() {
+        return this.tags;
+    }
     public List<GetProjectsResultTeam> teams() {
         return this.teams;
     }
@@ -115,6 +120,7 @@ public final class GetProjectsResult {
         private String orgId;
         private String projectId;
         private String regionUsageRestrictions;
+        private Map<String,String> tags;
         private List<GetProjectsResultTeam> teams;
         public Builder() {}
         public Builder(GetProjectsResult defaults) {
@@ -134,6 +140,7 @@ public final class GetProjectsResult {
     	      this.orgId = defaults.orgId;
     	      this.projectId = defaults.projectId;
     	      this.regionUsageRestrictions = defaults.regionUsageRestrictions;
+    	      this.tags = defaults.tags;
     	      this.teams = defaults.teams;
         }
 
@@ -261,6 +268,14 @@ public final class GetProjectsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder tags(Map<String,String> tags) {
+            if (tags == null) {
+              throw new MissingRequiredPropertyException("GetProjectsResult", "tags");
+            }
+            this.tags = tags;
+            return this;
+        }
+        @CustomType.Setter
         public Builder teams(List<GetProjectsResultTeam> teams) {
             if (teams == null) {
               throw new MissingRequiredPropertyException("GetProjectsResult", "teams");
@@ -288,6 +303,7 @@ public final class GetProjectsResult {
             _resultValue.orgId = orgId;
             _resultValue.projectId = projectId;
             _resultValue.regionUsageRestrictions = regionUsageRestrictions;
+            _resultValue.tags = tags;
             _resultValue.teams = teams;
             return _resultValue;
         }

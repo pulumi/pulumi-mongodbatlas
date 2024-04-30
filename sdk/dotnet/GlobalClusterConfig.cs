@@ -131,7 +131,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///         BackupEnabled = true,
     ///         AutoScalingDiskGbEnabled = true,
-    ///         MongoDbMajorVersion = "4.0",
+    ///         MongoDbMajorVersion = "7.0",
     ///         ProviderName = "AWS",
     ///         ProviderInstanceSizeName = "M40",
     ///     });

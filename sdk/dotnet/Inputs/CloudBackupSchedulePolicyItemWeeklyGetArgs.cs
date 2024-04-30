@@ -31,7 +31,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// Scope of the backup policy item: `days`, `weeks`, or `months`.
+        /// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         /// </summary>
         [Input("retentionUnit", required: true)]
         public Input<string> RetentionUnit { get; set; } = null!;

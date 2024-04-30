@@ -119,6 +119,49 @@ import (
 //
 // ```
 //
+// # Defining custom provider and region example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewOnlineArchive(ctx, "test", &mongodbatlas.OnlineArchiveArgs{
+//				ProjectId:   pulumi.Any(projectId),
+//				ClusterName: pulumi.Any(clusterName),
+//				CollName:    pulumi.Any(collectionName),
+//				DbName:      pulumi.Any(databaseName),
+//				DataProcessRegion: &mongodbatlas.OnlineArchiveDataProcessRegionArgs{
+//					CloudProvider: pulumi.String("AZURE"),
+//					Region:        pulumi.String("US_EAST_2"),
+//				},
+//				PartitionFields: mongodbatlas.OnlineArchivePartitionFieldArray{
+//					&mongodbatlas.OnlineArchivePartitionFieldArgs{
+//						FieldName: pulumi.String("firstName"),
+//						Order:     pulumi.Int(0),
+//					},
+//				},
+//				Criteria: &mongodbatlas.OnlineArchiveCriteriaArgs{
+//					Type:  pulumi.String("CUSTOM"),
+//					Query: pulumi.String("{ \"department\": \"engineering\" }"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.

@@ -22,6 +22,7 @@ public final class AlertConfigurationNotification {
     private @Nullable Integer delayMin;
     private @Nullable String emailAddress;
     private @Nullable Boolean emailEnabled;
+    private @Nullable String integrationId;
     private @Nullable Integer intervalMin;
     private @Nullable String microsoftTeamsWebhookUrl;
     private @Nullable String mobileNumber;
@@ -61,6 +62,9 @@ public final class AlertConfigurationNotification {
     }
     public Optional<Boolean> emailEnabled() {
         return Optional.ofNullable(this.emailEnabled);
+    }
+    public Optional<String> integrationId() {
+        return Optional.ofNullable(this.integrationId);
     }
     public Optional<Integer> intervalMin() {
         return Optional.ofNullable(this.intervalMin);
@@ -130,6 +134,7 @@ public final class AlertConfigurationNotification {
         private @Nullable Integer delayMin;
         private @Nullable String emailAddress;
         private @Nullable Boolean emailEnabled;
+        private @Nullable String integrationId;
         private @Nullable Integer intervalMin;
         private @Nullable String microsoftTeamsWebhookUrl;
         private @Nullable String mobileNumber;
@@ -157,6 +162,7 @@ public final class AlertConfigurationNotification {
     	      this.delayMin = defaults.delayMin;
     	      this.emailAddress = defaults.emailAddress;
     	      this.emailEnabled = defaults.emailEnabled;
+    	      this.integrationId = defaults.integrationId;
     	      this.intervalMin = defaults.intervalMin;
     	      this.microsoftTeamsWebhookUrl = defaults.microsoftTeamsWebhookUrl;
     	      this.mobileNumber = defaults.mobileNumber;
@@ -216,6 +222,12 @@ public final class AlertConfigurationNotification {
         public Builder emailEnabled(@Nullable Boolean emailEnabled) {
 
             this.emailEnabled = emailEnabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder integrationId(@Nullable String integrationId) {
+
+            this.integrationId = integrationId;
             return this;
         }
         @CustomType.Setter
@@ -334,6 +346,7 @@ public final class AlertConfigurationNotification {
             _resultValue.delayMin = delayMin;
             _resultValue.emailAddress = emailAddress;
             _resultValue.emailEnabled = emailEnabled;
+            _resultValue.integrationId = integrationId;
             _resultValue.intervalMin = intervalMin;
             _resultValue.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             _resultValue.mobileNumber = mobileNumber;

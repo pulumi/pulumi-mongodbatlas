@@ -16,6 +16,7 @@ import com.pulumi.mongodbatlas.outputs.CloudBackupSchedulePolicyItemDaily;
 import com.pulumi.mongodbatlas.outputs.CloudBackupSchedulePolicyItemHourly;
 import com.pulumi.mongodbatlas.outputs.CloudBackupSchedulePolicyItemMonthly;
 import com.pulumi.mongodbatlas.outputs.CloudBackupSchedulePolicyItemWeekly;
+import com.pulumi.mongodbatlas.outputs.CloudBackupSchedulePolicyItemYearly;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -38,9 +39,8 @@ import javax.annotation.Nullable;
 public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
     /**
      * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     * 
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+     * * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      * 
      */
     @Export(name="autoExportEnabled", refs={Boolean.class}, tree="[0]")
@@ -48,9 +48,8 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-     * 
-     * true - enables automatic export of cloud backup snapshots to the AWS bucket
-     * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+     * * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      * 
      */
     public Output<Boolean> autoExportEnabled() {
@@ -179,6 +178,20 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<CloudBackupSchedulePolicyItemWeekly>>> policyItemWeeklies() {
         return Codegen.optional(this.policyItemWeeklies);
+    }
+    /**
+     * Yearly policy item
+     * 
+     */
+    @Export(name="policyItemYearlies", refs={List.class,CloudBackupSchedulePolicyItemYearly.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<CloudBackupSchedulePolicyItemYearly>> policyItemYearlies;
+
+    /**
+     * @return Yearly policy item
+     * 
+     */
+    public Output<Optional<List<CloudBackupSchedulePolicyItemYearly>>> policyItemYearlies() {
+        return Codegen.optional(this.policyItemYearlies);
     }
     /**
      * The unique identifier of the project for the Atlas cluster.

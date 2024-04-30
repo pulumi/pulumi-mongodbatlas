@@ -22,7 +22,7 @@ class GetDatabaseUserResult:
     """
     A collection of values returned by getDatabaseUser.
     """
-    def __init__(__self__, auth_database_name=None, aws_iam_type=None, id=None, labels=None, ldap_auth_type=None, oidc_auth_type=None, password=None, project_id=None, roles=None, scopes=None, username=None, x509_type=None):
+    def __init__(__self__, auth_database_name=None, aws_iam_type=None, id=None, labels=None, ldap_auth_type=None, oidc_auth_type=None, project_id=None, roles=None, scopes=None, username=None, x509_type=None):
         if auth_database_name and not isinstance(auth_database_name, str):
             raise TypeError("Expected argument 'auth_database_name' to be a str")
         pulumi.set(__self__, "auth_database_name", auth_database_name)
@@ -41,9 +41,6 @@ class GetDatabaseUserResult:
         if oidc_auth_type and not isinstance(oidc_auth_type, str):
             raise TypeError("Expected argument 'oidc_auth_type' to be a str")
         pulumi.set(__self__, "oidc_auth_type", oidc_auth_type)
-        if password and not isinstance(password, str):
-            raise TypeError("Expected argument 'password' to be a str")
-        pulumi.set(__self__, "password", password)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -103,14 +100,6 @@ class GetDatabaseUserResult:
         return pulumi.get(self, "oidc_auth_type")
 
     @property
-    @pulumi.getter
-    def password(self) -> str:
-        warnings.warn("""this parameter is deprecated and will be removed in version 1.16.0""", DeprecationWarning)
-        pulumi.log.warn("""password is deprecated: this parameter is deprecated and will be removed in version 1.16.0""")
-
-        return pulumi.get(self, "password")
-
-    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
@@ -157,7 +146,6 @@ class AwaitableGetDatabaseUserResult(GetDatabaseUserResult):
             labels=self.labels,
             ldap_auth_type=self.ldap_auth_type,
             oidc_auth_type=self.oidc_auth_type,
-            password=self.password,
             project_id=self.project_id,
             roles=self.roles,
             scopes=self.scopes,
@@ -251,7 +239,6 @@ def get_database_user(auth_database_name: Optional[str] = None,
         labels=pulumi.get(__ret__, 'labels'),
         ldap_auth_type=pulumi.get(__ret__, 'ldap_auth_type'),
         oidc_auth_type=pulumi.get(__ret__, 'oidc_auth_type'),
-        password=pulumi.get(__ret__, 'password'),
         project_id=pulumi.get(__ret__, 'project_id'),
         roles=pulumi.get(__ret__, 'roles'),
         scopes=pulumi.get(__ret__, 'scopes'),

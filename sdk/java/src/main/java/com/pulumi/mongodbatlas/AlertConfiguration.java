@@ -212,6 +212,53 @@ import javax.annotation.Nullable;
  * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ### Create third party notification using credentials from existing third party integration
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationArgs;
+ * import com.pulumi.mongodbatlas.AlertConfiguration;
+ * import com.pulumi.mongodbatlas.AlertConfigurationArgs;
+ * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var test = MongodbatlasFunctions.getThirdPartyIntegration(GetThirdPartyIntegrationArgs.builder()
+ *             .projectId(&#34;PROJECT ID&#34;)
+ *             .type(&#34;PAGER_DUTY&#34;)
+ *             .build());
+ * 
+ *         var testAlertConfiguration = new AlertConfiguration(&#34;testAlertConfiguration&#34;, AlertConfigurationArgs.builder()        
+ *             .projectId(&#34;PROJECT ID&#34;)
+ *             .enabled(true)
+ *             .eventType(&#34;USERS_WITHOUT_MULTI_FACTOR_AUTH&#34;)
+ *             .notifications(AlertConfigurationNotificationArgs.builder()
+ *                 .typeName(&#34;PAGER_DUTY&#34;)
+ *                 .integrationId(test.applyValue(getThirdPartyIntegrationResult -&gt; getThirdPartyIntegrationResult.id()))
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.

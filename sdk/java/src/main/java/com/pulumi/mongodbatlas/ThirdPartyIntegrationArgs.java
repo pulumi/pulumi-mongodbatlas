@@ -81,9 +81,21 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
         return Optional.ofNullable(this.routingKey);
     }
 
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     @Import(name="scheme")
     private @Nullable Output<String> scheme;
 
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<Output<String>> scheme() {
         return Optional.ofNullable(this.scheme);
     }
@@ -282,11 +294,27 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
             return routingKey(Output.of(routingKey));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0.
+         * 
+         */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder scheme(@Nullable Output<String> scheme) {
             $.scheme = scheme;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0.
+         * 
+         */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder scheme(String scheme) {
             return scheme(Output.of(scheme));
         }

@@ -65,6 +65,8 @@ func LookupServerlessInstance(ctx *pulumi.Context, args *LookupServerlessInstanc
 
 // A collection of arguments for invoking getServerlessInstance.
 type LookupServerlessInstanceArgs struct {
+	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+	AutoIndexing *bool `pulumi:"autoIndexing"`
 	// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
 	ContinuousBackupEnabled *bool                       `pulumi:"continuousBackupEnabled"`
 	Links                   []GetServerlessInstanceLink `pulumi:"links"`
@@ -78,6 +80,8 @@ type LookupServerlessInstanceArgs struct {
 
 // A collection of values returned by getServerlessInstance.
 type LookupServerlessInstanceResult struct {
+	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+	AutoIndexing bool `pulumi:"autoIndexing"`
 	// List of Serverless Private Endpoint Connections
 	ConnectionStringsPrivateEndpointSrvs []string `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
@@ -121,6 +125,8 @@ func LookupServerlessInstanceOutput(ctx *pulumi.Context, args LookupServerlessIn
 
 // A collection of arguments for invoking getServerlessInstance.
 type LookupServerlessInstanceOutputArgs struct {
+	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+	AutoIndexing pulumi.BoolPtrInput `pulumi:"autoIndexing"`
 	// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
 	ContinuousBackupEnabled pulumi.BoolPtrInput                 `pulumi:"continuousBackupEnabled"`
 	Links                   GetServerlessInstanceLinkArrayInput `pulumi:"links"`
@@ -149,6 +155,11 @@ func (o LookupServerlessInstanceResultOutput) ToLookupServerlessInstanceResultOu
 
 func (o LookupServerlessInstanceResultOutput) ToLookupServerlessInstanceResultOutputWithContext(ctx context.Context) LookupServerlessInstanceResultOutput {
 	return o
+}
+
+// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+func (o LookupServerlessInstanceResultOutput) AutoIndexing() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupServerlessInstanceResult) bool { return v.AutoIndexing }).(pulumi.BoolOutput)
 }
 
 // List of Serverless Private Endpoint Connections

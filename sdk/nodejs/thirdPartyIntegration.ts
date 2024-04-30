@@ -77,6 +77,9 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     public readonly projectId!: pulumi.Output<string>;
     public readonly region!: pulumi.Output<string>;
     public readonly routingKey!: pulumi.Output<string>;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
+     */
     public readonly scheme!: pulumi.Output<string>;
     public readonly secret!: pulumi.Output<string | undefined>;
     public readonly serviceDiscovery!: pulumi.Output<string>;
@@ -172,6 +175,9 @@ export interface ThirdPartyIntegrationState {
     projectId?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
     routingKey?: pulumi.Input<string>;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
+     */
     scheme?: pulumi.Input<string>;
     secret?: pulumi.Input<string>;
     serviceDiscovery?: pulumi.Input<string>;
@@ -207,6 +213,9 @@ export interface ThirdPartyIntegrationArgs {
     projectId: pulumi.Input<string>;
     region?: pulumi.Input<string>;
     routingKey?: pulumi.Input<string>;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
+     */
     scheme?: pulumi.Input<string>;
     secret?: pulumi.Input<string>;
     serviceDiscovery?: pulumi.Input<string>;

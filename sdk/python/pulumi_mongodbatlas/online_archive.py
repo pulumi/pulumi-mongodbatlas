@@ -526,6 +526,31 @@ class OnlineArchive(pulumi.CustomResource):
             ))
         ```
 
+        Defining custom provider and region example
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.OnlineArchive("test",
+            project_id=project_id,
+            cluster_name=cluster_name,
+            coll_name=collection_name,
+            db_name=database_name,
+            data_process_region=mongodbatlas.OnlineArchiveDataProcessRegionArgs(
+                cloud_provider="AZURE",
+                region="US_EAST_2",
+            ),
+            partition_fields=[mongodbatlas.OnlineArchivePartitionFieldArgs(
+                field_name="firstName",
+                order=0,
+            )],
+            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
+                type="CUSTOM",
+                query="{ \\"department\\": \\"engineering\\" }",
+            ))
+        ```
+
         ## Import
 
         See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
@@ -620,6 +645,31 @@ class OnlineArchive(pulumi.CustomResource):
                     order=1,
                 ),
             ],
+            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
+                type="CUSTOM",
+                query="{ \\"department\\": \\"engineering\\" }",
+            ))
+        ```
+
+        Defining custom provider and region example
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.OnlineArchive("test",
+            project_id=project_id,
+            cluster_name=cluster_name,
+            coll_name=collection_name,
+            db_name=database_name,
+            data_process_region=mongodbatlas.OnlineArchiveDataProcessRegionArgs(
+                cloud_provider="AZURE",
+                region="US_EAST_2",
+            ),
+            partition_fields=[mongodbatlas.OnlineArchivePartitionFieldArgs(
+                field_name="firstName",
+                order=0,
+            )],
             criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
                 type="CUSTOM",
                 query="{ \\"department\\": \\"engineering\\" }",

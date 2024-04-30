@@ -68,6 +68,13 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         return Optional.ofNullable(this.emailEnabled);
     }
 
+    @Import(name="integrationId")
+    private @Nullable Output<String> integrationId;
+
+    public Optional<Output<String>> integrationId() {
+        return Optional.ofNullable(this.integrationId);
+    }
+
     @Import(name="intervalMin")
     private @Nullable Output<Integer> intervalMin;
 
@@ -197,6 +204,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         this.delayMin = $.delayMin;
         this.emailAddress = $.emailAddress;
         this.emailEnabled = $.emailEnabled;
+        this.integrationId = $.integrationId;
         this.intervalMin = $.intervalMin;
         this.microsoftTeamsWebhookUrl = $.microsoftTeamsWebhookUrl;
         this.mobileNumber = $.mobileNumber;
@@ -295,6 +303,15 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
 
         public Builder emailEnabled(Boolean emailEnabled) {
             return emailEnabled(Output.of(emailEnabled));
+        }
+
+        public Builder integrationId(@Nullable Output<String> integrationId) {
+            $.integrationId = integrationId;
+            return this;
+        }
+
+        public Builder integrationId(String integrationId) {
+            return integrationId(Output.of(integrationId));
         }
 
         public Builder intervalMin(@Nullable Output<Integer> intervalMin) {

@@ -100,7 +100,7 @@ import * as utilities from "./utilities";
  *         }],
  *     }],
  *     autoScalingDiskGbEnabled: true,
- *     mongoDbMajorVersion: "4.2",
+ *     mongoDbMajorVersion: "7.0",
  *     providerName: "AZURE",
  *     providerDiskTypeName: "P4",
  *     providerInstanceSizeName: "M10",
@@ -134,7 +134,7 @@ import * as utilities from "./utilities";
  *         }],
  *     }],
  *     autoScalingDiskGbEnabled: false,
- *     mongoDbMajorVersion: "4.2",
+ *     mongoDbMajorVersion: "7.0",
  *     providerName: "AWS",
  *     providerInstanceSizeName: "M10",
  * });
@@ -186,7 +186,7 @@ import * as utilities from "./utilities";
  *         }],
  *     }],
  *     autoScalingDiskGbEnabled: false,
- *     mongoDbMajorVersion: "4.2",
+ *     mongoDbMajorVersion: "7.0",
  *     providerName: "AZURE",
  *     providerInstanceSizeName: "M10",
  * });

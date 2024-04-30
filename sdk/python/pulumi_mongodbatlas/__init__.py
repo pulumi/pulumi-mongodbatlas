@@ -105,6 +105,7 @@ from .get_project_api_keys import *
 from .get_project_invitation import *
 from .get_project_ip_access_list import *
 from .get_projects import *
+from .get_push_based_log_export import *
 from .get_roles_org_id import *
 from .get_search_deployment import *
 from .get_search_index import *
@@ -115,6 +116,10 @@ from .get_shared_tier_restore_job import *
 from .get_shared_tier_restore_jobs import *
 from .get_shared_tier_snapshot import *
 from .get_shared_tier_snapshots import *
+from .get_stream_connection import *
+from .get_stream_connections import *
+from .get_stream_instance import *
+from .get_stream_instances import *
 from .get_team import *
 from .get_teams import *
 from .get_third_party_integration import *
@@ -140,9 +145,12 @@ from .project_api_key import *
 from .project_invitation import *
 from .project_ip_access_list import *
 from .provider import *
+from .push_based_log_export import *
 from .search_deployment import *
 from .search_index import *
 from .serverless_instance import *
+from .stream_connection import *
+from .stream_instance import *
 from .team import *
 from .teams import *
 from .third_party_integration import *
@@ -522,6 +530,14 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/pushBasedLogExport",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport": "PushBasedLogExport"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/searchDeployment",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
@@ -542,6 +558,22 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/serverlessInstance:ServerlessInstance": "ServerlessInstance"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/streamConnection",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/streamConnection:StreamConnection": "StreamConnection"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/streamInstance",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/streamInstance:StreamInstance": "StreamInstance"
   }
  },
  {

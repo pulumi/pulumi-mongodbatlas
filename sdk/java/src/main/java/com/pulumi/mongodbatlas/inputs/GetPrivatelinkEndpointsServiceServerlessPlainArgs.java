@@ -33,38 +33,38 @@ public final class GetPrivatelinkEndpointsServiceServerlessPlainArgs extends com
 
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed in version 1.17.0
+     * This parameter is deprecated and will be removed in version 1.17.0.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
     @Import(name="itemsPerPage")
     private @Nullable Integer itemsPerPage;
 
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed in version 1.17.0
+     * This parameter is deprecated and will be removed in version 1.17.0.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
     public Optional<Integer> itemsPerPage() {
         return Optional.ofNullable(this.itemsPerPage);
     }
 
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed in version 1.17.0
+     * This parameter is deprecated and will be removed in version 1.17.0.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
     @Import(name="pageNum")
     private @Nullable Integer pageNum;
 
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed in version 1.17.0
+     * This parameter is deprecated and will be removed in version 1.17.0.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
     public Optional<Integer> pageNum() {
         return Optional.ofNullable(this.pageNum);
     }
@@ -126,10 +126,10 @@ public final class GetPrivatelinkEndpointsServiceServerlessPlainArgs extends com
          * @return builder
          * 
          * @deprecated
-         * this parameter is deprecated and will be removed in version 1.17.0
+         * This parameter is deprecated and will be removed in version 1.17.0.
          * 
          */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
         public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
             $.itemsPerPage = itemsPerPage;
             return this;
@@ -139,10 +139,10 @@ public final class GetPrivatelinkEndpointsServiceServerlessPlainArgs extends com
          * @return builder
          * 
          * @deprecated
-         * this parameter is deprecated and will be removed in version 1.17.0
+         * This parameter is deprecated and will be removed in version 1.17.0.
          * 
          */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
         public Builder pageNum(@Nullable Integer pageNum) {
             $.pageNum = pageNum;
             return this;

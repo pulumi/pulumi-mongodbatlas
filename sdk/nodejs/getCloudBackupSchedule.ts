@@ -67,6 +67,8 @@ export interface GetCloudBackupScheduleArgs {
 export interface GetCloudBackupScheduleResult {
     /**
      * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+     * * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      */
     readonly autoExportEnabled: boolean;
     /**
@@ -104,6 +106,10 @@ export interface GetCloudBackupScheduleResult {
      * Weekly policy item
      */
     readonly policyItemWeeklies: outputs.GetCloudBackupSchedulePolicyItemWeekly[];
+    /**
+     * Yearly policy item
+     */
+    readonly policyItemYearlies: outputs.GetCloudBackupSchedulePolicyItemYearly[];
     readonly projectId: string;
     /**
      * UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.

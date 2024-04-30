@@ -67,6 +67,13 @@ import (
 //						RetentionValue:    pulumi.Int(12),
 //					},
 //				},
+//				PolicyItemYearlies: mongodbatlas.CloudBackupSchedulePolicyItemYearlyArray{
+//					&mongodbatlas.CloudBackupSchedulePolicyItemYearlyArgs{
+//						FrequencyInterval: pulumi.Int(1),
+//						RetentionUnit:     pulumi.String("years"),
+//						RetentionValue:    pulumi.Int(1),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -116,6 +123,13 @@ import (
 //						RetentionValue:    pulumi.Int(12),
 //					},
 //				},
+//				PolicyItemYearlies: mongodbatlas.BackupCompliancePolicyPolicyItemYearlyArray{
+//					&mongodbatlas.BackupCompliancePolicyPolicyItemYearlyArgs{
+//						FrequencyInterval: pulumi.Int(1),
+//						RetentionUnit:     pulumi.String("years"),
+//						RetentionValue:    pulumi.Int(1),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -154,6 +168,7 @@ type BackupCompliancePolicy struct {
 	PolicyItemHourly    BackupCompliancePolicyPolicyItemHourlyPtrOutput    `pulumi:"policyItemHourly"`
 	PolicyItemMonthlies BackupCompliancePolicyPolicyItemMonthlyArrayOutput `pulumi:"policyItemMonthlies"`
 	PolicyItemWeeklies  BackupCompliancePolicyPolicyItemWeeklyArrayOutput  `pulumi:"policyItemWeeklies"`
+	PolicyItemYearlies  BackupCompliancePolicyPolicyItemYearlyArrayOutput  `pulumi:"policyItemYearlies"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -228,6 +243,7 @@ type backupCompliancePolicyState struct {
 	PolicyItemHourly    *BackupCompliancePolicyPolicyItemHourly   `pulumi:"policyItemHourly"`
 	PolicyItemMonthlies []BackupCompliancePolicyPolicyItemMonthly `pulumi:"policyItemMonthlies"`
 	PolicyItemWeeklies  []BackupCompliancePolicyPolicyItemWeekly  `pulumi:"policyItemWeeklies"`
+	PolicyItemYearlies  []BackupCompliancePolicyPolicyItemYearly  `pulumi:"policyItemYearlies"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId *string `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -258,6 +274,7 @@ type BackupCompliancePolicyState struct {
 	PolicyItemHourly    BackupCompliancePolicyPolicyItemHourlyPtrInput
 	PolicyItemMonthlies BackupCompliancePolicyPolicyItemMonthlyArrayInput
 	PolicyItemWeeklies  BackupCompliancePolicyPolicyItemWeeklyArrayInput
+	PolicyItemYearlies  BackupCompliancePolicyPolicyItemYearlyArrayInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringPtrInput
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -292,6 +309,7 @@ type backupCompliancePolicyArgs struct {
 	PolicyItemHourly    *BackupCompliancePolicyPolicyItemHourly   `pulumi:"policyItemHourly"`
 	PolicyItemMonthlies []BackupCompliancePolicyPolicyItemMonthly `pulumi:"policyItemMonthlies"`
 	PolicyItemWeeklies  []BackupCompliancePolicyPolicyItemWeekly  `pulumi:"policyItemWeeklies"`
+	PolicyItemYearlies  []BackupCompliancePolicyPolicyItemYearly  `pulumi:"policyItemYearlies"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -317,6 +335,7 @@ type BackupCompliancePolicyArgs struct {
 	PolicyItemHourly    BackupCompliancePolicyPolicyItemHourlyPtrInput
 	PolicyItemMonthlies BackupCompliancePolicyPolicyItemMonthlyArrayInput
 	PolicyItemWeeklies  BackupCompliancePolicyPolicyItemWeeklyArrayInput
+	PolicyItemYearlies  BackupCompliancePolicyPolicyItemYearlyArrayInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -468,6 +487,12 @@ func (o BackupCompliancePolicyOutput) PolicyItemWeeklies() BackupCompliancePolic
 	return o.ApplyT(func(v *BackupCompliancePolicy) BackupCompliancePolicyPolicyItemWeeklyArrayOutput {
 		return v.PolicyItemWeeklies
 	}).(BackupCompliancePolicyPolicyItemWeeklyArrayOutput)
+}
+
+func (o BackupCompliancePolicyOutput) PolicyItemYearlies() BackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicy) BackupCompliancePolicyPolicyItemYearlyArrayOutput {
+		return v.PolicyItemYearlies
+	}).(BackupCompliancePolicyPolicyItemYearlyArrayOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project.

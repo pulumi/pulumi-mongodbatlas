@@ -111,12 +111,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ProjectInvitation{}
 	case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
 		r = &ProjectIpAccessList{}
+	case "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport":
+		r = &PushBasedLogExport{}
 	case "mongodbatlas:index/searchDeployment:SearchDeployment":
 		r = &SearchDeployment{}
 	case "mongodbatlas:index/searchIndex:SearchIndex":
 		r = &SearchIndex{}
 	case "mongodbatlas:index/serverlessInstance:ServerlessInstance":
 		r = &ServerlessInstance{}
+	case "mongodbatlas:index/streamConnection:StreamConnection":
+		r = &StreamConnection{}
+	case "mongodbatlas:index/streamInstance:StreamInstance":
+		r = &StreamInstance{}
 	case "mongodbatlas:index/team:Team":
 		r = &Team{}
 	case "mongodbatlas:index/teams:Teams":
@@ -383,6 +389,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/pushBasedLogExport",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/searchDeployment",
 		&module{version},
 	)
@@ -394,6 +405,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/serverlessInstance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/streamConnection",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/streamInstance",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

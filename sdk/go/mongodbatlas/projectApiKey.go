@@ -106,13 +106,7 @@ type ProjectApiKey struct {
 	Description        pulumi.StringOutput                       `pulumi:"description"`
 	PrivateKey         pulumi.StringOutput                       `pulumi:"privateKey"`
 	ProjectAssignments ProjectApiKeyProjectAssignmentArrayOutput `pulumi:"projectAssignments"`
-	// Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-	//
-	// > **NOTE:** Project created by API Keys must belong to an existing organization.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
+	PublicKey          pulumi.StringOutput                       `pulumi:"publicKey"`
 }
 
 // NewProjectApiKey registers a new resource with the given unique name, arguments, and options.
@@ -161,13 +155,7 @@ type projectApiKeyState struct {
 	Description        *string                          `pulumi:"description"`
 	PrivateKey         *string                          `pulumi:"privateKey"`
 	ProjectAssignments []ProjectApiKeyProjectAssignment `pulumi:"projectAssignments"`
-	// Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-	//
-	// > **NOTE:** Project created by API Keys must belong to an existing organization.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	ProjectId *string `pulumi:"projectId"`
-	PublicKey *string `pulumi:"publicKey"`
+	PublicKey          *string                          `pulumi:"publicKey"`
 }
 
 type ProjectApiKeyState struct {
@@ -177,13 +165,7 @@ type ProjectApiKeyState struct {
 	Description        pulumi.StringPtrInput
 	PrivateKey         pulumi.StringPtrInput
 	ProjectAssignments ProjectApiKeyProjectAssignmentArrayInput
-	// Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-	//
-	// > **NOTE:** Project created by API Keys must belong to an existing organization.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	ProjectId pulumi.StringPtrInput
-	PublicKey pulumi.StringPtrInput
+	PublicKey          pulumi.StringPtrInput
 }
 
 func (ProjectApiKeyState) ElementType() reflect.Type {
@@ -194,12 +176,6 @@ type projectApiKeyArgs struct {
 	// Description of this Project API key.
 	Description        string                           `pulumi:"description"`
 	ProjectAssignments []ProjectApiKeyProjectAssignment `pulumi:"projectAssignments"`
-	// Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-	//
-	// > **NOTE:** Project created by API Keys must belong to an existing organization.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	ProjectId *string `pulumi:"projectId"`
 }
 
 // The set of arguments for constructing a ProjectApiKey resource.
@@ -207,12 +183,6 @@ type ProjectApiKeyArgs struct {
 	// Description of this Project API key.
 	Description        pulumi.StringInput
 	ProjectAssignments ProjectApiKeyProjectAssignmentArrayInput
-	// Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-	//
-	// > **NOTE:** Project created by API Keys must belong to an existing organization.
-	//
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	ProjectId pulumi.StringPtrInput
 }
 
 func (ProjectApiKeyArgs) ElementType() reflect.Type {
@@ -318,15 +288,6 @@ func (o ProjectApiKeyOutput) PrivateKey() pulumi.StringOutput {
 
 func (o ProjectApiKeyOutput) ProjectAssignments() ProjectApiKeyProjectAssignmentArrayOutput {
 	return o.ApplyT(func(v *ProjectApiKey) ProjectApiKeyProjectAssignmentArrayOutput { return v.ProjectAssignments }).(ProjectApiKeyProjectAssignmentArrayOutput)
-}
-
-// Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-//
-// > **NOTE:** Project created by API Keys must belong to an existing organization.
-//
-// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-func (o ProjectApiKeyOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v *ProjectApiKey) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 func (o ProjectApiKeyOutput) PublicKey() pulumi.StringOutput {

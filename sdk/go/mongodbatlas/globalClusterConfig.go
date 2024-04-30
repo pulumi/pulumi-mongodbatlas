@@ -130,7 +130,7 @@ import (
 //				},
 //				BackupEnabled:            pulumi.Bool(true),
 //				AutoScalingDiskGbEnabled: pulumi.Bool(true),
-//				MongoDbMajorVersion:      pulumi.String("4.0"),
+//				MongoDbMajorVersion:      pulumi.String("7.0"),
 //				ProviderName:             pulumi.String("AWS"),
 //				ProviderInstanceSizeName: pulumi.String("M40"),
 //			})

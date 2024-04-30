@@ -10,8 +10,6 @@ import com.pulumi.mongodbatlas.inputs.ProjectApiKeyProjectAssignmentArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
@@ -40,39 +38,11 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         return this.projectAssignments;
     }
 
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    @Import(name="projectId")
-    private @Nullable Output<String> projectId;
-
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    public Optional<Output<String>> projectId() {
-        return Optional.ofNullable(this.projectId);
-    }
-
     private ProjectApiKeyArgs() {}
 
     private ProjectApiKeyArgs(ProjectApiKeyArgs $) {
         this.description = $.description;
         this.projectAssignments = $.projectAssignments;
-        this.projectId = $.projectId;
     }
 
     public static Builder builder() {
@@ -125,39 +95,6 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder projectAssignments(ProjectApiKeyProjectAssignmentArgs... projectAssignments) {
             return projectAssignments(List.of(projectAssignments));
-        }
-
-        /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-         * 
-         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in version 1.16.0
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-        public Builder projectId(@Nullable Output<String> projectId) {
-            $.projectId = projectId;
-            return this;
-        }
-
-        /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-         * 
-         * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in version 1.16.0
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-        public Builder projectId(String projectId) {
-            return projectId(Output.of(projectId));
         }
 
         public ProjectApiKeyArgs build() {
