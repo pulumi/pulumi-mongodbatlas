@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,33 +50,34 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Project(&#34;test&#34;, ProjectArgs.builder()        
- *             .name(&#34;NAME OF THE PROJECT&#34;)
- *             .orgId(&#34;ORG ID&#34;)
+ *         var test = new Project("test", ProjectArgs.builder()        
+ *             .name("NAME OF THE PROJECT")
+ *             .orgId("ORG ID")
  *             .build());
  * 
- *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
+ *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
  *             .projectId(test.id())
- *             .name(&#34;NAME OF THE CLUSTER&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .providerRegionName(&#34;US_EAST_2&#34;)
- *             .providerInstanceSizeName(&#34;M10&#34;)
+ *             .name("NAME OF THE CLUSTER")
+ *             .providerName("AWS")
+ *             .providerRegionName("US_EAST_2")
+ *             .providerInstanceSizeName("M10")
  *             .cloudBackup(true)
  *             .build());
  * 
- *         var testLdapVerify = new LdapVerify(&#34;testLdapVerify&#34;, LdapVerifyArgs.builder()        
+ *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()        
  *             .projectId(test.id())
- *             .hostname(&#34;HOSTNAME&#34;)
+ *             .hostname("HOSTNAME")
  *             .port(636)
- *             .bindUsername(&#34;USERNAME&#34;)
- *             .bindPassword(&#34;PASSWORD&#34;)
+ *             .bindUsername("USERNAME")
+ *             .bindPassword("PASSWORD")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(testCluster)
  *                 .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

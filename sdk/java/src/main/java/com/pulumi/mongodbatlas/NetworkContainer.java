@@ -32,7 +32,8 @@ import javax.annotation.Nullable;
  * ### Example with AWS
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -53,22 +54,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new NetworkContainer(&#34;test&#34;, NetworkContainerArgs.builder()        
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .regionName(&#34;US_EAST_1&#34;)
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()        
+ *             .projectId("<YOUR-PROJECT-ID>")
+ *             .atlasCidrBlock("10.8.0.0/21")
+ *             .providerName("AWS")
+ *             .regionName("US_EAST_1")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example with GCP
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -89,24 +92,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new NetworkContainer(&#34;test&#34;, NetworkContainerArgs.builder()        
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
- *             .providerName(&#34;GCP&#34;)
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()        
+ *             .projectId("<YOUR-PROJECT-ID>")
+ *             .atlasCidrBlock("10.8.0.0/21")
+ *             .providerName("GCP")
  *             .regions(            
- *                 &#34;US_EAST_4&#34;,
- *                 &#34;US_WEST_3&#34;)
+ *                 "US_EAST_4",
+ *                 "US_WEST_3")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example with Azure
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -127,16 +132,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new NetworkContainer(&#34;test&#34;, NetworkContainerArgs.builder()        
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
- *             .providerName(&#34;AZURE&#34;)
- *             .region(&#34;US_EAST_2&#34;)
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()        
+ *             .projectId("<YOUR-PROJECT-ID>")
+ *             .atlasCidrBlock("10.8.0.0/21")
+ *             .providerName("AZURE")
+ *             .region("US_EAST_2")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

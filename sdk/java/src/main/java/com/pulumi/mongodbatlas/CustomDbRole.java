@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,42 +50,44 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testRole = new CustomDbRole(&#34;testRole&#34;, CustomDbRoleArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .roleName(&#34;myCustomRole&#34;)
+ *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
+ *             .roleName("myCustomRole")
  *             .actions(            
  *                 CustomDbRoleActionArgs.builder()
- *                     .action(&#34;UPDATE&#34;)
+ *                     .action("UPDATE")
  *                     .resources(CustomDbRoleActionResourceArgs.builder()
- *                         .collectionName(&#34;&#34;)
- *                         .databaseName(&#34;anyDatabase&#34;)
+ *                         .collectionName("")
+ *                         .databaseName("anyDatabase")
  *                         .build())
  *                     .build(),
  *                 CustomDbRoleActionArgs.builder()
- *                     .action(&#34;INSERT&#34;)
+ *                     .action("INSERT")
  *                     .resources(CustomDbRoleActionResourceArgs.builder()
- *                         .collectionName(&#34;&#34;)
- *                         .databaseName(&#34;anyDatabase&#34;)
+ *                         .collectionName("")
+ *                         .databaseName("anyDatabase")
  *                         .build())
  *                     .build(),
  *                 CustomDbRoleActionArgs.builder()
- *                     .action(&#34;REMOVE&#34;)
+ *                     .action("REMOVE")
  *                     .resources(CustomDbRoleActionResourceArgs.builder()
- *                         .collectionName(&#34;&#34;)
- *                         .databaseName(&#34;anyDatabase&#34;)
+ *                         .collectionName("")
+ *                         .databaseName("anyDatabase")
  *                         .build())
  *                     .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### With Inherited Roles
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -107,61 +110,62 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var inheritedRoleOne = new CustomDbRole(&#34;inheritedRoleOne&#34;, CustomDbRoleArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .roleName(&#34;insertRole&#34;)
+ *         var inheritedRoleOne = new CustomDbRole("inheritedRoleOne", CustomDbRoleArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
+ *             .roleName("insertRole")
  *             .actions(CustomDbRoleActionArgs.builder()
- *                 .action(&#34;INSERT&#34;)
+ *                 .action("INSERT")
  *                 .resources(CustomDbRoleActionResourceArgs.builder()
- *                     .collectionName(&#34;&#34;)
- *                     .databaseName(&#34;anyDatabase&#34;)
+ *                     .collectionName("")
+ *                     .databaseName("anyDatabase")
  *                     .build())
  *                 .build())
  *             .build());
  * 
- *         var inheritedRoleTwo = new CustomDbRole(&#34;inheritedRoleTwo&#34;, CustomDbRoleArgs.builder()        
+ *         var inheritedRoleTwo = new CustomDbRole("inheritedRoleTwo", CustomDbRoleArgs.builder()        
  *             .projectId(inheritedRoleOne.projectId())
- *             .roleName(&#34;statusServerRole&#34;)
+ *             .roleName("statusServerRole")
  *             .actions(CustomDbRoleActionArgs.builder()
- *                 .action(&#34;SERVER_STATUS&#34;)
+ *                 .action("SERVER_STATUS")
  *                 .resources(CustomDbRoleActionResourceArgs.builder()
  *                     .cluster(true)
  *                     .build())
  *                 .build())
  *             .build());
  * 
- *         var testRole = new CustomDbRole(&#34;testRole&#34;, CustomDbRoleArgs.builder()        
+ *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()        
  *             .projectId(inheritedRoleOne.projectId())
- *             .roleName(&#34;myCustomRole&#34;)
+ *             .roleName("myCustomRole")
  *             .actions(            
  *                 CustomDbRoleActionArgs.builder()
- *                     .action(&#34;UPDATE&#34;)
+ *                     .action("UPDATE")
  *                     .resources(CustomDbRoleActionResourceArgs.builder()
- *                         .collectionName(&#34;&#34;)
- *                         .databaseName(&#34;anyDatabase&#34;)
+ *                         .collectionName("")
+ *                         .databaseName("anyDatabase")
  *                         .build())
  *                     .build(),
  *                 CustomDbRoleActionArgs.builder()
- *                     .action(&#34;REMOVE&#34;)
+ *                     .action("REMOVE")
  *                     .resources(CustomDbRoleActionResourceArgs.builder()
- *                         .collectionName(&#34;&#34;)
- *                         .databaseName(&#34;anyDatabase&#34;)
+ *                         .collectionName("")
+ *                         .databaseName("anyDatabase")
  *                         .build())
  *                     .build())
  *             .inheritedRoles(            
  *                 CustomDbRoleInheritedRoleArgs.builder()
  *                     .roleName(inheritedRoleOne.roleName())
- *                     .databaseName(&#34;admin&#34;)
+ *                     .databaseName("admin")
  *                     .build(),
  *                 CustomDbRoleInheritedRoleArgs.builder()
  *                     .roleName(inheritedRoleTwo.roleName())
- *                     .databaseName(&#34;admin&#34;)
+ *                     .databaseName("admin")
  *                     .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

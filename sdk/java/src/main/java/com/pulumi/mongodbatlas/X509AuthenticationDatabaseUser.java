@@ -35,7 +35,8 @@ import javax.annotation.Nullable;
  * 
  * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -60,22 +61,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var user = new DatabaseUser(&#34;user&#34;, DatabaseUserArgs.builder()        
- *             .projectId(&#34;64b926dd56206839b1c8bae9&#34;)
- *             .username(&#34;myUsername&#34;)
- *             .x509Type(&#34;MANAGED&#34;)
- *             .databaseName(&#34;$external&#34;)
+ *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()        
+ *             .projectId("64b926dd56206839b1c8bae9")
+ *             .username("myUsername")
+ *             .x509Type("MANAGED")
+ *             .databaseName("$external")
  *             .roles(DatabaseUserRoleArgs.builder()
- *                 .roleName(&#34;atlasAdmin&#34;)
- *                 .databaseName(&#34;admin&#34;)
+ *                 .roleName("atlasAdmin")
+ *                 .databaseName("admin")
  *                 .build())
  *             .labels(DatabaseUserLabelArgs.builder()
- *                 .key(&#34;My Key&#34;)
- *                 .value(&#34;My Value&#34;)
+ *                 .key("My Key")
+ *                 .value("My Value")
  *                 .build())
  *             .build());
  * 
- *         var test = new X509AuthenticationDatabaseUser(&#34;test&#34;, X509AuthenticationDatabaseUserArgs.builder()        
+ *         var test = new X509AuthenticationDatabaseUser("test", X509AuthenticationDatabaseUserArgs.builder()        
  *             .projectId(user.projectId())
  *             .username(user.username())
  *             .monthsUntilExpiration(2)
@@ -83,12 +84,14 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Usage: Save a self-managed X.509 certificate for an Atlas project and use it with a dababase user
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -113,9 +116,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new X509AuthenticationDatabaseUser(&#34;test&#34;, X509AuthenticationDatabaseUserArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .customerX509Cas(&#34;&#34;&#34;
+ *         var test = new X509AuthenticationDatabaseUser("test", X509AuthenticationDatabaseUserArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
+ *             .customerX509Cas("""
  * -----BEGIN CERTIFICATE-----
  * MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
  * VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
@@ -131,28 +134,29 @@ import javax.annotation.Nullable;
  * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
  * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
  * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
- * -----END CERTIFICATE-----&#34;
- *             &#34;&#34;&#34;)
+ * -----END CERTIFICATE-----"
+ *             """)
  *             .build());
  * 
- *         var user = new DatabaseUser(&#34;user&#34;, DatabaseUserArgs.builder()        
- *             .projectId(&#34;64b926dd56206839b1c8bae9&#34;)
- *             .username(&#34;myUsername&#34;)
- *             .x509Type(&#34;CUSTOMER&#34;)
- *             .databaseName(&#34;$external&#34;)
+ *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()        
+ *             .projectId("64b926dd56206839b1c8bae9")
+ *             .username("myUsername")
+ *             .x509Type("CUSTOMER")
+ *             .databaseName("$external")
  *             .roles(DatabaseUserRoleArgs.builder()
- *                 .roleName(&#34;atlasAdmin&#34;)
- *                 .databaseName(&#34;admin&#34;)
+ *                 .roleName("atlasAdmin")
+ *                 .databaseName("admin")
  *                 .build())
  *             .labels(DatabaseUserLabelArgs.builder()
- *                 .key(&#34;My Key&#34;)
- *                 .value(&#34;My Value&#34;)
+ *                 .key("My Key")
+ *                 .value("My Value")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

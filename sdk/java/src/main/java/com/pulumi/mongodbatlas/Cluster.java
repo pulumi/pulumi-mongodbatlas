@@ -31,7 +31,8 @@ import javax.annotation.Nullable;
  * ### Example AWS cluster
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -53,14 +54,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .name(&#34;cluster-test&#34;)
- *             .clusterType(&#34;REPLICASET&#34;)
+ *         var cluster_test = new Cluster("cluster-test", ClusterArgs.builder()        
+ *             .projectId("<YOUR-PROJECT-ID>")
+ *             .name("cluster-test")
+ *             .clusterType("REPLICASET")
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
  *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .regionName(&#34;US_EAST_1&#34;)
+ *                     .regionName("US_EAST_1")
  *                     .electableNodes(3)
  *                     .priority(7)
  *                     .readOnlyNodes(0)
@@ -68,20 +69,22 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .cloudBackup(true)
  *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion(&#34;7.0&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .providerInstanceSizeName(&#34;M40&#34;)
+ *             .mongoDbMajorVersion("7.0")
+ *             .providerName("AWS")
+ *             .providerInstanceSizeName("M40")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Azure cluster.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -103,14 +106,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .name(&#34;test&#34;)
- *             .clusterType(&#34;REPLICASET&#34;)
+ *         var test = new Cluster("test", ClusterArgs.builder()        
+ *             .projectId("<YOUR-PROJECT-ID>")
+ *             .name("test")
+ *             .clusterType("REPLICASET")
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
  *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .regionName(&#34;US_EAST&#34;)
+ *                     .regionName("US_EAST")
  *                     .electableNodes(3)
  *                     .priority(7)
  *                     .readOnlyNodes(0)
@@ -118,21 +121,23 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .cloudBackup(true)
  *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion(&#34;7.0&#34;)
- *             .providerName(&#34;AZURE&#34;)
- *             .providerDiskTypeName(&#34;P6&#34;)
- *             .providerInstanceSizeName(&#34;M30&#34;)
+ *             .mongoDbMajorVersion("7.0")
+ *             .providerName("AZURE")
+ *             .providerDiskTypeName("P6")
+ *             .providerInstanceSizeName("M30")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example GCP cluster
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -154,14 +159,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .name(&#34;test&#34;)
- *             .clusterType(&#34;REPLICASET&#34;)
+ *         var test = new Cluster("test", ClusterArgs.builder()        
+ *             .projectId("<YOUR-PROJECT-ID>")
+ *             .name("test")
+ *             .clusterType("REPLICASET")
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
  *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .regionName(&#34;EASTERN_US&#34;)
+ *                     .regionName("EASTERN_US")
  *                     .electableNodes(3)
  *                     .priority(7)
  *                     .readOnlyNodes(0)
@@ -169,20 +174,22 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .cloudBackup(true)
  *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion(&#34;7.0&#34;)
- *             .providerName(&#34;GCP&#34;)
- *             .providerInstanceSizeName(&#34;M30&#34;)
+ *             .mongoDbMajorVersion("7.0")
+ *             .providerName("GCP")
+ *             .providerInstanceSizeName("M30")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Multi Region cluster
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -204,31 +211,31 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .name(&#34;cluster-test-multi-region&#34;)
+ *         var cluster_test = new Cluster("cluster-test", ClusterArgs.builder()        
+ *             .projectId("<YOUR-PROJECT-ID>")
+ *             .name("cluster-test-multi-region")
  *             .numShards(1)
  *             .cloudBackup(true)
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .providerInstanceSizeName(&#34;M10&#34;)
+ *             .clusterType("REPLICASET")
+ *             .providerName("AWS")
+ *             .providerInstanceSizeName("M10")
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
  *                 .regionsConfigs(                
  *                     ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .regionName(&#34;US_EAST_1&#34;)
+ *                         .regionName("US_EAST_1")
  *                         .electableNodes(3)
  *                         .priority(7)
  *                         .readOnlyNodes(0)
  *                         .build(),
  *                     ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .regionName(&#34;US_EAST_2&#34;)
+ *                         .regionName("US_EAST_2")
  *                         .electableNodes(2)
  *                         .priority(6)
  *                         .readOnlyNodes(0)
  *                         .build(),
  *                     ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .regionName(&#34;US_WEST_1&#34;)
+ *                         .regionName("US_WEST_1")
  *                         .electableNodes(2)
  *                         .priority(5)
  *                         .readOnlyNodes(2)
@@ -238,13 +245,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Global cluster
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -266,30 +275,30 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .name(&#34;cluster-test-global&#34;)
+ *         var cluster_test = new Cluster("cluster-test", ClusterArgs.builder()        
+ *             .projectId("<YOUR-PROJECT-ID>")
+ *             .name("cluster-test-global")
  *             .numShards(1)
  *             .cloudBackup(true)
- *             .clusterType(&#34;GEOSHARDED&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .providerInstanceSizeName(&#34;M30&#34;)
+ *             .clusterType("GEOSHARDED")
+ *             .providerName("AWS")
+ *             .providerInstanceSizeName("M30")
  *             .replicationSpecs(            
  *                 ClusterReplicationSpecArgs.builder()
- *                     .zoneName(&#34;Zone 1&#34;)
+ *                     .zoneName("Zone 1")
  *                     .numShards(2)
  *                     .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .regionName(&#34;US_EAST_1&#34;)
+ *                         .regionName("US_EAST_1")
  *                         .electableNodes(3)
  *                         .priority(7)
  *                         .readOnlyNodes(0)
  *                         .build())
  *                     .build(),
  *                 ClusterReplicationSpecArgs.builder()
- *                     .zoneName(&#34;Zone 2&#34;)
+ *                     .zoneName("Zone 2")
  *                     .numShards(2)
  *                     .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .regionName(&#34;EU_CENTRAL_1&#34;)
+ *                         .regionName("EU_CENTRAL_1")
  *                         .electableNodes(3)
  *                         .priority(7)
  *                         .readOnlyNodes(0)
@@ -299,11 +308,13 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * ### Example AWS Shared Tier (M2/M5) cluster
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -324,22 +335,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .name(&#34;cluster-test-global&#34;)
- *             .providerName(&#34;TENANT&#34;)
- *             .backingProviderName(&#34;AWS&#34;)
- *             .providerRegionName(&#34;US_EAST_1&#34;)
- *             .providerInstanceSizeName(&#34;M2&#34;)
+ *         var cluster_test = new Cluster("cluster-test", ClusterArgs.builder()        
+ *             .projectId("<YOUR-PROJECT-ID>")
+ *             .name("cluster-test-global")
+ *             .providerName("TENANT")
+ *             .backingProviderName("AWS")
+ *             .providerRegionName("US_EAST_1")
+ *             .providerInstanceSizeName("M2")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * ### Example AWS Free Tier cluster
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -360,23 +373,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .name(&#34;cluster-test-global&#34;)
- *             .providerName(&#34;TENANT&#34;)
- *             .backingProviderName(&#34;AWS&#34;)
- *             .providerRegionName(&#34;US_EAST_1&#34;)
- *             .providerInstanceSizeName(&#34;M0&#34;)
+ *         var cluster_test = new Cluster("cluster-test", ClusterArgs.builder()        
+ *             .projectId("<YOUR-PROJECT-ID>")
+ *             .name("cluster-test-global")
+ *             .providerName("TENANT")
+ *             .backingProviderName("AWS")
+ *             .providerRegionName("US_EAST_1")
+ *             .providerInstanceSizeName("M0")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * ### Example - Return a Connection String
  * Standard
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -395,14 +410,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export(&#34;standard&#34;, cluster_test.connectionStrings()[0].standard());
+ *         ctx.export("standard", cluster_test.connectionStrings()[0].standard());
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * Standard srv
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -421,10 +438,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export(&#34;standardSrv&#34;, cluster_test.connectionStrings()[0].standardSrv());
+ *         ctx.export("standardSrv", cluster_test.connectionStrings()[0].standardSrv());
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * Private with Network peering and Custom DNS AWS enabled
  * ## Import

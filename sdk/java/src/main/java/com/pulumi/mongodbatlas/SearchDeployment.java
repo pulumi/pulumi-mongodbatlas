@@ -29,7 +29,8 @@ import javax.annotation.Nullable;
  * ### S
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -58,33 +59,33 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleProject = new Project(&#34;exampleProject&#34;, ProjectArgs.builder()        
- *             .name(&#34;project-name&#34;)
+ *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()        
+ *             .name("project-name")
  *             .orgId(orgId)
  *             .build());
  * 
- *         var exampleAdvancedCluster = new AdvancedCluster(&#34;exampleAdvancedCluster&#34;, AdvancedClusterArgs.builder()        
+ *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()        
  *             .projectId(exampleProject.id())
- *             .name(&#34;ClusterExample&#34;)
- *             .clusterType(&#34;REPLICASET&#34;)
+ *             .name("ClusterExample")
+ *             .clusterType("REPLICASET")
  *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
  *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                         .instanceSize(&#34;M10&#34;)
+ *                         .instanceSize("M10")
  *                         .nodeCount(3)
  *                         .build())
- *                     .providerName(&#34;AWS&#34;)
+ *                     .providerName("AWS")
  *                     .priority(7)
- *                     .regionName(&#34;US_EAST_1&#34;)
+ *                     .regionName("US_EAST_1")
  *                     .build())
  *                 .build())
  *             .build());
  * 
- *         var exampleSearchDeployment = new SearchDeployment(&#34;exampleSearchDeployment&#34;, SearchDeploymentArgs.builder()        
+ *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()        
  *             .projectId(exampleProject.id())
  *             .clusterName(exampleAdvancedCluster.name())
  *             .specs(SearchDeploymentSpecArgs.builder()
- *                 .instance_size(&#34;S20_HIGHCPU_NVME&#34;)
+ *                 .instance_size("S20_HIGHCPU_NVME")
  *                 .node_count(2)
  *                 .build())
  *             .build());
@@ -94,10 +95,11 @@ import javax.annotation.Nullable;
  *             .clusterName(exampleSearchDeployment.clusterName())
  *             .build());
  * 
- *         ctx.export(&#34;mongodbatlasSearchDeploymentId&#34;, example.applyValue(getSearchDeploymentResult -&gt; getSearchDeploymentResult).applyValue(example -&gt; example.applyValue(getSearchDeploymentResult -&gt; getSearchDeploymentResult.id())));
+ *         ctx.export("mongodbatlasSearchDeploymentId", example.applyValue(getSearchDeploymentResult -> getSearchDeploymentResult).applyValue(example -> example.applyValue(getSearchDeploymentResult -> getSearchDeploymentResult.id())));
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

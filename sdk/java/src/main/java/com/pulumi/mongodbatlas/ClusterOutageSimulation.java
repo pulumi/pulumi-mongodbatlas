@@ -34,7 +34,8 @@ import javax.annotation.Nullable;
  * ### S
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -56,23 +57,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var outageSimulation = new ClusterOutageSimulation(&#34;outageSimulation&#34;, ClusterOutageSimulationArgs.builder()        
- *             .projectId(&#34;64707f06c519c20c3a2b1b03&#34;)
- *             .clusterName(&#34;Cluster0&#34;)
+ *         var outageSimulation = new ClusterOutageSimulation("outageSimulation", ClusterOutageSimulationArgs.builder()        
+ *             .projectId("64707f06c519c20c3a2b1b03")
+ *             .clusterName("Cluster0")
  *             .outageFilters(            
  *                 ClusterOutageSimulationOutageFilterArgs.builder()
- *                     .cloudProvider(&#34;AWS&#34;)
- *                     .regionName(&#34;US_EAST_1&#34;)
+ *                     .cloudProvider("AWS")
+ *                     .regionName("US_EAST_1")
  *                     .build(),
  *                 ClusterOutageSimulationOutageFilterArgs.builder()
- *                     .cloudProvider(&#34;AWS&#34;)
- *                     .regionName(&#34;US_EAST_2&#34;)
+ *                     .cloudProvider("AWS")
+ *                     .regionName("US_EAST_2")
  *                     .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ### Example Cluster Connection
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,23 +50,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new StreamConnection(&#34;test&#34;, StreamConnectionArgs.builder()        
+ *         var test = new StreamConnection("test", StreamConnectionArgs.builder()        
  *             .projectId(projectId)
- *             .instanceName(&#34;InstanceName&#34;)
- *             .connectionName(&#34;ConnectionName&#34;)
- *             .type(&#34;Cluster&#34;)
- *             .clusterName(&#34;Cluster0&#34;)
+ *             .instanceName("InstanceName")
+ *             .connectionName("ConnectionName")
+ *             .type("Cluster")
+ *             .clusterName("Cluster0")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Kafka Plaintext Connection
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -88,32 +91,34 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new StreamConnection(&#34;test&#34;, StreamConnectionArgs.builder()        
+ *         var test = new StreamConnection("test", StreamConnectionArgs.builder()        
  *             .projectId(projectId)
- *             .instanceName(&#34;NewInstance&#34;)
- *             .connectionName(&#34;KafkaConnection&#34;)
- *             .type(&#34;Kafka&#34;)
+ *             .instanceName("NewInstance")
+ *             .connectionName("KafkaConnection")
+ *             .type("Kafka")
  *             .authentication(StreamConnectionAuthenticationArgs.builder()
- *                 .mechanism(&#34;SCRAM-256&#34;)
- *                 .username(&#34;user&#34;)
- *                 .password(&#34;somepassword&#34;)
+ *                 .mechanism("SCRAM-256")
+ *                 .username("user")
+ *                 .password("somepassword")
  *                 .build())
  *             .security(StreamConnectionSecurityArgs.builder()
- *                 .protocol(&#34;PLAINTEXT&#34;)
+ *                 .protocol("PLAINTEXT")
  *                 .build())
- *             .config(Map.of(&#34;auto.offset.reset&#34;, &#34;latest&#34;))
- *             .bootstrapServers(&#34;localhost:9091,localhost:9092&#34;)
+ *             .config(Map.of("auto.offset.reset", "latest"))
+ *             .bootstrapServers("localhost:9091,localhost:9092")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Kafka SSL Connection
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -136,27 +141,28 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new StreamConnection(&#34;test&#34;, StreamConnectionArgs.builder()        
+ *         var test = new StreamConnection("test", StreamConnectionArgs.builder()        
  *             .projectId(projectId)
- *             .instanceName(&#34;NewInstance&#34;)
- *             .connectionName(&#34;KafkaConnection&#34;)
- *             .type(&#34;Kafka&#34;)
+ *             .instanceName("NewInstance")
+ *             .connectionName("KafkaConnection")
+ *             .type("Kafka")
  *             .authentication(StreamConnectionAuthenticationArgs.builder()
- *                 .mechanism(&#34;PLAIN&#34;)
- *                 .username(&#34;user&#34;)
- *                 .password(&#34;somepassword&#34;)
+ *                 .mechanism("PLAIN")
+ *                 .username("user")
+ *                 .password("somepassword")
  *                 .build())
  *             .security(StreamConnectionSecurityArgs.builder()
- *                 .protocol(&#34;SSL&#34;)
- *                 .broker_public_certificate(&#34;-----BEGIN CERTIFICATE-----&lt;CONTENT&gt;-----END CERTIFICATE-----&#34;)
+ *                 .protocol("SSL")
+ *                 .broker_public_certificate("-----BEGIN CERTIFICATE-----<CONTENT>-----END CERTIFICATE-----")
  *                 .build())
- *             .config(Map.of(&#34;auto.offset.reset&#34;, &#34;latest&#34;))
- *             .bootstrapServers(&#34;localhost:9091,localhost:9092&#34;)
+ *             .config(Map.of("auto.offset.reset", "latest"))
+ *             .bootstrapServers("localhost:9091,localhost:9092")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

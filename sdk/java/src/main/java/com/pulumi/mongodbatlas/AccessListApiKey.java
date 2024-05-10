@@ -18,7 +18,8 @@ import javax.annotation.Nullable;
  * 
  * ### Using CIDR Block
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -39,20 +40,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AccessListApiKey(&#34;test&#34;, AccessListApiKeyArgs.builder()        
- *             .orgId(&#34;&lt;ORG-ID&gt;&#34;)
- *             .cidrBlock(&#34;1.2.3.4/32&#34;)
- *             .apiKeyId(&#34;a29120e123cd&#34;)
+ *         var test = new AccessListApiKey("test", AccessListApiKeyArgs.builder()        
+ *             .orgId("<ORG-ID>")
+ *             .cidrBlock("1.2.3.4/32")
+ *             .apiKeyId("a29120e123cd")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Using IP Address
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -73,15 +76,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AccessListApiKey(&#34;test&#34;, AccessListApiKeyArgs.builder()        
- *             .orgId(&#34;&lt;ORG-ID&gt;&#34;)
- *             .ipAddress(&#34;2.3.4.5&#34;)
- *             .apiKeyId(&#34;a29120e123cd&#34;)
+ *         var test = new AccessListApiKey("test", AccessListApiKeyArgs.builder()        
+ *             .orgId("<ORG-ID>")
+ *             .ipAddress("2.3.4.5")
+ *             .apiKeyId("a29120e123cd")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

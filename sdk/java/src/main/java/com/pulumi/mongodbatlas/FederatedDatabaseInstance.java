@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ### S With MongoDB Atlas Cluster As Storage Database
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -52,40 +53,42 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new FederatedDatabaseInstance(&#34;test&#34;, FederatedDatabaseInstanceArgs.builder()        
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .name(&#34;TENANT NAME OF THE FEDERATED DATABASE INSTANCE&#34;)
+ *         var test = new FederatedDatabaseInstance("test", FederatedDatabaseInstanceArgs.builder()        
+ *             .projectId("PROJECT ID")
+ *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
  *             .storageDatabases(FederatedDatabaseInstanceStorageDatabaseArgs.builder()
- *                 .name(&#34;VirtualDatabase0&#34;)
+ *                 .name("VirtualDatabase0")
  *                 .collections(FederatedDatabaseInstanceStorageDatabaseCollectionArgs.builder()
- *                     .name(&#34;NAME OF THE COLLECTION&#34;)
+ *                     .name("NAME OF THE COLLECTION")
  *                     .dataSources(FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs.builder()
- *                         .collection(&#34;COLLECTION IN THE CLUSTER&#34;)
- *                         .database(&#34;DB IN THE CLUSTER&#34;)
- *                         .storeName(&#34;CLUSTER NAME&#34;)
+ *                         .collection("COLLECTION IN THE CLUSTER")
+ *                         .database("DB IN THE CLUSTER")
+ *                         .storeName("CLUSTER NAME")
  *                         .build())
  *                     .build())
  *                 .build())
  *             .storageStores(FederatedDatabaseInstanceStorageStoreArgs.builder()
- *                 .name(&#34;STORE 1 NAME&#34;)
- *                 .clusterName(&#34;CLUSTER NAME&#34;)
- *                 .projectId(&#34;PROJECT ID&#34;)
- *                 .provider(&#34;atlas&#34;)
+ *                 .name("STORE 1 NAME")
+ *                 .clusterName("CLUSTER NAME")
+ *                 .projectId("PROJECT ID")
+ *                 .provider("atlas")
  *                 .readPreference(FederatedDatabaseInstanceStorageStoreReadPreferenceArgs.builder()
- *                     .mode(&#34;secondary&#34;)
+ *                     .mode("secondary")
  *                     .build())
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### S With Amazon S3 Bucket As Storage Database
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -111,54 +114,55 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new FederatedDatabaseInstance(&#34;test&#34;, FederatedDatabaseInstanceArgs.builder()        
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .name(&#34;TENANT NAME OF THE FEDERATED DATABASE INSTANCE&#34;)
+ *         var test = new FederatedDatabaseInstance("test", FederatedDatabaseInstanceArgs.builder()        
+ *             .projectId("PROJECT ID")
+ *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
  *             .cloudProviderConfig(FederatedDatabaseInstanceCloudProviderConfigArgs.builder()
  *                 .aws(FederatedDatabaseInstanceCloudProviderConfigAwsArgs.builder()
- *                     .roleId(&#34;AWS ROLE ID&#34;)
- *                     .testS3Bucket(&#34;S3 BUCKET NAME&#34;)
+ *                     .roleId("AWS ROLE ID")
+ *                     .testS3Bucket("S3 BUCKET NAME")
  *                     .build())
  *                 .build())
  *             .storageDatabases(FederatedDatabaseInstanceStorageDatabaseArgs.builder()
- *                 .name(&#34;VirtualDatabase0&#34;)
+ *                 .name("VirtualDatabase0")
  *                 .collections(FederatedDatabaseInstanceStorageDatabaseCollectionArgs.builder()
- *                     .name(&#34;NAME OF THE COLLECTION&#34;)
+ *                     .name("NAME OF THE COLLECTION")
  *                     .dataSources(                    
  *                         FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs.builder()
- *                             .collection(&#34;COLLECTION IN THE CLUSTER&#34;)
- *                             .database(&#34;DB IN THE CLUSTER&#34;)
- *                             .storeName(&#34;CLUSTER NAME&#34;)
+ *                             .collection("COLLECTION IN THE CLUSTER")
+ *                             .database("DB IN THE CLUSTER")
+ *                             .storeName("CLUSTER NAME")
  *                             .build(),
  *                         FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs.builder()
- *                             .storeName(&#34;S3 BUCKET NAME&#34;)
- *                             .path(&#34;S3 BUCKET PATH&#34;)
+ *                             .storeName("S3 BUCKET NAME")
+ *                             .path("S3 BUCKET PATH")
  *                             .build())
  *                     .build())
  *                 .build())
  *             .storageStores(            
  *                 FederatedDatabaseInstanceStorageStoreArgs.builder()
- *                     .name(&#34;STORE 1 NAME&#34;)
- *                     .clusterName(&#34;CLUSTER NAME&#34;)
- *                     .projectId(&#34;PROJECT ID&#34;)
- *                     .provider(&#34;atlas&#34;)
+ *                     .name("STORE 1 NAME")
+ *                     .clusterName("CLUSTER NAME")
+ *                     .projectId("PROJECT ID")
+ *                     .provider("atlas")
  *                     .readPreference(FederatedDatabaseInstanceStorageStoreReadPreferenceArgs.builder()
- *                         .mode(&#34;secondary&#34;)
+ *                         .mode("secondary")
  *                         .build())
  *                     .build(),
  *                 FederatedDatabaseInstanceStorageStoreArgs.builder()
- *                     .bucket(&#34;STORE 2 NAME&#34;)
- *                     .delimiter(&#34;/&#34;)
- *                     .name(&#34;S3 BUCKET NAME&#34;)
- *                     .prefix(&#34;S3 BUCKET PREFIX&#34;)
- *                     .provider(&#34;s3&#34;)
- *                     .region(&#34;AWS REGION&#34;)
+ *                     .bucket("STORE 2 NAME")
+ *                     .delimiter("/")
+ *                     .name("S3 BUCKET NAME")
+ *                     .prefix("S3 BUCKET PREFIX")
+ *                     .provider("s3")
+ *                     .region("AWS REGION")
  *                     .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

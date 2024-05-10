@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * 
  * ### Basic
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,17 +50,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ServerlessInstance(&#34;test&#34;, ServerlessInstanceArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
- *             .name(&#34;&lt;SERVERLESS_INSTANCE_NAME&gt;&#34;)
- *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
- *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
- *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+ *         var test = new ServerlessInstance("test", ServerlessInstanceArgs.builder()        
+ *             .projectId("<PROJECT_ID>")
+ *             .name("<SERVERLESS_INSTANCE_NAME>")
+ *             .providerSettingsBackingProviderName("AWS")
+ *             .providerSettingsProviderName("SERVERLESS")
+ *             .providerSettingsRegionName("US_EAST_1")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\

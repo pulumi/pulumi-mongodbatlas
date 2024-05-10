@@ -38,7 +38,8 @@ import javax.annotation.Nullable;
  * ### Example with AWS
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -65,40 +66,42 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Container example provided but not always required, 
  *         // see network_container documentation for details. 
- *         var test = new NetworkContainer(&#34;test&#34;, NetworkContainerArgs.builder()        
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()        
  *             .projectId(projectId)
- *             .atlasCidrBlock(&#34;10.8.0.0/21&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .regionName(&#34;US_EAST_1&#34;)
+ *             .atlasCidrBlock("10.8.0.0/21")
+ *             .providerName("AWS")
+ *             .regionName("US_EAST_1")
  *             .build());
  * 
  *         // Create the peering connection request
- *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
- *             .accepterRegionName(&#34;us-east-1&#34;)
+ *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+ *             .accepterRegionName("us-east-1")
  *             .projectId(projectId)
- *             .containerId(&#34;507f1f77bcf86cd799439011&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .routeTableCidrBlock(&#34;192.168.0.0/24&#34;)
- *             .vpcId(&#34;vpc-abc123abc123&#34;)
- *             .awsAccountId(&#34;abc123abc123&#34;)
+ *             .containerId("507f1f77bcf86cd799439011")
+ *             .providerName("AWS")
+ *             .routeTableCidrBlock("192.168.0.0/24")
+ *             .vpcId("vpc-abc123abc123")
+ *             .awsAccountId("abc123abc123")
  *             .build());
  * 
  *         // the following assumes an AWS provider is configured
  *         // Accept the peering connection request
- *         var peer = new VpcPeeringConnectionAccepter(&#34;peer&#34;, VpcPeeringConnectionAccepterArgs.builder()        
+ *         var peer = new VpcPeeringConnectionAccepter("peer", VpcPeeringConnectionAccepterArgs.builder()        
  *             .vpcPeeringConnectionId(testNetworkPeering.connectionId())
  *             .autoAccept(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example with Azure
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -129,18 +132,18 @@ import javax.annotation.Nullable;
  *         // see https://docs.atlas.mongodb.com/security-vpc-peering/
  *         // Container example provided but not always required, 
  *         // see network_container documentation for details. 
- *         var test = new NetworkContainer(&#34;test&#34;, NetworkContainerArgs.builder()        
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()        
  *             .projectId(projectId)
  *             .atlasCidrBlock(ATLAS_CIDR_BLOCK)
- *             .providerName(&#34;AZURE&#34;)
- *             .region(&#34;US_EAST_2&#34;)
+ *             .providerName("AZURE")
+ *             .region("US_EAST_2")
  *             .build());
  * 
  *         // Create the peering connection request
- *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
+ *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
  *             .projectId(projectId)
  *             .containerId(test.containerId())
- *             .providerName(&#34;AZURE&#34;)
+ *             .providerName("AZURE")
  *             .azureDirectoryId(AZURE_DIRECTORY_ID)
  *             .azureSubscriptionId(AZURE_SUBSCRIPTION_ID)
  *             .resourceGroupName(AZURE_RESOURCES_GROUP_NAME)
@@ -148,31 +151,32 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Create the cluster once the peering connection is completed
- *         var testCluster = new Cluster(&#34;testCluster&#34;, ClusterArgs.builder()        
+ *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
  *             .projectId(projectId)
- *             .name(&#34;terraform-manually-test&#34;)
- *             .clusterType(&#34;REPLICASET&#34;)
+ *             .name("terraform-manually-test")
+ *             .clusterType("REPLICASET")
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
  *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .regionName(&#34;US_EAST_2&#34;)
+ *                     .regionName("US_EAST_2")
  *                     .electableNodes(3)
  *                     .priority(7)
  *                     .readOnlyNodes(0)
  *                     .build())
  *                 .build())
  *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion(&#34;7.0&#34;)
- *             .providerName(&#34;AZURE&#34;)
- *             .providerDiskTypeName(&#34;P4&#34;)
- *             .providerInstanceSizeName(&#34;M10&#34;)
+ *             .mongoDbMajorVersion("7.0")
+ *             .providerName("AZURE")
+ *             .providerDiskTypeName("P4")
+ *             .providerInstanceSizeName("M10")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(testNetworkPeering)
  *                 .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Peering Connection Only, Container Exists
@@ -180,7 +184,8 @@ import javax.annotation.Nullable;
  * 
  * ### Example with AWS
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -210,43 +215,43 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Create an Atlas cluster, this creates a container if one
  *         // does not yet exist for this AWS region
- *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
+ *         var test = new Cluster("test", ClusterArgs.builder()        
  *             .projectId(projectId)
- *             .name(&#34;terraform-test&#34;)
- *             .clusterType(&#34;REPLICASET&#34;)
+ *             .name("terraform-test")
+ *             .clusterType("REPLICASET")
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
  *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .regionName(&#34;US_EAST_2&#34;)
+ *                     .regionName("US_EAST_2")
  *                     .electableNodes(3)
  *                     .priority(7)
  *                     .readOnlyNodes(0)
  *                     .build())
  *                 .build())
  *             .autoScalingDiskGbEnabled(false)
- *             .mongoDbMajorVersion(&#34;7.0&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .providerInstanceSizeName(&#34;M10&#34;)
+ *             .mongoDbMajorVersion("7.0")
+ *             .providerName("AWS")
+ *             .providerInstanceSizeName("M10")
  *             .build());
  * 
  *         // the following assumes an AWS provider is configured
- *         var default_ = new DefaultVpc(&#34;default&#34;, DefaultVpcArgs.builder()        
+ *         var default_ = new DefaultVpc("default", DefaultVpcArgs.builder()        
  *             .tags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .build());
  * 
  *         // Create the peering connection request
- *         var mongoPeer = new NetworkPeering(&#34;mongoPeer&#34;, NetworkPeeringArgs.builder()        
- *             .accepterRegionName(&#34;us-east-2&#34;)
+ *         var mongoPeer = new NetworkPeering("mongoPeer", NetworkPeeringArgs.builder()        
+ *             .accepterRegionName("us-east-2")
  *             .projectId(projectId)
  *             .containerId(test.containerId())
- *             .providerName(&#34;AWS&#34;)
- *             .routeTableCidrBlock(&#34;172.31.0.0/16&#34;)
+ *             .providerName("AWS")
+ *             .routeTableCidrBlock("172.31.0.0/16")
  *             .vpcId(default_.id())
  *             .awsAccountId(AWS_ACCOUNT_ID)
  *             .build());
  * 
  *         // Accept the connection 
- *         var awsPeer = new VpcPeeringConnectionAccepter(&#34;awsPeer&#34;, VpcPeeringConnectionAccepterArgs.builder()        
+ *         var awsPeer = new VpcPeeringConnectionAccepter("awsPeer", VpcPeeringConnectionAccepterArgs.builder()        
  *             .vpcPeeringConnectionId(mongoPeer.connectionId())
  *             .autoAccept(true)
  *             .tags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
@@ -254,13 +259,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example with Azure
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -288,30 +295,30 @@ import javax.annotation.Nullable;
  *         // see https://docs.atlas.mongodb.com/security-vpc-peering/
  *         // Create an Atlas cluster, this creates a container if one
  *         // does not yet exist for this AZURE region
- *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
+ *         var test = new Cluster("test", ClusterArgs.builder()        
  *             .projectId(projectId)
- *             .name(&#34;cluster-azure&#34;)
- *             .clusterType(&#34;REPLICASET&#34;)
+ *             .name("cluster-azure")
+ *             .clusterType("REPLICASET")
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
  *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .regionName(&#34;US_EAST_2&#34;)
+ *                     .regionName("US_EAST_2")
  *                     .electableNodes(3)
  *                     .priority(7)
  *                     .readOnlyNodes(0)
  *                     .build())
  *                 .build())
  *             .autoScalingDiskGbEnabled(false)
- *             .mongoDbMajorVersion(&#34;7.0&#34;)
- *             .providerName(&#34;AZURE&#34;)
- *             .providerInstanceSizeName(&#34;M10&#34;)
+ *             .mongoDbMajorVersion("7.0")
+ *             .providerName("AZURE")
+ *             .providerInstanceSizeName("M10")
  *             .build());
  * 
  *         // Create the peering connection request
- *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
+ *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
  *             .projectId(projectId)
  *             .containerId(test.containerId())
- *             .providerName(&#34;AZURE&#34;)
+ *             .providerName("AZURE")
  *             .azureDirectoryId(AZURE_DIRECTORY_ID)
  *             .azureSubscriptionId(AZURE_SUBSCRIPTION_ID)
  *             .resourceGroupName(AZURE_RESOURCE_GROUP_NAME)
@@ -320,7 +327,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

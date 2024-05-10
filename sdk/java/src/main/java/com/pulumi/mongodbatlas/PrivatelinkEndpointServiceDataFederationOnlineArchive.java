@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,23 +48,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var atlas_project = new Project(&#34;atlas-project&#34;, ProjectArgs.builder()        
+ *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()        
  *             .orgId(atlasOrgId)
  *             .name(atlasProjectName)
  *             .build());
  * 
- *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive(&#34;test&#34;, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+ *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
  *             .projectId(atlas_project.id())
- *             .endpointId(&#34;vpce-046cf43c79424d4c9&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .comment(&#34;Test&#34;)
- *             .region(&#34;US_EAST_1&#34;)
- *             .customerEndpointDnsName(&#34;vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com&#34;)
+ *             .endpointId("vpce-046cf43c79424d4c9")
+ *             .providerName("AWS")
+ *             .comment("Test")
+ *             .region("US_EAST_1")
+ *             .customerEndpointDnsName("vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

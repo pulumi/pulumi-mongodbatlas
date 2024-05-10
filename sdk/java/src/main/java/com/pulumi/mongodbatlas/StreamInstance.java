@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,18 +45,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new StreamInstance(&#34;test&#34;, StreamInstanceArgs.builder()        
+ *         var test = new StreamInstance("test", StreamInstanceArgs.builder()        
  *             .projectId(projectId)
- *             .instanceName(&#34;InstanceName&#34;)
+ *             .instanceName("InstanceName")
  *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()
- *                 .region(&#34;VIRGINIA_USA&#34;)
- *                 .cloud_provider(&#34;AWS&#34;)
+ *                 .region("VIRGINIA_USA")
+ *                 .cloud_provider("AWS")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

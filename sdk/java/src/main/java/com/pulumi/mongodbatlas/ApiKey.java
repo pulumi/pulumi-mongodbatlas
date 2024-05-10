@@ -18,7 +18,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -39,15 +40,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ApiKey(&#34;test&#34;, ApiKeyArgs.builder()        
- *             .description(&#34;key-name&#34;)
- *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
- *             .roleNames(&#34;ORG_READ_ONLY&#34;)
+ *         var test = new ApiKey("test", ApiKeyArgs.builder()        
+ *             .description("key-name")
+ *             .orgId("<ORG_ID>")
+ *             .roleNames("ORG_READ_ONLY")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

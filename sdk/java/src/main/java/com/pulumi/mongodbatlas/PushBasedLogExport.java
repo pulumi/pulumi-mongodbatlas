@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ### S
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -52,18 +53,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var project_tf = new Project(&#34;project-tf&#34;, ProjectArgs.builder()        
+ *         var project_tf = new Project("project-tf", ProjectArgs.builder()        
  *             .name(atlasProjectName)
  *             .orgId(atlasOrgId)
  *             .build());
  * 
  *         // Set up cloud provider access in Atlas using the created IAM role
- *         var setupOnly = new CloudProviderAccessSetup(&#34;setupOnly&#34;, CloudProviderAccessSetupArgs.builder()        
+ *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()        
  *             .projectId(project_tf.id())
- *             .providerName(&#34;AWS&#34;)
+ *             .providerName("AWS")
  *             .build());
  * 
- *         var authRole = new CloudProviderAccessAuthorization(&#34;authRole&#34;, CloudProviderAccessAuthorizationArgs.builder()        
+ *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()        
  *             .projectId(project_tf.id())
  *             .roleId(setupOnly.roleId())
  *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
@@ -72,16 +73,17 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Set up push-based log export with authorized IAM role
- *         var test = new PushBasedLogExport(&#34;test&#34;, PushBasedLogExportArgs.builder()        
+ *         var test = new PushBasedLogExport("test", PushBasedLogExportArgs.builder()        
  *             .projectId(project_tf.id())
  *             .bucketName(logBucket.bucket())
  *             .iamRoleId(authRole.roleId())
- *             .prefixPath(&#34;push-based-log-test&#34;)
+ *             .prefixPath("push-based-log-test")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
