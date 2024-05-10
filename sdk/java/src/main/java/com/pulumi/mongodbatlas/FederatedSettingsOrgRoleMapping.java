@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,40 +44,41 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping(&#34;orgGroupRoleMappingImport&#34;, FederatedSettingsOrgRoleMappingArgs.builder()        
- *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
- *             .orgId(&#34;627a9683e7f7f7ff7fe306f14&#34;)
- *             .externalGroupName(&#34;myGrouptest&#34;)
+ *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()        
+ *             .federationSettingsId("627a9687f7f7f7f774de306f14")
+ *             .orgId("627a9683e7f7f7ff7fe306f14")
+ *             .externalGroupName("myGrouptest")
  *             .roleAssignments(            
  *                 FederatedSettingsOrgRoleMappingRoleAssignmentArgs.builder()
- *                     .orgId(&#34;627a9683e7f7f7ff7fe306f14&#34;)
+ *                     .orgId("627a9683e7f7f7ff7fe306f14")
  *                     .roles(                    
- *                         &#34;ORG_MEMBER&#34;,
- *                         &#34;ORG_GROUP_CREATOR&#34;,
- *                         &#34;ORG_BILLING_ADMIN&#34;)
+ *                         "ORG_MEMBER",
+ *                         "ORG_GROUP_CREATOR",
+ *                         "ORG_BILLING_ADMIN")
  *                     .build(),
  *                 FederatedSettingsOrgRoleMappingRoleAssignmentArgs.builder()
- *                     .groupId(&#34;628aa20d7f7f7f7f7098b81b8&#34;)
+ *                     .groupId("628aa20d7f7f7f7f7098b81b8")
  *                     .roles(                    
- *                         &#34;GROUP_OWNER&#34;,
- *                         &#34;GROUP_DATA_ACCESS_ADMIN&#34;,
- *                         &#34;GROUP_SEARCH_INDEX_EDITOR&#34;,
- *                         &#34;GROUP_DATA_ACCESS_READ_ONLY&#34;)
+ *                         "GROUP_OWNER",
+ *                         "GROUP_DATA_ACCESS_ADMIN",
+ *                         "GROUP_SEARCH_INDEX_EDITOR",
+ *                         "GROUP_DATA_ACCESS_READ_ONLY")
  *                     .build(),
  *                 FederatedSettingsOrgRoleMappingRoleAssignmentArgs.builder()
- *                     .groupId(&#34;628aa20d7f7f7f7f7078b81b8&#34;)
+ *                     .groupId("628aa20d7f7f7f7f7078b81b8")
  *                     .roles(                    
- *                         &#34;GROUP_OWNER&#34;,
- *                         &#34;GROUP_DATA_ACCESS_ADMIN&#34;,
- *                         &#34;GROUP_SEARCH_INDEX_EDITOR&#34;,
- *                         &#34;GROUP_DATA_ACCESS_READ_ONLY&#34;,
- *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+ *                         "GROUP_OWNER",
+ *                         "GROUP_DATA_ACCESS_ADMIN",
+ *                         "GROUP_SEARCH_INDEX_EDITOR",
+ *                         "GROUP_DATA_ACCESS_READ_ONLY",
+ *                         "GROUP_DATA_ACCESS_READ_WRITE")
  *                     .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -30,7 +30,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -51,16 +52,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testDatadog = new ThirdPartyIntegration(&#34;testDatadog&#34;, ThirdPartyIntegrationArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .type(&#34;DATADOG&#34;)
- *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
- *             .region(&#34;&lt;REGION&gt;&#34;)
+ *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
+ *             .type("DATADOG")
+ *             .apiKey("<API-KEY>")
+ *             .region("<REGION>")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

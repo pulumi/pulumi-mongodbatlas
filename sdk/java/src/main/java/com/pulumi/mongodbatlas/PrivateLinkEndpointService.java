@@ -31,7 +31,8 @@ import javax.annotation.Nullable;
  * ## Example with AWS
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -56,36 +57,38 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new PrivateLinkEndpoint(&#34;test&#34;, PrivateLinkEndpointArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .region(&#34;US_EAST_1&#34;)
+ *         var test = new PrivateLinkEndpoint("test", PrivateLinkEndpointArgs.builder()        
+ *             .projectId("<PROJECT_ID>")
+ *             .providerName("AWS")
+ *             .region("US_EAST_1")
  *             .build());
  * 
- *         var ptfeService = new VpcEndpoint(&#34;ptfeService&#34;, VpcEndpointArgs.builder()        
- *             .vpcId(&#34;vpc-7fc0a543&#34;)
+ *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()        
+ *             .vpcId("vpc-7fc0a543")
  *             .serviceName(test.endpointServiceName())
- *             .vpcEndpointType(&#34;Interface&#34;)
- *             .subnetIds(&#34;subnet-de0406d2&#34;)
- *             .securityGroupIds(&#34;sg-3f238186&#34;)
+ *             .vpcEndpointType("Interface")
+ *             .subnetIds("subnet-de0406d2")
+ *             .securityGroupIds("sg-3f238186")
  *             .build());
  * 
- *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService(&#34;testPrivateLinkEndpointService&#34;, PrivateLinkEndpointServiceArgs.builder()        
+ *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()        
  *             .projectId(test.projectId())
  *             .privateLinkId(test.privateLinkId())
  *             .endpointServiceId(ptfeService.id())
- *             .providerName(&#34;AWS&#34;)
+ *             .providerName("AWS")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Example with Azure
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -110,31 +113,32 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new PrivateLinkEndpoint(&#34;test&#34;, PrivateLinkEndpointArgs.builder()        
+ *         var test = new PrivateLinkEndpoint("test", PrivateLinkEndpointArgs.builder()        
  *             .projectId(projectId)
- *             .providerName(&#34;AZURE&#34;)
- *             .region(&#34;eastus2&#34;)
+ *             .providerName("AZURE")
+ *             .region("eastus2")
  *             .build());
  * 
- *         var testPrivateEndpoint = new PrivateEndpoint(&#34;testPrivateEndpoint&#34;, PrivateEndpointArgs.builder()        
- *             .name(&#34;endpoint-test&#34;)
+ *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()        
+ *             .name("endpoint-test")
  *             .location(testAzurermResourceGroup.location())
  *             .resourceGroupName(resourceGroupName)
  *             .subnetId(testAzurermSubnet.id())
  *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .build());
  * 
- *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService(&#34;testPrivateLinkEndpointService&#34;, PrivateLinkEndpointServiceArgs.builder()        
+ *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()        
  *             .projectId(test.projectId())
  *             .privateLinkId(test.privateLinkId())
  *             .endpointServiceId(testPrivateEndpoint.id())
  *             .privateEndpointIpAddress(testPrivateEndpoint.privateServiceConnection()[0].privateIpAddress())
- *             .providerName(&#34;AZURE&#34;)
+ *             .providerName("AZURE")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Example with GCP

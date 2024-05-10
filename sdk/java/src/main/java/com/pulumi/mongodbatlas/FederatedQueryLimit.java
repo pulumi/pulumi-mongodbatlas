@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ### S
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,17 +47,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new FederatedQueryLimit(&#34;test&#34;, FederatedQueryLimitArgs.builder()        
- *             .projectId(&#34;64707f06c519c20c3a2b1b03&#34;)
- *             .tenantName(&#34;FederatedDatabseInstance0&#34;)
- *             .limitName(&#34;bytesProcessed.weekly&#34;)
- *             .overrunPolicy(&#34;BLOCK&#34;)
+ *         var test = new FederatedQueryLimit("test", FederatedQueryLimitArgs.builder()        
+ *             .projectId("64707f06c519c20c3a2b1b03")
+ *             .tenantName("FederatedDatabseInstance0")
+ *             .limitName("bytesProcessed.weekly")
+ *             .overrunPolicy("BLOCK")
  *             .value(5147483648)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

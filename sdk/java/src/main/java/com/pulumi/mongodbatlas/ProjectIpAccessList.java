@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * 
  * ### Using CIDR Block
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,20 +49,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ProjectIpAccessList(&#34;test&#34;, ProjectIpAccessListArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .cidrBlock(&#34;1.2.3.4/32&#34;)
- *             .comment(&#34;cidr block for tf acc testing&#34;)
+ *         var test = new ProjectIpAccessList("test", ProjectIpAccessListArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
+ *             .cidrBlock("1.2.3.4/32")
+ *             .comment("cidr block for tf acc testing")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Using IP Address
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -82,20 +85,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ProjectIpAccessList(&#34;test&#34;, ProjectIpAccessListArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .ipAddress(&#34;2.3.4.5&#34;)
- *             .comment(&#34;ip address for tf acc testing&#34;)
+ *         var test = new ProjectIpAccessList("test", ProjectIpAccessListArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
+ *             .ipAddress("2.3.4.5")
+ *             .comment("ip address for tf acc testing")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Using an AWS Security Group
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -121,34 +126,35 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new NetworkContainer(&#34;test&#34;, NetworkContainerArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .atlasCidrBlock(&#34;192.168.208.0/21&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .regionName(&#34;US_EAST_1&#34;)
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
+ *             .atlasCidrBlock("192.168.208.0/21")
+ *             .providerName("AWS")
+ *             .regionName("US_EAST_1")
  *             .build());
  * 
- *         var testNetworkPeering = new NetworkPeering(&#34;testNetworkPeering&#34;, NetworkPeeringArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
  *             .containerId(test.containerId())
- *             .accepterRegionName(&#34;us-east-1&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .routeTableCidrBlock(&#34;172.31.0.0/16&#34;)
- *             .vpcId(&#34;vpc-0d93d6f69f1578bd8&#34;)
- *             .awsAccountId(&#34;232589400519&#34;)
+ *             .accepterRegionName("us-east-1")
+ *             .providerName("AWS")
+ *             .routeTableCidrBlock("172.31.0.0/16")
+ *             .vpcId("vpc-0d93d6f69f1578bd8")
+ *             .awsAccountId("232589400519")
  *             .build());
  * 
- *         var testProjectIpAccessList = new ProjectIpAccessList(&#34;testProjectIpAccessList&#34;, ProjectIpAccessListArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .awsSecurityGroup(&#34;sg-0026348ec11780bd1&#34;)
- *             .comment(&#34;TestAcc for awsSecurityGroup&#34;)
+ *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
+ *             .awsSecurityGroup("sg-0026348ec11780bd1")
+ *             .comment("TestAcc for awsSecurityGroup")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(testNetworkPeering)
  *                 .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.

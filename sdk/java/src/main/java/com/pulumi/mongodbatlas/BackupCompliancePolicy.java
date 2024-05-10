@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -66,16 +67,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myCluster = new Cluster(&#34;myCluster&#34;, ClusterArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .name(&#34;clusterTest&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .providerRegionName(&#34;EU_CENTRAL_1&#34;)
- *             .providerInstanceSizeName(&#34;M10&#34;)
+ *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
+ *             .name("clusterTest")
+ *             .providerName("AWS")
+ *             .providerRegionName("EU_CENTRAL_1")
+ *             .providerInstanceSizeName("M10")
  *             .cloudBackup(true)
  *             .build());
  * 
- *         var testCloudBackupSchedule = new CloudBackupSchedule(&#34;testCloudBackupSchedule&#34;, CloudBackupScheduleArgs.builder()        
+ *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()        
  *             .projectId(myCluster.projectId())
  *             .clusterName(myCluster.name())
  *             .referenceHourOfDay(3)
@@ -83,27 +84,27 @@ import javax.annotation.Nullable;
  *             .restoreWindowDays(4)
  *             .policyItemHourly(CloudBackupSchedulePolicyItemHourlyArgs.builder()
  *                 .frequencyInterval(1)
- *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionUnit("days")
  *                 .retentionValue(7)
  *                 .build())
  *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
  *                 .frequencyInterval(1)
- *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionUnit("days")
  *                 .retentionValue(7)
  *                 .build())
  *             .policyItemWeeklies(CloudBackupSchedulePolicyItemWeeklyArgs.builder()
  *                 .frequencyInterval(1)
- *                 .retentionUnit(&#34;weeks&#34;)
+ *                 .retentionUnit("weeks")
  *                 .retentionValue(4)
  *                 .build())
  *             .policyItemMonthlies(CloudBackupSchedulePolicyItemMonthlyArgs.builder()
  *                 .frequencyInterval(1)
- *                 .retentionUnit(&#34;months&#34;)
+ *                 .retentionUnit("months")
  *                 .retentionValue(12)
  *                 .build())
  *             .policyItemYearlies(CloudBackupSchedulePolicyItemYearlyArgs.builder()
  *                 .frequencyInterval(1)
- *                 .retentionUnit(&#34;years&#34;)
+ *                 .retentionUnit("years")
  *                 .retentionValue(1)
  *                 .build())
  *             .build());
@@ -117,50 +118,51 @@ import javax.annotation.Nullable;
  *             .projectId(testCloudBackupSchedule.projectId())
  *             .build());
  * 
- *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy(&#34;backupPolicyBackupCompliancePolicy&#34;, BackupCompliancePolicyArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .authorizedEmail(&#34;user@email.com&#34;)
- *             .authorizedUserFirstName(&#34;First&#34;)
- *             .authorizedUserLastName(&#34;Last&#34;)
+ *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
+ *             .authorizedEmail("user{@literal @}email.com")
+ *             .authorizedUserFirstName("First")
+ *             .authorizedUserLastName("Last")
  *             .copyProtectionEnabled(false)
  *             .pitEnabled(false)
  *             .encryptionAtRestEnabled(false)
  *             .restoreWindowDays(7)
  *             .onDemandPolicyItem(BackupCompliancePolicyOnDemandPolicyItemArgs.builder()
  *                 .frequencyInterval(1)
- *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionUnit("days")
  *                 .retentionValue(3)
  *                 .build())
  *             .policyItemHourly(BackupCompliancePolicyPolicyItemHourlyArgs.builder()
  *                 .frequencyInterval(1)
- *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionUnit("days")
  *                 .retentionValue(7)
  *                 .build())
  *             .policyItemDaily(BackupCompliancePolicyPolicyItemDailyArgs.builder()
  *                 .frequencyInterval(1)
- *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionUnit("days")
  *                 .retentionValue(7)
  *                 .build())
  *             .policyItemWeeklies(BackupCompliancePolicyPolicyItemWeeklyArgs.builder()
  *                 .frequencyInterval(1)
- *                 .retentionUnit(&#34;weeks&#34;)
+ *                 .retentionUnit("weeks")
  *                 .retentionValue(4)
  *                 .build())
  *             .policyItemMonthlies(BackupCompliancePolicyPolicyItemMonthlyArgs.builder()
  *                 .frequencyInterval(1)
- *                 .retentionUnit(&#34;months&#34;)
+ *                 .retentionUnit("months")
  *                 .retentionValue(12)
  *                 .build())
  *             .policyItemYearlies(BackupCompliancePolicyPolicyItemYearlyArgs.builder()
  *                 .frequencyInterval(1)
- *                 .retentionUnit(&#34;years&#34;)
+ *                 .retentionUnit("years")
  *                 .retentionValue(1)
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

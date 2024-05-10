@@ -34,7 +34,8 @@ import javax.annotation.Nullable;
  * ### S
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -58,42 +59,44 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
- *             .username(&#34;test-acc-username&#34;)
- *             .password(&#34;test-acc-password&#34;)
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .authDatabaseName(&#34;admin&#34;)
+ *         var test = new DatabaseUser("test", DatabaseUserArgs.builder()        
+ *             .username("test-acc-username")
+ *             .password("test-acc-password")
+ *             .projectId("<PROJECT-ID>")
+ *             .authDatabaseName("admin")
  *             .roles(            
  *                 DatabaseUserRoleArgs.builder()
- *                     .roleName(&#34;readWrite&#34;)
- *                     .databaseName(&#34;dbforApp&#34;)
+ *                     .roleName("readWrite")
+ *                     .databaseName("dbforApp")
  *                     .build(),
  *                 DatabaseUserRoleArgs.builder()
- *                     .roleName(&#34;readAnyDatabase&#34;)
- *                     .databaseName(&#34;admin&#34;)
+ *                     .roleName("readAnyDatabase")
+ *                     .databaseName("admin")
  *                     .build())
  *             .labels(DatabaseUserLabelArgs.builder()
- *                 .key(&#34;My Key&#34;)
- *                 .value(&#34;My Value&#34;)
+ *                 .key("My Key")
+ *                 .value("My Value")
  *                 .build())
  *             .scopes(            
  *                 DatabaseUserScopeArgs.builder()
- *                     .name(&#34;My cluster name&#34;)
- *                     .type(&#34;CLUSTER&#34;)
+ *                     .name("My cluster name")
+ *                     .type("CLUSTER")
  *                     .build(),
  *                 DatabaseUserScopeArgs.builder()
- *                     .name(&#34;My second cluster name&#34;)
- *                     .type(&#34;CLUSTER&#34;)
+ *                     .name("My second cluster name")
+ *                     .type("CLUSTER")
  *                     .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -117,32 +120,34 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
- *             .username(&#34;test-acc-username&#34;)
- *             .x509Type(&#34;MANAGED&#34;)
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .authDatabaseName(&#34;$external&#34;)
+ *         var test = new DatabaseUser("test", DatabaseUserArgs.builder()        
+ *             .username("test-acc-username")
+ *             .x509Type("MANAGED")
+ *             .projectId("<PROJECT-ID>")
+ *             .authDatabaseName("$external")
  *             .roles(DatabaseUserRoleArgs.builder()
- *                 .roleName(&#34;readAnyDatabase&#34;)
- *                 .databaseName(&#34;admin&#34;)
+ *                 .roleName("readAnyDatabase")
+ *                 .databaseName("admin")
  *                 .build())
  *             .labels(DatabaseUserLabelArgs.builder()
- *                 .key(&#34;%s&#34;)
- *                 .value(&#34;%s&#34;)
+ *                 .key("%s")
+ *                 .value("%s")
  *                 .build())
  *             .scopes(DatabaseUserScopeArgs.builder()
- *                 .name(&#34;My cluster name&#34;)
- *                 .type(&#34;CLUSTER&#34;)
+ *                 .name("My cluster name")
+ *                 .type("CLUSTER")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -166,34 +171,36 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
+ *         var test = new DatabaseUser("test", DatabaseUserArgs.builder()        
  *             .username(testAwsIamRole.arn())
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .authDatabaseName(&#34;$external&#34;)
- *             .awsIamType(&#34;ROLE&#34;)
+ *             .projectId("<PROJECT-ID>")
+ *             .authDatabaseName("$external")
+ *             .awsIamType("ROLE")
  *             .roles(DatabaseUserRoleArgs.builder()
- *                 .roleName(&#34;readAnyDatabase&#34;)
- *                 .databaseName(&#34;admin&#34;)
+ *                 .roleName("readAnyDatabase")
+ *                 .databaseName("admin")
  *                 .build())
  *             .labels(DatabaseUserLabelArgs.builder()
- *                 .key(&#34;%s&#34;)
- *                 .value(&#34;%s&#34;)
+ *                 .key("%s")
+ *                 .value("%s")
  *                 .build())
  *             .scopes(DatabaseUserScopeArgs.builder()
- *                 .name(&#34;My cluster name&#34;)
- *                 .type(&#34;CLUSTER&#34;)
+ *                 .name("My cluster name")
+ *                 .type("CLUSTER")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Example of how to create a OIDC federated authentication user
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -215,20 +222,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
- *             .username(&#34;64d613677e1ad50839cce4db/testUserOr&#34;)
- *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
- *             .authDatabaseName(&#34;admin&#34;)
- *             .oidcAuthType(&#34;IDP_GROUP&#34;)
+ *         var test = new DatabaseUser("test", DatabaseUserArgs.builder()        
+ *             .username("64d613677e1ad50839cce4db/testUserOr")
+ *             .projectId("6414908c207f4d22f4d8f232")
+ *             .authDatabaseName("admin")
+ *             .oidcAuthType("IDP_GROUP")
  *             .roles(DatabaseUserRoleArgs.builder()
- *                 .roleName(&#34;readWriteAnyDatabase&#34;)
- *                 .databaseName(&#34;admin&#34;)
+ *                 .roleName("readWriteAnyDatabase")
+ *                 .databaseName("admin")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a &#39;/&#39;, followed by the IdP group name
  * 

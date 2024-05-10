@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -52,43 +53,45 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AlertConfiguration(&#34;test&#34;, AlertConfigurationArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .eventType(&#34;OUTSIDE_METRIC_THRESHOLD&#34;)
+ *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
+ *             .eventType("OUTSIDE_METRIC_THRESHOLD")
  *             .enabled(true)
  *             .notifications(AlertConfigurationNotificationArgs.builder()
- *                 .typeName(&#34;GROUP&#34;)
+ *                 .typeName("GROUP")
  *                 .intervalMin(5)
  *                 .delayMin(0)
  *                 .smsEnabled(false)
  *                 .emailEnabled(true)
  *                 .roles(                
- *                     &#34;GROUP_CHARTS_ADMIN&#34;,
- *                     &#34;GROUP_CLUSTER_MANAGER&#34;)
+ *                     "GROUP_CHARTS_ADMIN",
+ *                     "GROUP_CLUSTER_MANAGER")
  *                 .build())
  *             .matchers(AlertConfigurationMatcherArgs.builder()
- *                 .fieldName(&#34;HOSTNAME_AND_PORT&#34;)
- *                 .operator(&#34;EQUALS&#34;)
- *                 .value(&#34;SECONDARY&#34;)
+ *                 .fieldName("HOSTNAME_AND_PORT")
+ *                 .operator("EQUALS")
+ *                 .value("SECONDARY")
  *                 .build())
  *             .metricThresholdConfig(AlertConfigurationMetricThresholdConfigArgs.builder()
- *                 .metricName(&#34;ASSERT_REGULAR&#34;)
- *                 .operator(&#34;LESS_THAN&#34;)
+ *                 .metricName("ASSERT_REGULAR")
+ *                 .operator("LESS_THAN")
  *                 .threshold(99)
- *                 .units(&#34;RAW&#34;)
- *                 .mode(&#34;AVERAGE&#34;)
+ *                 .units("RAW")
+ *                 .mode("AVERAGE")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -112,41 +115,43 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AlertConfiguration(&#34;test&#34;, AlertConfigurationArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .eventType(&#34;REPLICATION_OPLOG_WINDOW_RUNNING_OUT&#34;)
+ *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()        
+ *             .projectId("<PROJECT-ID>")
+ *             .eventType("REPLICATION_OPLOG_WINDOW_RUNNING_OUT")
  *             .enabled(true)
  *             .notifications(AlertConfigurationNotificationArgs.builder()
- *                 .typeName(&#34;GROUP&#34;)
+ *                 .typeName("GROUP")
  *                 .intervalMin(5)
  *                 .delayMin(0)
  *                 .smsEnabled(false)
  *                 .emailEnabled(true)
  *                 .roles(                
- *                     &#34;GROUP_CHARTS_ADMIN&#34;,
- *                     &#34;GROUP_CLUSTER_MANAGER&#34;)
+ *                     "GROUP_CHARTS_ADMIN",
+ *                     "GROUP_CLUSTER_MANAGER")
  *                 .build())
  *             .matchers(AlertConfigurationMatcherArgs.builder()
- *                 .fieldName(&#34;HOSTNAME_AND_PORT&#34;)
- *                 .operator(&#34;EQUALS&#34;)
- *                 .value(&#34;SECONDARY&#34;)
+ *                 .fieldName("HOSTNAME_AND_PORT")
+ *                 .operator("EQUALS")
+ *                 .value("SECONDARY")
  *                 .build())
  *             .thresholdConfig(AlertConfigurationThresholdConfigArgs.builder()
- *                 .operator(&#34;LESS_THAN&#34;)
+ *                 .operator("LESS_THAN")
  *                 .threshold(1)
- *                 .units(&#34;HOURS&#34;)
+ *                 .units("HOURS")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Create an alert with two notifications using Email and SMS
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -170,52 +175,54 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AlertConfiguration(&#34;test&#34;, AlertConfigurationArgs.builder()        
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .eventType(&#34;OUTSIDE_METRIC_THRESHOLD&#34;)
+ *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()        
+ *             .projectId("PROJECT ID")
+ *             .eventType("OUTSIDE_METRIC_THRESHOLD")
  *             .enabled(true)
  *             .notifications(            
  *                 AlertConfigurationNotificationArgs.builder()
- *                     .typeName(&#34;GROUP&#34;)
+ *                     .typeName("GROUP")
  *                     .intervalMin(5)
  *                     .delayMin(0)
  *                     .smsEnabled(false)
  *                     .emailEnabled(true)
  *                     .roles(                    
- *                         &#34;GROUP_DATA_ACCESS_READ_ONLY&#34;,
- *                         &#34;GROUP_CLUSTER_MANAGER&#34;,
- *                         &#34;GROUP_DATA_ACCESS_ADMIN&#34;)
+ *                         "GROUP_DATA_ACCESS_READ_ONLY",
+ *                         "GROUP_CLUSTER_MANAGER",
+ *                         "GROUP_DATA_ACCESS_ADMIN")
  *                     .build(),
  *                 AlertConfigurationNotificationArgs.builder()
- *                     .typeName(&#34;ORG&#34;)
+ *                     .typeName("ORG")
  *                     .intervalMin(5)
  *                     .delayMin(0)
  *                     .smsEnabled(true)
  *                     .emailEnabled(false)
  *                     .build())
  *             .matchers(AlertConfigurationMatcherArgs.builder()
- *                 .fieldName(&#34;HOSTNAME_AND_PORT&#34;)
- *                 .operator(&#34;EQUALS&#34;)
- *                 .value(&#34;SECONDARY&#34;)
+ *                 .fieldName("HOSTNAME_AND_PORT")
+ *                 .operator("EQUALS")
+ *                 .value("SECONDARY")
  *                 .build())
  *             .metricThresholdConfig(AlertConfigurationMetricThresholdConfigArgs.builder()
- *                 .metricName(&#34;ASSERT_REGULAR&#34;)
- *                 .operator(&#34;LESS_THAN&#34;)
+ *                 .metricName("ASSERT_REGULAR")
+ *                 .operator("LESS_THAN")
  *                 .threshold(99)
- *                 .units(&#34;RAW&#34;)
- *                 .mode(&#34;AVERAGE&#34;)
+ *                 .units("RAW")
+ *                 .mode("AVERAGE")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Create third party notification using credentials from existing third party integration
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -240,23 +247,24 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var test = MongodbatlasFunctions.getThirdPartyIntegration(GetThirdPartyIntegrationArgs.builder()
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .type(&#34;PAGER_DUTY&#34;)
+ *             .projectId("PROJECT ID")
+ *             .type("PAGER_DUTY")
  *             .build());
  * 
- *         var testAlertConfiguration = new AlertConfiguration(&#34;testAlertConfiguration&#34;, AlertConfigurationArgs.builder()        
- *             .projectId(&#34;PROJECT ID&#34;)
+ *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()        
+ *             .projectId("PROJECT ID")
  *             .enabled(true)
- *             .eventType(&#34;USERS_WITHOUT_MULTI_FACTOR_AUTH&#34;)
+ *             .eventType("USERS_WITHOUT_MULTI_FACTOR_AUTH")
  *             .notifications(AlertConfigurationNotificationArgs.builder()
- *                 .typeName(&#34;PAGER_DUTY&#34;)
- *                 .integrationId(test.applyValue(getThirdPartyIntegrationResult -&gt; getThirdPartyIntegrationResult.id()))
+ *                 .typeName("PAGER_DUTY")
+ *                 .integrationId(test.applyValue(getThirdPartyIntegrationResult -> getThirdPartyIntegrationResult.id()))
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

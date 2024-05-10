@@ -29,7 +29,8 @@ import javax.annotation.Nullable;
  * ### Example Global cluster
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -55,29 +56,29 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .name(&#34;&lt;CLUSTER-NAME&gt;&#34;)
+ *         var test = new Cluster("test", ClusterArgs.builder()        
+ *             .projectId("<YOUR-PROJECT-ID>")
+ *             .name("<CLUSTER-NAME>")
  *             .cloudBackup(true)
- *             .clusterType(&#34;GEOSHARDED&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .providerInstanceSizeName(&#34;M30&#34;)
+ *             .clusterType("GEOSHARDED")
+ *             .providerName("AWS")
+ *             .providerInstanceSizeName("M30")
  *             .replicationSpecs(            
  *                 ClusterReplicationSpecArgs.builder()
- *                     .zoneName(&#34;Zone 1&#34;)
+ *                     .zoneName("Zone 1")
  *                     .numShards(1)
  *                     .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .regionName(&#34;EU_CENTRAL_1&#34;)
+ *                         .regionName("EU_CENTRAL_1")
  *                         .electableNodes(3)
  *                         .priority(7)
  *                         .readOnlyNodes(0)
  *                         .build())
  *                     .build(),
  *                 ClusterReplicationSpecArgs.builder()
- *                     .zoneName(&#34;Zone 2&#34;)
+ *                     .zoneName("Zone 2")
  *                     .numShards(1)
  *                     .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .regionName(&#34;US_EAST_2&#34;)
+ *                         .regionName("US_EAST_2")
  *                         .electableNodes(3)
  *                         .priority(7)
  *                         .readOnlyNodes(0)
@@ -85,31 +86,33 @@ import javax.annotation.Nullable;
  *                     .build())
  *             .build());
  * 
- *         var config = new GlobalClusterConfig(&#34;config&#34;, GlobalClusterConfigArgs.builder()        
+ *         var config = new GlobalClusterConfig("config", GlobalClusterConfigArgs.builder()        
  *             .projectId(test.projectId())
  *             .clusterName(test.name())
  *             .managedNamespaces(GlobalClusterConfigManagedNamespaceArgs.builder()
- *                 .db(&#34;mydata&#34;)
- *                 .collection(&#34;publishers&#34;)
- *                 .customShardKey(&#34;city&#34;)
+ *                 .db("mydata")
+ *                 .collection("publishers")
+ *                 .customShardKey("city")
  *                 .isCustomShardKeyHashed(false)
  *                 .isShardKeyUnique(false)
  *                 .build())
  *             .customZoneMappings(GlobalClusterConfigCustomZoneMappingArgs.builder()
- *                 .location(&#34;CA&#34;)
- *                 .zone(&#34;Zone 1&#34;)
+ *                 .location("CA")
+ *                 .zone("Zone 1")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Global cluster config
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -135,14 +138,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .name(&#34;cluster-test&#34;)
- *             .clusterType(&#34;REPLICASET&#34;)
+ *         var cluster_test = new Cluster("cluster-test", ClusterArgs.builder()        
+ *             .projectId("<YOUR-PROJECT-ID>")
+ *             .name("cluster-test")
+ *             .clusterType("REPLICASET")
  *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
  *                 .numShards(1)
  *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .regionName(&#34;US_EAST_1&#34;)
+ *                     .regionName("US_EAST_1")
  *                     .electableNodes(3)
  *                     .priority(7)
  *                     .readOnlyNodes(0)
@@ -150,28 +153,29 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .backupEnabled(true)
  *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion(&#34;7.0&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .providerInstanceSizeName(&#34;M40&#34;)
+ *             .mongoDbMajorVersion("7.0")
+ *             .providerName("AWS")
+ *             .providerInstanceSizeName("M40")
  *             .build());
  * 
- *         var config = new GlobalClusterConfig(&#34;config&#34;, GlobalClusterConfigArgs.builder()        
+ *         var config = new GlobalClusterConfig("config", GlobalClusterConfigArgs.builder()        
  *             .projectId(test.projectId())
  *             .clusterName(test.name())
  *             .managedNamespaces(GlobalClusterConfigManagedNamespaceArgs.builder()
- *                 .db(&#34;mydata&#34;)
- *                 .collection(&#34;publishers&#34;)
- *                 .customShardKey(&#34;city&#34;)
+ *                 .db("mydata")
+ *                 .collection("publishers")
+ *                 .customShardKey("city")
  *                 .build())
  *             .customZoneMappings(GlobalClusterConfigCustomZoneMappingArgs.builder()
- *                 .location(&#34;CA&#34;)
- *                 .zone(&#34;Zone 1&#34;)
+ *                 .location("CA")
+ *                 .zone("Zone 1")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

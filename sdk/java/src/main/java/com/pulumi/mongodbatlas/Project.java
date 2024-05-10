@@ -29,7 +29,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -55,28 +56,28 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         final var test = MongodbatlasFunctions.getRolesOrgId();
  * 
- *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
- *             .name(&#34;project-name&#34;)
- *             .orgId(test.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
- *             .projectOwnerId(&#34;&lt;OWNER_ACCOUNT_ID&gt;&#34;)
+ *         var testProject = new Project("testProject", ProjectArgs.builder()        
+ *             .name("project-name")
+ *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
+ *             .projectOwnerId("<OWNER_ACCOUNT_ID>")
  *             .teams(            
  *                 ProjectTeamArgs.builder()
- *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
- *                     .roleNames(&#34;GROUP_OWNER&#34;)
+ *                     .teamId("5e0fa8c99ccf641c722fe645")
+ *                     .roleNames("GROUP_OWNER")
  *                     .build(),
  *                 ProjectTeamArgs.builder()
- *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+ *                     .teamId("5e1dd7b4f2a30ba80a70cd4rw")
  *                     .roleNames(                    
- *                         &#34;GROUP_READ_ONLY&#34;,
- *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+ *                         "GROUP_READ_ONLY",
+ *                         "GROUP_DATA_ACCESS_READ_WRITE")
  *                     .build())
  *             .limits(            
  *                 ProjectLimitArgs.builder()
- *                     .name(&#34;atlas.project.deployment.clusters&#34;)
+ *                     .name("atlas.project.deployment.clusters")
  *                     .value(26)
  *                     .build(),
  *                 ProjectLimitArgs.builder()
- *                     .name(&#34;atlas.project.deployment.nodesPerPrivateLinkRegion&#34;)
+ *                     .name("atlas.project.deployment.nodesPerPrivateLinkRegion")
  *                     .value(51)
  *                     .build())
  *             .isCollectDatabaseSpecificsStatisticsEnabled(true)
@@ -89,7 +90,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
