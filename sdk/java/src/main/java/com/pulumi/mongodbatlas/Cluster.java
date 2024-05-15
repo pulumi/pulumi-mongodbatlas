@@ -598,6 +598,9 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
      * 
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED` Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     @Export(name="clusterType", refs={String.class}, tree="[0]")
@@ -610,6 +613,9 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
      * 
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED` Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     public Output<String> clusterType() {
@@ -930,6 +936,11 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * 
      * The possible values are:
      * 
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * 
      */
     @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
@@ -938,6 +949,11 @@ public class Cluster extends com.pulumi.resources.CustomResource {
      * @return Cloud service provider on which the servers are provisioned.
      * 
      * The possible values are:
+     * 
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
      * 
      */
     public Output<String> providerName() {
@@ -1101,6 +1117,8 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     }
     /**
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
      * 
      */
     @Export(name="versionReleaseSystem", refs={String.class}, tree="[0]")
@@ -1108,6 +1126,8 @@ public class Cluster extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
      * 
      */
     public Output<String> versionReleaseSystem() {

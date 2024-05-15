@@ -76,6 +76,7 @@ class GetFederatedSettingsIdentityProvidersResult:
     def results(self) -> Sequence['outputs.GetFederatedSettingsIdentityProvidersResultResult']:
         """
         Includes cloudProviderSnapshot object for each item detailed in the results array section.
+        * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
         """
         return pulumi.get(self, "results")
 

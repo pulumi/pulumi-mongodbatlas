@@ -14,6 +14,9 @@ import javax.annotation.Nullable;
 public final class ClusterOutageSimulationOutageFilter {
     /**
      * @return The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+     * * `AWS`
+     * * `GCP`
+     * * `AZURE`
      * 
      */
     private String cloudProvider;
@@ -24,6 +27,7 @@ public final class ClusterOutageSimulationOutageFilter {
     private String regionName;
     /**
      * @return The type of cluster outage simulation. Following values are supported:
+     * * `REGION` - Simulates a cluster outage for a region
      * 
      */
     private @Nullable String type;
@@ -31,6 +35,9 @@ public final class ClusterOutageSimulationOutageFilter {
     private ClusterOutageSimulationOutageFilter() {}
     /**
      * @return The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+     * * `AWS`
+     * * `GCP`
+     * * `AZURE`
      * 
      */
     public String cloudProvider() {
@@ -45,6 +52,7 @@ public final class ClusterOutageSimulationOutageFilter {
     }
     /**
      * @return The type of cluster outage simulation. Following values are supported:
+     * * `REGION` - Simulates a cluster outage for a region
      * 
      */
     public Optional<String> type() {

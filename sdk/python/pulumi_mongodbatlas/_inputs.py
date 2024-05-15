@@ -677,6 +677,11 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
                * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
+               
+               - `AWS` - Amazon AWS
+               - `GCP` - Google Cloud Platform
+               - `AZURE` - Microsoft Azure
+               - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         :param pulumi.Input[str] region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs'] analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
@@ -721,6 +726,11 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         """
         Cloud service provider on which the servers are provisioned.
         The possible values are:
+
+        - `AWS` - Amazon AWS
+        - `GCP` - Google Cloud Platform
+        - `AZURE` - Microsoft Azure
+        - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -907,6 +917,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
         :param pulumi.Input[str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
         :param pulumi.Input[int] disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
         :param pulumi.Input[str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param pulumi.Input[int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "instance_size", instance_size)
@@ -946,6 +958,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
     def ebs_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -1056,6 +1070,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
         :param pulumi.Input[str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
         :param pulumi.Input[int] disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
         :param pulumi.Input[str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param pulumi.Input[int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "instance_size", instance_size)
@@ -1095,6 +1111,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
     def ebs_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -1126,6 +1144,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
         :param pulumi.Input[str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
         :param pulumi.Input[int] disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
         :param pulumi.Input[str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param pulumi.Input[int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "instance_size", instance_size)
@@ -1165,6 +1185,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
     def ebs_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -3437,6 +3459,11 @@ class ClusterConnectionStringPrivateEndpointEndpointArgs:
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
                
                The possible values are:
+               
+               - `AWS` - Amazon AWS
+               - `GCP` - Google Cloud Platform
+               - `AZURE` - Microsoft Azure
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -3461,6 +3488,11 @@ class ClusterConnectionStringPrivateEndpointEndpointArgs:
         Cloud service provider on which the servers are provisioned.
 
         The possible values are:
+
+        - `AWS` - Amazon AWS
+        - `GCP` - Google Cloud Platform
+        - `AZURE` - Microsoft Azure
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         """
         return pulumi.get(self, "provider_name")
 
@@ -3529,8 +3561,12 @@ class ClusterOutageSimulationOutageFilterArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] cloud_provider: The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+               * `AWS`
+               * `GCP`
+               * `AZURE`
         :param pulumi.Input[str] region_name: The Atlas name of the region to undergo an outage simulation.
         :param pulumi.Input[str] type: The type of cluster outage simulation. Following values are supported:
+               * `REGION` - Simulates a cluster outage for a region
         """
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         pulumi.set(__self__, "region_name", region_name)
@@ -3542,6 +3578,9 @@ class ClusterOutageSimulationOutageFilterArgs:
     def cloud_provider(self) -> pulumi.Input[str]:
         """
         The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+        * `AWS`
+        * `GCP`
+        * `AZURE`
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -3566,6 +3605,7 @@ class ClusterOutageSimulationOutageFilterArgs:
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         The type of cluster outage simulation. Following values are supported:
+        * `REGION` - Simulates a cluster outage for a region
         """
         return pulumi.get(self, "type")
 
@@ -7359,6 +7399,11 @@ class GetAlertConfigurationOutputArgs:
                  label: Optional[str] = None):
         """
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+               - `PRIMARY`
+               - `SECONDARY`
+               - `STANDALONE`
+               - `CONFIG`
+               - `MONGOS`
         """
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "value", value)
@@ -7379,6 +7424,11 @@ class GetAlertConfigurationOutputArgs:
     def value(self) -> str:
         """
         Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        - `PRIMARY`
+        - `SECONDARY`
+        - `STANDALONE`
+        - `CONFIG`
+        - `MONGOS`
         """
         return pulumi.get(self, "value")
 

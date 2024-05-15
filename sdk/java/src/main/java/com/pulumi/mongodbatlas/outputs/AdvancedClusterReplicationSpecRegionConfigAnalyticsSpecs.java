@@ -20,6 +20,8 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     private @Nullable Integer diskIops;
     /**
      * @return Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Valid values are:
+     * * `STANDARD` volume types can&#39;t exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      * 
      */
     private @Nullable String ebsVolumeType;
@@ -44,6 +46,8 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     }
     /**
      * @return Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Valid values are:
+     * * `STANDARD` volume types can&#39;t exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      * 
      */
     public Optional<String> ebsVolumeType() {

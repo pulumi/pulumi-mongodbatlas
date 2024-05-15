@@ -32,6 +32,7 @@ public final class GetThirdPartyIntegrationsResult {
     private String id;
     /**
      * @return Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
      * 
      */
     private @Nullable String microsoftTeamsWebhookUrl;
@@ -42,11 +43,13 @@ public final class GetThirdPartyIntegrationsResult {
     private String projectId;
     /**
      * @return Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+     * * `VICTOR_OPS`
      * 
      */
     private String region;
     /**
      * @return An optional field for your Routing Key.
+     * * `WEBHOOK`
      * 
      */
     private String routingKey;
@@ -61,6 +64,7 @@ public final class GetThirdPartyIntegrationsResult {
     private @Nullable String scheme;
     /**
      * @return An optional field for your webhook secret.
+     * * `MICROSOFT_TEAMS`
      * 
      */
     private String secret;
@@ -71,6 +75,7 @@ public final class GetThirdPartyIntegrationsResult {
     private @Nullable String serviceDiscovery;
     /**
      * @return Your Service Key.
+     * * `DATADOG`
      * 
      */
     private String serviceKey;
@@ -121,6 +126,7 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
      * 
      */
     public Optional<String> microsoftTeamsWebhookUrl() {
@@ -135,6 +141,7 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+     * * `VICTOR_OPS`
      * 
      */
     public String region() {
@@ -142,6 +149,7 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return An optional field for your Routing Key.
+     * * `WEBHOOK`
      * 
      */
     public String routingKey() {
@@ -160,6 +168,7 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return An optional field for your webhook secret.
+     * * `MICROSOFT_TEAMS`
      * 
      */
     public String secret() {
@@ -174,6 +183,7 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return Your Service Key.
+     * * `DATADOG`
      * 
      */
     public String serviceKey() {

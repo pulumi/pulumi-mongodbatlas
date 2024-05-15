@@ -329,6 +329,10 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
     }
     /**
      * Status of the export job. Value can be one of the following:
+     * * `Queued` - indicates that the export job is queued
+     * * `InProgress` - indicates that the snapshot is being exported
+     * * `Successful` - indicates that the export job has completed successfully
+     * * `Failed` - indicates that the export job has failed
      * 
      */
     @Export(name="state", refs={String.class}, tree="[0]")
@@ -336,6 +340,10 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
 
     /**
      * @return Status of the export job. Value can be one of the following:
+     * * `Queued` - indicates that the export job is queued
+     * * `InProgress` - indicates that the snapshot is being exported
+     * * `Successful` - indicates that the export job has completed successfully
+     * * `Failed` - indicates that the export job has failed
      * 
      */
     public Output<String> state() {

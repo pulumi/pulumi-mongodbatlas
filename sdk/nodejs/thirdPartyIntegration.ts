@@ -94,6 +94,9 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     *
+     * * `PAGER_DUTY`
      */
     public readonly type!: pulumi.Output<string>;
     public readonly url!: pulumi.Output<string>;
@@ -192,6 +195,9 @@ export interface ThirdPartyIntegrationState {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     *
+     * * `PAGER_DUTY`
      */
     type?: pulumi.Input<string>;
     url?: pulumi.Input<string>;
@@ -230,6 +236,9 @@ export interface ThirdPartyIntegrationArgs {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     *
+     * * `PAGER_DUTY`
      */
     type: pulumi.Input<string>;
     url?: pulumi.Input<string>;

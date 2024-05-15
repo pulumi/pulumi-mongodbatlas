@@ -51,6 +51,11 @@ export interface GetApiKeyResult {
     /**
      * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
+     * * `ORG_OWNER`
+     * * `ORG_GROUP_CREATOR`
+     * * `ORG_BILLING_ADMIN`
+     * * `ORG_READ_ONLY`
+     * * `ORG_MEMBER`
      */
     readonly roleNames: string[];
 }

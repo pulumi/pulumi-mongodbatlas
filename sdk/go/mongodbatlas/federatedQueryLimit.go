@@ -63,6 +63,8 @@ type FederatedQueryLimit struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage pulumi.IntOutput `pulumi:"currentUsage"`
 	// Default value of the limit.
+	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit     pulumi.IntPtrOutput `pulumi:"defaultLimit"`
 	LastModifiedDate pulumi.StringOutput `pulumi:"lastModifiedDate"`
 	// String enum that indicates whether the identity provider is active or not. Accepted values are:
@@ -130,6 +132,8 @@ type federatedQueryLimitState struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage *int `pulumi:"currentUsage"`
 	// Default value of the limit.
+	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit     *int    `pulumi:"defaultLimit"`
 	LastModifiedDate *string `pulumi:"lastModifiedDate"`
 	// String enum that indicates whether the identity provider is active or not. Accepted values are:
@@ -153,6 +157,8 @@ type FederatedQueryLimitState struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage pulumi.IntPtrInput
 	// Default value of the limit.
+	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit     pulumi.IntPtrInput
 	LastModifiedDate pulumi.StringPtrInput
 	// String enum that indicates whether the identity provider is active or not. Accepted values are:
@@ -178,6 +184,8 @@ func (FederatedQueryLimitState) ElementType() reflect.Type {
 
 type federatedQueryLimitArgs struct {
 	// Default value of the limit.
+	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit *int `pulumi:"defaultLimit"`
 	// String enum that indicates whether the identity provider is active or not. Accepted values are:
 	// * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
@@ -199,6 +207,8 @@ type federatedQueryLimitArgs struct {
 // The set of arguments for constructing a FederatedQueryLimit resource.
 type FederatedQueryLimitArgs struct {
 	// Default value of the limit.
+	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit pulumi.IntPtrInput
 	// String enum that indicates whether the identity provider is active or not. Accepted values are:
 	// * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
@@ -310,6 +320,8 @@ func (o FederatedQueryLimitOutput) CurrentUsage() pulumi.IntOutput {
 }
 
 // Default value of the limit.
+// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+// * `maximumLimit` - Maximum value of the limit.
 func (o FederatedQueryLimitOutput) DefaultLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *FederatedQueryLimit) pulumi.IntPtrOutput { return v.DefaultLimit }).(pulumi.IntPtrOutput)
 }

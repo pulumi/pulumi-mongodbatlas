@@ -111,6 +111,19 @@ public final class GetAlertConfigurationsResultNotification {
     /**
      * @return Type of alert notification.
      * Accepted values are:
+     * - `DATADOG`
+     * - `EMAIL`
+     * - `GROUP` (Project)
+     * - `OPS_GENIE`
+     * - `ORG`
+     * - `PAGER_DUTY`
+     * - `SLACK`
+     * - `SMS`
+     * - `TEAM`
+     * - `USER`
+     * - `VICTOR_OPS`
+     * - `WEBHOOK`
+     * - `MICROSOFT_TEAMS`
      * 
      */
     private String typeName;
@@ -277,6 +290,19 @@ public final class GetAlertConfigurationsResultNotification {
     /**
      * @return Type of alert notification.
      * Accepted values are:
+     * - `DATADOG`
+     * - `EMAIL`
+     * - `GROUP` (Project)
+     * - `OPS_GENIE`
+     * - `ORG`
+     * - `PAGER_DUTY`
+     * - `SLACK`
+     * - `SMS`
+     * - `TEAM`
+     * - `USER`
+     * - `VICTOR_OPS`
+     * - `WEBHOOK`
+     * - `MICROSOFT_TEAMS`
      * 
      */
     public String typeName() {
