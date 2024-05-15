@@ -408,7 +408,7 @@
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Cloud service provider on which the servers are provisioned.\nThe possible values are:\n"
+                    "description": "Cloud service provider on which the servers are provisioned.\nThe possible values are:\n\n- `AWS` - Amazon AWS\n- `GCP` - Google Cloud Platform\n- `AZURE` - Microsoft Azure\n- `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.\n"
                 },
                 "readOnlySpecs": {
                     "$ref": "#/types/mongodbatlas:index/AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs:AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs",
@@ -480,7 +480,7 @@
                 },
                 "ebsVolumeType": {
                     "type": "string",
-                    "description": "Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:\n"
+                    "description": "Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:\n* `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.\n* `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.\n"
                 },
                 "instanceSize": {
                     "type": "string",
@@ -546,7 +546,7 @@
                 },
                 "ebsVolumeType": {
                     "type": "string",
-                    "description": "Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:\n"
+                    "description": "Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:\n* `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.\n* `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.\n"
                 },
                 "instanceSize": {
                     "type": "string",
@@ -578,7 +578,7 @@
                 },
                 "ebsVolumeType": {
                     "type": "string",
-                    "description": "Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:\n"
+                    "description": "Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:\n* `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.\n* `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.\n"
                 },
                 "instanceSize": {
                     "type": "string",
@@ -1652,7 +1652,7 @@
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Cloud service provider on which the servers are provisioned.\n\nThe possible values are:\n"
+                    "description": "Cloud service provider on which the servers are provisioned.\n\nThe possible values are:\n\n- `AWS` - Amazon AWS\n- `GCP` - Google Cloud Platform\n- `AZURE` - Microsoft Azure\n- `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.\n"
                 },
                 "region": {
                     "type": "string"
@@ -1686,7 +1686,7 @@
             "properties": {
                 "cloudProvider": {
                     "type": "string",
-                    "description": "The cloud provider of the region that undergoes the outage simulation. Following values are supported:\n"
+                    "description": "The cloud provider of the region that undergoes the outage simulation. Following values are supported:\n* `AWS`\n* `GCP`\n* `AZURE`\n"
                 },
                 "regionName": {
                     "type": "string",
@@ -1694,7 +1694,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of cluster outage simulation. Following values are supported:\n"
+                    "description": "The type of cluster outage simulation. Following values are supported:\n* `REGION` - Simulates a cluster outage for a region\n"
                 }
             },
             "type": "object",
@@ -3826,7 +3826,7 @@
                 },
                 "ebsVolumeType": {
                     "type": "string",
-                    "description": "Type of storage you want to attach to your AWS-provisioned cluster.\n"
+                    "description": "Type of storage you want to attach to your AWS-provisioned cluster. \n* `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.\n* `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.\n"
                 },
                 "instanceSize": {
                     "type": "string",
@@ -3893,7 +3893,7 @@
                 },
                 "ebsVolumeType": {
                     "type": "string",
-                    "description": "Type of storage you want to attach to your AWS-provisioned cluster.\n"
+                    "description": "Type of storage you want to attach to your AWS-provisioned cluster. \n* `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.\n* `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.\n"
                 },
                 "instanceSize": {
                     "type": "string",
@@ -3923,7 +3923,7 @@
                 },
                 "ebsVolumeType": {
                     "type": "string",
-                    "description": "Type of storage you want to attach to your AWS-provisioned cluster.\n"
+                    "description": "Type of storage you want to attach to your AWS-provisioned cluster. \n* `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.\n* `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.\n"
                 },
                 "instanceSize": {
                     "type": "string",
@@ -4452,7 +4452,7 @@
                 },
                 "ebsVolumeType": {
                     "type": "string",
-                    "description": "Type of storage you want to attach to your AWS-provisioned cluster.\n"
+                    "description": "Type of storage you want to attach to your AWS-provisioned cluster.\n* `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.\n* `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.\n"
                 },
                 "instanceSize": {
                     "type": "string",
@@ -4519,7 +4519,7 @@
                 },
                 "ebsVolumeType": {
                     "type": "string",
-                    "description": "Type of storage you want to attach to your AWS-provisioned cluster.\n"
+                    "description": "Type of storage you want to attach to your AWS-provisioned cluster.\n* `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.\n* `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.\n"
                 },
                 "instanceSize": {
                     "type": "string",
@@ -4549,7 +4549,7 @@
                 },
                 "ebsVolumeType": {
                     "type": "string",
-                    "description": "Type of storage you want to attach to your AWS-provisioned cluster.\n"
+                    "description": "Type of storage you want to attach to your AWS-provisioned cluster.\n* `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.\n* `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.\n"
                 },
                 "instanceSize": {
                     "type": "string",
@@ -4601,11 +4601,11 @@
                 },
                 "operator": {
                     "type": "string",
-                    "description": "The operator to apply when checking the current metric value against the threshold value.\nAccepted values are:\n"
+                    "description": "The operator to apply when checking the current metric value against the threshold value.\nAccepted values are:\n- `GREATER_THAN`\n- `LESS_THAN`\n"
                 },
                 "value": {
                     "type": "string",
-                    "description": "Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:\n"
+                    "description": "Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:\n- `PRIMARY`\n- `SECONDARY`\n- `STANDALONE`\n- `CONFIG`\n- `MONGOS`\n"
                 }
             },
             "type": "object",
@@ -4632,7 +4632,7 @@
                 },
                 "operator": {
                     "type": "string",
-                    "description": "The operator to apply when checking the current metric value against the threshold value.\nAccepted values are:\n"
+                    "description": "The operator to apply when checking the current metric value against the threshold value.\nAccepted values are:\n- `GREATER_THAN`\n- `LESS_THAN`\n"
                 },
                 "threshold": {
                     "type": "number",
@@ -4745,7 +4745,7 @@
                 },
                 "typeName": {
                     "type": "string",
-                    "description": "Type of alert notification.\nAccepted values are:\n"
+                    "description": "Type of alert notification.\nAccepted values are:\n- `DATADOG`\n- `EMAIL`\n- `GROUP` (Project)\n- `OPS_GENIE`\n- `ORG`\n- `PAGER_DUTY`\n- `SLACK`\n- `SMS`\n- `TEAM`\n- `USER`\n- `VICTOR_OPS`\n- `WEBHOOK`\n- `MICROSOFT_TEAMS`\n"
                 },
                 "username": {
                     "type": "string",
@@ -4816,7 +4816,7 @@
                 },
                 "value": {
                     "type": "string",
-                    "description": "Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:\n"
+                    "description": "Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:\n- `PRIMARY`\n- `SECONDARY`\n- `STANDALONE`\n- `CONFIG`\n- `MONGOS`\n"
                 }
             },
             "type": "object",
@@ -4836,7 +4836,7 @@
             "properties": {
                 "operator": {
                     "type": "string",
-                    "description": "The operator to apply when checking the current metric value against the threshold value.\nAccepted values are:\n"
+                    "description": "The operator to apply when checking the current metric value against the threshold value.\nAccepted values are:\n- `GREATER_THAN`\n- `LESS_THAN`\n"
                 },
                 "threshold": {
                     "type": "number",
@@ -4966,11 +4966,11 @@
                 },
                 "operator": {
                     "type": "string",
-                    "description": "The operator to apply when checking the current metric value against the threshold value.\nAccepted values are:\n"
+                    "description": "The operator to apply when checking the current metric value against the threshold value.\nAccepted values are:\n- `GREATER_THAN`\n- `LESS_THAN`\n"
                 },
                 "value": {
                     "type": "string",
-                    "description": "Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:\n"
+                    "description": "Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:\n- `PRIMARY`\n- `SECONDARY`\n- `STANDALONE`\n- `CONFIG`\n- `MONGOS`\n"
                 }
             },
             "type": "object",
@@ -4997,7 +4997,7 @@
                 },
                 "operator": {
                     "type": "string",
-                    "description": "The operator to apply when checking the current metric value against the threshold value.\nAccepted values are:\n"
+                    "description": "The operator to apply when checking the current metric value against the threshold value.\nAccepted values are:\n- `GREATER_THAN`\n- `LESS_THAN`\n"
                 },
                 "threshold": {
                     "type": "number",
@@ -5110,7 +5110,7 @@
                 },
                 "typeName": {
                     "type": "string",
-                    "description": "Type of alert notification.\nAccepted values are:\n"
+                    "description": "Type of alert notification.\nAccepted values are:\n- `DATADOG`\n- `EMAIL`\n- `GROUP` (Project)\n- `OPS_GENIE`\n- `ORG`\n- `PAGER_DUTY`\n- `SLACK`\n- `SMS`\n- `TEAM`\n- `USER`\n- `VICTOR_OPS`\n- `WEBHOOK`\n- `MICROSOFT_TEAMS`\n"
                 },
                 "username": {
                     "type": "string",
@@ -5181,7 +5181,7 @@
                 },
                 "value": {
                     "type": "string",
-                    "description": "Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:\n"
+                    "description": "Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:\n- `PRIMARY`\n- `SECONDARY`\n- `STANDALONE`\n- `CONFIG`\n- `MONGOS`\n"
                 }
             },
             "type": "object",
@@ -5200,7 +5200,7 @@
             "properties": {
                 "operator": {
                     "type": "string",
-                    "description": "The operator to apply when checking the current metric value against the threshold value.\nAccepted values are:\n"
+                    "description": "The operator to apply when checking the current metric value against the threshold value.\nAccepted values are:\n- `GREATER_THAN`\n- `LESS_THAN`\n"
                 },
                 "threshold": {
                     "type": "number",
@@ -6022,7 +6022,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "Status of the export job. Value can be one of the following:\n"
+                    "description": "Status of the export job. Value can be one of the following:\n* `Queued` - indicates that the export job is queued\n* `InProgress` - indicates that the snapshot is being exported\n* `Successful` - indicates that the export job has completed successfully\n* `Failed` - indicates that the export job has failed\n"
                 }
             },
             "type": "object",
@@ -6177,7 +6177,7 @@
                 },
                 "timestamp": {
                     "type": "string",
-                    "description": "Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.\n"
+                    "description": "Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.\n* `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.\n* `oplogInc` - Oplog operation number from which to you want to restore this snapshot.\n* `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.\n"
                 }
             },
             "type": "object",
@@ -6596,7 +6596,7 @@
             "properties": {
                 "cloudProvider": {
                     "type": "string",
-                    "description": "The cloud provider of the region that undergoes the outage simulation. Following values are supported:\n"
+                    "description": "The cloud provider of the region that undergoes the outage simulation. Following values are supported:\n* `AWS`\n* `GCP`\n* `AZURE`\n"
                 },
                 "regionName": {
                     "type": "string",
@@ -6604,7 +6604,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of cluster outage simulation. Following values are supported:\n"
+                    "description": "The type of cluster outage simulation. Following values are supported:\n* `REGION` (Simulates a cluster outage for a region)\n"
                 }
             },
             "type": "object",
@@ -8244,7 +8244,7 @@
                 },
                 "oidcAuthType": {
                     "type": "string",
-                    "description": "(Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n"
+                    "description": "(Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -8963,7 +8963,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "Current state of the Federated Database Instance:\n"
+                    "description": "Current state of the Federated Database Instance:\n* `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.\n* `DELETED` - The Federated Database Instance was deleted.\n"
                 },
                 "storageDatabases": {
                     "type": "array",
@@ -9373,7 +9373,7 @@
                 },
                 "defaultLimit": {
                     "type": "integer",
-                    "description": "Default value of the limit.\n"
+                    "description": "Default value of the limit.\n* `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.\n* `maximumLimit` - Maximum value of the limit.\n"
                 },
                 "lastModifiedDate": {
                     "type": "string"
@@ -12331,7 +12331,7 @@
                 },
                 "microsoftTeamsWebhookUrl": {
                     "type": "string",
-                    "description": "Your Microsoft Teams incoming webhook URL.\n",
+                    "description": "Your Microsoft Teams incoming webhook URL.\n* `PROMETHEUS`\n",
                     "secret": true
                 },
                 "projectId": {
@@ -12340,11 +12340,11 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.\n"
+                    "description": "Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.\n* `VICTOR_OPS`\n"
                 },
                 "routingKey": {
                     "type": "string",
-                    "description": "An optional field for your Routing Key.\n",
+                    "description": "An optional field for your Routing Key.\n* `WEBHOOK`\n",
                     "secret": true
                 },
                 "scheme": {
@@ -12354,7 +12354,7 @@
                 },
                 "secret": {
                     "type": "string",
-                    "description": "An optional field for your webhook secret.\n",
+                    "description": "An optional field for your webhook secret.\n* `MICROSOFT_TEAMS`\n",
                     "secret": true
                 },
                 "serviceDiscovery": {
@@ -12364,7 +12364,7 @@
                 },
                 "serviceKey": {
                     "type": "string",
-                    "description": "Your Service Key.\n",
+                    "description": "Your Service Key.\n* `DATADOG`\n",
                     "secret": true
                 },
                 "teamName": {
@@ -12641,7 +12641,7 @@
                 },
                 "clusterType": {
                     "type": "string",
-                    "description": "Type of the cluster that you want to create.\nAccepted values include:\n"
+                    "description": "Type of the cluster that you want to create.\nAccepted values include:\n- `REPLICASET` Replica set\n- `SHARDED`\tSharded cluster\n- `GEOSHARDED` Global Cluster\n"
                 },
                 "connectionStrings": {
                     "type": "array",
@@ -12724,7 +12724,7 @@
                 },
                 "versionReleaseSystem": {
                     "type": "string",
-                    "description": "Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n"
+                    "description": "Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n- `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.\n- `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.\n"
                 }
             },
             "required": [
@@ -12767,7 +12767,7 @@
                 },
                 "clusterType": {
                     "type": "string",
-                    "description": "Type of the cluster that you want to create.\nAccepted values include:\n"
+                    "description": "Type of the cluster that you want to create.\nAccepted values include:\n- `REPLICASET` Replica set\n- `SHARDED`\tSharded cluster\n- `GEOSHARDED` Global Cluster\n"
                 },
                 "diskSizeGb": {
                     "type": "number",
@@ -12834,7 +12834,7 @@
                 },
                 "versionReleaseSystem": {
                     "type": "string",
-                    "description": "Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n"
+                    "description": "Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n- `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.\n- `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.\n"
                 }
             },
             "requiredInputs": [
@@ -12866,7 +12866,7 @@
                     },
                     "clusterType": {
                         "type": "string",
-                        "description": "Type of the cluster that you want to create.\nAccepted values include:\n"
+                        "description": "Type of the cluster that you want to create.\nAccepted values include:\n- `REPLICASET` Replica set\n- `SHARDED`\tSharded cluster\n- `GEOSHARDED` Global Cluster\n"
                     },
                     "connectionStrings": {
                         "type": "array",
@@ -12951,7 +12951,7 @@
                     },
                     "versionReleaseSystem": {
                         "type": "string",
-                        "description": "Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n"
+                        "description": "Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n- `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.\n- `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.\n"
                     }
                 },
                 "type": "object"
@@ -13123,7 +13123,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Name of the role. This resource returns all the roles the user has in Atlas.\nThe following are valid roles:\n"
+                    "description": "Name of the role. This resource returns all the roles the user has in Atlas.\nThe following are valid roles:\n* `ORG_OWNER`\n* `ORG_GROUP_CREATOR`\n* `ORG_BILLING_ADMIN`\n* `ORG_READ_ONLY`\n* `ORG_MEMBER`\n\n## Attributes Reference\n\nIn addition to all arguments above, the following attributes are exported:\n"
                 }
             },
             "required": [
@@ -13148,7 +13148,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Name of the role. This resource returns all the roles the user has in Atlas.\nThe following are valid roles:\n"
+                    "description": "Name of the role. This resource returns all the roles the user has in Atlas.\nThe following are valid roles:\n* `ORG_OWNER`\n* `ORG_GROUP_CREATOR`\n* `ORG_BILLING_ADMIN`\n* `ORG_READ_ONLY`\n* `ORG_MEMBER`\n\n## Attributes Reference\n\nIn addition to all arguments above, the following attributes are exported:\n"
                 }
             },
             "requiredInputs": [
@@ -13183,7 +13183,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Name of the role. This resource returns all the roles the user has in Atlas.\nThe following are valid roles:\n"
+                        "description": "Name of the role. This resource returns all the roles the user has in Atlas.\nThe following are valid roles:\n* `ORG_OWNER`\n* `ORG_GROUP_CREATOR`\n* `ORG_BILLING_ADMIN`\n* `ORG_READ_ONLY`\n* `ORG_MEMBER`\n\n## Attributes Reference\n\nIn addition to all arguments above, the following attributes are exported:\n"
                     }
                 },
                 "type": "object"
@@ -14126,7 +14126,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "Status of the export job. Value can be one of the following:\n"
+                    "description": "Status of the export job. Value can be one of the following:\n* `Queued` - indicates that the export job is queued\n* `InProgress` - indicates that the snapshot is being exported\n* `Successful` - indicates that the export job has completed successfully\n* `Failed` - indicates that the export job has failed\n"
                 }
             },
             "required": [
@@ -14247,7 +14247,7 @@
                     },
                     "state": {
                         "type": "string",
-                        "description": "Status of the export job. Value can be one of the following:\n"
+                        "description": "Status of the export job. Value can be one of the following:\n* `Queued` - indicates that the export job is queued\n* `InProgress` - indicates that the snapshot is being exported\n* `Successful` - indicates that the export job has completed successfully\n* `Failed` - indicates that the export job has failed\n"
                     }
                 },
                 "type": "object"
@@ -14305,7 +14305,7 @@
                 },
                 "timestamp": {
                     "type": "string",
-                    "description": "Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.\n"
+                    "description": "Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.\n* `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.\nThree conditions apply to this parameter:\n* Enable Continuous Cloud Backup on your cluster.\n* Specify oplogInc.\n* Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.\n* `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.\nThree conditions apply to this parameter:\n* Enable Continuous Cloud Backup on your cluster.\n* Specify oplogTs.\n* Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.\n* `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.\nTwo conditions apply to this parameter:\n* Enable Continuous Cloud Backup on your cluster.\n* Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.\n"
                 }
             },
             "required": [
@@ -14402,7 +14402,7 @@
                     },
                     "timestamp": {
                         "type": "string",
-                        "description": "Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.\n"
+                        "description": "Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.\n* `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.\nThree conditions apply to this parameter:\n* Enable Continuous Cloud Backup on your cluster.\n* Specify oplogInc.\n* Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.\n* `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.\nThree conditions apply to this parameter:\n* Enable Continuous Cloud Backup on your cluster.\n* Specify oplogTs.\n* Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.\n* `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.\nTwo conditions apply to this parameter:\n* Enable Continuous Cloud Backup on your cluster.\n* Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.\n"
                     }
                 },
                 "type": "object"
@@ -14617,7 +14617,7 @@
                 },
                 "clusterType": {
                     "type": "string",
-                    "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n\n\u003e **WHEN SHOULD YOU USE CLUSTERTYPE?**\nWhen you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.\n\nAccepted values include:\n"
+                    "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n\n\u003e **WHEN SHOULD YOU USE CLUSTERTYPE?**\nWhen you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.\n\nAccepted values include:\n- `REPLICASET` Replica set\n- `SHARDED` Sharded cluster\n- `GEOSHARDED` Global Cluster\n"
                 },
                 "connectionStrings": {
                     "type": "array",
@@ -14715,7 +14715,7 @@
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Cloud service provider on which the servers are provisioned.\n\nThe possible values are:\n"
+                    "description": "Cloud service provider on which the servers are provisioned.\n\nThe possible values are:\n\n- `AWS` - Amazon AWS\n- `GCP` - Google Cloud Platform\n- `AZURE` - Microsoft Azure\n- `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.\n"
                 },
                 "providerRegionName": {
                     "type": "string",
@@ -14768,7 +14768,7 @@
                 },
                 "versionReleaseSystem": {
                     "type": "string",
-                    "description": "Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n"
+                    "description": "Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n- `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.\n- `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.\n"
                 }
             },
             "required": [
@@ -14850,7 +14850,7 @@
                 },
                 "clusterType": {
                     "type": "string",
-                    "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n\n\u003e **WHEN SHOULD YOU USE CLUSTERTYPE?**\nWhen you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.\n\nAccepted values include:\n"
+                    "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n\n\u003e **WHEN SHOULD YOU USE CLUSTERTYPE?**\nWhen you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.\n\nAccepted values include:\n- `REPLICASET` Replica set\n- `SHARDED` Sharded cluster\n- `GEOSHARDED` Global Cluster\n"
                 },
                 "diskSizeGb": {
                     "type": "number",
@@ -14920,7 +14920,7 @@
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Cloud service provider on which the servers are provisioned.\n\nThe possible values are:\n"
+                    "description": "Cloud service provider on which the servers are provisioned.\n\nThe possible values are:\n\n- `AWS` - Amazon AWS\n- `GCP` - Google Cloud Platform\n- `AZURE` - Microsoft Azure\n- `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.\n"
                 },
                 "providerRegionName": {
                     "type": "string",
@@ -14958,7 +14958,7 @@
                 },
                 "versionReleaseSystem": {
                     "type": "string",
-                    "description": "Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n"
+                    "description": "Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n- `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.\n- `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.\n"
                 }
             },
             "requiredInputs": [
@@ -15007,7 +15007,7 @@
                     },
                     "clusterType": {
                         "type": "string",
-                        "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n\n\u003e **WHEN SHOULD YOU USE CLUSTERTYPE?**\nWhen you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.\n\nAccepted values include:\n"
+                        "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n\n\u003e **WHEN SHOULD YOU USE CLUSTERTYPE?**\nWhen you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.\n\nAccepted values include:\n- `REPLICASET` Replica set\n- `SHARDED` Sharded cluster\n- `GEOSHARDED` Global Cluster\n"
                     },
                     "connectionStrings": {
                         "type": "array",
@@ -15107,7 +15107,7 @@
                     },
                     "providerName": {
                         "type": "string",
-                        "description": "Cloud service provider on which the servers are provisioned.\n\nThe possible values are:\n"
+                        "description": "Cloud service provider on which the servers are provisioned.\n\nThe possible values are:\n\n- `AWS` - Amazon AWS\n- `GCP` - Google Cloud Platform\n- `AZURE` - Microsoft Azure\n- `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.\n"
                     },
                     "providerRegionName": {
                         "type": "string",
@@ -15160,7 +15160,7 @@
                     },
                     "versionReleaseSystem": {
                         "type": "string",
-                        "description": "Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n"
+                        "description": "Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n- `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.\n- `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.\n"
                     }
                 },
                 "type": "object"
@@ -15194,7 +15194,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "Current phase of the outage simulation:\n"
+                    "description": "Current phase of the outage simulation:\n* `START_REQUESTED` - User has requested cluster outage simulation.\n* `STARTING` - MongoDB Cloud is starting cluster outage simulation.\n* `SIMULATING` - MongoDB Cloud is simulating cluster outage.\n* `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.\n* `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.\n* `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.\n"
                 }
             },
             "required": [
@@ -15255,7 +15255,7 @@
                     },
                     "state": {
                         "type": "string",
-                        "description": "Current phase of the outage simulation:\n"
+                        "description": "Current phase of the outage simulation:\n* `START_REQUESTED` - User has requested cluster outage simulation.\n* `STARTING` - MongoDB Cloud is starting cluster outage simulation.\n* `SIMULATING` - MongoDB Cloud is simulating cluster outage.\n* `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.\n* `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.\n* `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.\n"
                     }
                 },
                 "type": "object"
@@ -15542,7 +15542,7 @@
                 },
                 "awsIamType": {
                     "type": "string",
-                    "description": "If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n"
+                    "description": "If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use AWS IAM credentials.\n* `USER` - New database user has AWS IAM user credentials.\n* `ROLE` -  New database user has credentials associated with an AWS IAM role.\n"
                 },
                 "labels": {
                     "type": "array",
@@ -15552,11 +15552,11 @@
                 },
                 "ldapAuthType": {
                     "type": "string",
-                    "description": "Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.\n"
+                    "description": "Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.\n* `NONE` -\tAtlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.\n* `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).\n* `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).\n"
                 },
                 "oidcAuthType": {
                     "type": "string",
-                    "description": "Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n"
+                    "description": "Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n"
                 },
                 "password": {
                     "type": "string",
@@ -15585,7 +15585,7 @@
                 },
                 "x509Type": {
                     "type": "string",
-                    "description": "X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:\n"
+                    "description": "X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:\n* `NONE` -\tThe user does not use X.509 authentication.\n* `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.\n* `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.\n"
                 }
             },
             "required": [
@@ -15604,7 +15604,7 @@
                 },
                 "awsIamType": {
                     "type": "string",
-                    "description": "If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n"
+                    "description": "If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use AWS IAM credentials.\n* `USER` - New database user has AWS IAM user credentials.\n* `ROLE` -  New database user has credentials associated with an AWS IAM role.\n"
                 },
                 "labels": {
                     "type": "array",
@@ -15614,11 +15614,11 @@
                 },
                 "ldapAuthType": {
                     "type": "string",
-                    "description": "Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.\n"
+                    "description": "Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.\n* `NONE` -\tAtlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.\n* `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).\n* `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).\n"
                 },
                 "oidcAuthType": {
                     "type": "string",
-                    "description": "Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n"
+                    "description": "Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n"
                 },
                 "password": {
                     "type": "string",
@@ -15647,7 +15647,7 @@
                 },
                 "x509Type": {
                     "type": "string",
-                    "description": "X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:\n"
+                    "description": "X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:\n* `NONE` -\tThe user does not use X.509 authentication.\n* `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.\n* `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.\n"
                 }
             },
             "requiredInputs": [
@@ -15664,7 +15664,7 @@
                     },
                     "awsIamType": {
                         "type": "string",
-                        "description": "If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n"
+                        "description": "If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use AWS IAM credentials.\n* `USER` - New database user has AWS IAM user credentials.\n* `ROLE` -  New database user has credentials associated with an AWS IAM role.\n"
                     },
                     "labels": {
                         "type": "array",
@@ -15674,11 +15674,11 @@
                     },
                     "ldapAuthType": {
                         "type": "string",
-                        "description": "Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.\n"
+                        "description": "Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.\n* `NONE` -\tAtlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.\n* `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).\n* `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).\n"
                     },
                     "oidcAuthType": {
                         "type": "string",
-                        "description": "Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n"
+                        "description": "Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n"
                     },
                     "password": {
                         "type": "string",
@@ -15707,7 +15707,7 @@
                     },
                     "x509Type": {
                         "type": "string",
-                        "description": "X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:\n"
+                        "description": "X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:\n* `NONE` -\tThe user does not use X.509 authentication.\n* `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.\n* `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.\n"
                     }
                 },
                 "type": "object"
@@ -16106,7 +16106,7 @@
                 },
                 "state": {
                     "type": "string",
-                    "description": "Current state of the Federated Database Instance:\n"
+                    "description": "Current state of the Federated Database Instance:\n* `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.\n* `DELETED` - The Federated Database Instance was deleted.\n"
                 },
                 "storageDatabases": {
                     "type": "array",
@@ -16198,7 +16198,7 @@
                     },
                     "state": {
                         "type": "string",
-                        "description": "Current state of the Federated Database Instance:\n"
+                        "description": "Current state of the Federated Database Instance:\n* `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.\n* `DELETED` - The Federated Database Instance was deleted.\n"
                     },
                     "storageDatabases": {
                         "type": "array",
@@ -16227,7 +16227,7 @@
                 },
                 "defaultLimit": {
                     "type": "integer",
-                    "description": "Default value of the limit.\n"
+                    "description": "Default value of the limit.\n* `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.\n* `maximumLimit` - Maximum value of the limit.\n"
                 },
                 "lastModifiedDate": {
                     "type": "string"
@@ -16268,7 +16268,7 @@
             "inputProperties": {
                 "defaultLimit": {
                     "type": "integer",
-                    "description": "Default value of the limit.\n"
+                    "description": "Default value of the limit.\n* `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.\n* `maximumLimit` - Maximum value of the limit.\n"
                 },
                 "limitName": {
                     "type": "string",
@@ -16310,7 +16310,7 @@
                     },
                     "defaultLimit": {
                         "type": "integer",
-                        "description": "Default value of the limit.\n"
+                        "description": "Default value of the limit.\n* `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.\n* `maximumLimit` - Maximum value of the limit.\n"
                     },
                     "lastModifiedDate": {
                         "type": "string"
@@ -18404,7 +18404,7 @@
                 },
                 "status": {
                     "type": "string",
-                    "description": "Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:\nAWS:\n"
+                    "description": "Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:\nAWS:\n* `AVAILABLE` \tAtlas is creating the network load balancer and VPC endpoint service.\n* `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.\n* `FAILED` \tA system failure has occurred.\n* `DELETING` \tThe AWS PrivateLink connection is being deleted.\nAZURE:\n* `AVAILABLE` \tAtlas created the load balancer and the Private Link Service.\n* `INITIATING` \tAtlas is creating the load balancer and the Private Link Service.\n* `FAILED` \tAtlas failed to create the load balancer and the Private Link service.\n* `DELETING` \tAtlas is deleting the Private Link service.\nGCP:\n* `AVAILABLE` \tAtlas created the load balancer and the GCP Private Service Connect service.\n* `INITIATING` \tAtlas is creating the load balancer and the GCP Private Service Connect service.\n* `FAILED`  \tAtlas failed to create the load balancer and the GCP Private Service Connect service.\n* `DELETING` \tAtlas is deleting the GCP Private Service Connect service.\n"
                 }
             },
             "required": [
@@ -18516,7 +18516,7 @@
                     },
                     "status": {
                         "type": "string",
-                        "description": "Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:\nAWS:\n"
+                        "description": "Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:\nAWS:\n* `AVAILABLE` \tAtlas is creating the network load balancer and VPC endpoint service.\n* `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.\n* `FAILED` \tA system failure has occurred.\n* `DELETING` \tThe AWS PrivateLink connection is being deleted.\nAZURE:\n* `AVAILABLE` \tAtlas created the load balancer and the Private Link Service.\n* `INITIATING` \tAtlas is creating the load balancer and the Private Link Service.\n* `FAILED` \tAtlas failed to create the load balancer and the Private Link service.\n* `DELETING` \tAtlas is deleting the Private Link service.\nGCP:\n* `AVAILABLE` \tAtlas created the load balancer and the GCP Private Service Connect service.\n* `INITIATING` \tAtlas is creating the load balancer and the GCP Private Service Connect service.\n* `FAILED`  \tAtlas failed to create the load balancer and the GCP Private Service Connect service.\n* `DELETING` \tAtlas is deleting the GCP Private Service Connect service.\n"
                     }
                 },
                 "type": "object"
@@ -18527,11 +18527,11 @@
             "properties": {
                 "awsConnectionStatus": {
                     "type": "string",
-                    "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n"
+                    "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n* `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.\n* `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.\n* `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.\n* `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.\n* `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.\n* `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.\n"
                 },
                 "azureStatus": {
                     "type": "string",
-                    "description": "Status of the interface endpoint for AZURE.\nReturns one of the following values:\n"
+                    "description": "Status of the interface endpoint for AZURE.\nReturns one of the following values:\n* `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.\n* `AVAILABLE` - Atlas approved the connection to your private endpoint.\n* `FAILED` - Atlas failed to accept the connection your private endpoint.\n* `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.\n"
                 },
                 "deleteRequested": {
                     "type": "boolean",
@@ -18562,7 +18562,7 @@
                 },
                 "gcpStatus": {
                     "type": "string",
-                    "description": "Status of the interface endpoint for GCP.\nReturns one of the following values:\n"
+                    "description": "Status of the interface endpoint for GCP.\nReturns one of the following values:\n* `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.\n* `AVAILABLE` - Atlas approved the connection to your private endpoint.\n* `FAILED` - Atlas failed to accept the connection your private endpoint.\n* `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.\n"
                 },
                 "interfaceEndpointId": {
                     "type": "string",
@@ -18659,11 +18659,11 @@
                 "properties": {
                     "awsConnectionStatus": {
                         "type": "string",
-                        "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n"
+                        "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n* `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.\n* `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.\n* `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.\n* `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.\n* `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.\n* `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.\n"
                     },
                     "azureStatus": {
                         "type": "string",
-                        "description": "Status of the interface endpoint for AZURE.\nReturns one of the following values:\n"
+                        "description": "Status of the interface endpoint for AZURE.\nReturns one of the following values:\n* `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.\n* `AVAILABLE` - Atlas approved the connection to your private endpoint.\n* `FAILED` - Atlas failed to accept the connection your private endpoint.\n* `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.\n"
                     },
                     "deleteRequested": {
                         "type": "boolean",
@@ -18696,7 +18696,7 @@
                     },
                     "gcpStatus": {
                         "type": "string",
-                        "description": "Status of the interface endpoint for GCP.\nReturns one of the following values:\n"
+                        "description": "Status of the interface endpoint for GCP.\nReturns one of the following values:\n* `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.\n* `AVAILABLE` - Atlas approved the connection to your private endpoint.\n* `FAILED` - Atlas failed to accept the connection your private endpoint.\n* `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.\n"
                     },
                     "interfaceEndpointId": {
                         "type": "string",
@@ -20641,7 +20641,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Third-Party Integration Settings type \n* PAGER_DUTY\n* DATADOG\n* OPS_GENIE\n* VICTOR_OPS\n* WEBHOOK\n* MICROSOFT_TEAMS\n* PROMETHEUS\n"
+                    "description": "Third-Party Integration Settings type \n* PAGER_DUTY\n* DATADOG\n* OPS_GENIE\n* VICTOR_OPS\n* WEBHOOK\n* MICROSOFT_TEAMS\n* PROMETHEUS\n\n\n* `PAGER_DUTY`\n"
                 },
                 "url": {
                     "type": "string"
@@ -20720,7 +20720,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Third-Party Integration Settings type \n* PAGER_DUTY\n* DATADOG\n* OPS_GENIE\n* VICTOR_OPS\n* WEBHOOK\n* MICROSOFT_TEAMS\n* PROMETHEUS\n",
+                    "description": "Third-Party Integration Settings type \n* PAGER_DUTY\n* DATADOG\n* OPS_GENIE\n* VICTOR_OPS\n* WEBHOOK\n* MICROSOFT_TEAMS\n* PROMETHEUS\n\n\n* `PAGER_DUTY`\n",
                     "willReplaceOnChanges": true
                 },
                 "url": {
@@ -20789,7 +20789,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "Third-Party Integration Settings type \n* PAGER_DUTY\n* DATADOG\n* OPS_GENIE\n* VICTOR_OPS\n* WEBHOOK\n* MICROSOFT_TEAMS\n* PROMETHEUS\n",
+                        "description": "Third-Party Integration Settings type \n* PAGER_DUTY\n* DATADOG\n* OPS_GENIE\n* VICTOR_OPS\n* WEBHOOK\n* MICROSOFT_TEAMS\n* PROMETHEUS\n\n\n* `PAGER_DUTY`\n",
                         "willReplaceOnChanges": true
                     },
                     "url": {
@@ -21515,7 +21515,7 @@
                         "type": "string"
                     },
                     "roleNames": {
-                        "description": "Name of the role. This resource returns all the roles the user has in Atlas.\nThe following are valid roles:\n",
+                        "description": "Name of the role. This resource returns all the roles the user has in Atlas.\nThe following are valid roles:\n* `ORG_OWNER`\n* `ORG_GROUP_CREATOR`\n* `ORG_BILLING_ADMIN`\n* `ORG_READ_ONLY`\n* `ORG_MEMBER`\n",
                         "items": {
                             "type": "string"
                         },
@@ -22278,7 +22278,7 @@
                         "type": "string"
                     },
                     "results": {
-                        "description": "Includes CloudProviderSnapshotExportBucket object for each item detailed in the results array section.\n",
+                        "description": "Includes CloudProviderSnapshotExportBucket object for each item detailed in the results array section.\n* `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getCloudBackupSnapshotExportBucketsResult:getCloudBackupSnapshotExportBucketsResult"
                         },
@@ -22386,7 +22386,7 @@
                         "type": "string"
                     },
                     "state": {
-                        "description": "Status of the export job. Value can be one of the following:\n",
+                        "description": "Status of the export job. Value can be one of the following:\n* `Queued` - indicates that the export job is queued\n* `InProgress` - indicates that the snapshot is being exported\n* `Successful` - indicates that the export job has completed successfully\n* `Failed` - indicates that the export job has failed\n",
                         "type": "string"
                     }
                 },
@@ -22459,7 +22459,7 @@
                         "type": "string"
                     },
                     "results": {
-                        "description": "Includes CloudProviderSnapshotExportJob object for each item detailed in the results array section.\n",
+                        "description": "Includes CloudProviderSnapshotExportJob object for each item detailed in the results array section.\n* `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getCloudBackupSnapshotExportJobsResult:getCloudBackupSnapshotExportJobsResult"
                         },
@@ -22576,7 +22576,7 @@
                         "type": "string"
                     },
                     "timestamp": {
-                        "description": "Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.\n",
+                        "description": "Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.\n* `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.\n* `oplogInc` - Oplog operation number from which to you want to restore this snapshot.\n* `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.\n",
                         "type": "string"
                     }
                 },
@@ -22651,7 +22651,7 @@
                         "type": "string"
                     },
                     "results": {
-                        "description": "Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.\n",
+                        "description": "Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.\n* `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getCloudBackupSnapshotRestoreJobsResult:getCloudBackupSnapshotRestoreJobsResult"
                         },
@@ -22718,7 +22718,7 @@
                         "type": "string"
                     },
                     "results": {
-                        "description": "Includes cloudProviderSnapshot object for each item detailed in the results array section.\n",
+                        "description": "Includes cloudProviderSnapshot object for each item detailed in the results array section.\n* `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getCloudBackupSnapshotsResult:getCloudBackupSnapshotsResult"
                         },
@@ -23141,7 +23141,7 @@
                         "type": "string"
                     },
                     "state": {
-                        "description": "Current phase of the outage simulation:\n",
+                        "description": "Current phase of the outage simulation:\n* `START_REQUESTED` - User has requested cluster outage simulation.\n* `STARTING` - MongoDB Cloud is starting cluster outage simulation.\n* `SIMULATING` - MongoDB Cloud is simulating cluster outage.\n* `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.\n* `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.\n* `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.\n",
                         "type": "string"
                     }
                 },
@@ -23385,7 +23385,7 @@
                         "type": "string"
                     },
                     "projectId": {
-                        "description": "Unique 24-hexadecimal character string that identifies the project.\n",
+                        "description": "Unique 24-hexadecimal character string that identifies the project.\n* `policyItemId` - Unique 24-hexadecimal character string that identifies a policy item.\n",
                         "type": "string"
                     },
                     "sinks": {
@@ -23607,7 +23607,7 @@
                         "type": "string"
                     },
                     "projectId": {
-                        "description": "Unique 24-hexadecimal character string that identifies the project.\n",
+                        "description": "Unique 24-hexadecimal character string that identifies the project.\n* `policyItemId` - Unique 24-hexadecimal character string that identifies a policy item.\n",
                         "type": "string"
                     },
                     "results": {
@@ -23676,7 +23676,7 @@
                         "type": "string"
                     },
                     "oidcAuthType": {
-                        "description": "(Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n",
+                        "description": "(Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n",
                         "type": "string"
                     },
                     "projectId": {
@@ -24018,7 +24018,7 @@
                         "type": "string"
                     },
                     "state": {
-                        "description": "Current state of the Federated Database Instance:\n",
+                        "description": "Current state of the Federated Database Instance:\n* `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.\n* `DELETED` - The Federated Database Instance was deleted.\n",
                         "type": "string"
                     },
                     "storageDatabases": {
@@ -24124,7 +24124,7 @@
                         "type": "integer"
                     },
                     "defaultLimit": {
-                        "description": "Default value of the limit.\n",
+                        "description": "Default value of the limit.\n* `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.\n* `maximumLimit` - Maximum value of the limit.\n",
                         "type": "integer"
                     },
                     "id": {
@@ -24476,7 +24476,7 @@
                         "type": "integer"
                     },
                     "results": {
-                        "description": "Includes cloudProviderSnapshot object for each item detailed in the results array section.\n",
+                        "description": "Includes cloudProviderSnapshot object for each item detailed in the results array section.\n* `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getFederatedSettingsIdentityProvidersResult:getFederatedSettingsIdentityProvidersResult"
                         },
@@ -24615,7 +24615,7 @@
                         "type": "integer"
                     },
                     "results": {
-                        "description": "Includes cloudProviderSnapshot object for each item detailed in the results array section.\n",
+                        "description": "Includes cloudProviderSnapshot object for each item detailed in the results array section.\n* `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getFederatedSettingsOrgConfigsResult:getFederatedSettingsOrgConfigsResult"
                         },
@@ -24741,7 +24741,7 @@
                         "type": "integer"
                     },
                     "results": {
-                        "description": "Includes cloudProviderSnapshot object for each item detailed in the results array section.\n",
+                        "description": "Includes cloudProviderSnapshot object for each item detailed in the results array section.\n* `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getFederatedSettingsOrgRoleMappingsResult:getFederatedSettingsOrgRoleMappingsResult"
                         },
@@ -25862,7 +25862,7 @@
                         "type": "array"
                     },
                     "status": {
-                        "description": "Status of the AWS PrivateLink connection.\nReturns one of the following values:\n",
+                        "description": "Status of the AWS PrivateLink connection.\nReturns one of the following values:\n* `AVAILABLE` \tAtlas created the load balancer and the Private Link Service.\n* `INITIATING` \tAtlas is creating the network load balancer and VPC endpoint service.\n* `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.\n* `FAILED` \tA system failure has occurred.\n* `DELETING` \tThe Private Link service is being deleted.\n",
                         "type": "string"
                     }
                 },
@@ -25923,11 +25923,11 @@
                 "description": "A collection of values returned by getPrivateLinkEndpointService.\n",
                 "properties": {
                     "awsConnectionStatus": {
-                        "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n",
+                        "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n* `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.\n* `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.\n* `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.\n* `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.\n* `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.\n* `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.\n",
                         "type": "string"
                     },
                     "azureStatus": {
-                        "description": "Status of the interface endpoint for AZURE.\nReturns one of the following values:\n",
+                        "description": "Status of the interface endpoint for AZURE.\nReturns one of the following values:\n* `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.\n* `AVAILABLE` - Atlas approved the connection to your private endpoint.\n* `FAILED` - Atlas failed to accept the connection your private endpoint.\n* `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.\n",
                         "type": "string"
                     },
                     "deleteRequested": {
@@ -25949,7 +25949,7 @@
                         "type": "string"
                     },
                     "gcpStatus": {
-                        "description": "Status of the interface endpoint for GCP.\nReturns one of the following values:\n",
+                        "description": "Status of the interface endpoint for GCP.\nReturns one of the following values:\n* `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.\n* `AVAILABLE` - Atlas approved the connection to your private endpoint.\n* `FAILED` - Atlas failed to accept the connection your private endpoint.\n* `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.\n",
                         "type": "string"
                     },
                     "id": {
@@ -27851,7 +27851,7 @@
                     },
                     "microsoftTeamsWebhookUrl": {
                         "type": "string",
-                        "description": "Your Microsoft Teams incoming webhook URL.\n",
+                        "description": "Your Microsoft Teams incoming webhook URL.\n* `PROMETHEUS`\n",
                         "secret": true
                     },
                     "projectId": {
@@ -27907,7 +27907,7 @@
                         "type": "string"
                     },
                     "microsoftTeamsWebhookUrl": {
-                        "description": "Your Microsoft Teams incoming webhook URL.\n",
+                        "description": "Your Microsoft Teams incoming webhook URL.\n* `PROMETHEUS`\n",
                         "secret": true,
                         "type": "string"
                     },
@@ -27915,11 +27915,11 @@
                         "type": "string"
                     },
                     "region": {
-                        "description": "Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.\n",
+                        "description": "Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.\n* `VICTOR_OPS`\n",
                         "type": "string"
                     },
                     "routingKey": {
-                        "description": "An optional field for your Routing Key.\n",
+                        "description": "An optional field for your Routing Key.\n* `WEBHOOK`\n",
                         "secret": true,
                         "type": "string"
                     },
@@ -27929,7 +27929,7 @@
                         "type": "string"
                     },
                     "secret": {
-                        "description": "An optional field for your webhook secret.\n",
+                        "description": "An optional field for your webhook secret.\n* `MICROSOFT_TEAMS`\n",
                         "secret": true,
                         "type": "string"
                     },
@@ -27939,7 +27939,7 @@
                         "type": "string"
                     },
                     "serviceKey": {
-                        "description": "Your Service Key.\n",
+                        "description": "Your Service Key.\n* `DATADOG`\n",
                         "secret": true,
                         "type": "string"
                     },
