@@ -18,6 +18,8 @@ public final class GetFederatedQueryLimitsResult {
     private Integer currentUsage;
     /**
      * @return Default value of the limit.
+     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     private Integer defaultLimit;
@@ -47,6 +49,8 @@ public final class GetFederatedQueryLimitsResult {
     }
     /**
      * @return Default value of the limit.
+     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     public Integer defaultLimit() {

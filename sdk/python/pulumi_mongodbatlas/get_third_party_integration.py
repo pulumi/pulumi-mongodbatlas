@@ -113,6 +113,7 @@ class GetThirdPartyIntegrationResult:
     def microsoft_teams_webhook_url(self) -> Optional[str]:
         """
         Your Microsoft Teams incoming webhook URL.
+        * `PROMETHEUS`
         """
         return pulumi.get(self, "microsoft_teams_webhook_url")
 
@@ -126,6 +127,7 @@ class GetThirdPartyIntegrationResult:
     def region(self) -> str:
         """
         Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+        * `VICTOR_OPS`
         """
         return pulumi.get(self, "region")
 
@@ -134,6 +136,7 @@ class GetThirdPartyIntegrationResult:
     def routing_key(self) -> str:
         """
         An optional field for your Routing Key.
+        * `WEBHOOK`
         """
         return pulumi.get(self, "routing_key")
 
@@ -153,6 +156,7 @@ class GetThirdPartyIntegrationResult:
     def secret(self) -> str:
         """
         An optional field for your webhook secret.
+        * `MICROSOFT_TEAMS`
         """
         return pulumi.get(self, "secret")
 
@@ -169,6 +173,7 @@ class GetThirdPartyIntegrationResult:
     def service_key(self) -> str:
         """
         Your Service Key.
+        * `DATADOG`
         """
         return pulumi.get(self, "service_key")
 
@@ -255,6 +260,7 @@ def get_third_party_integration(enabled: Optional[bool] = None,
 
     :param bool enabled: Whether your cluster has Prometheus enabled.
     :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
+           * `PROMETHEUS`
     :param str project_id: The unique ID for the project to get all Third-Party service integrations
     :param str scheme: Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
     :param str service_discovery: Indicates which service discovery method is used, either file or http.
@@ -331,6 +337,7 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
 
     :param bool enabled: Whether your cluster has Prometheus enabled.
     :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
+           * `PROMETHEUS`
     :param str project_id: The unique ID for the project to get all Third-Party service integrations
     :param str scheme: Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
     :param str service_discovery: Indicates which service discovery method is used, either file or http.

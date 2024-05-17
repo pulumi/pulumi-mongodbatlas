@@ -67,7 +67,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+ *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .name("clusterTest")
  *             .providerName("AWS")
@@ -76,7 +76,7 @@ import javax.annotation.Nullable;
  *             .cloudBackup(true)
  *             .build());
  * 
- *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()        
+ *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
  *             .projectId(myCluster.projectId())
  *             .clusterName(myCluster.name())
  *             .referenceHourOfDay(3)
@@ -118,7 +118,7 @@ import javax.annotation.Nullable;
  *             .projectId(testCloudBackupSchedule.projectId())
  *             .build());
  * 
- *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()        
+ *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .authorizedEmail("user{@literal @}email.com")
  *             .authorizedUserFirstName("First")

@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+ *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
  *             .projectId("5cf5a45a9ccf6400e60981b6")
  *             .name("MyCluster")
  *             .providerName("AWS")
@@ -59,14 +59,14 @@ import javax.annotation.Nullable;
  *             .cloudBackup(true)
  *             .build());
  * 
- *         var test = new CloudProviderSnapshot("test", CloudProviderSnapshotArgs.builder()        
+ *         var test = new CloudProviderSnapshot("test", CloudProviderSnapshotArgs.builder()
  *             .projectId(myCluster.projectId())
  *             .clusterName(myCluster.name())
  *             .description("myDescription")
  *             .retentionInDays(1)
  *             .build());
  * 
- *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()        
+ *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
  *             .projectId(test.projectId())
  *             .clusterName(test.clusterName())
  *             .snapshotId(test.snapshotId())
@@ -113,7 +113,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+ *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
  *             .projectId("5cf5a45a9ccf6400e60981b6")
  *             .name("MyCluster")
  *             .providerName("AWS")
@@ -122,14 +122,14 @@ import javax.annotation.Nullable;
  *             .cloudBackup(true)
  *             .build());
  * 
- *         var test = new CloudProviderSnapshot("test", CloudProviderSnapshotArgs.builder()        
+ *         var test = new CloudProviderSnapshot("test", CloudProviderSnapshotArgs.builder()
  *             .projectId(myCluster.projectId())
  *             .clusterName(myCluster.name())
  *             .description("myDescription")
  *             .retentionInDays(1)
  *             .build());
  * 
- *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()        
+ *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
  *             .projectId(test.projectId())
  *             .clusterName(test.clusterName())
  *             .snapshotId(test.snapshotId())
@@ -174,7 +174,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var clusterTest = new Cluster("clusterTest", ClusterArgs.builder()        
+ *         var clusterTest = new Cluster("clusterTest", ClusterArgs.builder()
  *             .projectId(projectTest.id())
  *             .name(clusterName)
  *             .providerName("AWS")
@@ -184,7 +184,7 @@ import javax.annotation.Nullable;
  *             .pitEnabled(true)
  *             .build());
  * 
- *         var test = new CloudBackupSnapshot("test", CloudBackupSnapshotArgs.builder()        
+ *         var test = new CloudBackupSnapshot("test", CloudBackupSnapshotArgs.builder()
  *             .projectId(clusterTest.projectId())
  *             .clusterName(clusterTest.name())
  *             .description("My description")
@@ -192,7 +192,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         for (var i = 0; i < (pointInTimeUtcSeconds == 0 ? 0 : 1); i++) {
- *             new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob-" + i, CloudBackupSnapshotRestoreJobArgs.builder()            
+ *             new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob-" + i, CloudBackupSnapshotRestoreJobArgs.builder()
  *                 .projectId(test.projectId())
  *                 .clusterName(test.clusterName())
  *                 .snapshotId(test.id())
@@ -400,6 +400,20 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
     }
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+     *   Three conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify oplogInc.
+     * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+     *   Three conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify oplogTs.
+     * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+     *   Two conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
      * 
      */
     @Export(name="timestamp", refs={String.class}, tree="[0]")
@@ -407,6 +421,20 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
 
     /**
      * @return Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+     *   Three conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify oplogInc.
+     * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+     *   Three conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify oplogTs.
+     * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+     *   Two conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
      * 
      */
     public Output<String> timestamp() {

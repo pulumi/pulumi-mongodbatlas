@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+ *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .name("test-db")
  *             .providerSettingsBackingProviderName("AWS")
@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  *             .continuousBackupEnabled(true)
  *             .build());
  * 
- *         var test = new PrivatelinkEndpointServerless("test", PrivatelinkEndpointServerlessArgs.builder()        
+ *         var test = new PrivatelinkEndpointServerless("test", PrivatelinkEndpointServerlessArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .instanceName(testServerlessInstance.name())
  *             .providerName("AWS")
  *             .build());
  * 
- *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()        
+ *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()
  *             .vpcId("vpc-7fc0a543")
  *             .serviceName(test.endpointServiceName())
  *             .vpcEndpointType("Interface")
@@ -75,7 +75,7 @@ import javax.annotation.Nullable;
  *             .securityGroupIds("sg-3f238186")
  *             .build());
  * 
- *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+ *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .instanceName(testServerlessInstance.name())
  *             .endpointId(test.endpointId())
@@ -121,12 +121,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new PrivatelinkEndpointServerless("test", PrivatelinkEndpointServerlessArgs.builder()        
+ *         var test = new PrivatelinkEndpointServerless("test", PrivatelinkEndpointServerlessArgs.builder()
  *             .projectId(projectId)
  *             .providerName("AZURE")
  *             .build());
  * 
- *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()        
+ *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()
  *             .name("endpoint-test")
  *             .location(testAzurermResourceGroup.location())
  *             .resourceGroupName(resourceGroupName)
@@ -134,7 +134,7 @@ import javax.annotation.Nullable;
  *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .build());
  * 
- *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+ *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .name("test-db")
  *             .providerSettingsBackingProviderName("AZURE")
@@ -143,7 +143,7 @@ import javax.annotation.Nullable;
  *             .continuousBackupEnabled(true)
  *             .build());
  * 
- *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+ *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
  *             .projectId(test.projectId())
  *             .instanceName(testServerlessInstance.name())
  *             .endpointId(test.endpointId())

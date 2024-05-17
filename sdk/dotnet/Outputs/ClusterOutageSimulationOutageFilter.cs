@@ -15,6 +15,9 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         /// <summary>
         /// The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+        /// * `AWS`
+        /// * `GCP`
+        /// * `AZURE`
         /// </summary>
         public readonly string CloudProvider;
         /// <summary>
@@ -23,6 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string RegionName;
         /// <summary>
         /// The type of cluster outage simulation. Following values are supported:
+        /// * `REGION` - Simulates a cluster outage for a region
         /// </summary>
         public readonly string? Type;
 

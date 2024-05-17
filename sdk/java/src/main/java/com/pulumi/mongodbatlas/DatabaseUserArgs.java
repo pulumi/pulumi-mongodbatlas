@@ -39,6 +39,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use AWS IAM credentials.
+     * * `USER` - New database user has AWS IAM user credentials.
+     * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
      * 
      */
     @Import(name="awsIamType")
@@ -46,6 +49,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use AWS IAM credentials.
+     * * `USER` - New database user has AWS IAM user credentials.
+     * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
      * 
      */
     public Optional<Output<String>> awsIamType() {
@@ -61,6 +67,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+     * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+     * * `USER` - LDAP server authenticates this user through the user&#39;s LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+     * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      * 
      */
     @Import(name="ldapAuthType")
@@ -68,6 +77,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+     * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+     * * `USER` - LDAP server authenticates this user through the user&#39;s LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+     * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      * 
      */
     public Optional<Output<String>> ldapAuthType() {
@@ -76,6 +88,8 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use OIDC federated authentication.
+     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     @Import(name="oidcAuthType")
@@ -83,6 +97,8 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use OIDC federated authentication.
+     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public Optional<Output<String>> oidcAuthType() {
@@ -150,6 +166,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * * `NONE` -	The user does not use X.509 authentication.
+     * * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+     * * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
      * 
      */
     @Import(name="x509Type")
@@ -157,6 +176,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * * `NONE` -	The user does not use X.509 authentication.
+     * * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+     * * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
      * 
      */
     public Optional<Output<String>> x509Type() {
@@ -222,6 +244,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param awsIamType If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+         * * `NONE` -	The user does not use AWS IAM credentials.
+         * * `USER` - New database user has AWS IAM user credentials.
+         * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
          * 
          * @return builder
          * 
@@ -233,6 +258,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param awsIamType If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+         * * `NONE` -	The user does not use AWS IAM credentials.
+         * * `USER` - New database user has AWS IAM user credentials.
+         * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
          * 
          * @return builder
          * 
@@ -256,6 +284,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param ldapAuthType Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+         * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+         * * `USER` - LDAP server authenticates this user through the user&#39;s LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+         * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
          * 
          * @return builder
          * 
@@ -267,6 +298,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param ldapAuthType Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+         * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+         * * `USER` - LDAP server authenticates this user through the user&#39;s LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+         * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
          * 
          * @return builder
          * 
@@ -277,6 +311,8 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param oidcAuthType Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+         * * `NONE` -	The user does not use OIDC federated authentication.
+         * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
          * 
          * @return builder
          * 
@@ -288,6 +324,8 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param oidcAuthType Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+         * * `NONE` -	The user does not use OIDC federated authentication.
+         * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
          * 
          * @return builder
          * 
@@ -393,6 +431,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param x509Type X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+         * * `NONE` -	The user does not use X.509 authentication.
+         * * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+         * * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
          * 
          * @return builder
          * 
@@ -404,6 +445,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param x509Type X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+         * * `NONE` -	The user does not use X.509 authentication.
+         * * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+         * * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
          * 
          * @return builder
          * 

@@ -201,6 +201,20 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
 
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+     *   Three conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify oplogInc.
+     * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+     *   Three conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify oplogTs.
+     * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+     *   Two conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
      * 
      */
     @Import(name="timestamp")
@@ -208,6 +222,20 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
 
     /**
      * @return Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+     *   Three conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify oplogInc.
+     * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+     *   Three conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify oplogTs.
+     * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+     *   Two conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
      * 
      */
     public Optional<Output<String>> timestamp() {
@@ -508,6 +536,20 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
 
         /**
          * @param timestamp Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+         * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+         *   Three conditions apply to this parameter:
+         * * Enable Continuous Cloud Backup on your cluster.
+         * * Specify oplogInc.
+         * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+         * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+         *   Three conditions apply to this parameter:
+         * * Enable Continuous Cloud Backup on your cluster.
+         * * Specify oplogTs.
+         * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+         * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+         *   Two conditions apply to this parameter:
+         * * Enable Continuous Cloud Backup on your cluster.
+         * * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
          * 
          * @return builder
          * 
@@ -519,6 +561,20 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
 
         /**
          * @param timestamp Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+         * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+         *   Three conditions apply to this parameter:
+         * * Enable Continuous Cloud Backup on your cluster.
+         * * Specify oplogInc.
+         * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+         * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+         *   Three conditions apply to this parameter:
+         * * Enable Continuous Cloud Backup on your cluster.
+         * * Specify oplogTs.
+         * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+         * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+         *   Two conditions apply to this parameter:
+         * * Enable Continuous Cloud Backup on your cluster.
+         * * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
          * 
          * @return builder
          * 

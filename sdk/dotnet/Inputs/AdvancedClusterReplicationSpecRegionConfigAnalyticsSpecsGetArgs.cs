@@ -20,6 +20,8 @@ namespace Pulumi.Mongodbatlas.Inputs
 
         /// <summary>
         /// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        /// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        /// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         /// </summary>
         [Input("ebsVolumeType")]
         public Input<string>? EbsVolumeType { get; set; }

@@ -44,6 +44,7 @@ public final class GetDataLakePipelineResult {
     private String name;
     /**
      * @return Unique 24-hexadecimal character string that identifies the project.
+     * * `policyItemId` - Unique 24-hexadecimal character string that identifies a policy item.
      * 
      */
     private String projectId;
@@ -120,6 +121,7 @@ public final class GetDataLakePipelineResult {
     }
     /**
      * @return Unique 24-hexadecimal character string that identifies the project.
+     * * `policyItemId` - Unique 24-hexadecimal character string that identifies a policy item.
      * 
      */
     public String projectId() {

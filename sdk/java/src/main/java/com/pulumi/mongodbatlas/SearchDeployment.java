@@ -59,12 +59,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()        
+ *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()
  *             .name("project-name")
  *             .orgId(orgId)
  *             .build());
  * 
- *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()        
+ *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
  *             .projectId(exampleProject.id())
  *             .name("ClusterExample")
  *             .clusterType("REPLICASET")
@@ -81,7 +81,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()        
+ *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()
  *             .projectId(exampleProject.id())
  *             .clusterName(exampleAdvancedCluster.name())
  *             .specs(SearchDeploymentSpecArgs.builder()

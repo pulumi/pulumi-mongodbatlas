@@ -16,6 +16,11 @@ public final class GetAlertConfigurationOutput {
     private String type;
     /**
      * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
      * 
      */
     private String value;
@@ -29,6 +34,11 @@ public final class GetAlertConfigurationOutput {
     }
     /**
      * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
      * 
      */
     public String value() {

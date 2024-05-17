@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new OnlineArchive("test", OnlineArchiveArgs.builder()        
+ *         var test = new OnlineArchive("test", OnlineArchiveArgs.builder()
  *             .projectId(projectId)
  *             .clusterName(clusterName)
  *             .collName(collectionName)
@@ -124,7 +124,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new OnlineArchive("test", OnlineArchiveArgs.builder()        
+ *         var test = new OnlineArchive("test", OnlineArchiveArgs.builder()
  *             .projectId(projectId)
  *             .clusterName(clusterName)
  *             .collName(collectionName)
@@ -178,7 +178,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new OnlineArchive("test", OnlineArchiveArgs.builder()        
+ *         var test = new OnlineArchive("test", OnlineArchiveArgs.builder()
  *             .projectId(projectId)
  *             .clusterName(clusterName)
  *             .collName(collectionName)

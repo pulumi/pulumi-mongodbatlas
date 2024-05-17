@@ -170,6 +170,8 @@ export class FederatedDatabaseInstance extends pulumi.CustomResource {
     public readonly projectId!: pulumi.Output<string>;
     /**
      * Current state of the Federated Database Instance:
+     * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+     * * `DELETED` - The Federated Database Instance was deleted.
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
     /**
@@ -292,6 +294,8 @@ export interface FederatedDatabaseInstanceState {
     projectId?: pulumi.Input<string>;
     /**
      * Current state of the Federated Database Instance:
+     * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+     * * `DELETED` - The Federated Database Instance was deleted.
      */
     state?: pulumi.Input<string>;
     /**

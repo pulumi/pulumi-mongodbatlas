@@ -20,6 +20,11 @@ namespace Pulumi.Mongodbatlas.Inputs
 
         /// <summary>
         /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        /// - `PRIMARY`
+        /// - `SECONDARY`
+        /// - `STANDALONE`
+        /// - `CONFIG`
+        /// - `MONGOS`
         /// </summary>
         [Input("value", required: true)]
         public string Value { get; set; } = null!;

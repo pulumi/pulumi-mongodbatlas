@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()        
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()
  *             .projectId("<YOUR-PROJECT-ID>")
  *             .atlasCidrBlock("10.8.0.0/21")
  *             .providerName("AWS")
@@ -92,7 +92,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()        
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()
  *             .projectId("<YOUR-PROJECT-ID>")
  *             .atlasCidrBlock("10.8.0.0/21")
  *             .providerName("GCP")
@@ -132,7 +132,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()        
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()
  *             .projectId("<YOUR-PROJECT-ID>")
  *             .atlasCidrBlock("10.8.0.0/21")
  *             .providerName("AZURE")

@@ -101,6 +101,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string Name;
         /// <summary>
         /// Unique 24-hexadecimal character string that identifies the project.
+        /// * `policyItemId` - Unique 24-hexadecimal character string that identifies a policy item.
         /// </summary>
         public readonly string ProjectId;
         public readonly ImmutableArray<Outputs.GetDataLakePipelineSinkResult> Sinks;

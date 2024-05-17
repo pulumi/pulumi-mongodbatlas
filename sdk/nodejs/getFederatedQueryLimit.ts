@@ -66,6 +66,8 @@ export interface GetFederatedQueryLimitResult {
     readonly currentUsage: number;
     /**
      * Default value of the limit.
+     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * * `maximumLimit` - Maximum value of the limit.
      */
     readonly defaultLimit: number;
     /**
