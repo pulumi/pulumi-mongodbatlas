@@ -948,6 +948,11 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
                * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
         :param str provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
+               
+               - `AWS` - Amazon AWS
+               - `GCP` - Google Cloud Platform
+               - `AZURE` - Microsoft Azure
+               - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         :param str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
@@ -988,6 +993,11 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         """
         Cloud service provider on which the servers are provisioned.
         The possible values are:
+
+        - `AWS` - Amazon AWS
+        - `GCP` - Google Cloud Platform
+        - `AZURE` - Microsoft Azure
+        - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1170,6 +1180,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
         :param str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "instance_size", instance_size)
@@ -1201,6 +1213,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
     def ebs_volume_type(self) -> Optional[str]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -1331,6 +1345,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
         :param str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "instance_size", instance_size)
@@ -1362,6 +1378,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
     def ebs_volume_type(self) -> Optional[str]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -1408,6 +1426,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
         :param str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "instance_size", instance_size)
@@ -1439,6 +1459,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
     def ebs_volume_type(self) -> Optional[str]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -3774,6 +3796,11 @@ class ClusterConnectionStringPrivateEndpointEndpoint(dict):
         :param str provider_name: Cloud service provider on which the servers are provisioned.
                
                The possible values are:
+               
+               - `AWS` - Amazon AWS
+               - `GCP` - Google Cloud Platform
+               - `AZURE` - Microsoft Azure
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -3794,6 +3821,11 @@ class ClusterConnectionStringPrivateEndpointEndpoint(dict):
         Cloud service provider on which the servers are provisioned.
 
         The possible values are:
+
+        - `AWS` - Amazon AWS
+        - `GCP` - Google Cloud Platform
+        - `AZURE` - Microsoft Azure
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         """
         return pulumi.get(self, "provider_name")
 
@@ -3865,8 +3897,12 @@ class ClusterOutageSimulationOutageFilter(dict):
                  type: Optional[str] = None):
         """
         :param str cloud_provider: The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+               * `AWS`
+               * `GCP`
+               * `AZURE`
         :param str region_name: The Atlas name of the region to undergo an outage simulation.
         :param str type: The type of cluster outage simulation. Following values are supported:
+               * `REGION` - Simulates a cluster outage for a region
         """
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         pulumi.set(__self__, "region_name", region_name)
@@ -3878,6 +3914,9 @@ class ClusterOutageSimulationOutageFilter(dict):
     def cloud_provider(self) -> str:
         """
         The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+        * `AWS`
+        * `GCP`
+        * `AZURE`
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -3894,6 +3933,7 @@ class ClusterOutageSimulationOutageFilter(dict):
     def type(self) -> Optional[str]:
         """
         The type of cluster outage simulation. Following values are supported:
+        * `REGION` - Simulates a cluster outage for a region
         """
         return pulumi.get(self, "type")
 
@@ -8179,7 +8219,9 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
         """
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
         :param str instance_size: Hardware specification for the instance sizes in this region.
-        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "disk_iops", disk_iops)
@@ -8209,7 +8251,9 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> Optional[str]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster.
+        Type of storage you want to attach to your AWS-provisioned cluster. 
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -8296,7 +8340,9 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
         """
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
         :param str instance_size: Hardware specification for the instance sizes in this region.
-        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "disk_iops", disk_iops)
@@ -8326,7 +8372,9 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> Optional[str]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster.
+        Type of storage you want to attach to your AWS-provisioned cluster. 
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -8349,7 +8397,9 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
         """
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
         :param str instance_size: Hardware specification for the instance sizes in this region.
-        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "disk_iops", disk_iops)
@@ -8379,7 +8429,9 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> Optional[str]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster.
+        Type of storage you want to attach to your AWS-provisioned cluster. 
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -9211,6 +9263,8 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
         :param str instance_size: Hardware specification for the instance sizes in this region.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "disk_iops", disk_iops)
@@ -9241,6 +9295,8 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
     def ebs_volume_type(self) -> Optional[str]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster.
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -9326,6 +9382,8 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
         :param str instance_size: Hardware specification for the instance sizes in this region.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "disk_iops", disk_iops)
@@ -9356,6 +9414,8 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
     def ebs_volume_type(self) -> Optional[str]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster.
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -9379,6 +9439,8 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
         :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
         :param str instance_size: Hardware specification for the instance sizes in this region.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "disk_iops", disk_iops)
@@ -9409,6 +9471,8 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
     def ebs_volume_type(self) -> Optional[str]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster.
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -9460,7 +9524,14 @@ class GetAlertConfigurationMatcherResult(dict):
         :param str field_name: Name of the field in the target object to match on.
         :param str operator: The operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
+               - `GREATER_THAN`
+               - `LESS_THAN`
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+               - `PRIMARY`
+               - `SECONDARY`
+               - `STANDALONE`
+               - `CONFIG`
+               - `MONGOS`
         """
         pulumi.set(__self__, "field_name", field_name)
         pulumi.set(__self__, "operator", operator)
@@ -9480,6 +9551,8 @@ class GetAlertConfigurationMatcherResult(dict):
         """
         The operator to apply when checking the current metric value against the threshold value.
         Accepted values are:
+        - `GREATER_THAN`
+        - `LESS_THAN`
         """
         return pulumi.get(self, "operator")
 
@@ -9488,6 +9561,11 @@ class GetAlertConfigurationMatcherResult(dict):
     def value(self) -> str:
         """
         Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        - `PRIMARY`
+        - `SECONDARY`
+        - `STANDALONE`
+        - `CONFIG`
+        - `MONGOS`
         """
         return pulumi.get(self, "value")
 
@@ -9505,6 +9583,8 @@ class GetAlertConfigurationMetricThresholdConfigResult(dict):
         :param str mode: This must be set to AVERAGE. Atlas computes the current metric value as an average.
         :param str operator: The operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
+               - `GREATER_THAN`
+               - `LESS_THAN`
         :param float threshold: Threshold value outside of which an alert will be triggered.
         :param str units: The units for the threshold value. Depends on the type of metric.
                Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
@@ -9537,6 +9617,8 @@ class GetAlertConfigurationMetricThresholdConfigResult(dict):
         """
         The operator to apply when checking the current metric value against the threshold value.
         Accepted values are:
+        - `GREATER_THAN`
+        - `LESS_THAN`
         """
         return pulumi.get(self, "operator")
 
@@ -9608,6 +9690,19 @@ class GetAlertConfigurationNotificationResult(dict):
         :param str team_name: Label for the team that receives this notification.
         :param str type_name: Type of alert notification.
                Accepted values are:
+               - `DATADOG`
+               - `EMAIL`
+               - `GROUP` (Project)
+               - `OPS_GENIE`
+               - `ORG`
+               - `PAGER_DUTY`
+               - `SLACK`
+               - `SMS`
+               - `TEAM`
+               - `USER`
+               - `VICTOR_OPS`
+               - `WEBHOOK`
+               - `MICROSOFT_TEAMS`
         :param str username: Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
         :param str victor_ops_api_key: VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param str victor_ops_routing_key: VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
@@ -9798,6 +9893,19 @@ class GetAlertConfigurationNotificationResult(dict):
         """
         Type of alert notification.
         Accepted values are:
+        - `DATADOG`
+        - `EMAIL`
+        - `GROUP` (Project)
+        - `OPS_GENIE`
+        - `ORG`
+        - `PAGER_DUTY`
+        - `SLACK`
+        - `SMS`
+        - `TEAM`
+        - `USER`
+        - `VICTOR_OPS`
+        - `WEBHOOK`
+        - `MICROSOFT_TEAMS`
         """
         return pulumi.get(self, "type_name")
 
@@ -9850,6 +9958,11 @@ class GetAlertConfigurationOutputResult(dict):
                  label: Optional[str] = None):
         """
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+               - `PRIMARY`
+               - `SECONDARY`
+               - `STANDALONE`
+               - `CONFIG`
+               - `MONGOS`
         """
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "value", value)
@@ -9866,6 +9979,11 @@ class GetAlertConfigurationOutputResult(dict):
     def value(self) -> str:
         """
         Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        - `PRIMARY`
+        - `SECONDARY`
+        - `STANDALONE`
+        - `CONFIG`
+        - `MONGOS`
         """
         return pulumi.get(self, "value")
 
@@ -9884,6 +10002,8 @@ class GetAlertConfigurationThresholdConfigResult(dict):
         """
         :param str operator: The operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
+               - `GREATER_THAN`
+               - `LESS_THAN`
         :param float threshold: Threshold value outside of which an alert will be triggered.
         :param str units: The units for the threshold value. Depends on the type of metric.
                Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
@@ -9898,6 +10018,8 @@ class GetAlertConfigurationThresholdConfigResult(dict):
         """
         The operator to apply when checking the current metric value against the threshold value.
         Accepted values are:
+        - `GREATER_THAN`
+        - `LESS_THAN`
         """
         return pulumi.get(self, "operator")
 
@@ -10089,7 +10211,14 @@ class GetAlertConfigurationsResultMatcherResult(dict):
         :param str field_name: Name of the field in the target object to match on.
         :param str operator: The operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
+               - `GREATER_THAN`
+               - `LESS_THAN`
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+               - `PRIMARY`
+               - `SECONDARY`
+               - `STANDALONE`
+               - `CONFIG`
+               - `MONGOS`
         """
         pulumi.set(__self__, "field_name", field_name)
         pulumi.set(__self__, "operator", operator)
@@ -10109,6 +10238,8 @@ class GetAlertConfigurationsResultMatcherResult(dict):
         """
         The operator to apply when checking the current metric value against the threshold value.
         Accepted values are:
+        - `GREATER_THAN`
+        - `LESS_THAN`
         """
         return pulumi.get(self, "operator")
 
@@ -10117,6 +10248,11 @@ class GetAlertConfigurationsResultMatcherResult(dict):
     def value(self) -> str:
         """
         Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        - `PRIMARY`
+        - `SECONDARY`
+        - `STANDALONE`
+        - `CONFIG`
+        - `MONGOS`
         """
         return pulumi.get(self, "value")
 
@@ -10134,6 +10270,8 @@ class GetAlertConfigurationsResultMetricThresholdConfigResult(dict):
         :param str mode: This must be set to AVERAGE. Atlas computes the current metric value as an average.
         :param str operator: The operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
+               - `GREATER_THAN`
+               - `LESS_THAN`
         :param float threshold: Threshold value outside of which an alert will be triggered.
         :param str units: The units for the threshold value. Depends on the type of metric.
                Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
@@ -10166,6 +10304,8 @@ class GetAlertConfigurationsResultMetricThresholdConfigResult(dict):
         """
         The operator to apply when checking the current metric value against the threshold value.
         Accepted values are:
+        - `GREATER_THAN`
+        - `LESS_THAN`
         """
         return pulumi.get(self, "operator")
 
@@ -10237,6 +10377,19 @@ class GetAlertConfigurationsResultNotificationResult(dict):
         :param str team_name: Label for the team that receives this notification.
         :param str type_name: Type of alert notification.
                Accepted values are:
+               - `DATADOG`
+               - `EMAIL`
+               - `GROUP` (Project)
+               - `OPS_GENIE`
+               - `ORG`
+               - `PAGER_DUTY`
+               - `SLACK`
+               - `SMS`
+               - `TEAM`
+               - `USER`
+               - `VICTOR_OPS`
+               - `WEBHOOK`
+               - `MICROSOFT_TEAMS`
         :param str username: Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
         :param str victor_ops_api_key: VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param str victor_ops_routing_key: VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
@@ -10427,6 +10580,19 @@ class GetAlertConfigurationsResultNotificationResult(dict):
         """
         Type of alert notification.
         Accepted values are:
+        - `DATADOG`
+        - `EMAIL`
+        - `GROUP` (Project)
+        - `OPS_GENIE`
+        - `ORG`
+        - `PAGER_DUTY`
+        - `SLACK`
+        - `SMS`
+        - `TEAM`
+        - `USER`
+        - `VICTOR_OPS`
+        - `WEBHOOK`
+        - `MICROSOFT_TEAMS`
         """
         return pulumi.get(self, "type_name")
 
@@ -10479,6 +10645,11 @@ class GetAlertConfigurationsResultOutputResult(dict):
                  value: str):
         """
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+               - `PRIMARY`
+               - `SECONDARY`
+               - `STANDALONE`
+               - `CONFIG`
+               - `MONGOS`
         """
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "type", type)
@@ -10499,6 +10670,11 @@ class GetAlertConfigurationsResultOutputResult(dict):
     def value(self) -> str:
         """
         Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        - `PRIMARY`
+        - `SECONDARY`
+        - `STANDALONE`
+        - `CONFIG`
+        - `MONGOS`
         """
         return pulumi.get(self, "value")
 
@@ -10512,6 +10688,8 @@ class GetAlertConfigurationsResultThresholdConfigResult(dict):
         """
         :param str operator: The operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
+               - `GREATER_THAN`
+               - `LESS_THAN`
         :param float threshold: Threshold value outside of which an alert will be triggered.
         :param str units: The units for the threshold value. Depends on the type of metric.
                Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
@@ -10526,6 +10704,8 @@ class GetAlertConfigurationsResultThresholdConfigResult(dict):
         """
         The operator to apply when checking the current metric value against the threshold value.
         Accepted values are:
+        - `GREATER_THAN`
+        - `LESS_THAN`
         """
         return pulumi.get(self, "operator")
 
@@ -11732,6 +11912,10 @@ class GetCloudBackupSnapshotExportJobsResultResult(dict):
         :param str finished_at: Timestamp in ISO 8601 date and time format in UTC when the export job completes.
         :param str snapshot_id: Unique identifier of the Cloud Backup snapshot to export.
         :param str state: Status of the export job. Value can be one of the following:
+               * `Queued` - indicates that the export job is queued
+               * `InProgress` - indicates that the snapshot is being exported
+               * `Successful` - indicates that the export job has completed successfully
+               * `Failed` - indicates that the export job has failed
         """
         pulumi.set(__self__, "components", components)
         pulumi.set(__self__, "created_at", created_at)
@@ -11831,6 +12015,10 @@ class GetCloudBackupSnapshotExportJobsResultResult(dict):
     def state(self) -> str:
         """
         Status of the export job. Value can be one of the following:
+        * `Queued` - indicates that the export job is queued
+        * `InProgress` - indicates that the snapshot is being exported
+        * `Successful` - indicates that the export job has completed successfully
+        * `Failed` - indicates that the export job has failed
         """
         return pulumi.get(self, "state")
 
@@ -11964,6 +12152,9 @@ class GetCloudBackupSnapshotRestoreJobsResultResult(dict):
         :param str target_cluster_name: Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
         :param str target_project_id: Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
         :param str timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+               * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+               * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+               * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
         """
         pulumi.set(__self__, "cancelled", cancelled)
         pulumi.set(__self__, "created_at", created_at)
@@ -12089,6 +12280,9 @@ class GetCloudBackupSnapshotRestoreJobsResultResult(dict):
     def timestamp(self) -> str:
         """
         Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+        * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+        * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
         """
         return pulumi.get(self, "timestamp")
 
@@ -12717,8 +12911,12 @@ class GetClusterOutageSimulationOutageFilterResult(dict):
                  type: str):
         """
         :param str cloud_provider: The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+               * `AWS`
+               * `GCP`
+               * `AZURE`
         :param str region_name: The Atlas name of the region undergoing an outage simulation.
         :param str type: The type of cluster outage simulation. Following values are supported:
+               * `REGION` (Simulates a cluster outage for a region)
         """
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         pulumi.set(__self__, "region_name", region_name)
@@ -12729,6 +12927,9 @@ class GetClusterOutageSimulationOutageFilterResult(dict):
     def cloud_provider(self) -> str:
         """
         The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+        * `AWS`
+        * `GCP`
+        * `AZURE`
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -12745,6 +12946,7 @@ class GetClusterOutageSimulationOutageFilterResult(dict):
     def type(self) -> str:
         """
         The type of cluster outage simulation. Following values are supported:
+        * `REGION` (Simulates a cluster outage for a region)
         """
         return pulumi.get(self, "type")
 
@@ -15181,6 +15383,8 @@ class GetDatabaseUsersResultResult(dict):
         :param str id: Autogenerated Unique ID for this data source.
         :param str ldap_auth_type: Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
         :param str oidc_auth_type: (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+               * `NONE` -	The user does not use OIDC federated authentication.
+               * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         :param str project_id: The unique ID for the project to get all database users.
         :param Sequence['GetDatabaseUsersResultRoleArgs'] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param Sequence['GetDatabaseUsersResultScopeArgs'] scopes: Array of clusters and Atlas Data Lakes that this user has access to.
@@ -15242,6 +15446,8 @@ class GetDatabaseUsersResultResult(dict):
     def oidc_auth_type(self) -> str:
         """
         (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        * `NONE` -	The user does not use OIDC federated authentication.
+        * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         """
         return pulumi.get(self, "oidc_auth_type")
 
@@ -16172,6 +16378,8 @@ class GetFederatedDatabaseInstancesResultResult(dict):
         :param Sequence[str] hostnames: The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
         :param str project_id: The unique ID for the project to create a Federated Database Instance.
         :param str state: Current state of the Federated Database Instance:
+               * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+               * `DELETED` - The Federated Database Instance was deleted.
         :param Sequence['GetFederatedDatabaseInstancesResultStorageDatabaseArgs'] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
                * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
                * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
@@ -16260,6 +16468,8 @@ class GetFederatedDatabaseInstancesResultResult(dict):
     def state(self) -> str:
         """
         Current state of the Federated Database Instance:
+        * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+        * `DELETED` - The Federated Database Instance was deleted.
         """
         return pulumi.get(self, "state")
 
@@ -16789,6 +16999,8 @@ class GetFederatedQueryLimitsResultResult(dict):
         """
         :param int current_usage: Amount that indicates the current usage of the limit.
         :param int default_limit: Default value of the limit.
+               * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+               * `maximumLimit` - Maximum value of the limit.
         :param str project_id: The unique ID for the project to create a Federated Database Instance.
         :param str tenant_name: Name of the Atlas Federated Database Instance.
         """
@@ -16815,6 +17027,8 @@ class GetFederatedQueryLimitsResultResult(dict):
     def default_limit(self) -> int:
         """
         Default value of the limit.
+        * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+        * `maximumLimit` - Maximum value of the limit.
         """
         return pulumi.get(self, "default_limit")
 
@@ -21067,13 +21281,18 @@ class GetThirdPartyIntegrationsResultResult(dict):
         :param str id: Unique identifier of the integration.
         :param str project_id: The unique ID for the project to get all Third-Party service integrations
         :param str region: Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+               * `VICTOR_OPS`
         :param str routing_key: An optional field for your Routing Key.
+               * `WEBHOOK`
         :param str secret: An optional field for your webhook secret.
+               * `MICROSOFT_TEAMS`
         :param str service_key: Your Service Key.
+               * `DATADOG`
         :param str type: Thirt-Party service integration type.
         :param str url: Your webhook URL.
         :param bool enabled: Whether your cluster has Prometheus enabled.
         :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
+               * `PROMETHEUS`
         :param str scheme: Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         :param str service_discovery: Indicates which service discovery method is used, either file or http.
         :param str user_name: Your Prometheus username.
@@ -21140,6 +21359,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
     def region(self) -> str:
         """
         Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+        * `VICTOR_OPS`
         """
         return pulumi.get(self, "region")
 
@@ -21148,6 +21368,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
     def routing_key(self) -> str:
         """
         An optional field for your Routing Key.
+        * `WEBHOOK`
         """
         return pulumi.get(self, "routing_key")
 
@@ -21156,6 +21377,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
     def secret(self) -> str:
         """
         An optional field for your webhook secret.
+        * `MICROSOFT_TEAMS`
         """
         return pulumi.get(self, "secret")
 
@@ -21164,6 +21386,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
     def service_key(self) -> str:
         """
         Your Service Key.
+        * `DATADOG`
         """
         return pulumi.get(self, "service_key")
 
@@ -21201,6 +21424,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
     def microsoft_teams_webhook_url(self) -> Optional[str]:
         """
         Your Microsoft Teams incoming webhook URL.
+        * `PROMETHEUS`
         """
         return pulumi.get(self, "microsoft_teams_webhook_url")
 

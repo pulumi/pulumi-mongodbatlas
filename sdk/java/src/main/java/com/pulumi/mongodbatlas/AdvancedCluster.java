@@ -71,7 +71,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()        
+ *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()
  *             .projectId("PROJECT ID")
  *             .name("NAME OF CLUSTER")
  *             .clusterType("REPLICASET")
@@ -124,7 +124,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()        
+ *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()
  *             .projectId("PROJECT ID")
  *             .name("NAME OF CLUSTER")
  *             .clusterType("REPLICASET")
@@ -173,7 +173,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()        
+ *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()
  *             .projectId("PROJECT ID")
  *             .name("NAME OF CLUSTER")
  *             .clusterType("REPLICASET")
@@ -220,7 +220,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()        
+ *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()
  *             .projectId("PROJECT ID")
  *             .name("NAME OF CLUSTER")
  *             .clusterType("REPLICASET")
@@ -283,7 +283,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()        
+ *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
  *             .projectId(project.id())
  *             .name(clusterName)
  *             .clusterType("SHARDED")
@@ -370,7 +370,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()        
+ *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
  *             .projectId(project.id())
  *             .name(clusterName)
  *             .clusterType("GEOSHARDED")
@@ -628,6 +628,9 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     /**
      * Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     @Export(name="clusterType", refs={String.class}, tree="[0]")
@@ -636,6 +639,9 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     /**
      * @return Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     public Output<String> clusterType() {
@@ -881,6 +887,8 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     }
     /**
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
      * 
      */
     @Export(name="versionReleaseSystem", refs={String.class}, tree="[0]")
@@ -888,6 +896,8 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
      * 
      */
     public Output<String> versionReleaseSystem() {

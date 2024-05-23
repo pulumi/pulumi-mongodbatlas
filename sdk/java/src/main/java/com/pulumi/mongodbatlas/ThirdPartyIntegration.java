@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()        
+ *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .type("DATADOG")
  *             .apiKey("<API-KEY>")
@@ -179,6 +179,8 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
+     * * `PAGER_DUTY`
+     * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
@@ -192,6 +194,8 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     * 
+     * * `PAGER_DUTY`
      * 
      */
     public Output<String> type() {

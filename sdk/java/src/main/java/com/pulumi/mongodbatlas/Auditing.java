@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Auditing("test", AuditingArgs.builder()        
+ *         var test = new Auditing("test", AuditingArgs.builder()
  *             .projectId("<project-id>")
  *             .auditFilter("{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}")
  *             .auditAuthorizationSuccess(false)

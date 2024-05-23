@@ -57,13 +57,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new PrivateLinkEndpoint("test", PrivateLinkEndpointArgs.builder()        
+ *         var test = new PrivateLinkEndpoint("test", PrivateLinkEndpointArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .providerName("AWS")
  *             .region("US_EAST_1")
  *             .build());
  * 
- *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()        
+ *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()
  *             .vpcId("vpc-7fc0a543")
  *             .serviceName(test.endpointServiceName())
  *             .vpcEndpointType("Interface")
@@ -71,7 +71,7 @@ import javax.annotation.Nullable;
  *             .securityGroupIds("sg-3f238186")
  *             .build());
  * 
- *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()        
+ *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
  *             .projectId(test.projectId())
  *             .privateLinkId(test.privateLinkId())
  *             .endpointServiceId(ptfeService.id())
@@ -113,13 +113,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new PrivateLinkEndpoint("test", PrivateLinkEndpointArgs.builder()        
+ *         var test = new PrivateLinkEndpoint("test", PrivateLinkEndpointArgs.builder()
  *             .projectId(projectId)
  *             .providerName("AZURE")
  *             .region("eastus2")
  *             .build());
  * 
- *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()        
+ *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()
  *             .name("endpoint-test")
  *             .location(testAzurermResourceGroup.location())
  *             .resourceGroupName(resourceGroupName)
@@ -127,7 +127,7 @@ import javax.annotation.Nullable;
  *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .build());
  * 
- *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()        
+ *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
  *             .projectId(test.projectId())
  *             .privateLinkId(test.privateLinkId())
  *             .endpointServiceId(testPrivateEndpoint.id())
@@ -164,6 +164,12 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
     /**
      * Status of the interface endpoint for AWS.
      * Returns one of the following values:
+     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+     * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+     * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+     * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+     * * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+     * * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
      * 
      */
     @Export(name="awsConnectionStatus", refs={String.class}, tree="[0]")
@@ -172,6 +178,12 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
     /**
      * @return Status of the interface endpoint for AWS.
      * Returns one of the following values:
+     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+     * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+     * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+     * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+     * * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+     * * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
      * 
      */
     public Output<String> awsConnectionStatus() {
@@ -180,6 +192,10 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
     /**
      * Status of the interface endpoint for AZURE.
      * Returns one of the following values:
+     * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+     * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+     * * `FAILED` - Atlas failed to accept the connection your private endpoint.
+     * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      * 
      */
     @Export(name="azureStatus", refs={String.class}, tree="[0]")
@@ -188,6 +204,10 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
     /**
      * @return Status of the interface endpoint for AZURE.
      * Returns one of the following values:
+     * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+     * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+     * * `FAILED` - Atlas failed to accept the connection your private endpoint.
+     * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      * 
      */
     public Output<String> azureStatus() {
@@ -280,6 +300,10 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
     /**
      * Status of the interface endpoint for GCP.
      * Returns one of the following values:
+     * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+     * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+     * * `FAILED` - Atlas failed to accept the connection your private endpoint.
+     * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      * 
      */
     @Export(name="gcpStatus", refs={String.class}, tree="[0]")
@@ -288,6 +312,10 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
     /**
      * @return Status of the interface endpoint for GCP.
      * Returns one of the following values:
+     * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+     * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+     * * `FAILED` - Atlas failed to accept the connection your private endpoint.
+     * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      * 
      */
     public Output<String> gcpStatus() {

@@ -107,6 +107,8 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
 
     /**
      * Current state of the Federated Database Instance:
+     * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+     * * `DELETED` - The Federated Database Instance was deleted.
      * 
      */
     @Import(name="state")
@@ -114,6 +116,8 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
 
     /**
      * @return Current state of the Federated Database Instance:
+     * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+     * * `DELETED` - The Federated Database Instance was deleted.
      * 
      */
     public Optional<Output<String>> state() {
@@ -388,6 +392,8 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
 
         /**
          * @param state Current state of the Federated Database Instance:
+         * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+         * * `DELETED` - The Federated Database Instance was deleted.
          * 
          * @return builder
          * 
@@ -399,6 +405,8 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
 
         /**
          * @param state Current state of the Federated Database Instance:
+         * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+         * * `DELETED` - The Federated Database Instance was deleted.
          * 
          * @return builder
          * 

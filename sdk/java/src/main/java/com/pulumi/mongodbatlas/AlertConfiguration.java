@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()        
+ *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .eventType("OUTSIDE_METRIC_THRESHOLD")
  *             .enabled(true)
@@ -115,7 +115,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()        
+ *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .eventType("REPLICATION_OPLOG_WINDOW_RUNNING_OUT")
  *             .enabled(true)
@@ -175,7 +175,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()        
+ *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()
  *             .projectId("PROJECT ID")
  *             .eventType("OUTSIDE_METRIC_THRESHOLD")
  *             .enabled(true)
@@ -251,7 +251,7 @@ import javax.annotation.Nullable;
  *             .type("PAGER_DUTY")
  *             .build());
  * 
- *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()        
+ *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()
  *             .projectId("PROJECT ID")
  *             .enabled(true)
  *             .eventType("USERS_WITHOUT_MULTI_FACTOR_AUTH")

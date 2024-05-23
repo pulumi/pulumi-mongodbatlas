@@ -27,6 +27,11 @@ public final class ClusterConnectionStringPrivateEndpointEndpointArgs extends co
      * 
      * The possible values are:
      * 
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * 
      */
     @Import(name="providerName")
     private @Nullable Output<String> providerName;
@@ -35,6 +40,11 @@ public final class ClusterConnectionStringPrivateEndpointEndpointArgs extends co
      * @return Cloud service provider on which the servers are provisioned.
      * 
      * The possible values are:
+     * 
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
      * 
      */
     public Optional<Output<String>> providerName() {
@@ -88,6 +98,11 @@ public final class ClusterConnectionStringPrivateEndpointEndpointArgs extends co
          * 
          * The possible values are:
          * 
+         * - `AWS` - Amazon AWS
+         * - `GCP` - Google Cloud Platform
+         * - `AZURE` - Microsoft Azure
+         * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+         * 
          * @return builder
          * 
          */
@@ -100,6 +115,11 @@ public final class ClusterConnectionStringPrivateEndpointEndpointArgs extends co
          * @param providerName Cloud service provider on which the servers are provisioned.
          * 
          * The possible values are:
+         * 
+         * - `AWS` - Amazon AWS
+         * - `GCP` - Google Cloud Platform
+         * - `AZURE` - Microsoft Azure
+         * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
          * 
          * @return builder
          * 

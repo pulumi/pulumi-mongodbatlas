@@ -95,6 +95,20 @@ type PrivateLinkEndpoint struct {
 	ServiceAttachmentNames pulumi.StringArrayOutput `pulumi:"serviceAttachmentNames"`
 	// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
 	// AWS:
+	// * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
+	// * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+	// * `FAILED` 	A system failure has occurred.
+	// * `DELETING` 	The AWS PrivateLink connection is being deleted.
+	//   AZURE:
+	// * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
+	// * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
+	// * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
+	// * `DELETING` 	Atlas is deleting the Private Link service.
+	//   GCP:
+	// * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
+	// * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
+	// * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
+	// * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
 	Status pulumi.StringOutput `pulumi:"status"`
 }
 
@@ -168,6 +182,20 @@ type privateLinkEndpointState struct {
 	ServiceAttachmentNames []string `pulumi:"serviceAttachmentNames"`
 	// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
 	// AWS:
+	// * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
+	// * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+	// * `FAILED` 	A system failure has occurred.
+	// * `DELETING` 	The AWS PrivateLink connection is being deleted.
+	//   AZURE:
+	// * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
+	// * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
+	// * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
+	// * `DELETING` 	Atlas is deleting the Private Link service.
+	//   GCP:
+	// * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
+	// * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
+	// * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
+	// * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
 	Status *string `pulumi:"status"`
 }
 
@@ -203,6 +231,20 @@ type PrivateLinkEndpointState struct {
 	ServiceAttachmentNames pulumi.StringArrayInput
 	// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
 	// AWS:
+	// * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
+	// * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+	// * `FAILED` 	A system failure has occurred.
+	// * `DELETING` 	The AWS PrivateLink connection is being deleted.
+	//   AZURE:
+	// * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
+	// * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
+	// * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
+	// * `DELETING` 	Atlas is deleting the Private Link service.
+	//   GCP:
+	// * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
+	// * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
+	// * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
+	// * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
 	Status pulumi.StringPtrInput
 }
 
@@ -388,6 +430,20 @@ func (o PrivateLinkEndpointOutput) ServiceAttachmentNames() pulumi.StringArrayOu
 
 // Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
 // AWS:
+//   - `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
+//   - `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+//   - `FAILED` 	A system failure has occurred.
+//   - `DELETING` 	The AWS PrivateLink connection is being deleted.
+//     AZURE:
+//   - `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
+//   - `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
+//   - `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
+//   - `DELETING` 	Atlas is deleting the Private Link service.
+//     GCP:
+//   - `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
+//   - `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
+//   - `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
+//   - `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
 func (o PrivateLinkEndpointOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpoint) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

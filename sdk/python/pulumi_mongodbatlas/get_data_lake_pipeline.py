@@ -104,6 +104,7 @@ class GetDataLakePipelineResult:
     def project_id(self) -> str:
         """
         Unique 24-hexadecimal character string that identifies the project.
+        * `policyItemId` - Unique 24-hexadecimal character string that identifies a policy item.
         """
         return pulumi.get(self, "project_id")
 

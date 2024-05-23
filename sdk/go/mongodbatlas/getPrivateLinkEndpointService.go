@@ -40,9 +40,19 @@ type LookupPrivateLinkEndpointServiceArgs struct {
 type LookupPrivateLinkEndpointServiceResult struct {
 	// Status of the interface endpoint for AWS.
 	// Returns one of the following values:
+	// * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+	// * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+	// * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+	// * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+	// * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+	// * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
 	AwsConnectionStatus string `pulumi:"awsConnectionStatus"`
 	// Status of the interface endpoint for AZURE.
 	// Returns one of the following values:
+	// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+	// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+	// * `FAILED` - Atlas failed to accept the connection your private endpoint.
+	// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 	AzureStatus string `pulumi:"azureStatus"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested   bool   `pulumi:"deleteRequested"`
@@ -53,6 +63,10 @@ type LookupPrivateLinkEndpointServiceResult struct {
 	ErrorMessage string `pulumi:"errorMessage"`
 	// Status of the interface endpoint for GCP.
 	// Returns one of the following values:
+	// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+	// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+	// * `FAILED` - Atlas failed to accept the connection your private endpoint.
+	// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 	GcpStatus string `pulumi:"gcpStatus"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
@@ -115,12 +129,22 @@ func (o LookupPrivateLinkEndpointServiceResultOutput) ToLookupPrivateLinkEndpoin
 
 // Status of the interface endpoint for AWS.
 // Returns one of the following values:
+// * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+// * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+// * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+// * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+// * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+// * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
 func (o LookupPrivateLinkEndpointServiceResultOutput) AwsConnectionStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointServiceResult) string { return v.AwsConnectionStatus }).(pulumi.StringOutput)
 }
 
 // Status of the interface endpoint for AZURE.
 // Returns one of the following values:
+// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+// * `FAILED` - Atlas failed to accept the connection your private endpoint.
+// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 func (o LookupPrivateLinkEndpointServiceResultOutput) AzureStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointServiceResult) string { return v.AzureStatus }).(pulumi.StringOutput)
 }
@@ -148,6 +172,10 @@ func (o LookupPrivateLinkEndpointServiceResultOutput) ErrorMessage() pulumi.Stri
 
 // Status of the interface endpoint for GCP.
 // Returns one of the following values:
+// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+// * `FAILED` - Atlas failed to accept the connection your private endpoint.
+// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 func (o LookupPrivateLinkEndpointServiceResultOutput) GcpStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointServiceResult) string { return v.GcpStatus }).(pulumi.StringOutput)
 }

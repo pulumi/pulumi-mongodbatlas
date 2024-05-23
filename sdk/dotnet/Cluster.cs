@@ -406,6 +406,9 @@ namespace Pulumi.Mongodbatlas
         /// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
         /// 
         /// Accepted values include:
+        /// - `REPLICASET` Replica set
+        /// - `SHARDED` Sharded cluster
+        /// - `GEOSHARDED` Global Cluster
         /// </summary>
         [Output("clusterType")]
         public Output<string> ClusterType { get; private set; } = null!;
@@ -545,6 +548,11 @@ namespace Pulumi.Mongodbatlas
         /// Cloud service provider on which the servers are provisioned.
         /// 
         /// The possible values are:
+        /// 
+        /// - `AWS` - Amazon AWS
+        /// - `GCP` - Google Cloud Platform
+        /// - `AZURE` - Microsoft Azure
+        /// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
@@ -619,6 +627,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         /// </summary>
         [Output("versionReleaseSystem")]
         public Output<string> VersionReleaseSystem { get; private set; } = null!;
@@ -735,6 +745,9 @@ namespace Pulumi.Mongodbatlas
         /// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
         /// 
         /// Accepted values include:
+        /// - `REPLICASET` Replica set
+        /// - `SHARDED` Sharded cluster
+        /// - `GEOSHARDED` Global Cluster
         /// </summary>
         [Input("clusterType")]
         public Input<string>? ClusterType { get; set; }
@@ -842,6 +855,11 @@ namespace Pulumi.Mongodbatlas
         /// Cloud service provider on which the servers are provisioned.
         /// 
         /// The possible values are:
+        /// 
+        /// - `AWS` - Amazon AWS
+        /// - `GCP` - Google Cloud Platform
+        /// - `AZURE` - Microsoft Azure
+        /// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
@@ -904,6 +922,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         /// </summary>
         [Input("versionReleaseSystem")]
         public Input<string>? VersionReleaseSystem { get; set; }
@@ -988,6 +1008,9 @@ namespace Pulumi.Mongodbatlas
         /// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
         /// 
         /// Accepted values include:
+        /// - `REPLICASET` Replica set
+        /// - `SHARDED` Sharded cluster
+        /// - `GEOSHARDED` Global Cluster
         /// </summary>
         [Input("clusterType")]
         public Input<string>? ClusterType { get; set; }
@@ -1140,6 +1163,11 @@ namespace Pulumi.Mongodbatlas
         /// Cloud service provider on which the servers are provisioned.
         /// 
         /// The possible values are:
+        /// 
+        /// - `AWS` - Amazon AWS
+        /// - `GCP` - Google Cloud Platform
+        /// - `AZURE` - Microsoft Azure
+        /// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }
@@ -1232,6 +1260,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         /// </summary>
         [Input("versionReleaseSystem")]
         public Input<string>? VersionReleaseSystem { get; set; }

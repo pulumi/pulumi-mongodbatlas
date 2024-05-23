@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ProjectApiKey("test", ProjectApiKeyArgs.builder()        
+ *         var test = new ProjectApiKey("test", ProjectApiKeyArgs.builder()
  *             .description("Description of your API key")
  *             .projectAssignments(ProjectApiKeyProjectAssignmentArgs.builder()
  *                 .projectId("64259ee860c43338194b0f8e")
@@ -84,7 +84,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ProjectApiKey("test", ProjectApiKeyArgs.builder()        
+ *         var test = new ProjectApiKey("test", ProjectApiKeyArgs.builder()
  *             .description("Description of your API key")
  *             .projectAssignments(            
  *                 ProjectApiKeyProjectAssignmentArgs.builder()

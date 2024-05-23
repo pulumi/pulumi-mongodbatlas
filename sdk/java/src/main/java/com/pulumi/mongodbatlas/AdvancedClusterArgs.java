@@ -95,6 +95,9 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     /**
      * Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     @Import(name="clusterType", required=true)
@@ -103,6 +106,9 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     /**
      * @return Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     public Output<String> clusterType() {
@@ -306,6 +312,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
      * 
      */
     @Import(name="versionReleaseSystem")
@@ -313,6 +321,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * @return Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
      * 
      */
     public Optional<Output<String>> versionReleaseSystem() {
@@ -452,6 +462,9 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param clusterType Type of the cluster that you want to create.
          * Accepted values include:
+         * - `REPLICASET` Replica set
+         * - `SHARDED`	Sharded cluster
+         * - `GEOSHARDED` Global Cluster
          * 
          * @return builder
          * 
@@ -464,6 +477,9 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param clusterType Type of the cluster that you want to create.
          * Accepted values include:
+         * - `REPLICASET` Replica set
+         * - `SHARDED`	Sharded cluster
+         * - `GEOSHARDED` Global Cluster
          * 
          * @return builder
          * 
@@ -777,6 +793,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param versionReleaseSystem Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+         * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+         * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
          * 
          * @return builder
          * 
@@ -788,6 +806,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param versionReleaseSystem Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+         * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+         * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
          * 
          * @return builder
          * 

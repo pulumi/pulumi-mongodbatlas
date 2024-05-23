@@ -167,6 +167,10 @@ type CloudBackupSnapshotExportJob struct {
 	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
 	SnapshotId pulumi.StringOutput `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
+	// * `Queued` - indicates that the export job is queued
+	// * `InProgress` - indicates that the snapshot is being exported
+	// * `Successful` - indicates that the export job has completed successfully
+	// * `Failed` - indicates that the export job has failed
 	State pulumi.StringOutput `pulumi:"state"`
 }
 
@@ -240,6 +244,10 @@ type cloudBackupSnapshotExportJobState struct {
 	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
 	SnapshotId *string `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
+	// * `Queued` - indicates that the export job is queued
+	// * `InProgress` - indicates that the snapshot is being exported
+	// * `Successful` - indicates that the export job has completed successfully
+	// * `Failed` - indicates that the export job has failed
 	State *string `pulumi:"state"`
 }
 
@@ -269,6 +277,10 @@ type CloudBackupSnapshotExportJobState struct {
 	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
 	SnapshotId pulumi.StringPtrInput
 	// Status of the export job. Value can be one of the following:
+	// * `Queued` - indicates that the export job is queued
+	// * `InProgress` - indicates that the snapshot is being exported
+	// * `Successful` - indicates that the export job has completed successfully
+	// * `Failed` - indicates that the export job has failed
 	State pulumi.StringPtrInput
 }
 
@@ -458,6 +470,10 @@ func (o CloudBackupSnapshotExportJobOutput) SnapshotId() pulumi.StringOutput {
 }
 
 // Status of the export job. Value can be one of the following:
+// * `Queued` - indicates that the export job is queued
+// * `InProgress` - indicates that the snapshot is being exported
+// * `Successful` - indicates that the export job has completed successfully
+// * `Failed` - indicates that the export job has failed
 func (o CloudBackupSnapshotExportJobOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }

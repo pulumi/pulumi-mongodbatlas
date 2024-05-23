@@ -127,6 +127,10 @@ class _CloudBackupSnapshotExportJobState:
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
         :param pulumi.Input[str] state: Status of the export job. Value can be one of the following:
+               * `Queued` - indicates that the export job is queued
+               * `InProgress` - indicates that the snapshot is being exported
+               * `Successful` - indicates that the export job has completed successfully
+               * `Failed` - indicates that the export job has failed
         """
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
@@ -310,6 +314,10 @@ class _CloudBackupSnapshotExportJobState:
     def state(self) -> Optional[pulumi.Input[str]]:
         """
         Status of the export job. Value can be one of the following:
+        * `Queued` - indicates that the export job is queued
+        * `InProgress` - indicates that the snapshot is being exported
+        * `Successful` - indicates that the export job has completed successfully
+        * `Failed` - indicates that the export job has failed
         """
         return pulumi.get(self, "state")
 
@@ -605,6 +613,10 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
         :param pulumi.Input[str] state: Status of the export job. Value can be one of the following:
+               * `Queued` - indicates that the export job is queued
+               * `InProgress` - indicates that the snapshot is being exported
+               * `Successful` - indicates that the export job has completed successfully
+               * `Failed` - indicates that the export job has failed
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -727,6 +739,10 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
     def state(self) -> pulumi.Output[str]:
         """
         Status of the export job. Value can be one of the following:
+        * `Queued` - indicates that the export job is queued
+        * `InProgress` - indicates that the snapshot is being exported
+        * `Successful` - indicates that the export job has completed successfully
+        * `Failed` - indicates that the export job has failed
         """
         return pulumi.get(self, "state")
 
