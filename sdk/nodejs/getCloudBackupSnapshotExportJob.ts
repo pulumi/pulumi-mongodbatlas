@@ -115,6 +115,10 @@ export interface GetCloudBackupSnapshotExportJobResult {
     readonly snapshotId: string;
     /**
      * Status of the export job. Value can be one of the following:
+     * * `Queued` - indicates that the export job is queued
+     * * `InProgress` - indicates that the snapshot is being exported
+     * * `Successful` - indicates that the export job has completed successfully
+     * * `Failed` - indicates that the export job has failed
      */
     readonly state: string;
 }

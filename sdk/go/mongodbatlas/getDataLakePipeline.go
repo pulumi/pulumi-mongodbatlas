@@ -51,6 +51,7 @@ type LookupDataLakePipelineResult struct {
 	LastUpdatedDate string `pulumi:"lastUpdatedDate"`
 	Name            string `pulumi:"name"`
 	// Unique 24-hexadecimal character string that identifies the project.
+	// * `policyItemId` - Unique 24-hexadecimal character string that identifies a policy item.
 	ProjectId string                    `pulumi:"projectId"`
 	Sinks     []GetDataLakePipelineSink `pulumi:"sinks"`
 	// List of backup snapshots that you can use to trigger an on demand pipeline run.
@@ -150,6 +151,7 @@ func (o LookupDataLakePipelineResultOutput) Name() pulumi.StringOutput {
 }
 
 // Unique 24-hexadecimal character string that identifies the project.
+// * `policyItemId` - Unique 24-hexadecimal character string that identifies a policy item.
 func (o LookupDataLakePipelineResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDataLakePipelineResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

@@ -72,6 +72,15 @@ export class ApiKey extends pulumi.CustomResource {
     /**
      * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
+     * * `ORG_OWNER`
+     * * `ORG_GROUP_CREATOR`
+     * * `ORG_BILLING_ADMIN`
+     * * `ORG_READ_ONLY`
+     * * `ORG_MEMBER`
+     *
+     * ## Attributes Reference
+     *
+     * In addition to all arguments above, the following attributes are exported:
      */
     public readonly roleNames!: pulumi.Output<string[]>;
 
@@ -140,6 +149,15 @@ export interface ApiKeyState {
     /**
      * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
+     * * `ORG_OWNER`
+     * * `ORG_GROUP_CREATOR`
+     * * `ORG_BILLING_ADMIN`
+     * * `ORG_READ_ONLY`
+     * * `ORG_MEMBER`
+     *
+     * ## Attributes Reference
+     *
+     * In addition to all arguments above, the following attributes are exported:
      */
     roleNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -159,6 +177,15 @@ export interface ApiKeyArgs {
     /**
      * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
+     * * `ORG_OWNER`
+     * * `ORG_GROUP_CREATOR`
+     * * `ORG_BILLING_ADMIN`
+     * * `ORG_READ_ONLY`
+     * * `ORG_MEMBER`
+     *
+     * ## Attributes Reference
+     *
+     * In addition to all arguments above, the following attributes are exported:
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
 }

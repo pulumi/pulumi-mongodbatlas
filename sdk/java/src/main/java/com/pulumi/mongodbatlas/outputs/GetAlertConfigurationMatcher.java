@@ -18,11 +18,18 @@ public final class GetAlertConfigurationMatcher {
     /**
      * @return The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
      * 
      */
     private String operator;
     /**
      * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
      * 
      */
     private String value;
@@ -38,6 +45,8 @@ public final class GetAlertConfigurationMatcher {
     /**
      * @return The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
      * 
      */
     public String operator() {
@@ -45,6 +54,11 @@ public final class GetAlertConfigurationMatcher {
     }
     /**
      * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
      * 
      */
     public String value() {

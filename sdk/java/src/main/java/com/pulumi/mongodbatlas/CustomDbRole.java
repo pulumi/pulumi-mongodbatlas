@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()        
+ *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .roleName("myCustomRole")
  *             .actions(            
@@ -110,7 +110,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var inheritedRoleOne = new CustomDbRole("inheritedRoleOne", CustomDbRoleArgs.builder()        
+ *         var inheritedRoleOne = new CustomDbRole("inheritedRoleOne", CustomDbRoleArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .roleName("insertRole")
  *             .actions(CustomDbRoleActionArgs.builder()
@@ -122,7 +122,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var inheritedRoleTwo = new CustomDbRole("inheritedRoleTwo", CustomDbRoleArgs.builder()        
+ *         var inheritedRoleTwo = new CustomDbRole("inheritedRoleTwo", CustomDbRoleArgs.builder()
  *             .projectId(inheritedRoleOne.projectId())
  *             .roleName("statusServerRole")
  *             .actions(CustomDbRoleActionArgs.builder()
@@ -133,7 +133,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()        
+ *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()
  *             .projectId(inheritedRoleOne.projectId())
  *             .roleName("myCustomRole")
  *             .actions(            

@@ -96,6 +96,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
         /// </summary>
         public string? MicrosoftTeamsWebhookUrl
         {
@@ -171,6 +172,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
         /// </summary>
         public Input<string>? MicrosoftTeamsWebhookUrl
         {
@@ -265,15 +267,18 @@ namespace Pulumi.Mongodbatlas
         public readonly string Id;
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
         /// </summary>
         public readonly string? MicrosoftTeamsWebhookUrl;
         public readonly string ProjectId;
         /// <summary>
         /// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+        /// * `VICTOR_OPS`
         /// </summary>
         public readonly string Region;
         /// <summary>
         /// An optional field for your Routing Key.
+        /// * `WEBHOOK`
         /// </summary>
         public readonly string RoutingKey;
         /// <summary>
@@ -282,6 +287,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string? Scheme;
         /// <summary>
         /// An optional field for your webhook secret.
+        /// * `MICROSOFT_TEAMS`
         /// </summary>
         public readonly string Secret;
         /// <summary>
@@ -290,6 +296,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string? ServiceDiscovery;
         /// <summary>
         /// Your Service Key.
+        /// * `DATADOG`
         /// </summary>
         public readonly string ServiceKey;
         public readonly string TeamName;

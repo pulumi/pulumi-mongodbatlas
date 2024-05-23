@@ -48,12 +48,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()        
+ *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()
  *             .orgId(atlasOrgId)
  *             .name(atlasProjectName)
  *             .build());
  * 
- *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+ *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
  *             .projectId(atlas_project.id())
  *             .endpointId("vpce-046cf43c79424d4c9")
  *             .providerName("AWS")

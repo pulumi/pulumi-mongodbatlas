@@ -41,6 +41,9 @@ class ThirdPartyIntegrationArgs:
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
+               
+               
+               * `PAGER_DUTY`
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "type", type)
@@ -100,6 +103,9 @@ class ThirdPartyIntegrationArgs:
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
+
+
+        * `PAGER_DUTY`
         """
         return pulumi.get(self, "type")
 
@@ -267,6 +273,9 @@ class _ThirdPartyIntegrationState:
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
+               
+               
+               * `PAGER_DUTY`
         """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
@@ -439,6 +448,9 @@ class _ThirdPartyIntegrationState:
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
+
+
+        * `PAGER_DUTY`
         """
         return pulumi.get(self, "type")
 
@@ -531,6 +543,9 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
+               
+               
+               * `PAGER_DUTY`
         """
         ...
     @overload
@@ -675,6 +690,9 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
+               
+               
+               * `PAGER_DUTY`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -781,6 +799,9 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
+
+
+        * `PAGER_DUTY`
         """
         return pulumi.get(self, "type")
 

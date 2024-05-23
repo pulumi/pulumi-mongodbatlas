@@ -93,6 +93,8 @@ class GetFederatedDatabaseInstanceResult:
     def state(self) -> str:
         """
         Current state of the Federated Database Instance:
+        * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+        * `DELETED` - The Federated Database Instance was deleted.
         """
         return pulumi.get(self, "state")
 

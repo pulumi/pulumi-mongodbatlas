@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Container example provided but not always required, 
  *         // see network_container documentation for details. 
- *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()        
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()
  *             .projectId(projectId)
  *             .atlasCidrBlock("10.8.0.0/21")
  *             .providerName("AWS")
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Create the peering connection request
- *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+ *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
  *             .accepterRegionName("us-east-1")
  *             .projectId(projectId)
  *             .containerId("507f1f77bcf86cd799439011")
@@ -86,7 +86,7 @@ import javax.annotation.Nullable;
  * 
  *         // the following assumes an AWS provider is configured
  *         // Accept the peering connection request
- *         var peer = new VpcPeeringConnectionAccepter("peer", VpcPeeringConnectionAccepterArgs.builder()        
+ *         var peer = new VpcPeeringConnectionAccepter("peer", VpcPeeringConnectionAccepterArgs.builder()
  *             .vpcPeeringConnectionId(testNetworkPeering.connectionId())
  *             .autoAccept(true)
  *             .build());
@@ -132,7 +132,7 @@ import javax.annotation.Nullable;
  *         // see https://docs.atlas.mongodb.com/security-vpc-peering/
  *         // Container example provided but not always required, 
  *         // see network_container documentation for details. 
- *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()        
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()
  *             .projectId(projectId)
  *             .atlasCidrBlock(ATLAS_CIDR_BLOCK)
  *             .providerName("AZURE")
@@ -140,7 +140,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Create the peering connection request
- *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+ *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
  *             .projectId(projectId)
  *             .containerId(test.containerId())
  *             .providerName("AZURE")
@@ -151,7 +151,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Create the cluster once the peering connection is completed
- *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+ *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
  *             .projectId(projectId)
  *             .name("terraform-manually-test")
  *             .clusterType("REPLICASET")
@@ -215,7 +215,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Create an Atlas cluster, this creates a container if one
  *         // does not yet exist for this AWS region
- *         var test = new Cluster("test", ClusterArgs.builder()        
+ *         var test = new Cluster("test", ClusterArgs.builder()
  *             .projectId(projectId)
  *             .name("terraform-test")
  *             .clusterType("REPLICASET")
@@ -235,12 +235,12 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // the following assumes an AWS provider is configured
- *         var default_ = new DefaultVpc("default", DefaultVpcArgs.builder()        
+ *         var default_ = new DefaultVpc("default", DefaultVpcArgs.builder()
  *             .tags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .build());
  * 
  *         // Create the peering connection request
- *         var mongoPeer = new NetworkPeering("mongoPeer", NetworkPeeringArgs.builder()        
+ *         var mongoPeer = new NetworkPeering("mongoPeer", NetworkPeeringArgs.builder()
  *             .accepterRegionName("us-east-2")
  *             .projectId(projectId)
  *             .containerId(test.containerId())
@@ -251,7 +251,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Accept the connection 
- *         var awsPeer = new VpcPeeringConnectionAccepter("awsPeer", VpcPeeringConnectionAccepterArgs.builder()        
+ *         var awsPeer = new VpcPeeringConnectionAccepter("awsPeer", VpcPeeringConnectionAccepterArgs.builder()
  *             .vpcPeeringConnectionId(mongoPeer.connectionId())
  *             .autoAccept(true)
  *             .tags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
@@ -295,7 +295,7 @@ import javax.annotation.Nullable;
  *         // see https://docs.atlas.mongodb.com/security-vpc-peering/
  *         // Create an Atlas cluster, this creates a container if one
  *         // does not yet exist for this AZURE region
- *         var test = new Cluster("test", ClusterArgs.builder()        
+ *         var test = new Cluster("test", ClusterArgs.builder()
  *             .projectId(projectId)
  *             .name("cluster-azure")
  *             .clusterType("REPLICASET")
@@ -315,7 +315,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Create the peering connection request
- *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+ *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
  *             .projectId(projectId)
  *             .containerId(test.containerId())
  *             .providerName("AZURE")

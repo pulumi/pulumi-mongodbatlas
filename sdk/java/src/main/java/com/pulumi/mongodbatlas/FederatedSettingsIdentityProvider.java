@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()        
+ *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
  *             .federationSettingsId("627a9687f7f7f7f774de306f14")
  *             .name("mongodb_federation_test")
  *             .associatedDomains("yourdomain.com")

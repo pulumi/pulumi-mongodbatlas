@@ -50,12 +50,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Project("test", ProjectArgs.builder()        
+ *         var test = new Project("test", ProjectArgs.builder()
  *             .name("NAME OF THE PROJECT")
  *             .orgId("ORG ID")
  *             .build());
  * 
- *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+ *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
  *             .projectId(test.id())
  *             .name("NAME OF THE CLUSTER")
  *             .providerName("AWS")
@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
  *             .cloudBackup(true)
  *             .build());
  * 
- *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()        
+ *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()
  *             .projectId(test.id())
  *             .hostname("HOSTNAME")
  *             .port(636)

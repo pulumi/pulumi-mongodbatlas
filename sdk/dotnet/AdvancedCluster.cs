@@ -515,6 +515,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Type of the cluster that you want to create.
         /// Accepted values include:
+        /// - `REPLICASET` Replica set
+        /// - `SHARDED`	Sharded cluster
+        /// - `GEOSHARDED` Global Cluster
         /// </summary>
         [Output("clusterType")]
         public Output<string> ClusterType { get; private set; } = null!;
@@ -623,6 +626,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         /// </summary>
         [Output("versionReleaseSystem")]
         public Output<string> VersionReleaseSystem { get; private set; } = null!;
@@ -705,6 +710,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Type of the cluster that you want to create.
         /// Accepted values include:
+        /// - `REPLICASET` Replica set
+        /// - `SHARDED`	Sharded cluster
+        /// - `GEOSHARDED` Global Cluster
         /// </summary>
         [Input("clusterType", required: true)]
         public Input<string> ClusterType { get; set; } = null!;
@@ -805,6 +813,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         /// </summary>
         [Input("versionReleaseSystem")]
         public Input<string>? VersionReleaseSystem { get; set; }
@@ -855,6 +865,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Type of the cluster that you want to create.
         /// Accepted values include:
+        /// - `REPLICASET` Replica set
+        /// - `SHARDED`	Sharded cluster
+        /// - `GEOSHARDED` Global Cluster
         /// </summary>
         [Input("clusterType")]
         public Input<string>? ClusterType { get; set; }
@@ -988,6 +1001,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         /// </summary>
         [Input("versionReleaseSystem")]
         public Input<string>? VersionReleaseSystem { get; set; }

@@ -409,6 +409,9 @@ type Cluster struct {
 	// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
 	//
 	// Accepted values include:
+	// - `REPLICASET` Replica set
+	// - `SHARDED` Sharded cluster
+	// - `GEOSHARDED` Global Cluster
 	ClusterType pulumi.StringOutput `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings ClusterConnectionStringArrayOutput `pulumi:"connectionStrings"`
@@ -464,6 +467,11 @@ type Cluster struct {
 	// Cloud service provider on which the servers are provisioned.
 	//
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -494,6 +502,8 @@ type Cluster struct {
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled pulumi.BoolOutput `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+	// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+	// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
 	VersionReleaseSystem pulumi.StringOutput `pulumi:"versionReleaseSystem"`
 }
 
@@ -571,6 +581,9 @@ type clusterState struct {
 	// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
 	//
 	// Accepted values include:
+	// - `REPLICASET` Replica set
+	// - `SHARDED` Sharded cluster
+	// - `GEOSHARDED` Global Cluster
 	ClusterType *string `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings []ClusterConnectionString `pulumi:"connectionStrings"`
@@ -626,6 +639,11 @@ type clusterState struct {
 	// Cloud service provider on which the servers are provisioned.
 	//
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
 	ProviderName *string `pulumi:"providerName"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -656,6 +674,8 @@ type clusterState struct {
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled *bool `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+	// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+	// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
 	VersionReleaseSystem *string `pulumi:"versionReleaseSystem"`
 }
 
@@ -695,6 +715,9 @@ type ClusterState struct {
 	// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
 	//
 	// Accepted values include:
+	// - `REPLICASET` Replica set
+	// - `SHARDED` Sharded cluster
+	// - `GEOSHARDED` Global Cluster
 	ClusterType pulumi.StringPtrInput
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings ClusterConnectionStringArrayInput
@@ -750,6 +773,11 @@ type ClusterState struct {
 	// Cloud service provider on which the servers are provisioned.
 	//
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
 	ProviderName pulumi.StringPtrInput
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -780,6 +808,8 @@ type ClusterState struct {
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled pulumi.BoolPtrInput
 	// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+	// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+	// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
 	VersionReleaseSystem pulumi.StringPtrInput
 }
 
@@ -821,6 +851,9 @@ type clusterArgs struct {
 	// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
 	//
 	// Accepted values include:
+	// - `REPLICASET` Replica set
+	// - `SHARDED` Sharded cluster
+	// - `GEOSHARDED` Global Cluster
 	ClusterType *string `pulumi:"clusterType"`
 	// Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
 	// * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -863,6 +896,11 @@ type clusterArgs struct {
 	// Cloud service provider on which the servers are provisioned.
 	//
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
 	ProviderName string `pulumi:"providerName"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -881,6 +919,8 @@ type clusterArgs struct {
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled *bool `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+	// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+	// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
 	VersionReleaseSystem *string `pulumi:"versionReleaseSystem"`
 }
 
@@ -919,6 +959,9 @@ type ClusterArgs struct {
 	// When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
 	//
 	// Accepted values include:
+	// - `REPLICASET` Replica set
+	// - `SHARDED` Sharded cluster
+	// - `GEOSHARDED` Global Cluster
 	ClusterType pulumi.StringPtrInput
 	// Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
 	// * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -961,6 +1004,11 @@ type ClusterArgs struct {
 	// Cloud service provider on which the servers are provisioned.
 	//
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
 	ProviderName pulumi.StringInput
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -979,6 +1027,8 @@ type ClusterArgs struct {
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled pulumi.BoolPtrInput
 	// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+	// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+	// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
 	VersionReleaseSystem pulumi.StringPtrInput
 }
 
@@ -1134,6 +1184,9 @@ func (o ClusterOutput) ClusterId() pulumi.StringOutput {
 // When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
 //
 // Accepted values include:
+// - `REPLICASET` Replica set
+// - `SHARDED` Sharded cluster
+// - `GEOSHARDED` Global Cluster
 func (o ClusterOutput) ClusterType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ClusterType }).(pulumi.StringOutput)
 }
@@ -1258,6 +1311,11 @@ func (o ClusterOutput) ProviderInstanceSizeName() pulumi.StringOutput {
 // Cloud service provider on which the servers are provisioned.
 //
 // The possible values are:
+//
+// - `AWS` - Amazon AWS
+// - `GCP` - Google Cloud Platform
+// - `AZURE` - Microsoft Azure
+// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
 func (o ClusterOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
 }
@@ -1321,6 +1379,8 @@ func (o ClusterOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
 }
 
 // Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
 func (o ClusterOutput) VersionReleaseSystem() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.VersionReleaseSystem }).(pulumi.StringOutput)
 }

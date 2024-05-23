@@ -1136,6 +1136,11 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	Priority int `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
 	ReadOnlySpecs *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
@@ -1171,6 +1176,11 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	Priority pulumi.IntInput `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
 	ReadOnlySpecs AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
@@ -1271,6 +1281,11 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) Priority() pulumi.IntO
 
 // Cloud service provider on which the servers are provisioned.
 // The possible values are:
+//
+// - `AWS` - Amazon AWS
+// - `GCP` - Google Cloud Platform
+// - `AZURE` - Microsoft Azure
+// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
 }
@@ -1526,6 +1541,8 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -1548,6 +1565,8 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -1638,6 +1657,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -1687,6 +1708,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskI
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -1925,6 +1948,8 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -1947,6 +1972,8 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -2037,6 +2064,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskIops
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -2086,6 +2115,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskI
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -2119,6 +2150,8 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -2141,6 +2174,8 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -2231,6 +2266,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops(
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -2280,6 +2317,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIo
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -7146,6 +7185,11 @@ type ClusterConnectionStringPrivateEndpointEndpoint struct {
 	// Cloud service provider on which the servers are provisioned.
 	//
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
 	ProviderName *string `pulumi:"providerName"`
 	Region       *string `pulumi:"region"`
 }
@@ -7166,6 +7210,11 @@ type ClusterConnectionStringPrivateEndpointEndpointArgs struct {
 	// Cloud service provider on which the servers are provisioned.
 	//
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
 	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
 	Region       pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -7228,6 +7277,11 @@ func (o ClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId() pulum
 // Cloud service provider on which the servers are provisioned.
 //
 // The possible values are:
+//
+// - `AWS` - Amazon AWS
+// - `GCP` - Google Cloud Platform
+// - `AZURE` - Microsoft Azure
+// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
 func (o ClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionStringPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
 }
@@ -7370,10 +7424,14 @@ func (o ClusterLabelArrayOutput) Index(i pulumi.IntInput) ClusterLabelOutput {
 
 type ClusterOutageSimulationOutageFilter struct {
 	// The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+	// * `AWS`
+	// * `GCP`
+	// * `AZURE`
 	CloudProvider string `pulumi:"cloudProvider"`
 	// The Atlas name of the region to undergo an outage simulation.
 	RegionName string `pulumi:"regionName"`
 	// The type of cluster outage simulation. Following values are supported:
+	// * `REGION` - Simulates a cluster outage for a region
 	Type *string `pulumi:"type"`
 }
 
@@ -7390,10 +7448,14 @@ type ClusterOutageSimulationOutageFilterInput interface {
 
 type ClusterOutageSimulationOutageFilterArgs struct {
 	// The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+	// * `AWS`
+	// * `GCP`
+	// * `AZURE`
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// The Atlas name of the region to undergo an outage simulation.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 	// The type of cluster outage simulation. Following values are supported:
+	// * `REGION` - Simulates a cluster outage for a region
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -7449,6 +7511,9 @@ func (o ClusterOutageSimulationOutageFilterOutput) ToClusterOutageSimulationOuta
 }
 
 // The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+// * `AWS`
+// * `GCP`
+// * `AZURE`
 func (o ClusterOutageSimulationOutageFilterOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterOutageSimulationOutageFilter) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -7459,6 +7524,7 @@ func (o ClusterOutageSimulationOutageFilterOutput) RegionName() pulumi.StringOut
 }
 
 // The type of cluster outage simulation. Following values are supported:
+// * `REGION` - Simulates a cluster outage for a region
 func (o ClusterOutageSimulationOutageFilterOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterOutageSimulationOutageFilter) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -18321,6 +18387,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -18343,6 +18411,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -18433,6 +18503,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskI
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -18482,6 +18554,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Di
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -18657,6 +18731,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -18679,6 +18755,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -18769,6 +18847,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskI
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -18818,6 +18898,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) Di
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -18851,6 +18933,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -18873,6 +18957,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -18963,6 +19049,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIo
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -19012,6 +19100,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Dis
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -20664,6 +20754,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -20686,6 +20778,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs stru
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -20776,6 +20870,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		return v.EbsVolumeType
@@ -20829,6 +20925,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOut
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -21001,6 +21099,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -21023,6 +21123,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs stru
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -21113,6 +21215,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *string {
 		return v.EbsVolumeType
@@ -21166,6 +21270,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOut
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -21199,6 +21305,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -21221,6 +21329,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs struc
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -21311,6 +21421,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *string {
 		return v.EbsVolumeType
@@ -21364,6 +21476,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutp
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -21504,8 +21618,15 @@ type GetAlertConfigurationMatcher struct {
 	FieldName string `pulumi:"fieldName"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value string `pulumi:"value"`
 }
 
@@ -21525,8 +21646,15 @@ type GetAlertConfigurationMatcherArgs struct {
 	FieldName pulumi.StringInput `pulumi:"fieldName"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -21588,11 +21716,18 @@ func (o GetAlertConfigurationMatcherOutput) FieldName() pulumi.StringOutput {
 
 // The operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
 func (o GetAlertConfigurationMatcherOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMatcher) string { return v.Operator }).(pulumi.StringOutput)
 }
 
 // Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+// - `PRIMARY`
+// - `SECONDARY`
+// - `STANDALONE`
+// - `CONFIG`
+// - `MONGOS`
 func (o GetAlertConfigurationMatcherOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMatcher) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -21624,6 +21759,8 @@ type GetAlertConfigurationMetricThresholdConfig struct {
 	Mode string `pulumi:"mode"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold float64 `pulumi:"threshold"`
@@ -21650,6 +21787,8 @@ type GetAlertConfigurationMetricThresholdConfigArgs struct {
 	Mode pulumi.StringInput `pulumi:"mode"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold pulumi.Float64Input `pulumi:"threshold"`
@@ -21721,6 +21860,8 @@ func (o GetAlertConfigurationMetricThresholdConfigOutput) Mode() pulumi.StringOu
 
 // The operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
 func (o GetAlertConfigurationMetricThresholdConfigOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMetricThresholdConfig) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -21797,6 +21938,19 @@ type GetAlertConfigurationNotification struct {
 	TeamName string `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
+	// - `DATADOG`
+	// - `EMAIL`
+	// - `GROUP` (Project)
+	// - `OPS_GENIE`
+	// - `ORG`
+	// - `PAGER_DUTY`
+	// - `SLACK`
+	// - `SMS`
+	// - `TEAM`
+	// - `USER`
+	// - `VICTOR_OPS`
+	// - `WEBHOOK`
+	// - `MICROSOFT_TEAMS`
 	TypeName string `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username string `pulumi:"username"`
@@ -21862,6 +22016,19 @@ type GetAlertConfigurationNotificationArgs struct {
 	TeamName pulumi.StringInput `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
+	// - `DATADOG`
+	// - `EMAIL`
+	// - `GROUP` (Project)
+	// - `OPS_GENIE`
+	// - `ORG`
+	// - `PAGER_DUTY`
+	// - `SLACK`
+	// - `SMS`
+	// - `TEAM`
+	// - `USER`
+	// - `VICTOR_OPS`
+	// - `WEBHOOK`
+	// - `MICROSOFT_TEAMS`
 	TypeName pulumi.StringInput `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username pulumi.StringInput `pulumi:"username"`
@@ -22023,6 +22190,19 @@ func (o GetAlertConfigurationNotificationOutput) TeamName() pulumi.StringOutput 
 
 // Type of alert notification.
 // Accepted values are:
+// - `DATADOG`
+// - `EMAIL`
+// - `GROUP` (Project)
+// - `OPS_GENIE`
+// - `ORG`
+// - `PAGER_DUTY`
+// - `SLACK`
+// - `SMS`
+// - `TEAM`
+// - `USER`
+// - `VICTOR_OPS`
+// - `WEBHOOK`
+// - `MICROSOFT_TEAMS`
 func (o GetAlertConfigurationNotificationOutput) TypeName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.TypeName }).(pulumi.StringOutput)
 }
@@ -22076,6 +22256,11 @@ type GetAlertConfigurationOutput struct {
 	Label *string `pulumi:"label"`
 	Type  string  `pulumi:"type"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value string `pulumi:"value"`
 }
 
@@ -22094,6 +22279,11 @@ type GetAlertConfigurationOutputArgs struct {
 	Label pulumi.StringPtrInput `pulumi:"label"`
 	Type  pulumi.StringInput    `pulumi:"type"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -22157,6 +22347,11 @@ func (o GetAlertConfigurationOutputOutput) Type() pulumi.StringOutput {
 }
 
 // Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+// - `PRIMARY`
+// - `SECONDARY`
+// - `STANDALONE`
+// - `CONFIG`
+// - `MONGOS`
 func (o GetAlertConfigurationOutputOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationOutput) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -22184,6 +22379,8 @@ func (o GetAlertConfigurationOutputArrayOutput) Index(i pulumi.IntInput) GetAler
 type GetAlertConfigurationThresholdConfig struct {
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold float64 `pulumi:"threshold"`
@@ -22206,6 +22403,8 @@ type GetAlertConfigurationThresholdConfigInput interface {
 type GetAlertConfigurationThresholdConfigArgs struct {
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold pulumi.Float64Input `pulumi:"threshold"`
@@ -22267,6 +22466,8 @@ func (o GetAlertConfigurationThresholdConfigOutput) ToGetAlertConfigurationThres
 
 // The operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
 func (o GetAlertConfigurationThresholdConfigOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationThresholdConfig) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -22609,8 +22810,15 @@ type GetAlertConfigurationsResultMatcher struct {
 	FieldName string `pulumi:"fieldName"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value string `pulumi:"value"`
 }
 
@@ -22630,8 +22838,15 @@ type GetAlertConfigurationsResultMatcherArgs struct {
 	FieldName pulumi.StringInput `pulumi:"fieldName"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -22693,11 +22908,18 @@ func (o GetAlertConfigurationsResultMatcherOutput) FieldName() pulumi.StringOutp
 
 // The operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
 func (o GetAlertConfigurationsResultMatcherOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultMatcher) string { return v.Operator }).(pulumi.StringOutput)
 }
 
 // Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+// - `PRIMARY`
+// - `SECONDARY`
+// - `STANDALONE`
+// - `CONFIG`
+// - `MONGOS`
 func (o GetAlertConfigurationsResultMatcherOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultMatcher) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -22729,6 +22951,8 @@ type GetAlertConfigurationsResultMetricThresholdConfig struct {
 	Mode string `pulumi:"mode"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold float64 `pulumi:"threshold"`
@@ -22755,6 +22979,8 @@ type GetAlertConfigurationsResultMetricThresholdConfigArgs struct {
 	Mode pulumi.StringInput `pulumi:"mode"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold pulumi.Float64Input `pulumi:"threshold"`
@@ -22826,6 +23052,8 @@ func (o GetAlertConfigurationsResultMetricThresholdConfigOutput) Mode() pulumi.S
 
 // The operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
 func (o GetAlertConfigurationsResultMetricThresholdConfigOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultMetricThresholdConfig) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -22902,6 +23130,19 @@ type GetAlertConfigurationsResultNotification struct {
 	TeamName string `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
+	// - `DATADOG`
+	// - `EMAIL`
+	// - `GROUP` (Project)
+	// - `OPS_GENIE`
+	// - `ORG`
+	// - `PAGER_DUTY`
+	// - `SLACK`
+	// - `SMS`
+	// - `TEAM`
+	// - `USER`
+	// - `VICTOR_OPS`
+	// - `WEBHOOK`
+	// - `MICROSOFT_TEAMS`
 	TypeName string `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username string `pulumi:"username"`
@@ -22967,6 +23208,19 @@ type GetAlertConfigurationsResultNotificationArgs struct {
 	TeamName pulumi.StringInput `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
+	// - `DATADOG`
+	// - `EMAIL`
+	// - `GROUP` (Project)
+	// - `OPS_GENIE`
+	// - `ORG`
+	// - `PAGER_DUTY`
+	// - `SLACK`
+	// - `SMS`
+	// - `TEAM`
+	// - `USER`
+	// - `VICTOR_OPS`
+	// - `WEBHOOK`
+	// - `MICROSOFT_TEAMS`
 	TypeName pulumi.StringInput `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username pulumi.StringInput `pulumi:"username"`
@@ -23128,6 +23382,19 @@ func (o GetAlertConfigurationsResultNotificationOutput) TeamName() pulumi.String
 
 // Type of alert notification.
 // Accepted values are:
+// - `DATADOG`
+// - `EMAIL`
+// - `GROUP` (Project)
+// - `OPS_GENIE`
+// - `ORG`
+// - `PAGER_DUTY`
+// - `SLACK`
+// - `SMS`
+// - `TEAM`
+// - `USER`
+// - `VICTOR_OPS`
+// - `WEBHOOK`
+// - `MICROSOFT_TEAMS`
 func (o GetAlertConfigurationsResultNotificationOutput) TypeName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.TypeName }).(pulumi.StringOutput)
 }
@@ -23181,6 +23448,11 @@ type GetAlertConfigurationsResultOutputType struct {
 	Label string `pulumi:"label"`
 	Type  string `pulumi:"type"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value string `pulumi:"value"`
 }
 
@@ -23199,6 +23471,11 @@ type GetAlertConfigurationsResultOutputTypeArgs struct {
 	Label pulumi.StringInput `pulumi:"label"`
 	Type  pulumi.StringInput `pulumi:"type"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -23262,6 +23539,11 @@ func (o GetAlertConfigurationsResultOutputTypeOutput) Type() pulumi.StringOutput
 }
 
 // Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+// - `PRIMARY`
+// - `SECONDARY`
+// - `STANDALONE`
+// - `CONFIG`
+// - `MONGOS`
 func (o GetAlertConfigurationsResultOutputTypeOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultOutputType) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -23289,6 +23571,8 @@ func (o GetAlertConfigurationsResultOutputTypeArrayOutput) Index(i pulumi.IntInp
 type GetAlertConfigurationsResultThresholdConfig struct {
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold float64 `pulumi:"threshold"`
@@ -23311,6 +23595,8 @@ type GetAlertConfigurationsResultThresholdConfigInput interface {
 type GetAlertConfigurationsResultThresholdConfigArgs struct {
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold pulumi.Float64Input `pulumi:"threshold"`
@@ -23372,6 +23658,8 @@ func (o GetAlertConfigurationsResultThresholdConfigOutput) ToGetAlertConfigurati
 
 // The operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
 func (o GetAlertConfigurationsResultThresholdConfigOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultThresholdConfig) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -26070,6 +26358,10 @@ type GetCloudBackupSnapshotExportJobsResult struct {
 	// Unique identifier of the Cloud Backup snapshot to export.
 	SnapshotId string `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
+	// * `Queued` - indicates that the export job is queued
+	// * `InProgress` - indicates that the snapshot is being exported
+	// * `Successful` - indicates that the export job has completed successfully
+	// * `Failed` - indicates that the export job has failed
 	State string `pulumi:"state"`
 }
 
@@ -26106,6 +26398,10 @@ type GetCloudBackupSnapshotExportJobsResultArgs struct {
 	// Unique identifier of the Cloud Backup snapshot to export.
 	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
+	// * `Queued` - indicates that the export job is queued
+	// * `InProgress` - indicates that the snapshot is being exported
+	// * `Successful` - indicates that the export job has completed successfully
+	// * `Failed` - indicates that the export job has failed
 	State pulumi.StringInput `pulumi:"state"`
 }
 
@@ -26218,6 +26514,10 @@ func (o GetCloudBackupSnapshotExportJobsResultOutput) SnapshotId() pulumi.String
 }
 
 // Status of the export job. Value can be one of the following:
+// * `Queued` - indicates that the export job is queued
+// * `InProgress` - indicates that the snapshot is being exported
+// * `Successful` - indicates that the export job has completed successfully
+// * `Failed` - indicates that the export job has failed
 func (o GetCloudBackupSnapshotExportJobsResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.State }).(pulumi.StringOutput)
 }
@@ -26596,6 +26896,9 @@ type GetCloudBackupSnapshotRestoreJobsResult struct {
 	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
 	TargetProjectId string `pulumi:"targetProjectId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 	Timestamp string `pulumi:"timestamp"`
 }
 
@@ -26637,6 +26940,9 @@ type GetCloudBackupSnapshotRestoreJobsResultArgs struct {
 	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
 	TargetProjectId pulumi.StringInput `pulumi:"targetProjectId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 	Timestamp pulumi.StringInput `pulumi:"timestamp"`
 }
 
@@ -26759,6 +27065,9 @@ func (o GetCloudBackupSnapshotRestoreJobsResultOutput) TargetProjectId() pulumi.
 }
 
 // Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 func (o GetCloudBackupSnapshotRestoreJobsResultOutput) Timestamp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.Timestamp }).(pulumi.StringOutput)
 }
@@ -28131,10 +28440,14 @@ func (o GetClusterLabelArrayOutput) Index(i pulumi.IntInput) GetClusterLabelOutp
 
 type GetClusterOutageSimulationOutageFilter struct {
 	// The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+	// * `AWS`
+	// * `GCP`
+	// * `AZURE`
 	CloudProvider string `pulumi:"cloudProvider"`
 	// The Atlas name of the region undergoing an outage simulation.
 	RegionName string `pulumi:"regionName"`
 	// The type of cluster outage simulation. Following values are supported:
+	// * `REGION` (Simulates a cluster outage for a region)
 	Type string `pulumi:"type"`
 }
 
@@ -28151,10 +28464,14 @@ type GetClusterOutageSimulationOutageFilterInput interface {
 
 type GetClusterOutageSimulationOutageFilterArgs struct {
 	// The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+	// * `AWS`
+	// * `GCP`
+	// * `AZURE`
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// The Atlas name of the region undergoing an outage simulation.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 	// The type of cluster outage simulation. Following values are supported:
+	// * `REGION` (Simulates a cluster outage for a region)
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -28210,6 +28527,9 @@ func (o GetClusterOutageSimulationOutageFilterOutput) ToGetClusterOutageSimulati
 }
 
 // The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+// * `AWS`
+// * `GCP`
+// * `AZURE`
 func (o GetClusterOutageSimulationOutageFilterOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterOutageSimulationOutageFilter) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -28220,6 +28540,7 @@ func (o GetClusterOutageSimulationOutageFilterOutput) RegionName() pulumi.String
 }
 
 // The type of cluster outage simulation. Following values are supported:
+// * `REGION` (Simulates a cluster outage for a region)
 func (o GetClusterOutageSimulationOutageFilterOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterOutageSimulationOutageFilter) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -33843,6 +34164,8 @@ type GetDatabaseUsersResult struct {
 	// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
 	LdapAuthType string `pulumi:"ldapAuthType"`
 	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+	// * `NONE` -	The user does not use OIDC federated authentication.
+	// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType string `pulumi:"oidcAuthType"`
 	// The unique ID for the project to get all database users.
 	ProjectId string `pulumi:"projectId"`
@@ -33879,6 +34202,8 @@ type GetDatabaseUsersResultArgs struct {
 	// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
 	LdapAuthType pulumi.StringInput `pulumi:"ldapAuthType"`
 	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+	// * `NONE` -	The user does not use OIDC federated authentication.
+	// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType pulumi.StringInput `pulumi:"oidcAuthType"`
 	// The unique ID for the project to get all database users.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -33969,6 +34294,8 @@ func (o GetDatabaseUsersResultOutput) LdapAuthType() pulumi.StringOutput {
 }
 
 // (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+// * `NONE` -	The user does not use OIDC federated authentication.
+// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 func (o GetDatabaseUsersResultOutput) OidcAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.OidcAuthType }).(pulumi.StringOutput)
 }
@@ -36472,6 +36799,8 @@ type GetFederatedDatabaseInstancesResult struct {
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId string `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
+	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+	// * `DELETED` - The Federated Database Instance was deleted.
 	State string `pulumi:"state"`
 	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -36539,6 +36868,8 @@ type GetFederatedDatabaseInstancesResultArgs struct {
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
+	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+	// * `DELETED` - The Federated Database Instance was deleted.
 	State pulumi.StringInput `pulumi:"state"`
 	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -36664,6 +36995,8 @@ func (o GetFederatedDatabaseInstancesResultOutput) ProjectId() pulumi.StringOutp
 }
 
 // Current state of the Federated Database Instance:
+// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+// * `DELETED` - The Federated Database Instance was deleted.
 func (o GetFederatedDatabaseInstancesResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResult) string { return v.State }).(pulumi.StringOutput)
 }
@@ -37997,6 +38330,8 @@ type GetFederatedQueryLimitsResult struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage int `pulumi:"currentUsage"`
 	// Default value of the limit.
+	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit     int    `pulumi:"defaultLimit"`
 	LastModifiedDate string `pulumi:"lastModifiedDate"`
 	LimitName        string `pulumi:"limitName"`
@@ -38024,6 +38359,8 @@ type GetFederatedQueryLimitsResultArgs struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage pulumi.IntInput `pulumi:"currentUsage"`
 	// Default value of the limit.
+	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit     pulumi.IntInput    `pulumi:"defaultLimit"`
 	LastModifiedDate pulumi.StringInput `pulumi:"lastModifiedDate"`
 	LimitName        pulumi.StringInput `pulumi:"limitName"`
@@ -38093,6 +38430,8 @@ func (o GetFederatedQueryLimitsResultOutput) CurrentUsage() pulumi.IntOutput {
 }
 
 // Default value of the limit.
+// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+// * `maximumLimit` - Maximum value of the limit.
 func (o GetFederatedQueryLimitsResultOutput) DefaultLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v GetFederatedQueryLimitsResult) int { return v.DefaultLimit }).(pulumi.IntOutput)
 }
@@ -47924,22 +48263,27 @@ type GetThirdPartyIntegrationsResult struct {
 	// Unique identifier of the integration.
 	Id string `pulumi:"id"`
 	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
 	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+	// * `VICTOR_OPS`
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
+	// * `WEBHOOK`
 	RoutingKey string `pulumi:"routingKey"`
 	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
 	//
 	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme *string `pulumi:"scheme"`
 	// An optional field for your webhook secret.
+	// * `MICROSOFT_TEAMS`
 	Secret string `pulumi:"secret"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
+	// * `DATADOG`
 	ServiceKey string `pulumi:"serviceKey"`
 	TeamName   string `pulumi:"teamName"`
 	// Thirt-Party service integration type.
@@ -47971,22 +48315,27 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// Unique identifier of the integration.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+	// * `VICTOR_OPS`
 	Region pulumi.StringInput `pulumi:"region"`
 	// An optional field for your Routing Key.
+	// * `WEBHOOK`
 	RoutingKey pulumi.StringInput `pulumi:"routingKey"`
 	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
 	//
 	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme pulumi.StringPtrInput `pulumi:"scheme"`
 	// An optional field for your webhook secret.
+	// * `MICROSOFT_TEAMS`
 	Secret pulumi.StringInput `pulumi:"secret"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery pulumi.StringPtrInput `pulumi:"serviceDiscovery"`
 	// Your Service Key.
+	// * `DATADOG`
 	ServiceKey pulumi.StringInput `pulumi:"serviceKey"`
 	TeamName   pulumi.StringInput `pulumi:"teamName"`
 	// Thirt-Party service integration type.
@@ -48072,6 +48421,7 @@ func (o GetThirdPartyIntegrationsResultOutput) Id() pulumi.StringOutput {
 }
 
 // Your Microsoft Teams incoming webhook URL.
+// * `PROMETHEUS`
 func (o GetThirdPartyIntegrationsResultOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
 }
@@ -48082,11 +48432,13 @@ func (o GetThirdPartyIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+// * `VICTOR_OPS`
 func (o GetThirdPartyIntegrationsResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // An optional field for your Routing Key.
+// * `WEBHOOK`
 func (o GetThirdPartyIntegrationsResultOutput) RoutingKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.RoutingKey }).(pulumi.StringOutput)
 }
@@ -48099,6 +48451,7 @@ func (o GetThirdPartyIntegrationsResultOutput) Scheme() pulumi.StringPtrOutput {
 }
 
 // An optional field for your webhook secret.
+// * `MICROSOFT_TEAMS`
 func (o GetThirdPartyIntegrationsResultOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Secret }).(pulumi.StringOutput)
 }
@@ -48109,6 +48462,7 @@ func (o GetThirdPartyIntegrationsResultOutput) ServiceDiscovery() pulumi.StringP
 }
 
 // Your Service Key.
+// * `DATADOG`
 func (o GetThirdPartyIntegrationsResultOutput) ServiceKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ServiceKey }).(pulumi.StringOutput)
 }

@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new StreamConnection("test", StreamConnectionArgs.builder()        
+ *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
  *             .projectId(projectId)
  *             .instanceName("InstanceName")
  *             .connectionName("ConnectionName")
@@ -91,7 +91,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new StreamConnection("test", StreamConnectionArgs.builder()        
+ *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
  *             .projectId(projectId)
  *             .instanceName("NewInstance")
  *             .connectionName("KafkaConnection")
@@ -141,7 +141,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new StreamConnection("test", StreamConnectionArgs.builder()        
+ *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
  *             .projectId(projectId)
  *             .instanceName("NewInstance")
  *             .connectionName("KafkaConnection")

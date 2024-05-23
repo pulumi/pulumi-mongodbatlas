@@ -85,6 +85,8 @@ type ThirdPartyIntegration struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// * `PAGER_DUTY`
 	Type     pulumi.StringOutput `pulumi:"type"`
 	Url      pulumi.StringOutput `pulumi:"url"`
 	UserName pulumi.StringOutput `pulumi:"userName"`
@@ -184,6 +186,8 @@ type thirdPartyIntegrationState struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// * `PAGER_DUTY`
 	Type     *string `pulumi:"type"`
 	Url      *string `pulumi:"url"`
 	UserName *string `pulumi:"userName"`
@@ -213,6 +217,8 @@ type ThirdPartyIntegrationState struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// * `PAGER_DUTY`
 	Type     pulumi.StringPtrInput
 	Url      pulumi.StringPtrInput
 	UserName pulumi.StringPtrInput
@@ -246,6 +252,8 @@ type thirdPartyIntegrationArgs struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// * `PAGER_DUTY`
 	Type     string  `pulumi:"type"`
 	Url      *string `pulumi:"url"`
 	UserName *string `pulumi:"userName"`
@@ -276,6 +284,8 @@ type ThirdPartyIntegrationArgs struct {
 	// * WEBHOOK
 	// * MICROSOFT_TEAMS
 	// * PROMETHEUS
+	//
+	// * `PAGER_DUTY`
 	Type     pulumi.StringInput
 	Url      pulumi.StringPtrInput
 	UserName pulumi.StringPtrInput
@@ -430,6 +440,8 @@ func (o ThirdPartyIntegrationOutput) TeamName() pulumi.StringOutput {
 // * WEBHOOK
 // * MICROSOFT_TEAMS
 // * PROMETHEUS
+//
+// * `PAGER_DUTY`
 func (o ThirdPartyIntegrationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

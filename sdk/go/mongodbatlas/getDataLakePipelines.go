@@ -37,6 +37,7 @@ type LookupDataLakePipelinesResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal character string that identifies the project.
+	// * `policyItemId` - Unique 24-hexadecimal character string that identifies a policy item.
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Data Lake Pipeline.
 	Results []GetDataLakePipelinesResult `pulumi:"results"`
@@ -86,6 +87,7 @@ func (o LookupDataLakePipelinesResultOutput) Id() pulumi.StringOutput {
 }
 
 // Unique 24-hexadecimal character string that identifies the project.
+// * `policyItemId` - Unique 24-hexadecimal character string that identifies a policy item.
 func (o LookupDataLakePipelinesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDataLakePipelinesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

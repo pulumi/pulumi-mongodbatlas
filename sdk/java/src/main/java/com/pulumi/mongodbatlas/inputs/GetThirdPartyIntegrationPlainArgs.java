@@ -33,6 +33,7 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
 
     /**
      * Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
      * 
      */
     @Import(name="microsoftTeamsWebhookUrl")
@@ -40,6 +41,7 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
 
     /**
      * @return Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
      * 
      */
     public Optional<String> microsoftTeamsWebhookUrl() {
@@ -186,6 +188,7 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
 
         /**
          * @param microsoftTeamsWebhookUrl Your Microsoft Teams incoming webhook URL.
+         * * `PROMETHEUS`
          * 
          * @return builder
          * 

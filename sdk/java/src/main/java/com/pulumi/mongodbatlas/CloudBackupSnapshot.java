@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+ *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
  *             .projectId("5cf5a45a9ccf6400e60981b6")
  *             .name("MyCluster")
  *             .providerName("AWS")
@@ -63,14 +63,14 @@ import javax.annotation.Nullable;
  *             .cloudBackup(true)
  *             .build());
  * 
- *         var test = new CloudBackupSnapshot("test", CloudBackupSnapshotArgs.builder()        
+ *         var test = new CloudBackupSnapshot("test", CloudBackupSnapshotArgs.builder()
  *             .projectId(myCluster.projectId())
  *             .clusterName(myCluster.name())
  *             .description("myDescription")
  *             .retentionInDays(1)
  *             .build());
  * 
- *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()        
+ *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
  *             .projectId(test.projectId())
  *             .clusterName(test.clusterName())
  *             .snapshotId(test.snapshotId())

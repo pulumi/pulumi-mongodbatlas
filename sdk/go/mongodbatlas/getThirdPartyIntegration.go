@@ -62,6 +62,7 @@ type LookupThirdPartyIntegrationArgs struct {
 	// Whether your cluster has Prometheus enabled.
 	Enabled *bool `pulumi:"enabled"`
 	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
@@ -95,21 +96,26 @@ type LookupThirdPartyIntegrationResult struct {
 	// Unique identifier of the integration.
 	Id string `pulumi:"id"`
 	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	ProjectId                string  `pulumi:"projectId"`
 	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+	// * `VICTOR_OPS`
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
+	// * `WEBHOOK`
 	RoutingKey string `pulumi:"routingKey"`
 	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
 	//
 	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme *string `pulumi:"scheme"`
 	// An optional field for your webhook secret.
+	// * `MICROSOFT_TEAMS`
 	Secret string `pulumi:"secret"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
+	// * `DATADOG`
 	ServiceKey string `pulumi:"serviceKey"`
 	TeamName   string `pulumi:"teamName"`
 	Type       string `pulumi:"type"`
@@ -137,6 +143,7 @@ type LookupThirdPartyIntegrationOutputArgs struct {
 	// Whether your cluster has Prometheus enabled.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -202,6 +209,7 @@ func (o LookupThirdPartyIntegrationResultOutput) Id() pulumi.StringOutput {
 }
 
 // Your Microsoft Teams incoming webhook URL.
+// * `PROMETHEUS`
 func (o LookupThirdPartyIntegrationResultOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
 }
@@ -211,11 +219,13 @@ func (o LookupThirdPartyIntegrationResultOutput) ProjectId() pulumi.StringOutput
 }
 
 // Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+// * `VICTOR_OPS`
 func (o LookupThirdPartyIntegrationResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // An optional field for your Routing Key.
+// * `WEBHOOK`
 func (o LookupThirdPartyIntegrationResultOutput) RoutingKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.RoutingKey }).(pulumi.StringOutput)
 }
@@ -228,6 +238,7 @@ func (o LookupThirdPartyIntegrationResultOutput) Scheme() pulumi.StringPtrOutput
 }
 
 // An optional field for your webhook secret.
+// * `MICROSOFT_TEAMS`
 func (o LookupThirdPartyIntegrationResultOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Secret }).(pulumi.StringOutput)
 }
@@ -238,6 +249,7 @@ func (o LookupThirdPartyIntegrationResultOutput) ServiceDiscovery() pulumi.Strin
 }
 
 // Your Service Key.
+// * `DATADOG`
 func (o LookupThirdPartyIntegrationResultOutput) ServiceKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ServiceKey }).(pulumi.StringOutput)
 }

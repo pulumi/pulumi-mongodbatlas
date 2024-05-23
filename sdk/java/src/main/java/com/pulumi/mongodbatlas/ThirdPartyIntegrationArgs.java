@@ -138,6 +138,8 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
+     * * `PAGER_DUTY`
+     * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
@@ -151,6 +153,8 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     * 
+     * * `PAGER_DUTY`
      * 
      */
     public Output<String> type() {
@@ -365,6 +369,8 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
          * 
+         * * `PAGER_DUTY`
+         * 
          * @return builder
          * 
          */
@@ -382,6 +388,8 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
          * * WEBHOOK
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
+         * 
+         * * `PAGER_DUTY`
          * 
          * @return builder
          * 

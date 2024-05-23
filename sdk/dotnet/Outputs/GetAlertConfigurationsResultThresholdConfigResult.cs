@@ -16,6 +16,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// The operator to apply when checking the current metric value against the threshold value.
         /// Accepted values are:
+        /// - `GREATER_THAN`
+        /// - `LESS_THAN`
         /// </summary>
         public readonly string Operator;
         /// <summary>

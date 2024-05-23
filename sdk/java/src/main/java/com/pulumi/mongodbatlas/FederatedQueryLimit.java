@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new FederatedQueryLimit("test", FederatedQueryLimitArgs.builder()        
+ *         var test = new FederatedQueryLimit("test", FederatedQueryLimitArgs.builder()
  *             .projectId("64707f06c519c20c3a2b1b03")
  *             .tenantName("FederatedDatabseInstance0")
  *             .limitName("bytesProcessed.weekly")
@@ -90,6 +90,8 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
     }
     /**
      * Default value of the limit.
+     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     @Export(name="defaultLimit", refs={Integer.class}, tree="[0]")
@@ -97,6 +99,8 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Default value of the limit.
+     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     public Output<Optional<Integer>> defaultLimit() {

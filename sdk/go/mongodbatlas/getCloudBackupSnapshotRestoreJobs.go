@@ -99,6 +99,7 @@ type LookupCloudBackupSnapshotRestoreJobsResult struct {
 	PageNum      *int   `pulumi:"pageNum"`
 	ProjectId    string `pulumi:"projectId"`
 	// Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
+	// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 	Results    []GetCloudBackupSnapshotRestoreJobsResult `pulumi:"results"`
 	TotalCount int                                       `pulumi:"totalCount"`
 }
@@ -169,6 +170,7 @@ func (o LookupCloudBackupSnapshotRestoreJobsResultOutput) ProjectId() pulumi.Str
 }
 
 // Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
+// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 func (o LookupCloudBackupSnapshotRestoreJobsResultOutput) Results() GetCloudBackupSnapshotRestoreJobsResultArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobsResult) []GetCloudBackupSnapshotRestoreJobsResult {
 		return v.Results

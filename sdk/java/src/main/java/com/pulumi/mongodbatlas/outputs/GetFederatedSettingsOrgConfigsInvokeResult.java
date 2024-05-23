@@ -29,6 +29,7 @@ public final class GetFederatedSettingsOrgConfigsInvokeResult {
     private @Nullable Integer pageNum;
     /**
      * @return Includes cloudProviderSnapshot object for each item detailed in the results array section.
+     * * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
      * 
      */
     private List<GetFederatedSettingsOrgConfigsResult> results;
@@ -56,6 +57,7 @@ public final class GetFederatedSettingsOrgConfigsInvokeResult {
     }
     /**
      * @return Includes cloudProviderSnapshot object for each item detailed in the results array section.
+     * * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
      * 
      */
     public List<GetFederatedSettingsOrgConfigsResult> results() {
