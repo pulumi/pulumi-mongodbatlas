@@ -64,6 +64,7 @@ export interface GetDataLakePipelineResult {
     readonly name: string;
     /**
      * Unique 24-hexadecimal character string that identifies the project.
+     * * `policyItemId` - Unique 24-hexadecimal character string that identifies a policy item.
      */
     readonly projectId: string;
     readonly sinks: outputs.GetDataLakePipelineSink[];

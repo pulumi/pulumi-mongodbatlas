@@ -152,8 +152,18 @@ class _PrivateLinkEndpointServiceState:
         Input properties used for looking up and filtering PrivateLinkEndpointService resources.
         :param pulumi.Input[str] aws_connection_status: Status of the interface endpoint for AWS.
                Returns one of the following values:
+               * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+               * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+               * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+               * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+               * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+               * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
         :param pulumi.Input[str] azure_status: Status of the interface endpoint for AZURE.
                Returns one of the following values:
+               * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+               * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+               * `FAILED` - Atlas failed to accept the connection your private endpoint.
+               * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         :param pulumi.Input[bool] delete_requested: Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
         :param pulumi.Input[str] endpoint_group_name: (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
         :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
@@ -162,6 +172,10 @@ class _PrivateLinkEndpointServiceState:
         :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
         :param pulumi.Input[str] gcp_status: Status of the interface endpoint for GCP.
                Returns one of the following values:
+               * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+               * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+               * `FAILED` - Atlas failed to accept the connection your private endpoint.
+               * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         :param pulumi.Input[str] interface_endpoint_id: Unique identifier of the interface endpoint.
         :param pulumi.Input[str] private_endpoint_connection_name: Name of the connection for this private endpoint that Atlas generates.
         :param pulumi.Input[str] private_endpoint_ip_address: Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
@@ -209,6 +223,12 @@ class _PrivateLinkEndpointServiceState:
         """
         Status of the interface endpoint for AWS.
         Returns one of the following values:
+        * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+        * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+        * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+        * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+        * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+        * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
         """
         return pulumi.get(self, "aws_connection_status")
 
@@ -222,6 +242,10 @@ class _PrivateLinkEndpointServiceState:
         """
         Status of the interface endpoint for AZURE.
         Returns one of the following values:
+        * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+        * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+        * `FAILED` - Atlas failed to accept the connection your private endpoint.
+        * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         """
         return pulumi.get(self, "azure_status")
 
@@ -307,6 +331,10 @@ class _PrivateLinkEndpointServiceState:
         """
         Status of the interface endpoint for GCP.
         Returns one of the following values:
+        * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+        * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+        * `FAILED` - Atlas failed to accept the connection your private endpoint.
+        * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         """
         return pulumi.get(self, "gcp_status")
 
@@ -786,8 +814,18 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] aws_connection_status: Status of the interface endpoint for AWS.
                Returns one of the following values:
+               * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+               * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+               * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+               * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+               * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+               * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
         :param pulumi.Input[str] azure_status: Status of the interface endpoint for AZURE.
                Returns one of the following values:
+               * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+               * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+               * `FAILED` - Atlas failed to accept the connection your private endpoint.
+               * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         :param pulumi.Input[bool] delete_requested: Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
         :param pulumi.Input[str] endpoint_group_name: (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
         :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
@@ -796,6 +834,10 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
         :param pulumi.Input[str] gcp_status: Status of the interface endpoint for GCP.
                Returns one of the following values:
+               * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+               * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+               * `FAILED` - Atlas failed to accept the connection your private endpoint.
+               * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         :param pulumi.Input[str] interface_endpoint_id: Unique identifier of the interface endpoint.
         :param pulumi.Input[str] private_endpoint_connection_name: Name of the connection for this private endpoint that Atlas generates.
         :param pulumi.Input[str] private_endpoint_ip_address: Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
@@ -832,6 +874,12 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         """
         Status of the interface endpoint for AWS.
         Returns one of the following values:
+        * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+        * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+        * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+        * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+        * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+        * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
         """
         return pulumi.get(self, "aws_connection_status")
 
@@ -841,6 +889,10 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         """
         Status of the interface endpoint for AZURE.
         Returns one of the following values:
+        * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+        * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+        * `FAILED` - Atlas failed to accept the connection your private endpoint.
+        * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         """
         return pulumi.get(self, "azure_status")
 
@@ -898,6 +950,10 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         """
         Status of the interface endpoint for GCP.
         Returns one of the following values:
+        * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+        * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+        * `FAILED` - Atlas failed to accept the connection your private endpoint.
+        * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         """
         return pulumi.get(self, "gcp_status")
 

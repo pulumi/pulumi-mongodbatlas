@@ -92,6 +92,19 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Type of alert notification.
         /// Accepted values are:
+        /// - `DATADOG`
+        /// - `EMAIL`
+        /// - `GROUP` (Project)
+        /// - `OPS_GENIE`
+        /// - `ORG`
+        /// - `PAGER_DUTY`
+        /// - `SLACK`
+        /// - `SMS`
+        /// - `TEAM`
+        /// - `USER`
+        /// - `VICTOR_OPS`
+        /// - `WEBHOOK`
+        /// - `MICROSOFT_TEAMS`
         /// </summary>
         public readonly string TypeName;
         /// <summary>

@@ -83,6 +83,12 @@ class _ClusterOutageSimulationState:
         :param pulumi.Input[str] simulation_id: Unique 24-hexadecimal character string that identifies the outage simulation.
         :param pulumi.Input[str] start_request_date: Date and time when MongoDB Cloud started the regional outage simulation.
         :param pulumi.Input[str] state: Current phase of the outage simulation:
+               * `START_REQUESTED` - User has requested cluster outage simulation.
+               * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+               * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+               * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+               * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+               * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
         """
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
@@ -162,6 +168,12 @@ class _ClusterOutageSimulationState:
     def state(self) -> Optional[pulumi.Input[str]]:
         """
         Current phase of the outage simulation:
+        * `START_REQUESTED` - User has requested cluster outage simulation.
+        * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+        * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+        * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+        * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+        * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
         """
         return pulumi.get(self, "state")
 
@@ -345,6 +357,12 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         :param pulumi.Input[str] simulation_id: Unique 24-hexadecimal character string that identifies the outage simulation.
         :param pulumi.Input[str] start_request_date: Date and time when MongoDB Cloud started the regional outage simulation.
         :param pulumi.Input[str] state: Current phase of the outage simulation:
+               * `START_REQUESTED` - User has requested cluster outage simulation.
+               * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+               * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+               * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+               * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+               * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -403,6 +421,12 @@ class ClusterOutageSimulation(pulumi.CustomResource):
     def state(self) -> pulumi.Output[str]:
         """
         Current phase of the outage simulation:
+        * `START_REQUESTED` - User has requested cluster outage simulation.
+        * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+        * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+        * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+        * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+        * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
         """
         return pulumi.get(self, "state")
 

@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AccessListApiKey("test", AccessListApiKeyArgs.builder()        
+ *         var test = new AccessListApiKey("test", AccessListApiKeyArgs.builder()
  *             .orgId("<ORG-ID>")
  *             .cidrBlock("1.2.3.4/32")
  *             .apiKeyId("a29120e123cd")
@@ -76,7 +76,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AccessListApiKey("test", AccessListApiKeyArgs.builder()        
+ *         var test = new AccessListApiKey("test", AccessListApiKeyArgs.builder()
  *             .orgId("<ORG-ID>")
  *             .ipAddress("2.3.4.5")
  *             .apiKeyId("a29120e123cd")

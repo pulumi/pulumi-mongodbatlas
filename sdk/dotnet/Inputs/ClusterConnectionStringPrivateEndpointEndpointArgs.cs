@@ -19,6 +19,11 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// Cloud service provider on which the servers are provisioned.
         /// 
         /// The possible values are:
+        /// 
+        /// - `AWS` - Amazon AWS
+        /// - `GCP` - Google Cloud Platform
+        /// - `AZURE` - Microsoft Azure
+        /// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }

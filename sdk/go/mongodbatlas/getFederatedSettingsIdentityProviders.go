@@ -88,6 +88,7 @@ type LookupFederatedSettingsIdentityProvidersResult struct {
 	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	PageNum *int `pulumi:"pageNum"`
 	// Includes cloudProviderSnapshot object for each item detailed in the results array section.
+	// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 	Results []GetFederatedSettingsIdentityProvidersResult `pulumi:"results"`
 }
 
@@ -158,6 +159,7 @@ func (o LookupFederatedSettingsIdentityProvidersResultOutput) PageNum() pulumi.I
 }
 
 // Includes cloudProviderSnapshot object for each item detailed in the results array section.
+// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 func (o LookupFederatedSettingsIdentityProvidersResultOutput) Results() GetFederatedSettingsIdentityProvidersResultArrayOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProvidersResult) []GetFederatedSettingsIdentityProvidersResult {
 		return v.Results

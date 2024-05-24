@@ -71,6 +71,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string Id;
         /// <summary>
         /// Unique 24-hexadecimal character string that identifies the project.
+        /// * `policyItemId` - Unique 24-hexadecimal character string that identifies a policy item.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ServerlessInstance("test", ServerlessInstanceArgs.builder()        
+ *         var test = new ServerlessInstance("test", ServerlessInstanceArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .name("<SERVERLESS_INSTANCE_NAME>")
  *             .providerSettingsBackingProviderName("AWS")

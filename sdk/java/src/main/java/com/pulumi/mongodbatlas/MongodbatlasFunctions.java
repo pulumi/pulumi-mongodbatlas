@@ -303,64 +303,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()        
-     *             .projectId("<PROJECT-ID>")
-     *             .username("myUsername")
-     *             .x509Type("MANAGED")
-     *             .databaseName("$external")
-     *             .roles(DatabaseUserRoleArgs.builder()
-     *                 .roleName("atlasAdmin")
-     *                 .databaseName("admin")
-     *                 .build())
-     *             .labels(DatabaseUserLabelArgs.builder()
-     *                 .key("My Key")
-     *                 .value("My Value")
-     *                 .build())
-     *             .build());
-     * 
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(user.projectId())
-     *             .username(user.username())
-     *             .monthsUntilExpiration(2)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .username(testX509AuthenticationDatabaseUser.username())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
@@ -389,7 +331,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
      * -----BEGIN CERTIFICATE-----
@@ -440,64 +382,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()        
-     *             .projectId("<PROJECT-ID>")
-     *             .username("myUsername")
-     *             .x509Type("MANAGED")
-     *             .databaseName("$external")
-     *             .roles(DatabaseUserRoleArgs.builder()
-     *                 .roleName("atlasAdmin")
-     *                 .databaseName("admin")
-     *                 .build())
-     *             .labels(DatabaseUserLabelArgs.builder()
-     *                 .key("My Key")
-     *                 .value("My Value")
-     *                 .build())
-     *             .build());
-     * 
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(user.projectId())
-     *             .username(user.username())
-     *             .monthsUntilExpiration(2)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .username(testX509AuthenticationDatabaseUser.username())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
@@ -526,7 +410,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
      * -----BEGIN CERTIFICATE-----
@@ -577,64 +461,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()        
-     *             .projectId("<PROJECT-ID>")
-     *             .username("myUsername")
-     *             .x509Type("MANAGED")
-     *             .databaseName("$external")
-     *             .roles(DatabaseUserRoleArgs.builder()
-     *                 .roleName("atlasAdmin")
-     *                 .databaseName("admin")
-     *                 .build())
-     *             .labels(DatabaseUserLabelArgs.builder()
-     *                 .key("My Key")
-     *                 .value("My Value")
-     *                 .build())
-     *             .build());
-     * 
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(user.projectId())
-     *             .username(user.username())
-     *             .monthsUntilExpiration(2)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .username(testX509AuthenticationDatabaseUser.username())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
@@ -663,7 +489,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
      * -----BEGIN CERTIFICATE-----
@@ -714,64 +540,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()        
-     *             .projectId("<PROJECT-ID>")
-     *             .username("myUsername")
-     *             .x509Type("MANAGED")
-     *             .databaseName("$external")
-     *             .roles(DatabaseUserRoleArgs.builder()
-     *                 .roleName("atlasAdmin")
-     *                 .databaseName("admin")
-     *                 .build())
-     *             .labels(DatabaseUserLabelArgs.builder()
-     *                 .key("My Key")
-     *                 .value("My Value")
-     *                 .build())
-     *             .build());
-     * 
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(user.projectId())
-     *             .username(user.username())
-     *             .monthsUntilExpiration(2)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .username(testX509AuthenticationDatabaseUser.username())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
@@ -800,7 +568,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
      * -----BEGIN CERTIFICATE-----
@@ -845,90 +613,10 @@ public final class MongodbatlasFunctions {
      * 
      * ### Using CIDR Block
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .cidrBlock("1.2.3.4/32")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .cidrBlock(testAccessListApiKey.cidrBlock())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Using IP Address
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -940,90 +628,10 @@ public final class MongodbatlasFunctions {
      * 
      * ### Using CIDR Block
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .cidrBlock("1.2.3.4/32")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .cidrBlock(testAccessListApiKey.cidrBlock())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Using IP Address
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1035,90 +643,10 @@ public final class MongodbatlasFunctions {
      * 
      * ### Using CIDR Block
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .cidrBlock("1.2.3.4/32")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .cidrBlock(testAccessListApiKey.cidrBlock())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Using IP Address
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1130,90 +658,10 @@ public final class MongodbatlasFunctions {
      * 
      * ### Using CIDR Block
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .cidrBlock("1.2.3.4/32")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .cidrBlock(testAccessListApiKey.cidrBlock())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Using IP Address
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1225,90 +673,10 @@ public final class MongodbatlasFunctions {
      * 
      * ### Using CIDR Block
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .cidrBlock("1.2.3.4/32")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .cidrBlock(testAccessListApiKey.cidrBlock())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Using IP Address
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1320,90 +688,10 @@ public final class MongodbatlasFunctions {
      * 
      * ### Using CIDR Block
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .cidrBlock("1.2.3.4/32")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .cidrBlock(testAccessListApiKey.cidrBlock())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Using IP Address
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1415,90 +703,10 @@ public final class MongodbatlasFunctions {
      * 
      * ### Using CIDR Block
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .cidrBlock("1.2.3.4/32")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .cidrBlock(testAccessListApiKey.cidrBlock())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Using IP Address
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1510,90 +718,10 @@ public final class MongodbatlasFunctions {
      * 
      * ### Using CIDR Block
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .cidrBlock("1.2.3.4/32")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .cidrBlock(testAccessListApiKey.cidrBlock())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Using IP Address
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()        
-     *             .orgId("<ORG-ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
-     *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
-     *             .apiKeyId(testAccessListApiKey.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1637,7 +765,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()        
+     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -1706,7 +834,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()        
+     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -1775,7 +903,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()        
+     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -1844,7 +972,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()        
+     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -1913,7 +1041,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleCluster = new Cluster("exampleCluster", ClusterArgs.builder()        
+     *         var exampleCluster = new Cluster("exampleCluster", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -1973,7 +1101,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleCluster = new Cluster("exampleCluster", ClusterArgs.builder()        
+     *         var exampleCluster = new Cluster("exampleCluster", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -2033,7 +1161,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleCluster = new Cluster("exampleCluster", ClusterArgs.builder()        
+     *         var exampleCluster = new Cluster("exampleCluster", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -2093,7 +1221,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleCluster = new Cluster("exampleCluster", ClusterArgs.builder()        
+     *         var exampleCluster = new Cluster("exampleCluster", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -2151,7 +1279,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()        
+     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .eventType("OUTSIDE_METRIC_THRESHOLD")
      *             .enabled(true)
@@ -2217,7 +1345,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()        
+     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .eventType("REPLICATION_OPLOG_WINDOW_RUNNING_OUT")
      *             .enabled(true)
@@ -2337,7 +1465,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()        
+     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .eventType("OUTSIDE_METRIC_THRESHOLD")
      *             .enabled(true)
@@ -2403,7 +1531,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()        
+     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .eventType("REPLICATION_OPLOG_WINDOW_RUNNING_OUT")
      *             .enabled(true)
@@ -2523,7 +1651,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()        
+     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .eventType("OUTSIDE_METRIC_THRESHOLD")
      *             .enabled(true)
@@ -2589,7 +1717,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()        
+     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .eventType("REPLICATION_OPLOG_WINDOW_RUNNING_OUT")
      *             .enabled(true)
@@ -2709,7 +1837,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()        
+     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .eventType("OUTSIDE_METRIC_THRESHOLD")
      *             .enabled(true)
@@ -2775,7 +1903,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()        
+     *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .eventType("REPLICATION_OPLOG_WINDOW_RUNNING_OUT")
      *             .enabled(true)
@@ -4160,7 +3288,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testAuditing = new Auditing("testAuditing", AuditingArgs.builder()        
+     *         var testAuditing = new Auditing("testAuditing", AuditingArgs.builder()
      *             .projectId("<project-id>")
      *             .auditFilter("{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}")
      *             .auditAuthorizationSuccess(false)
@@ -4213,7 +3341,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testAuditing = new Auditing("testAuditing", AuditingArgs.builder()        
+     *         var testAuditing = new Auditing("testAuditing", AuditingArgs.builder()
      *             .projectId("<project-id>")
      *             .auditFilter("{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}")
      *             .auditAuthorizationSuccess(false)
@@ -4266,7 +3394,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testAuditing = new Auditing("testAuditing", AuditingArgs.builder()        
+     *         var testAuditing = new Auditing("testAuditing", AuditingArgs.builder()
      *             .projectId("<project-id>")
      *             .auditFilter("{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}")
      *             .auditAuthorizationSuccess(false)
@@ -4319,7 +3447,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testAuditing = new Auditing("testAuditing", AuditingArgs.builder()        
+     *         var testAuditing = new Auditing("testAuditing", AuditingArgs.builder()
      *             .projectId("<project-id>")
      *             .auditFilter("{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}")
      *             .auditAuthorizationSuccess(false)
@@ -4384,7 +3512,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .name("clusterTest")
      *             .providerName("AWS")
@@ -4393,7 +3521,7 @@ public final class MongodbatlasFunctions {
      *             .cloudBackup(true)
      *             .build());
      * 
-     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()        
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
      *             .projectId(myCluster.projectId())
      *             .clusterName(myCluster.name())
      *             .referenceHourOfDay(3)
@@ -4435,7 +3563,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(testCloudBackupSchedule.id())
      *             .build());
      * 
-     *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()        
+     *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .authorizedEmail("user{@literal @}email.com")
      *             .authorizedUserFirstName("First")
@@ -4530,7 +3658,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .name("clusterTest")
      *             .providerName("AWS")
@@ -4539,7 +3667,7 @@ public final class MongodbatlasFunctions {
      *             .cloudBackup(true)
      *             .build());
      * 
-     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()        
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
      *             .projectId(myCluster.projectId())
      *             .clusterName(myCluster.name())
      *             .referenceHourOfDay(3)
@@ -4581,7 +3709,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(testCloudBackupSchedule.id())
      *             .build());
      * 
-     *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()        
+     *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .authorizedEmail("user{@literal @}email.com")
      *             .authorizedUserFirstName("First")
@@ -4676,7 +3804,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .name("clusterTest")
      *             .providerName("AWS")
@@ -4685,7 +3813,7 @@ public final class MongodbatlasFunctions {
      *             .cloudBackup(true)
      *             .build());
      * 
-     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()        
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
      *             .projectId(myCluster.projectId())
      *             .clusterName(myCluster.name())
      *             .referenceHourOfDay(3)
@@ -4727,7 +3855,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(testCloudBackupSchedule.id())
      *             .build());
      * 
-     *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()        
+     *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .authorizedEmail("user{@literal @}email.com")
      *             .authorizedUserFirstName("First")
@@ -4822,7 +3950,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .name("clusterTest")
      *             .providerName("AWS")
@@ -4831,7 +3959,7 @@ public final class MongodbatlasFunctions {
      *             .cloudBackup(true)
      *             .build());
      * 
-     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()        
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
      *             .projectId(myCluster.projectId())
      *             .clusterName(myCluster.name())
      *             .referenceHourOfDay(3)
@@ -4873,7 +4001,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(testCloudBackupSchedule.id())
      *             .build());
      * 
-     *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()        
+     *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .authorizedEmail("user{@literal @}email.com")
      *             .authorizedUserFirstName("First")
@@ -4958,7 +4086,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .name("clusterTest")
      *             .providerName("AWS")
@@ -4967,7 +4095,7 @@ public final class MongodbatlasFunctions {
      *             .cloudBackup(true)
      *             .build());
      * 
-     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()        
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
      *             .projectId(myCluster.projectId())
      *             .clusterName(myCluster.name())
      *             .referenceHourOfDay(3)
@@ -5024,7 +4152,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .name("clusterTest")
      *             .providerName("AWS")
@@ -5033,7 +4161,7 @@ public final class MongodbatlasFunctions {
      *             .cloudBackup(true)
      *             .build());
      * 
-     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()        
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
      *             .projectId(myCluster.projectId())
      *             .clusterName(myCluster.name())
      *             .referenceHourOfDay(3)
@@ -5090,7 +4218,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .name("clusterTest")
      *             .providerName("AWS")
@@ -5099,7 +4227,7 @@ public final class MongodbatlasFunctions {
      *             .cloudBackup(true)
      *             .build());
      * 
-     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()        
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
      *             .projectId(myCluster.projectId())
      *             .clusterName(myCluster.name())
      *             .referenceHourOfDay(3)
@@ -5156,7 +4284,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()        
+     *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .name("clusterTest")
      *             .providerName("AWS")
@@ -5165,7 +4293,7 @@ public final class MongodbatlasFunctions {
      *             .cloudBackup(true)
      *             .build());
      * 
-     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()        
+     *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
      *             .projectId(myCluster.projectId())
      *             .clusterName(myCluster.name())
      *             .referenceHourOfDay(3)
@@ -5220,7 +4348,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()        
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
      *             .projectId("5d0f1f73cf09a29120e173cf")
      *             .clusterName("MyClusterTest")
      *             .description("SomeDescription")
@@ -5275,7 +4403,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()        
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
      *             .projectId("5d0f1f73cf09a29120e173cf")
      *             .clusterName("MyClusterTest")
      *             .description("SomeDescription")
@@ -5330,7 +4458,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()        
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
      *             .projectId("5d0f1f73cf09a29120e173cf")
      *             .clusterName("MyClusterTest")
      *             .description("SomeDescription")
@@ -5385,7 +4513,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()        
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
      *             .projectId("5d0f1f73cf09a29120e173cf")
      *             .clusterName("MyClusterTest")
      *             .description("SomeDescription")
@@ -5440,7 +4568,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example-bucket")
@@ -5494,7 +4622,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example-bucket")
@@ -5548,7 +4676,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example-bucket")
@@ -5602,7 +4730,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example-bucket")
@@ -5656,7 +4784,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example-bucket")
@@ -5709,7 +4837,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example-bucket")
@@ -5762,7 +4890,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example-bucket")
@@ -5815,7 +4943,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example-bucket")
@@ -5871,14 +4999,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example_bucket")
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()        
+     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .clusterName("{CLUSTER_NAME}")
      *             .snapshotId("{SNAPSHOT_ID}")
@@ -5940,14 +5068,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example_bucket")
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()        
+     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .clusterName("{CLUSTER_NAME}")
      *             .snapshotId("{SNAPSHOT_ID}")
@@ -6009,14 +5137,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example_bucket")
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()        
+     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .clusterName("{CLUSTER_NAME}")
      *             .snapshotId("{SNAPSHOT_ID}")
@@ -6078,14 +5206,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example_bucket")
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()        
+     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .clusterName("{CLUSTER_NAME}")
      *             .snapshotId("{SNAPSHOT_ID}")
@@ -6147,14 +5275,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example_bucket")
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()        
+     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .clusterName("{CLUSTER_NAME}")
      *             .snapshotId("{SNAPSHOT_ID}")
@@ -6215,14 +5343,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example_bucket")
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()        
+     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .clusterName("{CLUSTER_NAME}")
      *             .snapshotId("{SNAPSHOT_ID}")
@@ -6283,14 +5411,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example_bucket")
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()        
+     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .clusterName("{CLUSTER_NAME}")
      *             .snapshotId("{SNAPSHOT_ID}")
@@ -6351,14 +5479,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()        
+     *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", CloudBackupSnapshotExportBucketArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .iamRoleId("{IAM_ROLE_ID}")
      *             .bucketName("example_bucket")
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()        
+     *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()
      *             .projectId("{PROJECT_ID}")
      *             .clusterName("{CLUSTER_NAME}")
      *             .snapshotId("{SNAPSHOT_ID}")
@@ -6394,56 +5522,6 @@ public final class MongodbatlasFunctions {
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()        
-     *             .projectId("5cf5a45a9ccf6400e60981b6")
-     *             .clusterName("MyCluster")
-     *             .description("MyDescription")
-     *             .retentionInDays(1)
-     *             .build());
-     * 
-     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()        
-     *             .projectId("5cf5a45a9ccf6400e60981b6")
-     *             .clusterName("MyCluster")
-     *             .snapshotId(testCloudBackupSnapshot.id())
-     *             .deliveryType(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs.builder()
-     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
-     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
-     *             .jobId(testCloudBackupSnapshotRestoreJob.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -6460,56 +5538,6 @@ public final class MongodbatlasFunctions {
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()        
-     *             .projectId("5cf5a45a9ccf6400e60981b6")
-     *             .clusterName("MyCluster")
-     *             .description("MyDescription")
-     *             .retentionInDays(1)
-     *             .build());
-     * 
-     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()        
-     *             .projectId("5cf5a45a9ccf6400e60981b6")
-     *             .clusterName("MyCluster")
-     *             .snapshotId(testCloudBackupSnapshot.id())
-     *             .deliveryType(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs.builder()
-     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
-     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
-     *             .jobId(testCloudBackupSnapshotRestoreJob.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -6526,56 +5554,6 @@ public final class MongodbatlasFunctions {
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()        
-     *             .projectId("5cf5a45a9ccf6400e60981b6")
-     *             .clusterName("MyCluster")
-     *             .description("MyDescription")
-     *             .retentionInDays(1)
-     *             .build());
-     * 
-     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()        
-     *             .projectId("5cf5a45a9ccf6400e60981b6")
-     *             .clusterName("MyCluster")
-     *             .snapshotId(testCloudBackupSnapshot.id())
-     *             .deliveryType(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs.builder()
-     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
-     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
-     *             .jobId(testCloudBackupSnapshotRestoreJob.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -6592,56 +5570,6 @@ public final class MongodbatlasFunctions {
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
-     * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()        
-     *             .projectId("5cf5a45a9ccf6400e60981b6")
-     *             .clusterName("MyCluster")
-     *             .description("MyDescription")
-     *             .retentionInDays(1)
-     *             .build());
-     * 
-     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()        
-     *             .projectId("5cf5a45a9ccf6400e60981b6")
-     *             .clusterName("MyCluster")
-     *             .snapshotId(testCloudBackupSnapshot.id())
-     *             .deliveryType(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJob(GetCloudBackupSnapshotRestoreJobArgs.builder()
-     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
-     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
-     *             .jobId(testCloudBackupSnapshotRestoreJob.id())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -6685,14 +5613,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()        
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .description("MyDescription")
      *             .retentionInDays(1)
      *             .build());
      * 
-     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()        
+     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .snapshotId(testCloudBackupSnapshot.id())
@@ -6757,14 +5685,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()        
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .description("MyDescription")
      *             .retentionInDays(1)
      *             .build());
      * 
-     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()        
+     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .snapshotId(testCloudBackupSnapshot.id())
@@ -6829,14 +5757,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()        
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .description("MyDescription")
      *             .retentionInDays(1)
      *             .build());
      * 
-     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()        
+     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .snapshotId(testCloudBackupSnapshot.id())
@@ -6901,14 +5829,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()        
+     *         var testCloudBackupSnapshot = new CloudBackupSnapshot("testCloudBackupSnapshot", CloudBackupSnapshotArgs.builder()
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .description("MyDescription")
      *             .retentionInDays(1)
      *             .build());
      * 
-     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()        
+     *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .snapshotId(testCloudBackupSnapshot.id())
@@ -6968,7 +5896,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()        
+     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()
      *             .groupId("5d0f1f73cf09a29120e173cf")
      *             .clusterName("MyClusterTest")
      *             .description("SomeDescription")
@@ -7024,7 +5952,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()        
+     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()
      *             .groupId("5d0f1f73cf09a29120e173cf")
      *             .clusterName("MyClusterTest")
      *             .description("SomeDescription")
@@ -7080,7 +6008,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()        
+     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()
      *             .groupId("5d0f1f73cf09a29120e173cf")
      *             .clusterName("MyClusterTest")
      *             .description("SomeDescription")
@@ -7136,7 +6064,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()        
+     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()
      *             .groupId("5d0f1f73cf09a29120e173cf")
      *             .clusterName("MyClusterTest")
      *             .description("SomeDescription")
@@ -7193,7 +6121,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()        
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
      *             .providerName("AWS")
      *             .build());
@@ -7237,7 +6165,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()        
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
      *             .providerName("AZURE")
      *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
@@ -7296,7 +6224,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()        
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
      *             .providerName("AWS")
      *             .build());
@@ -7340,7 +6268,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()        
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
      *             .providerName("AZURE")
      *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
@@ -7399,7 +6327,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()        
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
      *             .providerName("AWS")
      *             .build());
@@ -7443,7 +6371,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()        
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
      *             .providerName("AZURE")
      *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
@@ -7502,7 +6430,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()        
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
      *             .providerName("AWS")
      *             .build());
@@ -7546,7 +6474,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()        
+     *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
      *             .providerName("AZURE")
      *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
@@ -7610,7 +6538,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -7682,7 +6610,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -7754,7 +6682,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -7826,7 +6754,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -8070,7 +6998,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -8141,7 +7069,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -8212,7 +7140,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -8283,7 +7211,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("cluster-test")
      *             .clusterType("REPLICASET")
@@ -8349,7 +7277,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()        
+     *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .roleName("myCustomRole")
      *             .actions(            
@@ -8417,7 +7345,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()        
+     *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .roleName("myCustomRole")
      *             .actions(            
@@ -8485,7 +7413,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()        
+     *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .roleName("myCustomRole")
      *             .actions(            
@@ -8553,7 +7481,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()        
+     *         var testRole = new CustomDbRole("testRole", CustomDbRoleArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .roleName("myCustomRole")
      *             .actions(            
@@ -8596,55 +7524,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
-     *             .username("test-acc-username")
-     *             .password("test-acc-password")
-     *             .projectId("<PROJECT-ID>")
-     *             .databaseName("admin")
-     *             .roles(            
-     *                 DatabaseUserRoleArgs.builder()
-     *                     .roleName("readWrite")
-     *                     .databaseName("admin")
-     *                     .build(),
-     *                 DatabaseUserRoleArgs.builder()
-     *                     .roleName("atlasAdmin")
-     *                     .databaseName("admin")
-     *                     .build())
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
-     *             .projectId(testMongodbatlasCustomDbRole.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -8659,55 +7538,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
-     *             .username("test-acc-username")
-     *             .password("test-acc-password")
-     *             .projectId("<PROJECT-ID>")
-     *             .databaseName("admin")
-     *             .roles(            
-     *                 DatabaseUserRoleArgs.builder()
-     *                     .roleName("readWrite")
-     *                     .databaseName("admin")
-     *                     .build(),
-     *                 DatabaseUserRoleArgs.builder()
-     *                     .roleName("atlasAdmin")
-     *                     .databaseName("admin")
-     *                     .build())
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
-     *             .projectId(testMongodbatlasCustomDbRole.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -8722,55 +7552,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
-     *             .username("test-acc-username")
-     *             .password("test-acc-password")
-     *             .projectId("<PROJECT-ID>")
-     *             .databaseName("admin")
-     *             .roles(            
-     *                 DatabaseUserRoleArgs.builder()
-     *                     .roleName("readWrite")
-     *                     .databaseName("admin")
-     *                     .build(),
-     *                 DatabaseUserRoleArgs.builder()
-     *                     .roleName("atlasAdmin")
-     *                     .databaseName("admin")
-     *                     .build())
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
-     *             .projectId(testMongodbatlasCustomDbRole.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -8785,55 +7566,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
-     *             .username("test-acc-username")
-     *             .password("test-acc-password")
-     *             .projectId("<PROJECT-ID>")
-     *             .databaseName("admin")
-     *             .roles(            
-     *                 DatabaseUserRoleArgs.builder()
-     *                     .roleName("readWrite")
-     *                     .databaseName("admin")
-     *                     .build(),
-     *                 DatabaseUserRoleArgs.builder()
-     *                     .roleName("atlasAdmin")
-     *                     .databaseName("admin")
-     *                     .build())
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
-     *             .projectId(testMongodbatlasCustomDbRole.projectId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -8872,7 +7604,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCustomDnsConfigurationClusterAws = new CustomDnsConfigurationClusterAws("testCustomDnsConfigurationClusterAws", CustomDnsConfigurationClusterAwsArgs.builder()        
+     *         var testCustomDnsConfigurationClusterAws = new CustomDnsConfigurationClusterAws("testCustomDnsConfigurationClusterAws", CustomDnsConfigurationClusterAwsArgs.builder()
      *             .projectId("<project-id>")
      *             .enabled(true)
      *             .build());
@@ -8923,7 +7655,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCustomDnsConfigurationClusterAws = new CustomDnsConfigurationClusterAws("testCustomDnsConfigurationClusterAws", CustomDnsConfigurationClusterAwsArgs.builder()        
+     *         var testCustomDnsConfigurationClusterAws = new CustomDnsConfigurationClusterAws("testCustomDnsConfigurationClusterAws", CustomDnsConfigurationClusterAwsArgs.builder()
      *             .projectId("<project-id>")
      *             .enabled(true)
      *             .build());
@@ -8974,7 +7706,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCustomDnsConfigurationClusterAws = new CustomDnsConfigurationClusterAws("testCustomDnsConfigurationClusterAws", CustomDnsConfigurationClusterAwsArgs.builder()        
+     *         var testCustomDnsConfigurationClusterAws = new CustomDnsConfigurationClusterAws("testCustomDnsConfigurationClusterAws", CustomDnsConfigurationClusterAwsArgs.builder()
      *             .projectId("<project-id>")
      *             .enabled(true)
      *             .build());
@@ -9025,7 +7757,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testCustomDnsConfigurationClusterAws = new CustomDnsConfigurationClusterAws("testCustomDnsConfigurationClusterAws", CustomDnsConfigurationClusterAwsArgs.builder()        
+     *         var testCustomDnsConfigurationClusterAws = new CustomDnsConfigurationClusterAws("testCustomDnsConfigurationClusterAws", CustomDnsConfigurationClusterAwsArgs.builder()
      *             .projectId("<project-id>")
      *             .enabled(true)
      *             .build());
@@ -9054,88 +7786,6 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.AdvancedCluster;
-     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
-     * import com.pulumi.mongodbatlas.DataLakePipeline;
-     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
-     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
-     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
-     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var projectTest = new Project("projectTest", ProjectArgs.builder()        
-     *             .name("NAME OF THE PROJECT")
-     *             .orgId("ORGANIZATION ID")
-     *             .build());
-     * 
-     *         var automatedBackupTest = new AdvancedCluster("automatedBackupTest", AdvancedClusterArgs.builder()        
-     *             .projectId("63f4d4a47baeac59406dc131")
-     *             .name("automated-backup-test")
-     *             .providerName("GCP")
-     *             .providerRegionName("US_EAST_4")
-     *             .providerInstanceSizeName("M10")
-     *             .cloudBackup(true)
-     *             .mongoDbMajorVersion("7.0")
-     *             .build());
-     * 
-     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()        
-     *             .projectId(projectTest.projectId())
-     *             .name("DataLakePipelineName")
-     *             .sink(DataLakePipelineSinkArgs.builder()
-     *                 .type("DLS")
-     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
-     *                     .name("access")
-     *                     .order(0)
-     *                     .build())
-     *                 .build())
-     *             .source(DataLakePipelineSourceArgs.builder()
-     *                 .type("ON_DEMAND_CPS")
-     *                 .clusterName(automatedBackupTestMongodbatlasCluster.name())
-     *                 .databaseName("sample_airbnb")
-     *                 .collectionName("listingsAndReviews")
-     *                 .build())
-     *             .transformations(            
-     *                 DataLakePipelineTransformationArgs.builder()
-     *                     .field("test")
-     *                     .type("EXCLUDE")
-     *                     .build(),
-     *                 DataLakePipelineTransformationArgs.builder()
-     *                     .field("test22")
-     *                     .type("EXCLUDE")
-     *                     .build())
-     *             .build());
-     * 
-     *         final var pipelineDataSource = MongodbatlasFunctions.getDataLakePipeline(GetDataLakePipelineArgs.builder()
-     *             .projectId(pipeline.projectId())
-     *             .name(pipeline.name())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -9152,88 +7802,6 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.AdvancedCluster;
-     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
-     * import com.pulumi.mongodbatlas.DataLakePipeline;
-     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
-     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
-     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
-     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var projectTest = new Project("projectTest", ProjectArgs.builder()        
-     *             .name("NAME OF THE PROJECT")
-     *             .orgId("ORGANIZATION ID")
-     *             .build());
-     * 
-     *         var automatedBackupTest = new AdvancedCluster("automatedBackupTest", AdvancedClusterArgs.builder()        
-     *             .projectId("63f4d4a47baeac59406dc131")
-     *             .name("automated-backup-test")
-     *             .providerName("GCP")
-     *             .providerRegionName("US_EAST_4")
-     *             .providerInstanceSizeName("M10")
-     *             .cloudBackup(true)
-     *             .mongoDbMajorVersion("7.0")
-     *             .build());
-     * 
-     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()        
-     *             .projectId(projectTest.projectId())
-     *             .name("DataLakePipelineName")
-     *             .sink(DataLakePipelineSinkArgs.builder()
-     *                 .type("DLS")
-     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
-     *                     .name("access")
-     *                     .order(0)
-     *                     .build())
-     *                 .build())
-     *             .source(DataLakePipelineSourceArgs.builder()
-     *                 .type("ON_DEMAND_CPS")
-     *                 .clusterName(automatedBackupTestMongodbatlasCluster.name())
-     *                 .databaseName("sample_airbnb")
-     *                 .collectionName("listingsAndReviews")
-     *                 .build())
-     *             .transformations(            
-     *                 DataLakePipelineTransformationArgs.builder()
-     *                     .field("test")
-     *                     .type("EXCLUDE")
-     *                     .build(),
-     *                 DataLakePipelineTransformationArgs.builder()
-     *                     .field("test22")
-     *                     .type("EXCLUDE")
-     *                     .build())
-     *             .build());
-     * 
-     *         final var pipelineDataSource = MongodbatlasFunctions.getDataLakePipeline(GetDataLakePipelineArgs.builder()
-     *             .projectId(pipeline.projectId())
-     *             .name(pipeline.name())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -9250,88 +7818,6 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.AdvancedCluster;
-     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
-     * import com.pulumi.mongodbatlas.DataLakePipeline;
-     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
-     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
-     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
-     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var projectTest = new Project("projectTest", ProjectArgs.builder()        
-     *             .name("NAME OF THE PROJECT")
-     *             .orgId("ORGANIZATION ID")
-     *             .build());
-     * 
-     *         var automatedBackupTest = new AdvancedCluster("automatedBackupTest", AdvancedClusterArgs.builder()        
-     *             .projectId("63f4d4a47baeac59406dc131")
-     *             .name("automated-backup-test")
-     *             .providerName("GCP")
-     *             .providerRegionName("US_EAST_4")
-     *             .providerInstanceSizeName("M10")
-     *             .cloudBackup(true)
-     *             .mongoDbMajorVersion("7.0")
-     *             .build());
-     * 
-     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()        
-     *             .projectId(projectTest.projectId())
-     *             .name("DataLakePipelineName")
-     *             .sink(DataLakePipelineSinkArgs.builder()
-     *                 .type("DLS")
-     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
-     *                     .name("access")
-     *                     .order(0)
-     *                     .build())
-     *                 .build())
-     *             .source(DataLakePipelineSourceArgs.builder()
-     *                 .type("ON_DEMAND_CPS")
-     *                 .clusterName(automatedBackupTestMongodbatlasCluster.name())
-     *                 .databaseName("sample_airbnb")
-     *                 .collectionName("listingsAndReviews")
-     *                 .build())
-     *             .transformations(            
-     *                 DataLakePipelineTransformationArgs.builder()
-     *                     .field("test")
-     *                     .type("EXCLUDE")
-     *                     .build(),
-     *                 DataLakePipelineTransformationArgs.builder()
-     *                     .field("test22")
-     *                     .type("EXCLUDE")
-     *                     .build())
-     *             .build());
-     * 
-     *         final var pipelineDataSource = MongodbatlasFunctions.getDataLakePipeline(GetDataLakePipelineArgs.builder()
-     *             .projectId(pipeline.projectId())
-     *             .name(pipeline.name())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -9348,88 +7834,6 @@ public final class MongodbatlasFunctions {
      * ### S
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.AdvancedCluster;
-     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
-     * import com.pulumi.mongodbatlas.DataLakePipeline;
-     * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
-     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
-     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
-     * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetDataLakePipelineArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var projectTest = new Project("projectTest", ProjectArgs.builder()        
-     *             .name("NAME OF THE PROJECT")
-     *             .orgId("ORGANIZATION ID")
-     *             .build());
-     * 
-     *         var automatedBackupTest = new AdvancedCluster("automatedBackupTest", AdvancedClusterArgs.builder()        
-     *             .projectId("63f4d4a47baeac59406dc131")
-     *             .name("automated-backup-test")
-     *             .providerName("GCP")
-     *             .providerRegionName("US_EAST_4")
-     *             .providerInstanceSizeName("M10")
-     *             .cloudBackup(true)
-     *             .mongoDbMajorVersion("7.0")
-     *             .build());
-     * 
-     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()        
-     *             .projectId(projectTest.projectId())
-     *             .name("DataLakePipelineName")
-     *             .sink(DataLakePipelineSinkArgs.builder()
-     *                 .type("DLS")
-     *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
-     *                     .name("access")
-     *                     .order(0)
-     *                     .build())
-     *                 .build())
-     *             .source(DataLakePipelineSourceArgs.builder()
-     *                 .type("ON_DEMAND_CPS")
-     *                 .clusterName(automatedBackupTestMongodbatlasCluster.name())
-     *                 .databaseName("sample_airbnb")
-     *                 .collectionName("listingsAndReviews")
-     *                 .build())
-     *             .transformations(            
-     *                 DataLakePipelineTransformationArgs.builder()
-     *                     .field("test")
-     *                     .type("EXCLUDE")
-     *                     .build(),
-     *                 DataLakePipelineTransformationArgs.builder()
-     *                     .field("test22")
-     *                     .type("EXCLUDE")
-     *                     .build())
-     *             .build());
-     * 
-     *         final var pipelineDataSource = MongodbatlasFunctions.getDataLakePipeline(GetDataLakePipelineArgs.builder()
-     *             .projectId(pipeline.projectId())
-     *             .name(pipeline.name())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -9472,7 +7876,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()        
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
      *             .projectId(projectTest.projectId())
      *             .name("DataLakePipelineName")
      *             .sink(DataLakePipelineSinkArgs.builder()
@@ -9556,7 +7960,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()        
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
      *             .projectId(projectTest.projectId())
      *             .name("DataLakePipelineName")
      *             .sink(DataLakePipelineSinkArgs.builder()
@@ -9640,7 +8044,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()        
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
      *             .projectId(projectTest.projectId())
      *             .name("DataLakePipelineName")
      *             .sink(DataLakePipelineSinkArgs.builder()
@@ -9724,7 +8128,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()        
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
      *             .projectId(projectTest.projectId())
      *             .name("DataLakePipelineName")
      *             .sink(DataLakePipelineSinkArgs.builder()
@@ -9807,7 +8211,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()        
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
      *             .projectId(projectTest.projectId())
      *             .name("DataLakePipelineName")
      *             .sink(DataLakePipelineSinkArgs.builder()
@@ -9884,7 +8288,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()        
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
      *             .projectId(projectTest.projectId())
      *             .name("DataLakePipelineName")
      *             .sink(DataLakePipelineSinkArgs.builder()
@@ -9961,7 +8365,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()        
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
      *             .projectId(projectTest.projectId())
      *             .name("DataLakePipelineName")
      *             .sink(DataLakePipelineSinkArgs.builder()
@@ -10038,7 +8442,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()        
+     *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
      *             .projectId(projectTest.projectId())
      *             .name("DataLakePipelineName")
      *             .sink(DataLakePipelineSinkArgs.builder()
@@ -10160,7 +8564,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("test-acc-username")
      *             .password("test-acc-password")
      *             .projectId("<PROJECT-ID>")
@@ -10224,7 +8628,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("64d613677e1ad50839cce4db/testUserOrGroup")
      *             .projectId("6414908c207f4d22f4d8f232")
      *             .authDatabaseName("admin")
@@ -10288,7 +8692,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("test-acc-username")
      *             .password("test-acc-password")
      *             .projectId("<PROJECT-ID>")
@@ -10352,7 +8756,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("64d613677e1ad50839cce4db/testUserOrGroup")
      *             .projectId("6414908c207f4d22f4d8f232")
      *             .authDatabaseName("admin")
@@ -10416,7 +8820,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("test-acc-username")
      *             .password("test-acc-password")
      *             .projectId("<PROJECT-ID>")
@@ -10480,7 +8884,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("64d613677e1ad50839cce4db/testUserOrGroup")
      *             .projectId("6414908c207f4d22f4d8f232")
      *             .authDatabaseName("admin")
@@ -10544,7 +8948,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("test-acc-username")
      *             .password("test-acc-password")
      *             .projectId("<PROJECT-ID>")
@@ -10608,7 +9012,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("64d613677e1ad50839cce4db/testUserOrGroup")
      *             .projectId("6414908c207f4d22f4d8f232")
      *             .authDatabaseName("admin")
@@ -10672,7 +9076,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("test-acc-username")
      *             .password("test-acc-password")
      *             .projectId("<PROJECT-ID>")
@@ -10734,7 +9138,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("64d613677e1ad50839cce4db/testUserOrGroup")
      *             .projectId("6414908c207f4d22f4d8f232")
      *             .authDatabaseName("admin")
@@ -10796,7 +9200,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("test-acc-username")
      *             .password("test-acc-password")
      *             .projectId("<PROJECT-ID>")
@@ -10858,7 +9262,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("64d613677e1ad50839cce4db/testUserOrGroup")
      *             .projectId("6414908c207f4d22f4d8f232")
      *             .authDatabaseName("admin")
@@ -10920,7 +9324,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("test-acc-username")
      *             .password("test-acc-password")
      *             .projectId("<PROJECT-ID>")
@@ -10982,7 +9386,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("64d613677e1ad50839cce4db/testUserOrGroup")
      *             .projectId("6414908c207f4d22f4d8f232")
      *             .authDatabaseName("admin")
@@ -11044,7 +9448,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("test-acc-username")
      *             .password("test-acc-password")
      *             .projectId("<PROJECT-ID>")
@@ -11106,7 +9510,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()        
+     *         var testDatabaseUser = new DatabaseUser("testDatabaseUser", DatabaseUserArgs.builder()
      *             .username("64d613677e1ad50839cce4db/testUserOrGroup")
      *             .projectId("6414908c207f4d22f4d8f232")
      *             .authDatabaseName("admin")
@@ -12332,7 +10736,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()        
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .name("mongodb_federation_test")
      *             .associatedDomains("yourdomain.com")
@@ -12391,7 +10795,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()        
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .name("mongodb_federation_test")
      *             .associatedDomains("yourdomain.com")
@@ -12450,7 +10854,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()        
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .name("mongodb_federation_test")
      *             .associatedDomains("yourdomain.com")
@@ -12509,7 +10913,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()        
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .name("mongodb_federation_test")
      *             .associatedDomains("yourdomain.com")
@@ -12568,7 +10972,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()        
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f")
      *             .name("mongodb_federation_test")
      *             .associatedDomains("yourdomain.com")
@@ -12624,7 +11028,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()        
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f")
      *             .name("mongodb_federation_test")
      *             .associatedDomains("yourdomain.com")
@@ -12680,7 +11084,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()        
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f")
      *             .name("mongodb_federation_test")
      *             .associatedDomains("yourdomain.com")
@@ -12736,7 +11140,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()        
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f")
      *             .name("mongodb_federation_test")
      *             .associatedDomains("yourdomain.com")
@@ -12790,7 +11194,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()        
+     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .domainRestrictionEnabled(false)
@@ -12843,7 +11247,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()        
+     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .domainRestrictionEnabled(false)
@@ -12896,7 +11300,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()        
+     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .domainRestrictionEnabled(false)
@@ -12949,7 +11353,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()        
+     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .domainRestrictionEnabled(false)
@@ -13002,7 +11406,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()        
+     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .domainRestrictionEnabled(false)
@@ -13054,7 +11458,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()        
+     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .domainRestrictionEnabled(false)
@@ -13106,7 +11510,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()        
+     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .domainRestrictionEnabled(false)
@@ -13158,7 +11562,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()        
+     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .domainRestrictionEnabled(false)
@@ -13211,7 +11615,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()        
+     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
      *             .federationSettingsId(federatedSettings.id())
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .externalGroupName("myGrouptest")
@@ -13289,7 +11693,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()        
+     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
      *             .federationSettingsId(federatedSettings.id())
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .externalGroupName("myGrouptest")
@@ -13367,7 +11771,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()        
+     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
      *             .federationSettingsId(federatedSettings.id())
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .externalGroupName("myGrouptest")
@@ -13445,7 +11849,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()        
+     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
      *             .federationSettingsId(federatedSettings.id())
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .externalGroupName("myGrouptest")
@@ -13498,62 +11902,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMapping;
-     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()        
-     *             .federationSettingsId("")
-     *             .orgId("627a9683e7f7f7ff7fe306f14")
-     *             .groupId("628aa20d7f7f7f7f7098b81b8")
-     *             .externalGroupName("myGrouptest")
-     *             .organizationRoles(            
-     *                 "ORG_OWNER",
-     *                 "ORG_MEMBER",
-     *                 "ORG_BILLING_ADMIN",
-     *                 "ORG_GROUP_CREATOR",
-     *                 "ORG_READ_ONLY")
-     *             .groupRoles(            
-     *                 "GROUP_OWNER",
-     *                 "GROUP_CLUSTER_MANAGER",
-     *                 "GROUP_DATA_ACCESS_ADMIN",
-     *                 "GROUP_DATA_ACCESS_READ_WRITE",
-     *                 "GROUP_SEARCH_INDEX_EDITOR",
-     *                 "GROUP_DATA_ACCESS_READ_ONLY",
-     *                 "GROUP_READ_ONLY")
-     *             .build());
-     * 
-     *         final var roleMappings = MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
-     *             .federationSettingsId(orgGroupRoleMappingImport.id())
-     *             .orgId("627a9683e7f7f7ff7fe306f14")
-     *             .pageNum(1)
-     *             .itemsPerPage(5)
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -13566,62 +11914,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMapping;
-     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()        
-     *             .federationSettingsId("")
-     *             .orgId("627a9683e7f7f7ff7fe306f14")
-     *             .groupId("628aa20d7f7f7f7f7098b81b8")
-     *             .externalGroupName("myGrouptest")
-     *             .organizationRoles(            
-     *                 "ORG_OWNER",
-     *                 "ORG_MEMBER",
-     *                 "ORG_BILLING_ADMIN",
-     *                 "ORG_GROUP_CREATOR",
-     *                 "ORG_READ_ONLY")
-     *             .groupRoles(            
-     *                 "GROUP_OWNER",
-     *                 "GROUP_CLUSTER_MANAGER",
-     *                 "GROUP_DATA_ACCESS_ADMIN",
-     *                 "GROUP_DATA_ACCESS_READ_WRITE",
-     *                 "GROUP_SEARCH_INDEX_EDITOR",
-     *                 "GROUP_DATA_ACCESS_READ_ONLY",
-     *                 "GROUP_READ_ONLY")
-     *             .build());
-     * 
-     *         final var roleMappings = MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
-     *             .federationSettingsId(orgGroupRoleMappingImport.id())
-     *             .orgId("627a9683e7f7f7ff7fe306f14")
-     *             .pageNum(1)
-     *             .itemsPerPage(5)
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -13634,62 +11926,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMapping;
-     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()        
-     *             .federationSettingsId("")
-     *             .orgId("627a9683e7f7f7ff7fe306f14")
-     *             .groupId("628aa20d7f7f7f7f7098b81b8")
-     *             .externalGroupName("myGrouptest")
-     *             .organizationRoles(            
-     *                 "ORG_OWNER",
-     *                 "ORG_MEMBER",
-     *                 "ORG_BILLING_ADMIN",
-     *                 "ORG_GROUP_CREATOR",
-     *                 "ORG_READ_ONLY")
-     *             .groupRoles(            
-     *                 "GROUP_OWNER",
-     *                 "GROUP_CLUSTER_MANAGER",
-     *                 "GROUP_DATA_ACCESS_ADMIN",
-     *                 "GROUP_DATA_ACCESS_READ_WRITE",
-     *                 "GROUP_SEARCH_INDEX_EDITOR",
-     *                 "GROUP_DATA_ACCESS_READ_ONLY",
-     *                 "GROUP_READ_ONLY")
-     *             .build());
-     * 
-     *         final var roleMappings = MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
-     *             .federationSettingsId(orgGroupRoleMappingImport.id())
-     *             .orgId("627a9683e7f7f7ff7fe306f14")
-     *             .pageNum(1)
-     *             .itemsPerPage(5)
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -13702,62 +11938,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMapping;
-     * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()        
-     *             .federationSettingsId("")
-     *             .orgId("627a9683e7f7f7ff7fe306f14")
-     *             .groupId("628aa20d7f7f7f7f7098b81b8")
-     *             .externalGroupName("myGrouptest")
-     *             .organizationRoles(            
-     *                 "ORG_OWNER",
-     *                 "ORG_MEMBER",
-     *                 "ORG_BILLING_ADMIN",
-     *                 "ORG_GROUP_CREATOR",
-     *                 "ORG_READ_ONLY")
-     *             .groupRoles(            
-     *                 "GROUP_OWNER",
-     *                 "GROUP_CLUSTER_MANAGER",
-     *                 "GROUP_DATA_ACCESS_ADMIN",
-     *                 "GROUP_DATA_ACCESS_READ_WRITE",
-     *                 "GROUP_SEARCH_INDEX_EDITOR",
-     *                 "GROUP_DATA_ACCESS_READ_ONLY",
-     *                 "GROUP_READ_ONLY")
-     *             .build());
-     * 
-     *         final var roleMappings = MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
-     *             .federationSettingsId(orgGroupRoleMappingImport.id())
-     *             .orgId("627a9683e7f7f7ff7fe306f14")
-     *             .pageNum(1)
-     *             .itemsPerPage(5)
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -13801,7 +11981,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var test = new Cluster("test", ClusterArgs.builder()        
+     *         var test = new Cluster("test", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("<CLUSTER-NAME>")
      *             .cloudBackup(true)
@@ -13831,7 +12011,7 @@ public final class MongodbatlasFunctions {
      *                     .build())
      *             .build());
      * 
-     *         var configGlobalClusterConfig = new GlobalClusterConfig("configGlobalClusterConfig", GlobalClusterConfigArgs.builder()        
+     *         var configGlobalClusterConfig = new GlobalClusterConfig("configGlobalClusterConfig", GlobalClusterConfigArgs.builder()
      *             .projectId(test.projectId())
      *             .clusterName(test.name())
      *             .managedNamespaces(GlobalClusterConfigManagedNamespaceArgs.builder()
@@ -13897,7 +12077,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var test = new Cluster("test", ClusterArgs.builder()        
+     *         var test = new Cluster("test", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("<CLUSTER-NAME>")
      *             .cloudBackup(true)
@@ -13927,7 +12107,7 @@ public final class MongodbatlasFunctions {
      *                     .build())
      *             .build());
      * 
-     *         var configGlobalClusterConfig = new GlobalClusterConfig("configGlobalClusterConfig", GlobalClusterConfigArgs.builder()        
+     *         var configGlobalClusterConfig = new GlobalClusterConfig("configGlobalClusterConfig", GlobalClusterConfigArgs.builder()
      *             .projectId(test.projectId())
      *             .clusterName(test.name())
      *             .managedNamespaces(GlobalClusterConfigManagedNamespaceArgs.builder()
@@ -13993,7 +12173,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var test = new Cluster("test", ClusterArgs.builder()        
+     *         var test = new Cluster("test", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("<CLUSTER-NAME>")
      *             .cloudBackup(true)
@@ -14023,7 +12203,7 @@ public final class MongodbatlasFunctions {
      *                     .build())
      *             .build());
      * 
-     *         var configGlobalClusterConfig = new GlobalClusterConfig("configGlobalClusterConfig", GlobalClusterConfigArgs.builder()        
+     *         var configGlobalClusterConfig = new GlobalClusterConfig("configGlobalClusterConfig", GlobalClusterConfigArgs.builder()
      *             .projectId(test.projectId())
      *             .clusterName(test.name())
      *             .managedNamespaces(GlobalClusterConfigManagedNamespaceArgs.builder()
@@ -14089,7 +12269,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var test = new Cluster("test", ClusterArgs.builder()        
+     *         var test = new Cluster("test", ClusterArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .name("<CLUSTER-NAME>")
      *             .cloudBackup(true)
@@ -14119,7 +12299,7 @@ public final class MongodbatlasFunctions {
      *                     .build())
      *             .build());
      * 
-     *         var configGlobalClusterConfig = new GlobalClusterConfig("configGlobalClusterConfig", GlobalClusterConfigArgs.builder()        
+     *         var configGlobalClusterConfig = new GlobalClusterConfig("configGlobalClusterConfig", GlobalClusterConfigArgs.builder()
      *             .projectId(test.projectId())
      *             .clusterName(test.name())
      *             .managedNamespaces(GlobalClusterConfigManagedNamespaceArgs.builder()
@@ -14182,12 +12362,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("NAME OF THE PROJECT")
      *             .orgId("ORG ID")
      *             .build());
      * 
-     *         var testLdapConfiguration = new LdapConfiguration("testLdapConfiguration", LdapConfigurationArgs.builder()        
+     *         var testLdapConfiguration = new LdapConfiguration("testLdapConfiguration", LdapConfigurationArgs.builder()
      *             .projectId(testProject.id())
      *             .authenticationEnabled(true)
      *             .hostname("HOSTNAME")
@@ -14244,12 +12424,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("NAME OF THE PROJECT")
      *             .orgId("ORG ID")
      *             .build());
      * 
-     *         var testLdapConfiguration = new LdapConfiguration("testLdapConfiguration", LdapConfigurationArgs.builder()        
+     *         var testLdapConfiguration = new LdapConfiguration("testLdapConfiguration", LdapConfigurationArgs.builder()
      *             .projectId(testProject.id())
      *             .authenticationEnabled(true)
      *             .hostname("HOSTNAME")
@@ -14306,12 +12486,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("NAME OF THE PROJECT")
      *             .orgId("ORG ID")
      *             .build());
      * 
-     *         var testLdapConfiguration = new LdapConfiguration("testLdapConfiguration", LdapConfigurationArgs.builder()        
+     *         var testLdapConfiguration = new LdapConfiguration("testLdapConfiguration", LdapConfigurationArgs.builder()
      *             .projectId(testProject.id())
      *             .authenticationEnabled(true)
      *             .hostname("HOSTNAME")
@@ -14368,12 +12548,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("NAME OF THE PROJECT")
      *             .orgId("ORG ID")
      *             .build());
      * 
-     *         var testLdapConfiguration = new LdapConfiguration("testLdapConfiguration", LdapConfigurationArgs.builder()        
+     *         var testLdapConfiguration = new LdapConfiguration("testLdapConfiguration", LdapConfigurationArgs.builder()
      *             .projectId(testProject.id())
      *             .authenticationEnabled(true)
      *             .hostname("HOSTNAME")
@@ -14433,12 +12613,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("NAME OF THE PROJECT")
      *             .orgId("ORG ID")
      *             .build());
      * 
-     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
      *             .projectId(testProject.id())
      *             .name("NAME OF THE CLUSTER")
      *             .providerName("AWS")
@@ -14447,7 +12627,7 @@ public final class MongodbatlasFunctions {
      *             .cloudBackup(true)
      *             .build());
      * 
-     *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()        
+     *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()
      *             .projectId(testProject.id())
      *             .hostname("HOSTNAME")
      *             .port(636)
@@ -14509,12 +12689,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("NAME OF THE PROJECT")
      *             .orgId("ORG ID")
      *             .build());
      * 
-     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
      *             .projectId(testProject.id())
      *             .name("NAME OF THE CLUSTER")
      *             .providerName("AWS")
@@ -14523,7 +12703,7 @@ public final class MongodbatlasFunctions {
      *             .cloudBackup(true)
      *             .build());
      * 
-     *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()        
+     *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()
      *             .projectId(testProject.id())
      *             .hostname("HOSTNAME")
      *             .port(636)
@@ -14585,12 +12765,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("NAME OF THE PROJECT")
      *             .orgId("ORG ID")
      *             .build());
      * 
-     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
      *             .projectId(testProject.id())
      *             .name("NAME OF THE CLUSTER")
      *             .providerName("AWS")
@@ -14599,7 +12779,7 @@ public final class MongodbatlasFunctions {
      *             .cloudBackup(true)
      *             .build());
      * 
-     *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()        
+     *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()
      *             .projectId(testProject.id())
      *             .hostname("HOSTNAME")
      *             .port(636)
@@ -14661,12 +12841,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("NAME OF THE PROJECT")
      *             .orgId("ORG ID")
      *             .build());
      * 
-     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()        
+     *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
      *             .projectId(testProject.id())
      *             .name("NAME OF THE CLUSTER")
      *             .providerName("AWS")
@@ -14675,7 +12855,7 @@ public final class MongodbatlasFunctions {
      *             .cloudBackup(true)
      *             .build());
      * 
-     *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()        
+     *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()
      *             .projectId(testProject.id())
      *             .hostname("HOSTNAME")
      *             .port(636)
@@ -14732,7 +12912,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()        
+     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()
      *             .projectId("<your-project-id>")
      *             .dayOfWeek(3)
      *             .hourOfDay(4)
@@ -14774,7 +12954,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()        
+     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()
      *             .projectId("<your-project-id>")
      *             .startAsap(true)
      *             .build());
@@ -14825,7 +13005,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()        
+     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()
      *             .projectId("<your-project-id>")
      *             .dayOfWeek(3)
      *             .hourOfDay(4)
@@ -14867,7 +13047,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()        
+     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()
      *             .projectId("<your-project-id>")
      *             .startAsap(true)
      *             .build());
@@ -14918,7 +13098,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()        
+     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()
      *             .projectId("<your-project-id>")
      *             .dayOfWeek(3)
      *             .hourOfDay(4)
@@ -14960,7 +13140,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()        
+     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()
      *             .projectId("<your-project-id>")
      *             .startAsap(true)
      *             .build());
@@ -15011,7 +13191,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()        
+     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()
      *             .projectId("<your-project-id>")
      *             .dayOfWeek(3)
      *             .hourOfDay(4)
@@ -15053,7 +13233,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()        
+     *         var testMaintenanceWindow = new MaintenanceWindow("testMaintenanceWindow", MaintenanceWindowArgs.builder()
      *             .projectId("<your-project-id>")
      *             .startAsap(true)
      *             .build());
@@ -15108,7 +13288,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()        
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .atlasCidrBlock("10.8.0.0/21")
      *             .providerName("AWS")
@@ -15166,7 +13346,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()        
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .atlasCidrBlock("10.8.0.0/21")
      *             .providerName("AWS")
@@ -15224,7 +13404,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()        
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .atlasCidrBlock("10.8.0.0/21")
      *             .providerName("AWS")
@@ -15282,7 +13462,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()        
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .atlasCidrBlock("10.8.0.0/21")
      *             .providerName("AWS")
@@ -15338,7 +13518,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()        
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .atlasCidrBlock("10.8.0.0/21")
      *             .providerName("AWS")
@@ -15394,7 +13574,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()        
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .atlasCidrBlock("10.8.0.0/21")
      *             .providerName("AWS")
@@ -15450,7 +13630,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()        
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .atlasCidrBlock("10.8.0.0/21")
      *             .providerName("AWS")
@@ -15506,7 +13686,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()        
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
      *             .projectId("<YOUR-PROJECT-ID>")
      *             .atlasCidrBlock("10.8.0.0/21")
      *             .providerName("AWS")
@@ -15564,7 +13744,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
      *             .accepterRegionName("us-east-1")
      *             .projectId("<YOUR-PROJEC-ID>")
      *             .containerId("507f1f77bcf86cd799439011")
@@ -15625,7 +13805,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
      *             .accepterRegionName("us-east-1")
      *             .projectId("<YOUR-PROJEC-ID>")
      *             .containerId("507f1f77bcf86cd799439011")
@@ -15686,7 +13866,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
      *             .accepterRegionName("us-east-1")
      *             .projectId("<YOUR-PROJEC-ID>")
      *             .containerId("507f1f77bcf86cd799439011")
@@ -15747,7 +13927,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
      *             .accepterRegionName("us-east-1")
      *             .projectId("<YOUR-PROJEC-ID>")
      *             .containerId("507f1f77bcf86cd799439011")
@@ -15806,7 +13986,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
      *             .accepterRegionName("us-east-1")
      *             .projectId("<YOUR-PROJEC-ID>")
      *             .containerId("507f1f77bcf86cd799439011")
@@ -15864,7 +14044,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
      *             .accepterRegionName("us-east-1")
      *             .projectId("<YOUR-PROJEC-ID>")
      *             .containerId("507f1f77bcf86cd799439011")
@@ -15922,7 +14102,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
      *             .accepterRegionName("us-east-1")
      *             .projectId("<YOUR-PROJEC-ID>")
      *             .containerId("507f1f77bcf86cd799439011")
@@ -15980,7 +14160,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
      *             .accepterRegionName("us-east-1")
      *             .projectId("<YOUR-PROJEC-ID>")
      *             .containerId("507f1f77bcf86cd799439011")
@@ -16962,7 +15142,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()        
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
@@ -17019,7 +15199,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()        
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
@@ -17076,7 +15256,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()        
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
@@ -17133,7 +15313,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()        
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
@@ -17194,13 +15374,13 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()        
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
      * 
-     *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()        
+     *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()
      *             .vpcId("vpc-7fc0a543")
      *             .serviceName(testPrivateLinkEndpoint.endpointServiceName())
      *             .vpcEndpointType("Interface")
@@ -17208,7 +15388,7 @@ public final class MongodbatlasFunctions {
      *             .securityGroupIds("sg-3f238186")
      *             .build());
      * 
-     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()        
+     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
      *             .projectId(testPrivateLinkEndpoint.projectId())
      *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
      *             .endpointServiceId(ptfeService.id())
@@ -17258,13 +15438,13 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()        
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId(projectId)
      *             .providerName("AZURE")
      *             .region("eastus2")
      *             .build());
      * 
-     *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()        
+     *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()
      *             .name("endpoint-test")
      *             .location(testAzurermResourceGroup.location())
      *             .resourceGroupName(resourceGroupName)
@@ -17272,7 +15452,7 @@ public final class MongodbatlasFunctions {
      *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
      * 
-     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()        
+     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
      *             .projectId(testPrivateLinkEndpoint.projectId())
      *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
      *             .endpointServiceId(testPrivateEndpoint.id())
@@ -17335,13 +15515,13 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()        
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
      * 
-     *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()        
+     *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()
      *             .vpcId("vpc-7fc0a543")
      *             .serviceName(testPrivateLinkEndpoint.endpointServiceName())
      *             .vpcEndpointType("Interface")
@@ -17349,7 +15529,7 @@ public final class MongodbatlasFunctions {
      *             .securityGroupIds("sg-3f238186")
      *             .build());
      * 
-     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()        
+     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
      *             .projectId(testPrivateLinkEndpoint.projectId())
      *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
      *             .endpointServiceId(ptfeService.id())
@@ -17399,13 +15579,13 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()        
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId(projectId)
      *             .providerName("AZURE")
      *             .region("eastus2")
      *             .build());
      * 
-     *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()        
+     *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()
      *             .name("endpoint-test")
      *             .location(testAzurermResourceGroup.location())
      *             .resourceGroupName(resourceGroupName)
@@ -17413,7 +15593,7 @@ public final class MongodbatlasFunctions {
      *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
      * 
-     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()        
+     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
      *             .projectId(testPrivateLinkEndpoint.projectId())
      *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
      *             .endpointServiceId(testPrivateEndpoint.id())
@@ -17476,13 +15656,13 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()        
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
      * 
-     *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()        
+     *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()
      *             .vpcId("vpc-7fc0a543")
      *             .serviceName(testPrivateLinkEndpoint.endpointServiceName())
      *             .vpcEndpointType("Interface")
@@ -17490,7 +15670,7 @@ public final class MongodbatlasFunctions {
      *             .securityGroupIds("sg-3f238186")
      *             .build());
      * 
-     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()        
+     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
      *             .projectId(testPrivateLinkEndpoint.projectId())
      *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
      *             .endpointServiceId(ptfeService.id())
@@ -17540,13 +15720,13 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()        
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId(projectId)
      *             .providerName("AZURE")
      *             .region("eastus2")
      *             .build());
      * 
-     *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()        
+     *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()
      *             .name("endpoint-test")
      *             .location(testAzurermResourceGroup.location())
      *             .resourceGroupName(resourceGroupName)
@@ -17554,7 +15734,7 @@ public final class MongodbatlasFunctions {
      *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
      * 
-     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()        
+     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
      *             .projectId(testPrivateLinkEndpoint.projectId())
      *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
      *             .endpointServiceId(testPrivateEndpoint.id())
@@ -17617,13 +15797,13 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()        
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
      * 
-     *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()        
+     *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()
      *             .vpcId("vpc-7fc0a543")
      *             .serviceName(testPrivateLinkEndpoint.endpointServiceName())
      *             .vpcEndpointType("Interface")
@@ -17631,7 +15811,7 @@ public final class MongodbatlasFunctions {
      *             .securityGroupIds("sg-3f238186")
      *             .build());
      * 
-     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()        
+     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
      *             .projectId(testPrivateLinkEndpoint.projectId())
      *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
      *             .endpointServiceId(ptfeService.id())
@@ -17681,13 +15861,13 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()        
+     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId(projectId)
      *             .providerName("AZURE")
      *             .region("eastus2")
      *             .build());
      * 
-     *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()        
+     *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()
      *             .name("endpoint-test")
      *             .location(testAzurermResourceGroup.location())
      *             .resourceGroupName(resourceGroupName)
@@ -17695,7 +15875,7 @@ public final class MongodbatlasFunctions {
      *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
      * 
-     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()        
+     *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
      *             .projectId(testPrivateLinkEndpoint.projectId())
      *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
      *             .endpointServiceId(testPrivateEndpoint.id())
@@ -17756,12 +15936,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()        
+     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()
      *             .orgId(atlasOrgId)
      *             .name(atlasProjectName)
      *             .build());
      * 
-     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
      *             .projectId(atlas_project.id())
      *             .endpointId("vpce-046cf43c79424d4c9")
      *             .providerName("AWS")
@@ -17819,12 +15999,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()        
+     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()
      *             .orgId(atlasOrgId)
      *             .name(atlasProjectName)
      *             .build());
      * 
-     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
      *             .projectId(atlas_project.id())
      *             .endpointId("vpce-046cf43c79424d4c9")
      *             .providerName("AWS")
@@ -17882,12 +16062,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()        
+     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()
      *             .orgId(atlasOrgId)
      *             .name(atlasProjectName)
      *             .build());
      * 
-     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
      *             .projectId(atlas_project.id())
      *             .endpointId("vpce-046cf43c79424d4c9")
      *             .providerName("AWS")
@@ -17945,12 +16125,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()        
+     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()
      *             .orgId(atlasOrgId)
      *             .name(atlasProjectName)
      *             .build());
      * 
-     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
      *             .projectId(atlas_project.id())
      *             .endpointId("vpce-046cf43c79424d4c9")
      *             .providerName("AWS")
@@ -18008,12 +16188,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()        
+     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()
      *             .orgId(atlasOrgId)
      *             .name(atlasProjectName)
      *             .build());
      * 
-     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
      *             .projectId(atlas_project.id())
      *             .endpointId("vpce-046cf43c79424d4c9")
      *             .providerName("AWS")
@@ -18070,12 +16250,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()        
+     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()
      *             .orgId(atlasOrgId)
      *             .name(atlasProjectName)
      *             .build());
      * 
-     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
      *             .projectId(atlas_project.id())
      *             .endpointId("vpce-046cf43c79424d4c9")
      *             .providerName("AWS")
@@ -18132,12 +16312,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()        
+     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()
      *             .orgId(atlasOrgId)
      *             .name(atlasProjectName)
      *             .build());
      * 
-     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
      *             .projectId(atlas_project.id())
      *             .endpointId("vpce-046cf43c79424d4c9")
      *             .providerName("AWS")
@@ -18194,12 +16374,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()        
+     *         var atlas_project = new Project("atlas-project", ProjectArgs.builder()
      *             .orgId(atlasOrgId)
      *             .name(atlasProjectName)
      *             .build());
      * 
-     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()        
+     *         var test = new PrivatelinkEndpointServiceDataFederationOnlineArchive("test", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
      *             .projectId(atlas_project.id())
      *             .endpointId("vpce-046cf43c79424d4c9")
      *             .providerName("AWS")
@@ -18258,7 +16438,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AWS")
@@ -18267,7 +16447,7 @@ public final class MongodbatlasFunctions {
      *             .continuousBackupEnabled(true)
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AWS")
@@ -18279,7 +16459,7 @@ public final class MongodbatlasFunctions {
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -18324,7 +16504,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AZURE")
@@ -18333,7 +16513,7 @@ public final class MongodbatlasFunctions {
      *             .continuousBackupEnabled(true)
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AZURE")
@@ -18345,7 +16525,7 @@ public final class MongodbatlasFunctions {
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -18402,7 +16582,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AWS")
@@ -18411,7 +16591,7 @@ public final class MongodbatlasFunctions {
      *             .continuousBackupEnabled(true)
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AWS")
@@ -18423,7 +16603,7 @@ public final class MongodbatlasFunctions {
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -18468,7 +16648,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AZURE")
@@ -18477,7 +16657,7 @@ public final class MongodbatlasFunctions {
      *             .continuousBackupEnabled(true)
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AZURE")
@@ -18489,7 +16669,7 @@ public final class MongodbatlasFunctions {
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -18546,7 +16726,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AWS")
@@ -18555,7 +16735,7 @@ public final class MongodbatlasFunctions {
      *             .continuousBackupEnabled(true)
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AWS")
@@ -18567,7 +16747,7 @@ public final class MongodbatlasFunctions {
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -18612,7 +16792,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AZURE")
@@ -18621,7 +16801,7 @@ public final class MongodbatlasFunctions {
      *             .continuousBackupEnabled(true)
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AZURE")
@@ -18633,7 +16813,7 @@ public final class MongodbatlasFunctions {
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -18690,7 +16870,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AWS")
@@ -18699,7 +16879,7 @@ public final class MongodbatlasFunctions {
      *             .continuousBackupEnabled(true)
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AWS")
@@ -18711,7 +16891,7 @@ public final class MongodbatlasFunctions {
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -18756,7 +16936,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AZURE")
@@ -18765,7 +16945,7 @@ public final class MongodbatlasFunctions {
      *             .continuousBackupEnabled(true)
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AZURE")
@@ -18777,7 +16957,7 @@ public final class MongodbatlasFunctions {
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -18834,7 +17014,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AWS")
@@ -18848,13 +17028,13 @@ public final class MongodbatlasFunctions {
      *             .instanceName(testServerlessInstance.name())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AWS")
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -18899,7 +17079,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AZURE")
@@ -18913,13 +17093,13 @@ public final class MongodbatlasFunctions {
      *             .instanceName(testServerlessInstance.name())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AZURE")
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -18973,7 +17153,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AWS")
@@ -18987,13 +17167,13 @@ public final class MongodbatlasFunctions {
      *             .instanceName(testServerlessInstance.name())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AWS")
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -19038,7 +17218,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AZURE")
@@ -19052,13 +17232,13 @@ public final class MongodbatlasFunctions {
      *             .instanceName(testServerlessInstance.name())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AZURE")
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -19112,7 +17292,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AWS")
@@ -19126,13 +17306,13 @@ public final class MongodbatlasFunctions {
      *             .instanceName(testServerlessInstance.name())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AWS")
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -19177,7 +17357,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AZURE")
@@ -19191,13 +17371,13 @@ public final class MongodbatlasFunctions {
      *             .instanceName(testServerlessInstance.name())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AZURE")
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -19251,7 +17431,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AWS")
@@ -19265,13 +17445,13 @@ public final class MongodbatlasFunctions {
      *             .instanceName(testServerlessInstance.name())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AWS")
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -19316,7 +17496,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+     *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("test-db")
      *             .providerSettingsBackingProviderName("AZURE")
@@ -19330,13 +17510,13 @@ public final class MongodbatlasFunctions {
      *             .instanceName(testServerlessInstance.name())
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", PrivatelinkEndpointServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName(testServerlessInstance.name())
      *             .providerName("AZURE")
      *             .build());
      * 
-     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", PrivatelinkEndpointServiceServerlessArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .instanceName("test-db")
      *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
@@ -19391,7 +17571,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getRolesOrgId();
      * 
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
      *             .teams(            
@@ -19449,7 +17629,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId("<ORG_ID>")
      *             .teams(            
@@ -19520,7 +17700,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getRolesOrgId();
      * 
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
      *             .teams(            
@@ -19578,7 +17758,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId("<ORG_ID>")
      *             .teams(            
@@ -19649,7 +17829,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getRolesOrgId();
      * 
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
      *             .teams(            
@@ -19707,7 +17887,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId("<ORG_ID>")
      *             .teams(            
@@ -19778,7 +17958,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getRolesOrgId();
      * 
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
      *             .teams(            
@@ -19836,7 +18016,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId("<ORG_ID>")
      *             .teams(            
@@ -19907,7 +18087,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getRolesOrgId();
      * 
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
      *             .teams(            
@@ -19965,7 +18145,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId("<ORG_ID>")
      *             .teams(            
@@ -20036,7 +18216,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getRolesOrgId();
      * 
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
      *             .teams(            
@@ -20094,7 +18274,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId("<ORG_ID>")
      *             .teams(            
@@ -20158,7 +18338,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectApiKey = new ProjectApiKey("testProjectApiKey", ProjectApiKeyArgs.builder()        
+     *         var testProjectApiKey = new ProjectApiKey("testProjectApiKey", ProjectApiKeyArgs.builder()
      *             .description("Description of your API key")
      *             .projectAssignments(ProjectApiKeyProjectAssignmentArgs.builder()
      *                 .projectId("64259ee860c43338194b0f8e")
@@ -20211,7 +18391,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectApiKey = new ProjectApiKey("testProjectApiKey", ProjectApiKeyArgs.builder()        
+     *         var testProjectApiKey = new ProjectApiKey("testProjectApiKey", ProjectApiKeyArgs.builder()
      *             .description("Description of your API key")
      *             .projectAssignments(ProjectApiKeyProjectAssignmentArgs.builder()
      *                 .projectId("64259ee860c43338194b0f8e")
@@ -20264,7 +18444,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectApiKey = new ProjectApiKey("testProjectApiKey", ProjectApiKeyArgs.builder()        
+     *         var testProjectApiKey = new ProjectApiKey("testProjectApiKey", ProjectApiKeyArgs.builder()
      *             .description("Description of your API key")
      *             .projectAssignments(ProjectApiKeyProjectAssignmentArgs.builder()
      *                 .projectId("64259ee860c43338194b0f8e")
@@ -20317,7 +18497,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectApiKey = new ProjectApiKey("testProjectApiKey", ProjectApiKeyArgs.builder()        
+     *         var testProjectApiKey = new ProjectApiKey("testProjectApiKey", ProjectApiKeyArgs.builder()
      *             .description("Description of your API key")
      *             .projectAssignments(ProjectApiKeyProjectAssignmentArgs.builder()
      *                 .projectId("64259ee860c43338194b0f8e")
@@ -20542,7 +18722,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectInvitation = new ProjectInvitation("testProjectInvitation", ProjectInvitationArgs.builder()        
+     *         var testProjectInvitation = new ProjectInvitation("testProjectInvitation", ProjectInvitationArgs.builder()
      *             .username("test-acc-username")
      *             .projectId("<PROJECT-ID>")
      *             .roles("GROUP_DATA_ACCESS_READ_WRITE")
@@ -20597,7 +18777,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectInvitation = new ProjectInvitation("testProjectInvitation", ProjectInvitationArgs.builder()        
+     *         var testProjectInvitation = new ProjectInvitation("testProjectInvitation", ProjectInvitationArgs.builder()
      *             .username("test-acc-username")
      *             .projectId("<PROJECT-ID>")
      *             .roles("GROUP_DATA_ACCESS_READ_WRITE")
@@ -20652,7 +18832,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectInvitation = new ProjectInvitation("testProjectInvitation", ProjectInvitationArgs.builder()        
+     *         var testProjectInvitation = new ProjectInvitation("testProjectInvitation", ProjectInvitationArgs.builder()
      *             .username("test-acc-username")
      *             .projectId("<PROJECT-ID>")
      *             .roles("GROUP_DATA_ACCESS_READ_WRITE")
@@ -20707,7 +18887,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectInvitation = new ProjectInvitation("testProjectInvitation", ProjectInvitationArgs.builder()        
+     *         var testProjectInvitation = new ProjectInvitation("testProjectInvitation", ProjectInvitationArgs.builder()
      *             .username("test-acc-username")
      *             .projectId("<PROJECT-ID>")
      *             .roles("GROUP_DATA_ACCESS_READ_WRITE")
@@ -20764,7 +18944,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .cidrBlock("1.2.3.4/32")
      *             .comment("cidr block for tf acc testing")
@@ -20807,7 +18987,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .ipAddress("2.3.4.5")
      *             .comment("ip address for tf acc testing")
@@ -20855,14 +19035,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()        
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .atlasCidrBlock("192.168.208.0/21")
      *             .providerName("AWS")
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .containerId(testNetworkContainer.containerId())
      *             .accepterRegionName("us-east-1")
@@ -20872,7 +19052,7 @@ public final class MongodbatlasFunctions {
      *             .awsAccountId("232589400519")
      *             .build());
      * 
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .awsSecurityGroup("sg-0026348ec11780bd1")
      *             .comment("TestAcc for awsSecurityGroup")
@@ -20933,7 +19113,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .cidrBlock("1.2.3.4/32")
      *             .comment("cidr block for tf acc testing")
@@ -20976,7 +19156,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .ipAddress("2.3.4.5")
      *             .comment("ip address for tf acc testing")
@@ -21024,14 +19204,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()        
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .atlasCidrBlock("192.168.208.0/21")
      *             .providerName("AWS")
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .containerId(testNetworkContainer.containerId())
      *             .accepterRegionName("us-east-1")
@@ -21041,7 +19221,7 @@ public final class MongodbatlasFunctions {
      *             .awsAccountId("232589400519")
      *             .build());
      * 
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .awsSecurityGroup("sg-0026348ec11780bd1")
      *             .comment("TestAcc for awsSecurityGroup")
@@ -21102,7 +19282,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .cidrBlock("1.2.3.4/32")
      *             .comment("cidr block for tf acc testing")
@@ -21145,7 +19325,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .ipAddress("2.3.4.5")
      *             .comment("ip address for tf acc testing")
@@ -21193,14 +19373,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()        
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .atlasCidrBlock("192.168.208.0/21")
      *             .providerName("AWS")
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .containerId(testNetworkContainer.containerId())
      *             .accepterRegionName("us-east-1")
@@ -21210,7 +19390,7 @@ public final class MongodbatlasFunctions {
      *             .awsAccountId("232589400519")
      *             .build());
      * 
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .awsSecurityGroup("sg-0026348ec11780bd1")
      *             .comment("TestAcc for awsSecurityGroup")
@@ -21271,7 +19451,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .cidrBlock("1.2.3.4/32")
      *             .comment("cidr block for tf acc testing")
@@ -21314,7 +19494,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .ipAddress("2.3.4.5")
      *             .comment("ip address for tf acc testing")
@@ -21362,14 +19542,14 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()        
+     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .atlasCidrBlock("192.168.208.0/21")
      *             .providerName("AWS")
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .containerId(testNetworkContainer.containerId())
      *             .accepterRegionName("us-east-1")
@@ -21379,7 +19559,7 @@ public final class MongodbatlasFunctions {
      *             .awsAccountId("232589400519")
      *             .build());
      * 
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .awsSecurityGroup("sg-0026348ec11780bd1")
      *             .comment("TestAcc for awsSecurityGroup")
@@ -21440,7 +19620,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getRolesOrgId();
      * 
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
      *             .teams(            
@@ -21511,7 +19691,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getRolesOrgId();
      * 
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
      *             .teams(            
@@ -21582,7 +19762,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getRolesOrgId();
      * 
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
      *             .teams(            
@@ -21653,7 +19833,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getRolesOrgId();
      * 
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
      *             .teams(            
@@ -21724,7 +19904,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getRolesOrgId();
      * 
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
      *             .teams(            
@@ -21795,7 +19975,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = MongodbatlasFunctions.getRolesOrgId();
      * 
-     *         var testProject = new Project("testProject", ProjectArgs.builder()        
+     *         var testProject = new Project("testProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
      *             .teams(            
@@ -21868,18 +20048,18 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var project_tf = new Project("project-tf", ProjectArgs.builder()        
+     *         var project_tf = new Project("project-tf", ProjectArgs.builder()
      *             .name(atlasProjectName)
      *             .orgId(atlasOrgId)
      *             .build());
      * 
      *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()        
+     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
      *             .projectId(project_tf.id())
      *             .providerName("AWS")
      *             .build());
      * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()        
+     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
      *             .projectId(project_tf.id())
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
@@ -21888,7 +20068,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         // Set up push-based log export with authorized IAM role
-     *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()        
+     *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()
      *             .projectId(project_tf.id())
      *             .bucketName(logBucket.bucket())
      *             .iamRoleId(authRole.roleId())
@@ -21947,18 +20127,18 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var project_tf = new Project("project-tf", ProjectArgs.builder()        
+     *         var project_tf = new Project("project-tf", ProjectArgs.builder()
      *             .name(atlasProjectName)
      *             .orgId(atlasOrgId)
      *             .build());
      * 
      *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()        
+     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
      *             .projectId(project_tf.id())
      *             .providerName("AWS")
      *             .build());
      * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()        
+     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
      *             .projectId(project_tf.id())
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
@@ -21967,7 +20147,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         // Set up push-based log export with authorized IAM role
-     *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()        
+     *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()
      *             .projectId(project_tf.id())
      *             .bucketName(logBucket.bucket())
      *             .iamRoleId(authRole.roleId())
@@ -22026,18 +20206,18 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var project_tf = new Project("project-tf", ProjectArgs.builder()        
+     *         var project_tf = new Project("project-tf", ProjectArgs.builder()
      *             .name(atlasProjectName)
      *             .orgId(atlasOrgId)
      *             .build());
      * 
      *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()        
+     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
      *             .projectId(project_tf.id())
      *             .providerName("AWS")
      *             .build());
      * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()        
+     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
      *             .projectId(project_tf.id())
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
@@ -22046,7 +20226,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         // Set up push-based log export with authorized IAM role
-     *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()        
+     *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()
      *             .projectId(project_tf.id())
      *             .bucketName(logBucket.bucket())
      *             .iamRoleId(authRole.roleId())
@@ -22105,18 +20285,18 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var project_tf = new Project("project-tf", ProjectArgs.builder()        
+     *         var project_tf = new Project("project-tf", ProjectArgs.builder()
      *             .name(atlasProjectName)
      *             .orgId(atlasOrgId)
      *             .build());
      * 
      *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()        
+     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
      *             .projectId(project_tf.id())
      *             .providerName("AWS")
      *             .build());
      * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()        
+     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
      *             .projectId(project_tf.id())
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
@@ -22125,7 +20305,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         // Set up push-based log export with authorized IAM role
-     *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()        
+     *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()
      *             .projectId(project_tf.id())
      *             .bucketName(logBucket.bucket())
      *             .iamRoleId(authRole.roleId())
@@ -22429,12 +20609,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()        
+     *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(orgId)
      *             .build());
      * 
-     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()        
+     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
      *             .projectId(exampleProject.id())
      *             .name("ClusterExample")
      *             .clusterType("REPLICASET")
@@ -22451,7 +20631,7 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()        
+     *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()
      *             .projectId(exampleProject.id())
      *             .clusterName(exampleAdvancedCluster.name())
      *             .specs(SearchDeploymentSpecArgs.builder()
@@ -22513,12 +20693,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()        
+     *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(orgId)
      *             .build());
      * 
-     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()        
+     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
      *             .projectId(exampleProject.id())
      *             .name("ClusterExample")
      *             .clusterType("REPLICASET")
@@ -22535,7 +20715,7 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()        
+     *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()
      *             .projectId(exampleProject.id())
      *             .clusterName(exampleAdvancedCluster.name())
      *             .specs(SearchDeploymentSpecArgs.builder()
@@ -22597,12 +20777,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()        
+     *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(orgId)
      *             .build());
      * 
-     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()        
+     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
      *             .projectId(exampleProject.id())
      *             .name("ClusterExample")
      *             .clusterType("REPLICASET")
@@ -22619,7 +20799,7 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()        
+     *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()
      *             .projectId(exampleProject.id())
      *             .clusterName(exampleAdvancedCluster.name())
      *             .specs(SearchDeploymentSpecArgs.builder()
@@ -22681,12 +20861,12 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()        
+     *         var exampleProject = new Project("exampleProject", ProjectArgs.builder()
      *             .name("project-name")
      *             .orgId(orgId)
      *             .build());
      * 
-     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()        
+     *         var exampleAdvancedCluster = new AdvancedCluster("exampleAdvancedCluster", AdvancedClusterArgs.builder()
      *             .projectId(exampleProject.id())
      *             .name("ClusterExample")
      *             .clusterType("REPLICASET")
@@ -22703,7 +20883,7 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()        
+     *         var exampleSearchDeployment = new SearchDeployment("exampleSearchDeployment", SearchDeploymentArgs.builder()
      *             .projectId(exampleProject.id())
      *             .clusterName(exampleAdvancedCluster.name())
      *             .specs(SearchDeploymentSpecArgs.builder()
@@ -24308,7 +22488,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .type("DATADOG")
      *             .apiKey("<API-KEY>")
@@ -24362,7 +22542,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .type("DATADOG")
      *             .apiKey("<API-KEY>")
@@ -24416,7 +22596,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .type("DATADOG")
      *             .apiKey("<API-KEY>")
@@ -24470,7 +22650,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .type("DATADOG")
      *             .apiKey("<API-KEY>")
@@ -24525,13 +22705,13 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPagerDuty = new ThirdPartyIntegration("testPagerDuty", ThirdPartyIntegrationArgs.builder()        
+     *         var testPagerDuty = new ThirdPartyIntegration("testPagerDuty", ThirdPartyIntegrationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .type("PAGER_DUTY")
      *             .serviceKey("<PAGER-DUTY-SERVICE-KEY>")
      *             .build());
      * 
-     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .type("DATADOG")
      *             .apiKey("<API-KEY>")
@@ -24585,13 +22765,13 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPagerDuty = new ThirdPartyIntegration("testPagerDuty", ThirdPartyIntegrationArgs.builder()        
+     *         var testPagerDuty = new ThirdPartyIntegration("testPagerDuty", ThirdPartyIntegrationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .type("PAGER_DUTY")
      *             .serviceKey("<PAGER-DUTY-SERVICE-KEY>")
      *             .build());
      * 
-     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .type("DATADOG")
      *             .apiKey("<API-KEY>")
@@ -24645,13 +22825,13 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPagerDuty = new ThirdPartyIntegration("testPagerDuty", ThirdPartyIntegrationArgs.builder()        
+     *         var testPagerDuty = new ThirdPartyIntegration("testPagerDuty", ThirdPartyIntegrationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .type("PAGER_DUTY")
      *             .serviceKey("<PAGER-DUTY-SERVICE-KEY>")
      *             .build());
      * 
-     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .type("DATADOG")
      *             .apiKey("<API-KEY>")
@@ -24705,13 +22885,13 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPagerDuty = new ThirdPartyIntegration("testPagerDuty", ThirdPartyIntegrationArgs.builder()        
+     *         var testPagerDuty = new ThirdPartyIntegration("testPagerDuty", ThirdPartyIntegrationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .type("PAGER_DUTY")
      *             .serviceKey("<PAGER-DUTY-SERVICE-KEY>")
      *             .build());
      * 
-     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()        
+     *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .type("DATADOG")
      *             .apiKey("<API-KEY>")
@@ -24743,64 +22923,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()        
-     *             .projectId("<PROJECT-ID>")
-     *             .username("myUsername")
-     *             .x509Type("MANAGED")
-     *             .databaseName("$external")
-     *             .roles(DatabaseUserRoleArgs.builder()
-     *                 .roleName("atlasAdmin")
-     *                 .databaseName("admin")
-     *                 .build())
-     *             .labels(DatabaseUserLabelArgs.builder()
-     *                 .key("My Key")
-     *                 .value("My Value")
-     *                 .build())
-     *             .build());
-     * 
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(user.projectId())
-     *             .username(user.username())
-     *             .monthsUntilExpiration(2)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .username(testX509AuthenticationDatabaseUser.username())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
@@ -24829,7 +22951,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
      * -----BEGIN CERTIFICATE-----
@@ -24876,64 +22998,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()        
-     *             .projectId("<PROJECT-ID>")
-     *             .username("myUsername")
-     *             .x509Type("MANAGED")
-     *             .databaseName("$external")
-     *             .roles(DatabaseUserRoleArgs.builder()
-     *                 .roleName("atlasAdmin")
-     *                 .databaseName("admin")
-     *                 .build())
-     *             .labels(DatabaseUserLabelArgs.builder()
-     *                 .key("My Key")
-     *                 .value("My Value")
-     *                 .build())
-     *             .build());
-     * 
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(user.projectId())
-     *             .username(user.username())
-     *             .monthsUntilExpiration(2)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .username(testX509AuthenticationDatabaseUser.username())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
@@ -24962,7 +23026,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
      * -----BEGIN CERTIFICATE-----
@@ -25009,64 +23073,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()        
-     *             .projectId("<PROJECT-ID>")
-     *             .username("myUsername")
-     *             .x509Type("MANAGED")
-     *             .databaseName("$external")
-     *             .roles(DatabaseUserRoleArgs.builder()
-     *                 .roleName("atlasAdmin")
-     *                 .databaseName("admin")
-     *                 .build())
-     *             .labels(DatabaseUserLabelArgs.builder()
-     *                 .key("My Key")
-     *                 .value("My Value")
-     *                 .build())
-     *             .build());
-     * 
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(user.projectId())
-     *             .username(user.username())
-     *             .monthsUntilExpiration(2)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .username(testX509AuthenticationDatabaseUser.username())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
@@ -25095,7 +23101,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
      * -----BEGIN CERTIFICATE-----
@@ -25142,64 +23148,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.DatabaseUser;
-     * import com.pulumi.mongodbatlas.DatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
-     * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUser;
-     * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var user = new DatabaseUser("user", DatabaseUserArgs.builder()        
-     *             .projectId("<PROJECT-ID>")
-     *             .username("myUsername")
-     *             .x509Type("MANAGED")
-     *             .databaseName("$external")
-     *             .roles(DatabaseUserRoleArgs.builder()
-     *                 .roleName("atlasAdmin")
-     *                 .databaseName("admin")
-     *                 .build())
-     *             .labels(DatabaseUserLabelArgs.builder()
-     *                 .key("My Key")
-     *                 .value("My Value")
-     *                 .build())
-     *             .build());
-     * 
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
-     *             .projectId(user.projectId())
-     *             .username(user.username())
-     *             .monthsUntilExpiration(2)
-     *             .build());
-     * 
-     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
-     *             .username(testX509AuthenticationDatabaseUser.username())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
@@ -25228,7 +23176,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()        
+     *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
      * -----BEGIN CERTIFICATE-----

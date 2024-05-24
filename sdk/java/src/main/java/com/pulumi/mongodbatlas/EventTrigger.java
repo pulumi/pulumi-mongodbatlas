@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new EventTrigger("test", EventTriggerArgs.builder()        
+ *         var test = new EventTrigger("test", EventTriggerArgs.builder()
  *             .projectId("PROJECT ID")
  *             .appId("APPLICATION ID")
  *             .name("NAME OF THE TRIGGER")
@@ -115,7 +115,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new EventTrigger("test", EventTriggerArgs.builder()        
+ *         var test = new EventTrigger("test", EventTriggerArgs.builder()
  *             .projectId("PROJECT ID")
  *             .appId("APPLICATION ID")
  *             .name("NAME OF THE TRIGGER")
@@ -173,7 +173,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new EventTrigger("test", EventTriggerArgs.builder()        
+ *         var test = new EventTrigger("test", EventTriggerArgs.builder()
  *             .projectId("PROJECT ID")
  *             .appId("APPLICATION ID")
  *             .name("NAME OF THE TRIGGER")
@@ -214,7 +214,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new EventTrigger("test", EventTriggerArgs.builder()        
+ *         var test = new EventTrigger("test", EventTriggerArgs.builder()
  *             .projectId("PROJECT ID")
  *             .appId("APPLICATION ID")
  *             .name("NAME OF THE TRIGGER")

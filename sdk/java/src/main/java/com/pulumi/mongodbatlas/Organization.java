@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Organization("test", OrganizationArgs.builder()        
+ *         var test = new Organization("test", OrganizationArgs.builder()
  *             .orgOwnerId("6205e5fffff79cde6f")
  *             .name("testCreateORG")
  *             .description("test API key from Org Creation Test")

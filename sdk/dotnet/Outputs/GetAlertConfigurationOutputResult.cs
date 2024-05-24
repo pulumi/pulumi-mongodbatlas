@@ -17,6 +17,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string Type;
         /// <summary>
         /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        /// - `PRIMARY`
+        /// - `SECONDARY`
+        /// - `STANDALONE`
+        /// - `CONFIG`
+        /// - `MONGOS`
         /// </summary>
         public readonly string Value;
 

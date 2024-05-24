@@ -34,10 +34,21 @@ class DatabaseUserArgs:
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[str] aws_iam_type: If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+               * `NONE` -	The user does not use AWS IAM credentials.
+               * `USER` - New database user has AWS IAM user credentials.
+               * `ROLE` -  New database user has credentials associated with an AWS IAM role.
         :param pulumi.Input[str] ldap_auth_type: Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+               * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+               * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+               * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
         :param pulumi.Input[str] oidc_auth_type: Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+               * `NONE` -	The user does not use OIDC federated authentication.
+               * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+               * `NONE` -	The user does not use X.509 authentication.
+               * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+               * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
         """
         pulumi.set(__self__, "auth_database_name", auth_database_name)
         pulumi.set(__self__, "project_id", project_id)
@@ -101,6 +112,9 @@ class DatabaseUserArgs:
     def aws_iam_type(self) -> Optional[pulumi.Input[str]]:
         """
         If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        * `NONE` -	The user does not use AWS IAM credentials.
+        * `USER` - New database user has AWS IAM user credentials.
+        * `ROLE` -  New database user has credentials associated with an AWS IAM role.
         """
         return pulumi.get(self, "aws_iam_type")
 
@@ -122,6 +136,9 @@ class DatabaseUserArgs:
     def ldap_auth_type(self) -> Optional[pulumi.Input[str]]:
         """
         Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+        * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+        * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+        * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
         """
         return pulumi.get(self, "ldap_auth_type")
 
@@ -134,6 +151,8 @@ class DatabaseUserArgs:
     def oidc_auth_type(self) -> Optional[pulumi.Input[str]]:
         """
         Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        * `NONE` -	The user does not use OIDC federated authentication.
+        * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         """
         return pulumi.get(self, "oidc_auth_type")
 
@@ -176,6 +195,9 @@ class DatabaseUserArgs:
     def x509_type(self) -> Optional[pulumi.Input[str]]:
         """
         X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+        * `NONE` -	The user does not use X.509 authentication.
+        * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+        * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
         """
         return pulumi.get(self, "x509_type")
 
@@ -203,12 +225,23 @@ class _DatabaseUserState:
         :param pulumi.Input[str] auth_database_name: Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
                Accepted values include:
         :param pulumi.Input[str] aws_iam_type: If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+               * `NONE` -	The user does not use AWS IAM credentials.
+               * `USER` - New database user has AWS IAM user credentials.
+               * `ROLE` -  New database user has credentials associated with an AWS IAM role.
         :param pulumi.Input[str] ldap_auth_type: Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+               * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+               * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+               * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
         :param pulumi.Input[str] oidc_auth_type: Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+               * `NONE` -	The user does not use OIDC federated authentication.
+               * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+               * `NONE` -	The user does not use X.509 authentication.
+               * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+               * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
         """
         if auth_database_name is not None:
             pulumi.set(__self__, "auth_database_name", auth_database_name)
@@ -251,6 +284,9 @@ class _DatabaseUserState:
     def aws_iam_type(self) -> Optional[pulumi.Input[str]]:
         """
         If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        * `NONE` -	The user does not use AWS IAM credentials.
+        * `USER` - New database user has AWS IAM user credentials.
+        * `ROLE` -  New database user has credentials associated with an AWS IAM role.
         """
         return pulumi.get(self, "aws_iam_type")
 
@@ -272,6 +308,9 @@ class _DatabaseUserState:
     def ldap_auth_type(self) -> Optional[pulumi.Input[str]]:
         """
         Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+        * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+        * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+        * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
         """
         return pulumi.get(self, "ldap_auth_type")
 
@@ -284,6 +323,8 @@ class _DatabaseUserState:
     def oidc_auth_type(self) -> Optional[pulumi.Input[str]]:
         """
         Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        * `NONE` -	The user does not use OIDC federated authentication.
+        * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         """
         return pulumi.get(self, "oidc_auth_type")
 
@@ -350,6 +391,9 @@ class _DatabaseUserState:
     def x509_type(self) -> Optional[pulumi.Input[str]]:
         """
         X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+        * `NONE` -	The user does not use X.509 authentication.
+        * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+        * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
         """
         return pulumi.get(self, "x509_type")
 
@@ -505,12 +549,23 @@ class DatabaseUser(pulumi.CustomResource):
         :param pulumi.Input[str] auth_database_name: Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
                Accepted values include:
         :param pulumi.Input[str] aws_iam_type: If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+               * `NONE` -	The user does not use AWS IAM credentials.
+               * `USER` - New database user has AWS IAM user credentials.
+               * `ROLE` -  New database user has credentials associated with an AWS IAM role.
         :param pulumi.Input[str] ldap_auth_type: Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+               * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+               * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+               * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
         :param pulumi.Input[str] oidc_auth_type: Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+               * `NONE` -	The user does not use OIDC federated authentication.
+               * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+               * `NONE` -	The user does not use X.509 authentication.
+               * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+               * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
         """
         ...
     @overload
@@ -728,12 +783,23 @@ class DatabaseUser(pulumi.CustomResource):
         :param pulumi.Input[str] auth_database_name: Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
                Accepted values include:
         :param pulumi.Input[str] aws_iam_type: If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+               * `NONE` -	The user does not use AWS IAM credentials.
+               * `USER` - New database user has AWS IAM user credentials.
+               * `ROLE` -  New database user has credentials associated with an AWS IAM role.
         :param pulumi.Input[str] ldap_auth_type: Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+               * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+               * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+               * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
         :param pulumi.Input[str] oidc_auth_type: Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+               * `NONE` -	The user does not use OIDC federated authentication.
+               * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+               * `NONE` -	The user does not use X.509 authentication.
+               * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+               * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -766,6 +832,9 @@ class DatabaseUser(pulumi.CustomResource):
     def aws_iam_type(self) -> pulumi.Output[str]:
         """
         If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        * `NONE` -	The user does not use AWS IAM credentials.
+        * `USER` - New database user has AWS IAM user credentials.
+        * `ROLE` -  New database user has credentials associated with an AWS IAM role.
         """
         return pulumi.get(self, "aws_iam_type")
 
@@ -779,6 +848,9 @@ class DatabaseUser(pulumi.CustomResource):
     def ldap_auth_type(self) -> pulumi.Output[str]:
         """
         Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+        * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+        * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+        * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
         """
         return pulumi.get(self, "ldap_auth_type")
 
@@ -787,6 +859,8 @@ class DatabaseUser(pulumi.CustomResource):
     def oidc_auth_type(self) -> pulumi.Output[str]:
         """
         Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+        * `NONE` -	The user does not use OIDC federated authentication.
+        * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         """
         return pulumi.get(self, "oidc_auth_type")
 
@@ -829,6 +903,9 @@ class DatabaseUser(pulumi.CustomResource):
     def x509_type(self) -> pulumi.Output[str]:
         """
         X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+        * `NONE` -	The user does not use X.509 authentication.
+        * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+        * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
         """
         return pulumi.get(self, "x509_type")
 

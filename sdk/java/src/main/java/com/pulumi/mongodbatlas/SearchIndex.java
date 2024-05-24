@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test_basic_search_index = new SearchIndex("test-basic-search-index", SearchIndexArgs.builder()        
+ *         var test_basic_search_index = new SearchIndex("test-basic-search-index", SearchIndexArgs.builder()
  *             .name("test-basic-search-index")
  *             .projectId("<PROJECT_ID>")
  *             .clusterName("<CLUSTER_NAME>")
@@ -87,7 +87,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test_basic_search_vector = new SearchIndex("test-basic-search-vector", SearchIndexArgs.builder()        
+ *         var test_basic_search_vector = new SearchIndex("test-basic-search-vector", SearchIndexArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .clusterName("<CLUSTER_NAME>")
  *             .collectionName("collection_test")
@@ -134,7 +134,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test_advanced_search_index = new SearchIndex("test-advanced-search-index", SearchIndexArgs.builder()        
+ *         var test_advanced_search_index = new SearchIndex("test-advanced-search-index", SearchIndexArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .clusterName("<CLUSTER_NAME>")
  *             .analyzer("lucene.standard")

@@ -145,6 +145,11 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
     /**
      * Cloud service provider on which the servers are provisioned.
      * The possible values are:
+     *
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName: pulumi.Input<string>;
     /**
@@ -184,6 +189,8 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     diskIops?: pulumi.Input<number>;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: pulumi.Input<string>;
     /**
@@ -220,6 +227,8 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     diskIops?: pulumi.Input<number>;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: pulumi.Input<string>;
     /**
@@ -239,6 +248,8 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     diskIops?: pulumi.Input<number>;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: pulumi.Input<string>;
     /**
@@ -728,6 +739,11 @@ export interface ClusterConnectionStringPrivateEndpointEndpoint {
      * Cloud service provider on which the servers are provisioned.
      *
      * The possible values are:
+     *
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
      */
     providerName?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
@@ -749,6 +765,9 @@ export interface ClusterLabel {
 export interface ClusterOutageSimulationOutageFilter {
     /**
      * The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+     * * `AWS`
+     * * `GCP`
+     * * `AZURE`
      */
     cloudProvider: pulumi.Input<string>;
     /**
@@ -757,6 +776,7 @@ export interface ClusterOutageSimulationOutageFilter {
     regionName: pulumi.Input<string>;
     /**
      * The type of cluster outage simulation. Following values are supported:
+     * * `REGION` - Simulates a cluster outage for a region
      */
     type?: pulumi.Input<string>;
 }
@@ -1221,6 +1241,11 @@ export interface GetAlertConfigurationOutput {
     type: string;
     /**
      * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
      */
     value?: string;
 }
@@ -1230,6 +1255,11 @@ export interface GetAlertConfigurationOutputArgs {
     type: pulumi.Input<string>;
     /**
      * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
      */
     value?: pulumi.Input<string>;
 }

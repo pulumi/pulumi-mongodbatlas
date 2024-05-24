@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new FederatedDatabaseInstance("test", FederatedDatabaseInstanceArgs.builder()        
+ *         var test = new FederatedDatabaseInstance("test", FederatedDatabaseInstanceArgs.builder()
  *             .projectId("PROJECT ID")
  *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
  *             .storageDatabases(FederatedDatabaseInstanceStorageDatabaseArgs.builder()
@@ -114,7 +114,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new FederatedDatabaseInstance("test", FederatedDatabaseInstanceArgs.builder()        
+ *         var test = new FederatedDatabaseInstance("test", FederatedDatabaseInstanceArgs.builder()
  *             .projectId("PROJECT ID")
  *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
  *             .cloudProviderConfig(FederatedDatabaseInstanceCloudProviderConfigArgs.builder()
@@ -266,6 +266,8 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
     }
     /**
      * Current state of the Federated Database Instance:
+     * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+     * * `DELETED` - The Federated Database Instance was deleted.
      * 
      */
     @Export(name="state", refs={String.class}, tree="[0]")
@@ -273,6 +275,8 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
 
     /**
      * @return Current state of the Federated Database Instance:
+     * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+     * * `DELETED` - The Federated Database Instance was deleted.
      * 
      */
     public Output<String> state() {

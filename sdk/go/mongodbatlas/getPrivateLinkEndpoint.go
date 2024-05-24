@@ -97,6 +97,11 @@ type LookupPrivateLinkEndpointResult struct {
 	ServiceAttachmentNames []string `pulumi:"serviceAttachmentNames"`
 	// Status of the AWS PrivateLink connection.
 	// Returns one of the following values:
+	// * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
+	// * `INITIATING` 	Atlas is creating the network load balancer and VPC endpoint service.
+	// * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+	// * `FAILED` 	A system failure has occurred.
+	// * `DELETING` 	The Private Link service is being deleted.
 	Status string `pulumi:"status"`
 }
 
@@ -206,6 +211,11 @@ func (o LookupPrivateLinkEndpointResultOutput) ServiceAttachmentNames() pulumi.S
 
 // Status of the AWS PrivateLink connection.
 // Returns one of the following values:
+// * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
+// * `INITIATING` 	Atlas is creating the network load balancer and VPC endpoint service.
+// * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+// * `FAILED` 	A system failure has occurred.
+// * `DELETING` 	The Private Link service is being deleted.
 func (o LookupPrivateLinkEndpointResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.Status }).(pulumi.StringOutput)
 }

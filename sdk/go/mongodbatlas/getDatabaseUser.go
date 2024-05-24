@@ -141,6 +141,8 @@ type LookupDatabaseUserResult struct {
 	// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
 	LdapAuthType string `pulumi:"ldapAuthType"`
 	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+	// * `NONE` -	The user does not use OIDC federated authentication.
+	// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType string `pulumi:"oidcAuthType"`
 	ProjectId    string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -218,6 +220,8 @@ func (o LookupDatabaseUserResultOutput) LdapAuthType() pulumi.StringOutput {
 }
 
 // (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+// * `NONE` -	The user does not use OIDC federated authentication.
+// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 func (o LookupDatabaseUserResultOutput) OidcAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.OidcAuthType }).(pulumi.StringOutput)
 }

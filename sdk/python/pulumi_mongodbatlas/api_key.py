@@ -23,6 +23,15 @@ class ApiKeyArgs:
         :param pulumi.Input[str] org_id: Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
                The following are valid roles:
+               * `ORG_OWNER`
+               * `ORG_GROUP_CREATOR`
+               * `ORG_BILLING_ADMIN`
+               * `ORG_READ_ONLY`
+               * `ORG_MEMBER`
+               
+               ## Attributes Reference
+               
+               In addition to all arguments above, the following attributes are exported:
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "org_id", org_id)
@@ -58,6 +67,15 @@ class ApiKeyArgs:
         """
         Name of the role. This resource returns all the roles the user has in Atlas.
         The following are valid roles:
+        * `ORG_OWNER`
+        * `ORG_GROUP_CREATOR`
+        * `ORG_BILLING_ADMIN`
+        * `ORG_READ_ONLY`
+        * `ORG_MEMBER`
+
+        ## Attributes Reference
+
+        In addition to all arguments above, the following attributes are exported:
         """
         return pulumi.get(self, "role_names")
 
@@ -82,6 +100,15 @@ class _ApiKeyState:
         :param pulumi.Input[str] org_id: Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
                The following are valid roles:
+               * `ORG_OWNER`
+               * `ORG_GROUP_CREATOR`
+               * `ORG_BILLING_ADMIN`
+               * `ORG_READ_ONLY`
+               * `ORG_MEMBER`
+               
+               ## Attributes Reference
+               
+               In addition to all arguments above, the following attributes are exported:
         """
         if api_key_id is not None:
             pulumi.set(__self__, "api_key_id", api_key_id)
@@ -156,6 +183,15 @@ class _ApiKeyState:
         """
         Name of the role. This resource returns all the roles the user has in Atlas.
         The following are valid roles:
+        * `ORG_OWNER`
+        * `ORG_GROUP_CREATOR`
+        * `ORG_BILLING_ADMIN`
+        * `ORG_READ_ONLY`
+        * `ORG_MEMBER`
+
+        ## Attributes Reference
+
+        In addition to all arguments above, the following attributes are exported:
         """
         return pulumi.get(self, "role_names")
 
@@ -201,6 +237,15 @@ class ApiKey(pulumi.CustomResource):
         :param pulumi.Input[str] org_id: Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
                The following are valid roles:
+               * `ORG_OWNER`
+               * `ORG_GROUP_CREATOR`
+               * `ORG_BILLING_ADMIN`
+               * `ORG_READ_ONLY`
+               * `ORG_MEMBER`
+               
+               ## Attributes Reference
+               
+               In addition to all arguments above, the following attributes are exported:
         """
         ...
     @overload
@@ -299,6 +344,15 @@ class ApiKey(pulumi.CustomResource):
         :param pulumi.Input[str] org_id: Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
                The following are valid roles:
+               * `ORG_OWNER`
+               * `ORG_GROUP_CREATOR`
+               * `ORG_BILLING_ADMIN`
+               * `ORG_READ_ONLY`
+               * `ORG_MEMBER`
+               
+               ## Attributes Reference
+               
+               In addition to all arguments above, the following attributes are exported:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -352,6 +406,15 @@ class ApiKey(pulumi.CustomResource):
         """
         Name of the role. This resource returns all the roles the user has in Atlas.
         The following are valid roles:
+        * `ORG_OWNER`
+        * `ORG_GROUP_CREATOR`
+        * `ORG_BILLING_ADMIN`
+        * `ORG_READ_ONLY`
+        * `ORG_MEMBER`
+
+        ## Attributes Reference
+
+        In addition to all arguments above, the following attributes are exported:
         """
         return pulumi.get(self, "role_names")
 

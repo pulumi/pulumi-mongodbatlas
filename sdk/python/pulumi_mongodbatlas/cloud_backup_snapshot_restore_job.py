@@ -136,6 +136,20 @@ class _CloudBackupSnapshotRestoreJobState:
         :param pulumi.Input[str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         :param pulumi.Input[str] snapshot_restore_job_id: The unique identifier of the restore job.
         :param pulumi.Input[str] timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+               * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+               Three conditions apply to this parameter:
+               * Enable Continuous Cloud Backup on your cluster.
+               * Specify oplogInc.
+               * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+               * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+               Three conditions apply to this parameter:
+               * Enable Continuous Cloud Backup on your cluster.
+               * Specify oplogTs.
+               * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+               * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+               Two conditions apply to this parameter:
+               * Enable Continuous Cloud Backup on your cluster.
+               * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
         """
         if cancelled is not None:
             pulumi.set(__self__, "cancelled", cancelled)
@@ -307,6 +321,20 @@ class _CloudBackupSnapshotRestoreJobState:
     def timestamp(self) -> Optional[pulumi.Input[str]]:
         """
         Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+        Three conditions apply to this parameter:
+        * Enable Continuous Cloud Backup on your cluster.
+        * Specify oplogInc.
+        * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+        Three conditions apply to this parameter:
+        * Enable Continuous Cloud Backup on your cluster.
+        * Specify oplogTs.
+        * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+        Two conditions apply to this parameter:
+        * Enable Continuous Cloud Backup on your cluster.
+        * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
         """
         return pulumi.get(self, "timestamp")
 
@@ -647,6 +675,20 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.Input[str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         :param pulumi.Input[str] snapshot_restore_job_id: The unique identifier of the restore job.
         :param pulumi.Input[str] timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+               * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+               Three conditions apply to this parameter:
+               * Enable Continuous Cloud Backup on your cluster.
+               * Specify oplogInc.
+               * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+               * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+               Three conditions apply to this parameter:
+               * Enable Continuous Cloud Backup on your cluster.
+               * Specify oplogTs.
+               * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+               * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+               Two conditions apply to this parameter:
+               * Enable Continuous Cloud Backup on your cluster.
+               * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -767,6 +809,20 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
     def timestamp(self) -> pulumi.Output[str]:
         """
         Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+        Three conditions apply to this parameter:
+        * Enable Continuous Cloud Backup on your cluster.
+        * Specify oplogInc.
+        * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+        Three conditions apply to this parameter:
+        * Enable Continuous Cloud Backup on your cluster.
+        * Specify oplogTs.
+        * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+        Two conditions apply to this parameter:
+        * Enable Continuous Cloud Backup on your cluster.
+        * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
         """
         return pulumi.get(self, "timestamp")
 

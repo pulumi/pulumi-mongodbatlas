@@ -30,6 +30,8 @@ public final class GetFederatedDatabaseInstancesResult {
     private String projectId;
     /**
      * @return Current state of the Federated Database Instance:
+     * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+     * * `DELETED` - The Federated Database Instance was deleted.
      * 
      */
     private String state;
@@ -110,6 +112,8 @@ public final class GetFederatedDatabaseInstancesResult {
     }
     /**
      * @return Current state of the Federated Database Instance:
+     * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+     * * `DELETED` - The Federated Database Instance was deleted.
      * 
      */
     public String state() {
