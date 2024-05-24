@@ -18,6 +18,9 @@ public final class ClusterOutageSimulationOutageFilterArgs extends com.pulumi.re
 
     /**
      * The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+     * * `AWS`
+     * * `GCP`
+     * * `AZURE`
      * 
      */
     @Import(name="cloudProvider", required=true)
@@ -25,6 +28,9 @@ public final class ClusterOutageSimulationOutageFilterArgs extends com.pulumi.re
 
     /**
      * @return The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+     * * `AWS`
+     * * `GCP`
+     * * `AZURE`
      * 
      */
     public Output<String> cloudProvider() {
@@ -48,6 +54,7 @@ public final class ClusterOutageSimulationOutageFilterArgs extends com.pulumi.re
 
     /**
      * The type of cluster outage simulation. Following values are supported:
+     * * `REGION` - Simulates a cluster outage for a region
      * 
      */
     @Import(name="type")
@@ -55,6 +62,7 @@ public final class ClusterOutageSimulationOutageFilterArgs extends com.pulumi.re
 
     /**
      * @return The type of cluster outage simulation. Following values are supported:
+     * * `REGION` - Simulates a cluster outage for a region
      * 
      */
     public Optional<Output<String>> type() {
@@ -89,6 +97,9 @@ public final class ClusterOutageSimulationOutageFilterArgs extends com.pulumi.re
 
         /**
          * @param cloudProvider The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+         * * `AWS`
+         * * `GCP`
+         * * `AZURE`
          * 
          * @return builder
          * 
@@ -100,6 +111,9 @@ public final class ClusterOutageSimulationOutageFilterArgs extends com.pulumi.re
 
         /**
          * @param cloudProvider The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+         * * `AWS`
+         * * `GCP`
+         * * `AZURE`
          * 
          * @return builder
          * 
@@ -131,6 +145,7 @@ public final class ClusterOutageSimulationOutageFilterArgs extends com.pulumi.re
 
         /**
          * @param type The type of cluster outage simulation. Following values are supported:
+         * * `REGION` - Simulates a cluster outage for a region
          * 
          * @return builder
          * 
@@ -142,6 +157,7 @@ public final class ClusterOutageSimulationOutageFilterArgs extends com.pulumi.re
 
         /**
          * @param type The type of cluster outage simulation. Following values are supported:
+         * * `REGION` - Simulates a cluster outage for a region
          * 
          * @return builder
          * 

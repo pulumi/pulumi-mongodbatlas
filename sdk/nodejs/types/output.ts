@@ -145,6 +145,11 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
     /**
      * Cloud service provider on which the servers are provisioned.
      * The possible values are:
+     *
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
      */
     providerName: string;
     /**
@@ -184,6 +189,8 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     diskIops: number;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: string;
     /**
@@ -220,6 +227,8 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     diskIops: number;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: string;
     /**
@@ -239,6 +248,8 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     diskIops: number;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: string;
     /**
@@ -728,6 +739,11 @@ export interface ClusterConnectionStringPrivateEndpointEndpoint {
      * Cloud service provider on which the servers are provisioned.
      *
      * The possible values are:
+     *
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
      */
     providerName: string;
     region: string;
@@ -749,6 +765,9 @@ export interface ClusterLabel {
 export interface ClusterOutageSimulationOutageFilter {
     /**
      * The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+     * * `AWS`
+     * * `GCP`
+     * * `AZURE`
      */
     cloudProvider: string;
     /**
@@ -757,6 +776,7 @@ export interface ClusterOutageSimulationOutageFilter {
     regionName: string;
     /**
      * The type of cluster outage simulation. Following values are supported:
+     * * `REGION` - Simulates a cluster outage for a region
      */
     type: string;
 }
@@ -1439,7 +1459,9 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
      */
     diskIops: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster.
+     * Type of storage you want to attach to your AWS-provisioned cluster. 
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: string;
     /**
@@ -1482,7 +1504,9 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     diskIops: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster.
+     * Type of storage you want to attach to your AWS-provisioned cluster. 
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: string;
     /**
@@ -1501,7 +1525,9 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      */
     diskIops: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster.
+     * Type of storage you want to attach to your AWS-provisioned cluster. 
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: string;
     /**
@@ -1804,6 +1830,8 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSp
     diskIops: number;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster.
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: string;
     /**
@@ -1846,6 +1874,8 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigElectableSp
     diskIops: number;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster.
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: string;
     /**
@@ -1865,6 +1895,8 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpe
     diskIops: number;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster.
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: string;
     /**
@@ -1896,10 +1928,17 @@ export interface GetAlertConfigurationMatcher {
     /**
      * The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
      */
     operator: string;
     /**
      * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
      */
     value: string;
 }
@@ -1916,6 +1955,8 @@ export interface GetAlertConfigurationMetricThresholdConfig {
     /**
      * The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
      */
     operator: string;
     /**
@@ -2009,6 +2050,19 @@ export interface GetAlertConfigurationNotification {
     /**
      * Type of alert notification.
      * Accepted values are:
+     * - `DATADOG`
+     * - `EMAIL`
+     * - `GROUP` (Project)
+     * - `OPS_GENIE`
+     * - `ORG`
+     * - `PAGER_DUTY`
+     * - `SLACK`
+     * - `SMS`
+     * - `TEAM`
+     * - `USER`
+     * - `VICTOR_OPS`
+     * - `WEBHOOK`
+     * - `MICROSOFT_TEAMS`
      */
     typeName: string;
     /**
@@ -2038,6 +2092,11 @@ export interface GetAlertConfigurationOutput {
     type: string;
     /**
      * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
      */
     value: string;
 }
@@ -2046,6 +2105,8 @@ export interface GetAlertConfigurationThresholdConfig {
     /**
      * The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
      */
     operator: string;
     /**
@@ -2118,10 +2179,17 @@ export interface GetAlertConfigurationsResultMatcher {
     /**
      * The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
      */
     operator: string;
     /**
      * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
      */
     value: string;
 }
@@ -2138,6 +2206,8 @@ export interface GetAlertConfigurationsResultMetricThresholdConfig {
     /**
      * The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
      */
     operator: string;
     /**
@@ -2231,6 +2301,19 @@ export interface GetAlertConfigurationsResultNotification {
     /**
      * Type of alert notification.
      * Accepted values are:
+     * - `DATADOG`
+     * - `EMAIL`
+     * - `GROUP` (Project)
+     * - `OPS_GENIE`
+     * - `ORG`
+     * - `PAGER_DUTY`
+     * - `SLACK`
+     * - `SMS`
+     * - `TEAM`
+     * - `USER`
+     * - `VICTOR_OPS`
+     * - `WEBHOOK`
+     * - `MICROSOFT_TEAMS`
      */
     typeName: string;
     /**
@@ -2260,6 +2343,11 @@ export interface GetAlertConfigurationsResultOutput {
     type: string;
     /**
      * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
      */
     value: string;
 }
@@ -2268,6 +2356,8 @@ export interface GetAlertConfigurationsResultThresholdConfig {
     /**
      * The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
      */
     operator: string;
     /**
@@ -2731,6 +2821,10 @@ export interface GetCloudBackupSnapshotExportJobsResult {
     snapshotId: string;
     /**
      * Status of the export job. Value can be one of the following:
+     * * `Queued` - indicates that the export job is queued
+     * * `InProgress` - indicates that the snapshot is being exported
+     * * `Successful` - indicates that the export job has completed successfully
+     * * `Failed` - indicates that the export job has failed
      */
     state: string;
 }
@@ -2822,6 +2916,9 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
     targetProjectId: string;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
      */
     timestamp: string;
 }
@@ -3045,6 +3142,9 @@ export interface GetClusterLabel {
 export interface GetClusterOutageSimulationOutageFilter {
     /**
      * The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+     * * `AWS`
+     * * `GCP`
+     * * `AZURE`
      */
     cloudProvider: string;
     /**
@@ -3053,6 +3153,7 @@ export interface GetClusterOutageSimulationOutageFilter {
     regionName: string;
     /**
      * The type of cluster outage simulation. Following values are supported:
+     * * `REGION` (Simulates a cluster outage for a region)
      */
     type: string;
 }
@@ -3881,6 +3982,8 @@ export interface GetDatabaseUsersResult {
     ldapAuthType: string;
     /**
      * (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use OIDC federated authentication.
+     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      */
     oidcAuthType: string;
     /**
@@ -4185,6 +4288,8 @@ export interface GetFederatedDatabaseInstancesResult {
     projectId: string;
     /**
      * Current state of the Federated Database Instance:
+     * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+     * * `DELETED` - The Federated Database Instance was deleted.
      */
     state: string;
     /**
@@ -4358,6 +4463,8 @@ export interface GetFederatedQueryLimitsResult {
     currentUsage: number;
     /**
      * Default value of the limit.
+     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * * `maximumLimit` - Maximum value of the limit.
      */
     defaultLimit: number;
     lastModifiedDate: string;
@@ -5757,6 +5864,7 @@ export interface GetThirdPartyIntegrationsResult {
     id: string;
     /**
      * Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
      */
     microsoftTeamsWebhookUrl?: string;
     /**
@@ -5765,10 +5873,12 @@ export interface GetThirdPartyIntegrationsResult {
     projectId: string;
     /**
      * Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+     * * `VICTOR_OPS`
      */
     region: string;
     /**
      * An optional field for your Routing Key.
+     * * `WEBHOOK`
      */
     routingKey: string;
     /**
@@ -5779,6 +5889,7 @@ export interface GetThirdPartyIntegrationsResult {
     scheme?: string;
     /**
      * An optional field for your webhook secret.
+     * * `MICROSOFT_TEAMS`
      */
     secret: string;
     /**
@@ -5787,6 +5898,7 @@ export interface GetThirdPartyIntegrationsResult {
     serviceDiscovery?: string;
     /**
      * Your Service Key.
+     * * `DATADOG`
      */
     serviceKey: string;
     teamName: string;

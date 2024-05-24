@@ -42,6 +42,11 @@ type LookupApiKeyResult struct {
 	PublicKey string `pulumi:"publicKey"`
 	// Name of the role. This resource returns all the roles the user has in Atlas.
 	// The following are valid roles:
+	// * `ORG_OWNER`
+	// * `ORG_GROUP_CREATOR`
+	// * `ORG_BILLING_ADMIN`
+	// * `ORG_READ_ONLY`
+	// * `ORG_MEMBER`
 	RoleNames []string `pulumi:"roleNames"`
 }
 
@@ -110,6 +115,11 @@ func (o LookupApiKeyResultOutput) PublicKey() pulumi.StringOutput {
 
 // Name of the role. This resource returns all the roles the user has in Atlas.
 // The following are valid roles:
+// * `ORG_OWNER`
+// * `ORG_GROUP_CREATOR`
+// * `ORG_BILLING_ADMIN`
+// * `ORG_READ_ONLY`
+// * `ORG_MEMBER`
 func (o LookupApiKeyResultOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupApiKeyResult) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }

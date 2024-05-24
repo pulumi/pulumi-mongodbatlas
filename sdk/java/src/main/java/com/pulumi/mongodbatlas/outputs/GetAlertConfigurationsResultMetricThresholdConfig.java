@@ -24,6 +24,8 @@ public final class GetAlertConfigurationsResultMetricThresholdConfig {
     /**
      * @return The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
      * 
      */
     private String operator;
@@ -57,6 +59,8 @@ public final class GetAlertConfigurationsResultMetricThresholdConfig {
     /**
      * @return The operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
      * 
      */
     public String operator() {

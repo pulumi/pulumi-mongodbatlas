@@ -187,11 +187,21 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
     /**
      * Status of the interface endpoint for AWS.
      * Returns one of the following values:
+     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+     * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+     * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+     * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+     * * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+     * * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
      */
     public /*out*/ readonly awsConnectionStatus!: pulumi.Output<string>;
     /**
      * Status of the interface endpoint for AZURE.
      * Returns one of the following values:
+     * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+     * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+     * * `FAILED` - Atlas failed to accept the connection your private endpoint.
+     * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      */
     public /*out*/ readonly azureStatus!: pulumi.Output<string>;
     /**
@@ -221,6 +231,10 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
     /**
      * Status of the interface endpoint for GCP.
      * Returns one of the following values:
+     * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+     * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+     * * `FAILED` - Atlas failed to accept the connection your private endpoint.
+     * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      */
     public /*out*/ readonly gcpStatus!: pulumi.Output<string>;
     /**
@@ -324,11 +338,21 @@ export interface PrivateLinkEndpointServiceState {
     /**
      * Status of the interface endpoint for AWS.
      * Returns one of the following values:
+     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+     * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+     * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+     * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+     * * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+     * * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
      */
     awsConnectionStatus?: pulumi.Input<string>;
     /**
      * Status of the interface endpoint for AZURE.
      * Returns one of the following values:
+     * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+     * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+     * * `FAILED` - Atlas failed to accept the connection your private endpoint.
+     * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      */
     azureStatus?: pulumi.Input<string>;
     /**
@@ -358,6 +382,10 @@ export interface PrivateLinkEndpointServiceState {
     /**
      * Status of the interface endpoint for GCP.
      * Returns one of the following values:
+     * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+     * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+     * * `FAILED` - Atlas failed to accept the connection your private endpoint.
+     * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      */
     gcpStatus?: pulumi.Input<string>;
     /**

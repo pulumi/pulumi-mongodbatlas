@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()        
+ *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .name("test-db")
  *             .providerSettingsBackingProviderName("AWS")
@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  *             .continuousBackupEnabled(true)
  *             .build());
  * 
- *         var test = new PrivatelinkEndpointServerless("test", PrivatelinkEndpointServerlessArgs.builder()        
+ *         var test = new PrivatelinkEndpointServerless("test", PrivatelinkEndpointServerlessArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .instanceName(testServerlessInstance.name())
  *             .providerName("AWS")

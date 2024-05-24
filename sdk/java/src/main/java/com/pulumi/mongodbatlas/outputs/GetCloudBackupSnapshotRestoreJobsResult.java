@@ -73,6 +73,9 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
     private String targetProjectId;
     /**
      * @return Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
      * 
      */
     private String timestamp;
@@ -166,6 +169,9 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
     }
     /**
      * @return Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
      * 
      */
     public String timestamp() {

@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new StreamInstance("test", StreamInstanceArgs.builder()        
+ *         var test = new StreamInstance("test", StreamInstanceArgs.builder()
  *             .projectId(projectId)
  *             .instanceName("InstanceName")
  *             .dataProcessRegion(StreamInstanceDataProcessRegionArgs.builder()

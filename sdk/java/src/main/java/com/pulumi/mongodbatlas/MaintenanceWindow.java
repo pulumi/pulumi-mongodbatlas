@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new MaintenanceWindow("test", MaintenanceWindowArgs.builder()        
+ *         var test = new MaintenanceWindow("test", MaintenanceWindowArgs.builder()
  *             .projectId("<your-project-id>")
  *             .dayOfWeek(3)
  *             .hourOfDay(4)
@@ -88,7 +88,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new MaintenanceWindow("test", MaintenanceWindowArgs.builder()        
+ *         var test = new MaintenanceWindow("test", MaintenanceWindowArgs.builder()
  *             .projectId("<your-project-id>")
  *             .defer(true)
  *             .build());

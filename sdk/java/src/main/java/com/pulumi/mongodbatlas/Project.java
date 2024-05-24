@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         final var test = MongodbatlasFunctions.getRolesOrgId();
  * 
- *         var testProject = new Project("testProject", ProjectArgs.builder()        
+ *         var testProject = new Project("testProject", ProjectArgs.builder()
  *             .name("project-name")
  *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
  *             .projectOwnerId("<OWNER_ACCOUNT_ID>")

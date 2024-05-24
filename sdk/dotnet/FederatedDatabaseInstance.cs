@@ -206,6 +206,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Current state of the Federated Database Instance:
+        /// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+        /// * `DELETED` - The Federated Database Instance was deleted.
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
@@ -452,6 +454,8 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Current state of the Federated Database Instance:
+        /// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+        /// * `DELETED` - The Federated Database Instance was deleted.
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }

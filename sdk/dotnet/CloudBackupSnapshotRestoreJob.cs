@@ -239,6 +239,20 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        /// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+        /// Three conditions apply to this parameter:
+        /// * Enable Continuous Cloud Backup on your cluster.
+        /// * Specify oplogInc.
+        /// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        /// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+        /// Three conditions apply to this parameter:
+        /// * Enable Continuous Cloud Backup on your cluster.
+        /// * Specify oplogTs.
+        /// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        /// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+        /// Two conditions apply to this parameter:
+        /// * Enable Continuous Cloud Backup on your cluster.
+        /// * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
         /// </summary>
         [Output("timestamp")]
         public Output<string> Timestamp { get; private set; } = null!;
@@ -411,6 +425,20 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        /// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+        /// Three conditions apply to this parameter:
+        /// * Enable Continuous Cloud Backup on your cluster.
+        /// * Specify oplogInc.
+        /// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        /// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+        /// Three conditions apply to this parameter:
+        /// * Enable Continuous Cloud Backup on your cluster.
+        /// * Specify oplogTs.
+        /// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        /// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+        /// Two conditions apply to this parameter:
+        /// * Enable Continuous Cloud Backup on your cluster.
+        /// * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
         /// </summary>
         [Input("timestamp")]
         public Input<string>? Timestamp { get; set; }

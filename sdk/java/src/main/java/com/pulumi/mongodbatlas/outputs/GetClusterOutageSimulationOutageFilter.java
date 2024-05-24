@@ -12,6 +12,9 @@ import java.util.Objects;
 public final class GetClusterOutageSimulationOutageFilter {
     /**
      * @return The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+     * * `AWS`
+     * * `GCP`
+     * * `AZURE`
      * 
      */
     private String cloudProvider;
@@ -22,6 +25,7 @@ public final class GetClusterOutageSimulationOutageFilter {
     private String regionName;
     /**
      * @return The type of cluster outage simulation. Following values are supported:
+     * * `REGION` (Simulates a cluster outage for a region)
      * 
      */
     private String type;
@@ -29,6 +33,9 @@ public final class GetClusterOutageSimulationOutageFilter {
     private GetClusterOutageSimulationOutageFilter() {}
     /**
      * @return The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+     * * `AWS`
+     * * `GCP`
+     * * `AZURE`
      * 
      */
     public String cloudProvider() {
@@ -43,6 +50,7 @@ public final class GetClusterOutageSimulationOutageFilter {
     }
     /**
      * @return The type of cluster outage simulation. Following values are supported:
+     * * `REGION` (Simulates a cluster outage for a region)
      * 
      */
     public String type() {

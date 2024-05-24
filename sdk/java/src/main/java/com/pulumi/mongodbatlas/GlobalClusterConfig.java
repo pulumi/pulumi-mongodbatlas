@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Cluster("test", ClusterArgs.builder()        
+ *         var test = new Cluster("test", ClusterArgs.builder()
  *             .projectId("<YOUR-PROJECT-ID>")
  *             .name("<CLUSTER-NAME>")
  *             .cloudBackup(true)
@@ -86,7 +86,7 @@ import javax.annotation.Nullable;
  *                     .build())
  *             .build());
  * 
- *         var config = new GlobalClusterConfig("config", GlobalClusterConfigArgs.builder()        
+ *         var config = new GlobalClusterConfig("config", GlobalClusterConfigArgs.builder()
  *             .projectId(test.projectId())
  *             .clusterName(test.name())
  *             .managedNamespaces(GlobalClusterConfigManagedNamespaceArgs.builder()
@@ -138,7 +138,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster("cluster-test", ClusterArgs.builder()        
+ *         var cluster_test = new Cluster("cluster-test", ClusterArgs.builder()
  *             .projectId("<YOUR-PROJECT-ID>")
  *             .name("cluster-test")
  *             .clusterType("REPLICASET")
@@ -158,7 +158,7 @@ import javax.annotation.Nullable;
  *             .providerInstanceSizeName("M40")
  *             .build());
  * 
- *         var config = new GlobalClusterConfig("config", GlobalClusterConfigArgs.builder()        
+ *         var config = new GlobalClusterConfig("config", GlobalClusterConfigArgs.builder()
  *             .projectId(test.projectId())
  *             .clusterName(test.name())
  *             .managedNamespaces(GlobalClusterConfigManagedNamespaceArgs.builder()

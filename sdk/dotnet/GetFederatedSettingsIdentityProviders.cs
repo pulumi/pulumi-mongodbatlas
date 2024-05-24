@@ -161,6 +161,7 @@ namespace Pulumi.Mongodbatlas
         public readonly int? PageNum;
         /// <summary>
         /// Includes cloudProviderSnapshot object for each item detailed in the results array section.
+        /// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetFederatedSettingsIdentityProvidersResultResult> Results;
 

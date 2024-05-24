@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new CloudBackupSnapshotExportBucket("test", CloudBackupSnapshotExportBucketArgs.builder()        
+ *         var test = new CloudBackupSnapshotExportBucket("test", CloudBackupSnapshotExportBucketArgs.builder()
  *             .projectId("{PROJECT_ID}")
  *             .iamRoleId("{IAM_ROLE_ID}")
  *             .bucketName("example-bucket")

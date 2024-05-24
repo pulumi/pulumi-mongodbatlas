@@ -83,6 +83,12 @@ type ClusterOutageSimulation struct {
 	// Date and time when MongoDB Cloud started the regional outage simulation.
 	StartRequestDate pulumi.StringOutput `pulumi:"startRequestDate"`
 	// Current phase of the outage simulation:
+	// * `START_REQUESTED` - User has requested cluster outage simulation.
+	// * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+	// * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+	// * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+	// * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+	// * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
 	State pulumi.StringOutput `pulumi:"state"`
 }
 
@@ -136,6 +142,12 @@ type clusterOutageSimulationState struct {
 	// Date and time when MongoDB Cloud started the regional outage simulation.
 	StartRequestDate *string `pulumi:"startRequestDate"`
 	// Current phase of the outage simulation:
+	// * `START_REQUESTED` - User has requested cluster outage simulation.
+	// * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+	// * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+	// * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+	// * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+	// * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
 	State *string `pulumi:"state"`
 }
 
@@ -151,6 +163,12 @@ type ClusterOutageSimulationState struct {
 	// Date and time when MongoDB Cloud started the regional outage simulation.
 	StartRequestDate pulumi.StringPtrInput
 	// Current phase of the outage simulation:
+	// * `START_REQUESTED` - User has requested cluster outage simulation.
+	// * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+	// * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+	// * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+	// * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+	// * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
 	State pulumi.StringPtrInput
 }
 
@@ -292,6 +310,12 @@ func (o ClusterOutageSimulationOutput) StartRequestDate() pulumi.StringOutput {
 }
 
 // Current phase of the outage simulation:
+// * `START_REQUESTED` - User has requested cluster outage simulation.
+// * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+// * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+// * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+// * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+// * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
 func (o ClusterOutageSimulationOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClusterOutageSimulation) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }

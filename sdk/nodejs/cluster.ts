@@ -300,6 +300,9 @@ export class Cluster extends pulumi.CustomResource {
      * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
      *
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED` Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      */
     public readonly clusterType!: pulumi.Output<string>;
     /**
@@ -397,6 +400,11 @@ export class Cluster extends pulumi.CustomResource {
      * Cloud service provider on which the servers are provisioned.
      *
      * The possible values are:
+     *
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
      */
     public readonly providerName!: pulumi.Output<string>;
     /**
@@ -449,6 +457,8 @@ export class Cluster extends pulumi.CustomResource {
     public readonly terminationProtectionEnabled!: pulumi.Output<boolean>;
     /**
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
      */
     public readonly versionReleaseSystem!: pulumi.Output<string>;
 
@@ -628,6 +638,9 @@ export interface ClusterState {
      * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
      *
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED` Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      */
     clusterType?: pulumi.Input<string>;
     /**
@@ -725,6 +738,11 @@ export interface ClusterState {
      * Cloud service provider on which the servers are provisioned.
      *
      * The possible values are:
+     *
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
      */
     providerName?: pulumi.Input<string>;
     /**
@@ -777,6 +795,8 @@ export interface ClusterState {
     terminationProtectionEnabled?: pulumi.Input<boolean>;
     /**
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
      */
     versionReleaseSystem?: pulumi.Input<string>;
 }
@@ -833,6 +853,9 @@ export interface ClusterArgs {
      * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
      *
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED` Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      */
     clusterType?: pulumi.Input<string>;
     /**
@@ -905,6 +928,11 @@ export interface ClusterArgs {
      * Cloud service provider on which the servers are provisioned.
      *
      * The possible values are:
+     *
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
      */
     providerName: pulumi.Input<string>;
     /**
@@ -939,6 +967,8 @@ export interface ClusterArgs {
     terminationProtectionEnabled?: pulumi.Input<boolean>;
     /**
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
      */
     versionReleaseSystem?: pulumi.Input<string>;
 }

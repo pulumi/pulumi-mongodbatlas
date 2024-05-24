@@ -97,6 +97,7 @@ type LookupCloudBackupSnapshotExportJobsResult struct {
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
 	// Includes CloudProviderSnapshotExportJob object for each item detailed in the results array section.
+	// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 	Results    []GetCloudBackupSnapshotExportJobsResult `pulumi:"results"`
 	TotalCount int                                      `pulumi:"totalCount"`
 }
@@ -168,6 +169,7 @@ func (o LookupCloudBackupSnapshotExportJobsResultOutput) ProjectId() pulumi.Stri
 }
 
 // Includes CloudProviderSnapshotExportJob object for each item detailed in the results array section.
+// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 func (o LookupCloudBackupSnapshotExportJobsResultOutput) Results() GetCloudBackupSnapshotExportJobsResultArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobsResult) []GetCloudBackupSnapshotExportJobsResult {
 		return v.Results

@@ -230,6 +230,20 @@ type CloudBackupSnapshotRestoreJob struct {
 	// The unique identifier of the restore job.
 	SnapshotRestoreJobId pulumi.StringOutput `pulumi:"snapshotRestoreJobId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+	//   Three conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify oplogInc.
+	// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+	//   Three conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify oplogTs.
+	// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+	//   Two conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
 	Timestamp pulumi.StringOutput `pulumi:"timestamp"`
 }
 
@@ -300,6 +314,20 @@ type cloudBackupSnapshotRestoreJobState struct {
 	// The unique identifier of the restore job.
 	SnapshotRestoreJobId *string `pulumi:"snapshotRestoreJobId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+	//   Three conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify oplogInc.
+	// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+	//   Three conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify oplogTs.
+	// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+	//   Two conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
 	Timestamp *string `pulumi:"timestamp"`
 }
 
@@ -335,6 +363,20 @@ type CloudBackupSnapshotRestoreJobState struct {
 	// The unique identifier of the restore job.
 	SnapshotRestoreJobId pulumi.StringPtrInput
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+	//   Three conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify oplogInc.
+	// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+	//   Three conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify oplogTs.
+	// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+	//   Two conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
 	Timestamp pulumi.StringPtrInput
 }
 
@@ -534,6 +576,20 @@ func (o CloudBackupSnapshotRestoreJobOutput) SnapshotRestoreJobId() pulumi.Strin
 }
 
 // Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+//   - `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+//     Three conditions apply to this parameter:
+//   - Enable Continuous Cloud Backup on your cluster.
+//   - Specify oplogInc.
+//   - Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+//   - `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+//     Three conditions apply to this parameter:
+//   - Enable Continuous Cloud Backup on your cluster.
+//   - Specify oplogTs.
+//   - Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+//   - `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+//     Two conditions apply to this parameter:
+//   - Enable Continuous Cloud Backup on your cluster.
+//   - Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
 func (o CloudBackupSnapshotRestoreJobOutput) Timestamp() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringOutput { return v.Timestamp }).(pulumi.StringOutput)
 }

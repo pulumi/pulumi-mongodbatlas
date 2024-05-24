@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ProjectIpAccessList("test", ProjectIpAccessListArgs.builder()        
+ *         var test = new ProjectIpAccessList("test", ProjectIpAccessListArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .cidrBlock("1.2.3.4/32")
  *             .comment("cidr block for tf acc testing")
@@ -85,7 +85,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ProjectIpAccessList("test", ProjectIpAccessListArgs.builder()        
+ *         var test = new ProjectIpAccessList("test", ProjectIpAccessListArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .ipAddress("2.3.4.5")
  *             .comment("ip address for tf acc testing")
@@ -126,14 +126,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()        
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .atlasCidrBlock("192.168.208.0/21")
  *             .providerName("AWS")
  *             .regionName("US_EAST_1")
  *             .build());
  * 
- *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()        
+ *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .containerId(test.containerId())
  *             .accepterRegionName("us-east-1")
@@ -143,7 +143,7 @@ import javax.annotation.Nullable;
  *             .awsAccountId("232589400519")
  *             .build());
  * 
- *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()        
+ *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .awsSecurityGroup("sg-0026348ec11780bd1")
  *             .comment("TestAcc for awsSecurityGroup")

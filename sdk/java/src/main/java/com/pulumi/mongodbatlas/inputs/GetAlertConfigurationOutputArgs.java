@@ -32,6 +32,11 @@ public final class GetAlertConfigurationOutputArgs extends com.pulumi.resources.
 
     /**
      * Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
      * 
      */
     @Import(name="value", required=true)
@@ -39,6 +44,11 @@ public final class GetAlertConfigurationOutputArgs extends com.pulumi.resources.
 
     /**
      * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
      * 
      */
     public Output<String> value() {
@@ -91,6 +101,11 @@ public final class GetAlertConfigurationOutputArgs extends com.pulumi.resources.
 
         /**
          * @param value Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+         * - `PRIMARY`
+         * - `SECONDARY`
+         * - `STANDALONE`
+         * - `CONFIG`
+         * - `MONGOS`
          * 
          * @return builder
          * 
@@ -102,6 +117,11 @@ public final class GetAlertConfigurationOutputArgs extends com.pulumi.resources.
 
         /**
          * @param value Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+         * - `PRIMARY`
+         * - `SECONDARY`
+         * - `STANDALONE`
+         * - `CONFIG`
+         * - `MONGOS`
          * 
          * @return builder
          * 
