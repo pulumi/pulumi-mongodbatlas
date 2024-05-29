@@ -158,6 +158,8 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
     public readonly clusterName!: pulumi.Output<string>;
     /**
      * UTC ISO 8601 formatted point in time when Atlas created the restore job.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -284,6 +286,8 @@ export interface CloudBackupSnapshotRestoreJobState {
     clusterName?: pulumi.Input<string>;
     /**
      * UTC ISO 8601 formatted point in time when Atlas created the restore job.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     createdAt?: pulumi.Input<string>;
     /**

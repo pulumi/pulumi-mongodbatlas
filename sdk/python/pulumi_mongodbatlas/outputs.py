@@ -5487,7 +5487,6 @@ class FederatedDatabaseInstanceCloudProviderConfigAws(dict):
                  iam_assumed_role_arn: Optional[str] = None,
                  iam_user_arn: Optional[str] = None):
         """
-        :param str role_id: Unique identifier of the role that the data lake can use to access the data stores.
         :param str external_id: Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
         :param str iam_assumed_role_arn: Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
                * `s3:GetObject`
@@ -5507,9 +5506,6 @@ class FederatedDatabaseInstanceCloudProviderConfigAws(dict):
     @property
     @pulumi.getter(name="roleId")
     def role_id(self) -> str:
-        """
-        Unique identifier of the role that the data lake can use to access the data stores.
-        """
         return pulumi.get(self, "role_id")
 
     @property
@@ -6775,6 +6771,9 @@ class PrivateLinkEndpointServiceEndpoint(dict):
         """
         Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
         """
+        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
+        pulumi.log.warn("""service_attachment_name is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
+
         return pulumi.get(self, "service_attachment_name")
 
     @property
@@ -12186,6 +12185,9 @@ class GetCloudBackupSnapshotRestoreJobsResultResult(dict):
         """
         UTC ISO 8601 formatted point in time when Atlas created the restore job.
         """
+        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
+        pulumi.log.warn("""created_at is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
+
         return pulumi.get(self, "created_at")
 
     @property

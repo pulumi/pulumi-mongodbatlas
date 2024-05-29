@@ -99,6 +99,22 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ## Example specifying data process region and provider
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.FederatedDatabaseInstance("test", {
+ *     projectId: "PROJECT ID",
+ *     name: "NAME OF THE FEDERATED DATABASE INSTANCE",
+ *     dataProcessRegion: {
+ *         cloudProvider: "AWS",
+ *         region: "OREGON_USA",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * - The Federated Database Instance can be imported using project ID, name of the instance, in the format `project_id`--`name`, e.g.

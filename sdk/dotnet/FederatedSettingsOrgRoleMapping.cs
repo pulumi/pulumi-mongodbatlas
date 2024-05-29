@@ -104,6 +104,12 @@ namespace Pulumi.Mongodbatlas
         [Output("roleAssignments")]
         public Output<ImmutableArray<Outputs.FederatedSettingsOrgRoleMappingRoleAssignment>> RoleAssignments { get; private set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies this role mapping.
+        /// </summary>
+        [Output("roleMappingId")]
+        public Output<string> RoleMappingId { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a FederatedSettingsOrgRoleMapping resource with the given unique name, arguments, and options.
@@ -217,6 +223,12 @@ namespace Pulumi.Mongodbatlas
             get => _roleAssignments ?? (_roleAssignments = new InputList<Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentGetArgs>());
             set => _roleAssignments = value;
         }
+
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies this role mapping.
+        /// </summary>
+        [Input("roleMappingId")]
+        public Input<string>? RoleMappingId { get; set; }
 
         public FederatedSettingsOrgRoleMappingState()
         {

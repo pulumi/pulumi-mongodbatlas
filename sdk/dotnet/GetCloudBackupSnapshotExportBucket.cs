@@ -93,8 +93,8 @@ namespace Pulumi.Mongodbatlas
         [Input("exportBucketId", required: true)]
         public string ExportBucketId { get; set; } = null!;
 
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
+        [Input("id")]
+        public string? Id { get; set; }
 
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
@@ -116,8 +116,8 @@ namespace Pulumi.Mongodbatlas
         [Input("exportBucketId", required: true)]
         public Input<string> ExportBucketId { get; set; } = null!;
 
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
+        [Input("id")]
+        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.

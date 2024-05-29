@@ -150,6 +150,30 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ## Example specifying data process region and provider
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.FederatedDatabaseInstance("test", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         Name = "NAME OF THE FEDERATED DATABASE INSTANCE",
+    ///         DataProcessRegion = new Mongodbatlas.Inputs.FederatedDatabaseInstanceDataProcessRegionArgs
+    ///         {
+    ///             CloudProvider = "AWS",
+    ///             Region = "OREGON_USA",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// - The Federated Database Instance can be imported using project ID, name of the instance, in the format `project_id`--`name`, e.g.

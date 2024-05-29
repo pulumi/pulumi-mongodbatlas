@@ -146,6 +146,37 @@ import (
 //
 // ```
 //
+// ## Example specifying data process region and provider
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewFederatedDatabaseInstance(ctx, "test", &mongodbatlas.FederatedDatabaseInstanceArgs{
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				Name:      pulumi.String("NAME OF THE FEDERATED DATABASE INSTANCE"),
+//				DataProcessRegion: &mongodbatlas.FederatedDatabaseInstanceDataProcessRegionArgs{
+//					CloudProvider: pulumi.String("AWS"),
+//					Region:        pulumi.String("OREGON_USA"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // - The Federated Database Instance can be imported using project ID, name of the instance, in the format `project_id`--`name`, e.g.

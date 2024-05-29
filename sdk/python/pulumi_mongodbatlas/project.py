@@ -894,7 +894,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="regionUsageRestrictions")
-    def region_usage_restrictions(self) -> pulumi.Output[Optional[str]]:
+    def region_usage_restrictions(self) -> pulumi.Output[str]:
         """
         Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         """

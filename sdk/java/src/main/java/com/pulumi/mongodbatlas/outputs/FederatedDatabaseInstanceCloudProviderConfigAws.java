@@ -30,10 +30,6 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAws {
      * 
      */
     private @Nullable String iamUserArn;
-    /**
-     * @return Unique identifier of the role that the data lake can use to access the data stores.
-     * 
-     */
     private String roleId;
     private String testS3Bucket;
 
@@ -62,10 +58,6 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAws {
     public Optional<String> iamUserArn() {
         return Optional.ofNullable(this.iamUserArn);
     }
-    /**
-     * @return Unique identifier of the role that the data lake can use to access the data stores.
-     * 
-     */
     public String roleId() {
         return this.roleId;
     }

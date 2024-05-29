@@ -67,17 +67,9 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAwsArgs extends c
         return Optional.ofNullable(this.iamUserArn);
     }
 
-    /**
-     * Unique identifier of the role that the data lake can use to access the data stores.
-     * 
-     */
     @Import(name="roleId", required=true)
     private Output<String> roleId;
 
-    /**
-     * @return Unique identifier of the role that the data lake can use to access the data stores.
-     * 
-     */
     public Output<String> roleId() {
         return this.roleId;
     }
@@ -186,23 +178,11 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAwsArgs extends c
             return iamUserArn(Output.of(iamUserArn));
         }
 
-        /**
-         * @param roleId Unique identifier of the role that the data lake can use to access the data stores.
-         * 
-         * @return builder
-         * 
-         */
         public Builder roleId(Output<String> roleId) {
             $.roleId = roleId;
             return this;
         }
 
-        /**
-         * @param roleId Unique identifier of the role that the data lake can use to access the data stores.
-         * 
-         * @return builder
-         * 
-         */
         public Builder roleId(String roleId) {
             return roleId(Output.of(roleId));
         }

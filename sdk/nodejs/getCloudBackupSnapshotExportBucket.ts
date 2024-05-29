@@ -45,7 +45,10 @@ export interface GetCloudBackupSnapshotExportBucketArgs {
      * Unique identifier of the snapshot export bucket.
      */
     exportBucketId: string;
-    id: string;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     */
+    id?: string;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
@@ -69,6 +72,9 @@ export interface GetCloudBackupSnapshotExportBucketResult {
      * Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
      */
     readonly iamRoleId: string;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     */
     readonly id: string;
     readonly projectId: string;
 }
@@ -107,7 +113,10 @@ export interface GetCloudBackupSnapshotExportBucketOutputArgs {
      * Unique identifier of the snapshot export bucket.
      */
     exportBucketId: pulumi.Input<string>;
-    id: pulumi.Input<string>;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     */
+    id?: pulumi.Input<string>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */

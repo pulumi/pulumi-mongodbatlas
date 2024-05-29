@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetCloudBackupSnapshotExportBucketArgs extends com.pulumi.resources.InvokeArgs {
@@ -29,11 +31,23 @@ public final class GetCloudBackupSnapshotExportBucketArgs extends com.pulumi.res
         return this.exportBucketId;
     }
 
-    @Import(name="id", required=true)
-    private Output<String> id;
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
+    @Import(name="id")
+    private @Nullable Output<String> id;
 
-    public Output<String> id() {
-        return this.id;
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
+    public Optional<Output<String>> id() {
+        return Optional.ofNullable(this.id);
     }
 
     /**
@@ -98,11 +112,27 @@ public final class GetCloudBackupSnapshotExportBucketArgs extends com.pulumi.res
             return exportBucketId(Output.of(exportBucketId));
         }
 
-        public Builder id(Output<String> id) {
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+         * 
+         */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
+        public Builder id(@Nullable Output<String> id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+         * 
+         */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
         public Builder id(String id) {
             return id(Output.of(id));
         }
@@ -131,9 +161,6 @@ public final class GetCloudBackupSnapshotExportBucketArgs extends com.pulumi.res
         public GetCloudBackupSnapshotExportBucketArgs build() {
             if ($.exportBucketId == null) {
                 throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketArgs", "exportBucketId");
-            }
-            if ($.id == null) {
-                throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketArgs", "id");
             }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketArgs", "projectId");

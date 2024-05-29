@@ -143,7 +143,7 @@ export class Project extends pulumi.CustomResource {
     /**
      * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      */
-    public readonly regionUsageRestrictions!: pulumi.Output<string | undefined>;
+    public readonly regionUsageRestrictions!: pulumi.Output<string>;
     /**
      * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
      */

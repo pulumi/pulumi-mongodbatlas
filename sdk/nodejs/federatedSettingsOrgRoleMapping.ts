@@ -104,6 +104,10 @@ export class FederatedSettingsOrgRoleMapping extends pulumi.CustomResource {
      * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
      */
     public readonly roleAssignments!: pulumi.Output<outputs.FederatedSettingsOrgRoleMappingRoleAssignment[]>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     */
+    public /*out*/ readonly roleMappingId!: pulumi.Output<string>;
 
     /**
      * Create a FederatedSettingsOrgRoleMapping resource with the given unique name, arguments, and options.
@@ -122,6 +126,7 @@ export class FederatedSettingsOrgRoleMapping extends pulumi.CustomResource {
             resourceInputs["federationSettingsId"] = state ? state.federationSettingsId : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["roleAssignments"] = state ? state.roleAssignments : undefined;
+            resourceInputs["roleMappingId"] = state ? state.roleMappingId : undefined;
         } else {
             const args = argsOrState as FederatedSettingsOrgRoleMappingArgs | undefined;
             if ((!args || args.externalGroupName === undefined) && !opts.urn) {
@@ -140,6 +145,7 @@ export class FederatedSettingsOrgRoleMapping extends pulumi.CustomResource {
             resourceInputs["federationSettingsId"] = args ? args.federationSettingsId : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["roleAssignments"] = args ? args.roleAssignments : undefined;
+            resourceInputs["roleMappingId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(FederatedSettingsOrgRoleMapping.__pulumiType, name, resourceInputs, opts);
@@ -166,6 +172,10 @@ export interface FederatedSettingsOrgRoleMappingState {
      * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
      */
     roleAssignments?: pulumi.Input<pulumi.Input<inputs.FederatedSettingsOrgRoleMappingRoleAssignment>[]>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     */
+    roleMappingId?: pulumi.Input<string>;
 }
 
 /**

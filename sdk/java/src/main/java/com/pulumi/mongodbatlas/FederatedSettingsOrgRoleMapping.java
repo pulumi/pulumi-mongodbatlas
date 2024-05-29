@@ -149,6 +149,20 @@ public class FederatedSettingsOrgRoleMapping extends com.pulumi.resources.Custom
     public Output<List<FederatedSettingsOrgRoleMappingRoleAssignment>> roleAssignments() {
         return this.roleAssignments;
     }
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     * 
+     */
+    @Export(name="roleMappingId", refs={String.class}, tree="[0]")
+    private Output<String> roleMappingId;
+
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies this role mapping.
+     * 
+     */
+    public Output<String> roleMappingId() {
+        return this.roleMappingId;
+    }
 
     /**
      *

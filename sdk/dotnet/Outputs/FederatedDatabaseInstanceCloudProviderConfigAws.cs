@@ -28,9 +28,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
         /// </summary>
         public readonly string? IamUserArn;
-        /// <summary>
-        /// Unique identifier of the role that the data lake can use to access the data stores.
-        /// </summary>
         public readonly string RoleId;
         public readonly string TestS3Bucket;
 

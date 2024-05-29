@@ -53,6 +53,12 @@ public final class GetCloudBackupSnapshotExportJobResult {
      * 
      */
     private String finishedAt;
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
     private String id;
     private String prefix;
     private String projectId;
@@ -131,6 +137,12 @@ public final class GetCloudBackupSnapshotExportJobResult {
     public String finishedAt() {
         return this.finishedAt;
     }
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
     public String id() {
         return this.id;
     }

@@ -26,6 +26,12 @@ public final class GetCloudBackupSnapshotExportBucketResult {
      * 
      */
     private String iamRoleId;
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
     private String id;
     private String projectId;
 
@@ -54,6 +60,12 @@ public final class GetCloudBackupSnapshotExportBucketResult {
     public String iamRoleId() {
         return this.iamRoleId;
     }
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
     public String id() {
         return this.id;
     }

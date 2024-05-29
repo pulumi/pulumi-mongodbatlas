@@ -33,9 +33,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("iamUserArn")]
         public Input<string>? IamUserArn { get; set; }
 
-        /// <summary>
-        /// Unique identifier of the role that the data lake can use to access the data stores.
-        /// </summary>
         [Input("roleId", required: true)]
         public Input<string> RoleId { get; set; } = null!;
 

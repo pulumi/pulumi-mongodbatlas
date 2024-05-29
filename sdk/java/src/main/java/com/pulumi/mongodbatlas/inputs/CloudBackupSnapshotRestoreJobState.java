@@ -51,14 +51,22 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
     /**
      * UTC ISO 8601 formatted point in time when Atlas created the restore job.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     @Import(name="createdAt")
     private @Nullable Output<String> createdAt;
 
     /**
      * @return UTC ISO 8601 formatted point in time when Atlas created the restore job.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<Output<String>> createdAt() {
         return Optional.ofNullable(this.createdAt);
     }
@@ -324,7 +332,11 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder createdAt(@Nullable Output<String> createdAt) {
             $.createdAt = createdAt;
             return this;
@@ -335,7 +347,11 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder createdAt(String createdAt) {
             return createdAt(Output.of(createdAt));
         }
