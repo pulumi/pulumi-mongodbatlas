@@ -116,7 +116,7 @@ type Project struct {
 	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
 	ProjectOwnerId pulumi.StringPtrOutput `pulumi:"projectOwnerId"`
 	// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
-	RegionUsageRestrictions pulumi.StringPtrOutput `pulumi:"regionUsageRestrictions"`
+	RegionUsageRestrictions pulumi.StringOutput `pulumi:"regionUsageRestrictions"`
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
 	Tags  pulumi.StringMapOutput `pulumi:"tags"`
 	Teams ProjectTeamArrayOutput `pulumi:"teams"`
@@ -441,8 +441,8 @@ func (o ProjectOutput) ProjectOwnerId() pulumi.StringPtrOutput {
 }
 
 // Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
-func (o ProjectOutput) RegionUsageRestrictions() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Project) pulumi.StringPtrOutput { return v.RegionUsageRestrictions }).(pulumi.StringPtrOutput)
+func (o ProjectOutput) RegionUsageRestrictions() pulumi.StringOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.RegionUsageRestrictions }).(pulumi.StringOutput)
 }
 
 // Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.

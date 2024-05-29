@@ -1121,9 +1121,6 @@ export interface FederatedDatabaseInstanceCloudProviderConfigAws {
      * Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
      */
     iamUserArn: string;
-    /**
-     * Unique identifier of the role that the data lake can use to access the data stores.
-     */
     roleId: string;
     testS3Bucket: string;
 }
@@ -2873,6 +2870,8 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
     cancelled: boolean;
     /**
      * UTC ISO 8601 formatted point in time when Atlas created the restore job.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     createdAt: string;
     /**
@@ -6051,6 +6050,8 @@ export interface PrivateLinkEndpointServiceEndpoint {
     ipAddress?: string;
     /**
      * Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     serviceAttachmentName: string;
     /**

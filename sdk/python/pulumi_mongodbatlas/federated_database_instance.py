@@ -539,6 +539,21 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
             ])
         ```
 
+        ## Example specifying data process region and provider
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.FederatedDatabaseInstance("test",
+            project_id="PROJECT ID",
+            name="NAME OF THE FEDERATED DATABASE INSTANCE",
+            data_process_region=mongodbatlas.FederatedDatabaseInstanceDataProcessRegionArgs(
+                cloud_provider="AWS",
+                region="OREGON_USA",
+            ))
+        ```
+
         ## Import
 
         - The Federated Database Instance can be imported using project ID, name of the instance, in the format `project_id`--`name`, e.g.
@@ -704,6 +719,21 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                     region="AWS REGION",
                 ),
             ])
+        ```
+
+        ## Example specifying data process region and provider
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.FederatedDatabaseInstance("test",
+            project_id="PROJECT ID",
+            name="NAME OF THE FEDERATED DATABASE INSTANCE",
+            data_process_region=mongodbatlas.FederatedDatabaseInstanceDataProcessRegionArgs(
+                cloud_provider="AWS",
+                region="OREGON_USA",
+            ))
         ```
 
         ## Import

@@ -259,7 +259,11 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
     /**
      * UTC ISO 8601 formatted point in time when Atlas created the restore job.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 

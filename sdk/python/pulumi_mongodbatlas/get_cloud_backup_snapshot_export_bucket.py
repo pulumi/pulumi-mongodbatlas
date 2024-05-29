@@ -73,6 +73,9 @@ class GetCloudBackupSnapshotExportBucketResult:
     @property
     @pulumi.getter
     def id(self) -> str:
+        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.""", DeprecationWarning)
+        pulumi.log.warn("""id is deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.""")
+
         return pulumi.get(self, "id")
 
     @property
@@ -141,7 +144,7 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[str] = No
 
 @_utilities.lift_output_func(get_cloud_backup_snapshot_export_bucket)
 def get_cloud_backup_snapshot_export_bucket_output(export_bucket_id: Optional[pulumi.Input[str]] = None,
-                                                   id: Optional[pulumi.Input[str]] = None,
+                                                   id: Optional[pulumi.Input[Optional[str]]] = None,
                                                    project_id: Optional[pulumi.Input[str]] = None,
                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotExportBucketResult]:
     """

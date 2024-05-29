@@ -1121,9 +1121,6 @@ export interface FederatedDatabaseInstanceCloudProviderConfigAws {
      * Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
      */
     iamUserArn?: pulumi.Input<string>;
-    /**
-     * Unique identifier of the role that the data lake can use to access the data stores.
-     */
     roleId: pulumi.Input<string>;
     testS3Bucket: pulumi.Input<string>;
 }
@@ -1565,6 +1562,8 @@ export interface PrivateLinkEndpointServiceEndpoint {
     ipAddress?: pulumi.Input<string>;
     /**
      * Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     serviceAttachmentName?: pulumi.Input<string>;
     /**

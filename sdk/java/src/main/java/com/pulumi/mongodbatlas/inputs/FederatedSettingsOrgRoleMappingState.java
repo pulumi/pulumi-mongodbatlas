@@ -77,6 +77,21 @@ public final class FederatedSettingsOrgRoleMappingState extends com.pulumi.resou
         return Optional.ofNullable(this.roleAssignments);
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     * 
+     */
+    @Import(name="roleMappingId")
+    private @Nullable Output<String> roleMappingId;
+
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies this role mapping.
+     * 
+     */
+    public Optional<Output<String>> roleMappingId() {
+        return Optional.ofNullable(this.roleMappingId);
+    }
+
     private FederatedSettingsOrgRoleMappingState() {}
 
     private FederatedSettingsOrgRoleMappingState(FederatedSettingsOrgRoleMappingState $) {
@@ -84,6 +99,7 @@ public final class FederatedSettingsOrgRoleMappingState extends com.pulumi.resou
         this.federationSettingsId = $.federationSettingsId;
         this.orgId = $.orgId;
         this.roleAssignments = $.roleAssignments;
+        this.roleMappingId = $.roleMappingId;
     }
 
     public static Builder builder() {
@@ -196,6 +212,27 @@ public final class FederatedSettingsOrgRoleMappingState extends com.pulumi.resou
          */
         public Builder roleAssignments(FederatedSettingsOrgRoleMappingRoleAssignmentArgs... roleAssignments) {
             return roleAssignments(List.of(roleAssignments));
+        }
+
+        /**
+         * @param roleMappingId Unique 24-hexadecimal digit string that identifies this role mapping.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleMappingId(@Nullable Output<String> roleMappingId) {
+            $.roleMappingId = roleMappingId;
+            return this;
+        }
+
+        /**
+         * @param roleMappingId Unique 24-hexadecimal digit string that identifies this role mapping.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleMappingId(String roleMappingId) {
+            return roleMappingId(Output.of(roleMappingId));
         }
 
         public FederatedSettingsOrgRoleMappingState build() {

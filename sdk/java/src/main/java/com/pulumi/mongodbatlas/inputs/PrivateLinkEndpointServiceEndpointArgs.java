@@ -48,14 +48,22 @@ public final class PrivateLinkEndpointServiceEndpointArgs extends com.pulumi.res
     /**
      * Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     @Import(name="serviceAttachmentName")
     private @Nullable Output<String> serviceAttachmentName;
 
     /**
      * @return Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<Output<String>> serviceAttachmentName() {
         return Optional.ofNullable(this.serviceAttachmentName);
     }
@@ -149,7 +157,11 @@ public final class PrivateLinkEndpointServiceEndpointArgs extends com.pulumi.res
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder serviceAttachmentName(@Nullable Output<String> serviceAttachmentName) {
             $.serviceAttachmentName = serviceAttachmentName;
             return this;
@@ -160,7 +172,11 @@ public final class PrivateLinkEndpointServiceEndpointArgs extends com.pulumi.res
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder serviceAttachmentName(String serviceAttachmentName) {
             return serviceAttachmentName(Output.of(serviceAttachmentName));
         }

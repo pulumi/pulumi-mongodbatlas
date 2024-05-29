@@ -21,7 +21,11 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
     /**
      * @return UTC ISO 8601 formatted point in time when Atlas created the restore job.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     private String createdAt;
     /**
      * @return Type of restore job to create. Possible values are: automated and download.
@@ -91,7 +95,11 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
     /**
      * @return UTC ISO 8601 formatted point in time when Atlas created the restore job.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public String createdAt() {
         return this.createdAt;
     }

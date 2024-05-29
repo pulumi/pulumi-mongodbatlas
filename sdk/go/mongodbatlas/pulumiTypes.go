@@ -10997,10 +10997,9 @@ type FederatedDatabaseInstanceCloudProviderConfigAws struct {
 	// * `s3:GetObjectVersion`
 	IamAssumedRoleArn *string `pulumi:"iamAssumedRoleArn"`
 	// Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
-	IamUserArn *string `pulumi:"iamUserArn"`
-	// Unique identifier of the role that the data lake can use to access the data stores.
-	RoleId       string `pulumi:"roleId"`
-	TestS3Bucket string `pulumi:"testS3Bucket"`
+	IamUserArn   *string `pulumi:"iamUserArn"`
+	RoleId       string  `pulumi:"roleId"`
+	TestS3Bucket string  `pulumi:"testS3Bucket"`
 }
 
 // FederatedDatabaseInstanceCloudProviderConfigAwsInput is an input type that accepts FederatedDatabaseInstanceCloudProviderConfigAwsArgs and FederatedDatabaseInstanceCloudProviderConfigAwsOutput values.
@@ -11023,10 +11022,9 @@ type FederatedDatabaseInstanceCloudProviderConfigAwsArgs struct {
 	// * `s3:GetObjectVersion`
 	IamAssumedRoleArn pulumi.StringPtrInput `pulumi:"iamAssumedRoleArn"`
 	// Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
-	IamUserArn pulumi.StringPtrInput `pulumi:"iamUserArn"`
-	// Unique identifier of the role that the data lake can use to access the data stores.
-	RoleId       pulumi.StringInput `pulumi:"roleId"`
-	TestS3Bucket pulumi.StringInput `pulumi:"testS3Bucket"`
+	IamUserArn   pulumi.StringPtrInput `pulumi:"iamUserArn"`
+	RoleId       pulumi.StringInput    `pulumi:"roleId"`
+	TestS3Bucket pulumi.StringInput    `pulumi:"testS3Bucket"`
 }
 
 func (FederatedDatabaseInstanceCloudProviderConfigAwsArgs) ElementType() reflect.Type {
@@ -11124,7 +11122,6 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAwsOutput) IamUserArn() pulu
 	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigAws) *string { return v.IamUserArn }).(pulumi.StringPtrOutput)
 }
 
-// Unique identifier of the role that the data lake can use to access the data stores.
 func (o FederatedDatabaseInstanceCloudProviderConfigAwsOutput) RoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigAws) string { return v.RoleId }).(pulumi.StringOutput)
 }
@@ -11190,7 +11187,6 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) IamUserArn() p
 	}).(pulumi.StringPtrOutput)
 }
 
-// Unique identifier of the role that the data lake can use to access the data stores.
 func (o FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) RoleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigAws) *string {
 		if v == nil {
@@ -13943,6 +13939,8 @@ type PrivateLinkEndpointServiceEndpoint struct {
 	// Private IP address of the endpoint you created in GCP.
 	IpAddress *string `pulumi:"ipAddress"`
 	// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	ServiceAttachmentName *string `pulumi:"serviceAttachmentName"`
 	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status *string `pulumi:"status"`
@@ -13965,6 +13963,8 @@ type PrivateLinkEndpointServiceEndpointArgs struct {
 	// Private IP address of the endpoint you created in GCP.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
 	// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	ServiceAttachmentName pulumi.StringPtrInput `pulumi:"serviceAttachmentName"`
 	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status pulumi.StringPtrInput `pulumi:"status"`
@@ -14032,6 +14032,8 @@ func (o PrivateLinkEndpointServiceEndpointOutput) IpAddress() pulumi.StringPtrOu
 }
 
 // Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 func (o PrivateLinkEndpointServiceEndpointOutput) ServiceAttachmentName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PrivateLinkEndpointServiceEndpoint) *string { return v.ServiceAttachmentName }).(pulumi.StringPtrOutput)
 }
@@ -26873,6 +26875,8 @@ type GetCloudBackupSnapshotRestoreJobsResult struct {
 	// Indicates whether the restore job was canceled.
 	Cancelled bool `pulumi:"cancelled"`
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	CreatedAt string `pulumi:"createdAt"`
 	// Type of restore job to create. Possible values are: automated and download.
 	DeliveryType string `pulumi:"deliveryType"`
@@ -26917,6 +26921,8 @@ type GetCloudBackupSnapshotRestoreJobsResultArgs struct {
 	// Indicates whether the restore job was canceled.
 	Cancelled pulumi.BoolInput `pulumi:"cancelled"`
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Type of restore job to create. Possible values are: automated and download.
 	DeliveryType pulumi.StringInput `pulumi:"deliveryType"`
@@ -27003,6 +27009,8 @@ func (o GetCloudBackupSnapshotRestoreJobsResultOutput) Cancelled() pulumi.BoolOu
 }
 
 // UTC ISO 8601 formatted point in time when Atlas created the restore job.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 func (o GetCloudBackupSnapshotRestoreJobsResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }

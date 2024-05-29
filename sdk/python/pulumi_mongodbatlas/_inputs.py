@@ -5126,7 +5126,6 @@ class FederatedDatabaseInstanceCloudProviderConfigAwsArgs:
                  iam_assumed_role_arn: Optional[pulumi.Input[str]] = None,
                  iam_user_arn: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] role_id: Unique identifier of the role that the data lake can use to access the data stores.
         :param pulumi.Input[str] external_id: Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
         :param pulumi.Input[str] iam_assumed_role_arn: Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
                * `s3:GetObject`
@@ -5146,9 +5145,6 @@ class FederatedDatabaseInstanceCloudProviderConfigAwsArgs:
     @property
     @pulumi.getter(name="roleId")
     def role_id(self) -> pulumi.Input[str]:
-        """
-        Unique identifier of the role that the data lake can use to access the data stores.
-        """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
@@ -6401,6 +6397,9 @@ class PrivateLinkEndpointServiceEndpointArgs:
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
         if service_attachment_name is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
+            pulumi.log.warn("""service_attachment_name is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
+        if service_attachment_name is not None:
             pulumi.set(__self__, "service_attachment_name", service_attachment_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
@@ -6435,6 +6434,9 @@ class PrivateLinkEndpointServiceEndpointArgs:
         """
         Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
         """
+        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
+        pulumi.log.warn("""service_attachment_name is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
+
         return pulumi.get(self, "service_attachment_name")
 
     @service_attachment_name.setter

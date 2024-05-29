@@ -204,6 +204,8 @@ type CloudBackupSnapshotRestoreJob struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -288,6 +290,8 @@ type cloudBackupSnapshotRestoreJobState struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName *string `pulumi:"clusterName"`
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	CreatedAt *string `pulumi:"createdAt"`
 	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -337,6 +341,8 @@ type CloudBackupSnapshotRestoreJobState struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName pulumi.StringPtrInput
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	CreatedAt pulumi.StringPtrInput
 	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -521,6 +527,8 @@ func (o CloudBackupSnapshotRestoreJobOutput) ClusterName() pulumi.StringOutput {
 }
 
 // UTC ISO 8601 formatted point in time when Atlas created the restore job.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 func (o CloudBackupSnapshotRestoreJobOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }

@@ -90,6 +90,8 @@ type FederatedSettingsOrgRoleMapping struct {
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
 	RoleAssignments FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput `pulumi:"roleAssignments"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	RoleMappingId pulumi.StringOutput `pulumi:"roleMappingId"`
 }
 
 // NewFederatedSettingsOrgRoleMapping registers a new resource with the given unique name, arguments, and options.
@@ -142,6 +144,8 @@ type federatedSettingsOrgRoleMappingState struct {
 	OrgId *string `pulumi:"orgId"`
 	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
 	RoleAssignments []FederatedSettingsOrgRoleMappingRoleAssignment `pulumi:"roleAssignments"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	RoleMappingId *string `pulumi:"roleMappingId"`
 }
 
 type FederatedSettingsOrgRoleMappingState struct {
@@ -153,6 +157,8 @@ type FederatedSettingsOrgRoleMappingState struct {
 	OrgId pulumi.StringPtrInput
 	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
 	RoleAssignments FederatedSettingsOrgRoleMappingRoleAssignmentArrayInput
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	RoleMappingId pulumi.StringPtrInput
 }
 
 func (FederatedSettingsOrgRoleMappingState) ElementType() reflect.Type {
@@ -289,6 +295,11 @@ func (o FederatedSettingsOrgRoleMappingOutput) RoleAssignments() FederatedSettin
 	return o.ApplyT(func(v *FederatedSettingsOrgRoleMapping) FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput {
 		return v.RoleAssignments
 	}).(FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies this role mapping.
+func (o FederatedSettingsOrgRoleMappingOutput) RoleMappingId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsOrgRoleMapping) pulumi.StringOutput { return v.RoleMappingId }).(pulumi.StringOutput)
 }
 
 type FederatedSettingsOrgRoleMappingArrayOutput struct{ *pulumi.OutputState }

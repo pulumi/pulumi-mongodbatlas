@@ -133,8 +133,8 @@ namespace Pulumi.Mongodbatlas
         [Input("exportJobId", required: true)]
         public string ExportJobId { get; set; } = null!;
 
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
+        [Input("id")]
+        public string? Id { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
@@ -162,8 +162,8 @@ namespace Pulumi.Mongodbatlas
         [Input("exportJobId", required: true)]
         public Input<string> ExportJobId { get; set; } = null!;
 
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
+        [Input("id")]
+        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.

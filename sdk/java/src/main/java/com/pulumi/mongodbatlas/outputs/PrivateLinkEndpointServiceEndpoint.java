@@ -24,7 +24,11 @@ public final class PrivateLinkEndpointServiceEndpoint {
     /**
      * @return Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     private @Nullable String serviceAttachmentName;
     /**
      * @return Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
@@ -50,7 +54,11 @@ public final class PrivateLinkEndpointServiceEndpoint {
     /**
      * @return Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<String> serviceAttachmentName() {
         return Optional.ofNullable(this.serviceAttachmentName);
     }
