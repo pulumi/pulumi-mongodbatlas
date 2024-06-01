@@ -307,7 +307,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> AtlasCidrBlock { get; private set; } = null!;
 
         /// <summary>
-        /// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+        /// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         /// </summary>
         [Output("atlasGcpProjectId")]
         public Output<string> AtlasGcpProjectId { get; private set; } = null!;
@@ -315,6 +315,9 @@ namespace Pulumi.Mongodbatlas
         [Output("atlasId")]
         public Output<string> AtlasId { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+        /// </summary>
         [Output("atlasVpcName")]
         public Output<string> AtlasVpcName { get; private set; } = null!;
 
@@ -494,11 +497,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? AtlasCidrBlock { get; set; }
 
         /// <summary>
-        /// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+        /// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         /// </summary>
         [Input("atlasGcpProjectId")]
         public Input<string>? AtlasGcpProjectId { get; set; }
 
+        /// <summary>
+        /// Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+        /// </summary>
         [Input("atlasVpcName")]
         public Input<string>? AtlasVpcName { get; set; }
 
@@ -598,7 +604,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? AtlasCidrBlock { get; set; }
 
         /// <summary>
-        /// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+        /// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         /// </summary>
         [Input("atlasGcpProjectId")]
         public Input<string>? AtlasGcpProjectId { get; set; }
@@ -606,6 +612,9 @@ namespace Pulumi.Mongodbatlas
         [Input("atlasId")]
         public Input<string>? AtlasId { get; set; }
 
+        /// <summary>
+        /// Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+        /// </summary>
         [Input("atlasVpcName")]
         public Input<string>? AtlasVpcName { get; set; }
 

@@ -366,14 +366,14 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
         return this.atlasCidrBlock;
     }
     /**
-     * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+     * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
      * 
      */
     @Export(name="atlasGcpProjectId", refs={String.class}, tree="[0]")
     private Output<String> atlasGcpProjectId;
 
     /**
-     * @return The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+     * @return The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
      * 
      */
     public Output<String> atlasGcpProjectId() {
@@ -385,9 +385,17 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
     public Output<String> atlasId() {
         return this.atlasId;
     }
+    /**
+     * Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+     * 
+     */
     @Export(name="atlasVpcName", refs={String.class}, tree="[0]")
     private Output<String> atlasVpcName;
 
+    /**
+     * @return Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+     * 
+     */
     public Output<String> atlasVpcName() {
         return this.atlasVpcName;
     }

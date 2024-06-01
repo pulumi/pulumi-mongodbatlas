@@ -39,23 +39,31 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+     * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
      * 
      */
     @Import(name="atlasGcpProjectId")
     private @Nullable Output<String> atlasGcpProjectId;
 
     /**
-     * @return The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+     * @return The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
      * 
      */
     public Optional<Output<String>> atlasGcpProjectId() {
         return Optional.ofNullable(this.atlasGcpProjectId);
     }
 
+    /**
+     * Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+     * 
+     */
     @Import(name="atlasVpcName")
     private @Nullable Output<String> atlasVpcName;
 
+    /**
+     * @return Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+     * 
+     */
     public Optional<Output<String>> atlasVpcName() {
         return Optional.ofNullable(this.atlasVpcName);
     }
@@ -322,7 +330,7 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param atlasGcpProjectId The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+         * @param atlasGcpProjectId The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
          * 
          * @return builder
          * 
@@ -333,7 +341,7 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param atlasGcpProjectId The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+         * @param atlasGcpProjectId The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
          * 
          * @return builder
          * 
@@ -342,11 +350,23 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
             return atlasGcpProjectId(Output.of(atlasGcpProjectId));
         }
 
+        /**
+         * @param atlasVpcName Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder atlasVpcName(@Nullable Output<String> atlasVpcName) {
             $.atlasVpcName = atlasVpcName;
             return this;
         }
 
+        /**
+         * @param atlasVpcName Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder atlasVpcName(String atlasVpcName) {
             return atlasVpcName(Output.of(atlasVpcName));
         }
