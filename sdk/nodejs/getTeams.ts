@@ -4,6 +4,11 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
+ *
+ * In the future this data source will define a new implementation capable of fetching all teams in one organization.
+ */
 export function getTeams(args: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -36,6 +41,11 @@ export interface GetTeamsResult {
     readonly teamId: string;
     readonly usernames: string[];
 }
+/**
+ * This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
+ *
+ * In the future this data source will define a new implementation capable of fetching all teams in one organization.
+ */
 export function getTeamsOutput(args: GetTeamsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamsResult> {
     return pulumi.output(args).apply((a: any) => getTeams(a, opts))
 }

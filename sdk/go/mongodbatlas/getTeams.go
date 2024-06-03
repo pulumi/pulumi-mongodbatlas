@@ -11,6 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// This data source is deprecated. Please transition to using `Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
+//
+// In the future this data source will define a new implementation capable of fetching all teams in one organization.
 func LookupTeams(ctx *pulumi.Context, args *LookupTeamsArgs, opts ...pulumi.InvokeOption) (*LookupTeamsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTeamsResult

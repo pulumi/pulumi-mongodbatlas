@@ -17,44 +17,92 @@ public final class FederatedSettingsOrgConfigState extends com.pulumi.resources.
 
     public static final FederatedSettingsOrgConfigState Empty = new FederatedSettingsOrgConfigState();
 
+    /**
+     * List that contains the approved domains from which organization users can log in.
+     * 
+     */
     @Import(name="domainAllowLists")
     private @Nullable Output<List<String>> domainAllowLists;
 
+    /**
+     * @return List that contains the approved domains from which organization users can log in.
+     * 
+     */
     public Optional<Output<List<String>>> domainAllowLists() {
         return Optional.ofNullable(this.domainAllowLists);
     }
 
+    /**
+     * Flag that indicates whether domain restriction is enabled for the connected organization.
+     * 
+     */
     @Import(name="domainRestrictionEnabled")
     private @Nullable Output<Boolean> domainRestrictionEnabled;
 
+    /**
+     * @return Flag that indicates whether domain restriction is enabled for the connected organization.
+     * 
+     */
     public Optional<Output<Boolean>> domainRestrictionEnabled() {
         return Optional.ofNullable(this.domainRestrictionEnabled);
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * 
+     */
     @Import(name="federationSettingsId")
     private @Nullable Output<String> federationSettingsId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * 
+     */
     public Optional<Output<String>> federationSettingsId() {
         return Optional.ofNullable(this.federationSettingsId);
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * 
+     */
     @Import(name="identityProviderId")
     private @Nullable Output<String> identityProviderId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * 
+     */
     public Optional<Output<String>> identityProviderId() {
         return Optional.ofNullable(this.identityProviderId);
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     * 
+     */
     @Import(name="orgId")
     private @Nullable Output<String> orgId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     * 
+     */
     public Optional<Output<String>> orgId() {
         return Optional.ofNullable(this.orgId);
     }
 
+    /**
+     * List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+     * 
+     */
     @Import(name="postAuthRoleGrants")
     private @Nullable Output<List<String>> postAuthRoleGrants;
 
+    /**
+     * @return List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+     * 
+     */
     public Optional<Output<List<String>>> postAuthRoleGrants() {
         return Optional.ofNullable(this.postAuthRoleGrants);
     }
@@ -88,64 +136,148 @@ public final class FederatedSettingsOrgConfigState extends com.pulumi.resources.
             $ = new FederatedSettingsOrgConfigState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param domainAllowLists List that contains the approved domains from which organization users can log in.
+         * 
+         * @return builder
+         * 
+         */
         public Builder domainAllowLists(@Nullable Output<List<String>> domainAllowLists) {
             $.domainAllowLists = domainAllowLists;
             return this;
         }
 
+        /**
+         * @param domainAllowLists List that contains the approved domains from which organization users can log in.
+         * 
+         * @return builder
+         * 
+         */
         public Builder domainAllowLists(List<String> domainAllowLists) {
             return domainAllowLists(Output.of(domainAllowLists));
         }
 
+        /**
+         * @param domainAllowLists List that contains the approved domains from which organization users can log in.
+         * 
+         * @return builder
+         * 
+         */
         public Builder domainAllowLists(String... domainAllowLists) {
             return domainAllowLists(List.of(domainAllowLists));
         }
 
+        /**
+         * @param domainRestrictionEnabled Flag that indicates whether domain restriction is enabled for the connected organization.
+         * 
+         * @return builder
+         * 
+         */
         public Builder domainRestrictionEnabled(@Nullable Output<Boolean> domainRestrictionEnabled) {
             $.domainRestrictionEnabled = domainRestrictionEnabled;
             return this;
         }
 
+        /**
+         * @param domainRestrictionEnabled Flag that indicates whether domain restriction is enabled for the connected organization.
+         * 
+         * @return builder
+         * 
+         */
         public Builder domainRestrictionEnabled(Boolean domainRestrictionEnabled) {
             return domainRestrictionEnabled(Output.of(domainRestrictionEnabled));
         }
 
+        /**
+         * @param federationSettingsId Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder federationSettingsId(@Nullable Output<String> federationSettingsId) {
             $.federationSettingsId = federationSettingsId;
             return this;
         }
 
+        /**
+         * @param federationSettingsId Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder federationSettingsId(String federationSettingsId) {
             return federationSettingsId(Output.of(federationSettingsId));
         }
 
+        /**
+         * @param identityProviderId Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder identityProviderId(@Nullable Output<String> identityProviderId) {
             $.identityProviderId = identityProviderId;
             return this;
         }
 
+        /**
+         * @param identityProviderId Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder identityProviderId(String identityProviderId) {
             return identityProviderId(Output.of(identityProviderId));
         }
 
+        /**
+         * @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+         * 
+         * @return builder
+         * 
+         */
         public Builder orgId(@Nullable Output<String> orgId) {
             $.orgId = orgId;
             return this;
         }
 
+        /**
+         * @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+         * 
+         * @return builder
+         * 
+         */
         public Builder orgId(String orgId) {
             return orgId(Output.of(orgId));
         }
 
+        /**
+         * @param postAuthRoleGrants List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+         * 
+         * @return builder
+         * 
+         */
         public Builder postAuthRoleGrants(@Nullable Output<List<String>> postAuthRoleGrants) {
             $.postAuthRoleGrants = postAuthRoleGrants;
             return this;
         }
 
+        /**
+         * @param postAuthRoleGrants List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+         * 
+         * @return builder
+         * 
+         */
         public Builder postAuthRoleGrants(List<String> postAuthRoleGrants) {
             return postAuthRoleGrants(Output.of(postAuthRoleGrants));
         }
 
+        /**
+         * @param postAuthRoleGrants List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+         * 
+         * @return builder
+         * 
+         */
         public Builder postAuthRoleGrants(String... postAuthRoleGrants) {
             return postAuthRoleGrants(List.of(postAuthRoleGrants));
         }

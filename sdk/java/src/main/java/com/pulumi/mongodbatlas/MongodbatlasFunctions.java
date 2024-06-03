@@ -22432,27 +22432,443 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetStreamInstancesInvokeResult> getStreamInstancesPlain(GetStreamInstancesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamInstances:getStreamInstances", TypeShape.of(GetStreamInstancesInvokeResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Team;
+     * import com.pulumi.mongodbatlas.TeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testTeam = new Team("testTeam", TeamArgs.builder()
+     *             .orgId("<ORGANIZATION-ID>")
+     *             .name("myNewTeam")
+     *             .usernames(            
+     *                 "user1",
+     *                 "user2",
+     *                 "user3")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getTeam(GetTeamArgs.builder()
+     *             .orgId(testTeam.orgId())
+     *             .teamId(testTeam.teamId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Team;
+     * import com.pulumi.mongodbatlas.TeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new Team("test", TeamArgs.builder()
+     *             .orgId("<ORGANIZATION-ID>")
+     *             .name("myNewTeam")
+     *             .usernames(            
+     *                 "user1",
+     *                 "user2",
+     *                 "user3")
+     *             .build());
+     * 
+     *         final var test2 = MongodbatlasFunctions.getTeam(GetTeamArgs.builder()
+     *             .orgId(test.orgId())
+     *             .name(test.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static Output<GetTeamResult> getTeam(GetTeamArgs args) {
         return getTeam(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Team;
+     * import com.pulumi.mongodbatlas.TeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testTeam = new Team("testTeam", TeamArgs.builder()
+     *             .orgId("<ORGANIZATION-ID>")
+     *             .name("myNewTeam")
+     *             .usernames(            
+     *                 "user1",
+     *                 "user2",
+     *                 "user3")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getTeam(GetTeamArgs.builder()
+     *             .orgId(testTeam.orgId())
+     *             .teamId(testTeam.teamId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Team;
+     * import com.pulumi.mongodbatlas.TeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new Team("test", TeamArgs.builder()
+     *             .orgId("<ORGANIZATION-ID>")
+     *             .name("myNewTeam")
+     *             .usernames(            
+     *                 "user1",
+     *                 "user2",
+     *                 "user3")
+     *             .build());
+     * 
+     *         final var test2 = MongodbatlasFunctions.getTeam(GetTeamArgs.builder()
+     *             .orgId(test.orgId())
+     *             .name(test.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetTeamResult> getTeamPlain(GetTeamPlainArgs args) {
         return getTeamPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Team;
+     * import com.pulumi.mongodbatlas.TeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testTeam = new Team("testTeam", TeamArgs.builder()
+     *             .orgId("<ORGANIZATION-ID>")
+     *             .name("myNewTeam")
+     *             .usernames(            
+     *                 "user1",
+     *                 "user2",
+     *                 "user3")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getTeam(GetTeamArgs.builder()
+     *             .orgId(testTeam.orgId())
+     *             .teamId(testTeam.teamId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Team;
+     * import com.pulumi.mongodbatlas.TeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new Team("test", TeamArgs.builder()
+     *             .orgId("<ORGANIZATION-ID>")
+     *             .name("myNewTeam")
+     *             .usernames(            
+     *                 "user1",
+     *                 "user2",
+     *                 "user3")
+     *             .build());
+     * 
+     *         final var test2 = MongodbatlasFunctions.getTeam(GetTeamArgs.builder()
+     *             .orgId(test.orgId())
+     *             .name(test.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static Output<GetTeamResult> getTeam(GetTeamArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getTeam:getTeam", TypeShape.of(GetTeamResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Team;
+     * import com.pulumi.mongodbatlas.TeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testTeam = new Team("testTeam", TeamArgs.builder()
+     *             .orgId("<ORGANIZATION-ID>")
+     *             .name("myNewTeam")
+     *             .usernames(            
+     *                 "user1",
+     *                 "user2",
+     *                 "user3")
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getTeam(GetTeamArgs.builder()
+     *             .orgId(testTeam.orgId())
+     *             .teamId(testTeam.teamId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Team;
+     * import com.pulumi.mongodbatlas.TeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var test = new Team("test", TeamArgs.builder()
+     *             .orgId("<ORGANIZATION-ID>")
+     *             .name("myNewTeam")
+     *             .usernames(            
+     *                 "user1",
+     *                 "user2",
+     *                 "user3")
+     *             .build());
+     * 
+     *         final var test2 = MongodbatlasFunctions.getTeam(GetTeamArgs.builder()
+     *             .orgId(test.orgId())
+     *             .name(test.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetTeamResult> getTeamPlain(GetTeamPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getTeam:getTeam", TypeShape.of(GetTeamResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
+     * 
+     * In the future this data source will define a new implementation capable of fetching all teams in one organization.
+     * 
+     */
     public static Output<GetTeamsResult> getTeams(GetTeamsArgs args) {
         return getTeams(args, InvokeOptions.Empty);
     }
+    /**
+     * This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
+     * 
+     * In the future this data source will define a new implementation capable of fetching all teams in one organization.
+     * 
+     */
     public static CompletableFuture<GetTeamsResult> getTeamsPlain(GetTeamsPlainArgs args) {
         return getTeamsPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
+     * 
+     * In the future this data source will define a new implementation capable of fetching all teams in one organization.
+     * 
+     */
     public static Output<GetTeamsResult> getTeams(GetTeamsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getTeams:getTeams", TypeShape.of(GetTeamsResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
+     * 
+     * In the future this data source will define a new implementation capable of fetching all teams in one organization.
+     * 
+     */
     public static CompletableFuture<GetTeamsResult> getTeamsPlain(GetTeamsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getTeams:getTeams", TypeShape.of(GetTeamsResult.class), args, Utilities.withVersion(options));
     }

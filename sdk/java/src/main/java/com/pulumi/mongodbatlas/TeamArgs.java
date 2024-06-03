@@ -17,23 +17,47 @@ public final class TeamArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final TeamArgs Empty = new TeamArgs();
 
+    /**
+     * The name of the team you want to create.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return The name of the team you want to create.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * The unique identifier for the organization you want to associate the team with.
+     * 
+     */
     @Import(name="orgId", required=true)
     private Output<String> orgId;
 
+    /**
+     * @return The unique identifier for the organization you want to associate the team with.
+     * 
+     */
     public Output<String> orgId() {
         return this.orgId;
     }
 
+    /**
+     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     * 
+     */
     @Import(name="usernames", required=true)
     private Output<List<String>> usernames;
 
+    /**
+     * @return The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     * 
+     */
     public Output<List<String>> usernames() {
         return this.usernames;
     }
@@ -64,33 +88,75 @@ public final class TeamArgs extends com.pulumi.resources.ResourceArgs {
             $ = new TeamArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param name The name of the team you want to create.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name The name of the team you want to create.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param orgId The unique identifier for the organization you want to associate the team with.
+         * 
+         * @return builder
+         * 
+         */
         public Builder orgId(Output<String> orgId) {
             $.orgId = orgId;
             return this;
         }
 
+        /**
+         * @param orgId The unique identifier for the organization you want to associate the team with.
+         * 
+         * @return builder
+         * 
+         */
         public Builder orgId(String orgId) {
             return orgId(Output.of(orgId));
         }
 
+        /**
+         * @param usernames The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+         * 
+         * @return builder
+         * 
+         */
         public Builder usernames(Output<List<String>> usernames) {
             $.usernames = usernames;
             return this;
         }
 
+        /**
+         * @param usernames The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+         * 
+         * @return builder
+         * 
+         */
         public Builder usernames(List<String> usernames) {
             return usernames(Output.of(usernames));
         }
 
+        /**
+         * @param usernames The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+         * 
+         * @return builder
+         * 
+         */
         public Builder usernames(String... usernames) {
             return usernames(List.of(usernames));
         }
