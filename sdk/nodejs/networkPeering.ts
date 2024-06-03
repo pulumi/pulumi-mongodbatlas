@@ -247,10 +247,13 @@ export class NetworkPeering extends pulumi.CustomResource {
     public readonly accepterRegionName!: pulumi.Output<string>;
     public readonly atlasCidrBlock!: pulumi.Output<string>;
     /**
-     * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+     * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
      */
     public readonly atlasGcpProjectId!: pulumi.Output<string>;
     public /*out*/ readonly atlasId!: pulumi.Output<string>;
+    /**
+     * Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+     */
     public readonly atlasVpcName!: pulumi.Output<string>;
     /**
      * AWS Account ID of the owner of the peer VPC.
@@ -423,10 +426,13 @@ export interface NetworkPeeringState {
     accepterRegionName?: pulumi.Input<string>;
     atlasCidrBlock?: pulumi.Input<string>;
     /**
-     * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+     * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
      */
     atlasGcpProjectId?: pulumi.Input<string>;
     atlasId?: pulumi.Input<string>;
+    /**
+     * Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+     */
     atlasVpcName?: pulumi.Input<string>;
     /**
      * AWS Account ID of the owner of the peer VPC.
@@ -522,9 +528,12 @@ export interface NetworkPeeringArgs {
     accepterRegionName?: pulumi.Input<string>;
     atlasCidrBlock?: pulumi.Input<string>;
     /**
-     * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+     * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
      */
     atlasGcpProjectId?: pulumi.Input<string>;
+    /**
+     * Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+     */
     atlasVpcName?: pulumi.Input<string>;
     /**
      * AWS Account ID of the owner of the peer VPC.

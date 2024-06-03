@@ -38,7 +38,8 @@ class NetworkPeeringArgs:
                
                **AWS ONLY:**
         :param pulumi.Input[str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
-        :param pulumi.Input[str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+        :param pulumi.Input[str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+        :param pulumi.Input[str] atlas_vpc_name: Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[str] aws_account_id: AWS Account ID of the owner of the peer VPC.
         :param pulumi.Input[str] azure_directory_id: Unique identifier for an Azure AD directory.
         :param pulumi.Input[str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
@@ -146,7 +147,7 @@ class NetworkPeeringArgs:
     @pulumi.getter(name="atlasGcpProjectId")
     def atlas_gcp_project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+        The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         """
         return pulumi.get(self, "atlas_gcp_project_id")
 
@@ -157,6 +158,9 @@ class NetworkPeeringArgs:
     @property
     @pulumi.getter(name="atlasVpcName")
     def atlas_vpc_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+        """
         return pulumi.get(self, "atlas_vpc_name")
 
     @atlas_vpc_name.setter
@@ -306,7 +310,8 @@ class _NetworkPeeringState:
         """
         Input properties used for looking up and filtering NetworkPeering resources.
         :param pulumi.Input[str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
-        :param pulumi.Input[str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+        :param pulumi.Input[str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+        :param pulumi.Input[str] atlas_vpc_name: Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[str] aws_account_id: AWS Account ID of the owner of the peer VPC.
         :param pulumi.Input[str] azure_directory_id: Unique identifier for an Azure AD directory.
         :param pulumi.Input[str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
@@ -407,7 +412,7 @@ class _NetworkPeeringState:
     @pulumi.getter(name="atlasGcpProjectId")
     def atlas_gcp_project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+        The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         """
         return pulumi.get(self, "atlas_gcp_project_id")
 
@@ -427,6 +432,9 @@ class _NetworkPeeringState:
     @property
     @pulumi.getter(name="atlasVpcName")
     def atlas_vpc_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+        """
         return pulumi.get(self, "atlas_vpc_name")
 
     @atlas_vpc_name.setter
@@ -890,7 +898,8 @@ class NetworkPeering(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
-        :param pulumi.Input[str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+        :param pulumi.Input[str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+        :param pulumi.Input[str] atlas_vpc_name: Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[str] aws_account_id: AWS Account ID of the owner of the peer VPC.
         :param pulumi.Input[str] azure_directory_id: Unique identifier for an Azure AD directory.
         :param pulumi.Input[str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
@@ -1225,7 +1234,8 @@ class NetworkPeering(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
-        :param pulumi.Input[str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+        :param pulumi.Input[str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+        :param pulumi.Input[str] atlas_vpc_name: Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[str] aws_account_id: AWS Account ID of the owner of the peer VPC.
         :param pulumi.Input[str] azure_directory_id: Unique identifier for an Azure AD directory.
         :param pulumi.Input[str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
@@ -1299,7 +1309,7 @@ class NetworkPeering(pulumi.CustomResource):
     @pulumi.getter(name="atlasGcpProjectId")
     def atlas_gcp_project_id(self) -> pulumi.Output[str]:
         """
-        The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+        The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         """
         return pulumi.get(self, "atlas_gcp_project_id")
 
@@ -1311,6 +1321,9 @@ class NetworkPeering(pulumi.CustomResource):
     @property
     @pulumi.getter(name="atlasVpcName")
     def atlas_vpc_name(self) -> pulumi.Output[str]:
+        """
+        Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+        """
         return pulumi.get(self, "atlas_vpc_name")
 
     @property

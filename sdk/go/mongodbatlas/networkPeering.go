@@ -325,10 +325,11 @@ type NetworkPeering struct {
 	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName pulumi.StringOutput `pulumi:"accepterRegionName"`
 	AtlasCidrBlock     pulumi.StringOutput `pulumi:"atlasCidrBlock"`
-	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
 	AtlasGcpProjectId pulumi.StringOutput `pulumi:"atlasGcpProjectId"`
 	AtlasId           pulumi.StringOutput `pulumi:"atlasId"`
-	AtlasVpcName      pulumi.StringOutput `pulumi:"atlasVpcName"`
+	// Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+	AtlasVpcName pulumi.StringOutput `pulumi:"atlasVpcName"`
 	// AWS Account ID of the owner of the peer VPC.
 	AwsAccountId pulumi.StringOutput `pulumi:"awsAccountId"`
 	// Unique identifier for an Azure AD directory.
@@ -417,10 +418,11 @@ type networkPeeringState struct {
 	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName *string `pulumi:"accepterRegionName"`
 	AtlasCidrBlock     *string `pulumi:"atlasCidrBlock"`
-	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
 	AtlasGcpProjectId *string `pulumi:"atlasGcpProjectId"`
 	AtlasId           *string `pulumi:"atlasId"`
-	AtlasVpcName      *string `pulumi:"atlasVpcName"`
+	// Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+	AtlasVpcName *string `pulumi:"atlasVpcName"`
 	// AWS Account ID of the owner of the peer VPC.
 	AwsAccountId *string `pulumi:"awsAccountId"`
 	// Unique identifier for an Azure AD directory.
@@ -471,10 +473,11 @@ type NetworkPeeringState struct {
 	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName pulumi.StringPtrInput
 	AtlasCidrBlock     pulumi.StringPtrInput
-	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
 	AtlasGcpProjectId pulumi.StringPtrInput
 	AtlasId           pulumi.StringPtrInput
-	AtlasVpcName      pulumi.StringPtrInput
+	// Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+	AtlasVpcName pulumi.StringPtrInput
 	// AWS Account ID of the owner of the peer VPC.
 	AwsAccountId pulumi.StringPtrInput
 	// Unique identifier for an Azure AD directory.
@@ -529,9 +532,10 @@ type networkPeeringArgs struct {
 	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName *string `pulumi:"accepterRegionName"`
 	AtlasCidrBlock     *string `pulumi:"atlasCidrBlock"`
-	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
 	AtlasGcpProjectId *string `pulumi:"atlasGcpProjectId"`
-	AtlasVpcName      *string `pulumi:"atlasVpcName"`
+	// Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+	AtlasVpcName *string `pulumi:"atlasVpcName"`
 	// AWS Account ID of the owner of the peer VPC.
 	AwsAccountId *string `pulumi:"awsAccountId"`
 	// Unique identifier for an Azure AD directory.
@@ -569,9 +573,10 @@ type NetworkPeeringArgs struct {
 	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName pulumi.StringPtrInput
 	AtlasCidrBlock     pulumi.StringPtrInput
-	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
 	AtlasGcpProjectId pulumi.StringPtrInput
-	AtlasVpcName      pulumi.StringPtrInput
+	// Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
+	AtlasVpcName pulumi.StringPtrInput
 	// AWS Account ID of the owner of the peer VPC.
 	AwsAccountId pulumi.StringPtrInput
 	// Unique identifier for an Azure AD directory.
@@ -700,7 +705,7 @@ func (o NetworkPeeringOutput) AtlasCidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.AtlasCidrBlock }).(pulumi.StringOutput)
 }
 
-// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
 func (o NetworkPeeringOutput) AtlasGcpProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.AtlasGcpProjectId }).(pulumi.StringOutput)
 }
@@ -709,6 +714,7 @@ func (o NetworkPeeringOutput) AtlasId() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.AtlasId }).(pulumi.StringOutput)
 }
 
+// Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
 func (o NetworkPeeringOutput) AtlasVpcName() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.AtlasVpcName }).(pulumi.StringOutput)
 }

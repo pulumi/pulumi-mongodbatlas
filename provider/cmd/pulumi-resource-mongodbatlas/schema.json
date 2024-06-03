@@ -17523,13 +17523,14 @@
                 },
                 "atlasGcpProjectId": {
                     "type": "string",
-                    "description": "The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.\n"
+                    "description": "The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.\n"
                 },
                 "atlasId": {
                     "type": "string"
                 },
                 "atlasVpcName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.\n"
                 },
                 "awsAccountId": {
                     "type": "string",
@@ -17645,10 +17646,11 @@
                 },
                 "atlasGcpProjectId": {
                     "type": "string",
-                    "description": "The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.\n"
+                    "description": "The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.\n"
                 },
                 "atlasVpcName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.\n"
                 },
                 "awsAccountId": {
                     "type": "string",
@@ -17671,11 +17673,13 @@
                 },
                 "gcpProjectId": {
                     "type": "string",
-                    "description": "GCP project ID of the owner of the network peer.\n"
+                    "description": "GCP project ID of the owner of the network peer.\n",
+                    "willReplaceOnChanges": true
                 },
                 "networkName": {
                     "type": "string",
-                    "description": "Name of the network peer to which Atlas connects.\n\n**AZURE ONLY:**\n"
+                    "description": "Name of the network peer to which Atlas connects.\n\n**AZURE ONLY:**\n",
+                    "willReplaceOnChanges": true
                 },
                 "projectId": {
                     "type": "string",
@@ -17724,13 +17728,14 @@
                     },
                     "atlasGcpProjectId": {
                         "type": "string",
-                        "description": "The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.\n"
+                        "description": "The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.\n"
                     },
                     "atlasId": {
                         "type": "string"
                     },
                     "atlasVpcName": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.\n"
                     },
                     "awsAccountId": {
                         "type": "string",
@@ -17769,11 +17774,13 @@
                     },
                     "gcpProjectId": {
                         "type": "string",
-                        "description": "GCP project ID of the owner of the network peer.\n"
+                        "description": "GCP project ID of the owner of the network peer.\n",
+                        "willReplaceOnChanges": true
                     },
                     "networkName": {
                         "type": "string",
-                        "description": "Name of the network peer to which Atlas connects.\n\n**AZURE ONLY:**\n"
+                        "description": "Name of the network peer to which Atlas connects.\n\n**AZURE ONLY:**\n",
+                        "willReplaceOnChanges": true
                     },
                     "peerId": {
                         "type": "string",
