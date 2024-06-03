@@ -93,6 +93,10 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_privatelink_endpoint":         {Tok: makeResource(mainMod, "PrivateLinkEndpoint")},
 			"mongodbatlas_privatelink_endpoint_service": {Tok: makeResource(mainMod, "PrivateLinkEndpointService")},
 
+			"mongodbatlas_push_based_log_export": {
+				ComputeID: tfbridge.DelegateIDField("projectId", "mongodbatlas", "https://github.com/pulumi/pulumi-mongodbatlas"),
+			},
+
 			"mongodbatlas_cloud_provider_access_authorization": {Docs: noUpstreamDocs},
 			"mongodbatlas_cloud_provider_access_setup":         {Docs: noUpstreamDocs},
 			"mongodbatlas_team":                                {Docs: noUpstreamDocs},
