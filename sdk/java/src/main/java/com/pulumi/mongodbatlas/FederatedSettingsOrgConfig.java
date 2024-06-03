@@ -16,41 +16,150 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+ * 
+ * ## Example Usage
+ * 
+ * &gt; **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfig;
+ * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var orgConnection = new FederatedSettingsOrgConfig("orgConnection", FederatedSettingsOrgConfigArgs.builder()
+ *             .federationSettingsId("627a9687f7f7f7f774de306f14")
+ *             .orgId("627a9683ea7ff7f74de306f14")
+ *             .domainRestrictionEnabled(false)
+ *             .domainAllowLists("mydomain.com")
+ *             .postAuthRoleGrants("ORG_MEMBER")
+ *             .identityProviderId("0oad4fas87jL7f75Xnk1297")
+ *             .build());
+ * 
+ *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
+ *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ## Import
+ * 
+ * FederatedSettingsOrgConfig must be imported using federation_settings_id-org_id, e.g.
+ * 
+ * ```sh
+ * $ pulumi import mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig org_connection 627a9687f7f7f7f774de306f14-627a9683ea7ff7f74de306f14
+ * ```
+ * For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+ * 
+ */
 @ResourceType(type="mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig")
 public class FederatedSettingsOrgConfig extends com.pulumi.resources.CustomResource {
+    /**
+     * List that contains the approved domains from which organization users can log in.
+     * 
+     */
     @Export(name="domainAllowLists", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> domainAllowLists;
 
+    /**
+     * @return List that contains the approved domains from which organization users can log in.
+     * 
+     */
     public Output<Optional<List<String>>> domainAllowLists() {
         return Codegen.optional(this.domainAllowLists);
     }
+    /**
+     * Flag that indicates whether domain restriction is enabled for the connected organization.
+     * 
+     */
     @Export(name="domainRestrictionEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> domainRestrictionEnabled;
 
+    /**
+     * @return Flag that indicates whether domain restriction is enabled for the connected organization.
+     * 
+     */
     public Output<Boolean> domainRestrictionEnabled() {
         return this.domainRestrictionEnabled;
     }
+    /**
+     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * 
+     */
     @Export(name="federationSettingsId", refs={String.class}, tree="[0]")
     private Output<String> federationSettingsId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * 
+     */
     public Output<String> federationSettingsId() {
         return this.federationSettingsId;
     }
+    /**
+     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * 
+     */
     @Export(name="identityProviderId", refs={String.class}, tree="[0]")
     private Output<String> identityProviderId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * 
+     */
     public Output<String> identityProviderId() {
         return this.identityProviderId;
     }
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     * 
+     */
     @Export(name="orgId", refs={String.class}, tree="[0]")
     private Output<String> orgId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     * 
+     */
     public Output<String> orgId() {
         return this.orgId;
     }
+    /**
+     * List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+     * 
+     */
     @Export(name="postAuthRoleGrants", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> postAuthRoleGrants;
 
+    /**
+     * @return List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+     * 
+     */
     public Output<Optional<List<String>>> postAuthRoleGrants() {
         return Codegen.optional(this.postAuthRoleGrants);
     }

@@ -9,6 +9,9 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas
 {
+    /// <summary>
+    /// This resource is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the resource with the implementation which manages a single team.
+    /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/teams:Teams")]
     public partial class Teams : global::Pulumi.CustomResource
     {

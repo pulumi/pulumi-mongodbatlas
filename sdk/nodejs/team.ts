@@ -4,6 +4,39 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * `mongodbatlas.Team` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
+ *
+ * > **IMPORTANT:** MongoDB Atlas Team are limited to a maximum of 250 teams in an organization and 100 teams per project.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.Team("test", {
+ *     orgId: "<ORGANIZATION-ID>",
+ *     name: "myNewTeam",
+ *     usernames: [
+ *         "user1@email.com",
+ *         "user2@email.com",
+ *         "user3@email.com",
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Teams can be imported using the organization ID and team id, in the format ORGID-TEAMID, e.g.
+ *
+ * ```sh
+ * $ pulumi import mongodbatlas:index/team:Team my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935
+ * ```
+ * See detailed information for arguments and attributes: [MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
+ */
 export class Team extends pulumi.CustomResource {
     /**
      * Get an existing Team resource's state with the given name, ID, and optional extra
@@ -32,9 +65,21 @@ export class Team extends pulumi.CustomResource {
         return obj['__pulumiType'] === Team.__pulumiType;
     }
 
+    /**
+     * The name of the team you want to create.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The unique identifier for the organization you want to associate the team with.
+     */
     public readonly orgId!: pulumi.Output<string>;
+    /**
+     * The unique identifier for the team.
+     */
     public /*out*/ readonly teamId!: pulumi.Output<string>;
+    /**
+     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     */
     public readonly usernames!: pulumi.Output<string[]>;
 
     /**
@@ -76,9 +121,21 @@ export class Team extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Team resources.
  */
 export interface TeamState {
+    /**
+     * The name of the team you want to create.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The unique identifier for the organization you want to associate the team with.
+     */
     orgId?: pulumi.Input<string>;
+    /**
+     * The unique identifier for the team.
+     */
     teamId?: pulumi.Input<string>;
+    /**
+     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     */
     usernames?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -86,7 +143,16 @@ export interface TeamState {
  * The set of arguments for constructing a Team resource.
  */
 export interface TeamArgs {
+    /**
+     * The name of the team you want to create.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The unique identifier for the organization you want to associate the team with.
+     */
     orgId: pulumi.Input<string>;
+    /**
+     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     */
     usernames: pulumi.Input<pulumi.Input<string>[]>;
 }

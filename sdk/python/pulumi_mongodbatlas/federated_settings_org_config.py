@@ -22,6 +22,12 @@ class FederatedSettingsOrgConfigArgs:
                  post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a FederatedSettingsOrgConfig resource.
+        :param pulumi.Input[bool] domain_restriction_enabled: Flag that indicates whether domain restriction is enabled for the connected organization.
+        :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param pulumi.Input[str] identity_provider_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] domain_allow_lists: List that contains the approved domains from which organization users can log in.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] post_auth_role_grants: List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
         """
         pulumi.set(__self__, "domain_restriction_enabled", domain_restriction_enabled)
         pulumi.set(__self__, "federation_settings_id", federation_settings_id)
@@ -35,6 +41,9 @@ class FederatedSettingsOrgConfigArgs:
     @property
     @pulumi.getter(name="domainRestrictionEnabled")
     def domain_restriction_enabled(self) -> pulumi.Input[bool]:
+        """
+        Flag that indicates whether domain restriction is enabled for the connected organization.
+        """
         return pulumi.get(self, "domain_restriction_enabled")
 
     @domain_restriction_enabled.setter
@@ -44,6 +53,9 @@ class FederatedSettingsOrgConfigArgs:
     @property
     @pulumi.getter(name="federationSettingsId")
     def federation_settings_id(self) -> pulumi.Input[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
         return pulumi.get(self, "federation_settings_id")
 
     @federation_settings_id.setter
@@ -53,6 +65,9 @@ class FederatedSettingsOrgConfigArgs:
     @property
     @pulumi.getter(name="identityProviderId")
     def identity_provider_id(self) -> pulumi.Input[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
         return pulumi.get(self, "identity_provider_id")
 
     @identity_provider_id.setter
@@ -62,6 +77,9 @@ class FederatedSettingsOrgConfigArgs:
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Input[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
@@ -71,6 +89,9 @@ class FederatedSettingsOrgConfigArgs:
     @property
     @pulumi.getter(name="domainAllowLists")
     def domain_allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List that contains the approved domains from which organization users can log in.
+        """
         return pulumi.get(self, "domain_allow_lists")
 
     @domain_allow_lists.setter
@@ -80,6 +101,9 @@ class FederatedSettingsOrgConfigArgs:
     @property
     @pulumi.getter(name="postAuthRoleGrants")
     def post_auth_role_grants(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+        """
         return pulumi.get(self, "post_auth_role_grants")
 
     @post_auth_role_grants.setter
@@ -98,6 +122,12 @@ class _FederatedSettingsOrgConfigState:
                  post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering FederatedSettingsOrgConfig resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] domain_allow_lists: List that contains the approved domains from which organization users can log in.
+        :param pulumi.Input[bool] domain_restriction_enabled: Flag that indicates whether domain restriction is enabled for the connected organization.
+        :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param pulumi.Input[str] identity_provider_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] post_auth_role_grants: List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
         """
         if domain_allow_lists is not None:
             pulumi.set(__self__, "domain_allow_lists", domain_allow_lists)
@@ -115,6 +145,9 @@ class _FederatedSettingsOrgConfigState:
     @property
     @pulumi.getter(name="domainAllowLists")
     def domain_allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List that contains the approved domains from which organization users can log in.
+        """
         return pulumi.get(self, "domain_allow_lists")
 
     @domain_allow_lists.setter
@@ -124,6 +157,9 @@ class _FederatedSettingsOrgConfigState:
     @property
     @pulumi.getter(name="domainRestrictionEnabled")
     def domain_restriction_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether domain restriction is enabled for the connected organization.
+        """
         return pulumi.get(self, "domain_restriction_enabled")
 
     @domain_restriction_enabled.setter
@@ -133,6 +169,9 @@ class _FederatedSettingsOrgConfigState:
     @property
     @pulumi.getter(name="federationSettingsId")
     def federation_settings_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
         return pulumi.get(self, "federation_settings_id")
 
     @federation_settings_id.setter
@@ -142,6 +181,9 @@ class _FederatedSettingsOrgConfigState:
     @property
     @pulumi.getter(name="identityProviderId")
     def identity_provider_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
         return pulumi.get(self, "identity_provider_id")
 
     @identity_provider_id.setter
@@ -151,6 +193,9 @@ class _FederatedSettingsOrgConfigState:
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
@@ -160,6 +205,9 @@ class _FederatedSettingsOrgConfigState:
     @property
     @pulumi.getter(name="postAuthRoleGrants")
     def post_auth_role_grants(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+        """
         return pulumi.get(self, "post_auth_role_grants")
 
     @post_auth_role_grants.setter
@@ -180,9 +228,43 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
                  post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a FederatedSettingsOrgConfig resource with the given unique name, props, and options.
+        `FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+
+        ## Example Usage
+
+        > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        org_connection = mongodbatlas.FederatedSettingsOrgConfig("org_connection",
+            federation_settings_id="627a9687f7f7f7f774de306f14",
+            org_id="627a9683ea7ff7f74de306f14",
+            domain_restriction_enabled=False,
+            domain_allow_lists=["mydomain.com"],
+            post_auth_role_grants=["ORG_MEMBER"],
+            identity_provider_id="0oad4fas87jL7f75Xnk1297")
+        org_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config["id"])
+        ```
+
+        ## Import
+
+        FederatedSettingsOrgConfig must be imported using federation_settings_id-org_id, e.g.
+
+        ```sh
+        $ pulumi import mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig org_connection 627a9687f7f7f7f774de306f14-627a9683ea7ff7f74de306f14
+        ```
+        For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] domain_allow_lists: List that contains the approved domains from which organization users can log in.
+        :param pulumi.Input[bool] domain_restriction_enabled: Flag that indicates whether domain restriction is enabled for the connected organization.
+        :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param pulumi.Input[str] identity_provider_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] post_auth_role_grants: List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
         """
         ...
     @overload
@@ -191,7 +273,35 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
                  args: FederatedSettingsOrgConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a FederatedSettingsOrgConfig resource with the given unique name, props, and options.
+        `FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+
+        ## Example Usage
+
+        > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        org_connection = mongodbatlas.FederatedSettingsOrgConfig("org_connection",
+            federation_settings_id="627a9687f7f7f7f774de306f14",
+            org_id="627a9683ea7ff7f74de306f14",
+            domain_restriction_enabled=False,
+            domain_allow_lists=["mydomain.com"],
+            post_auth_role_grants=["ORG_MEMBER"],
+            identity_provider_id="0oad4fas87jL7f75Xnk1297")
+        org_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config["id"])
+        ```
+
+        ## Import
+
+        FederatedSettingsOrgConfig must be imported using federation_settings_id-org_id, e.g.
+
+        ```sh
+        $ pulumi import mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig org_connection 627a9687f7f7f7f774de306f14-627a9683ea7ff7f74de306f14
+        ```
+        For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+
         :param str resource_name: The name of the resource.
         :param FederatedSettingsOrgConfigArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -259,6 +369,12 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] domain_allow_lists: List that contains the approved domains from which organization users can log in.
+        :param pulumi.Input[bool] domain_restriction_enabled: Flag that indicates whether domain restriction is enabled for the connected organization.
+        :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param pulumi.Input[str] identity_provider_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] post_auth_role_grants: List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -275,30 +391,48 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
     @property
     @pulumi.getter(name="domainAllowLists")
     def domain_allow_lists(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List that contains the approved domains from which organization users can log in.
+        """
         return pulumi.get(self, "domain_allow_lists")
 
     @property
     @pulumi.getter(name="domainRestrictionEnabled")
     def domain_restriction_enabled(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether domain restriction is enabled for the connected organization.
+        """
         return pulumi.get(self, "domain_restriction_enabled")
 
     @property
     @pulumi.getter(name="federationSettingsId")
     def federation_settings_id(self) -> pulumi.Output[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
         return pulumi.get(self, "federation_settings_id")
 
     @property
     @pulumi.getter(name="identityProviderId")
     def identity_provider_id(self) -> pulumi.Output[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
         return pulumi.get(self, "identity_provider_id")
 
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Output[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
         return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter(name="postAuthRoleGrants")
     def post_auth_role_grants(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+        """
         return pulumi.get(self, "post_auth_role_grants")
 

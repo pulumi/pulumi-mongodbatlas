@@ -16594,30 +16594,37 @@
             }
         },
         "mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig": {
+            "description": "`mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.\n\n\n## Example Usage\n\n\u003e **IMPORTANT** You **MUST** import this resource before you can manage it with this provider. \n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst orgConnection = new mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\", {\n    federationSettingsId: \"627a9687f7f7f7f774de306f14\",\n    orgId: \"627a9683ea7ff7f74de306f14\",\n    domainRestrictionEnabled: false,\n    domainAllowLists: [\"mydomain.com\"],\n    postAuthRoleGrants: [\"ORG_MEMBER\"],\n    identityProviderId: \"0oad4fas87jL7f75Xnk1297\",\n});\nconst orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigs({\n    federationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\norg_connection = mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\",\n    federation_settings_id=\"627a9687f7f7f7f774de306f14\",\n    org_id=\"627a9683ea7ff7f74de306f14\",\n    domain_restriction_enabled=False,\n    domain_allow_lists=[\"mydomain.com\"],\n    post_auth_role_grants=[\"ORG_MEMBER\"],\n    identity_provider_id=\"0oad4fas87jL7f75Xnk1297\")\norg_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config[\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var orgConnection = new Mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\", new()\n    {\n        FederationSettingsId = \"627a9687f7f7f7f774de306f14\",\n        OrgId = \"627a9683ea7ff7f74de306f14\",\n        DomainRestrictionEnabled = false,\n        DomainAllowLists = new[]\n        {\n            \"mydomain.com\",\n        },\n        PostAuthRoleGrants = new[]\n        {\n            \"ORG_MEMBER\",\n        },\n        IdentityProviderId = \"0oad4fas87jL7f75Xnk1297\",\n    });\n\n    var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()\n    {\n        FederationSettingsId = orgConnectionMongodbatlasFederatedSettingsOrgConfig.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, \"org_connection\", \u0026mongodbatlas.FederatedSettingsOrgConfigArgs{\n\t\t\tFederationSettingsId:     pulumi.String(\"627a9687f7f7f7f774de306f14\"),\n\t\t\tOrgId:                    pulumi.String(\"627a9683ea7ff7f74de306f14\"),\n\t\t\tDomainRestrictionEnabled: pulumi.Bool(false),\n\t\t\tDomainAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"mydomain.com\"),\n\t\t\t},\n\t\t\tPostAuthRoleGrants: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ORG_MEMBER\"),\n\t\t\t},\n\t\t\tIdentityProviderId: pulumi.String(\"0oad4fas87jL7f75Xnk1297\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.LookupFederatedSettingsOrgConfigs(ctx, \u0026mongodbatlas.LookupFederatedSettingsOrgConfigsArgs{\n\t\t\tFederationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfig;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var orgConnection = new FederatedSettingsOrgConfig(\"orgConnection\", FederatedSettingsOrgConfigArgs.builder()\n            .federationSettingsId(\"627a9687f7f7f7f774de306f14\")\n            .orgId(\"627a9683ea7ff7f74de306f14\")\n            .domainRestrictionEnabled(false)\n            .domainAllowLists(\"mydomain.com\")\n            .postAuthRoleGrants(\"ORG_MEMBER\")\n            .identityProviderId(\"0oad4fas87jL7f75Xnk1297\")\n            .build());\n\n        final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()\n            .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  orgConnection:\n    type: mongodbatlas:FederatedSettingsOrgConfig\n    name: org_connection\n    properties:\n      federationSettingsId: 627a9687f7f7f7f774de306f14\n      orgId: 627a9683ea7ff7f74de306f14\n      domainRestrictionEnabled: false\n      domainAllowLists:\n        - mydomain.com\n      postAuthRoleGrants:\n        - ORG_MEMBER\n      identityProviderId: 0oad4fas87jL7f75Xnk1297\nvariables:\n  orgConfigsDs:\n    fn::invoke:\n      Function: mongodbatlas:getFederatedSettingsOrgConfigs\n      Arguments:\n        federationSettingsId: ${orgConnectionMongodbatlasFederatedSettingsOrgConfig.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nFederatedSettingsOrgConfig must be imported using federation_settings_id-org_id, e.g.\n\n```sh\n$ pulumi import mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig org_connection 627a9687f7f7f7f774de306f14-627a9683ea7ff7f74de306f14\n```\nFor more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)\n\n",
             "properties": {
                 "domainAllowLists": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "List that contains the approved domains from which organization users can log in.\n"
                 },
                 "domainRestrictionEnabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Flag that indicates whether domain restriction is enabled for the connected organization.\n"
                 },
                 "federationSettingsId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n"
                 },
                 "identityProviderId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n"
                 },
                 "orgId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies the organization that contains your projects.\n"
                 },
                 "postAuthRoleGrants": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.\n"
                 }
             },
             "required": [
@@ -16631,25 +16638,31 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "List that contains the approved domains from which organization users can log in.\n"
                 },
                 "domainRestrictionEnabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Flag that indicates whether domain restriction is enabled for the connected organization.\n"
                 },
                 "federationSettingsId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n"
                 },
                 "identityProviderId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n"
                 },
                 "orgId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies the organization that contains your projects.\n"
                 },
                 "postAuthRoleGrants": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.\n"
                 }
             },
             "requiredInputs": [
@@ -16665,25 +16678,31 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "List that contains the approved domains from which organization users can log in.\n"
                     },
                     "domainRestrictionEnabled": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "Flag that indicates whether domain restriction is enabled for the connected organization.\n"
                     },
                     "federationSettingsId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n"
                     },
                     "identityProviderId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n"
                     },
                     "orgId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies the organization that contains your projects.\n"
                     },
                     "postAuthRoleGrants": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.\n"
                     }
                 },
                 "type": "object"
@@ -20485,21 +20504,26 @@
             }
         },
         "mongodbatlas:index/team:Team": {
+            "description": "`mongodbatlas.Team` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.\n\n\u003e **IMPORTANT:** MongoDB Atlas Team are limited to a maximum of 250 teams in an organization and 100 teams per project.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.Team(\"test\", {\n    orgId: \"\u003cORGANIZATION-ID\u003e\",\n    name: \"myNewTeam\",\n    usernames: [\n        \"user1@email.com\",\n        \"user2@email.com\",\n        \"user3@email.com\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.Team(\"test\",\n    org_id=\"\u003cORGANIZATION-ID\u003e\",\n    name=\"myNewTeam\",\n    usernames=[\n        \"user1@email.com\",\n        \"user2@email.com\",\n        \"user3@email.com\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Mongodbatlas.Team(\"test\", new()\n    {\n        OrgId = \"\u003cORGANIZATION-ID\u003e\",\n        Name = \"myNewTeam\",\n        Usernames = new[]\n        {\n            \"user1@email.com\",\n            \"user2@email.com\",\n            \"user3@email.com\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewTeam(ctx, \"test\", \u0026mongodbatlas.TeamArgs{\n\t\t\tOrgId: pulumi.String(\"\u003cORGANIZATION-ID\u003e\"),\n\t\t\tName:  pulumi.String(\"myNewTeam\"),\n\t\t\tUsernames: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"user1@email.com\"),\n\t\t\t\tpulumi.String(\"user2@email.com\"),\n\t\t\t\tpulumi.String(\"user3@email.com\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.Team;\nimport com.pulumi.mongodbatlas.TeamArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Team(\"test\", TeamArgs.builder()\n            .orgId(\"\u003cORGANIZATION-ID\u003e\")\n            .name(\"myNewTeam\")\n            .usernames(            \n                \"user1@email.com\",\n                \"user2@email.com\",\n                \"user3@email.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: mongodbatlas:Team\n    properties:\n      orgId: \u003cORGANIZATION-ID\u003e\n      name: myNewTeam\n      usernames:\n        - user1@email.com\n        - user2@email.com\n        - user3@email.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nTeams can be imported using the organization ID and team id, in the format ORGID-TEAMID, e.g.\n\n```sh\n$ pulumi import mongodbatlas:index/team:Team my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935\n```\nSee detailed information for arguments and attributes: [MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)\n\n",
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the team you want to create.\n"
                 },
                 "orgId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The unique identifier for the organization you want to associate the team with.\n"
                 },
                 "teamId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The unique identifier for the team.\n"
                 },
                 "usernames": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.\n"
                 }
             },
             "required": [
@@ -20510,17 +20534,20 @@
             ],
             "inputProperties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the team you want to create.\n"
                 },
                 "orgId": {
                     "type": "string",
+                    "description": "The unique identifier for the organization you want to associate the team with.\n",
                     "willReplaceOnChanges": true
                 },
                 "usernames": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.\n"
                 }
             },
             "requiredInputs": [
@@ -20531,26 +20558,31 @@
                 "description": "Input properties used for looking up and filtering Team resources.\n",
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the team you want to create.\n"
                     },
                     "orgId": {
                         "type": "string",
+                        "description": "The unique identifier for the organization you want to associate the team with.\n",
                         "willReplaceOnChanges": true
                     },
                     "teamId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The unique identifier for the team.\n"
                     },
                     "usernames": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "mongodbatlas:index/teams:Teams": {
+            "description": "This resource is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the resource with the implementation which manages a single team.\n",
             "properties": {
                 "name": {
                     "type": "string"
@@ -27775,17 +27807,21 @@
             }
         },
         "mongodbatlas:index/getTeam:getTeam": {
+            "description": "`mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testTeam = new mongodbatlas.Team(\"test\", {\n    orgId: \"\u003cORGANIZATION-ID\u003e\",\n    name: \"myNewTeam\",\n    usernames: [\n        \"user1\",\n        \"user2\",\n        \"user3\",\n    ],\n});\nconst test = mongodbatlas.getTeamOutput({\n    orgId: testTeam.orgId,\n    teamId: testTeam.teamId,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_team = mongodbatlas.Team(\"test\",\n    org_id=\"\u003cORGANIZATION-ID\u003e\",\n    name=\"myNewTeam\",\n    usernames=[\n        \"user1\",\n        \"user2\",\n        \"user3\",\n    ])\ntest = mongodbatlas.get_team_output(org_id=test_team.org_id,\n    team_id=test_team.team_id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testTeam = new Mongodbatlas.Team(\"test\", new()\n    {\n        OrgId = \"\u003cORGANIZATION-ID\u003e\",\n        Name = \"myNewTeam\",\n        Usernames = new[]\n        {\n            \"user1\",\n            \"user2\",\n            \"user3\",\n        },\n    });\n\n    var test = Mongodbatlas.GetTeam.Invoke(new()\n    {\n        OrgId = testTeam.OrgId,\n        TeamId = testTeam.TeamId,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestTeam, err := mongodbatlas.NewTeam(ctx, \"test\", \u0026mongodbatlas.TeamArgs{\n\t\t\tOrgId: pulumi.String(\"\u003cORGANIZATION-ID\u003e\"),\n\t\t\tName:  pulumi.String(\"myNewTeam\"),\n\t\t\tUsernames: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"user1\"),\n\t\t\t\tpulumi.String(\"user2\"),\n\t\t\t\tpulumi.String(\"user3\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = mongodbatlas.LookupTeamOutput(ctx, mongodbatlas.GetTeamOutputArgs{\n\t\t\tOrgId:  testTeam.OrgId,\n\t\t\tTeamId: testTeam.TeamId,\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.Team;\nimport com.pulumi.mongodbatlas.TeamArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetTeamArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testTeam = new Team(\"testTeam\", TeamArgs.builder()\n            .orgId(\"\u003cORGANIZATION-ID\u003e\")\n            .name(\"myNewTeam\")\n            .usernames(            \n                \"user1\",\n                \"user2\",\n                \"user3\")\n            .build());\n\n        final var test = MongodbatlasFunctions.getTeam(GetTeamArgs.builder()\n            .orgId(testTeam.orgId())\n            .teamId(testTeam.teamId())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testTeam:\n    type: mongodbatlas:Team\n    name: test\n    properties:\n      orgId: \u003cORGANIZATION-ID\u003e\n      name: myNewTeam\n      usernames:\n        - user1\n        - user2\n        - user3\nvariables:\n  test:\n    fn::invoke:\n      Function: mongodbatlas:getTeam\n      Arguments:\n        orgId: ${testTeam.orgId}\n        teamId: ${testTeam.teamId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.Team(\"test\", {\n    orgId: \"\u003cORGANIZATION-ID\u003e\",\n    name: \"myNewTeam\",\n    usernames: [\n        \"user1\",\n        \"user2\",\n        \"user3\",\n    ],\n});\nconst test2 = mongodbatlas.getTeamOutput({\n    orgId: test.orgId,\n    name: test.name,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.Team(\"test\",\n    org_id=\"\u003cORGANIZATION-ID\u003e\",\n    name=\"myNewTeam\",\n    usernames=[\n        \"user1\",\n        \"user2\",\n        \"user3\",\n    ])\ntest2 = mongodbatlas.get_team_output(org_id=test.org_id,\n    name=test.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Mongodbatlas.Team(\"test\", new()\n    {\n        OrgId = \"\u003cORGANIZATION-ID\u003e\",\n        Name = \"myNewTeam\",\n        Usernames = new[]\n        {\n            \"user1\",\n            \"user2\",\n            \"user3\",\n        },\n    });\n\n    var test2 = Mongodbatlas.GetTeam.Invoke(new()\n    {\n        OrgId = test.OrgId,\n        Name = test.Name,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := mongodbatlas.NewTeam(ctx, \"test\", \u0026mongodbatlas.TeamArgs{\n\t\t\tOrgId: pulumi.String(\"\u003cORGANIZATION-ID\u003e\"),\n\t\t\tName:  pulumi.String(\"myNewTeam\"),\n\t\t\tUsernames: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"user1\"),\n\t\t\t\tpulumi.String(\"user2\"),\n\t\t\t\tpulumi.String(\"user3\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = mongodbatlas.LookupTeamOutput(ctx, mongodbatlas.GetTeamOutputArgs{\n\t\t\tOrgId: test.OrgId,\n\t\t\tName:  test.Name,\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.Team;\nimport com.pulumi.mongodbatlas.TeamArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetTeamArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Team(\"test\", TeamArgs.builder()\n            .orgId(\"\u003cORGANIZATION-ID\u003e\")\n            .name(\"myNewTeam\")\n            .usernames(            \n                \"user1\",\n                \"user2\",\n                \"user3\")\n            .build());\n\n        final var test2 = MongodbatlasFunctions.getTeam(GetTeamArgs.builder()\n            .orgId(test.orgId())\n            .name(test.name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: mongodbatlas:Team\n    properties:\n      orgId: \u003cORGANIZATION-ID\u003e\n      name: myNewTeam\n      usernames:\n        - user1\n        - user2\n        - user3\nvariables:\n  test2:\n    fn::invoke:\n      Function: mongodbatlas:getTeam\n      Arguments:\n        orgId: ${test.orgId}\n        name: ${test.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getTeam.\n",
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The team name.\n\n\u003e **IMPORTANT:** Either `team_id` or `name` must be configured.\n"
                     },
                     "orgId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The unique identifier for the organization you want to associate the team with.\n"
                     },
                     "teamId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The unique identifier for the team.\n"
                     }
                 },
                 "type": "object",
@@ -27801,15 +27837,18 @@
                         "type": "string"
                     },
                     "name": {
+                        "description": "The name of the team you want to create.\n",
                         "type": "string"
                     },
                     "orgId": {
                         "type": "string"
                     },
                     "teamId": {
+                        "description": "The unique identifier for the team.\n",
                         "type": "string"
                     },
                     "usernames": {
+                        "description": "The users who are part of the organization.\n",
                         "items": {
                             "type": "string"
                         },
@@ -27827,6 +27866,7 @@
             }
         },
         "mongodbatlas:index/getTeams:getTeams": {
+            "description": "This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.\n\nIn the future this data source will define a new implementation capable of fetching all teams in one organization.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getTeams.\n",
                 "properties": {

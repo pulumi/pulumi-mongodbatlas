@@ -49,6 +49,9 @@ class GetTeamResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the team you want to create.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -59,11 +62,17 @@ class GetTeamResult:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> str:
+        """
+        The unique identifier for the team.
+        """
         return pulumi.get(self, "team_id")
 
     @property
     @pulumi.getter
     def usernames(self) -> Sequence[str]:
+        """
+        The users who are part of the organization.
+        """
         return pulumi.get(self, "usernames")
 
 
@@ -85,7 +94,50 @@ def get_team(name: Optional[str] = None,
              team_id: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTeamResult:
     """
-    Use this data source to access information about an existing resource.
+    `Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_team = mongodbatlas.Team("test",
+        org_id="<ORGANIZATION-ID>",
+        name="myNewTeam",
+        usernames=[
+            "user1",
+            "user2",
+            "user3",
+        ])
+    test = mongodbatlas.get_team_output(org_id=test_team.org_id,
+        team_id=test_team.team_id)
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.Team("test",
+        org_id="<ORGANIZATION-ID>",
+        name="myNewTeam",
+        usernames=[
+            "user1",
+            "user2",
+            "user3",
+        ])
+    test2 = mongodbatlas.get_team_output(org_id=test.org_id,
+        name=test.name)
+    ```
+
+
+    :param str name: The team name.
+           
+           > **IMPORTANT:** Either `team_id` or `name` must be configured.
+    :param str org_id: The unique identifier for the organization you want to associate the team with.
+    :param str team_id: The unique identifier for the team.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -108,6 +160,49 @@ def get_team_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                     team_id: Optional[pulumi.Input[Optional[str]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTeamResult]:
     """
-    Use this data source to access information about an existing resource.
+    `Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_team = mongodbatlas.Team("test",
+        org_id="<ORGANIZATION-ID>",
+        name="myNewTeam",
+        usernames=[
+            "user1",
+            "user2",
+            "user3",
+        ])
+    test = mongodbatlas.get_team_output(org_id=test_team.org_id,
+        team_id=test_team.team_id)
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.Team("test",
+        org_id="<ORGANIZATION-ID>",
+        name="myNewTeam",
+        usernames=[
+            "user1",
+            "user2",
+            "user3",
+        ])
+    test2 = mongodbatlas.get_team_output(org_id=test.org_id,
+        name=test.name)
+    ```
+
+
+    :param str name: The team name.
+           
+           > **IMPORTANT:** Either `team_id` or `name` must be configured.
+    :param str org_id: The unique identifier for the organization you want to associate the team with.
+    :param str team_id: The unique identifier for the team.
     """
     ...

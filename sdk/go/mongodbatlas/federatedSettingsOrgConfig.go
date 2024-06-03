@@ -12,15 +12,74 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+//
+// ## Example Usage
+//
+// > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, "org_connection", &mongodbatlas.FederatedSettingsOrgConfigArgs{
+//				FederationSettingsId:     pulumi.String("627a9687f7f7f7f774de306f14"),
+//				OrgId:                    pulumi.String("627a9683ea7ff7f74de306f14"),
+//				DomainRestrictionEnabled: pulumi.Bool(false),
+//				DomainAllowLists: pulumi.StringArray{
+//					pulumi.String("mydomain.com"),
+//				},
+//				PostAuthRoleGrants: pulumi.StringArray{
+//					pulumi.String("ORG_MEMBER"),
+//				},
+//				IdentityProviderId: pulumi.String("0oad4fas87jL7f75Xnk1297"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.LookupFederatedSettingsOrgConfigs(ctx, &mongodbatlas.LookupFederatedSettingsOrgConfigsArgs{
+//				FederationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.Id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// FederatedSettingsOrgConfig must be imported using federation_settings_id-org_id, e.g.
+//
+// ```sh
+// $ pulumi import mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig org_connection 627a9687f7f7f7f774de306f14-627a9683ea7ff7f74de306f14
+// ```
+// For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
 type FederatedSettingsOrgConfig struct {
 	pulumi.CustomResourceState
 
-	DomainAllowLists         pulumi.StringArrayOutput `pulumi:"domainAllowLists"`
-	DomainRestrictionEnabled pulumi.BoolOutput        `pulumi:"domainRestrictionEnabled"`
-	FederationSettingsId     pulumi.StringOutput      `pulumi:"federationSettingsId"`
-	IdentityProviderId       pulumi.StringOutput      `pulumi:"identityProviderId"`
-	OrgId                    pulumi.StringOutput      `pulumi:"orgId"`
-	PostAuthRoleGrants       pulumi.StringArrayOutput `pulumi:"postAuthRoleGrants"`
+	// List that contains the approved domains from which organization users can log in.
+	DomainAllowLists pulumi.StringArrayOutput `pulumi:"domainAllowLists"`
+	// Flag that indicates whether domain restriction is enabled for the connected organization.
+	DomainRestrictionEnabled pulumi.BoolOutput `pulumi:"domainRestrictionEnabled"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId pulumi.StringOutput `pulumi:"federationSettingsId"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	IdentityProviderId pulumi.StringOutput `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
+	// List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+	PostAuthRoleGrants pulumi.StringArrayOutput `pulumi:"postAuthRoleGrants"`
 }
 
 // NewFederatedSettingsOrgConfig registers a new resource with the given unique name, arguments, and options.
@@ -65,21 +124,33 @@ func GetFederatedSettingsOrgConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FederatedSettingsOrgConfig resources.
 type federatedSettingsOrgConfigState struct {
-	DomainAllowLists         []string `pulumi:"domainAllowLists"`
-	DomainRestrictionEnabled *bool    `pulumi:"domainRestrictionEnabled"`
-	FederationSettingsId     *string  `pulumi:"federationSettingsId"`
-	IdentityProviderId       *string  `pulumi:"identityProviderId"`
-	OrgId                    *string  `pulumi:"orgId"`
-	PostAuthRoleGrants       []string `pulumi:"postAuthRoleGrants"`
+	// List that contains the approved domains from which organization users can log in.
+	DomainAllowLists []string `pulumi:"domainAllowLists"`
+	// Flag that indicates whether domain restriction is enabled for the connected organization.
+	DomainRestrictionEnabled *bool `pulumi:"domainRestrictionEnabled"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId *string `pulumi:"federationSettingsId"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	IdentityProviderId *string `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId *string `pulumi:"orgId"`
+	// List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+	PostAuthRoleGrants []string `pulumi:"postAuthRoleGrants"`
 }
 
 type FederatedSettingsOrgConfigState struct {
-	DomainAllowLists         pulumi.StringArrayInput
+	// List that contains the approved domains from which organization users can log in.
+	DomainAllowLists pulumi.StringArrayInput
+	// Flag that indicates whether domain restriction is enabled for the connected organization.
 	DomainRestrictionEnabled pulumi.BoolPtrInput
-	FederationSettingsId     pulumi.StringPtrInput
-	IdentityProviderId       pulumi.StringPtrInput
-	OrgId                    pulumi.StringPtrInput
-	PostAuthRoleGrants       pulumi.StringArrayInput
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId pulumi.StringPtrInput
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	IdentityProviderId pulumi.StringPtrInput
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringPtrInput
+	// List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+	PostAuthRoleGrants pulumi.StringArrayInput
 }
 
 func (FederatedSettingsOrgConfigState) ElementType() reflect.Type {
@@ -87,22 +158,34 @@ func (FederatedSettingsOrgConfigState) ElementType() reflect.Type {
 }
 
 type federatedSettingsOrgConfigArgs struct {
-	DomainAllowLists         []string `pulumi:"domainAllowLists"`
-	DomainRestrictionEnabled bool     `pulumi:"domainRestrictionEnabled"`
-	FederationSettingsId     string   `pulumi:"federationSettingsId"`
-	IdentityProviderId       string   `pulumi:"identityProviderId"`
-	OrgId                    string   `pulumi:"orgId"`
-	PostAuthRoleGrants       []string `pulumi:"postAuthRoleGrants"`
+	// List that contains the approved domains from which organization users can log in.
+	DomainAllowLists []string `pulumi:"domainAllowLists"`
+	// Flag that indicates whether domain restriction is enabled for the connected organization.
+	DomainRestrictionEnabled bool `pulumi:"domainRestrictionEnabled"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId string `pulumi:"federationSettingsId"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	IdentityProviderId string `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId string `pulumi:"orgId"`
+	// List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+	PostAuthRoleGrants []string `pulumi:"postAuthRoleGrants"`
 }
 
 // The set of arguments for constructing a FederatedSettingsOrgConfig resource.
 type FederatedSettingsOrgConfigArgs struct {
-	DomainAllowLists         pulumi.StringArrayInput
+	// List that contains the approved domains from which organization users can log in.
+	DomainAllowLists pulumi.StringArrayInput
+	// Flag that indicates whether domain restriction is enabled for the connected organization.
 	DomainRestrictionEnabled pulumi.BoolInput
-	FederationSettingsId     pulumi.StringInput
-	IdentityProviderId       pulumi.StringInput
-	OrgId                    pulumi.StringInput
-	PostAuthRoleGrants       pulumi.StringArrayInput
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId pulumi.StringInput
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	IdentityProviderId pulumi.StringInput
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringInput
+	// List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
+	PostAuthRoleGrants pulumi.StringArrayInput
 }
 
 func (FederatedSettingsOrgConfigArgs) ElementType() reflect.Type {
@@ -192,26 +275,32 @@ func (o FederatedSettingsOrgConfigOutput) ToFederatedSettingsOrgConfigOutputWith
 	return o
 }
 
+// List that contains the approved domains from which organization users can log in.
 func (o FederatedSettingsOrgConfigOutput) DomainAllowLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *FederatedSettingsOrgConfig) pulumi.StringArrayOutput { return v.DomainAllowLists }).(pulumi.StringArrayOutput)
 }
 
+// Flag that indicates whether domain restriction is enabled for the connected organization.
 func (o FederatedSettingsOrgConfigOutput) DomainRestrictionEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *FederatedSettingsOrgConfig) pulumi.BoolOutput { return v.DomainRestrictionEnabled }).(pulumi.BoolOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 func (o FederatedSettingsOrgConfigOutput) FederationSettingsId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedSettingsOrgConfig) pulumi.StringOutput { return v.FederationSettingsId }).(pulumi.StringOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 func (o FederatedSettingsOrgConfigOutput) IdentityProviderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedSettingsOrgConfig) pulumi.StringOutput { return v.IdentityProviderId }).(pulumi.StringOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 func (o FederatedSettingsOrgConfigOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedSettingsOrgConfig) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
+// List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
 func (o FederatedSettingsOrgConfigOutput) PostAuthRoleGrants() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *FederatedSettingsOrgConfig) pulumi.StringArrayOutput { return v.PostAuthRoleGrants }).(pulumi.StringArrayOutput)
 }

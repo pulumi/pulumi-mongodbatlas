@@ -72,7 +72,6 @@ func Provider() tfbridge.ProviderInfo {
 		shimv2.NewProvider(mongodbatlas.SDKProvider()),
 		mongodbatlas.FrameworkProvider())
 
-	trueValue := true
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:           p,
@@ -85,8 +84,8 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:   "mongodb",
 		Version:     version.Version,
 		Config: map[string]*tfbridge.SchemaInfo{
-			"private_key": {MarkAsOptional: &trueValue},
-			"public_key":  {MarkAsOptional: &trueValue},
+			"private_key": {MarkAsOptional: tfbridge.True()},
+			"public_key":  {MarkAsOptional: tfbridge.True()},
 		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		Resources: map[string]*tfbridge.ResourceInfo{
@@ -100,15 +99,11 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_cloud_provider_access_authorization": {Docs: noUpstreamDocs},
 			"mongodbatlas_cloud_provider_access_setup":         {Docs: noUpstreamDocs},
 			"mongodbatlas_team":                                {Docs: noUpstreamDocs},
-			"mongodbatlas_teams":                               {Docs: noUpstreamDocs},
-			"mongodbatlas_federated_settings_org_config":       {Docs: noUpstreamDocs},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"mongodbatlas_privatelink_endpoint":         {Tok: makeDataSource(mainMod, "getPrivateLinkEndpoint")},
 			"mongodbatlas_privatelink_endpoint_service": {Tok: makeDataSource(mainMod, "getPrivateLinkEndpointService")},
 
-			"mongodbatlas_team":                     {Docs: noUpstreamDocs},
-			"mongodbatlas_teams":                    {Docs: noUpstreamDocs},
 			"mongodbatlas_shared_tier_restore_job":  {Docs: noUpstreamDocs},
 			"mongodbatlas_shared_tier_restore_jobs": {Docs: noUpstreamDocs},
 			"mongodbatlas_shared_tier_snapshot":     {Docs: noUpstreamDocs},
@@ -164,6 +159,4 @@ func Provider() tfbridge.ProviderInfo {
 	return prov
 }
 
-var noUpstreamDocs = &tfbridge.DocInfo{
-	Markdown: []byte(" "),
-}
+var noUpstreamDocs = &tfbridge.DocInfo{AllowMissing: true}
