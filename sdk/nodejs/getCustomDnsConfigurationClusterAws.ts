@@ -8,6 +8,21 @@ import * as utilities from "./utilities";
  * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCustomDnsConfigurationClusterAws = new mongodbatlas.CustomDnsConfigurationClusterAws("test", {
+ *     projectId: "<project-id>",
+ *     enabled: true,
+ * });
+ * const test = mongodbatlas.getCustomDnsConfigurationClusterAwsOutput({
+ *     projectId: testCustomDnsConfigurationClusterAws.id,
+ * });
+ * ```
  */
 export function getCustomDnsConfigurationClusterAws(args: GetCustomDnsConfigurationClusterAwsArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDnsConfigurationClusterAwsResult> {
 
@@ -45,6 +60,21 @@ export interface GetCustomDnsConfigurationClusterAwsResult {
  * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCustomDnsConfigurationClusterAws = new mongodbatlas.CustomDnsConfigurationClusterAws("test", {
+ *     projectId: "<project-id>",
+ *     enabled: true,
+ * });
+ * const test = mongodbatlas.getCustomDnsConfigurationClusterAwsOutput({
+ *     projectId: testCustomDnsConfigurationClusterAws.id,
+ * });
+ * ```
  */
 export function getCustomDnsConfigurationClusterAwsOutput(args: GetCustomDnsConfigurationClusterAwsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDnsConfigurationClusterAwsResult> {
     return pulumi.output(args).apply((a: any) => getCustomDnsConfigurationClusterAws(a, opts))

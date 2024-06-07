@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ### Create And Assign PAK Together
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,23 +44,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ProjectApiKey(&#34;test&#34;, ProjectApiKeyArgs.builder()        
- *             .description(&#34;Description of your API key&#34;)
+ *         var test = new ProjectApiKey("test", ProjectApiKeyArgs.builder()
+ *             .description("Description of your API key")
  *             .projectAssignments(ProjectApiKeyProjectAssignmentArgs.builder()
- *                 .projectId(&#34;64259ee860c43338194b0f8e&#34;)
- *                 .roleNames(&#34;GROUP_OWNER&#34;)
+ *                 .projectId("64259ee860c43338194b0f8e")
+ *                 .roleNames("GROUP_OWNER")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Create And Assign PAK To Multiple Projects
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -81,24 +84,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ProjectApiKey(&#34;test&#34;, ProjectApiKeyArgs.builder()        
- *             .description(&#34;Description of your API key&#34;)
+ *         var test = new ProjectApiKey("test", ProjectApiKeyArgs.builder()
+ *             .description("Description of your API key")
  *             .projectAssignments(            
  *                 ProjectApiKeyProjectAssignmentArgs.builder()
- *                     .projectId(&#34;64259ee860c43338194b0f8e&#34;)
+ *                     .projectId("64259ee860c43338194b0f8e")
  *                     .roleNames(                    
- *                         &#34;GROUP_READ_ONLY&#34;,
- *                         &#34;GROUP_OWNER&#34;)
+ *                         "GROUP_READ_ONLY",
+ *                         "GROUP_OWNER")
  *                     .build(),
  *                 ProjectApiKeyProjectAssignmentArgs.builder()
- *                     .projectId(&#34;74259ee860c43338194b0f8e&#34;)
- *                     .roleNames(&#34;GROUP_READ_ONLY&#34;)
+ *                     .projectId("74259ee860c43338194b0f8e")
+ *                     .roleNames("GROUP_READ_ONLY")
  *                     .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -152,28 +156,6 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
 
     public Output<List<ProjectApiKeyProjectAssignment>> projectAssignments() {
         return this.projectAssignments;
-    }
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    @Export(name="projectId", refs={String.class}, tree="[0]")
-    private Output<String> projectId;
-
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-     * 
-     * &gt; **NOTE:** Project created by API Keys must belong to an existing organization.
-     * 
-     */
-    public Output<String> projectId() {
-        return this.projectId;
     }
     @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output<String> publicKey;

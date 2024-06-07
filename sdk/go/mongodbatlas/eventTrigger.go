@@ -21,7 +21,6 @@ import (
 // ### S
 //
 // ### Example Usage: Database Trigger with Function
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,6 +36,7 @@ import (
 //			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
 //				ProjectId:  pulumi.String("PROJECT ID"),
 //				AppId:      pulumi.String("APPLICATION ID"),
+//				Name:       pulumi.String("NAME OF THE TRIGGER"),
 //				Type:       pulumi.String("DATABASE"),
 //				FunctionId: pulumi.String("FUNCTION ID"),
 //				Disabled:   pulumi.Bool(false),
@@ -73,10 +73,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Usage: Database Trigger with EventBridge
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -90,33 +88,34 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
-//				AppId:                    pulumi.String("APPLICATION ID"),
-//				ConfigCollection:         pulumi.String("COLLECTION NAME"),
-//				ConfigDatabase:           pulumi.String("DATABASE NAME"),
-//				ConfigFullDocument:       pulumi.Bool(false),
-//				ConfigFullDocumentBefore: pulumi.Bool(false),
-//				ConfigMatch:              pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
-//				ConfigOperationType:      pulumi.String("LOGIN"),
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				AppId:     pulumi.String("APPLICATION ID"),
+//				Name:      pulumi.String("NAME OF THE TRIGGER"),
+//				Type:      pulumi.String("DATABASE"),
+//				Disabled:  pulumi.Bool(false),
+//				Unordered: pulumi.Bool(false),
 //				ConfigOperationTypes: pulumi.StringArray{
 //					pulumi.String("INSERT"),
 //					pulumi.String("UPDATE"),
 //				},
-//				ConfigProject: pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
+//				ConfigOperationType: pulumi.String("LOGIN"),
 //				ConfigProviders: pulumi.StringArray{
 //					pulumi.String("anon-user"),
 //				},
-//				ConfigSchedule:  pulumi.String("*"),
-//				ConfigServiceId: pulumi.String("1"),
-//				Disabled:        pulumi.Bool(false),
+//				ConfigDatabase:           pulumi.String("DATABASE NAME"),
+//				ConfigCollection:         pulumi.String("COLLECTION NAME"),
+//				ConfigServiceId:          pulumi.String("1"),
+//				ConfigMatch:              pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
+//				ConfigProject:            pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
+//				ConfigFullDocument:       pulumi.Bool(false),
+//				ConfigFullDocumentBefore: pulumi.Bool(false),
+//				ConfigSchedule:           pulumi.String("*"),
 //				EventProcessors: &mongodbatlas.EventTriggerEventProcessorsArgs{
 //					AwsEventbridge: &mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs{
 //						ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
 //						ConfigRegion:    pulumi.String("AWS REGIOn"),
 //					},
 //				},
-//				ProjectId: pulumi.String("PROJECT ID"),
-//				Type:      pulumi.String("DATABASE"),
-//				Unordered: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
@@ -126,10 +125,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Usage: Authentication Trigger
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -143,15 +140,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				ProjectId:           pulumi.String("PROJECT ID"),
 //				AppId:               pulumi.String("APPLICATION ID"),
+//				Name:                pulumi.String("NAME OF THE TRIGGER"),
+//				Type:                pulumi.String("AUTHENTICATION"),
+//				FunctionId:          pulumi.String("1"),
+//				Disabled:            pulumi.Bool(false),
 //				ConfigOperationType: pulumi.String("LOGIN"),
 //				ConfigProviders: pulumi.StringArray{
 //					pulumi.String("anon-user"),
 //				},
-//				Disabled:   pulumi.Bool(false),
-//				FunctionId: pulumi.String("1"),
-//				ProjectId:  pulumi.String("PROJECT ID"),
-//				Type:       pulumi.String("AUTHENTICATION"),
 //			})
 //			if err != nil {
 //				return err
@@ -161,10 +159,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Usage: Scheduled Trigger
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -178,12 +174,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
-//				AppId:          pulumi.String("APPLICATION ID"),
-//				ConfigSchedule: pulumi.String("*"),
-//				Disabled:       pulumi.Bool(false),
-//				FunctionId:     pulumi.String("1"),
 //				ProjectId:      pulumi.String("PROJECT ID"),
+//				AppId:          pulumi.String("APPLICATION ID"),
+//				Name:           pulumi.String("NAME OF THE TRIGGER"),
 //				Type:           pulumi.String("SCHEDULED"),
+//				FunctionId:     pulumi.String("1"),
+//				Disabled:       pulumi.Bool(false),
+//				ConfigSchedule: pulumi.String("*"),
 //			})
 //			if err != nil {
 //				return err
@@ -193,7 +190,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

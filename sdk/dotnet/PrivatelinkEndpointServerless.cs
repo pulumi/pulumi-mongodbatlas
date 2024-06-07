@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ### AWS Example
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,16 +26,17 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("testServerlessInstance", new()
+    ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         Name = "test-db",
     ///         ProviderSettingsBackingProviderName = "AWS",
     ///         ProviderSettingsProviderName = "SERVERLESS",
     ///         ProviderSettingsRegionName = "US_EAST_1",
     ///         ContinuousBackupEnabled = true,
     ///     });
     /// 
-    ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", new()
+    ///     var test = new Mongodbatlas.PrivatelinkEndpointServerless("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         InstanceName = testServerlessInstance.Name,
@@ -45,7 +45,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

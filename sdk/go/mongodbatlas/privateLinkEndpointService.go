@@ -24,13 +24,12 @@ import (
 //
 // ## Example with AWS
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2"
+//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws"
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -38,7 +37,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "testPrivateLinkEndpoint", &mongodbatlas.PrivateLinkEndpointArgs{
+//			test, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "test", &mongodbatlas.PrivateLinkEndpointArgs{
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				ProviderName: pulumi.String("AWS"),
 //				Region:       pulumi.String("US_EAST_1"),
@@ -46,24 +45,24 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ptfeService, err := ec2.NewVpcEndpoint(ctx, "ptfeService", &ec2.VpcEndpointArgs{
-//				VpcId:           pulumi.String("vpc-7fc0a543"),
-//				ServiceName:     testPrivateLinkEndpoint.EndpointServiceName,
-//				VpcEndpointType: pulumi.String("Interface"),
-//				SubnetIds: pulumi.StringArray{
-//					pulumi.String("subnet-de0406d2"),
+//			ptfeService, err := aws.NewVpcEndpoint(ctx, "ptfe_service", &aws.VpcEndpointArgs{
+//				VpcId:           "vpc-7fc0a543",
+//				ServiceName:     test.EndpointServiceName,
+//				VpcEndpointType: "Interface",
+//				SubnetIds: []string{
+//					"subnet-de0406d2",
 //				},
-//				SecurityGroupIds: pulumi.StringArray{
-//					pulumi.String("sg-3f238186"),
+//				SecurityGroupIds: []string{
+//					"sg-3f238186",
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "testPrivateLinkEndpointService", &mongodbatlas.PrivateLinkEndpointServiceArgs{
-//				ProjectId:         testPrivateLinkEndpoint.ProjectId,
-//				PrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,
-//				EndpointServiceId: ptfeService.ID(),
+//			_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "test", &mongodbatlas.PrivateLinkEndpointServiceArgs{
+//				ProjectId:         test.ProjectId,
+//				PrivateLinkId:     test.PrivateLinkId,
+//				EndpointServiceId: ptfeService.Id,
 //				ProviderName:      pulumi.String("AWS"),
 //			})
 //			if err != nil {
@@ -74,17 +73,15 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Example with Azure
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-azure/sdk/v4/go/azure/privatelink"
+//	"github.com/pulumi/pulumi-azurerm/sdk/v1/go/azurerm"
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -92,36 +89,37 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "testPrivateLinkEndpoint", &mongodbatlas.PrivateLinkEndpointArgs{
-//				ProjectId:    pulumi.Any(_var.Project_id),
+//			test, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "test", &mongodbatlas.PrivateLinkEndpointArgs{
+//				ProjectId:    pulumi.Any(projectId),
 //				ProviderName: pulumi.String("AZURE"),
 //				Region:       pulumi.String("eastus2"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			testEndpoint, err := privatelink.NewEndpoint(ctx, "testEndpoint", &privatelink.EndpointArgs{
-//				Location:          pulumi.Any(data.Azurerm_resource_group.Test.Location),
-//				ResourceGroupName: pulumi.Any(_var.Resource_group_name),
-//				SubnetId:          pulumi.Any(azurerm_subnet.Test.Id),
-//				PrivateServiceConnection: &privatelink.EndpointPrivateServiceConnectionArgs{
-//					Name:                        testPrivateLinkEndpoint.PrivateLinkServiceName,
-//					PrivateConnectionResourceId: testPrivateLinkEndpoint.PrivateLinkServiceResourceId,
-//					IsManualConnection:          pulumi.Bool(true),
-//					RequestMessage:              pulumi.String("Azure Private Link test"),
+//			testPrivateEndpoint, err := index.NewPrivateEndpoint(ctx, "test", &index.PrivateEndpointArgs{
+//				Name:              "endpoint-test",
+//				Location:          testAzurermResourceGroup.Location,
+//				ResourceGroupName: resourceGroupName,
+//				SubnetId:          testAzurermSubnet.Id,
+//				PrivateServiceConnection: []map[string]interface{}{
+//					map[string]interface{}{
+//						"name":                        test.PrivateLinkServiceName,
+//						"privateConnectionResourceId": test.PrivateLinkServiceResourceId,
+//						"isManualConnection":          true,
+//						"requestMessage":              "Azure Private Link test",
+//					},
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "testPrivateLinkEndpointService", &mongodbatlas.PrivateLinkEndpointServiceArgs{
-//				ProjectId:         testPrivateLinkEndpoint.ProjectId,
-//				PrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,
-//				EndpointServiceId: testEndpoint.ID(),
-//				PrivateEndpointIpAddress: testEndpoint.PrivateServiceConnection.ApplyT(func(privateServiceConnection privatelink.EndpointPrivateServiceConnection) (*string, error) {
-//					return &privateServiceConnection.PrivateIpAddress, nil
-//				}).(pulumi.StringPtrOutput),
-//				ProviderName: pulumi.String("AZURE"),
+//			_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "test", &mongodbatlas.PrivateLinkEndpointServiceArgs{
+//				ProjectId:                test.ProjectId,
+//				PrivateLinkId:            test.PrivateLinkId,
+//				EndpointServiceId:        testPrivateEndpoint.Id,
+//				PrivateEndpointIpAddress: testPrivateEndpoint.PrivateServiceConnection[0].PrivateIpAddress,
+//				ProviderName:             pulumi.String("AZURE"),
 //			})
 //			if err != nil {
 //				return err
@@ -131,7 +129,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -146,9 +143,19 @@ type PrivateLinkEndpointService struct {
 
 	// Status of the interface endpoint for AWS.
 	// Returns one of the following values:
+	// * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+	// * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+	// * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+	// * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+	// * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+	// * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
 	AwsConnectionStatus pulumi.StringOutput `pulumi:"awsConnectionStatus"`
 	// Status of the interface endpoint for AZURE.
 	// Returns one of the following values:
+	// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+	// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+	// * `FAILED` - Atlas failed to accept the connection your private endpoint.
+	// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 	AzureStatus pulumi.StringOutput `pulumi:"azureStatus"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested pulumi.BoolOutput `pulumi:"deleteRequested"`
@@ -164,6 +171,10 @@ type PrivateLinkEndpointService struct {
 	GcpProjectId pulumi.StringPtrOutput `pulumi:"gcpProjectId"`
 	// Status of the interface endpoint for GCP.
 	// Returns one of the following values:
+	// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+	// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+	// * `FAILED` - Atlas failed to accept the connection your private endpoint.
+	// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 	GcpStatus pulumi.StringOutput `pulumi:"gcpStatus"`
 	// Unique identifier of the interface endpoint.
 	InterfaceEndpointId pulumi.StringOutput `pulumi:"interfaceEndpointId"`
@@ -225,9 +236,19 @@ func GetPrivateLinkEndpointService(ctx *pulumi.Context,
 type privateLinkEndpointServiceState struct {
 	// Status of the interface endpoint for AWS.
 	// Returns one of the following values:
+	// * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+	// * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+	// * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+	// * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+	// * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+	// * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
 	AwsConnectionStatus *string `pulumi:"awsConnectionStatus"`
 	// Status of the interface endpoint for AZURE.
 	// Returns one of the following values:
+	// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+	// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+	// * `FAILED` - Atlas failed to accept the connection your private endpoint.
+	// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 	AzureStatus *string `pulumi:"azureStatus"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested *bool `pulumi:"deleteRequested"`
@@ -243,6 +264,10 @@ type privateLinkEndpointServiceState struct {
 	GcpProjectId *string `pulumi:"gcpProjectId"`
 	// Status of the interface endpoint for GCP.
 	// Returns one of the following values:
+	// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+	// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+	// * `FAILED` - Atlas failed to accept the connection your private endpoint.
+	// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 	GcpStatus *string `pulumi:"gcpStatus"`
 	// Unique identifier of the interface endpoint.
 	InterfaceEndpointId *string `pulumi:"interfaceEndpointId"`
@@ -263,9 +288,19 @@ type privateLinkEndpointServiceState struct {
 type PrivateLinkEndpointServiceState struct {
 	// Status of the interface endpoint for AWS.
 	// Returns one of the following values:
+	// * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+	// * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+	// * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+	// * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+	// * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+	// * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
 	AwsConnectionStatus pulumi.StringPtrInput
 	// Status of the interface endpoint for AZURE.
 	// Returns one of the following values:
+	// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+	// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+	// * `FAILED` - Atlas failed to accept the connection your private endpoint.
+	// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 	AzureStatus pulumi.StringPtrInput
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested pulumi.BoolPtrInput
@@ -281,6 +316,10 @@ type PrivateLinkEndpointServiceState struct {
 	GcpProjectId pulumi.StringPtrInput
 	// Status of the interface endpoint for GCP.
 	// Returns one of the following values:
+	// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+	// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+	// * `FAILED` - Atlas failed to accept the connection your private endpoint.
+	// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 	GcpStatus pulumi.StringPtrInput
 	// Unique identifier of the interface endpoint.
 	InterfaceEndpointId pulumi.StringPtrInput
@@ -426,12 +465,22 @@ func (o PrivateLinkEndpointServiceOutput) ToPrivateLinkEndpointServiceOutputWith
 
 // Status of the interface endpoint for AWS.
 // Returns one of the following values:
+// * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+// * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+// * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+// * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+// * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+// * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
 func (o PrivateLinkEndpointServiceOutput) AwsConnectionStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.AwsConnectionStatus }).(pulumi.StringOutput)
 }
 
 // Status of the interface endpoint for AZURE.
 // Returns one of the following values:
+// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+// * `FAILED` - Atlas failed to accept the connection your private endpoint.
+// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 func (o PrivateLinkEndpointServiceOutput) AzureStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.AzureStatus }).(pulumi.StringOutput)
 }
@@ -468,6 +517,10 @@ func (o PrivateLinkEndpointServiceOutput) GcpProjectId() pulumi.StringPtrOutput 
 
 // Status of the interface endpoint for GCP.
 // Returns one of the following values:
+// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+// * `FAILED` - Atlas failed to accept the connection your private endpoint.
+// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 func (o PrivateLinkEndpointServiceOutput) GcpStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.GcpStatus }).(pulumi.StringOutput)
 }

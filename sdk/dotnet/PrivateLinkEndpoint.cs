@@ -22,7 +22,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -40,7 +39,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Available complete examples
     /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
@@ -139,6 +137,20 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
         /// AWS:
+        /// * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
+        /// * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+        /// * `FAILED` 	A system failure has occurred.
+        /// * `DELETING` 	The AWS PrivateLink connection is being deleted.
+        /// AZURE:
+        /// * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
+        /// * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
+        /// * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
+        /// * `DELETING` 	Atlas is deleting the Private Link service.
+        /// GCP:
+        /// * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
+        /// * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
+        /// * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
+        /// * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -322,6 +334,20 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
         /// AWS:
+        /// * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
+        /// * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+        /// * `FAILED` 	A system failure has occurred.
+        /// * `DELETING` 	The AWS PrivateLink connection is being deleted.
+        /// AZURE:
+        /// * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
+        /// * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
+        /// * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
+        /// * `DELETING` 	Atlas is deleting the Private Link service.
+        /// GCP:
+        /// * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
+        /// * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
+        /// * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
+        /// * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

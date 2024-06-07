@@ -14,6 +14,66 @@ import (
 // `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Examples Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testMaintenanceWindow, err := mongodbatlas.NewMaintenanceWindow(ctx, "test", &mongodbatlas.MaintenanceWindowArgs{
+//				ProjectId:            pulumi.String("<your-project-id>"),
+//				DayOfWeek:            pulumi.Int(3),
+//				HourOfDay:            pulumi.Int(4),
+//				AutoDeferOnceEnabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupMaintenanceWindowOutput(ctx, mongodbatlas.GetMaintenanceWindowOutputArgs{
+//				ProjectId: testMaintenanceWindow.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testMaintenanceWindow, err := mongodbatlas.NewMaintenanceWindow(ctx, "test", &mongodbatlas.MaintenanceWindowArgs{
+//				ProjectId: pulumi.String("<your-project-id>"),
+//				StartAsap: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupMaintenanceWindowOutput(ctx, mongodbatlas.GetMaintenanceWindowOutputArgs{
+//				ProjectId: testMaintenanceWindow.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupMaintenanceWindow(ctx *pulumi.Context, args *LookupMaintenanceWindowArgs, opts ...pulumi.InvokeOption) (*LookupMaintenanceWindowResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMaintenanceWindowResult

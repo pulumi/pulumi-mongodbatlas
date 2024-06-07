@@ -175,30 +175,26 @@ class AccessListApiKey(pulumi.CustomResource):
         ## Example Usage
 
         ### Using CIDR Block
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AccessListApiKey("test",
-            api_key_id="a29120e123cd",
+            org_id="<ORG-ID>",
             cidr_block="1.2.3.4/32",
-            org_id="<ORG-ID>")
+            api_key_id="a29120e123cd")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Using IP Address
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AccessListApiKey("test",
-            api_key_id="a29120e123cd",
+            org_id="<ORG-ID>",
             ip_address="2.3.4.5",
-            org_id="<ORG-ID>")
+            api_key_id="a29120e123cd")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -228,30 +224,26 @@ class AccessListApiKey(pulumi.CustomResource):
         ## Example Usage
 
         ### Using CIDR Block
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AccessListApiKey("test",
-            api_key_id="a29120e123cd",
+            org_id="<ORG-ID>",
             cidr_block="1.2.3.4/32",
-            org_id="<ORG-ID>")
+            api_key_id="a29120e123cd")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Using IP Address
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.AccessListApiKey("test",
-            api_key_id="a29120e123cd",
+            org_id="<ORG-ID>",
             ip_address="2.3.4.5",
-            org_id="<ORG-ID>")
+            api_key_id="a29120e123cd")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -11,15 +11,14 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", {
- *     externalGroupName: "myGrouptest",
+ * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
  *     orgId: "627a9683e7f7f7ff7fe306f14",
+ *     externalGroupName: "myGrouptest",
  *     roleAssignments: [
  *         {
  *             orgId: "627a9683e7f7f7ff7fe306f14",
@@ -51,7 +50,6 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -106,6 +104,10 @@ export class FederatedSettingsOrgRoleMapping extends pulumi.CustomResource {
      * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
      */
     public readonly roleAssignments!: pulumi.Output<outputs.FederatedSettingsOrgRoleMappingRoleAssignment[]>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     */
+    public /*out*/ readonly roleMappingId!: pulumi.Output<string>;
 
     /**
      * Create a FederatedSettingsOrgRoleMapping resource with the given unique name, arguments, and options.
@@ -124,6 +126,7 @@ export class FederatedSettingsOrgRoleMapping extends pulumi.CustomResource {
             resourceInputs["federationSettingsId"] = state ? state.federationSettingsId : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["roleAssignments"] = state ? state.roleAssignments : undefined;
+            resourceInputs["roleMappingId"] = state ? state.roleMappingId : undefined;
         } else {
             const args = argsOrState as FederatedSettingsOrgRoleMappingArgs | undefined;
             if ((!args || args.externalGroupName === undefined) && !opts.urn) {
@@ -142,6 +145,7 @@ export class FederatedSettingsOrgRoleMapping extends pulumi.CustomResource {
             resourceInputs["federationSettingsId"] = args ? args.federationSettingsId : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["roleAssignments"] = args ? args.roleAssignments : undefined;
+            resourceInputs["roleMappingId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(FederatedSettingsOrgRoleMapping.__pulumiType, name, resourceInputs, opts);
@@ -168,6 +172,10 @@ export interface FederatedSettingsOrgRoleMappingState {
      * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
      */
     roleAssignments?: pulumi.Input<pulumi.Input<inputs.FederatedSettingsOrgRoleMappingRoleAssignment>[]>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     */
+    roleMappingId?: pulumi.Input<string>;
 }
 
 /**

@@ -21,7 +21,6 @@ import (
 //
 // ### S With MongoDB Atlas Cluster As Storage Database
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -35,8 +34,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
-//				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
 //				ProjectId: "PROJECT ID",
+//				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -46,11 +45,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### S With Amazon S3 Bucket As Storage Database
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -64,13 +61,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
+//				ProjectId: "PROJECT ID",
+//				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
 //				CloudProviderConfig: mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfig{
 //					Aws: mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAws{
 //						TestS3Bucket: "Amazon S3 Bucket Name",
 //					},
 //				},
-//				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-//				ProjectId: "PROJECT ID",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -80,7 +77,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupFederatedDatabaseInstance(ctx *pulumi.Context, args *LookupFederatedDatabaseInstanceArgs, opts ...pulumi.InvokeOption) (*LookupFederatedDatabaseInstanceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedDatabaseInstanceResult
@@ -111,6 +107,8 @@ type LookupFederatedDatabaseInstanceResult struct {
 	Name      string `pulumi:"name"`
 	ProjectId string `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
+	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+	// * `DELETED` - The Federated Database Instance was deleted.
 	State string `pulumi:"state"`
 	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -230,6 +228,8 @@ func (o LookupFederatedDatabaseInstanceResultOutput) ProjectId() pulumi.StringOu
 }
 
 // Current state of the Federated Database Instance:
+// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+// * `DELETED` - The Federated Database Instance was deleted.
 func (o LookupFederatedDatabaseInstanceResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedDatabaseInstanceResult) string { return v.State }).(pulumi.StringOutput)
 }

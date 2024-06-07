@@ -18,13 +18,13 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCluster = new mongodbatlas.Cluster("testCluster", {
+ * const testCluster = new mongodbatlas.Cluster("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -40,11 +40,10 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     providerInstanceSizeName: "M40",
  * });
- * const testClusters = mongodbatlas.getClustersOutput({
+ * const test = mongodbatlas.getClustersOutput({
  *     projectId: testCluster.projectId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClusters(args: GetClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetClustersResult> {
 
@@ -90,13 +89,13 @@ export interface GetClustersResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCluster = new mongodbatlas.Cluster("testCluster", {
+ * const testCluster = new mongodbatlas.Cluster("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -112,11 +111,10 @@ export interface GetClustersResult {
  *     providerName: "AWS",
  *     providerInstanceSizeName: "M40",
  * });
- * const testClusters = mongodbatlas.getClustersOutput({
+ * const test = mongodbatlas.getClustersOutput({
  *     projectId: testCluster.projectId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClustersOutput(args: GetClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClustersResult> {
     return pulumi.output(args).apply((a: any) => getClusters(a, opts))

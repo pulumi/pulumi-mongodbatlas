@@ -19,7 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -30,14 +29,13 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetSearchIndex.Invoke(new()
         ///     {
-        ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
         ///         IndexId = "&lt;INDEX_ID",
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetSearchIndexResult> InvokeAsync(GetSearchIndexArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSearchIndexResult>("mongodbatlas:index/getSearchIndex:getSearchIndex", args ?? new GetSearchIndexArgs(), options.WithDefaults());
@@ -50,7 +48,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -61,14 +58,13 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetSearchIndex.Invoke(new()
         ///     {
-        ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
         ///         IndexId = "&lt;INDEX_ID",
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetSearchIndexResult> Invoke(GetSearchIndexInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSearchIndexResult>("mongodbatlas:index/getSearchIndex:getSearchIndex", args ?? new GetSearchIndexInvokeArgs(), options.WithDefaults());

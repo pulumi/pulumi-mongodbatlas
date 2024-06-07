@@ -18,7 +18,6 @@ import (
 // ## Example Usage
 //
 // ### Using userId attribute to query
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,10 +41,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Using username attribute to query
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -69,7 +66,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetAtlasUser(ctx *pulumi.Context, args *GetAtlasUserArgs, opts ...pulumi.InvokeOption) (*GetAtlasUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAtlasUserResult

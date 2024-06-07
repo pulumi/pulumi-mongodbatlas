@@ -139,9 +139,6 @@ class GetLdapConfigurationResult:
     def user_to_dn_mappings(self) -> Sequence['outputs.GetLdapConfigurationUserToDnMappingResult']:
         """
         Maps an LDAP username for authentication to an LDAP Distinguished Name (DN).
-        * `user_to_dn_mapping.0.match` - A regular expression to match against a provided LDAP username.
-        * `user_to_dn_mapping.0.substitution` - An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
-        * `user_to_dn_mapping.0.ldap_query` - An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
         """
         return pulumi.get(self, "user_to_dn_mappings")
 
@@ -172,6 +169,25 @@ def get_ldap_configuration(project_id: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project = mongodbatlas.Project("test",
+        name="NAME OF THE PROJECT",
+        org_id="ORG ID")
+    test_ldap_configuration = mongodbatlas.LdapConfiguration("test",
+        project_id=test_project.id,
+        authentication_enabled=True,
+        hostname="HOSTNAME",
+        port=636,
+        bind_username="USERNAME",
+        bind_password="PASSWORD")
+    test = mongodbatlas.get_ldap_configuration_output(project_id=test_ldap_configuration.id)
+    ```
+
 
     :param str project_id: Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
     """
@@ -201,6 +217,25 @@ def get_ldap_configuration_output(project_id: Optional[pulumi.Input[str]] = None
     `LdapConfiguration` describes a LDAP Configuration.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project = mongodbatlas.Project("test",
+        name="NAME OF THE PROJECT",
+        org_id="ORG ID")
+    test_ldap_configuration = mongodbatlas.LdapConfiguration("test",
+        project_id=test_project.id,
+        authentication_enabled=True,
+        hostname="HOSTNAME",
+        port=636,
+        bind_username="USERNAME",
+        bind_password="PASSWORD")
+    test = mongodbatlas.get_ldap_configuration_output(project_id=test_ldap_configuration.id)
+    ```
 
 
     :param str project_id: Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.

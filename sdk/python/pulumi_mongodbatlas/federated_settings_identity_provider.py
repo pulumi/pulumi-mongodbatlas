@@ -574,32 +574,29 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
 
         > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
-            associated_domains=["yourdomain.com"],
+        identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identity_provider",
             federation_settings_id="627a9687f7f7f7f774de306f14",
+            name="mongodb_federation_test",
+            associated_domains=["yourdomain.com"],
+            sso_debug_enabled=True,
+            status="ACTIVE",
+            sso_url="https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
             issuer_uri="http://www.okta.com/exk17q7f7f7f7fp50h8",
             request_binding="HTTP-POST",
-            response_signature_algorithm="SHA-256",
-            sso_debug_enabled=True,
-            sso_url="https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
-            status="ACTIVE")
+            response_signature_algorithm="SHA-256")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Identity Provider __must__ be imported before using federation_settings_id-idp_id, e.g.
 
         ```sh
-        $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk1297
+        $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk12971234
         ```
-        __WARNING:__ Starting from terraform provider version 1.16.0, to import the resource a 24-hexadecimal digit string that identifies the IdP (`idp_id`) will have to be used instead of `okta_idp_id`. See more [here](../guides/1.15.0-upgrade-guide.html.markdown)
-
         For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
 
         :param str resource_name: The name of the resource.
@@ -636,32 +633,29 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
 
         > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identityProvider",
-            associated_domains=["yourdomain.com"],
+        identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identity_provider",
             federation_settings_id="627a9687f7f7f7f774de306f14",
+            name="mongodb_federation_test",
+            associated_domains=["yourdomain.com"],
+            sso_debug_enabled=True,
+            status="ACTIVE",
+            sso_url="https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
             issuer_uri="http://www.okta.com/exk17q7f7f7f7fp50h8",
             request_binding="HTTP-POST",
-            response_signature_algorithm="SHA-256",
-            sso_debug_enabled=True,
-            sso_url="https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
-            status="ACTIVE")
+            response_signature_algorithm="SHA-256")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Identity Provider __must__ be imported before using federation_settings_id-idp_id, e.g.
 
         ```sh
-        $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk1297
+        $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk12971234
         ```
-        __WARNING:__ Starting from terraform provider version 1.16.0, to import the resource a 24-hexadecimal digit string that identifies the IdP (`idp_id`) will have to be used instead of `okta_idp_id`. See more [here](../guides/1.15.0-upgrade-guide.html.markdown)
-
         For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
 
         :param str resource_name: The name of the resource.

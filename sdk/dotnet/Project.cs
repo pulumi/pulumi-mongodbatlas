@@ -16,7 +16,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -25,11 +24,12 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testRolesOrgId = Mongodbatlas.GetRolesOrgId.Invoke();
+    ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
     /// 
-    ///     var testProject = new Mongodbatlas.Project("testProject", new()
+    ///     var testProject = new Mongodbatlas.Project("test", new()
     ///     {
-    ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+    ///         Name = "project-name",
+    ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
     ///         ProjectOwnerId = "&lt;OWNER_ACCOUNT_ID&gt;",
     ///         Teams = new[]
     ///         {
@@ -74,7 +74,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -167,7 +166,13 @@ namespace Pulumi.Mongodbatlas
         /// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         /// </summary>
         [Output("regionUsageRestrictions")]
-        public Output<string?> RegionUsageRestrictions { get; private set; } = null!;
+        public Output<string> RegionUsageRestrictions { get; private set; } = null!;
+
+        /// <summary>
+        /// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
 
         [Output("teams")]
         public Output<ImmutableArray<Outputs.ProjectTeam>> Teams { get; private set; } = null!;
@@ -292,6 +297,18 @@ namespace Pulumi.Mongodbatlas
         [Input("regionUsageRestrictions")]
         public Input<string>? RegionUsageRestrictions { get; set; }
 
+        [Input("tags")]
+        private InputMap<string>? _tags;
+
+        /// <summary>
+        /// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+        /// </summary>
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
+
         [Input("teams")]
         private InputList<Inputs.ProjectTeamArgs>? _teams;
         public InputList<Inputs.ProjectTeamArgs> Teams
@@ -399,6 +416,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("regionUsageRestrictions")]
         public Input<string>? RegionUsageRestrictions { get; set; }
+
+        [Input("tags")]
+        private InputMap<string>? _tags;
+
+        /// <summary>
+        /// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+        /// </summary>
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
 
         [Input("teams")]
         private InputList<Inputs.ProjectTeamGetArgs>? _teams;

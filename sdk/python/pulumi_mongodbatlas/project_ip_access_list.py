@@ -243,57 +243,51 @@ class ProjectIpAccessList(pulumi.CustomResource):
         ## Example Usage
 
         ### Using CIDR Block
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.ProjectIpAccessList("test",
+            project_id="<PROJECT-ID>",
             cidr_block="1.2.3.4/32",
-            comment="cidr block for tf acc testing",
-            project_id="<PROJECT-ID>")
+            comment="cidr block for tf acc testing")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Using IP Address
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.ProjectIpAccessList("test",
-            comment="ip address for tf acc testing",
+            project_id="<PROJECT-ID>",
             ip_address="2.3.4.5",
-            project_id="<PROJECT-ID>")
+            comment="ip address for tf acc testing")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Using an AWS Security Group
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
+        test = mongodbatlas.NetworkContainer("test",
             project_id="<PROJECT-ID>",
             atlas_cidr_block="192.168.208.0/21",
             provider_name="AWS",
             region_name="US_EAST_1")
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
+        test_network_peering = mongodbatlas.NetworkPeering("test",
             project_id="<PROJECT-ID>",
-            container_id=test_network_container.container_id,
+            container_id=test.container_id,
             accepter_region_name="us-east-1",
             provider_name="AWS",
             route_table_cidr_block="172.31.0.0/16",
             vpc_id="vpc-0d93d6f69f1578bd8",
             aws_account_id="232589400519")
-        test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("testProjectIpAccessList",
+        test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("test",
             project_id="<PROJECT-ID>",
             aws_security_group="sg-0026348ec11780bd1",
             comment="TestAcc for awsSecurityGroup",
-            opts=pulumi.ResourceOptions(depends_on=["mongodbatlas_network_peering.test"]))
+            opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
-        <!--End PulumiCodeChooser -->
 
         > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
 
@@ -333,57 +327,51 @@ class ProjectIpAccessList(pulumi.CustomResource):
         ## Example Usage
 
         ### Using CIDR Block
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.ProjectIpAccessList("test",
+            project_id="<PROJECT-ID>",
             cidr_block="1.2.3.4/32",
-            comment="cidr block for tf acc testing",
-            project_id="<PROJECT-ID>")
+            comment="cidr block for tf acc testing")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Using IP Address
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.ProjectIpAccessList("test",
-            comment="ip address for tf acc testing",
+            project_id="<PROJECT-ID>",
             ip_address="2.3.4.5",
-            project_id="<PROJECT-ID>")
+            comment="ip address for tf acc testing")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Using an AWS Security Group
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
+        test = mongodbatlas.NetworkContainer("test",
             project_id="<PROJECT-ID>",
             atlas_cidr_block="192.168.208.0/21",
             provider_name="AWS",
             region_name="US_EAST_1")
-        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
+        test_network_peering = mongodbatlas.NetworkPeering("test",
             project_id="<PROJECT-ID>",
-            container_id=test_network_container.container_id,
+            container_id=test.container_id,
             accepter_region_name="us-east-1",
             provider_name="AWS",
             route_table_cidr_block="172.31.0.0/16",
             vpc_id="vpc-0d93d6f69f1578bd8",
             aws_account_id="232589400519")
-        test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("testProjectIpAccessList",
+        test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("test",
             project_id="<PROJECT-ID>",
             aws_security_group="sg-0026348ec11780bd1",
             comment="TestAcc for awsSecurityGroup",
-            opts=pulumi.ResourceOptions(depends_on=["mongodbatlas_network_peering.test"]))
+            opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
-        <!--End PulumiCodeChooser -->
 
         > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
 

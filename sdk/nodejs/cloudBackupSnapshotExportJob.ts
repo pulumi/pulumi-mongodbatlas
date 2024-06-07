@@ -15,33 +15,30 @@ import * as utilities from "./utilities";
  *
  * ### Export one snapshot
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
+ * const test = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
  *     projectId: "{PROJECT_ID}",
  *     iamRoleId: "{IAM_ROLE_ID}",
  *     bucketName: "example_bucket",
  *     cloudProvider: "AWS",
  * });
- * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", {
+ * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("test", {
  *     projectId: "{PROJECT_ID}",
  *     clusterName: "{CLUSTER_NAME}",
  *     snapshotId: "{SNAPSHOT_ID}",
- *     exportBucketId: testCloudBackupSnapshotExportBucket.exportBucketId,
+ *     exportBucketId: test.exportBucketId,
  *     customDatas: [{
  *         key: "exported by",
  *         value: "myName",
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Create backup and automatic snapshot export policies
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -86,7 +83,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -171,6 +167,10 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
     public readonly snapshotId!: pulumi.Output<string>;
     /**
      * Status of the export job. Value can be one of the following:
+     * * `Queued` - indicates that the export job is queued
+     * * `InProgress` - indicates that the snapshot is being exported
+     * * `Successful` - indicates that the export job has completed successfully
+     * * `Failed` - indicates that the export job has failed
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
 
@@ -288,6 +288,10 @@ export interface CloudBackupSnapshotExportJobState {
     snapshotId?: pulumi.Input<string>;
     /**
      * Status of the export job. Value can be one of the following:
+     * * `Queued` - indicates that the export job is queued
+     * * `InProgress` - indicates that the snapshot is being exported
+     * * `Successful` - indicates that the export job has completed successfully
+     * * `Failed` - indicates that the export job has failed
      */
     state?: pulumi.Input<string>;
 }

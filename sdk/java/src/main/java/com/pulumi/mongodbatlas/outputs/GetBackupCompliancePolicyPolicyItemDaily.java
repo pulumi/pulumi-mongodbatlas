@@ -12,12 +12,12 @@ import java.util.Objects;
 @CustomType
 public final class GetBackupCompliancePolicyPolicyItemDaily {
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+     * @return Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
      * 
      */
     private Integer frequencyInterval;
     /**
-     * @return Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * @return Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     private String frequencyType;
@@ -27,26 +27,26 @@ public final class GetBackupCompliancePolicyPolicyItemDaily {
      */
     private String id;
     /**
-     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * @return Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      * 
      */
     private String retentionUnit;
     /**
-     * @return Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * @return Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
      * 
      */
     private Integer retentionValue;
 
     private GetBackupCompliancePolicyPolicyItemDaily() {}
     /**
-     * @return Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+     * @return Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
      * 
      */
     public Integer frequencyInterval() {
         return this.frequencyInterval;
     }
     /**
-     * @return Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * @return Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      * 
      */
     public String frequencyType() {
@@ -60,14 +60,14 @@ public final class GetBackupCompliancePolicyPolicyItemDaily {
         return this.id;
     }
     /**
-     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * @return Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      * 
      */
     public String retentionUnit() {
         return this.retentionUnit;
     }
     /**
-     * @return Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+     * @return Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
      * 
      */
     public Integer retentionValue() {

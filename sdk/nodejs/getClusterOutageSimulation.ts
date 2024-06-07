@@ -11,17 +11,15 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const outageSimulation = mongodbatlas.getClusterOutageSimulation({
- *     clusterName: "Cluster0",
  *     projectId: "64707f06c519c20c3a2b1b03",
+ *     clusterName: "Cluster0",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClusterOutageSimulation(args: GetClusterOutageSimulationArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterOutageSimulationResult> {
 
@@ -70,6 +68,12 @@ export interface GetClusterOutageSimulationResult {
     readonly startRequestDate: string;
     /**
      * Current phase of the outage simulation:
+     * * `START_REQUESTED` - User has requested cluster outage simulation.
+     * * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+     * * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+     * * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+     * * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+     * * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
      */
     readonly state: string;
 }
@@ -78,17 +82,15 @@ export interface GetClusterOutageSimulationResult {
  *
  * ### S
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const outageSimulation = mongodbatlas.getClusterOutageSimulation({
- *     clusterName: "Cluster0",
  *     projectId: "64707f06c519c20c3a2b1b03",
+ *     clusterName: "Cluster0",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClusterOutageSimulationOutput(args: GetClusterOutageSimulationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterOutageSimulationResult> {
     return pulumi.output(args).apply((a: any) => getClusterOutageSimulation(a, opts))

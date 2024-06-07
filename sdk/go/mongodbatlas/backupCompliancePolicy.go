@@ -14,6 +14,132 @@ import (
 
 // ## Example Usage
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myCluster, err := mongodbatlas.NewCluster(ctx, "my_cluster", &mongodbatlas.ClusterArgs{
+//				ProjectId:                pulumi.String("<PROJECT-ID>"),
+//				Name:                     pulumi.String("clusterTest"),
+//				ProviderName:             pulumi.String("AWS"),
+//				ProviderRegionName:       pulumi.String("EU_CENTRAL_1"),
+//				ProviderInstanceSizeName: pulumi.String("M10"),
+//				CloudBackup:              pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testCloudBackupSchedule, err := mongodbatlas.NewCloudBackupSchedule(ctx, "test", &mongodbatlas.CloudBackupScheduleArgs{
+//				ProjectId:             myCluster.ProjectId,
+//				ClusterName:           myCluster.Name,
+//				ReferenceHourOfDay:    pulumi.Int(3),
+//				ReferenceMinuteOfHour: pulumi.Int(45),
+//				RestoreWindowDays:     pulumi.Int(4),
+//				PolicyItemHourly: &mongodbatlas.CloudBackupSchedulePolicyItemHourlyArgs{
+//					FrequencyInterval: pulumi.Int(1),
+//					RetentionUnit:     pulumi.String("days"),
+//					RetentionValue:    pulumi.Int(7),
+//				},
+//				PolicyItemDaily: &mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs{
+//					FrequencyInterval: pulumi.Int(1),
+//					RetentionUnit:     pulumi.String("days"),
+//					RetentionValue:    pulumi.Int(7),
+//				},
+//				PolicyItemWeeklies: mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArray{
+//					&mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArgs{
+//						FrequencyInterval: pulumi.Int(1),
+//						RetentionUnit:     pulumi.String("weeks"),
+//						RetentionValue:    pulumi.Int(4),
+//					},
+//				},
+//				PolicyItemMonthlies: mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArray{
+//					&mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArgs{
+//						FrequencyInterval: pulumi.Int(1),
+//						RetentionUnit:     pulumi.String("months"),
+//						RetentionValue:    pulumi.Int(12),
+//					},
+//				},
+//				PolicyItemYearlies: mongodbatlas.CloudBackupSchedulePolicyItemYearlyArray{
+//					&mongodbatlas.CloudBackupSchedulePolicyItemYearlyArgs{
+//						FrequencyInterval: pulumi.Int(1),
+//						RetentionUnit:     pulumi.String("years"),
+//						RetentionValue:    pulumi.Int(1),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCloudBackupScheduleOutput(ctx, mongodbatlas.GetCloudBackupScheduleOutputArgs{
+//				ProjectId:   testCloudBackupSchedule.ProjectId,
+//				ClusterName: testCloudBackupSchedule.ClusterName,
+//			}, nil)
+//			_ = mongodbatlas.LookupBackupCompliancePolicyOutput(ctx, mongodbatlas.GetBackupCompliancePolicyOutputArgs{
+//				ProjectId: testCloudBackupSchedule.ProjectId,
+//			}, nil)
+//			_, err = mongodbatlas.NewBackupCompliancePolicy(ctx, "backup_policy", &mongodbatlas.BackupCompliancePolicyArgs{
+//				ProjectId:               pulumi.String("<PROJECT-ID>"),
+//				AuthorizedEmail:         pulumi.String("user@email.com"),
+//				AuthorizedUserFirstName: pulumi.String("First"),
+//				AuthorizedUserLastName:  pulumi.String("Last"),
+//				CopyProtectionEnabled:   pulumi.Bool(false),
+//				PitEnabled:              pulumi.Bool(false),
+//				EncryptionAtRestEnabled: pulumi.Bool(false),
+//				RestoreWindowDays:       pulumi.Int(7),
+//				OnDemandPolicyItem: &mongodbatlas.BackupCompliancePolicyOnDemandPolicyItemArgs{
+//					FrequencyInterval: pulumi.Int(1),
+//					RetentionUnit:     pulumi.String("days"),
+//					RetentionValue:    pulumi.Int(3),
+//				},
+//				PolicyItemHourly: &mongodbatlas.BackupCompliancePolicyPolicyItemHourlyArgs{
+//					FrequencyInterval: pulumi.Int(1),
+//					RetentionUnit:     pulumi.String("days"),
+//					RetentionValue:    pulumi.Int(7),
+//				},
+//				PolicyItemDaily: &mongodbatlas.BackupCompliancePolicyPolicyItemDailyArgs{
+//					FrequencyInterval: pulumi.Int(1),
+//					RetentionUnit:     pulumi.String("days"),
+//					RetentionValue:    pulumi.Int(7),
+//				},
+//				PolicyItemWeeklies: mongodbatlas.BackupCompliancePolicyPolicyItemWeeklyArray{
+//					&mongodbatlas.BackupCompliancePolicyPolicyItemWeeklyArgs{
+//						FrequencyInterval: pulumi.Int(1),
+//						RetentionUnit:     pulumi.String("weeks"),
+//						RetentionValue:    pulumi.Int(4),
+//					},
+//				},
+//				PolicyItemMonthlies: mongodbatlas.BackupCompliancePolicyPolicyItemMonthlyArray{
+//					&mongodbatlas.BackupCompliancePolicyPolicyItemMonthlyArgs{
+//						FrequencyInterval: pulumi.Int(1),
+//						RetentionUnit:     pulumi.String("months"),
+//						RetentionValue:    pulumi.Int(12),
+//					},
+//				},
+//				PolicyItemYearlies: mongodbatlas.BackupCompliancePolicyPolicyItemYearlyArray{
+//					&mongodbatlas.BackupCompliancePolicyPolicyItemYearlyArgs{
+//						FrequencyInterval: pulumi.Int(1),
+//						RetentionUnit:     pulumi.String("years"),
+//						RetentionValue:    pulumi.Int(1),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Backup Compliance Policy entries can be imported using project project_id  in the format `project_id`, e.g.
@@ -42,6 +168,7 @@ type BackupCompliancePolicy struct {
 	PolicyItemHourly    BackupCompliancePolicyPolicyItemHourlyPtrOutput    `pulumi:"policyItemHourly"`
 	PolicyItemMonthlies BackupCompliancePolicyPolicyItemMonthlyArrayOutput `pulumi:"policyItemMonthlies"`
 	PolicyItemWeeklies  BackupCompliancePolicyPolicyItemWeeklyArrayOutput  `pulumi:"policyItemWeeklies"`
+	PolicyItemYearlies  BackupCompliancePolicyPolicyItemYearlyArrayOutput  `pulumi:"policyItemYearlies"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -116,6 +243,7 @@ type backupCompliancePolicyState struct {
 	PolicyItemHourly    *BackupCompliancePolicyPolicyItemHourly   `pulumi:"policyItemHourly"`
 	PolicyItemMonthlies []BackupCompliancePolicyPolicyItemMonthly `pulumi:"policyItemMonthlies"`
 	PolicyItemWeeklies  []BackupCompliancePolicyPolicyItemWeekly  `pulumi:"policyItemWeeklies"`
+	PolicyItemYearlies  []BackupCompliancePolicyPolicyItemYearly  `pulumi:"policyItemYearlies"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId *string `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -146,6 +274,7 @@ type BackupCompliancePolicyState struct {
 	PolicyItemHourly    BackupCompliancePolicyPolicyItemHourlyPtrInput
 	PolicyItemMonthlies BackupCompliancePolicyPolicyItemMonthlyArrayInput
 	PolicyItemWeeklies  BackupCompliancePolicyPolicyItemWeeklyArrayInput
+	PolicyItemYearlies  BackupCompliancePolicyPolicyItemYearlyArrayInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringPtrInput
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -180,6 +309,7 @@ type backupCompliancePolicyArgs struct {
 	PolicyItemHourly    *BackupCompliancePolicyPolicyItemHourly   `pulumi:"policyItemHourly"`
 	PolicyItemMonthlies []BackupCompliancePolicyPolicyItemMonthly `pulumi:"policyItemMonthlies"`
 	PolicyItemWeeklies  []BackupCompliancePolicyPolicyItemWeekly  `pulumi:"policyItemWeeklies"`
+	PolicyItemYearlies  []BackupCompliancePolicyPolicyItemYearly  `pulumi:"policyItemYearlies"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -205,6 +335,7 @@ type BackupCompliancePolicyArgs struct {
 	PolicyItemHourly    BackupCompliancePolicyPolicyItemHourlyPtrInput
 	PolicyItemMonthlies BackupCompliancePolicyPolicyItemMonthlyArrayInput
 	PolicyItemWeeklies  BackupCompliancePolicyPolicyItemWeeklyArrayInput
+	PolicyItemYearlies  BackupCompliancePolicyPolicyItemYearlyArrayInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -356,6 +487,12 @@ func (o BackupCompliancePolicyOutput) PolicyItemWeeklies() BackupCompliancePolic
 	return o.ApplyT(func(v *BackupCompliancePolicy) BackupCompliancePolicyPolicyItemWeeklyArrayOutput {
 		return v.PolicyItemWeeklies
 	}).(BackupCompliancePolicyPolicyItemWeeklyArrayOutput)
+}
+
+func (o BackupCompliancePolicyOutput) PolicyItemYearlies() BackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return o.ApplyT(func(v *BackupCompliancePolicy) BackupCompliancePolicyPolicyItemYearlyArrayOutput {
+		return v.PolicyItemYearlies
+	}).(BackupCompliancePolicyPolicyItemYearlyArrayOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project.

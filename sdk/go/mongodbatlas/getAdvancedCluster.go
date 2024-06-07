@@ -18,6 +18,53 @@ import (
 // > **IMPORTANT:**
 // <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
 // <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "example", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
+//				Name:        pulumi.String("cluster-test"),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M5"),
+//								},
+//								ProviderName:        pulumi.String("TENANT"),
+//								BackingProviderName: pulumi.String("AWS"),
+//								RegionName:          pulumi.String("US_EAST_1"),
+//								Priority:            pulumi.Int(7),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
+//				ProjectId: exampleAdvancedCluster.ProjectId,
+//				Name:      exampleAdvancedCluster.Name,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupAdvancedCluster(ctx *pulumi.Context, args *LookupAdvancedClusterArgs, opts ...pulumi.InvokeOption) (*LookupAdvancedClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAdvancedClusterResult
@@ -58,7 +105,7 @@ type LookupAdvancedClusterResult struct {
 	Id string `pulumi:"id"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 	//
-	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 	Labels []GetAdvancedClusterLabel `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -173,7 +220,7 @@ func (o LookupAdvancedClusterResultOutput) Id() pulumi.StringOutput {
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 //
-// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 func (o LookupAdvancedClusterResultOutput) Labels() GetAdvancedClusterLabelArrayOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterLabel { return v.Labels }).(GetAdvancedClusterLabelArrayOutput)
 }

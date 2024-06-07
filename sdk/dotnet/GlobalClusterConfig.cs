@@ -14,11 +14,12 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
+    /// &gt; **IMPORTANT:** A Global Cluster Configuration, once created, can only be deleted. You can recreate the Global Cluster with the same data only in the Atlas UI. This is because the configuration and its related collection with shard key and indexes are managed separately and they would end up in an inconsistent state. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/)
+    /// 
     /// ## Examples Usage
     /// 
     /// ### Example Global cluster
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,6 +31,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.Cluster("test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         Name = "&lt;CLUSTER-NAME&gt;",
     ///         CloudBackup = true,
     ///         ClusterType = "GEOSHARDED",
     ///         ProviderName = "AWS",
@@ -96,11 +98,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Example Global cluster config
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -112,6 +112,7 @@ namespace Pulumi.Mongodbatlas
     ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         Name = "cluster-test",
     ///         ClusterType = "REPLICASET",
     ///         ReplicationSpecs = new[]
     ///         {
@@ -132,15 +133,15 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///         BackupEnabled = true,
     ///         AutoScalingDiskGbEnabled = true,
-    ///         MongoDbMajorVersion = "4.0",
+    ///         MongoDbMajorVersion = "7.0",
     ///         ProviderName = "AWS",
     ///         ProviderInstanceSizeName = "M40",
     ///     });
     /// 
     ///     var config = new Mongodbatlas.GlobalClusterConfig("config", new()
     ///     {
-    ///         ProjectId = mongodbatlas_cluster.Test.Project_id,
-    ///         ClusterName = mongodbatlas_cluster.Test.Name,
+    ///         ProjectId = test.ProjectId,
+    ///         ClusterName = test.Name,
     ///         ManagedNamespaces = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs
@@ -162,7 +163,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

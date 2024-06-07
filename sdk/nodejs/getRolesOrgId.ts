@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Using data source to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  * const test = mongodbatlas.getRolesOrgId({});
  * export const orgId = test.then(test => test.orgId);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getRolesOrgId(opts?: pulumi.InvokeOptions): Promise<GetRolesOrgIdResult> {
 
@@ -46,7 +44,6 @@ export interface GetRolesOrgIdResult {
  * ## Example Usage
  *
  * ### Using data source to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -54,7 +51,6 @@ export interface GetRolesOrgIdResult {
  * const test = mongodbatlas.getRolesOrgId({});
  * export const orgId = test.then(test => test.orgId);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getRolesOrgIdOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetRolesOrgIdResult> {
     return pulumi.output(getRolesOrgId(opts))

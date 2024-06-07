@@ -24,7 +24,12 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
+        /// Unique identifier of the integration.
+        /// </summary>
+        public readonly string Id;
+        /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
         /// </summary>
         public readonly string? MicrosoftTeamsWebhookUrl;
         /// <summary>
@@ -33,18 +38,21 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string ProjectId;
         /// <summary>
         /// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+        /// * `VICTOR_OPS`
         /// </summary>
         public readonly string Region;
         /// <summary>
         /// An optional field for your Routing Key.
+        /// * `WEBHOOK`
         /// </summary>
         public readonly string RoutingKey;
         /// <summary>
-        /// Your Prometheus protocol scheme configured for requests.
+        /// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         /// </summary>
         public readonly string? Scheme;
         /// <summary>
         /// An optional field for your webhook secret.
+        /// * `MICROSOFT_TEAMS`
         /// </summary>
         public readonly string Secret;
         /// <summary>
@@ -53,11 +61,12 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string? ServiceDiscovery;
         /// <summary>
         /// Your Service Key.
+        /// * `DATADOG`
         /// </summary>
         public readonly string ServiceKey;
         public readonly string TeamName;
         /// <summary>
-        /// (Required) Thirt-Party service integration type.
+        /// Thirt-Party service integration type.
         /// </summary>
         public readonly string Type;
         /// <summary>
@@ -78,6 +87,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             string channelName,
 
             bool? enabled,
+
+            string id,
 
             string? microsoftTeamsWebhookUrl,
 
@@ -107,6 +118,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ApiKey = apiKey;
             ChannelName = channelName;
             Enabled = enabled;
+            Id = id;
             MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             ProjectId = projectId;
             Region = region;

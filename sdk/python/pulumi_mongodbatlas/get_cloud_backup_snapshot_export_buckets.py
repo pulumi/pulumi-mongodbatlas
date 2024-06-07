@@ -73,6 +73,7 @@ class GetCloudBackupSnapshotExportBucketsResult:
     def results(self) -> Sequence['outputs.GetCloudBackupSnapshotExportBucketsResultResult']:
         """
         Includes CloudProviderSnapshotExportBucket object for each item detailed in the results array section.
+        * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
         """
         return pulumi.get(self, "results")
 
@@ -107,19 +108,17 @@ def get_cloud_backup_snapshot_export_buckets(items_per_page: Optional[int] = Non
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
-        bucket_name="example-bucket",
-        cloud_provider="AWS",
+    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("test",
+        project_id="{PROJECT_ID}",
         iam_role_id="{IAM_ROLE_ID}",
-        project_id="{PROJECT_ID}")
-    test_cloud_backup_snapshot_export_buckets = mongodbatlas.get_cloud_backup_snapshot_export_buckets(project_id="{PROJECT_ID}")
+        bucket_name="example-bucket",
+        cloud_provider="AWS")
+    test = mongodbatlas.get_cloud_backup_snapshot_export_buckets(project_id="{PROJECT_ID}")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -154,19 +153,17 @@ def get_cloud_backup_snapshot_export_buckets_output(items_per_page: Optional[pul
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
-        bucket_name="example-bucket",
-        cloud_provider="AWS",
+    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("test",
+        project_id="{PROJECT_ID}",
         iam_role_id="{IAM_ROLE_ID}",
-        project_id="{PROJECT_ID}")
-    test_cloud_backup_snapshot_export_buckets = mongodbatlas.get_cloud_backup_snapshot_export_buckets(project_id="{PROJECT_ID}")
+        bucket_name="example-bucket",
+        cloud_provider="AWS")
+    test = mongodbatlas.get_cloud_backup_snapshot_export_buckets(project_id="{PROJECT_ID}")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.

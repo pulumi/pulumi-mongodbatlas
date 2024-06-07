@@ -23,17 +23,17 @@ public final class GetPrivatelinkEndpointsServiceServerlessInvokeResult {
     private String instanceName;
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed in version 1.17.0
+     * This parameter is deprecated and will be removed in version 1.17.0.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
     private @Nullable Integer itemsPerPage;
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed in version 1.17.0
+     * This parameter is deprecated and will be removed in version 1.17.0.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
     private @Nullable Integer pageNum;
     private String projectId;
     /**
@@ -55,19 +55,19 @@ public final class GetPrivatelinkEndpointsServiceServerlessInvokeResult {
     }
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed in version 1.17.0
+     * This parameter is deprecated and will be removed in version 1.17.0.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
     public Optional<Integer> itemsPerPage() {
         return Optional.ofNullable(this.itemsPerPage);
     }
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed in version 1.17.0
+     * This parameter is deprecated and will be removed in version 1.17.0.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.17.0 */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
     public Optional<Integer> pageNum() {
         return Optional.ofNullable(this.pageNum);
     }

@@ -30,7 +30,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -51,16 +52,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testDatadog = new ThirdPartyIntegration(&#34;testDatadog&#34;, ThirdPartyIntegrationArgs.builder()        
- *             .apiKey(&#34;&lt;API-KEY&gt;&#34;)
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .region(&#34;&lt;REGION&gt;&#34;)
- *             .type(&#34;DATADOG&#34;)
+ *         var testDatadog = new ThirdPartyIntegration("testDatadog", ThirdPartyIntegrationArgs.builder()
+ *             .projectId("<PROJECT-ID>")
+ *             .type("DATADOG")
+ *             .apiKey("<API-KEY>")
+ *             .region("<REGION>")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -75,17 +77,9 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration")
 public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
-    /**
-     * Your API Key.
-     * 
-     */
     @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output<String> apiKey;
 
-    /**
-     * @return Your API Key.
-     * 
-     */
     public Output<String> apiKey() {
         return this.apiKey;
     }
@@ -95,45 +89,21 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     public Output<String> channelName() {
         return this.channelName;
     }
-    /**
-     * Whether your cluster has Prometheus enabled.
-     * 
-     */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> enabled;
 
-    /**
-     * @return Whether your cluster has Prometheus enabled.
-     * 
-     */
     public Output<Boolean> enabled() {
         return this.enabled;
     }
-    /**
-     * Your Microsoft Teams incoming webhook URL.
-     * 
-     */
     @Export(name="microsoftTeamsWebhookUrl", refs={String.class}, tree="[0]")
     private Output<String> microsoftTeamsWebhookUrl;
 
-    /**
-     * @return Your Microsoft Teams incoming webhook URL.
-     * 
-     */
     public Output<String> microsoftTeamsWebhookUrl() {
         return this.microsoftTeamsWebhookUrl;
     }
-    /**
-     * Your Prometheus password.
-     * 
-     */
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
-    /**
-     * @return Your Prometheus password.
-     * 
-     */
     public Output<String> password() {
         return this.password;
     }
@@ -151,87 +121,45 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     public Output<String> projectId() {
         return this.projectId;
     }
-    /**
-     * Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use &#34;US&#34; by default.
-     * 
-     */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
-    /**
-     * @return Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use &#34;US&#34; by default.
-     * 
-     */
     public Output<String> region() {
         return this.region;
     }
-    /**
-     * An optional field for your Routing Key.
-     * 
-     */
     @Export(name="routingKey", refs={String.class}, tree="[0]")
     private Output<String> routingKey;
 
-    /**
-     * @return An optional field for your Routing Key.
-     * 
-     */
     public Output<String> routingKey() {
         return this.routingKey;
     }
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     @Export(name="scheme", refs={String.class}, tree="[0]")
     private Output<String> scheme;
 
-    /**
-     * @return Your Prometheus protocol scheme configured for requests.
-     * 
-     */
     public Output<String> scheme() {
         return this.scheme;
     }
-    /**
-     * An optional field for your webhook secret.
-     * 
-     */
     @Export(name="secret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secret;
 
-    /**
-     * @return An optional field for your webhook secret.
-     * 
-     */
     public Output<Optional<String>> secret() {
         return Codegen.optional(this.secret);
     }
-    /**
-     * Indicates which service discovery method is used, either file or http.
-     * 
-     */
     @Export(name="serviceDiscovery", refs={String.class}, tree="[0]")
     private Output<String> serviceDiscovery;
 
-    /**
-     * @return Indicates which service discovery method is used, either file or http.
-     * 
-     */
     public Output<String> serviceDiscovery() {
         return this.serviceDiscovery;
     }
-    /**
-     * Your Service Key.
-     * 
-     */
     @Export(name="serviceKey", refs={String.class}, tree="[0]")
     private Output<String> serviceKey;
 
-    /**
-     * @return Your Service Key.
-     * 
-     */
     public Output<String> serviceKey() {
         return this.serviceKey;
     }
@@ -251,6 +179,8 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
+     * * `PAGER_DUTY`
+     * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
@@ -265,35 +195,21 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
+     * * `PAGER_DUTY`
+     * 
      */
     public Output<String> type() {
         return this.type;
     }
-    /**
-     * Your webhook URL.
-     * 
-     */
     @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
-    /**
-     * @return Your webhook URL.
-     * 
-     */
     public Output<String> url() {
         return this.url;
     }
-    /**
-     * Your Prometheus username.
-     * 
-     */
     @Export(name="userName", refs={String.class}, tree="[0]")
     private Output<String> userName;
 
-    /**
-     * @return Your Prometheus username.
-     * 
-     */
     public Output<String> userName() {
         return this.userName;
     }

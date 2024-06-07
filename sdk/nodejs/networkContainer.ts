@@ -19,30 +19,27 @@ import * as utilities from "./utilities";
  *
  * ### Example with AWS
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.NetworkContainer("test", {
- *     atlasCidrBlock: "10.8.0.0/21",
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     atlasCidrBlock: "10.8.0.0/21",
  *     providerName: "AWS",
  *     regionName: "US_EAST_1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example with GCP
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.NetworkContainer("test", {
- *     atlasCidrBlock: "10.8.0.0/21",
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     atlasCidrBlock: "10.8.0.0/21",
  *     providerName: "GCP",
  *     regions: [
  *         "US_EAST_4",
@@ -50,23 +47,20 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example with Azure
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.NetworkContainer("test", {
- *     atlasCidrBlock: "10.8.0.0/21",
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     atlasCidrBlock: "10.8.0.0/21",
  *     providerName: "AZURE",
  *     region: "US_EAST_2",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

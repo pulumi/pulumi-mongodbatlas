@@ -24,6 +24,10 @@ public final class GetFederatedSettingsIdentityProviderAssociatedOrg {
      * 
      */
     private Boolean domainRestrictionEnabled;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the IdP.
+     * 
+     */
     private String identityProviderId;
     /**
      * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
@@ -53,6 +57,10 @@ public final class GetFederatedSettingsIdentityProviderAssociatedOrg {
     public Boolean domainRestrictionEnabled() {
         return this.domainRestrictionEnabled;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the IdP.
+     * 
+     */
     public String identityProviderId() {
         return this.identityProviderId;
     }

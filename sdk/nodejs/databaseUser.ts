@@ -21,29 +21,29 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.DatabaseUser("test", {
+ *     username: "test-acc-username",
+ *     password: "test-acc-password",
+ *     projectId: "<PROJECT-ID>",
  *     authDatabaseName: "admin",
+ *     roles: [
+ *         {
+ *             roleName: "readWrite",
+ *             databaseName: "dbforApp",
+ *         },
+ *         {
+ *             roleName: "readAnyDatabase",
+ *             databaseName: "admin",
+ *         },
+ *     ],
  *     labels: [{
  *         key: "My Key",
  *         value: "My Value",
  *     }],
- *     password: "test-acc-password",
- *     projectId: "<PROJECT-ID>",
- *     roles: [
- *         {
- *             databaseName: "dbforApp",
- *             roleName: "readWrite",
- *         },
- *         {
- *             databaseName: "admin",
- *             roleName: "readAnyDatabase",
- *         },
- *     ],
  *     scopes: [
  *         {
  *             name: "My cluster name",
@@ -54,44 +54,39 @@ import * as utilities from "./utilities";
  *             type: "CLUSTER",
  *         },
  *     ],
- *     username: "test-acc-username",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.DatabaseUser("test", {
+ *     username: "test-acc-username",
+ *     x509Type: "MANAGED",
+ *     projectId: "<PROJECT-ID>",
  *     authDatabaseName: "$external",
+ *     roles: [{
+ *         roleName: "readAnyDatabase",
+ *         databaseName: "admin",
+ *     }],
  *     labels: [{
  *         key: "%s",
  *         value: "%s",
- *     }],
- *     projectId: "<PROJECT-ID>",
- *     roles: [{
- *         databaseName: "admin",
- *         roleName: "readAnyDatabase",
  *     }],
  *     scopes: [{
  *         name: "My cluster name",
  *         type: "CLUSTER",
  *     }],
- *     username: "test-acc-username",
- *     x509Type: "MANAGED",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.DatabaseUser("test", {
- *     username: aws_iam_role.test.arn,
+ *     username: testAwsIamRole.arn,
  *     projectId: "<PROJECT-ID>",
  *     authDatabaseName: "$external",
  *     awsIamType: "ROLE",
@@ -109,27 +104,24 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Example of how to create a OIDC federated authentication user
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.DatabaseUser("test", {
+ *     username: "64d613677e1ad50839cce4db/testUserOr",
+ *     projectId: "6414908c207f4d22f4d8f232",
  *     authDatabaseName: "admin",
  *     oidcAuthType: "IDP_GROUP",
- *     projectId: "6414908c207f4d22f4d8f232",
  *     roles: [{
- *         databaseName: "admin",
  *         roleName: "readWriteAnyDatabase",
+ *         databaseName: "admin",
  *     }],
- *     username: "64d613677e1ad50839cce4db/testUserOr",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
  *
  * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
@@ -178,15 +170,23 @@ export class DatabaseUser extends pulumi.CustomResource {
     public readonly authDatabaseName!: pulumi.Output<string>;
     /**
      * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use AWS IAM credentials.
+     * * `USER` - New database user has AWS IAM user credentials.
+     * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
      */
     public readonly awsIamType!: pulumi.Output<string>;
     public readonly labels!: pulumi.Output<outputs.DatabaseUserLabel[] | undefined>;
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+     * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+     * * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+     * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      */
     public readonly ldapAuthType!: pulumi.Output<string>;
     /**
      * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use OIDC federated authentication.
+     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      */
     public readonly oidcAuthType!: pulumi.Output<string>;
     public readonly password!: pulumi.Output<string | undefined>;
@@ -205,6 +205,9 @@ export class DatabaseUser extends pulumi.CustomResource {
     public readonly username!: pulumi.Output<string>;
     /**
      * X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * * `NONE` -	The user does not use X.509 authentication.
+     * * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+     * * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
      */
     public readonly x509Type!: pulumi.Output<string>;
 
@@ -273,15 +276,23 @@ export interface DatabaseUserState {
     authDatabaseName?: pulumi.Input<string>;
     /**
      * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use AWS IAM credentials.
+     * * `USER` - New database user has AWS IAM user credentials.
+     * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
      */
     awsIamType?: pulumi.Input<string>;
     labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+     * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+     * * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+     * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      */
     ldapAuthType?: pulumi.Input<string>;
     /**
      * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use OIDC federated authentication.
+     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      */
     oidcAuthType?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
@@ -300,6 +311,9 @@ export interface DatabaseUserState {
     username?: pulumi.Input<string>;
     /**
      * X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * * `NONE` -	The user does not use X.509 authentication.
+     * * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+     * * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
      */
     x509Type?: pulumi.Input<string>;
 }
@@ -315,15 +329,23 @@ export interface DatabaseUserArgs {
     authDatabaseName: pulumi.Input<string>;
     /**
      * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use AWS IAM credentials.
+     * * `USER` - New database user has AWS IAM user credentials.
+     * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
      */
     awsIamType?: pulumi.Input<string>;
     labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+     * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+     * * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+     * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      */
     ldapAuthType?: pulumi.Input<string>;
     /**
      * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use OIDC federated authentication.
+     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      */
     oidcAuthType?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
@@ -342,6 +364,9 @@ export interface DatabaseUserArgs {
     username: pulumi.Input<string>;
     /**
      * X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * * `NONE` -	The user does not use X.509 authentication.
+     * * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+     * * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
      */
     x509Type?: pulumi.Input<string>;
 }

@@ -26,33 +26,41 @@ public final class GetThirdPartyIntegrationResult {
      */
     private @Nullable Boolean enabled;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Unique identifier of the integration.
      * 
      */
     private String id;
     /**
      * @return Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
      * 
      */
     private @Nullable String microsoftTeamsWebhookUrl;
     private String projectId;
     /**
      * @return Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+     * * `VICTOR_OPS`
      * 
      */
     private String region;
     /**
      * @return An optional field for your Routing Key.
+     * * `WEBHOOK`
      * 
      */
     private String routingKey;
     /**
-     * @return Your Prometheus protocol scheme configured for requests.
+     * @return Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     private @Nullable String scheme;
     /**
      * @return An optional field for your webhook secret.
+     * * `MICROSOFT_TEAMS`
      * 
      */
     private String secret;
@@ -63,14 +71,11 @@ public final class GetThirdPartyIntegrationResult {
     private @Nullable String serviceDiscovery;
     /**
      * @return Your Service Key.
+     * * `DATADOG`
      * 
      */
     private String serviceKey;
     private String teamName;
-    /**
-     * @return Property equal to its own integration type
-     * 
-     */
     private String type;
     /**
      * @return Your webhook URL.
@@ -105,7 +110,7 @@ public final class GetThirdPartyIntegrationResult {
         return Optional.ofNullable(this.enabled);
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return Unique identifier of the integration.
      * 
      */
     public String id() {
@@ -113,6 +118,7 @@ public final class GetThirdPartyIntegrationResult {
     }
     /**
      * @return Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
      * 
      */
     public Optional<String> microsoftTeamsWebhookUrl() {
@@ -123,6 +129,7 @@ public final class GetThirdPartyIntegrationResult {
     }
     /**
      * @return Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+     * * `VICTOR_OPS`
      * 
      */
     public String region() {
@@ -130,20 +137,26 @@ public final class GetThirdPartyIntegrationResult {
     }
     /**
      * @return An optional field for your Routing Key.
+     * * `WEBHOOK`
      * 
      */
     public String routingKey() {
         return this.routingKey;
     }
     /**
-     * @return Your Prometheus protocol scheme configured for requests.
+     * @return Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<String> scheme() {
         return Optional.ofNullable(this.scheme);
     }
     /**
      * @return An optional field for your webhook secret.
+     * * `MICROSOFT_TEAMS`
      * 
      */
     public String secret() {
@@ -158,6 +171,7 @@ public final class GetThirdPartyIntegrationResult {
     }
     /**
      * @return Your Service Key.
+     * * `DATADOG`
      * 
      */
     public String serviceKey() {
@@ -166,10 +180,6 @@ public final class GetThirdPartyIntegrationResult {
     public String teamName() {
         return this.teamName;
     }
-    /**
-     * @return Property equal to its own integration type
-     * 
-     */
     public String type() {
         return this.type;
     }

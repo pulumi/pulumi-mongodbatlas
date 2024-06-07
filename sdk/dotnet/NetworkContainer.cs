@@ -24,7 +24,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ### Example with AWS
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,19 +34,17 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
-    ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProviderName = "AWS",
     ///         RegionName = "US_EAST_1",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Example with GCP
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -58,8 +55,8 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
-    ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProviderName = "GCP",
     ///         Regions = new[]
     ///         {
@@ -70,11 +67,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Example with Azure
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -85,15 +80,14 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
-    ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         AtlasCidrBlock = "10.8.0.0/21",
     ///         ProviderName = "AZURE",
     ///         Region = "US_EAST_2",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

@@ -49,6 +49,11 @@ public final class GetAlertConfigurationsResultNotification {
      */
     private Boolean emailEnabled;
     /**
+     * @return The ID of the associated integration, the credentials of which to use for requests.
+     * 
+     */
+    private String integrationId;
+    /**
      * @return Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
      * 
      */
@@ -64,7 +69,7 @@ public final class GetAlertConfigurationsResultNotification {
      */
     private String mobileNumber;
     /**
-     * @return The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     * @return The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
      * 
      */
     private String notifierId;
@@ -106,6 +111,19 @@ public final class GetAlertConfigurationsResultNotification {
     /**
      * @return Type of alert notification.
      * Accepted values are:
+     * - `DATADOG`
+     * - `EMAIL`
+     * - `GROUP` (Project)
+     * - `OPS_GENIE`
+     * - `ORG`
+     * - `PAGER_DUTY`
+     * - `SLACK`
+     * - `SMS`
+     * - `TEAM`
+     * - `USER`
+     * - `VICTOR_OPS`
+     * - `WEBHOOK`
+     * - `MICROSOFT_TEAMS`
      * 
      */
     private String typeName;
@@ -186,6 +204,13 @@ public final class GetAlertConfigurationsResultNotification {
         return this.emailEnabled;
     }
     /**
+     * @return The ID of the associated integration, the credentials of which to use for requests.
+     * 
+     */
+    public String integrationId() {
+        return this.integrationId;
+    }
+    /**
      * @return Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
      * 
      */
@@ -207,7 +232,7 @@ public final class GetAlertConfigurationsResultNotification {
         return this.mobileNumber;
     }
     /**
-     * @return The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+     * @return The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
      * 
      */
     public String notifierId() {
@@ -265,6 +290,19 @@ public final class GetAlertConfigurationsResultNotification {
     /**
      * @return Type of alert notification.
      * Accepted values are:
+     * - `DATADOG`
+     * - `EMAIL`
+     * - `GROUP` (Project)
+     * - `OPS_GENIE`
+     * - `ORG`
+     * - `PAGER_DUTY`
+     * - `SLACK`
+     * - `SMS`
+     * - `TEAM`
+     * - `USER`
+     * - `VICTOR_OPS`
+     * - `WEBHOOK`
+     * - `MICROSOFT_TEAMS`
      * 
      */
     public String typeName() {
@@ -322,6 +360,7 @@ public final class GetAlertConfigurationsResultNotification {
         private Integer delayMin;
         private String emailAddress;
         private Boolean emailEnabled;
+        private String integrationId;
         private Integer intervalMin;
         private String microsoftTeamsWebhookUrl;
         private String mobileNumber;
@@ -349,6 +388,7 @@ public final class GetAlertConfigurationsResultNotification {
     	      this.delayMin = defaults.delayMin;
     	      this.emailAddress = defaults.emailAddress;
     	      this.emailEnabled = defaults.emailEnabled;
+    	      this.integrationId = defaults.integrationId;
     	      this.intervalMin = defaults.intervalMin;
     	      this.microsoftTeamsWebhookUrl = defaults.microsoftTeamsWebhookUrl;
     	      this.mobileNumber = defaults.mobileNumber;
@@ -422,6 +462,14 @@ public final class GetAlertConfigurationsResultNotification {
               throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "emailEnabled");
             }
             this.emailEnabled = emailEnabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder integrationId(String integrationId) {
+            if (integrationId == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationsResultNotification", "integrationId");
+            }
+            this.integrationId = integrationId;
             return this;
         }
         @CustomType.Setter
@@ -572,6 +620,7 @@ public final class GetAlertConfigurationsResultNotification {
             _resultValue.delayMin = delayMin;
             _resultValue.emailAddress = emailAddress;
             _resultValue.emailEnabled = emailEnabled;
+            _resultValue.integrationId = integrationId;
             _resultValue.intervalMin = intervalMin;
             _resultValue.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             _resultValue.mobileNumber = mobileNumber;

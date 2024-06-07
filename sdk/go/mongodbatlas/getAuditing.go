@@ -14,6 +14,38 @@ import (
 // `Auditing` describes a Auditing.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testAuditing, err := mongodbatlas.NewAuditing(ctx, "test", &mongodbatlas.AuditingArgs{
+//				ProjectId:                 pulumi.String("<project-id>"),
+//				AuditFilter:               pulumi.String("{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}"),
+//				AuditAuthorizationSuccess: pulumi.Bool(false),
+//				Enabled:                   pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupAuditingOutput(ctx, mongodbatlas.GetAuditingOutputArgs{
+//				ProjectId: testAuditing.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupAuditing(ctx *pulumi.Context, args *LookupAuditingArgs, opts ...pulumi.InvokeOption) (*LookupAuditingResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAuditingResult

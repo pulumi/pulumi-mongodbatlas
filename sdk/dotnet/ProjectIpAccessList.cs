@@ -20,7 +20,6 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ### Using CIDR Block
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,17 +30,15 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.ProjectIpAccessList("test", new()
     ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         CidrBlock = "1.2.3.4/32",
     ///         Comment = "cidr block for tf acc testing",
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Using IP Address
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -52,17 +49,15 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.ProjectIpAccessList("test", new()
     ///     {
-    ///         Comment = "ip address for tf acc testing",
-    ///         IpAddress = "2.3.4.5",
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         IpAddress = "2.3.4.5",
+    ///         Comment = "ip address for tf acc testing",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Using an AWS Security Group
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -71,7 +66,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new()
+    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         AtlasCidrBlock = "192.168.208.0/21",
@@ -79,10 +74,10 @@ namespace Pulumi.Mongodbatlas
     ///         RegionName = "US_EAST_1",
     ///     });
     /// 
-    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
+    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         ContainerId = testNetworkContainer.ContainerId,
+    ///         ContainerId = test.ContainerId,
     ///         AccepterRegionName = "us-east-1",
     ///         ProviderName = "AWS",
     ///         RouteTableCidrBlock = "172.31.0.0/16",
@@ -90,7 +85,7 @@ namespace Pulumi.Mongodbatlas
     ///         AwsAccountId = "232589400519",
     ///     });
     /// 
-    ///     var testProjectIpAccessList = new Mongodbatlas.ProjectIpAccessList("testProjectIpAccessList", new()
+    ///     var testProjectIpAccessList = new Mongodbatlas.ProjectIpAccessList("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         AwsSecurityGroup = "sg-0026348ec11780bd1",
@@ -99,13 +94,12 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         DependsOn =
     ///         {
-    ///             "mongodbatlas_network_peering.test", 
+    ///             testNetworkPeering,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
     /// 

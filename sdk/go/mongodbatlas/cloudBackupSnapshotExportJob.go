@@ -20,7 +20,6 @@ import (
 //
 // ### Export one snapshot
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -33,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testCloudBackupSnapshotExportBucket, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "testCloudBackupSnapshotExportBucket", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//			test, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
 //				ProjectId:     pulumi.String("{PROJECT_ID}"),
 //				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
 //				BucketName:    pulumi.String("example_bucket"),
@@ -42,11 +41,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewCloudBackupSnapshotExportJob(ctx, "testCloudBackupSnapshotExportJob", &mongodbatlas.CloudBackupSnapshotExportJobArgs{
+//			_, err = mongodbatlas.NewCloudBackupSnapshotExportJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportJobArgs{
 //				ProjectId:      pulumi.String("{PROJECT_ID}"),
 //				ClusterName:    pulumi.String("{CLUSTER_NAME}"),
 //				SnapshotId:     pulumi.String("{SNAPSHOT_ID}"),
-//				ExportBucketId: testCloudBackupSnapshotExportBucket.ExportBucketId,
+//				ExportBucketId: test.ExportBucketId,
 //				CustomDatas: mongodbatlas.CloudBackupSnapshotExportJobCustomDataArray{
 //					&mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs{
 //						Key:   pulumi.String("exported by"),
@@ -62,11 +61,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Create backup and automatic snapshot export policies
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -133,7 +130,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -171,6 +167,10 @@ type CloudBackupSnapshotExportJob struct {
 	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
 	SnapshotId pulumi.StringOutput `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
+	// * `Queued` - indicates that the export job is queued
+	// * `InProgress` - indicates that the snapshot is being exported
+	// * `Successful` - indicates that the export job has completed successfully
+	// * `Failed` - indicates that the export job has failed
 	State pulumi.StringOutput `pulumi:"state"`
 }
 
@@ -244,6 +244,10 @@ type cloudBackupSnapshotExportJobState struct {
 	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
 	SnapshotId *string `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
+	// * `Queued` - indicates that the export job is queued
+	// * `InProgress` - indicates that the snapshot is being exported
+	// * `Successful` - indicates that the export job has completed successfully
+	// * `Failed` - indicates that the export job has failed
 	State *string `pulumi:"state"`
 }
 
@@ -273,6 +277,10 @@ type CloudBackupSnapshotExportJobState struct {
 	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
 	SnapshotId pulumi.StringPtrInput
 	// Status of the export job. Value can be one of the following:
+	// * `Queued` - indicates that the export job is queued
+	// * `InProgress` - indicates that the snapshot is being exported
+	// * `Successful` - indicates that the export job has completed successfully
+	// * `Failed` - indicates that the export job has failed
 	State pulumi.StringPtrInput
 }
 
@@ -462,6 +470,10 @@ func (o CloudBackupSnapshotExportJobOutput) SnapshotId() pulumi.StringOutput {
 }
 
 // Status of the export job. Value can be one of the following:
+// * `Queued` - indicates that the export job is queued
+// * `InProgress` - indicates that the snapshot is being exported
+// * `Successful` - indicates that the export job has completed successfully
+// * `Failed` - indicates that the export job has failed
 func (o CloudBackupSnapshotExportJobOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }

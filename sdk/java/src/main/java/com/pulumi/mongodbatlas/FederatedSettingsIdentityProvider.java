@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * &gt; **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,20 +47,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var identityProvider = new FederatedSettingsIdentityProvider(&#34;identityProvider&#34;, FederatedSettingsIdentityProviderArgs.builder()        
- *             .associatedDomains(&#34;yourdomain.com&#34;)
- *             .federationSettingsId(&#34;627a9687f7f7f7f774de306f14&#34;)
- *             .issuerUri(&#34;http://www.okta.com/exk17q7f7f7f7fp50h8&#34;)
- *             .requestBinding(&#34;HTTP-POST&#34;)
- *             .responseSignatureAlgorithm(&#34;SHA-256&#34;)
+ *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
+ *             .federationSettingsId("627a9687f7f7f7f774de306f14")
+ *             .name("mongodb_federation_test")
+ *             .associatedDomains("yourdomain.com")
  *             .ssoDebugEnabled(true)
- *             .ssoUrl(&#34;https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml&#34;)
- *             .status(&#34;ACTIVE&#34;)
+ *             .status("ACTIVE")
+ *             .ssoUrl("https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml")
+ *             .issuerUri("http://www.okta.com/exk17q7f7f7f7fp50h8")
+ *             .requestBinding("HTTP-POST")
+ *             .responseSignatureAlgorithm("SHA-256")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -67,10 +70,8 @@ import javax.annotation.Nullable;
  * Identity Provider __must__ be imported before using federation_settings_id-idp_id, e.g.
  * 
  * ```sh
- * $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk1297
+ * $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk12971234
  * ```
- * __WARNING:__ Starting from terraform provider version 1.16.0, to import the resource a 24-hexadecimal digit string that identifies the IdP (`idp_id`) will have to be used instead of `okta_idp_id`. See more [here](../guides/1.15.0-upgrade-guide.html.markdown)
- * 
  * For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
  * 
  */

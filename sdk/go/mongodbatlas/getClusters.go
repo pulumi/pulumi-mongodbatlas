@@ -22,7 +22,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -35,8 +34,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
+//			testCluster, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
+//				Name:        pulumi.String("cluster-test"),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 //					&mongodbatlas.ClusterReplicationSpecArgs{
@@ -67,7 +67,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupClusters(ctx *pulumi.Context, args *LookupClustersArgs, opts ...pulumi.InvokeOption) (*LookupClustersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClustersResult

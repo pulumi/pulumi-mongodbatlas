@@ -57,6 +57,11 @@ class ClusterArgs:
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
                
                The possible values are:
+               
+               - `AWS` - Amazon AWS
+               - `GCP` - Google Cloud Platform
+               - `AZURE` - Microsoft Azure
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         :param pulumi.Input[str] accept_data_risks_and_force_replica_set_reconfig: If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         :param pulumi.Input[bool] auto_scaling_compute_scale_down_enabled: Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
                - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
@@ -73,11 +78,10 @@ class ClusterArgs:
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
                ```
-               <!--End PulumiCodeChooser -->
+               backup_enabled = "false"
+               cloud_backup = "true"
+               ```
                * The default value is false.  M10 and above only.
         :param pulumi.Input['ClusterBiConnectorConfigArgs'] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -86,6 +90,9 @@ class ClusterArgs:
                When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
                
                Accepted values include:
+               - `REPLICASET` Replica set
+               - `SHARDED` Sharded cluster
+               - `GEOSHARDED` Global Cluster
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
                * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
                * Note: The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider upgrading your cluster to a higher tier.
@@ -93,7 +100,7 @@ class ClusterArgs:
                * Cannot be used with Azure clusters
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[int] num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
@@ -113,6 +120,8 @@ class ClusterArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+               - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+               - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_instance_size_name", provider_instance_size_name)
@@ -142,8 +151,8 @@ class ClusterArgs:
         if encryption_at_rest_provider is not None:
             pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         if labels is not None:
-            warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
-            pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+            warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
+            pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if mongo_db_major_version is not None:
@@ -217,6 +226,11 @@ class ClusterArgs:
         Cloud service provider on which the servers are provisioned.
 
         The possible values are:
+
+        - `AWS` - Amazon AWS
+        - `GCP` - Google Cloud Platform
+        - `AZURE` - Microsoft Azure
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         """
         return pulumi.get(self, "provider_name")
 
@@ -304,11 +318,10 @@ class ClusterArgs:
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
         ```
-        <!--End PulumiCodeChooser -->
+        backup_enabled = "false"
+        cloud_backup = "true"
+        ```
         * The default value is false.  M10 and above only.
         """
         return pulumi.get(self, "backup_enabled")
@@ -348,6 +361,9 @@ class ClusterArgs:
         When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
 
         Accepted values include:
+        - `REPLICASET` Replica set
+        - `SHARDED` Sharded cluster
+        - `GEOSHARDED` Global Cluster
         """
         return pulumi.get(self, "cluster_type")
 
@@ -389,8 +405,8 @@ class ClusterArgs:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
-        warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
-        pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+        warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
+        pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
 
         return pulumi.get(self, "labels")
 
@@ -402,7 +418,7 @@ class ClusterArgs:
     @pulumi.getter(name="mongoDbMajorVersion")
     def mongo_db_major_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+        Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
         """
         return pulumi.get(self, "mongo_db_major_version")
 
@@ -610,6 +626,8 @@ class ClusterArgs:
     def version_release_system(self) -> Optional[pulumi.Input[str]]:
         """
         Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         """
         return pulumi.get(self, "version_release_system")
 
@@ -684,11 +702,10 @@ class _ClusterState:
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
                ```
-               <!--End PulumiCodeChooser -->
+               backup_enabled = "false"
+               cloud_backup = "true"
+               ```
                * The default value is false.  M10 and above only.
         :param pulumi.Input['ClusterBiConnectorConfigArgs'] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_id: The cluster ID.
@@ -698,6 +715,9 @@ class _ClusterState:
                When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
                
                Accepted values include:
+               - `REPLICASET` Replica set
+               - `SHARDED` Sharded cluster
+               - `GEOSHARDED` Global Cluster
         :param pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringArgs']]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[str] container_id: The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
@@ -707,7 +727,7 @@ class _ClusterState:
                * Cannot be used with Azure clusters
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[str] mongo_uri: Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[str] mongo_uri_updated: Lists when the connection string was last updated. The connection string changes, for example, if you change a replica set to a sharded cluster.
@@ -726,6 +746,11 @@ class _ClusterState:
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
                
                The possible values are:
+               
+               - `AWS` - Amazon AWS
+               - `GCP` - Google Cloud Platform
+               - `AZURE` - Microsoft Azure
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
@@ -745,6 +770,8 @@ class _ClusterState:
         :param pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+               - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+               - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         """
         if accept_data_risks_and_force_replica_set_reconfig is not None:
             pulumi.set(__self__, "accept_data_risks_and_force_replica_set_reconfig", accept_data_risks_and_force_replica_set_reconfig)
@@ -777,8 +804,8 @@ class _ClusterState:
         if encryption_at_rest_provider is not None:
             pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         if labels is not None:
-            warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
-            pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+            warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
+            pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if mongo_db_major_version is not None:
@@ -923,11 +950,10 @@ class _ClusterState:
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
         ```
-        <!--End PulumiCodeChooser -->
+        backup_enabled = "false"
+        cloud_backup = "true"
+        ```
         * The default value is false.  M10 and above only.
         """
         return pulumi.get(self, "backup_enabled")
@@ -979,6 +1005,9 @@ class _ClusterState:
         When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
 
         Accepted values include:
+        - `REPLICASET` Replica set
+        - `SHARDED` Sharded cluster
+        - `GEOSHARDED` Global Cluster
         """
         return pulumi.get(self, "cluster_type")
 
@@ -1044,8 +1073,8 @@ class _ClusterState:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
-        warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
-        pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+        warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
+        pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
 
         return pulumi.get(self, "labels")
 
@@ -1057,7 +1086,7 @@ class _ClusterState:
     @pulumi.getter(name="mongoDbMajorVersion")
     def mongo_db_major_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+        Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
         """
         return pulumi.get(self, "mongo_db_major_version")
 
@@ -1262,6 +1291,11 @@ class _ClusterState:
         Cloud service provider on which the servers are provisioned.
 
         The possible values are:
+
+        - `AWS` - Amazon AWS
+        - `GCP` - Google Cloud Platform
+        - `AZURE` - Microsoft Azure
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1402,6 +1436,8 @@ class _ClusterState:
     def version_release_system(self) -> Optional[pulumi.Input[str]]:
         """
         Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         """
         return pulumi.get(self, "version_release_system")
 
@@ -1455,229 +1491,199 @@ class Cluster(pulumi.CustomResource):
 
         ### Example AWS cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M40",
-            provider_name="AWS",
+            name="cluster-test",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="US_EAST_1",
                     electable_nodes=3,
                     priority=7,
                     read_only_nodes=0,
-                    region_name="US_EAST_1",
                 )],
-            )])
+            )],
+            cloud_backup=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="7.0",
+            provider_name="AWS",
+            provider_instance_size_name="M40")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Azure cluster.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Cluster("test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
-            provider_disk_type_name="P6",
-            provider_instance_size_name="M30",
-            provider_name="AZURE",
+            name="test",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="US_EAST",
                     electable_nodes=3,
                     priority=7,
                     read_only_nodes=0,
-                    region_name="US_EAST",
                 )],
-            )])
+            )],
+            cloud_backup=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="7.0",
+            provider_name="AZURE",
+            provider_disk_type_name="P6",
+            provider_instance_size_name="M30")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example GCP cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Cluster("test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M30",
-            provider_name="GCP",
+            name="test",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="EASTERN_US",
                     electable_nodes=3,
                     priority=7,
                     read_only_nodes=0,
-                    region_name="EASTERN_US",
                 )],
-            )])
+            )],
+            cloud_backup=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="7.0",
+            provider_name="GCP",
+            provider_instance_size_name="M30")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Multi Region cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
+            project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test-multi-region",
+            num_shards=1,
             cloud_backup=True,
             cluster_type="REPLICASET",
-            num_shards=1,
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M10",
             provider_name="AWS",
+            provider_instance_size_name="M10",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[
                     mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_1",
                         electable_nodes=3,
                         priority=7,
                         read_only_nodes=0,
-                        region_name="US_EAST_1",
                     ),
                     mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_2",
                         electable_nodes=2,
                         priority=6,
                         read_only_nodes=0,
-                        region_name="US_EAST_2",
                     ),
                     mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_WEST_1",
                         electable_nodes=2,
                         priority=5,
                         read_only_nodes=2,
-                        region_name="US_WEST_1",
                     ),
                 ],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Global cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
+            project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test-global",
+            num_shards=1,
             cloud_backup=True,
             cluster_type="GEOSHARDED",
-            num_shards=1,
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M30",
             provider_name="AWS",
+            provider_instance_size_name="M30",
             replication_specs=[
                 mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 1",
                     num_shards=2,
                     regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_1",
                         electable_nodes=3,
                         priority=7,
                         read_only_nodes=0,
-                        region_name="US_EAST_1",
                     )],
-                    zone_name="Zone 1",
                 ),
                 mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 2",
                     num_shards=2,
                     regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="EU_CENTRAL_1",
                         electable_nodes=3,
                         priority=7,
                         read_only_nodes=0,
-                        region_name="EU_CENTRAL_1",
                     )],
-                    zone_name="Zone 2",
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
         ### Example AWS Shared Tier (M2/M5) cluster
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
-            backing_provider_name="AWS",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M2",
+            name="cluster-test-global",
             provider_name="TENANT",
-            provider_region_name="US_EAST_1")
+            backing_provider_name="AWS",
+            provider_region_name="US_EAST_1",
+            provider_instance_size_name="M2")
         ```
-        <!--End PulumiCodeChooser -->
         ### Example AWS Free Tier cluster
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
-            backing_provider_name="AWS",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M0",
+            name="cluster-test-global",
             provider_name="TENANT",
-            provider_region_name="US_EAST_1")
+            backing_provider_name="AWS",
+            provider_region_name="US_EAST_1",
+            provider_instance_size_name="M0")
         ```
-        <!--End PulumiCodeChooser -->
         ### Example - Return a Connection String
         Standard
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
 
-        pulumi.export("standard", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard"])
+        pulumi.export("standard", cluster_test["connectionStrings"][0]["standard"])
         ```
-        <!--End PulumiCodeChooser -->
         Standard srv
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
 
-        pulumi.export("standardSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard_srv"])
+        pulumi.export("standardSrv", cluster_test["connectionStrings"][0]["standardSrv"])
         ```
-        <!--End PulumiCodeChooser -->
         Private with Network peering and Custom DNS AWS enabled
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        pulumi.export("private", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private"])
-        # Example return string: private = "mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=atlas-12diht-shard-0"
-        private = "mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net"
-        ```
-        <!--End PulumiCodeChooser -->
-        Private srv with Network peering and Custom DNS AWS enabled
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        pulumi.export("privateSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private_srv"])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        By endpoint_service_id
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -1705,11 +1711,10 @@ class Cluster(pulumi.CustomResource):
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
                ```
-               <!--End PulumiCodeChooser -->
+               backup_enabled = "false"
+               cloud_backup = "true"
+               ```
                * The default value is false.  M10 and above only.
         :param pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -1718,6 +1723,9 @@ class Cluster(pulumi.CustomResource):
                When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
                
                Accepted values include:
+               - `REPLICASET` Replica set
+               - `SHARDED` Sharded cluster
+               - `GEOSHARDED` Global Cluster
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
                * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
                * Note: The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider upgrading your cluster to a higher tier.
@@ -1725,7 +1733,7 @@ class Cluster(pulumi.CustomResource):
                * Cannot be used with Azure clusters
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLabelArgs']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[int] num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
@@ -1740,6 +1748,11 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
                
                The possible values are:
+               
+               - `AWS` - Amazon AWS
+               - `GCP` - Google Cloud Platform
+               - `AZURE` - Microsoft Azure
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
@@ -1750,6 +1763,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+               - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+               - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         """
         ...
     @overload
@@ -1762,229 +1777,199 @@ class Cluster(pulumi.CustomResource):
 
         ### Example AWS cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M40",
-            provider_name="AWS",
+            name="cluster-test",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="US_EAST_1",
                     electable_nodes=3,
                     priority=7,
                     read_only_nodes=0,
-                    region_name="US_EAST_1",
                 )],
-            )])
+            )],
+            cloud_backup=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="7.0",
+            provider_name="AWS",
+            provider_instance_size_name="M40")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Azure cluster.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Cluster("test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
-            provider_disk_type_name="P6",
-            provider_instance_size_name="M30",
-            provider_name="AZURE",
+            name="test",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="US_EAST",
                     electable_nodes=3,
                     priority=7,
                     read_only_nodes=0,
-                    region_name="US_EAST",
                 )],
-            )])
+            )],
+            cloud_backup=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="7.0",
+            provider_name="AZURE",
+            provider_disk_type_name="P6",
+            provider_instance_size_name="M30")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example GCP cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Cluster("test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M30",
-            provider_name="GCP",
+            name="test",
+            cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="EASTERN_US",
                     electable_nodes=3,
                     priority=7,
                     read_only_nodes=0,
-                    region_name="EASTERN_US",
                 )],
-            )])
+            )],
+            cloud_backup=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="7.0",
+            provider_name="GCP",
+            provider_instance_size_name="M30")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Multi Region cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
+            project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test-multi-region",
+            num_shards=1,
             cloud_backup=True,
             cluster_type="REPLICASET",
-            num_shards=1,
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M10",
             provider_name="AWS",
+            provider_instance_size_name="M10",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[
                     mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_1",
                         electable_nodes=3,
                         priority=7,
                         read_only_nodes=0,
-                        region_name="US_EAST_1",
                     ),
                     mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_2",
                         electable_nodes=2,
                         priority=6,
                         read_only_nodes=0,
-                        region_name="US_EAST_2",
                     ),
                     mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_WEST_1",
                         electable_nodes=2,
                         priority=5,
                         read_only_nodes=2,
-                        region_name="US_WEST_1",
                     ),
                 ],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Global cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
+            project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test-global",
+            num_shards=1,
             cloud_backup=True,
             cluster_type="GEOSHARDED",
-            num_shards=1,
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M30",
             provider_name="AWS",
+            provider_instance_size_name="M30",
             replication_specs=[
                 mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 1",
                     num_shards=2,
                     regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_1",
                         electable_nodes=3,
                         priority=7,
                         read_only_nodes=0,
-                        region_name="US_EAST_1",
                     )],
-                    zone_name="Zone 1",
                 ),
                 mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 2",
                     num_shards=2,
                     regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="EU_CENTRAL_1",
                         electable_nodes=3,
                         priority=7,
                         read_only_nodes=0,
-                        region_name="EU_CENTRAL_1",
                     )],
-                    zone_name="Zone 2",
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
         ### Example AWS Shared Tier (M2/M5) cluster
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
-            backing_provider_name="AWS",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M2",
+            name="cluster-test-global",
             provider_name="TENANT",
-            provider_region_name="US_EAST_1")
+            backing_provider_name="AWS",
+            provider_region_name="US_EAST_1",
+            provider_instance_size_name="M2")
         ```
-        <!--End PulumiCodeChooser -->
         ### Example AWS Free Tier cluster
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
-            backing_provider_name="AWS",
             project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M0",
+            name="cluster-test-global",
             provider_name="TENANT",
-            provider_region_name="US_EAST_1")
+            backing_provider_name="AWS",
+            provider_region_name="US_EAST_1",
+            provider_instance_size_name="M0")
         ```
-        <!--End PulumiCodeChooser -->
         ### Example - Return a Connection String
         Standard
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
 
-        pulumi.export("standard", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard"])
+        pulumi.export("standard", cluster_test["connectionStrings"][0]["standard"])
         ```
-        <!--End PulumiCodeChooser -->
         Standard srv
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
 
-        pulumi.export("standardSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["standard_srv"])
+        pulumi.export("standardSrv", cluster_test["connectionStrings"][0]["standardSrv"])
         ```
-        <!--End PulumiCodeChooser -->
         Private with Network peering and Custom DNS AWS enabled
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        pulumi.export("private", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private"])
-        # Example return string: private = "mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&authSource=admin&replicaSet=atlas-12diht-shard-0"
-        private = "mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net"
-        ```
-        <!--End PulumiCodeChooser -->
-        Private srv with Network peering and Custom DNS AWS enabled
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-
-        pulumi.export("privateSrv", mongodbatlas_cluster["cluster-test"]["connection_strings"][0]["private_srv"])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        By endpoint_service_id
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -2181,11 +2166,10 @@ class Cluster(pulumi.CustomResource):
                **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
                * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
                * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
                ```
-               <!--End PulumiCodeChooser -->
+               backup_enabled = "false"
+               cloud_backup = "true"
+               ```
                * The default value is false.  M10 and above only.
         :param pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_id: The cluster ID.
@@ -2195,6 +2179,9 @@ class Cluster(pulumi.CustomResource):
                When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
                
                Accepted values include:
+               - `REPLICASET` Replica set
+               - `SHARDED` Sharded cluster
+               - `GEOSHARDED` Global Cluster
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterConnectionStringArgs']]]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[str] container_id: The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
@@ -2204,7 +2191,7 @@ class Cluster(pulumi.CustomResource):
                * Cannot be used with Azure clusters
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLabelArgs']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[str] mongo_uri: Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[str] mongo_uri_updated: Lists when the connection string was last updated. The connection string changes, for example, if you change a replica set to a sharded cluster.
@@ -2223,6 +2210,11 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
                
                The possible values are:
+               
+               - `AWS` - Amazon AWS
+               - `GCP` - Google Cloud Platform
+               - `AZURE` - Microsoft Azure
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
@@ -2242,6 +2234,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+               - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+               - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -2350,11 +2344,10 @@ class Cluster(pulumi.CustomResource):
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
         * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
         ```
-        <!--End PulumiCodeChooser -->
+        backup_enabled = "false"
+        cloud_backup = "true"
+        ```
         * The default value is false.  M10 and above only.
         """
         return pulumi.get(self, "backup_enabled")
@@ -2390,6 +2383,9 @@ class Cluster(pulumi.CustomResource):
         When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
 
         Accepted values include:
+        - `REPLICASET` Replica set
+        - `SHARDED` Sharded cluster
+        - `GEOSHARDED` Global Cluster
         """
         return pulumi.get(self, "cluster_type")
 
@@ -2435,8 +2431,8 @@ class Cluster(pulumi.CustomResource):
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
-        warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
-        pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+        warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
+        pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
 
         return pulumi.get(self, "labels")
 
@@ -2444,7 +2440,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="mongoDbMajorVersion")
     def mongo_db_major_version(self) -> pulumi.Output[str]:
         """
-        Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+        Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
         """
         return pulumi.get(self, "mongo_db_major_version")
 
@@ -2581,6 +2577,11 @@ class Cluster(pulumi.CustomResource):
         Cloud service provider on which the servers are provisioned.
 
         The possible values are:
+
+        - `AWS` - Amazon AWS
+        - `GCP` - Google Cloud Platform
+        - `AZURE` - Microsoft Azure
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         """
         return pulumi.get(self, "provider_name")
 
@@ -2677,6 +2678,8 @@ class Cluster(pulumi.CustomResource):
     def version_release_system(self) -> pulumi.Output[str]:
         """
         Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         """
         return pulumi.get(self, "version_release_system")
 

@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			orgConnections, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, "orgConnections", &mongodbatlas.FederatedSettingsOrgConfigArgs{
+//			_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, "org_connections", &mongodbatlas.FederatedSettingsOrgConfigArgs{
 //				FederationSettingsId:     pulumi.String("627a9687f7f7f7f774de306f14"),
 //				OrgId:                    pulumi.String("627a9683ea7ff7f74de306f14"),
 //				DomainRestrictionEnabled: pulumi.Bool(false),
@@ -42,16 +41,18 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupFederatedSettingsOrgConfigOutput(ctx, mongodbatlas.GetFederatedSettingsOrgConfigOutputArgs{
-//				FederationSettingsId: orgConnections.ID(),
-//				OrgId:                pulumi.String("627a9683ea7ff7f74de306f14"),
+//			_, err = mongodbatlas.LookupFederatedSettingsOrgConfig(ctx, &mongodbatlas.LookupFederatedSettingsOrgConfigArgs{
+//				FederationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,
+//				OrgId:                "627a9683ea7ff7f74de306f14",
 //			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupFederatedSettingsOrgConfig(ctx *pulumi.Context, args *LookupFederatedSettingsOrgConfigArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsOrgConfigResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsOrgConfigResult

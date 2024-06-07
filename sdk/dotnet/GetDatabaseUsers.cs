@@ -20,7 +20,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -29,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
         ///     {
         ///         Username = "test-acc-username",
         ///         Password = "test-acc-password",
@@ -63,17 +62,15 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new()
+        ///     var test = Mongodbatlas.GetDatabaseUsers.Invoke(new()
         ///     {
         ///         ProjectId = testDatabaseUser.ProjectId,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// **Example of usage with a OIDC federated authentication user**
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -82,30 +79,29 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
         ///     {
+        ///         Username = "64d613677e1ad50839cce4db/testUserOrGroup",
+        ///         ProjectId = "6414908c207f4d22f4d8f232",
         ///         AuthDatabaseName = "admin",
         ///         OidcAuthType = "IDP_GROUP",
-        ///         ProjectId = "6414908c207f4d22f4d8f232",
         ///         Roles = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
         ///             {
-        ///                 DatabaseName = "admin",
         ///                 RoleName = "readWriteAnyDatabase",
+        ///                 DatabaseName = "admin",
         ///             },
         ///         },
-        ///         Username = "64d613677e1ad50839cce4db/testUserOrGroup",
         ///     });
         /// 
-        ///     var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new()
+        ///     var test = Mongodbatlas.GetDatabaseUsers.Invoke(new()
         ///     {
         ///         ProjectId = "6414908c207f4d22f4d8f232",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         /// </summary>
         public static Task<GetDatabaseUsersResult> InvokeAsync(GetDatabaseUsersArgs args, InvokeOptions? options = null)
@@ -120,7 +116,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -129,7 +124,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
         ///     {
         ///         Username = "test-acc-username",
         ///         Password = "test-acc-password",
@@ -163,17 +158,15 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new()
+        ///     var test = Mongodbatlas.GetDatabaseUsers.Invoke(new()
         ///     {
         ///         ProjectId = testDatabaseUser.ProjectId,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// **Example of usage with a OIDC federated authentication user**
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -182,30 +175,29 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
         ///     {
+        ///         Username = "64d613677e1ad50839cce4db/testUserOrGroup",
+        ///         ProjectId = "6414908c207f4d22f4d8f232",
         ///         AuthDatabaseName = "admin",
         ///         OidcAuthType = "IDP_GROUP",
-        ///         ProjectId = "6414908c207f4d22f4d8f232",
         ///         Roles = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
         ///             {
-        ///                 DatabaseName = "admin",
         ///                 RoleName = "readWriteAnyDatabase",
+        ///                 DatabaseName = "admin",
         ///             },
         ///         },
-        ///         Username = "64d613677e1ad50839cce4db/testUserOrGroup",
         ///     });
         /// 
-        ///     var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new()
+        ///     var test = Mongodbatlas.GetDatabaseUsers.Invoke(new()
         ///     {
         ///         ProjectId = "6414908c207f4d22f4d8f232",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         /// </summary>
         public static Output<GetDatabaseUsersResult> Invoke(GetDatabaseUsersInvokeArgs args, InvokeOptions? options = null)

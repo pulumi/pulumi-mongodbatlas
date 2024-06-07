@@ -34,7 +34,8 @@ import javax.annotation.Nullable;
  * 
  * ### S
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -58,31 +59,31 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new OnlineArchive(&#34;test&#34;, OnlineArchiveArgs.builder()        
- *             .projectId(var_.project_id())
- *             .clusterName(var_.cluster_name())
- *             .collName(var_.collection_name())
- *             .dbName(var_.database_name())
+ *         var test = new OnlineArchive("test", OnlineArchiveArgs.builder()
+ *             .projectId(projectId)
+ *             .clusterName(clusterName)
+ *             .collName(collectionName)
+ *             .dbName(databaseName)
  *             .partitionFields(            
  *                 OnlineArchivePartitionFieldArgs.builder()
- *                     .fieldName(&#34;dateField&#34;)
+ *                     .fieldName("dateField")
  *                     .order(0)
  *                     .build(),
  *                 OnlineArchivePartitionFieldArgs.builder()
- *                     .fieldName(&#34;firstName&#34;)
+ *                     .fieldName("firstName")
  *                     .order(1)
  *                     .build(),
  *                 OnlineArchivePartitionFieldArgs.builder()
- *                     .fieldName(&#34;lastName&#34;)
+ *                     .fieldName("lastName")
  *                     .order(2)
  *                     .build())
  *             .criteria(OnlineArchiveCriteriaArgs.builder()
- *                 .type(&#34;DATE&#34;)
- *                 .dateField(&#34;dateField&#34;)
+ *                 .type("DATE")
+ *                 .dateField("dateField")
  *                 .expireAfterDays(5)
  *                 .build())
  *             .schedule(OnlineArchiveScheduleArgs.builder()
- *                 .type(&#34;DAILY&#34;)
+ *                 .type("DAILY")
  *                 .endHour(1)
  *                 .endMinute(1)
  *                 .startHour(1)
@@ -92,13 +93,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * For custom criteria example
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -121,29 +124,83 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new OnlineArchive(&#34;test&#34;, OnlineArchiveArgs.builder()        
- *             .projectId(var_.project_id())
- *             .clusterName(var_.cluster_name())
- *             .collName(var_.collection_name())
- *             .dbName(var_.database_name())
+ *         var test = new OnlineArchive("test", OnlineArchiveArgs.builder()
+ *             .projectId(projectId)
+ *             .clusterName(clusterName)
+ *             .collName(collectionName)
+ *             .dbName(databaseName)
  *             .partitionFields(            
  *                 OnlineArchivePartitionFieldArgs.builder()
- *                     .fieldName(&#34;firstName&#34;)
+ *                     .fieldName("firstName")
  *                     .order(0)
  *                     .build(),
  *                 OnlineArchivePartitionFieldArgs.builder()
- *                     .fieldName(&#34;secondName&#34;)
+ *                     .fieldName("secondName")
  *                     .order(1)
  *                     .build())
  *             .criteria(OnlineArchiveCriteriaArgs.builder()
- *                 .type(&#34;CUSTOM&#34;)
- *                 .query(&#34;{ \&#34;department\&#34;: \&#34;engineering\&#34; }&#34;)
+ *                 .type("CUSTOM")
+ *                 .query("{ \"department\": \"engineering\" }")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * Defining custom provider and region example
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.OnlineArchive;
+ * import com.pulumi.mongodbatlas.OnlineArchiveArgs;
+ * import com.pulumi.mongodbatlas.inputs.OnlineArchiveDataProcessRegionArgs;
+ * import com.pulumi.mongodbatlas.inputs.OnlineArchivePartitionFieldArgs;
+ * import com.pulumi.mongodbatlas.inputs.OnlineArchiveCriteriaArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new OnlineArchive("test", OnlineArchiveArgs.builder()
+ *             .projectId(projectId)
+ *             .clusterName(clusterName)
+ *             .collName(collectionName)
+ *             .dbName(databaseName)
+ *             .dataProcessRegion(OnlineArchiveDataProcessRegionArgs.builder()
+ *                 .cloudProvider("AZURE")
+ *                 .region("US_EAST_2")
+ *                 .build())
+ *             .partitionFields(OnlineArchivePartitionFieldArgs.builder()
+ *                 .fieldName("firstName")
+ *                 .order(0)
+ *                 .build())
+ *             .criteria(OnlineArchiveCriteriaArgs.builder()
+ *                 .type("CUSTOM")
+ *                 .query("{ \"department\": \"engineering\" }")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

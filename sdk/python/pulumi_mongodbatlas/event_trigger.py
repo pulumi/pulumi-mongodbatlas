@@ -717,7 +717,6 @@ class EventTrigger(pulumi.CustomResource):
         ### S
 
         ### Example Usage: Database Trigger with Function
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -725,6 +724,7 @@ class EventTrigger(pulumi.CustomResource):
         test = mongodbatlas.EventTrigger("test",
             project_id="PROJECT ID",
             app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
             type="DATABASE",
             function_id="FUNCTION ID",
             disabled=False,
@@ -751,75 +751,71 @@ class EventTrigger(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage: Database Trigger with EventBridge
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.EventTrigger("test",
+            project_id="PROJECT ID",
             app_id="APPLICATION ID",
-            config_collection="COLLECTION NAME",
-            config_database="DATABASE NAME",
-            config_full_document=False,
-            config_full_document_before=False,
-            config_match="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
-            config_operation_type="LOGIN",
+            name="NAME OF THE TRIGGER",
+            type="DATABASE",
+            disabled=False,
+            unordered=False,
             config_operation_types=[
                 "INSERT",
                 "UPDATE",
             ],
-            config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
+            config_operation_type="LOGIN",
             config_providers=["anon-user"],
-            config_schedule="*",
+            config_database="DATABASE NAME",
+            config_collection="COLLECTION NAME",
             config_service_id="1",
-            disabled=False,
+            config_match="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
+            config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
+            config_full_document=False,
+            config_full_document_before=False,
+            config_schedule="*",
             event_processors=mongodbatlas.EventTriggerEventProcessorsArgs(
                 aws_eventbridge=mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs(
                     config_account_id="AWS ACCOUNT ID",
                     config_region="AWS REGIOn",
                 ),
-            ),
-            project_id="PROJECT ID",
-            type="DATABASE",
-            unordered=False)
+            ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage: Authentication Trigger
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.EventTrigger("test",
-            app_id="APPLICATION ID",
-            config_operation_type="LOGIN",
-            config_providers=["anon-user"],
-            disabled=False,
-            function_id="1",
             project_id="PROJECT ID",
-            type="AUTHENTICATION")
+            app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
+            type="AUTHENTICATION",
+            function_id="1",
+            disabled=False,
+            config_operation_type="LOGIN",
+            config_providers=["anon-user"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage: Scheduled Trigger
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.EventTrigger("test",
-            app_id="APPLICATION ID",
-            config_schedule="*",
-            disabled=False,
-            function_id="1",
             project_id="PROJECT ID",
-            type="SCHEDULED")
+            app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
+            type="SCHEDULED",
+            function_id="1",
+            disabled=False,
+            config_schedule="*")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -870,7 +866,6 @@ class EventTrigger(pulumi.CustomResource):
         ### S
 
         ### Example Usage: Database Trigger with Function
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -878,6 +873,7 @@ class EventTrigger(pulumi.CustomResource):
         test = mongodbatlas.EventTrigger("test",
             project_id="PROJECT ID",
             app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
             type="DATABASE",
             function_id="FUNCTION ID",
             disabled=False,
@@ -904,75 +900,71 @@ class EventTrigger(pulumi.CustomResource):
                 ),
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage: Database Trigger with EventBridge
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.EventTrigger("test",
+            project_id="PROJECT ID",
             app_id="APPLICATION ID",
-            config_collection="COLLECTION NAME",
-            config_database="DATABASE NAME",
-            config_full_document=False,
-            config_full_document_before=False,
-            config_match="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
-            config_operation_type="LOGIN",
+            name="NAME OF THE TRIGGER",
+            type="DATABASE",
+            disabled=False,
+            unordered=False,
             config_operation_types=[
                 "INSERT",
                 "UPDATE",
             ],
-            config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
+            config_operation_type="LOGIN",
             config_providers=["anon-user"],
-            config_schedule="*",
+            config_database="DATABASE NAME",
+            config_collection="COLLECTION NAME",
             config_service_id="1",
-            disabled=False,
+            config_match="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
+            config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
+            config_full_document=False,
+            config_full_document_before=False,
+            config_schedule="*",
             event_processors=mongodbatlas.EventTriggerEventProcessorsArgs(
                 aws_eventbridge=mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs(
                     config_account_id="AWS ACCOUNT ID",
                     config_region="AWS REGIOn",
                 ),
-            ),
-            project_id="PROJECT ID",
-            type="DATABASE",
-            unordered=False)
+            ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage: Authentication Trigger
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.EventTrigger("test",
-            app_id="APPLICATION ID",
-            config_operation_type="LOGIN",
-            config_providers=["anon-user"],
-            disabled=False,
-            function_id="1",
             project_id="PROJECT ID",
-            type="AUTHENTICATION")
+            app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
+            type="AUTHENTICATION",
+            function_id="1",
+            disabled=False,
+            config_operation_type="LOGIN",
+            config_providers=["anon-user"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage: Scheduled Trigger
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.EventTrigger("test",
-            app_id="APPLICATION ID",
-            config_schedule="*",
-            disabled=False,
-            function_id="1",
             project_id="PROJECT ID",
-            type="SCHEDULED")
+            app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
+            type="SCHEDULED",
+            function_id="1",
+            disabled=False,
+            config_schedule="*")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

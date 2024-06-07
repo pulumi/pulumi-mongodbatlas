@@ -15,6 +15,7 @@ import com.pulumi.mongodbatlas.outputs.BackupCompliancePolicyPolicyItemDaily;
 import com.pulumi.mongodbatlas.outputs.BackupCompliancePolicyPolicyItemHourly;
 import com.pulumi.mongodbatlas.outputs.BackupCompliancePolicyPolicyItemMonthly;
 import com.pulumi.mongodbatlas.outputs.BackupCompliancePolicyPolicyItemWeekly;
+import com.pulumi.mongodbatlas.outputs.BackupCompliancePolicyPolicyItemYearly;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -24,6 +25,145 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+ * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemWeeklyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemMonthlyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemYearlyArgs;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
+ * import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyArgs;
+ * import com.pulumi.mongodbatlas.BackupCompliancePolicy;
+ * import com.pulumi.mongodbatlas.BackupCompliancePolicyArgs;
+ * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyOnDemandPolicyItemArgs;
+ * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemHourlyArgs;
+ * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemDailyArgs;
+ * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
+ * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
+ * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
+ *             .projectId("<PROJECT-ID>")
+ *             .name("clusterTest")
+ *             .providerName("AWS")
+ *             .providerRegionName("EU_CENTRAL_1")
+ *             .providerInstanceSizeName("M10")
+ *             .cloudBackup(true)
+ *             .build());
+ * 
+ *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()
+ *             .projectId(myCluster.projectId())
+ *             .clusterName(myCluster.name())
+ *             .referenceHourOfDay(3)
+ *             .referenceMinuteOfHour(45)
+ *             .restoreWindowDays(4)
+ *             .policyItemHourly(CloudBackupSchedulePolicyItemHourlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("days")
+ *                 .retentionValue(7)
+ *                 .build())
+ *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("days")
+ *                 .retentionValue(7)
+ *                 .build())
+ *             .policyItemWeeklies(CloudBackupSchedulePolicyItemWeeklyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("weeks")
+ *                 .retentionValue(4)
+ *                 .build())
+ *             .policyItemMonthlies(CloudBackupSchedulePolicyItemMonthlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("months")
+ *                 .retentionValue(12)
+ *                 .build())
+ *             .policyItemYearlies(CloudBackupSchedulePolicyItemYearlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("years")
+ *                 .retentionValue(1)
+ *                 .build())
+ *             .build());
+ * 
+ *         final var test = MongodbatlasFunctions.getCloudBackupSchedule(GetCloudBackupScheduleArgs.builder()
+ *             .projectId(testCloudBackupSchedule.projectId())
+ *             .clusterName(testCloudBackupSchedule.clusterName())
+ *             .build());
+ * 
+ *         final var backupPolicy = MongodbatlasFunctions.getBackupCompliancePolicy(GetBackupCompliancePolicyArgs.builder()
+ *             .projectId(testCloudBackupSchedule.projectId())
+ *             .build());
+ * 
+ *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()
+ *             .projectId("<PROJECT-ID>")
+ *             .authorizedEmail("user{@literal @}email.com")
+ *             .authorizedUserFirstName("First")
+ *             .authorizedUserLastName("Last")
+ *             .copyProtectionEnabled(false)
+ *             .pitEnabled(false)
+ *             .encryptionAtRestEnabled(false)
+ *             .restoreWindowDays(7)
+ *             .onDemandPolicyItem(BackupCompliancePolicyOnDemandPolicyItemArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("days")
+ *                 .retentionValue(3)
+ *                 .build())
+ *             .policyItemHourly(BackupCompliancePolicyPolicyItemHourlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("days")
+ *                 .retentionValue(7)
+ *                 .build())
+ *             .policyItemDaily(BackupCompliancePolicyPolicyItemDailyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("days")
+ *                 .retentionValue(7)
+ *                 .build())
+ *             .policyItemWeeklies(BackupCompliancePolicyPolicyItemWeeklyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("weeks")
+ *                 .retentionValue(4)
+ *                 .build())
+ *             .policyItemMonthlies(BackupCompliancePolicyPolicyItemMonthlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("months")
+ *                 .retentionValue(12)
+ *                 .build())
+ *             .policyItemYearlies(BackupCompliancePolicyPolicyItemYearlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("years")
+ *                 .retentionValue(1)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
@@ -150,6 +290,12 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
 
     public Output<Optional<List<BackupCompliancePolicyPolicyItemWeekly>>> policyItemWeeklies() {
         return Codegen.optional(this.policyItemWeeklies);
+    }
+    @Export(name="policyItemYearlies", refs={List.class,BackupCompliancePolicyPolicyItemYearly.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<BackupCompliancePolicyPolicyItemYearly>> policyItemYearlies;
+
+    public Output<Optional<List<BackupCompliancePolicyPolicyItemYearly>>> policyItemYearlies() {
+        return Codegen.optional(this.policyItemYearlies);
     }
     /**
      * Unique 24-hexadecimal digit string that identifies your project.

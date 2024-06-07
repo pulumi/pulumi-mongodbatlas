@@ -146,27 +146,24 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[pulumi.Inpu
     ## Example Usage
 
     ### With AWS
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
+    test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
         project_id="64259ee860c43338194b0f8e",
         provider_name="AWS")
     single_setup = mongodbatlas.get_cloud_provider_access_setup_output(project_id=test_role.project_id,
         provider_name=test_role.provider_name,
         role_id=test_role.role_id)
     ```
-    <!--End PulumiCodeChooser -->
 
     ### With AZURE
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
+    test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
         project_id="64259ee860c43338194b0f8e",
         provider_name="AZURE",
         azure_configs=[mongodbatlas.CloudProviderAccessSetupAzureConfigArgs(
@@ -178,7 +175,6 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[pulumi.Inpu
         provider_name=test_role.provider_name,
         role_id=test_role.role_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetCloudProviderAccessSetupAzureConfigArgs']] azure_configs: azure related configurations
@@ -220,27 +216,24 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
     ## Example Usage
 
     ### With AWS
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
+    test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
         project_id="64259ee860c43338194b0f8e",
         provider_name="AWS")
     single_setup = mongodbatlas.get_cloud_provider_access_setup_output(project_id=test_role.project_id,
         provider_name=test_role.provider_name,
         role_id=test_role.role_id)
     ```
-    <!--End PulumiCodeChooser -->
 
     ### With AZURE
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
+    test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
         project_id="64259ee860c43338194b0f8e",
         provider_name="AZURE",
         azure_configs=[mongodbatlas.CloudProviderAccessSetupAzureConfigArgs(
@@ -252,7 +245,6 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
         provider_name=test_role.provider_name,
         role_id=test_role.role_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetCloudProviderAccessSetupAzureConfigArgs']] azure_configs: azure related configurations

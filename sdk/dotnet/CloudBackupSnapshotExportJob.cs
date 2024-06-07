@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ### Export one snapshot
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,7 +26,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
+    ///     var test = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
     ///     {
     ///         ProjectId = "{PROJECT_ID}",
     ///         IamRoleId = "{IAM_ROLE_ID}",
@@ -35,12 +34,12 @@ namespace Pulumi.Mongodbatlas
     ///         CloudProvider = "AWS",
     ///     });
     /// 
-    ///     var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", new()
+    ///     var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("test", new()
     ///     {
     ///         ProjectId = "{PROJECT_ID}",
     ///         ClusterName = "{CLUSTER_NAME}",
     ///         SnapshotId = "{SNAPSHOT_ID}",
-    ///         ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,
+    ///         ExportBucketId = test.ExportBucketId,
     ///         CustomDatas = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.CloudBackupSnapshotExportJobCustomDataArgs
@@ -53,11 +52,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Create backup and automatic snapshot export policies
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -122,7 +119,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -208,6 +204,10 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Status of the export job. Value can be one of the following:
+        /// * `Queued` - indicates that the export job is queued
+        /// * `InProgress` - indicates that the snapshot is being exported
+        /// * `Successful` - indicates that the export job has completed successfully
+        /// * `Failed` - indicates that the export job has failed
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
@@ -386,6 +386,10 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Status of the export job. Value can be one of the following:
+        /// * `Queued` - indicates that the export job is queued
+        /// * `InProgress` - indicates that the snapshot is being exported
+        /// * `Successful` - indicates that the export job has completed successfully
+        /// * `Failed` - indicates that the export job has failed
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }

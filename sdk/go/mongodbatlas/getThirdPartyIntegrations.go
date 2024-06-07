@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -31,7 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testPagerDuty, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testPagerDuty", &mongodbatlas.ThirdPartyIntegrationArgs{
+//			testPagerDuty, err := mongodbatlas.NewThirdPartyIntegration(ctx, "test_pager_duty", &mongodbatlas.ThirdPartyIntegrationArgs{
 //				ProjectId:  pulumi.String("<PROJECT-ID>"),
 //				Type:       pulumi.String("PAGER_DUTY"),
 //				ServiceKey: pulumi.String("<PAGER-DUTY-SERVICE-KEY>"),
@@ -39,7 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewThirdPartyIntegration(ctx, "testDatadog", &mongodbatlas.ThirdPartyIntegrationArgs{
+//			_, err = mongodbatlas.NewThirdPartyIntegration(ctx, "test_datadog", &mongodbatlas.ThirdPartyIntegrationArgs{
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				Type:      pulumi.String("DATADOG"),
 //				ApiKey:    pulumi.String("<API-KEY>"),
@@ -56,7 +55,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupThirdPartyIntegrations(ctx *pulumi.Context, args *LookupThirdPartyIntegrationsArgs, opts ...pulumi.InvokeOption) (*LookupThirdPartyIntegrationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupThirdPartyIntegrationsResult
@@ -77,7 +75,7 @@ type LookupThirdPartyIntegrationsArgs struct {
 type LookupThirdPartyIntegrationsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+	// ID of the Atlas project the Third-Party Service Integration belongs to.
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Third-Party service integration.
 	Results []GetThirdPartyIntegrationsResult `pulumi:"results"`
@@ -126,7 +124,7 @@ func (o LookupThirdPartyIntegrationsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+// ID of the Atlas project the Third-Party Service Integration belongs to.
 func (o LookupThirdPartyIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ### S
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -41,19 +42,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ProjectInvitation(&#34;test&#34;, ProjectInvitationArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .roles(&#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
- *             .username(&#34;test-acc-username&#34;)
+ *         var test = new ProjectInvitation("test", ProjectInvitationArgs.builder()
+ *             .username("test-acc-username")
+ *             .projectId("<PROJECT-ID>")
+ *             .roles("GROUP_DATA_ACCESS_READ_WRITE")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -74,17 +77,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ProjectInvitation(&#34;test&#34;, ProjectInvitationArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *         var test = new ProjectInvitation("test", ProjectInvitationArgs.builder()
+ *             .username("test-acc-username")
+ *             .projectId("<PROJECT-ID>")
  *             .roles(            
- *                 &#34;GROUP_READ_ONLY&#34;,
- *                 &#34;GROUP_DATA_ACCESS_READ_ONLY&#34;)
- *             .username(&#34;test-acc-username&#34;)
+ *                 "GROUP_READ_ONLY",
+ *                 "GROUP_DATA_ACCESS_READ_ONLY")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -95,7 +99,7 @@ import javax.annotation.Nullable;
  * Import a user&#39;s invitation to a project by separating the `project_id` and the `username` with a hyphen:
  * 
  * ```sh
- * $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+ * $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user{@literal @}mongodb.com
  * ```
  * 
  */

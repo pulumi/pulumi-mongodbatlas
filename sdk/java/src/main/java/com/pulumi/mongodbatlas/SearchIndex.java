@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * 
  * ### Basic search index
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,24 +46,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test_basic_search_index = new SearchIndex(&#34;test-basic-search-index&#34;, SearchIndexArgs.builder()        
- *             .analyzer(&#34;lucene.standard&#34;)
- *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
- *             .collectionName(&#34;collection_test&#34;)
- *             .database(&#34;database_test&#34;)
+ *         var test_basic_search_index = new SearchIndex("test-basic-search-index", SearchIndexArgs.builder()
+ *             .name("test-basic-search-index")
+ *             .projectId("<PROJECT_ID>")
+ *             .clusterName("<CLUSTER_NAME>")
+ *             .analyzer("lucene.standard")
+ *             .collectionName("collection_test")
+ *             .database("database_test")
  *             .mappingsDynamic(true)
- *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
- *             .searchAnalyzer(&#34;lucene.standard&#34;)
+ *             .searchAnalyzer("lucene.standard")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Basic vector index
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -83,30 +87,32 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test_basic_search_vector = new SearchIndex(&#34;test-basic-search-vector&#34;, SearchIndexArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
- *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
- *             .collectionName(&#34;collection_test&#34;)
- *             .database(&#34;database_test&#34;)
- *             .type(&#34;vectorSearch&#34;)
- *             .fields(&#34;&#34;&#34;
+ *         var test_basic_search_vector = new SearchIndex("test-basic-search-vector", SearchIndexArgs.builder()
+ *             .projectId("<PROJECT_ID>")
+ *             .clusterName("<CLUSTER_NAME>")
+ *             .collectionName("collection_test")
+ *             .database("database_test")
+ *             .type("vectorSearch")
+ *             .fields("""
  * [{
- *       &#34;type&#34;: &#34;vector&#34;,
- *       &#34;path&#34;: &#34;plot_embedding&#34;,
- *       &#34;numDimensions&#34;: 1536,
- *       &#34;similarity&#34;: &#34;euclidean&#34;
+ *       "type": "vector",
+ *       "path": "plot_embedding",
+ *       "numDimensions": 1536,
+ *       "similarity": "euclidean"
  * }]
- *             &#34;&#34;&#34;)
+ *             """)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Advanced search index (with custom analyzers)
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -128,75 +134,77 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test_advanced_search_index = new SearchIndex(&#34;test-advanced-search-index&#34;, SearchIndexArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
- *             .clusterName(&#34;&lt;CLUSTER_NAME&gt;&#34;)
- *             .analyzer(&#34;lucene.standard&#34;)
- *             .collectionName(&#34;collection_test&#34;)
- *             .database(&#34;database_test&#34;)
+ *         var test_advanced_search_index = new SearchIndex("test-advanced-search-index", SearchIndexArgs.builder()
+ *             .projectId("<PROJECT_ID>")
+ *             .clusterName("<CLUSTER_NAME>")
+ *             .analyzer("lucene.standard")
+ *             .collectionName("collection_test")
+ *             .database("database_test")
  *             .mappingsDynamic(false)
- *             .mappingsFields(&#34;&#34;&#34;
+ *             .mappingsFields("""
  * {
- *       &#34;address&#34;: {
- *         &#34;type&#34;: &#34;document&#34;,
- *         &#34;fields&#34;: {
- *           &#34;city&#34;: {
- *             &#34;type&#34;: &#34;string&#34;,
- *             &#34;analyzer&#34;: &#34;lucene.simple&#34;,
- *             &#34;ignoreAbove&#34;: 255
+ *       "address": {
+ *         "type": "document",
+ *         "fields": {
+ *           "city": {
+ *             "type": "string",
+ *             "analyzer": "lucene.simple",
+ *             "ignoreAbove": 255
  *           },
- *           &#34;state&#34;: {
- *             &#34;type&#34;: &#34;string&#34;,
- *             &#34;analyzer&#34;: &#34;lucene.english&#34;
+ *           "state": {
+ *             "type": "string",
+ *             "analyzer": "lucene.english"
  *           }
  *         }
  *       },
- *       &#34;company&#34;: {
- *         &#34;type&#34;: &#34;string&#34;,
- *         &#34;analyzer&#34;: &#34;lucene.whitespace&#34;,
- *         &#34;multi&#34;: {
- *           &#34;mySecondaryAnalyzer&#34;: {
- *             &#34;type&#34;: &#34;string&#34;,
- *             &#34;analyzer&#34;: &#34;lucene.french&#34;
+ *       "company": {
+ *         "type": "string",
+ *         "analyzer": "lucene.whitespace",
+ *         "multi": {
+ *           "mySecondaryAnalyzer": {
+ *             "type": "string",
+ *             "analyzer": "lucene.french"
  *           }
  *         }
  *       },
- *       &#34;employees&#34;: {
- *         &#34;type&#34;: &#34;string&#34;,
- *         &#34;analyzer&#34;: &#34;lucene.standard&#34;
+ *       "employees": {
+ *         "type": "string",
+ *         "analyzer": "lucene.standard"
  *       }
  * }
- *             &#34;&#34;&#34;)
- *             .searchAnalyzer(&#34;lucene.standard&#34;)
- *             .analyzers(&#34;&#34;&#34;
+ *             """)
+ *             .name("test-advanced-search-index")
+ *             .searchAnalyzer("lucene.standard")
+ *             .analyzers("""
  *  [{
- *  &#34;name&#34;: &#34;index_analyzer_test_name&#34;,
- *  &#34;charFilters&#34;: [{
- * &#34;type&#34;: &#34;mapping&#34;,
- * &#34;mappings&#34;: {&#34;\\&#34; : &#34;/&#34;}
+ *  "name": "index_analyzer_test_name",
+ *  "charFilters": [{
+ * "type": "mapping",
+ * "mappings": {"\\" : "/"}
  *    	}],
- *  &#34;tokenizer&#34;: {
- *  &#34;type&#34;: &#34;nGram&#34;,
- *  &#34;minGram&#34;: 2,
- *  &#34;maxGram&#34;: 5
+ *  "tokenizer": {
+ *  "type": "nGram",
+ *  "minGram": 2,
+ *  "maxGram": 5
  * 	},
- *  &#34;tokenFilters&#34;: [{
- * &#34;type&#34;: &#34;length&#34;,
- * &#34;min&#34;: 20,
- * &#34;max&#34;: 33
+ *  "tokenFilters": [{
+ * "type": "length",
+ * "min": 20,
+ * "max": 33
  *    	}]
  *  }]
- *             &#34;&#34;&#34;)
+ *             """)
  *             .synonyms(SearchIndexSynonymArgs.builder()
- *                 .analyzer(&#34;lucene.simple&#34;)
- *                 .name(&#34;synonym_test&#34;)
- *                 .sourceCollection(&#34;collection_test&#34;)
+ *                 .analyzer("lucene.simple")
+ *                 .name("synonym_test")
+ *                 .sourceCollection("collection_test")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
@@ -218,50 +226,6 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
     }
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var analyzers = &#34;&#34;&#34;
-     * [{
-     * &#34;name&#34;: &#34;index_analyzer_test_name&#34;,
-     * &#34;charFilters&#34;: [{
-     * &#34;type&#34;: &#34;mapping&#34;,
-     * &#34;mappings&#34;: {&#34;\\&#34; : &#34;/&#34;}
-     * }],
-     * &#34;tokenizer&#34;: {
-     * &#34;type&#34;: &#34;nGram&#34;,
-     * &#34;minGram&#34;: 2,
-     * &#34;maxGram&#34;: 5
-     * },
-     * &#34;tokenFilters&#34;: [{
-     * &#34;type&#34;: &#34;length&#34;,
-     * &#34;min&#34;: 20,
-     * &#34;max&#34;: 33
-     * }]
-     * }]
-     *         &#34;&#34;&#34;;
-     * 
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     @Export(name="analyzers", refs={String.class}, tree="[0]")
@@ -269,50 +233,6 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
 
     /**
      * @return [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var analyzers = &#34;&#34;&#34;
-     * [{
-     * &#34;name&#34;: &#34;index_analyzer_test_name&#34;,
-     * &#34;charFilters&#34;: [{
-     * &#34;type&#34;: &#34;mapping&#34;,
-     * &#34;mappings&#34;: {&#34;\\&#34; : &#34;/&#34;}
-     * }],
-     * &#34;tokenizer&#34;: {
-     * &#34;type&#34;: &#34;nGram&#34;,
-     * &#34;minGram&#34;: 2,
-     * &#34;maxGram&#34;: 5
-     * },
-     * &#34;tokenFilters&#34;: [{
-     * &#34;type&#34;: &#34;length&#34;,
-     * &#34;min&#34;: 20,
-     * &#34;max&#34;: 33
-     * }]
-     * }]
-     *         &#34;&#34;&#34;;
-     * 
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public Output<Optional<String>> analyzers() {

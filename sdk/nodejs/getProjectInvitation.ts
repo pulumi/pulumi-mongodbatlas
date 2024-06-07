@@ -10,6 +10,23 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
  *
  * ## Example Usage
+ *
+ * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProjectInvitation = new mongodbatlas.ProjectInvitation("test", {
+ *     username: "test-acc-username",
+ *     projectId: "<PROJECT-ID>",
+ *     roles: ["GROUP_DATA_ACCESS_READ_WRITE"],
+ * });
+ * const test = mongodbatlas.getProjectInvitationOutput({
+ *     projectId: testProjectInvitation.projectId,
+ *     username: testProjectInvitation.username,
+ * });
+ * ```
  */
 export function getProjectInvitation(args: GetProjectInvitationArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectInvitationResult> {
 
@@ -73,6 +90,23 @@ export interface GetProjectInvitationResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
  *
  * ## Example Usage
+ *
+ * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProjectInvitation = new mongodbatlas.ProjectInvitation("test", {
+ *     username: "test-acc-username",
+ *     projectId: "<PROJECT-ID>",
+ *     roles: ["GROUP_DATA_ACCESS_READ_WRITE"],
+ * });
+ * const test = mongodbatlas.getProjectInvitationOutput({
+ *     projectId: testProjectInvitation.projectId,
+ *     username: testProjectInvitation.username,
+ * });
+ * ```
  */
 export function getProjectInvitationOutput(args: GetProjectInvitationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectInvitationResult> {
     return pulumi.output(args).apply((a: any) => getProjectInvitation(a, opts))

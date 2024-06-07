@@ -19,6 +19,21 @@ public final class GetServerlessInstancePlainArgs extends com.pulumi.resources.I
     public static final GetServerlessInstancePlainArgs Empty = new GetServerlessInstancePlainArgs();
 
     /**
+     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * 
+     */
+    @Import(name="autoIndexing")
+    private @Nullable Boolean autoIndexing;
+
+    /**
+     * @return Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+     * 
+     */
+    public Optional<Boolean> autoIndexing() {
+        return Optional.ofNullable(this.autoIndexing);
+    }
+
+    /**
      * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
      * 
      */
@@ -88,6 +103,7 @@ public final class GetServerlessInstancePlainArgs extends com.pulumi.resources.I
     private GetServerlessInstancePlainArgs() {}
 
     private GetServerlessInstancePlainArgs(GetServerlessInstancePlainArgs $) {
+        this.autoIndexing = $.autoIndexing;
         this.continuousBackupEnabled = $.continuousBackupEnabled;
         this.links = $.links;
         this.name = $.name;
@@ -111,6 +127,17 @@ public final class GetServerlessInstancePlainArgs extends com.pulumi.resources.I
 
         public Builder(GetServerlessInstancePlainArgs defaults) {
             $ = new GetServerlessInstancePlainArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param autoIndexing Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoIndexing(@Nullable Boolean autoIndexing) {
+            $.autoIndexing = autoIndexing;
+            return this;
         }
 
         /**

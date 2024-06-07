@@ -16,6 +16,33 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         IamRoleId = "{IAM_ROLE_ID}",
+        ///         BucketName = "example-bucket",
+        ///         CloudProvider = "AWS",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportBucket.Invoke(new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetCloudBackupSnapshotExportBucketResult> InvokeAsync(GetCloudBackupSnapshotExportBucketArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportBucketResult>("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", args ?? new GetCloudBackupSnapshotExportBucketArgs(), options.WithDefaults());
@@ -25,6 +52,33 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         IamRoleId = "{IAM_ROLE_ID}",
+        ///         BucketName = "example-bucket",
+        ///         CloudProvider = "AWS",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportBucket.Invoke(new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCloudBackupSnapshotExportBucketResult> Invoke(GetCloudBackupSnapshotExportBucketInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportBucketResult>("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", args ?? new GetCloudBackupSnapshotExportBucketInvokeArgs(), options.WithDefaults());
@@ -39,8 +93,8 @@ namespace Pulumi.Mongodbatlas
         [Input("exportBucketId", required: true)]
         public string ExportBucketId { get; set; } = null!;
 
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
+        [Input("id")]
+        public string? Id { get; set; }
 
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
@@ -62,8 +116,8 @@ namespace Pulumi.Mongodbatlas
         [Input("exportBucketId", required: true)]
         public Input<string> ExportBucketId { get; set; } = null!;
 
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
+        [Input("id")]
+        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.

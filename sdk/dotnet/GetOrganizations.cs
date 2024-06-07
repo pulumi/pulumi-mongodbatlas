@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -28,13 +27,12 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetOrganizations.Invoke(new()
         ///     {
-        ///         ItemsPerPage = 5,
         ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetOrganizationsResult> InvokeAsync(GetOrganizationsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationsResult>("mongodbatlas:index/getOrganizations:getOrganizations", args ?? new GetOrganizationsArgs(), options.WithDefaults());
@@ -45,7 +43,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -56,13 +53,12 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetOrganizations.Invoke(new()
         ///     {
-        ///         ItemsPerPage = 5,
         ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetOrganizationsResult> Invoke(GetOrganizationsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationsResult>("mongodbatlas:index/getOrganizations:getOrganizations", args ?? new GetOrganizationsInvokeArgs(), options.WithDefaults());
@@ -71,18 +67,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetOrganizationsArgs : global::Pulumi.InvokeArgs
     {
-        [Input("includeDeletedOrgs")]
-        public bool? IncludeDeletedOrgs { get; set; }
-
         /// <summary>
         /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
         /// </summary>
         [Input("itemsPerPage")]
         public int? ItemsPerPage { get; set; }
 
-        /// <summary>
-        /// Human-readable label that identifies the organization.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -100,18 +90,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetOrganizationsInvokeArgs : global::Pulumi.InvokeArgs
     {
-        [Input("includeDeletedOrgs")]
-        public Input<bool>? IncludeDeletedOrgs { get; set; }
-
         /// <summary>
         /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
         /// </summary>
         [Input("itemsPerPage")]
         public Input<int>? ItemsPerPage { get; set; }
 
-        /// <summary>
-        /// Human-readable label that identifies the organization.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -135,7 +119,6 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly bool? IncludeDeletedOrgs;
         public readonly int? ItemsPerPage;
         public readonly string? Name;
         public readonly int? PageNum;
@@ -145,8 +128,6 @@ namespace Pulumi.Mongodbatlas
         [OutputConstructor]
         private GetOrganizationsResult(
             string id,
-
-            bool? includeDeletedOrgs,
 
             int? itemsPerPage,
 
@@ -159,7 +140,6 @@ namespace Pulumi.Mongodbatlas
             int totalCount)
         {
             Id = id;
-            IncludeDeletedOrgs = includeDeletedOrgs;
             ItemsPerPage = itemsPerPage;
             Name = name;
             PageNum = pageNum;

@@ -14,33 +14,17 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type AdvancedClusterAdvancedConfiguration struct {
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
-	DefaultReadConcern *string `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-	DefaultWriteConcern *string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-	FailIndexKeyTooLong *bool `pulumi:"failIndexKeyTooLong"`
-	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
-	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-	//
-	// - TLS1_0
-	// - TLS1_1
-	// - TLS1_2
-	MinimumEnabledTlsProtocol *string `pulumi:"minimumEnabledTlsProtocol"`
-	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-	NoTableScan *bool `pulumi:"noTableScan"`
-	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-	// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-	OplogMinRetentionHours *int `pulumi:"oplogMinRetentionHours"`
-	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
-	OplogSizeMb *int `pulumi:"oplogSizeMb"`
-	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleRefreshIntervalBiConnector *int `pulumi:"sampleRefreshIntervalBiConnector"`
-	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleSizeBiConnector *int `pulumi:"sampleSizeBiConnector"`
-	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
-	TransactionLifetimeLimitSeconds *int `pulumi:"transactionLifetimeLimitSeconds"`
+	DefaultReadConcern               *string `pulumi:"defaultReadConcern"`
+	DefaultWriteConcern              *string `pulumi:"defaultWriteConcern"`
+	FailIndexKeyTooLong              *bool   `pulumi:"failIndexKeyTooLong"`
+	JavascriptEnabled                *bool   `pulumi:"javascriptEnabled"`
+	MinimumEnabledTlsProtocol        *string `pulumi:"minimumEnabledTlsProtocol"`
+	NoTableScan                      *bool   `pulumi:"noTableScan"`
+	OplogMinRetentionHours           *int    `pulumi:"oplogMinRetentionHours"`
+	OplogSizeMb                      *int    `pulumi:"oplogSizeMb"`
+	SampleRefreshIntervalBiConnector *int    `pulumi:"sampleRefreshIntervalBiConnector"`
+	SampleSizeBiConnector            *int    `pulumi:"sampleSizeBiConnector"`
+	TransactionLifetimeLimitSeconds  *int    `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 // AdvancedClusterAdvancedConfigurationInput is an input type that accepts AdvancedClusterAdvancedConfigurationArgs and AdvancedClusterAdvancedConfigurationOutput values.
@@ -55,33 +39,17 @@ type AdvancedClusterAdvancedConfigurationInput interface {
 }
 
 type AdvancedClusterAdvancedConfigurationArgs struct {
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
-	DefaultReadConcern pulumi.StringPtrInput `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-	DefaultWriteConcern pulumi.StringPtrInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-	FailIndexKeyTooLong pulumi.BoolPtrInput `pulumi:"failIndexKeyTooLong"`
-	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
-	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-	//
-	// - TLS1_0
-	// - TLS1_1
-	// - TLS1_2
-	MinimumEnabledTlsProtocol pulumi.StringPtrInput `pulumi:"minimumEnabledTlsProtocol"`
-	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-	NoTableScan pulumi.BoolPtrInput `pulumi:"noTableScan"`
-	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-	// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-	OplogMinRetentionHours pulumi.IntPtrInput `pulumi:"oplogMinRetentionHours"`
-	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
-	OplogSizeMb pulumi.IntPtrInput `pulumi:"oplogSizeMb"`
-	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleRefreshIntervalBiConnector pulumi.IntPtrInput `pulumi:"sampleRefreshIntervalBiConnector"`
-	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleSizeBiConnector pulumi.IntPtrInput `pulumi:"sampleSizeBiConnector"`
-	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
-	TransactionLifetimeLimitSeconds pulumi.IntPtrInput `pulumi:"transactionLifetimeLimitSeconds"`
+	DefaultReadConcern               pulumi.StringPtrInput `pulumi:"defaultReadConcern"`
+	DefaultWriteConcern              pulumi.StringPtrInput `pulumi:"defaultWriteConcern"`
+	FailIndexKeyTooLong              pulumi.BoolPtrInput   `pulumi:"failIndexKeyTooLong"`
+	JavascriptEnabled                pulumi.BoolPtrInput   `pulumi:"javascriptEnabled"`
+	MinimumEnabledTlsProtocol        pulumi.StringPtrInput `pulumi:"minimumEnabledTlsProtocol"`
+	NoTableScan                      pulumi.BoolPtrInput   `pulumi:"noTableScan"`
+	OplogMinRetentionHours           pulumi.IntPtrInput    `pulumi:"oplogMinRetentionHours"`
+	OplogSizeMb                      pulumi.IntPtrInput    `pulumi:"oplogSizeMb"`
+	SampleRefreshIntervalBiConnector pulumi.IntPtrInput    `pulumi:"sampleRefreshIntervalBiConnector"`
+	SampleSizeBiConnector            pulumi.IntPtrInput    `pulumi:"sampleSizeBiConnector"`
+	TransactionLifetimeLimitSeconds  pulumi.IntPtrInput    `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 func (AdvancedClusterAdvancedConfigurationArgs) ElementType() reflect.Type {
@@ -161,62 +129,46 @@ func (o AdvancedClusterAdvancedConfigurationOutput) ToAdvancedClusterAdvancedCon
 	}).(AdvancedClusterAdvancedConfigurationPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 func (o AdvancedClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *string { return v.DefaultReadConcern }).(pulumi.StringPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 func (o AdvancedClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *string { return v.DefaultWriteConcern }).(pulumi.StringPtrOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 func (o AdvancedClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *bool { return v.FailIndexKeyTooLong }).(pulumi.BoolPtrOutput)
 }
 
-// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 func (o AdvancedClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *bool { return v.JavascriptEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-//
-// - TLS1_0
-// - TLS1_1
-// - TLS1_2
 func (o AdvancedClusterAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringPtrOutput)
 }
 
-// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 func (o AdvancedClusterAdvancedConfigurationOutput) NoTableScan() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *bool { return v.NoTableScan }).(pulumi.BoolPtrOutput)
 }
 
-// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
 func (o AdvancedClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.OplogMinRetentionHours }).(pulumi.IntPtrOutput)
 }
 
-// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 func (o AdvancedClusterAdvancedConfigurationOutput) OplogSizeMb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.OplogSizeMb }).(pulumi.IntPtrOutput)
 }
 
-// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o AdvancedClusterAdvancedConfigurationOutput) SampleRefreshIntervalBiConnector() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.SampleRefreshIntervalBiConnector }).(pulumi.IntPtrOutput)
 }
 
-// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o AdvancedClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.SampleSizeBiConnector }).(pulumi.IntPtrOutput)
 }
 
-// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 func (o AdvancedClusterAdvancedConfigurationOutput) TransactionLifetimeLimitSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.TransactionLifetimeLimitSeconds }).(pulumi.IntPtrOutput)
 }
@@ -245,7 +197,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) Elem() AdvancedClusterAdv
 	}).(AdvancedClusterAdvancedConfigurationOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -255,7 +206,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulu
 	}).(pulumi.StringPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -265,7 +215,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pul
 	}).(pulumi.StringPtrOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *bool {
 		if v == nil {
@@ -275,7 +224,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) FailIndexKeyTooLong() pul
 	}).(pulumi.BoolPtrOutput)
 }
 
-// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *bool {
 		if v == nil {
@@ -285,11 +233,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulum
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-//
-// - TLS1_0
-// - TLS1_1
-// - TLS1_2
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) MinimumEnabledTlsProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -299,7 +242,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) MinimumEnabledTlsProtocol
 	}).(pulumi.StringPtrOutput)
 }
 
-// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) NoTableScan() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *bool {
 		if v == nil {
@@ -309,8 +251,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) NoTableScan() pulumi.Bool
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) OplogMinRetentionHours() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -320,7 +260,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) OplogMinRetentionHours() 
 	}).(pulumi.IntPtrOutput)
 }
 
-// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) OplogSizeMb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -330,7 +269,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) OplogSizeMb() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) SampleRefreshIntervalBiConnector() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -340,7 +278,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) SampleRefreshIntervalBiCo
 	}).(pulumi.IntPtrOutput)
 }
 
-// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) SampleSizeBiConnector() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -350,7 +287,6 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) SampleSizeBiConnector() p
 	}).(pulumi.IntPtrOutput)
 }
 
-// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) TransactionLifetimeLimitSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -553,11 +489,24 @@ func (o AdvancedClusterBiConnectorConfigPtrOutput) ReadPreference() pulumi.Strin
 }
 
 type AdvancedClusterConnectionString struct {
-	Private          *string                                          `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private *string `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints []AdvancedClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv       *string                                          `pulumi:"privateSrv"`
-	Standard         *string                                          `pulumi:"standard"`
-	StandardSrv      *string                                          `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv *string `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard *string `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv *string `pulumi:"standardSrv"`
 }
 
 // AdvancedClusterConnectionStringInput is an input type that accepts AdvancedClusterConnectionStringArgs and AdvancedClusterConnectionStringOutput values.
@@ -572,11 +521,24 @@ type AdvancedClusterConnectionStringInput interface {
 }
 
 type AdvancedClusterConnectionStringArgs struct {
-	Private          pulumi.StringPtrInput                                    `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private pulumi.StringPtrInput `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints AdvancedClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv       pulumi.StringPtrInput                                    `pulumi:"privateSrv"`
-	Standard         pulumi.StringPtrInput                                    `pulumi:"standard"`
-	StandardSrv      pulumi.StringPtrInput                                    `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv pulumi.StringPtrInput `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard pulumi.StringPtrInput `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv pulumi.StringPtrInput `pulumi:"standardSrv"`
 }
 
 func (AdvancedClusterConnectionStringArgs) ElementType() reflect.Type {
@@ -630,24 +592,37 @@ func (o AdvancedClusterConnectionStringOutput) ToAdvancedClusterConnectionString
 	return o
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o AdvancedClusterConnectionStringOutput) Private() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionString) *string { return v.Private }).(pulumi.StringPtrOutput)
 }
 
+// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o AdvancedClusterConnectionStringOutput) PrivateEndpoints() AdvancedClusterConnectionStringPrivateEndpointArrayOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionString) []AdvancedClusterConnectionStringPrivateEndpoint {
 		return v.PrivateEndpoints
 	}).(AdvancedClusterConnectionStringPrivateEndpointArrayOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o AdvancedClusterConnectionStringOutput) PrivateSrv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionString) *string { return v.PrivateSrv }).(pulumi.StringPtrOutput)
 }
 
+// Public mongodb:// connection string for this cluster.
 func (o AdvancedClusterConnectionStringOutput) Standard() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionString) *string { return v.Standard }).(pulumi.StringPtrOutput)
 }
 
+// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
 func (o AdvancedClusterConnectionStringOutput) StandardSrv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionString) *string { return v.StandardSrv }).(pulumi.StringPtrOutput)
 }
@@ -795,9 +770,7 @@ func (o AdvancedClusterConnectionStringPrivateEndpointArrayOutput) Index(i pulum
 }
 
 type AdvancedClusterConnectionStringPrivateEndpointEndpoint struct {
-	EndpointId *string `pulumi:"endpointId"`
-	// Cloud service provider on which the servers are provisioned.
-	// The possible values are:
+	EndpointId   *string `pulumi:"endpointId"`
 	ProviderName *string `pulumi:"providerName"`
 	Region       *string `pulumi:"region"`
 }
@@ -814,9 +787,7 @@ type AdvancedClusterConnectionStringPrivateEndpointEndpointInput interface {
 }
 
 type AdvancedClusterConnectionStringPrivateEndpointEndpointArgs struct {
-	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
-	// Cloud service provider on which the servers are provisioned.
-	// The possible values are:
+	EndpointId   pulumi.StringPtrInput `pulumi:"endpointId"`
 	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
 	Region       pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -876,8 +847,6 @@ func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId
 	return o.ApplyT(func(v AdvancedClusterConnectionStringPrivateEndpointEndpoint) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
 }
 
-// Cloud service provider on which the servers are provisioned.
-// The possible values are:
 func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionStringPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
 }
@@ -1167,6 +1136,11 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	Priority int `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
 	ReadOnlySpecs *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
@@ -1202,6 +1176,11 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	Priority pulumi.IntInput `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
 	ReadOnlySpecs AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
@@ -1302,6 +1281,11 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) Priority() pulumi.IntO
 
 // Cloud service provider on which the servers are provisioned.
 // The possible values are:
+//
+// - `AWS` - Amazon AWS
+// - `GCP` - Google Cloud Platform
+// - `AZURE` - Microsoft Azure
+// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
 }
@@ -1557,6 +1541,8 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -1579,6 +1565,8 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -1669,6 +1657,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -1718,6 +1708,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskI
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -1956,6 +1948,8 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -1978,6 +1972,8 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -2068,6 +2064,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskIops
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -2117,6 +2115,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskI
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -2150,6 +2150,8 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -2172,6 +2174,8 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -2262,6 +2266,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops(
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -2311,6 +2317,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIo
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -2453,23 +2461,9 @@ func (o AdvancedClusterTagArrayOutput) Index(i pulumi.IntInput) AdvancedClusterT
 }
 
 type AlertConfigurationMatcher struct {
-	// Name of the field in the target object to match on.
-	//
-	// | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-	// |:----------           |:-------------       |:------                 |
-	// | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-	// | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-	// | `PORT`              | `CLUSTER_NAME`      |                         |
-	// | `HOSTNAME_AND_PORT` |                     |                         |
-	// | `REPLICA_SET_NAME`  |                     |                         |
-	//
-	// All other types of alerts do not support matchers.
 	FieldName string `pulumi:"fieldName"`
-	// The operator to test the field’s value.
-	// Accepted values are:
-	Operator string `pulumi:"operator"`
-	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
-	Value string `pulumi:"value"`
+	Operator  string `pulumi:"operator"`
+	Value     string `pulumi:"value"`
 }
 
 // AlertConfigurationMatcherInput is an input type that accepts AlertConfigurationMatcherArgs and AlertConfigurationMatcherOutput values.
@@ -2484,23 +2478,9 @@ type AlertConfigurationMatcherInput interface {
 }
 
 type AlertConfigurationMatcherArgs struct {
-	// Name of the field in the target object to match on.
-	//
-	// | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-	// |:----------           |:-------------       |:------                 |
-	// | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-	// | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-	// | `PORT`              | `CLUSTER_NAME`      |                         |
-	// | `HOSTNAME_AND_PORT` |                     |                         |
-	// | `REPLICA_SET_NAME`  |                     |                         |
-	//
-	// All other types of alerts do not support matchers.
 	FieldName pulumi.StringInput `pulumi:"fieldName"`
-	// The operator to test the field’s value.
-	// Accepted values are:
-	Operator pulumi.StringInput `pulumi:"operator"`
-	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
-	Value pulumi.StringInput `pulumi:"value"`
+	Operator  pulumi.StringInput `pulumi:"operator"`
+	Value     pulumi.StringInput `pulumi:"value"`
 }
 
 func (AlertConfigurationMatcherArgs) ElementType() reflect.Type {
@@ -2554,28 +2534,14 @@ func (o AlertConfigurationMatcherOutput) ToAlertConfigurationMatcherOutputWithCo
 	return o
 }
 
-// Name of the field in the target object to match on.
-//
-// | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-// |:----------           |:-------------       |:------                 |
-// | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-// | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-// | `PORT`              | `CLUSTER_NAME`      |                         |
-// | `HOSTNAME_AND_PORT` |                     |                         |
-// | `REPLICA_SET_NAME`  |                     |                         |
-//
-// All other types of alerts do not support matchers.
 func (o AlertConfigurationMatcherOutput) FieldName() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertConfigurationMatcher) string { return v.FieldName }).(pulumi.StringOutput)
 }
 
-// The operator to test the field’s value.
-// Accepted values are:
 func (o AlertConfigurationMatcherOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertConfigurationMatcher) string { return v.Operator }).(pulumi.StringOutput)
 }
 
-// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
 func (o AlertConfigurationMatcherOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertConfigurationMatcher) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -2601,18 +2567,11 @@ func (o AlertConfigurationMatcherArrayOutput) Index(i pulumi.IntInput) AlertConf
 }
 
 type AlertConfigurationMetricThresholdConfig struct {
-	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
-	MetricName string `pulumi:"metricName"`
-	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
-	Mode *string `pulumi:"mode"`
-	// The operator to test the field’s value.
-	// Accepted values are:
-	Operator *string `pulumi:"operator"`
-	// Threshold value outside of which an alert will be triggered.
-	Threshold *float64 `pulumi:"threshold"`
-	// The units for the threshold value. Depends on the type of metric.
-	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-	Units *string `pulumi:"units"`
+	MetricName string   `pulumi:"metricName"`
+	Mode       *string  `pulumi:"mode"`
+	Operator   *string  `pulumi:"operator"`
+	Threshold  *float64 `pulumi:"threshold"`
+	Units      *string  `pulumi:"units"`
 }
 
 // AlertConfigurationMetricThresholdConfigInput is an input type that accepts AlertConfigurationMetricThresholdConfigArgs and AlertConfigurationMetricThresholdConfigOutput values.
@@ -2627,18 +2586,11 @@ type AlertConfigurationMetricThresholdConfigInput interface {
 }
 
 type AlertConfigurationMetricThresholdConfigArgs struct {
-	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
-	MetricName pulumi.StringInput `pulumi:"metricName"`
-	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
-	Mode pulumi.StringPtrInput `pulumi:"mode"`
-	// The operator to test the field’s value.
-	// Accepted values are:
-	Operator pulumi.StringPtrInput `pulumi:"operator"`
-	// Threshold value outside of which an alert will be triggered.
-	Threshold pulumi.Float64PtrInput `pulumi:"threshold"`
-	// The units for the threshold value. Depends on the type of metric.
-	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-	Units pulumi.StringPtrInput `pulumi:"units"`
+	MetricName pulumi.StringInput     `pulumi:"metricName"`
+	Mode       pulumi.StringPtrInput  `pulumi:"mode"`
+	Operator   pulumi.StringPtrInput  `pulumi:"operator"`
+	Threshold  pulumi.Float64PtrInput `pulumi:"threshold"`
+	Units      pulumi.StringPtrInput  `pulumi:"units"`
 }
 
 func (AlertConfigurationMetricThresholdConfigArgs) ElementType() reflect.Type {
@@ -2718,29 +2670,22 @@ func (o AlertConfigurationMetricThresholdConfigOutput) ToAlertConfigurationMetri
 	}).(AlertConfigurationMetricThresholdConfigPtrOutput)
 }
 
-// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 func (o AlertConfigurationMetricThresholdConfigOutput) MetricName() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) string { return v.MetricName }).(pulumi.StringOutput)
 }
 
-// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 func (o AlertConfigurationMetricThresholdConfigOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
-// The operator to test the field’s value.
-// Accepted values are:
 func (o AlertConfigurationMetricThresholdConfigOutput) Operator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *string { return v.Operator }).(pulumi.StringPtrOutput)
 }
 
-// Threshold value outside of which an alert will be triggered.
 func (o AlertConfigurationMetricThresholdConfigOutput) Threshold() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *float64 { return v.Threshold }).(pulumi.Float64PtrOutput)
 }
 
-// The units for the threshold value. Depends on the type of metric.
-// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 func (o AlertConfigurationMetricThresholdConfigOutput) Units() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *string { return v.Units }).(pulumi.StringPtrOutput)
 }
@@ -2769,7 +2714,6 @@ func (o AlertConfigurationMetricThresholdConfigPtrOutput) Elem() AlertConfigurat
 	}).(AlertConfigurationMetricThresholdConfigOutput)
 }
 
-// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 func (o AlertConfigurationMetricThresholdConfigPtrOutput) MetricName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *string {
 		if v == nil {
@@ -2779,7 +2723,6 @@ func (o AlertConfigurationMetricThresholdConfigPtrOutput) MetricName() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
-// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 func (o AlertConfigurationMetricThresholdConfigPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *string {
 		if v == nil {
@@ -2789,8 +2732,6 @@ func (o AlertConfigurationMetricThresholdConfigPtrOutput) Mode() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// The operator to test the field’s value.
-// Accepted values are:
 func (o AlertConfigurationMetricThresholdConfigPtrOutput) Operator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *string {
 		if v == nil {
@@ -2800,7 +2741,6 @@ func (o AlertConfigurationMetricThresholdConfigPtrOutput) Operator() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// Threshold value outside of which an alert will be triggered.
 func (o AlertConfigurationMetricThresholdConfigPtrOutput) Threshold() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *float64 {
 		if v == nil {
@@ -2810,8 +2750,6 @@ func (o AlertConfigurationMetricThresholdConfigPtrOutput) Threshold() pulumi.Flo
 	}).(pulumi.Float64PtrOutput)
 }
 
-// The units for the threshold value. Depends on the type of metric.
-// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 func (o AlertConfigurationMetricThresholdConfigPtrOutput) Units() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *string {
 		if v == nil {
@@ -2822,66 +2760,31 @@ func (o AlertConfigurationMetricThresholdConfigPtrOutput) Units() pulumi.StringP
 }
 
 type AlertConfigurationNotification struct {
-	// Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-	ApiToken *string `pulumi:"apiToken"`
-	// Slack channel name. Required for the SLACK notifications type.
-	ChannelName *string `pulumi:"channelName"`
-	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-	DatadogApiKey *string `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
-	DatadogRegion *string `pulumi:"datadogRegion"`
-	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
-	DelayMin *int `pulumi:"delayMin"`
-	// Email address to which alert notifications are sent. Required for the EMAIL notifications type.
-	EmailAddress *string `pulumi:"emailAddress"`
-	// Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
-	EmailEnabled *bool `pulumi:"emailEnabled"`
-	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
-	IntervalMin *int `pulumi:"intervalMin"`
-	// Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
-	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
-	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
-	MobileNumber *string `pulumi:"mobileNumber"`
-	// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
-	NotifierId *string `pulumi:"notifierId"`
-	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-	OpsGenieApiKey *string `pulumi:"opsGenieApiKey"`
-	// Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
-	OpsGenieRegion *string `pulumi:"opsGenieRegion"`
-	// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
-	// Accepted values are:
-	//
-	// | Project roles                   | Organization roles  |
-	// |:----------                      |:-----------         |
-	// | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-	// | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-	// | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-	// | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-	// | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-	// | `GROUP_OWNER`                   |                     |
-	// | `GROUP_READ_ONLY`               |                     |
-	Roles []string `pulumi:"roles"`
-	// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-	ServiceKey *string `pulumi:"serviceKey"`
-	// Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
-	SmsEnabled *bool `pulumi:"smsEnabled"`
-	// Unique identifier of a team.
-	TeamId *string `pulumi:"teamId"`
-	// Label for the team that receives this notification.
-	TeamName *string `pulumi:"teamName"`
-	// Type of alert notification.
-	// Accepted values are:
-	TypeName string `pulumi:"typeName"`
-	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
-	Username *string `pulumi:"username"`
-	// VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-	VictorOpsApiKey *string `pulumi:"victorOpsApiKey"`
-	// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-	VictorOpsRoutingKey *string `pulumi:"victorOpsRoutingKey"`
-	// Optional authentication secret for the `WEBHOOK` notifications type.
-	WebhookSecret *string `pulumi:"webhookSecret"`
-	// Target URL  for the `WEBHOOK` notifications type.
-	WebhookUrl *string `pulumi:"webhookUrl"`
+	ApiToken                 *string  `pulumi:"apiToken"`
+	ChannelName              *string  `pulumi:"channelName"`
+	DatadogApiKey            *string  `pulumi:"datadogApiKey"`
+	DatadogRegion            *string  `pulumi:"datadogRegion"`
+	DelayMin                 *int     `pulumi:"delayMin"`
+	EmailAddress             *string  `pulumi:"emailAddress"`
+	EmailEnabled             *bool    `pulumi:"emailEnabled"`
+	IntegrationId            *string  `pulumi:"integrationId"`
+	IntervalMin              *int     `pulumi:"intervalMin"`
+	MicrosoftTeamsWebhookUrl *string  `pulumi:"microsoftTeamsWebhookUrl"`
+	MobileNumber             *string  `pulumi:"mobileNumber"`
+	NotifierId               *string  `pulumi:"notifierId"`
+	OpsGenieApiKey           *string  `pulumi:"opsGenieApiKey"`
+	OpsGenieRegion           *string  `pulumi:"opsGenieRegion"`
+	Roles                    []string `pulumi:"roles"`
+	ServiceKey               *string  `pulumi:"serviceKey"`
+	SmsEnabled               *bool    `pulumi:"smsEnabled"`
+	TeamId                   *string  `pulumi:"teamId"`
+	TeamName                 *string  `pulumi:"teamName"`
+	TypeName                 string   `pulumi:"typeName"`
+	Username                 *string  `pulumi:"username"`
+	VictorOpsApiKey          *string  `pulumi:"victorOpsApiKey"`
+	VictorOpsRoutingKey      *string  `pulumi:"victorOpsRoutingKey"`
+	WebhookSecret            *string  `pulumi:"webhookSecret"`
+	WebhookUrl               *string  `pulumi:"webhookUrl"`
 }
 
 // AlertConfigurationNotificationInput is an input type that accepts AlertConfigurationNotificationArgs and AlertConfigurationNotificationOutput values.
@@ -2896,66 +2799,31 @@ type AlertConfigurationNotificationInput interface {
 }
 
 type AlertConfigurationNotificationArgs struct {
-	// Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-	ApiToken pulumi.StringPtrInput `pulumi:"apiToken"`
-	// Slack channel name. Required for the SLACK notifications type.
-	ChannelName pulumi.StringPtrInput `pulumi:"channelName"`
-	// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-	DatadogApiKey pulumi.StringPtrInput `pulumi:"datadogApiKey"`
-	// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
-	DatadogRegion pulumi.StringPtrInput `pulumi:"datadogRegion"`
-	// Number of minutes to wait after an alert condition is detected before sending out the first notification.
-	DelayMin pulumi.IntPtrInput `pulumi:"delayMin"`
-	// Email address to which alert notifications are sent. Required for the EMAIL notifications type.
-	EmailAddress pulumi.StringPtrInput `pulumi:"emailAddress"`
-	// Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
-	EmailEnabled pulumi.BoolPtrInput `pulumi:"emailEnabled"`
-	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
-	IntervalMin pulumi.IntPtrInput `pulumi:"intervalMin"`
-	// Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
-	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
-	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
-	MobileNumber pulumi.StringPtrInput `pulumi:"mobileNumber"`
-	// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
-	NotifierId pulumi.StringPtrInput `pulumi:"notifierId"`
-	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-	OpsGenieApiKey pulumi.StringPtrInput `pulumi:"opsGenieApiKey"`
-	// Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
-	OpsGenieRegion pulumi.StringPtrInput `pulumi:"opsGenieRegion"`
-	// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
-	// Accepted values are:
-	//
-	// | Project roles                   | Organization roles  |
-	// |:----------                      |:-----------         |
-	// | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-	// | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-	// | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-	// | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-	// | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-	// | `GROUP_OWNER`                   |                     |
-	// | `GROUP_READ_ONLY`               |                     |
-	Roles pulumi.StringArrayInput `pulumi:"roles"`
-	// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-	ServiceKey pulumi.StringPtrInput `pulumi:"serviceKey"`
-	// Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
-	SmsEnabled pulumi.BoolPtrInput `pulumi:"smsEnabled"`
-	// Unique identifier of a team.
-	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
-	// Label for the team that receives this notification.
-	TeamName pulumi.StringPtrInput `pulumi:"teamName"`
-	// Type of alert notification.
-	// Accepted values are:
-	TypeName pulumi.StringInput `pulumi:"typeName"`
-	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
-	Username pulumi.StringPtrInput `pulumi:"username"`
-	// VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-	VictorOpsApiKey pulumi.StringPtrInput `pulumi:"victorOpsApiKey"`
-	// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-	VictorOpsRoutingKey pulumi.StringPtrInput `pulumi:"victorOpsRoutingKey"`
-	// Optional authentication secret for the `WEBHOOK` notifications type.
-	WebhookSecret pulumi.StringPtrInput `pulumi:"webhookSecret"`
-	// Target URL  for the `WEBHOOK` notifications type.
-	WebhookUrl pulumi.StringPtrInput `pulumi:"webhookUrl"`
+	ApiToken                 pulumi.StringPtrInput   `pulumi:"apiToken"`
+	ChannelName              pulumi.StringPtrInput   `pulumi:"channelName"`
+	DatadogApiKey            pulumi.StringPtrInput   `pulumi:"datadogApiKey"`
+	DatadogRegion            pulumi.StringPtrInput   `pulumi:"datadogRegion"`
+	DelayMin                 pulumi.IntPtrInput      `pulumi:"delayMin"`
+	EmailAddress             pulumi.StringPtrInput   `pulumi:"emailAddress"`
+	EmailEnabled             pulumi.BoolPtrInput     `pulumi:"emailEnabled"`
+	IntegrationId            pulumi.StringPtrInput   `pulumi:"integrationId"`
+	IntervalMin              pulumi.IntPtrInput      `pulumi:"intervalMin"`
+	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput   `pulumi:"microsoftTeamsWebhookUrl"`
+	MobileNumber             pulumi.StringPtrInput   `pulumi:"mobileNumber"`
+	NotifierId               pulumi.StringPtrInput   `pulumi:"notifierId"`
+	OpsGenieApiKey           pulumi.StringPtrInput   `pulumi:"opsGenieApiKey"`
+	OpsGenieRegion           pulumi.StringPtrInput   `pulumi:"opsGenieRegion"`
+	Roles                    pulumi.StringArrayInput `pulumi:"roles"`
+	ServiceKey               pulumi.StringPtrInput   `pulumi:"serviceKey"`
+	SmsEnabled               pulumi.BoolPtrInput     `pulumi:"smsEnabled"`
+	TeamId                   pulumi.StringPtrInput   `pulumi:"teamId"`
+	TeamName                 pulumi.StringPtrInput   `pulumi:"teamName"`
+	TypeName                 pulumi.StringInput      `pulumi:"typeName"`
+	Username                 pulumi.StringPtrInput   `pulumi:"username"`
+	VictorOpsApiKey          pulumi.StringPtrInput   `pulumi:"victorOpsApiKey"`
+	VictorOpsRoutingKey      pulumi.StringPtrInput   `pulumi:"victorOpsRoutingKey"`
+	WebhookSecret            pulumi.StringPtrInput   `pulumi:"webhookSecret"`
+	WebhookUrl               pulumi.StringPtrInput   `pulumi:"webhookUrl"`
 }
 
 func (AlertConfigurationNotificationArgs) ElementType() reflect.Type {
@@ -3009,134 +2877,102 @@ func (o AlertConfigurationNotificationOutput) ToAlertConfigurationNotificationOu
 	return o
 }
 
-// Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 func (o AlertConfigurationNotificationOutput) ApiToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.ApiToken }).(pulumi.StringPtrOutput)
 }
 
-// Slack channel name. Required for the SLACK notifications type.
 func (o AlertConfigurationNotificationOutput) ChannelName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.ChannelName }).(pulumi.StringPtrOutput)
 }
 
-// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
 func (o AlertConfigurationNotificationOutput) DatadogApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.DatadogApiKey }).(pulumi.StringPtrOutput)
 }
 
-// Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
 func (o AlertConfigurationNotificationOutput) DatadogRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.DatadogRegion }).(pulumi.StringPtrOutput)
 }
 
-// Number of minutes to wait after an alert condition is detected before sending out the first notification.
 func (o AlertConfigurationNotificationOutput) DelayMin() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *int { return v.DelayMin }).(pulumi.IntPtrOutput)
 }
 
-// Email address to which alert notifications are sent. Required for the EMAIL notifications type.
 func (o AlertConfigurationNotificationOutput) EmailAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.EmailAddress }).(pulumi.StringPtrOutput)
 }
 
-// Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 func (o AlertConfigurationNotificationOutput) EmailEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *bool { return v.EmailEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
+func (o AlertConfigurationNotificationOutput) IntegrationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.IntegrationId }).(pulumi.StringPtrOutput)
+}
+
 func (o AlertConfigurationNotificationOutput) IntervalMin() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *int { return v.IntervalMin }).(pulumi.IntPtrOutput)
 }
 
-// Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
 func (o AlertConfigurationNotificationOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
 }
 
-// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 func (o AlertConfigurationNotificationOutput) MobileNumber() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.MobileNumber }).(pulumi.StringPtrOutput)
 }
 
-// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 func (o AlertConfigurationNotificationOutput) NotifierId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.NotifierId }).(pulumi.StringPtrOutput)
 }
 
-// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 func (o AlertConfigurationNotificationOutput) OpsGenieApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.OpsGenieApiKey }).(pulumi.StringPtrOutput)
 }
 
-// Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
 func (o AlertConfigurationNotificationOutput) OpsGenieRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.OpsGenieRegion }).(pulumi.StringPtrOutput)
 }
 
-// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
-// Accepted values are:
-//
-// | Project roles                   | Organization roles  |
-// |:----------                      |:-----------         |
-// | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-// | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-// | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-// | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-// | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-// | `GROUP_OWNER`                   |                     |
-// | `GROUP_READ_ONLY`               |                     |
 func (o AlertConfigurationNotificationOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) []string { return v.Roles }).(pulumi.StringArrayOutput)
 }
 
-// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 func (o AlertConfigurationNotificationOutput) ServiceKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.ServiceKey }).(pulumi.StringPtrOutput)
 }
 
-// Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 func (o AlertConfigurationNotificationOutput) SmsEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *bool { return v.SmsEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// Unique identifier of a team.
 func (o AlertConfigurationNotificationOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
-// Label for the team that receives this notification.
 func (o AlertConfigurationNotificationOutput) TeamName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.TeamName }).(pulumi.StringPtrOutput)
 }
 
-// Type of alert notification.
-// Accepted values are:
 func (o AlertConfigurationNotificationOutput) TypeName() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) string { return v.TypeName }).(pulumi.StringOutput)
 }
 
-// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 func (o AlertConfigurationNotificationOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 func (o AlertConfigurationNotificationOutput) VictorOpsApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.VictorOpsApiKey }).(pulumi.StringPtrOutput)
 }
 
-// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 func (o AlertConfigurationNotificationOutput) VictorOpsRoutingKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.VictorOpsRoutingKey }).(pulumi.StringPtrOutput)
 }
 
-// Optional authentication secret for the `WEBHOOK` notifications type.
 func (o AlertConfigurationNotificationOutput) WebhookSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.WebhookSecret }).(pulumi.StringPtrOutput)
 }
 
-// Target URL  for the `WEBHOOK` notifications type.
 func (o AlertConfigurationNotificationOutput) WebhookUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.WebhookUrl }).(pulumi.StringPtrOutput)
 }
@@ -3162,14 +2998,9 @@ func (o AlertConfigurationNotificationArrayOutput) Index(i pulumi.IntInput) Aler
 }
 
 type AlertConfigurationThresholdConfig struct {
-	// The operator to test the field’s value.
-	// Accepted values are:
-	Operator *string `pulumi:"operator"`
-	// Threshold value outside of which an alert will be triggered.
+	Operator  *string  `pulumi:"operator"`
 	Threshold *float64 `pulumi:"threshold"`
-	// The units for the threshold value. Depends on the type of metric.
-	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-	Units *string `pulumi:"units"`
+	Units     *string  `pulumi:"units"`
 }
 
 // AlertConfigurationThresholdConfigInput is an input type that accepts AlertConfigurationThresholdConfigArgs and AlertConfigurationThresholdConfigOutput values.
@@ -3184,14 +3015,9 @@ type AlertConfigurationThresholdConfigInput interface {
 }
 
 type AlertConfigurationThresholdConfigArgs struct {
-	// The operator to test the field’s value.
-	// Accepted values are:
-	Operator pulumi.StringPtrInput `pulumi:"operator"`
-	// Threshold value outside of which an alert will be triggered.
+	Operator  pulumi.StringPtrInput  `pulumi:"operator"`
 	Threshold pulumi.Float64PtrInput `pulumi:"threshold"`
-	// The units for the threshold value. Depends on the type of metric.
-	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-	Units pulumi.StringPtrInput `pulumi:"units"`
+	Units     pulumi.StringPtrInput  `pulumi:"units"`
 }
 
 func (AlertConfigurationThresholdConfigArgs) ElementType() reflect.Type {
@@ -3271,19 +3097,14 @@ func (o AlertConfigurationThresholdConfigOutput) ToAlertConfigurationThresholdCo
 	}).(AlertConfigurationThresholdConfigPtrOutput)
 }
 
-// The operator to test the field’s value.
-// Accepted values are:
 func (o AlertConfigurationThresholdConfigOutput) Operator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationThresholdConfig) *string { return v.Operator }).(pulumi.StringPtrOutput)
 }
 
-// Threshold value outside of which an alert will be triggered.
 func (o AlertConfigurationThresholdConfigOutput) Threshold() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AlertConfigurationThresholdConfig) *float64 { return v.Threshold }).(pulumi.Float64PtrOutput)
 }
 
-// The units for the threshold value. Depends on the type of metric.
-// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 func (o AlertConfigurationThresholdConfigOutput) Units() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationThresholdConfig) *string { return v.Units }).(pulumi.StringPtrOutput)
 }
@@ -3312,8 +3133,6 @@ func (o AlertConfigurationThresholdConfigPtrOutput) Elem() AlertConfigurationThr
 	}).(AlertConfigurationThresholdConfigOutput)
 }
 
-// The operator to test the field’s value.
-// Accepted values are:
 func (o AlertConfigurationThresholdConfigPtrOutput) Operator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationThresholdConfig) *string {
 		if v == nil {
@@ -3323,7 +3142,6 @@ func (o AlertConfigurationThresholdConfigPtrOutput) Operator() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// Threshold value outside of which an alert will be triggered.
 func (o AlertConfigurationThresholdConfigPtrOutput) Threshold() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationThresholdConfig) *float64 {
 		if v == nil {
@@ -3333,8 +3151,6 @@ func (o AlertConfigurationThresholdConfigPtrOutput) Threshold() pulumi.Float64Pt
 	}).(pulumi.Float64PtrOutput)
 }
 
-// The units for the threshold value. Depends on the type of metric.
-// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 func (o AlertConfigurationThresholdConfigPtrOutput) Units() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationThresholdConfig) *string {
 		if v == nil {
@@ -3345,15 +3161,15 @@ func (o AlertConfigurationThresholdConfigPtrOutput) Units() pulumi.StringPtrOutp
 }
 
 type BackupCompliancePolicyOnDemandPolicyItem struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -3369,15 +3185,15 @@ type BackupCompliancePolicyOnDemandPolicyItemInput interface {
 }
 
 type BackupCompliancePolicyOnDemandPolicyItemArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -3458,12 +3274,12 @@ func (o BackupCompliancePolicyOnDemandPolicyItemOutput) ToBackupCompliancePolicy
 	}).(BackupCompliancePolicyOnDemandPolicyItemPtrOutput)
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyOnDemandPolicyItemOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyOnDemandPolicyItemOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -3473,12 +3289,12 @@ func (o BackupCompliancePolicyOnDemandPolicyItemOutput) Id() pulumi.StringPtrOut
 	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyOnDemandPolicyItemOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyOnDemandPolicyItemOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyOnDemandPolicyItem) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -3507,7 +3323,7 @@ func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) Elem() BackupComplian
 	}).(BackupCompliancePolicyOnDemandPolicyItemOutput)
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *int {
 		if v == nil {
@@ -3517,7 +3333,7 @@ func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) FrequencyInterval() p
 	}).(pulumi.IntPtrOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *string {
 		if v == nil {
@@ -3537,7 +3353,7 @@ func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) Id() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *string {
 		if v == nil {
@@ -3547,7 +3363,7 @@ func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) RetentionUnit() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) RetentionValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyOnDemandPolicyItem) *int {
 		if v == nil {
@@ -3558,15 +3374,15 @@ func (o BackupCompliancePolicyOnDemandPolicyItemPtrOutput) RetentionValue() pulu
 }
 
 type BackupCompliancePolicyPolicyItemDaily struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -3582,15 +3398,15 @@ type BackupCompliancePolicyPolicyItemDailyInput interface {
 }
 
 type BackupCompliancePolicyPolicyItemDailyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -3671,12 +3487,12 @@ func (o BackupCompliancePolicyPolicyItemDailyOutput) ToBackupCompliancePolicyPol
 	}).(BackupCompliancePolicyPolicyItemDailyPtrOutput)
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyPolicyItemDailyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyPolicyItemDailyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -3686,12 +3502,12 @@ func (o BackupCompliancePolicyPolicyItemDailyOutput) Id() pulumi.StringPtrOutput
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyPolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyPolicyItemDailyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemDaily) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -3720,7 +3536,7 @@ func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) Elem() BackupComplianceP
 	}).(BackupCompliancePolicyPolicyItemDailyOutput)
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *int {
 		if v == nil {
@@ -3730,7 +3546,7 @@ func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) FrequencyInterval() pulu
 	}).(pulumi.IntPtrOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *string {
 		if v == nil {
@@ -3750,7 +3566,7 @@ func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) Id() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *string {
 		if v == nil {
@@ -3760,7 +3576,7 @@ func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) RetentionUnit() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemDaily) *int {
 		if v == nil {
@@ -3771,15 +3587,15 @@ func (o BackupCompliancePolicyPolicyItemDailyPtrOutput) RetentionValue() pulumi.
 }
 
 type BackupCompliancePolicyPolicyItemHourly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -3795,15 +3611,15 @@ type BackupCompliancePolicyPolicyItemHourlyInput interface {
 }
 
 type BackupCompliancePolicyPolicyItemHourlyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -3884,12 +3700,12 @@ func (o BackupCompliancePolicyPolicyItemHourlyOutput) ToBackupCompliancePolicyPo
 	}).(BackupCompliancePolicyPolicyItemHourlyPtrOutput)
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyPolicyItemHourlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyPolicyItemHourlyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -3899,12 +3715,12 @@ func (o BackupCompliancePolicyPolicyItemHourlyOutput) Id() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyPolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyPolicyItemHourlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemHourly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -3933,7 +3749,7 @@ func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) Elem() BackupCompliance
 	}).(BackupCompliancePolicyPolicyItemHourlyOutput)
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *int {
 		if v == nil {
@@ -3943,7 +3759,7 @@ func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) FrequencyInterval() pul
 	}).(pulumi.IntPtrOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *string {
 		if v == nil {
@@ -3963,7 +3779,7 @@ func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) Id() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *string {
 		if v == nil {
@@ -3973,7 +3789,7 @@ func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) RetentionUnit() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicyPolicyItemHourly) *int {
 		if v == nil {
@@ -3984,15 +3800,15 @@ func (o BackupCompliancePolicyPolicyItemHourlyPtrOutput) RetentionValue() pulumi
 }
 
 type BackupCompliancePolicyPolicyItemMonthly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -4008,15 +3824,15 @@ type BackupCompliancePolicyPolicyItemMonthlyInput interface {
 }
 
 type BackupCompliancePolicyPolicyItemMonthlyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -4071,12 +3887,12 @@ func (o BackupCompliancePolicyPolicyItemMonthlyOutput) ToBackupCompliancePolicyP
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyPolicyItemMonthlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyPolicyItemMonthlyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -4086,12 +3902,12 @@ func (o BackupCompliancePolicyPolicyItemMonthlyOutput) Id() pulumi.StringPtrOutp
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyPolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyPolicyItemMonthlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemMonthly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -4117,15 +3933,15 @@ func (o BackupCompliancePolicyPolicyItemMonthlyArrayOutput) Index(i pulumi.IntIn
 }
 
 type BackupCompliancePolicyPolicyItemWeekly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -4141,15 +3957,15 @@ type BackupCompliancePolicyPolicyItemWeeklyInput interface {
 }
 
 type BackupCompliancePolicyPolicyItemWeeklyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -4204,12 +4020,12 @@ func (o BackupCompliancePolicyPolicyItemWeeklyOutput) ToBackupCompliancePolicyPo
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o BackupCompliancePolicyPolicyItemWeeklyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o BackupCompliancePolicyPolicyItemWeeklyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -4219,12 +4035,12 @@ func (o BackupCompliancePolicyPolicyItemWeeklyOutput) Id() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o BackupCompliancePolicyPolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o BackupCompliancePolicyPolicyItemWeeklyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemWeekly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -4249,17 +4065,145 @@ func (o BackupCompliancePolicyPolicyItemWeeklyArrayOutput) Index(i pulumi.IntInp
 	}).(BackupCompliancePolicyPolicyItemWeeklyOutput)
 }
 
+type BackupCompliancePolicyPolicyItemYearly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType *string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id *string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// BackupCompliancePolicyPolicyItemYearlyInput is an input type that accepts BackupCompliancePolicyPolicyItemYearlyArgs and BackupCompliancePolicyPolicyItemYearlyOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyPolicyItemYearlyInput` via:
+//
+//	BackupCompliancePolicyPolicyItemYearlyArgs{...}
+type BackupCompliancePolicyPolicyItemYearlyInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyPolicyItemYearlyOutput() BackupCompliancePolicyPolicyItemYearlyOutput
+	ToBackupCompliancePolicyPolicyItemYearlyOutputWithContext(context.Context) BackupCompliancePolicyPolicyItemYearlyOutput
+}
+
+type BackupCompliancePolicyPolicyItemYearlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (BackupCompliancePolicyPolicyItemYearlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (i BackupCompliancePolicyPolicyItemYearlyArgs) ToBackupCompliancePolicyPolicyItemYearlyOutput() BackupCompliancePolicyPolicyItemYearlyOutput {
+	return i.ToBackupCompliancePolicyPolicyItemYearlyOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyPolicyItemYearlyArgs) ToBackupCompliancePolicyPolicyItemYearlyOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemYearlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemYearlyOutput)
+}
+
+// BackupCompliancePolicyPolicyItemYearlyArrayInput is an input type that accepts BackupCompliancePolicyPolicyItemYearlyArray and BackupCompliancePolicyPolicyItemYearlyArrayOutput values.
+// You can construct a concrete instance of `BackupCompliancePolicyPolicyItemYearlyArrayInput` via:
+//
+//	BackupCompliancePolicyPolicyItemYearlyArray{ BackupCompliancePolicyPolicyItemYearlyArgs{...} }
+type BackupCompliancePolicyPolicyItemYearlyArrayInput interface {
+	pulumi.Input
+
+	ToBackupCompliancePolicyPolicyItemYearlyArrayOutput() BackupCompliancePolicyPolicyItemYearlyArrayOutput
+	ToBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(context.Context) BackupCompliancePolicyPolicyItemYearlyArrayOutput
+}
+
+type BackupCompliancePolicyPolicyItemYearlyArray []BackupCompliancePolicyPolicyItemYearlyInput
+
+func (BackupCompliancePolicyPolicyItemYearlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (i BackupCompliancePolicyPolicyItemYearlyArray) ToBackupCompliancePolicyPolicyItemYearlyArrayOutput() BackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return i.ToBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(context.Background())
+}
+
+func (i BackupCompliancePolicyPolicyItemYearlyArray) ToBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackupCompliancePolicyPolicyItemYearlyArrayOutput)
+}
+
+type BackupCompliancePolicyPolicyItemYearlyOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyPolicyItemYearlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) ToBackupCompliancePolicyPolicyItemYearlyOutput() BackupCompliancePolicyPolicyItemYearlyOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) ToBackupCompliancePolicyPolicyItemYearlyOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemYearlyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemYearly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemYearly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemYearly) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemYearly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+func (o BackupCompliancePolicyPolicyItemYearlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v BackupCompliancePolicyPolicyItemYearly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type BackupCompliancePolicyPolicyItemYearlyArrayOutput struct{ *pulumi.OutputState }
+
+func (BackupCompliancePolicyPolicyItemYearlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (o BackupCompliancePolicyPolicyItemYearlyArrayOutput) ToBackupCompliancePolicyPolicyItemYearlyArrayOutput() BackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemYearlyArrayOutput) ToBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(ctx context.Context) BackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o BackupCompliancePolicyPolicyItemYearlyArrayOutput) Index(i pulumi.IntInput) BackupCompliancePolicyPolicyItemYearlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BackupCompliancePolicyPolicyItemYearly {
+		return vs[0].([]BackupCompliancePolicyPolicyItemYearly)[vs[1].(int)]
+	}).(BackupCompliancePolicyPolicyItemYearlyOutput)
+}
+
 type CloudBackupScheduleCopySetting struct {
-	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
-	CloudProvider *string `pulumi:"cloudProvider"`
-	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
-	Frequencies []string `pulumi:"frequencies"`
-	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-	RegionName *string `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
-	ReplicationSpecId *string `pulumi:"replicationSpecId"`
-	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
-	ShouldCopyOplogs *bool `pulumi:"shouldCopyOplogs"`
+	CloudProvider     *string  `pulumi:"cloudProvider"`
+	Frequencies       []string `pulumi:"frequencies"`
+	RegionName        *string  `pulumi:"regionName"`
+	ReplicationSpecId *string  `pulumi:"replicationSpecId"`
+	ShouldCopyOplogs  *bool    `pulumi:"shouldCopyOplogs"`
 }
 
 // CloudBackupScheduleCopySettingInput is an input type that accepts CloudBackupScheduleCopySettingArgs and CloudBackupScheduleCopySettingOutput values.
@@ -4274,16 +4218,11 @@ type CloudBackupScheduleCopySettingInput interface {
 }
 
 type CloudBackupScheduleCopySettingArgs struct {
-	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
-	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
-	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
-	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
-	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-	RegionName pulumi.StringPtrInput `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
-	ReplicationSpecId pulumi.StringPtrInput `pulumi:"replicationSpecId"`
-	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
-	ShouldCopyOplogs pulumi.BoolPtrInput `pulumi:"shouldCopyOplogs"`
+	CloudProvider     pulumi.StringPtrInput   `pulumi:"cloudProvider"`
+	Frequencies       pulumi.StringArrayInput `pulumi:"frequencies"`
+	RegionName        pulumi.StringPtrInput   `pulumi:"regionName"`
+	ReplicationSpecId pulumi.StringPtrInput   `pulumi:"replicationSpecId"`
+	ShouldCopyOplogs  pulumi.BoolPtrInput     `pulumi:"shouldCopyOplogs"`
 }
 
 func (CloudBackupScheduleCopySettingArgs) ElementType() reflect.Type {
@@ -4337,27 +4276,22 @@ func (o CloudBackupScheduleCopySettingOutput) ToCloudBackupScheduleCopySettingOu
 	return o
 }
 
-// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
 func (o CloudBackupScheduleCopySettingOutput) CloudProvider() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.CloudProvider }).(pulumi.StringPtrOutput)
 }
 
-// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
 func (o CloudBackupScheduleCopySettingOutput) Frequencies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) []string { return v.Frequencies }).(pulumi.StringArrayOutput)
 }
 
-// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 func (o CloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.RegionName }).(pulumi.StringPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
 func (o CloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.ReplicationSpecId }).(pulumi.StringPtrOutput)
 }
 
-// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 func (o CloudBackupScheduleCopySettingOutput) ShouldCopyOplogs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *bool { return v.ShouldCopyOplogs }).(pulumi.BoolPtrOutput)
 }
@@ -4545,7 +4479,7 @@ type CloudBackupSchedulePolicyItemDaily struct {
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
 	RetentionValue int `pulumi:"retentionValue"`
@@ -4569,7 +4503,7 @@ type CloudBackupSchedulePolicyItemDailyArgs struct {
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
@@ -4667,7 +4601,7 @@ func (o CloudBackupSchedulePolicyItemDailyOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o CloudBackupSchedulePolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
@@ -4731,7 +4665,7 @@ func (o CloudBackupSchedulePolicyItemDailyPtrOutput) Id() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o CloudBackupSchedulePolicyItemDailyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemDaily) *string {
 		if v == nil {
@@ -4758,7 +4692,7 @@ type CloudBackupSchedulePolicyItemHourly struct {
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
 	RetentionValue int `pulumi:"retentionValue"`
@@ -4782,7 +4716,7 @@ type CloudBackupSchedulePolicyItemHourlyArgs struct {
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
@@ -4880,7 +4814,7 @@ func (o CloudBackupSchedulePolicyItemHourlyOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemHourly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o CloudBackupSchedulePolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
@@ -4944,7 +4878,7 @@ func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) Id() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemHourly) *string {
 		if v == nil {
@@ -4971,7 +4905,7 @@ type CloudBackupSchedulePolicyItemMonthly struct {
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
 	RetentionValue int `pulumi:"retentionValue"`
@@ -4995,7 +4929,7 @@ type CloudBackupSchedulePolicyItemMonthlyArgs struct {
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
@@ -5067,7 +5001,7 @@ func (o CloudBackupSchedulePolicyItemMonthlyOutput) Id() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o CloudBackupSchedulePolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
@@ -5104,7 +5038,7 @@ type CloudBackupSchedulePolicyItemWeekly struct {
 	FrequencyType *string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id *string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
 	RetentionValue int `pulumi:"retentionValue"`
@@ -5128,7 +5062,7 @@ type CloudBackupSchedulePolicyItemWeeklyArgs struct {
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
@@ -5200,7 +5134,7 @@ func (o CloudBackupSchedulePolicyItemWeeklyOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o CloudBackupSchedulePolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
@@ -5228,6 +5162,139 @@ func (o CloudBackupSchedulePolicyItemWeeklyArrayOutput) Index(i pulumi.IntInput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupSchedulePolicyItemWeekly {
 		return vs[0].([]CloudBackupSchedulePolicyItemWeekly)[vs[1].(int)]
 	}).(CloudBackupSchedulePolicyItemWeeklyOutput)
+}
+
+type CloudBackupSchedulePolicyItemYearly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType *string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id *string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// CloudBackupSchedulePolicyItemYearlyInput is an input type that accepts CloudBackupSchedulePolicyItemYearlyArgs and CloudBackupSchedulePolicyItemYearlyOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemYearlyInput` via:
+//
+//	CloudBackupSchedulePolicyItemYearlyArgs{...}
+type CloudBackupSchedulePolicyItemYearlyInput interface {
+	pulumi.Input
+
+	ToCloudBackupSchedulePolicyItemYearlyOutput() CloudBackupSchedulePolicyItemYearlyOutput
+	ToCloudBackupSchedulePolicyItemYearlyOutputWithContext(context.Context) CloudBackupSchedulePolicyItemYearlyOutput
+}
+
+type CloudBackupSchedulePolicyItemYearlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (CloudBackupSchedulePolicyItemYearlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (i CloudBackupSchedulePolicyItemYearlyArgs) ToCloudBackupSchedulePolicyItemYearlyOutput() CloudBackupSchedulePolicyItemYearlyOutput {
+	return i.ToCloudBackupSchedulePolicyItemYearlyOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSchedulePolicyItemYearlyArgs) ToCloudBackupSchedulePolicyItemYearlyOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemYearlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemYearlyOutput)
+}
+
+// CloudBackupSchedulePolicyItemYearlyArrayInput is an input type that accepts CloudBackupSchedulePolicyItemYearlyArray and CloudBackupSchedulePolicyItemYearlyArrayOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemYearlyArrayInput` via:
+//
+//	CloudBackupSchedulePolicyItemYearlyArray{ CloudBackupSchedulePolicyItemYearlyArgs{...} }
+type CloudBackupSchedulePolicyItemYearlyArrayInput interface {
+	pulumi.Input
+
+	ToCloudBackupSchedulePolicyItemYearlyArrayOutput() CloudBackupSchedulePolicyItemYearlyArrayOutput
+	ToCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(context.Context) CloudBackupSchedulePolicyItemYearlyArrayOutput
+}
+
+type CloudBackupSchedulePolicyItemYearlyArray []CloudBackupSchedulePolicyItemYearlyInput
+
+func (CloudBackupSchedulePolicyItemYearlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (i CloudBackupSchedulePolicyItemYearlyArray) ToCloudBackupSchedulePolicyItemYearlyArrayOutput() CloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return i.ToCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSchedulePolicyItemYearlyArray) ToCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemYearlyArrayOutput)
+}
+
+type CloudBackupSchedulePolicyItemYearlyOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSchedulePolicyItemYearlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (o CloudBackupSchedulePolicyItemYearlyOutput) ToCloudBackupSchedulePolicyItemYearlyOutput() CloudBackupSchedulePolicyItemYearlyOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemYearlyOutput) ToCloudBackupSchedulePolicyItemYearlyOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemYearlyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+func (o CloudBackupSchedulePolicyItemYearlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemYearly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o CloudBackupSchedulePolicyItemYearlyOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemYearly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o CloudBackupSchedulePolicyItemYearlyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemYearly) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+func (o CloudBackupSchedulePolicyItemYearlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemYearly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+func (o CloudBackupSchedulePolicyItemYearlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemYearly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type CloudBackupSchedulePolicyItemYearlyArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSchedulePolicyItemYearlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (o CloudBackupSchedulePolicyItemYearlyArrayOutput) ToCloudBackupSchedulePolicyItemYearlyArrayOutput() CloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemYearlyArrayOutput) ToCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemYearlyArrayOutput) Index(i pulumi.IntInput) CloudBackupSchedulePolicyItemYearlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupSchedulePolicyItemYearly {
+		return vs[0].([]CloudBackupSchedulePolicyItemYearly)[vs[1].(int)]
+	}).(CloudBackupSchedulePolicyItemYearlyOutput)
 }
 
 type CloudBackupSnapshotExportJobComponent struct {
@@ -6406,33 +6473,17 @@ func (o CloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInput)
 }
 
 type ClusterAdvancedConfiguration struct {
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
-	DefaultReadConcern *string `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-	DefaultWriteConcern *string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-	FailIndexKeyTooLong *bool `pulumi:"failIndexKeyTooLong"`
-	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
-	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-	//
-	// - TLS1_0
-	// - TLS1_1
-	// - TLS1_2
-	MinimumEnabledTlsProtocol *string `pulumi:"minimumEnabledTlsProtocol"`
-	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-	NoTableScan *bool `pulumi:"noTableScan"`
-	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-	// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-	OplogMinRetentionHours *int `pulumi:"oplogMinRetentionHours"`
-	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
-	OplogSizeMb *int `pulumi:"oplogSizeMb"`
-	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleRefreshIntervalBiConnector *int `pulumi:"sampleRefreshIntervalBiConnector"`
-	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleSizeBiConnector *int `pulumi:"sampleSizeBiConnector"`
-	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
-	TransactionLifetimeLimitSeconds *int `pulumi:"transactionLifetimeLimitSeconds"`
+	DefaultReadConcern               *string `pulumi:"defaultReadConcern"`
+	DefaultWriteConcern              *string `pulumi:"defaultWriteConcern"`
+	FailIndexKeyTooLong              *bool   `pulumi:"failIndexKeyTooLong"`
+	JavascriptEnabled                *bool   `pulumi:"javascriptEnabled"`
+	MinimumEnabledTlsProtocol        *string `pulumi:"minimumEnabledTlsProtocol"`
+	NoTableScan                      *bool   `pulumi:"noTableScan"`
+	OplogMinRetentionHours           *int    `pulumi:"oplogMinRetentionHours"`
+	OplogSizeMb                      *int    `pulumi:"oplogSizeMb"`
+	SampleRefreshIntervalBiConnector *int    `pulumi:"sampleRefreshIntervalBiConnector"`
+	SampleSizeBiConnector            *int    `pulumi:"sampleSizeBiConnector"`
+	TransactionLifetimeLimitSeconds  *int    `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 // ClusterAdvancedConfigurationInput is an input type that accepts ClusterAdvancedConfigurationArgs and ClusterAdvancedConfigurationOutput values.
@@ -6447,33 +6498,17 @@ type ClusterAdvancedConfigurationInput interface {
 }
 
 type ClusterAdvancedConfigurationArgs struct {
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
-	DefaultReadConcern pulumi.StringPtrInput `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-	DefaultWriteConcern pulumi.StringPtrInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-	FailIndexKeyTooLong pulumi.BoolPtrInput `pulumi:"failIndexKeyTooLong"`
-	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
-	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
-	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-	//
-	// - TLS1_0
-	// - TLS1_1
-	// - TLS1_2
-	MinimumEnabledTlsProtocol pulumi.StringPtrInput `pulumi:"minimumEnabledTlsProtocol"`
-	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-	NoTableScan pulumi.BoolPtrInput `pulumi:"noTableScan"`
-	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-	// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-	OplogMinRetentionHours pulumi.IntPtrInput `pulumi:"oplogMinRetentionHours"`
-	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
-	OplogSizeMb pulumi.IntPtrInput `pulumi:"oplogSizeMb"`
-	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleRefreshIntervalBiConnector pulumi.IntPtrInput `pulumi:"sampleRefreshIntervalBiConnector"`
-	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-	SampleSizeBiConnector pulumi.IntPtrInput `pulumi:"sampleSizeBiConnector"`
-	// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
-	TransactionLifetimeLimitSeconds pulumi.IntPtrInput `pulumi:"transactionLifetimeLimitSeconds"`
+	DefaultReadConcern               pulumi.StringPtrInput `pulumi:"defaultReadConcern"`
+	DefaultWriteConcern              pulumi.StringPtrInput `pulumi:"defaultWriteConcern"`
+	FailIndexKeyTooLong              pulumi.BoolPtrInput   `pulumi:"failIndexKeyTooLong"`
+	JavascriptEnabled                pulumi.BoolPtrInput   `pulumi:"javascriptEnabled"`
+	MinimumEnabledTlsProtocol        pulumi.StringPtrInput `pulumi:"minimumEnabledTlsProtocol"`
+	NoTableScan                      pulumi.BoolPtrInput   `pulumi:"noTableScan"`
+	OplogMinRetentionHours           pulumi.IntPtrInput    `pulumi:"oplogMinRetentionHours"`
+	OplogSizeMb                      pulumi.IntPtrInput    `pulumi:"oplogSizeMb"`
+	SampleRefreshIntervalBiConnector pulumi.IntPtrInput    `pulumi:"sampleRefreshIntervalBiConnector"`
+	SampleSizeBiConnector            pulumi.IntPtrInput    `pulumi:"sampleSizeBiConnector"`
+	TransactionLifetimeLimitSeconds  pulumi.IntPtrInput    `pulumi:"transactionLifetimeLimitSeconds"`
 }
 
 func (ClusterAdvancedConfigurationArgs) ElementType() reflect.Type {
@@ -6553,62 +6588,46 @@ func (o ClusterAdvancedConfigurationOutput) ToClusterAdvancedConfigurationPtrOut
 	}).(ClusterAdvancedConfigurationPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 func (o ClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.DefaultReadConcern }).(pulumi.StringPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 func (o ClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.DefaultWriteConcern }).(pulumi.StringPtrOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 func (o ClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *bool { return v.FailIndexKeyTooLong }).(pulumi.BoolPtrOutput)
 }
 
-// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 func (o ClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *bool { return v.JavascriptEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-//
-// - TLS1_0
-// - TLS1_1
-// - TLS1_2
 func (o ClusterAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringPtrOutput)
 }
 
-// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 func (o ClusterAdvancedConfigurationOutput) NoTableScan() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *bool { return v.NoTableScan }).(pulumi.BoolPtrOutput)
 }
 
-// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
 func (o ClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.OplogMinRetentionHours }).(pulumi.IntPtrOutput)
 }
 
-// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 func (o ClusterAdvancedConfigurationOutput) OplogSizeMb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.OplogSizeMb }).(pulumi.IntPtrOutput)
 }
 
-// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o ClusterAdvancedConfigurationOutput) SampleRefreshIntervalBiConnector() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.SampleRefreshIntervalBiConnector }).(pulumi.IntPtrOutput)
 }
 
-// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o ClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.SampleSizeBiConnector }).(pulumi.IntPtrOutput)
 }
 
-// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 func (o ClusterAdvancedConfigurationOutput) TransactionLifetimeLimitSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.TransactionLifetimeLimitSeconds }).(pulumi.IntPtrOutput)
 }
@@ -6637,7 +6656,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) Elem() ClusterAdvancedConfigurati
 	}).(ClusterAdvancedConfigurationOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
 func (o ClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -6647,7 +6665,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 func (o ClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -6657,7 +6674,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 func (o ClusterAdvancedConfigurationPtrOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *bool {
 		if v == nil {
@@ -6667,7 +6683,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) FailIndexKeyTooLong() pulumi.Bool
 	}).(pulumi.BoolPtrOutput)
 }
 
-// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 func (o ClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *bool {
 		if v == nil {
@@ -6677,11 +6692,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulumi.BoolPt
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-//
-// - TLS1_0
-// - TLS1_1
-// - TLS1_2
 func (o ClusterAdvancedConfigurationPtrOutput) MinimumEnabledTlsProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -6691,7 +6701,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) MinimumEnabledTlsProtocol() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 func (o ClusterAdvancedConfigurationPtrOutput) NoTableScan() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *bool {
 		if v == nil {
@@ -6701,8 +6710,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) NoTableScan() pulumi.BoolPtrOutpu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-// * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
 func (o ClusterAdvancedConfigurationPtrOutput) OplogMinRetentionHours() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -6712,7 +6719,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) OplogMinRetentionHours() pulumi.I
 	}).(pulumi.IntPtrOutput)
 }
 
-// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 func (o ClusterAdvancedConfigurationPtrOutput) OplogSizeMb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -6722,7 +6728,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) OplogSizeMb() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o ClusterAdvancedConfigurationPtrOutput) SampleRefreshIntervalBiConnector() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -6732,7 +6737,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) SampleRefreshIntervalBiConnector(
 	}).(pulumi.IntPtrOutput)
 }
 
-// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o ClusterAdvancedConfigurationPtrOutput) SampleSizeBiConnector() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -6742,7 +6746,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) SampleSizeBiConnector() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
-// Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
 func (o ClusterAdvancedConfigurationPtrOutput) TransactionLifetimeLimitSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
 		if v == nil {
@@ -6753,18 +6756,7 @@ func (o ClusterAdvancedConfigurationPtrOutput) TransactionLifetimeLimitSeconds()
 }
 
 type ClusterBiConnectorConfig struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-	// *
-	// - Set to `true` to enable BI Connector for Atlas.
-	// - Set to `false` to disable BI Connector for Atlas.
-	Enabled *bool `pulumi:"enabled"`
-	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-	//
-	// - Set to "primary" to have BI Connector for Atlas read from the primary.
-	//
-	// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
-	//
-	// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
+	Enabled        *bool   `pulumi:"enabled"`
 	ReadPreference *string `pulumi:"readPreference"`
 }
 
@@ -6780,18 +6772,7 @@ type ClusterBiConnectorConfigInput interface {
 }
 
 type ClusterBiConnectorConfigArgs struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-	// *
-	// - Set to `true` to enable BI Connector for Atlas.
-	// - Set to `false` to disable BI Connector for Atlas.
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-	//
-	// - Set to "primary" to have BI Connector for Atlas read from the primary.
-	//
-	// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
-	//
-	// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
+	Enabled        pulumi.BoolPtrInput   `pulumi:"enabled"`
 	ReadPreference pulumi.StringPtrInput `pulumi:"readPreference"`
 }
 
@@ -6872,21 +6853,10 @@ func (o ClusterBiConnectorConfigOutput) ToClusterBiConnectorConfigPtrOutputWithC
 	}).(ClusterBiConnectorConfigPtrOutput)
 }
 
-// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-// *
-// - Set to `true` to enable BI Connector for Atlas.
-// - Set to `false` to disable BI Connector for Atlas.
 func (o ClusterBiConnectorConfigOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterBiConnectorConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-//
-// - Set to "primary" to have BI Connector for Atlas read from the primary.
-//
-// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
-//
-// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 func (o ClusterBiConnectorConfigOutput) ReadPreference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterBiConnectorConfig) *string { return v.ReadPreference }).(pulumi.StringPtrOutput)
 }
@@ -6915,10 +6885,6 @@ func (o ClusterBiConnectorConfigPtrOutput) Elem() ClusterBiConnectorConfigOutput
 	}).(ClusterBiConnectorConfigOutput)
 }
 
-// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-// *
-// - Set to `true` to enable BI Connector for Atlas.
-// - Set to `false` to disable BI Connector for Atlas.
 func (o ClusterBiConnectorConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClusterBiConnectorConfig) *bool {
 		if v == nil {
@@ -6928,13 +6894,6 @@ func (o ClusterBiConnectorConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-//
-// - Set to "primary" to have BI Connector for Atlas read from the primary.
-//
-// - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
-//
-// - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
 func (o ClusterBiConnectorConfigPtrOutput) ReadPreference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterBiConnectorConfig) *string {
 		if v == nil {
@@ -6945,11 +6904,24 @@ func (o ClusterBiConnectorConfigPtrOutput) ReadPreference() pulumi.StringPtrOutp
 }
 
 type ClusterConnectionString struct {
-	Private          *string                                  `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private *string `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints []ClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv       *string                                  `pulumi:"privateSrv"`
-	Standard         *string                                  `pulumi:"standard"`
-	StandardSrv      *string                                  `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv *string `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard *string `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv *string `pulumi:"standardSrv"`
 }
 
 // ClusterConnectionStringInput is an input type that accepts ClusterConnectionStringArgs and ClusterConnectionStringOutput values.
@@ -6964,11 +6936,24 @@ type ClusterConnectionStringInput interface {
 }
 
 type ClusterConnectionStringArgs struct {
-	Private          pulumi.StringPtrInput                            `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private pulumi.StringPtrInput `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints ClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv       pulumi.StringPtrInput                            `pulumi:"privateSrv"`
-	Standard         pulumi.StringPtrInput                            `pulumi:"standard"`
-	StandardSrv      pulumi.StringPtrInput                            `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv pulumi.StringPtrInput `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard pulumi.StringPtrInput `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv pulumi.StringPtrInput `pulumi:"standardSrv"`
 }
 
 func (ClusterConnectionStringArgs) ElementType() reflect.Type {
@@ -7022,22 +7007,35 @@ func (o ClusterConnectionStringOutput) ToClusterConnectionStringOutputWithContex
 	return o
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o ClusterConnectionStringOutput) Private() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionString) *string { return v.Private }).(pulumi.StringPtrOutput)
 }
 
+// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o ClusterConnectionStringOutput) PrivateEndpoints() ClusterConnectionStringPrivateEndpointArrayOutput {
 	return o.ApplyT(func(v ClusterConnectionString) []ClusterConnectionStringPrivateEndpoint { return v.PrivateEndpoints }).(ClusterConnectionStringPrivateEndpointArrayOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o ClusterConnectionStringOutput) PrivateSrv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionString) *string { return v.PrivateSrv }).(pulumi.StringPtrOutput)
 }
 
+// Public mongodb:// connection string for this cluster.
 func (o ClusterConnectionStringOutput) Standard() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionString) *string { return v.Standard }).(pulumi.StringPtrOutput)
 }
 
+// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
 func (o ClusterConnectionStringOutput) StandardSrv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionString) *string { return v.StandardSrv }).(pulumi.StringPtrOutput)
 }
@@ -7187,6 +7185,11 @@ type ClusterConnectionStringPrivateEndpointEndpoint struct {
 	// Cloud service provider on which the servers are provisioned.
 	//
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
 	ProviderName *string `pulumi:"providerName"`
 	Region       *string `pulumi:"region"`
 }
@@ -7207,6 +7210,11 @@ type ClusterConnectionStringPrivateEndpointEndpointArgs struct {
 	// Cloud service provider on which the servers are provisioned.
 	//
 	// The possible values are:
+	//
+	// - `AWS` - Amazon AWS
+	// - `GCP` - Google Cloud Platform
+	// - `AZURE` - Microsoft Azure
+	// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
 	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
 	Region       pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -7269,6 +7277,11 @@ func (o ClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId() pulum
 // Cloud service provider on which the servers are provisioned.
 //
 // The possible values are:
+//
+// - `AWS` - Amazon AWS
+// - `GCP` - Google Cloud Platform
+// - `AZURE` - Microsoft Azure
+// - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
 func (o ClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionStringPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
 }
@@ -7411,10 +7424,14 @@ func (o ClusterLabelArrayOutput) Index(i pulumi.IntInput) ClusterLabelOutput {
 
 type ClusterOutageSimulationOutageFilter struct {
 	// The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+	// * `AWS`
+	// * `GCP`
+	// * `AZURE`
 	CloudProvider string `pulumi:"cloudProvider"`
 	// The Atlas name of the region to undergo an outage simulation.
 	RegionName string `pulumi:"regionName"`
 	// The type of cluster outage simulation. Following values are supported:
+	// * `REGION` - Simulates a cluster outage for a region
 	Type *string `pulumi:"type"`
 }
 
@@ -7431,10 +7448,14 @@ type ClusterOutageSimulationOutageFilterInput interface {
 
 type ClusterOutageSimulationOutageFilterArgs struct {
 	// The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+	// * `AWS`
+	// * `GCP`
+	// * `AZURE`
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// The Atlas name of the region to undergo an outage simulation.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 	// The type of cluster outage simulation. Following values are supported:
+	// * `REGION` - Simulates a cluster outage for a region
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -7490,6 +7511,9 @@ func (o ClusterOutageSimulationOutageFilterOutput) ToClusterOutageSimulationOuta
 }
 
 // The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+// * `AWS`
+// * `GCP`
+// * `AZURE`
 func (o ClusterOutageSimulationOutageFilterOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterOutageSimulationOutageFilter) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -7500,6 +7524,7 @@ func (o ClusterOutageSimulationOutageFilterOutput) RegionName() pulumi.StringOut
 }
 
 // The type of cluster outage simulation. Following values are supported:
+// * `REGION` - Simulates a cluster outage for a region
 func (o ClusterOutageSimulationOutageFilterOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterOutageSimulationOutageFilter) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -7525,16 +7550,11 @@ func (o ClusterOutageSimulationOutageFilterArrayOutput) Index(i pulumi.IntInput)
 }
 
 type ClusterReplicationSpec struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
 	Id *string `pulumi:"id"`
 	// Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
-	NumShards int `pulumi:"numShards"`
-	// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+	NumShards      int                                   `pulumi:"numShards"`
 	RegionsConfigs []ClusterReplicationSpecRegionsConfig `pulumi:"regionsConfigs"`
-	// Name for the zone in a Global Cluster.
-	//
-	// **Region Config**
-	ZoneName *string `pulumi:"zoneName"`
+	ZoneName       *string                               `pulumi:"zoneName"`
 }
 
 // ClusterReplicationSpecInput is an input type that accepts ClusterReplicationSpecArgs and ClusterReplicationSpecOutput values.
@@ -7549,16 +7569,11 @@ type ClusterReplicationSpecInput interface {
 }
 
 type ClusterReplicationSpecArgs struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
-	NumShards pulumi.IntInput `pulumi:"numShards"`
-	// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+	NumShards      pulumi.IntInput                               `pulumi:"numShards"`
 	RegionsConfigs ClusterReplicationSpecRegionsConfigArrayInput `pulumi:"regionsConfigs"`
-	// Name for the zone in a Global Cluster.
-	//
-	// **Region Config**
-	ZoneName pulumi.StringPtrInput `pulumi:"zoneName"`
+	ZoneName       pulumi.StringPtrInput                         `pulumi:"zoneName"`
 }
 
 func (ClusterReplicationSpecArgs) ElementType() reflect.Type {
@@ -7612,7 +7627,6 @@ func (o ClusterReplicationSpecOutput) ToClusterReplicationSpecOutputWithContext(
 	return o
 }
 
-// Unique identifer of the replication document for a zone in a Global Cluster.
 func (o ClusterReplicationSpecOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -7622,14 +7636,10 @@ func (o ClusterReplicationSpecOutput) NumShards() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) int { return v.NumShards }).(pulumi.IntOutput)
 }
 
-// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
 func (o ClusterReplicationSpecOutput) RegionsConfigs() ClusterReplicationSpecRegionsConfigArrayOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) []ClusterReplicationSpecRegionsConfig { return v.RegionsConfigs }).(ClusterReplicationSpecRegionsConfigArrayOutput)
 }
 
-// Name for the zone in a Global Cluster.
-//
-// **Region Config**
 func (o ClusterReplicationSpecOutput) ZoneName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) *string { return v.ZoneName }).(pulumi.StringPtrOutput)
 }
@@ -7655,22 +7665,11 @@ func (o ClusterReplicationSpecArrayOutput) Index(i pulumi.IntInput) ClusterRepli
 }
 
 type ClusterReplicationSpecRegionsConfig struct {
-	// The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
-	AnalyticsNodes *int `pulumi:"analyticsNodes"`
-	// Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
-	// * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
-	// * Specify 0 if you do not want any electable nodes in the region.
-	// * You cannot create electable nodes in a region if `priority` is 0.
-	ElectableNodes *int `pulumi:"electableNodes"`
-	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
-	// * For regions where `electableNodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
-	// * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
-	// * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
-	Priority *int `pulumi:"priority"`
-	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
-	ReadOnlyNodes *int `pulumi:"readOnlyNodes"`
-	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-	RegionName string `pulumi:"regionName"`
+	AnalyticsNodes *int   `pulumi:"analyticsNodes"`
+	ElectableNodes *int   `pulumi:"electableNodes"`
+	Priority       *int   `pulumi:"priority"`
+	ReadOnlyNodes  *int   `pulumi:"readOnlyNodes"`
+	RegionName     string `pulumi:"regionName"`
 }
 
 // ClusterReplicationSpecRegionsConfigInput is an input type that accepts ClusterReplicationSpecRegionsConfigArgs and ClusterReplicationSpecRegionsConfigOutput values.
@@ -7685,22 +7684,11 @@ type ClusterReplicationSpecRegionsConfigInput interface {
 }
 
 type ClusterReplicationSpecRegionsConfigArgs struct {
-	// The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
 	AnalyticsNodes pulumi.IntPtrInput `pulumi:"analyticsNodes"`
-	// Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
-	// * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
-	// * Specify 0 if you do not want any electable nodes in the region.
-	// * You cannot create electable nodes in a region if `priority` is 0.
 	ElectableNodes pulumi.IntPtrInput `pulumi:"electableNodes"`
-	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
-	// * For regions where `electableNodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
-	// * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
-	// * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
-	Priority pulumi.IntPtrInput `pulumi:"priority"`
-	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
-	ReadOnlyNodes pulumi.IntPtrInput `pulumi:"readOnlyNodes"`
-	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-	RegionName pulumi.StringInput `pulumi:"regionName"`
+	Priority       pulumi.IntPtrInput `pulumi:"priority"`
+	ReadOnlyNodes  pulumi.IntPtrInput `pulumi:"readOnlyNodes"`
+	RegionName     pulumi.StringInput `pulumi:"regionName"`
 }
 
 func (ClusterReplicationSpecRegionsConfigArgs) ElementType() reflect.Type {
@@ -7754,33 +7742,22 @@ func (o ClusterReplicationSpecRegionsConfigOutput) ToClusterReplicationSpecRegio
 	return o
 }
 
-// The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
 func (o ClusterReplicationSpecRegionsConfigOutput) AnalyticsNodes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) *int { return v.AnalyticsNodes }).(pulumi.IntPtrOutput)
 }
 
-// Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
-// * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
-// * Specify 0 if you do not want any electable nodes in the region.
-// * You cannot create electable nodes in a region if `priority` is 0.
 func (o ClusterReplicationSpecRegionsConfigOutput) ElectableNodes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) *int { return v.ElectableNodes }).(pulumi.IntPtrOutput)
 }
 
-// Election priority of the region. For regions with only read-only nodes, set this value to 0.
-// * For regions where `electableNodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
-// * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
-// * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
 func (o ClusterReplicationSpecRegionsConfigOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
 func (o ClusterReplicationSpecRegionsConfigOutput) ReadOnlyNodes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) *int { return v.ReadOnlyNodes }).(pulumi.IntPtrOutput)
 }
 
-// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 func (o ClusterReplicationSpecRegionsConfigOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) string { return v.RegionName }).(pulumi.StringOutput)
 }
@@ -7945,7 +7922,6 @@ func (o ClusterSnapshotBackupPolicyArrayOutput) Index(i pulumi.IntInput) Cluster
 }
 
 type ClusterSnapshotBackupPolicyPolicy struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
 	Id          *string                                       `pulumi:"id"`
 	PolicyItems []ClusterSnapshotBackupPolicyPolicyPolicyItem `pulumi:"policyItems"`
 }
@@ -7962,7 +7938,6 @@ type ClusterSnapshotBackupPolicyPolicyInput interface {
 }
 
 type ClusterSnapshotBackupPolicyPolicyArgs struct {
-	// Unique identifer of the replication document for a zone in a Global Cluster.
 	Id          pulumi.StringPtrInput                                 `pulumi:"id"`
 	PolicyItems ClusterSnapshotBackupPolicyPolicyPolicyItemArrayInput `pulumi:"policyItems"`
 }
@@ -8018,7 +7993,6 @@ func (o ClusterSnapshotBackupPolicyPolicyOutput) ToClusterSnapshotBackupPolicyPo
 	return o
 }
 
-// Unique identifer of the replication document for a zone in a Global Cluster.
 func (o ClusterSnapshotBackupPolicyPolicyOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterSnapshotBackupPolicyPolicy) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -8052,10 +8026,9 @@ func (o ClusterSnapshotBackupPolicyPolicyArrayOutput) Index(i pulumi.IntInput) C
 type ClusterSnapshotBackupPolicyPolicyPolicyItem struct {
 	FrequencyInterval *int    `pulumi:"frequencyInterval"`
 	FrequencyType     *string `pulumi:"frequencyType"`
-	// Unique identifer of the replication document for a zone in a Global Cluster.
-	Id             *string `pulumi:"id"`
-	RetentionUnit  *string `pulumi:"retentionUnit"`
-	RetentionValue *int    `pulumi:"retentionValue"`
+	Id                *string `pulumi:"id"`
+	RetentionUnit     *string `pulumi:"retentionUnit"`
+	RetentionValue    *int    `pulumi:"retentionValue"`
 }
 
 // ClusterSnapshotBackupPolicyPolicyPolicyItemInput is an input type that accepts ClusterSnapshotBackupPolicyPolicyPolicyItemArgs and ClusterSnapshotBackupPolicyPolicyPolicyItemOutput values.
@@ -8072,10 +8045,9 @@ type ClusterSnapshotBackupPolicyPolicyPolicyItemInput interface {
 type ClusterSnapshotBackupPolicyPolicyPolicyItemArgs struct {
 	FrequencyInterval pulumi.IntPtrInput    `pulumi:"frequencyInterval"`
 	FrequencyType     pulumi.StringPtrInput `pulumi:"frequencyType"`
-	// Unique identifer of the replication document for a zone in a Global Cluster.
-	Id             pulumi.StringPtrInput `pulumi:"id"`
-	RetentionUnit  pulumi.StringPtrInput `pulumi:"retentionUnit"`
-	RetentionValue pulumi.IntPtrInput    `pulumi:"retentionValue"`
+	Id                pulumi.StringPtrInput `pulumi:"id"`
+	RetentionUnit     pulumi.StringPtrInput `pulumi:"retentionUnit"`
+	RetentionValue    pulumi.IntPtrInput    `pulumi:"retentionValue"`
 }
 
 func (ClusterSnapshotBackupPolicyPolicyPolicyItemArgs) ElementType() reflect.Type {
@@ -8137,7 +8109,6 @@ func (o ClusterSnapshotBackupPolicyPolicyPolicyItemOutput) FrequencyType() pulum
 	return o.ApplyT(func(v ClusterSnapshotBackupPolicyPolicyPolicyItem) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
 
-// Unique identifer of the replication document for a zone in a Global Cluster.
 func (o ClusterSnapshotBackupPolicyPolicyPolicyItemOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterSnapshotBackupPolicyPolicyPolicyItem) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -8430,10 +8401,7 @@ func (o CustomDbRoleActionArrayOutput) Index(i pulumi.IntInput) CustomDbRoleActi
 type CustomDbRoleActionResource struct {
 	Cluster        *bool   `pulumi:"cluster"`
 	CollectionName *string `pulumi:"collectionName"`
-	// Database on which the inherited role is granted.
-	//
-	// > **NOTE** This value should be admin for all roles except read and readWrite.
-	DatabaseName *string `pulumi:"databaseName"`
+	DatabaseName   *string `pulumi:"databaseName"`
 }
 
 // CustomDbRoleActionResourceInput is an input type that accepts CustomDbRoleActionResourceArgs and CustomDbRoleActionResourceOutput values.
@@ -8450,10 +8418,7 @@ type CustomDbRoleActionResourceInput interface {
 type CustomDbRoleActionResourceArgs struct {
 	Cluster        pulumi.BoolPtrInput   `pulumi:"cluster"`
 	CollectionName pulumi.StringPtrInput `pulumi:"collectionName"`
-	// Database on which the inherited role is granted.
-	//
-	// > **NOTE** This value should be admin for all roles except read and readWrite.
-	DatabaseName pulumi.StringPtrInput `pulumi:"databaseName"`
+	DatabaseName   pulumi.StringPtrInput `pulumi:"databaseName"`
 }
 
 func (CustomDbRoleActionResourceArgs) ElementType() reflect.Type {
@@ -8515,9 +8480,6 @@ func (o CustomDbRoleActionResourceOutput) CollectionName() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v CustomDbRoleActionResource) *string { return v.CollectionName }).(pulumi.StringPtrOutput)
 }
 
-// Database on which the inherited role is granted.
-//
-// > **NOTE** This value should be admin for all roles except read and readWrite.
 func (o CustomDbRoleActionResourceOutput) DatabaseName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CustomDbRoleActionResource) *string { return v.DatabaseName }).(pulumi.StringPtrOutput)
 }
@@ -10888,6 +10850,7 @@ func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) ConfigRegion() pulum
 }
 
 type FederatedDatabaseInstanceCloudProviderConfig struct {
+	// Name of the cloud service that hosts the data lake's data stores.
 	Aws FederatedDatabaseInstanceCloudProviderConfigAws `pulumi:"aws"`
 }
 
@@ -10903,6 +10866,7 @@ type FederatedDatabaseInstanceCloudProviderConfigInput interface {
 }
 
 type FederatedDatabaseInstanceCloudProviderConfigArgs struct {
+	// Name of the cloud service that hosts the data lake's data stores.
 	Aws FederatedDatabaseInstanceCloudProviderConfigAwsInput `pulumi:"aws"`
 }
 
@@ -10983,6 +10947,7 @@ func (o FederatedDatabaseInstanceCloudProviderConfigOutput) ToFederatedDatabaseI
 	}).(FederatedDatabaseInstanceCloudProviderConfigPtrOutput)
 }
 
+// Name of the cloud service that hosts the data lake's data stores.
 func (o FederatedDatabaseInstanceCloudProviderConfigOutput) Aws() FederatedDatabaseInstanceCloudProviderConfigAwsOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfig) FederatedDatabaseInstanceCloudProviderConfigAws {
 		return v.Aws
@@ -11013,6 +10978,7 @@ func (o FederatedDatabaseInstanceCloudProviderConfigPtrOutput) Elem() FederatedD
 	}).(FederatedDatabaseInstanceCloudProviderConfigOutput)
 }
 
+// Name of the cloud service that hosts the data lake's data stores.
 func (o FederatedDatabaseInstanceCloudProviderConfigPtrOutput) Aws() FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfig) *FederatedDatabaseInstanceCloudProviderConfigAws {
 		if v == nil {
@@ -11031,12 +10997,9 @@ type FederatedDatabaseInstanceCloudProviderConfigAws struct {
 	// * `s3:GetObjectVersion`
 	IamAssumedRoleArn *string `pulumi:"iamAssumedRoleArn"`
 	// Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
-	IamUserArn *string `pulumi:"iamUserArn"`
-	// Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
-	RoleId string `pulumi:"roleId"`
-	// Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
-	// ### `dataProcessRegion` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
-	TestS3Bucket string `pulumi:"testS3Bucket"`
+	IamUserArn   *string `pulumi:"iamUserArn"`
+	RoleId       string  `pulumi:"roleId"`
+	TestS3Bucket string  `pulumi:"testS3Bucket"`
 }
 
 // FederatedDatabaseInstanceCloudProviderConfigAwsInput is an input type that accepts FederatedDatabaseInstanceCloudProviderConfigAwsArgs and FederatedDatabaseInstanceCloudProviderConfigAwsOutput values.
@@ -11059,12 +11022,9 @@ type FederatedDatabaseInstanceCloudProviderConfigAwsArgs struct {
 	// * `s3:GetObjectVersion`
 	IamAssumedRoleArn pulumi.StringPtrInput `pulumi:"iamAssumedRoleArn"`
 	// Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
-	IamUserArn pulumi.StringPtrInput `pulumi:"iamUserArn"`
-	// Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
-	RoleId pulumi.StringInput `pulumi:"roleId"`
-	// Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
-	// ### `dataProcessRegion` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
-	TestS3Bucket pulumi.StringInput `pulumi:"testS3Bucket"`
+	IamUserArn   pulumi.StringPtrInput `pulumi:"iamUserArn"`
+	RoleId       pulumi.StringInput    `pulumi:"roleId"`
+	TestS3Bucket pulumi.StringInput    `pulumi:"testS3Bucket"`
 }
 
 func (FederatedDatabaseInstanceCloudProviderConfigAwsArgs) ElementType() reflect.Type {
@@ -11162,13 +11122,10 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAwsOutput) IamUserArn() pulu
 	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigAws) *string { return v.IamUserArn }).(pulumi.StringPtrOutput)
 }
 
-// Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
 func (o FederatedDatabaseInstanceCloudProviderConfigAwsOutput) RoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigAws) string { return v.RoleId }).(pulumi.StringOutput)
 }
 
-// Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
-// ### `dataProcessRegion` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
 func (o FederatedDatabaseInstanceCloudProviderConfigAwsOutput) TestS3Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigAws) string { return v.TestS3Bucket }).(pulumi.StringOutput)
 }
@@ -11230,7 +11187,6 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) IamUserArn() p
 	}).(pulumi.StringPtrOutput)
 }
 
-// Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
 func (o FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) RoleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigAws) *string {
 		if v == nil {
@@ -11240,8 +11196,6 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) RoleId() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
-// ### `dataProcessRegion` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
 func (o FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) TestS3Bucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigAws) *string {
 		if v == nil {
@@ -11252,10 +11206,8 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) TestS3Bucket()
 }
 
 type FederatedDatabaseInstanceDataProcessRegion struct {
-	// Name of the cloud service provider. Atlas Federated Database only supports AWS.
 	CloudProvider string `pulumi:"cloudProvider"`
-	// Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-	Region string `pulumi:"region"`
+	Region        string `pulumi:"region"`
 }
 
 // FederatedDatabaseInstanceDataProcessRegionInput is an input type that accepts FederatedDatabaseInstanceDataProcessRegionArgs and FederatedDatabaseInstanceDataProcessRegionOutput values.
@@ -11270,10 +11222,8 @@ type FederatedDatabaseInstanceDataProcessRegionInput interface {
 }
 
 type FederatedDatabaseInstanceDataProcessRegionArgs struct {
-	// Name of the cloud service provider. Atlas Federated Database only supports AWS.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-	Region pulumi.StringInput `pulumi:"region"`
+	Region        pulumi.StringInput `pulumi:"region"`
 }
 
 func (FederatedDatabaseInstanceDataProcessRegionArgs) ElementType() reflect.Type {
@@ -11353,12 +11303,10 @@ func (o FederatedDatabaseInstanceDataProcessRegionOutput) ToFederatedDatabaseIns
 	}).(FederatedDatabaseInstanceDataProcessRegionPtrOutput)
 }
 
-// Name of the cloud service provider. Atlas Federated Database only supports AWS.
 func (o FederatedDatabaseInstanceDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
-// Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
 func (o FederatedDatabaseInstanceDataProcessRegionOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -11387,7 +11335,6 @@ func (o FederatedDatabaseInstanceDataProcessRegionPtrOutput) Elem() FederatedDat
 	}).(FederatedDatabaseInstanceDataProcessRegionOutput)
 }
 
-// Name of the cloud service provider. Atlas Federated Database only supports AWS.
 func (o FederatedDatabaseInstanceDataProcessRegionPtrOutput) CloudProvider() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstanceDataProcessRegion) *string {
 		if v == nil {
@@ -11397,7 +11344,6 @@ func (o FederatedDatabaseInstanceDataProcessRegionPtrOutput) CloudProvider() pul
 	}).(pulumi.StringPtrOutput)
 }
 
-// Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
 func (o FederatedDatabaseInstanceDataProcessRegionPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstanceDataProcessRegion) *string {
 		if v == nil {
@@ -11411,8 +11357,6 @@ type FederatedDatabaseInstanceStorageDatabase struct {
 	Collections            []FederatedDatabaseInstanceStorageDatabaseCollection `pulumi:"collections"`
 	MaxWildcardCollections *int                                                 `pulumi:"maxWildcardCollections"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name  *string                                        `pulumi:"name"`
 	Views []FederatedDatabaseInstanceStorageDatabaseView `pulumi:"views"`
 }
@@ -11432,8 +11376,6 @@ type FederatedDatabaseInstanceStorageDatabaseArgs struct {
 	Collections            FederatedDatabaseInstanceStorageDatabaseCollectionArrayInput `pulumi:"collections"`
 	MaxWildcardCollections pulumi.IntPtrInput                                           `pulumi:"maxWildcardCollections"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name  pulumi.StringPtrInput                                  `pulumi:"name"`
 	Views FederatedDatabaseInstanceStorageDatabaseViewArrayInput `pulumi:"views"`
 }
@@ -11500,8 +11442,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseOutput) MaxWildcardCollections()
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageDatabaseOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageDatabase) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -11535,8 +11475,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseArrayOutput) Index(i pulumi.IntI
 type FederatedDatabaseInstanceStorageDatabaseCollection struct {
 	DataSources []FederatedDatabaseInstanceStorageDatabaseCollectionDataSource `pulumi:"dataSources"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name *string `pulumi:"name"`
 }
 
@@ -11554,8 +11492,6 @@ type FederatedDatabaseInstanceStorageDatabaseCollectionInput interface {
 type FederatedDatabaseInstanceStorageDatabaseCollectionArgs struct {
 	DataSources FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArrayInput `pulumi:"dataSources"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -11617,8 +11553,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseCollectionOutput) DataSources() 
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageDatabaseCollectionOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageDatabaseCollection) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -11801,8 +11735,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArrayOutput)
 
 type FederatedDatabaseInstanceStorageDatabaseView struct {
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name     *string `pulumi:"name"`
 	Pipeline *string `pulumi:"pipeline"`
 	Source   *string `pulumi:"source"`
@@ -11821,8 +11753,6 @@ type FederatedDatabaseInstanceStorageDatabaseViewInput interface {
 
 type FederatedDatabaseInstanceStorageDatabaseViewArgs struct {
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name     pulumi.StringPtrInput `pulumi:"name"`
 	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
 	Source   pulumi.StringPtrInput `pulumi:"source"`
@@ -11880,8 +11810,6 @@ func (o FederatedDatabaseInstanceStorageDatabaseViewOutput) ToFederatedDatabaseI
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageDatabaseViewOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageDatabaseView) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -11918,15 +11846,13 @@ type FederatedDatabaseInstanceStorageStore struct {
 	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
 	AllowInsecure            *bool    `pulumi:"allowInsecure"`
 	Bucket                   *string  `pulumi:"bucket"`
-	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	// Deprecated: This parameter is deprecated and will be removed by September 2024.
 	ClusterId     *string `pulumi:"clusterId"`
 	ClusterName   *string `pulumi:"clusterName"`
 	DefaultFormat *string `pulumi:"defaultFormat"`
 	Delimiter     *string `pulumi:"delimiter"`
 	IncludeTags   *bool   `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name   *string `pulumi:"name"`
 	Prefix *string `pulumi:"prefix"`
 	// The unique ID for the project to create a Federated Database Instance.
@@ -11934,9 +11860,8 @@ type FederatedDatabaseInstanceStorageStore struct {
 	Provider       *string                                              `pulumi:"provider"`
 	Public         *string                                              `pulumi:"public"`
 	ReadPreference *FederatedDatabaseInstanceStorageStoreReadPreference `pulumi:"readPreference"`
-	// Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-	Region *string  `pulumi:"region"`
-	Urls   []string `pulumi:"urls"`
+	Region         *string                                              `pulumi:"region"`
+	Urls           []string                                             `pulumi:"urls"`
 }
 
 // FederatedDatabaseInstanceStorageStoreInput is an input type that accepts FederatedDatabaseInstanceStorageStoreArgs and FederatedDatabaseInstanceStorageStoreOutput values.
@@ -11954,15 +11879,13 @@ type FederatedDatabaseInstanceStorageStoreArgs struct {
 	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
 	AllowInsecure            pulumi.BoolPtrInput     `pulumi:"allowInsecure"`
 	Bucket                   pulumi.StringPtrInput   `pulumi:"bucket"`
-	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	// Deprecated: This parameter is deprecated and will be removed by September 2024.
 	ClusterId     pulumi.StringPtrInput `pulumi:"clusterId"`
 	ClusterName   pulumi.StringPtrInput `pulumi:"clusterName"`
 	DefaultFormat pulumi.StringPtrInput `pulumi:"defaultFormat"`
 	Delimiter     pulumi.StringPtrInput `pulumi:"delimiter"`
 	IncludeTags   pulumi.BoolPtrInput   `pulumi:"includeTags"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name   pulumi.StringPtrInput `pulumi:"name"`
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 	// The unique ID for the project to create a Federated Database Instance.
@@ -11970,9 +11893,8 @@ type FederatedDatabaseInstanceStorageStoreArgs struct {
 	Provider       pulumi.StringPtrInput                                       `pulumi:"provider"`
 	Public         pulumi.StringPtrInput                                       `pulumi:"public"`
 	ReadPreference FederatedDatabaseInstanceStorageStoreReadPreferencePtrInput `pulumi:"readPreference"`
-	// Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-	Region pulumi.StringPtrInput   `pulumi:"region"`
-	Urls   pulumi.StringArrayInput `pulumi:"urls"`
+	Region         pulumi.StringPtrInput                                       `pulumi:"region"`
+	Urls           pulumi.StringArrayInput                                     `pulumi:"urls"`
 }
 
 func (FederatedDatabaseInstanceStorageStoreArgs) ElementType() reflect.Type {
@@ -12038,7 +11960,7 @@ func (o FederatedDatabaseInstanceStorageStoreOutput) Bucket() pulumi.StringPtrOu
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.Bucket }).(pulumi.StringPtrOutput)
 }
 
-// Deprecated: this parameter is deprecated and will be removed by September 2024
+// Deprecated: This parameter is deprecated and will be removed by September 2024.
 func (o FederatedDatabaseInstanceStorageStoreOutput) ClusterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.ClusterId }).(pulumi.StringPtrOutput)
 }
@@ -12060,8 +11982,6 @@ func (o FederatedDatabaseInstanceStorageStoreOutput) IncludeTags() pulumi.BoolPt
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageStoreOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -12089,7 +12009,6 @@ func (o FederatedDatabaseInstanceStorageStoreOutput) ReadPreference() FederatedD
 	}).(FederatedDatabaseInstanceStorageStoreReadPreferencePtrOutput)
 }
 
-// Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
 func (o FederatedDatabaseInstanceStorageStoreOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -12381,8 +12300,6 @@ func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput) In
 
 type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag struct {
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name  *string `pulumi:"name"`
 	Value *string `pulumi:"value"`
 }
@@ -12400,8 +12317,6 @@ type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput interface
 
 type FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs struct {
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name  pulumi.StringPtrInput `pulumi:"name"`
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
@@ -12458,8 +12373,6 @@ func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) ToFe
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -12607,10 +12520,8 @@ func (o FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) Index(i pulumi
 }
 
 type GlobalClusterConfigCustomZoneMapping struct {
-	// The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
 	Location *string `pulumi:"location"`
-	// The name of the zone in your Global Cluster that you want to map to location.
-	Zone *string `pulumi:"zone"`
+	Zone     *string `pulumi:"zone"`
 }
 
 // GlobalClusterConfigCustomZoneMappingInput is an input type that accepts GlobalClusterConfigCustomZoneMappingArgs and GlobalClusterConfigCustomZoneMappingOutput values.
@@ -12625,10 +12536,8 @@ type GlobalClusterConfigCustomZoneMappingInput interface {
 }
 
 type GlobalClusterConfigCustomZoneMappingArgs struct {
-	// The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
 	Location pulumi.StringPtrInput `pulumi:"location"`
-	// The name of the zone in your Global Cluster that you want to map to location.
-	Zone pulumi.StringPtrInput `pulumi:"zone"`
+	Zone     pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GlobalClusterConfigCustomZoneMappingArgs) ElementType() reflect.Type {
@@ -12682,12 +12591,10 @@ func (o GlobalClusterConfigCustomZoneMappingOutput) ToGlobalClusterConfigCustomZ
 	return o
 }
 
-// The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
 func (o GlobalClusterConfigCustomZoneMappingOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalClusterConfigCustomZoneMapping) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
-// The name of the zone in your Global Cluster that you want to map to location.
 func (o GlobalClusterConfigCustomZoneMappingOutput) Zone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GlobalClusterConfigCustomZoneMapping) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
@@ -12713,16 +12620,11 @@ func (o GlobalClusterConfigCustomZoneMappingArrayOutput) Index(i pulumi.IntInput
 }
 
 type GlobalClusterConfigManagedNamespace struct {
-	// The name of the collection associated with the managed namespace.
-	Collection string `pulumi:"collection"`
-	// The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
-	CustomShardKey string `pulumi:"customShardKey"`
-	// The name of the database containing the collection.
-	Db string `pulumi:"db"`
-	// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
-	IsCustomShardKeyHashed *bool `pulumi:"isCustomShardKeyHashed"`
-	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
-	IsShardKeyUnique *bool `pulumi:"isShardKeyUnique"`
+	Collection             string `pulumi:"collection"`
+	CustomShardKey         string `pulumi:"customShardKey"`
+	Db                     string `pulumi:"db"`
+	IsCustomShardKeyHashed *bool  `pulumi:"isCustomShardKeyHashed"`
+	IsShardKeyUnique       *bool  `pulumi:"isShardKeyUnique"`
 }
 
 // GlobalClusterConfigManagedNamespaceInput is an input type that accepts GlobalClusterConfigManagedNamespaceArgs and GlobalClusterConfigManagedNamespaceOutput values.
@@ -12737,16 +12639,11 @@ type GlobalClusterConfigManagedNamespaceInput interface {
 }
 
 type GlobalClusterConfigManagedNamespaceArgs struct {
-	// The name of the collection associated with the managed namespace.
-	Collection pulumi.StringInput `pulumi:"collection"`
-	// The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
-	CustomShardKey pulumi.StringInput `pulumi:"customShardKey"`
-	// The name of the database containing the collection.
-	Db pulumi.StringInput `pulumi:"db"`
-	// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	Collection             pulumi.StringInput  `pulumi:"collection"`
+	CustomShardKey         pulumi.StringInput  `pulumi:"customShardKey"`
+	Db                     pulumi.StringInput  `pulumi:"db"`
 	IsCustomShardKeyHashed pulumi.BoolPtrInput `pulumi:"isCustomShardKeyHashed"`
-	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
-	IsShardKeyUnique pulumi.BoolPtrInput `pulumi:"isShardKeyUnique"`
+	IsShardKeyUnique       pulumi.BoolPtrInput `pulumi:"isShardKeyUnique"`
 }
 
 func (GlobalClusterConfigManagedNamespaceArgs) ElementType() reflect.Type {
@@ -12800,27 +12697,22 @@ func (o GlobalClusterConfigManagedNamespaceOutput) ToGlobalClusterConfigManagedN
 	return o
 }
 
-// The name of the collection associated with the managed namespace.
 func (o GlobalClusterConfigManagedNamespaceOutput) Collection() pulumi.StringOutput {
 	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) string { return v.Collection }).(pulumi.StringOutput)
 }
 
-// The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
 func (o GlobalClusterConfigManagedNamespaceOutput) CustomShardKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) string { return v.CustomShardKey }).(pulumi.StringOutput)
 }
 
-// The name of the database containing the collection.
 func (o GlobalClusterConfigManagedNamespaceOutput) Db() pulumi.StringOutput {
 	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) string { return v.Db }).(pulumi.StringOutput)
 }
 
-// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
 func (o GlobalClusterConfigManagedNamespaceOutput) IsCustomShardKeyHashed() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) *bool { return v.IsCustomShardKeyHashed }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
 func (o GlobalClusterConfigManagedNamespaceOutput) IsShardKeyUnique() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) *bool { return v.IsShardKeyUnique }).(pulumi.BoolPtrOutput)
 }
@@ -13529,7 +13421,7 @@ func (o OnlineArchiveDataExpirationRulePtrOutput) ExpireAfterDays() pulumi.IntPt
 }
 
 type OnlineArchiveDataProcessRegion struct {
-	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
 	CloudProvider *string `pulumi:"cloudProvider"`
 	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
 	Region *string `pulumi:"region"`
@@ -13547,7 +13439,7 @@ type OnlineArchiveDataProcessRegionInput interface {
 }
 
 type OnlineArchiveDataProcessRegionArgs struct {
-	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+	// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
 	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
 	// Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -13630,7 +13522,7 @@ func (o OnlineArchiveDataProcessRegionOutput) ToOnlineArchiveDataProcessRegionPt
 	}).(OnlineArchiveDataProcessRegionPtrOutput)
 }
 
-// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
 func (o OnlineArchiveDataProcessRegionOutput) CloudProvider() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OnlineArchiveDataProcessRegion) *string { return v.CloudProvider }).(pulumi.StringPtrOutput)
 }
@@ -13664,7 +13556,7 @@ func (o OnlineArchiveDataProcessRegionPtrOutput) Elem() OnlineArchiveDataProcess
 	}).(OnlineArchiveDataProcessRegionOutput)
 }
 
-// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
 func (o OnlineArchiveDataProcessRegionPtrOutput) CloudProvider() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OnlineArchiveDataProcessRegion) *string {
 		if v == nil {
@@ -13685,12 +13577,9 @@ func (o OnlineArchiveDataProcessRegionPtrOutput) Region() pulumi.StringPtrOutput
 }
 
 type OnlineArchivePartitionField struct {
-	// Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
-	FieldName string `pulumi:"fieldName"`
-	// Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+	FieldName string  `pulumi:"fieldName"`
 	FieldType *string `pulumi:"fieldType"`
-	// Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-	Order int `pulumi:"order"`
+	Order     int     `pulumi:"order"`
 }
 
 // OnlineArchivePartitionFieldInput is an input type that accepts OnlineArchivePartitionFieldArgs and OnlineArchivePartitionFieldOutput values.
@@ -13705,12 +13594,9 @@ type OnlineArchivePartitionFieldInput interface {
 }
 
 type OnlineArchivePartitionFieldArgs struct {
-	// Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
-	FieldName pulumi.StringInput `pulumi:"fieldName"`
-	// Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+	FieldName pulumi.StringInput    `pulumi:"fieldName"`
 	FieldType pulumi.StringPtrInput `pulumi:"fieldType"`
-	// Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-	Order pulumi.IntInput `pulumi:"order"`
+	Order     pulumi.IntInput       `pulumi:"order"`
 }
 
 func (OnlineArchivePartitionFieldArgs) ElementType() reflect.Type {
@@ -13764,17 +13650,14 @@ func (o OnlineArchivePartitionFieldOutput) ToOnlineArchivePartitionFieldOutputWi
 	return o
 }
 
-// Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
 func (o OnlineArchivePartitionFieldOutput) FieldName() pulumi.StringOutput {
 	return o.ApplyT(func(v OnlineArchivePartitionField) string { return v.FieldName }).(pulumi.StringOutput)
 }
 
-// Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
 func (o OnlineArchivePartitionFieldOutput) FieldType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OnlineArchivePartitionField) *string { return v.FieldType }).(pulumi.StringPtrOutput)
 }
 
-// Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
 func (o OnlineArchivePartitionFieldOutput) Order() pulumi.IntOutput {
 	return o.ApplyT(func(v OnlineArchivePartitionField) int { return v.Order }).(pulumi.IntOutput)
 }
@@ -14056,6 +13939,8 @@ type PrivateLinkEndpointServiceEndpoint struct {
 	// Private IP address of the endpoint you created in GCP.
 	IpAddress *string `pulumi:"ipAddress"`
 	// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	ServiceAttachmentName *string `pulumi:"serviceAttachmentName"`
 	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status *string `pulumi:"status"`
@@ -14078,6 +13963,8 @@ type PrivateLinkEndpointServiceEndpointArgs struct {
 	// Private IP address of the endpoint you created in GCP.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
 	// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	ServiceAttachmentName pulumi.StringPtrInput `pulumi:"serviceAttachmentName"`
 	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status pulumi.StringPtrInput `pulumi:"status"`
@@ -14145,6 +14032,8 @@ func (o PrivateLinkEndpointServiceEndpointOutput) IpAddress() pulumi.StringPtrOu
 }
 
 // Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 func (o PrivateLinkEndpointServiceEndpointOutput) ServiceAttachmentName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PrivateLinkEndpointServiceEndpoint) *string { return v.ServiceAttachmentName }).(pulumi.StringPtrOutput)
 }
@@ -15333,6 +15222,181 @@ func (o ProviderAssumeRolePtrOutput) TransitiveTagKeys() pulumi.StringArrayOutpu
 	}).(pulumi.StringArrayOutput)
 }
 
+type PushBasedLogExportTimeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create *string `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete *string `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update *string `pulumi:"update"`
+}
+
+// PushBasedLogExportTimeoutsInput is an input type that accepts PushBasedLogExportTimeoutsArgs and PushBasedLogExportTimeoutsOutput values.
+// You can construct a concrete instance of `PushBasedLogExportTimeoutsInput` via:
+//
+//	PushBasedLogExportTimeoutsArgs{...}
+type PushBasedLogExportTimeoutsInput interface {
+	pulumi.Input
+
+	ToPushBasedLogExportTimeoutsOutput() PushBasedLogExportTimeoutsOutput
+	ToPushBasedLogExportTimeoutsOutputWithContext(context.Context) PushBasedLogExportTimeoutsOutput
+}
+
+type PushBasedLogExportTimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update pulumi.StringPtrInput `pulumi:"update"`
+}
+
+func (PushBasedLogExportTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PushBasedLogExportTimeouts)(nil)).Elem()
+}
+
+func (i PushBasedLogExportTimeoutsArgs) ToPushBasedLogExportTimeoutsOutput() PushBasedLogExportTimeoutsOutput {
+	return i.ToPushBasedLogExportTimeoutsOutputWithContext(context.Background())
+}
+
+func (i PushBasedLogExportTimeoutsArgs) ToPushBasedLogExportTimeoutsOutputWithContext(ctx context.Context) PushBasedLogExportTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PushBasedLogExportTimeoutsOutput)
+}
+
+func (i PushBasedLogExportTimeoutsArgs) ToPushBasedLogExportTimeoutsPtrOutput() PushBasedLogExportTimeoutsPtrOutput {
+	return i.ToPushBasedLogExportTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i PushBasedLogExportTimeoutsArgs) ToPushBasedLogExportTimeoutsPtrOutputWithContext(ctx context.Context) PushBasedLogExportTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PushBasedLogExportTimeoutsOutput).ToPushBasedLogExportTimeoutsPtrOutputWithContext(ctx)
+}
+
+// PushBasedLogExportTimeoutsPtrInput is an input type that accepts PushBasedLogExportTimeoutsArgs, PushBasedLogExportTimeoutsPtr and PushBasedLogExportTimeoutsPtrOutput values.
+// You can construct a concrete instance of `PushBasedLogExportTimeoutsPtrInput` via:
+//
+//	        PushBasedLogExportTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PushBasedLogExportTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToPushBasedLogExportTimeoutsPtrOutput() PushBasedLogExportTimeoutsPtrOutput
+	ToPushBasedLogExportTimeoutsPtrOutputWithContext(context.Context) PushBasedLogExportTimeoutsPtrOutput
+}
+
+type pushBasedLogExportTimeoutsPtrType PushBasedLogExportTimeoutsArgs
+
+func PushBasedLogExportTimeoutsPtr(v *PushBasedLogExportTimeoutsArgs) PushBasedLogExportTimeoutsPtrInput {
+	return (*pushBasedLogExportTimeoutsPtrType)(v)
+}
+
+func (*pushBasedLogExportTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PushBasedLogExportTimeouts)(nil)).Elem()
+}
+
+func (i *pushBasedLogExportTimeoutsPtrType) ToPushBasedLogExportTimeoutsPtrOutput() PushBasedLogExportTimeoutsPtrOutput {
+	return i.ToPushBasedLogExportTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *pushBasedLogExportTimeoutsPtrType) ToPushBasedLogExportTimeoutsPtrOutputWithContext(ctx context.Context) PushBasedLogExportTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PushBasedLogExportTimeoutsPtrOutput)
+}
+
+type PushBasedLogExportTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (PushBasedLogExportTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PushBasedLogExportTimeouts)(nil)).Elem()
+}
+
+func (o PushBasedLogExportTimeoutsOutput) ToPushBasedLogExportTimeoutsOutput() PushBasedLogExportTimeoutsOutput {
+	return o
+}
+
+func (o PushBasedLogExportTimeoutsOutput) ToPushBasedLogExportTimeoutsOutputWithContext(ctx context.Context) PushBasedLogExportTimeoutsOutput {
+	return o
+}
+
+func (o PushBasedLogExportTimeoutsOutput) ToPushBasedLogExportTimeoutsPtrOutput() PushBasedLogExportTimeoutsPtrOutput {
+	return o.ToPushBasedLogExportTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o PushBasedLogExportTimeoutsOutput) ToPushBasedLogExportTimeoutsPtrOutputWithContext(ctx context.Context) PushBasedLogExportTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PushBasedLogExportTimeouts) *PushBasedLogExportTimeouts {
+		return &v
+	}).(PushBasedLogExportTimeoutsPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PushBasedLogExportTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PushBasedLogExportTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o PushBasedLogExportTimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PushBasedLogExportTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PushBasedLogExportTimeoutsOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PushBasedLogExportTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
+}
+
+type PushBasedLogExportTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (PushBasedLogExportTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PushBasedLogExportTimeouts)(nil)).Elem()
+}
+
+func (o PushBasedLogExportTimeoutsPtrOutput) ToPushBasedLogExportTimeoutsPtrOutput() PushBasedLogExportTimeoutsPtrOutput {
+	return o
+}
+
+func (o PushBasedLogExportTimeoutsPtrOutput) ToPushBasedLogExportTimeoutsPtrOutputWithContext(ctx context.Context) PushBasedLogExportTimeoutsPtrOutput {
+	return o
+}
+
+func (o PushBasedLogExportTimeoutsPtrOutput) Elem() PushBasedLogExportTimeoutsOutput {
+	return o.ApplyT(func(v *PushBasedLogExportTimeouts) PushBasedLogExportTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret PushBasedLogExportTimeouts
+		return ret
+	}).(PushBasedLogExportTimeoutsOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PushBasedLogExportTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PushBasedLogExportTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o PushBasedLogExportTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PushBasedLogExportTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PushBasedLogExportTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PushBasedLogExportTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(pulumi.StringPtrOutput)
+}
+
 type SearchDeploymentSpec struct {
 	// Hardware specification for the search node instance sizes. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) describes the valid values. More details can also be found in the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-tier).
 	InstanceSize string `pulumi:"instanceSize"`
@@ -15941,6 +16005,782 @@ func (o ServerlessInstanceTagArrayOutput) Index(i pulumi.IntInput) ServerlessIns
 	}).(ServerlessInstanceTagOutput)
 }
 
+type StreamConnectionAuthentication struct {
+	// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	Mechanism *string `pulumi:"mechanism"`
+	// Password of the account to connect to the Kafka cluster.
+	Password *string `pulumi:"password"`
+	// Username of the account to connect to the Kafka cluster.
+	Username *string `pulumi:"username"`
+}
+
+// StreamConnectionAuthenticationInput is an input type that accepts StreamConnectionAuthenticationArgs and StreamConnectionAuthenticationOutput values.
+// You can construct a concrete instance of `StreamConnectionAuthenticationInput` via:
+//
+//	StreamConnectionAuthenticationArgs{...}
+type StreamConnectionAuthenticationInput interface {
+	pulumi.Input
+
+	ToStreamConnectionAuthenticationOutput() StreamConnectionAuthenticationOutput
+	ToStreamConnectionAuthenticationOutputWithContext(context.Context) StreamConnectionAuthenticationOutput
+}
+
+type StreamConnectionAuthenticationArgs struct {
+	// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	Mechanism pulumi.StringPtrInput `pulumi:"mechanism"`
+	// Password of the account to connect to the Kafka cluster.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Username of the account to connect to the Kafka cluster.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (StreamConnectionAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionAuthentication)(nil)).Elem()
+}
+
+func (i StreamConnectionAuthenticationArgs) ToStreamConnectionAuthenticationOutput() StreamConnectionAuthenticationOutput {
+	return i.ToStreamConnectionAuthenticationOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionAuthenticationArgs) ToStreamConnectionAuthenticationOutputWithContext(ctx context.Context) StreamConnectionAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAuthenticationOutput)
+}
+
+func (i StreamConnectionAuthenticationArgs) ToStreamConnectionAuthenticationPtrOutput() StreamConnectionAuthenticationPtrOutput {
+	return i.ToStreamConnectionAuthenticationPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionAuthenticationArgs) ToStreamConnectionAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionAuthenticationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAuthenticationOutput).ToStreamConnectionAuthenticationPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionAuthenticationPtrInput is an input type that accepts StreamConnectionAuthenticationArgs, StreamConnectionAuthenticationPtr and StreamConnectionAuthenticationPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionAuthenticationPtrInput` via:
+//
+//	        StreamConnectionAuthenticationArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionAuthenticationPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionAuthenticationPtrOutput() StreamConnectionAuthenticationPtrOutput
+	ToStreamConnectionAuthenticationPtrOutputWithContext(context.Context) StreamConnectionAuthenticationPtrOutput
+}
+
+type streamConnectionAuthenticationPtrType StreamConnectionAuthenticationArgs
+
+func StreamConnectionAuthenticationPtr(v *StreamConnectionAuthenticationArgs) StreamConnectionAuthenticationPtrInput {
+	return (*streamConnectionAuthenticationPtrType)(v)
+}
+
+func (*streamConnectionAuthenticationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionAuthentication)(nil)).Elem()
+}
+
+func (i *streamConnectionAuthenticationPtrType) ToStreamConnectionAuthenticationPtrOutput() StreamConnectionAuthenticationPtrOutput {
+	return i.ToStreamConnectionAuthenticationPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionAuthenticationPtrType) ToStreamConnectionAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionAuthenticationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAuthenticationPtrOutput)
+}
+
+type StreamConnectionAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionAuthentication)(nil)).Elem()
+}
+
+func (o StreamConnectionAuthenticationOutput) ToStreamConnectionAuthenticationOutput() StreamConnectionAuthenticationOutput {
+	return o
+}
+
+func (o StreamConnectionAuthenticationOutput) ToStreamConnectionAuthenticationOutputWithContext(ctx context.Context) StreamConnectionAuthenticationOutput {
+	return o
+}
+
+func (o StreamConnectionAuthenticationOutput) ToStreamConnectionAuthenticationPtrOutput() StreamConnectionAuthenticationPtrOutput {
+	return o.ToStreamConnectionAuthenticationPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionAuthenticationOutput) ToStreamConnectionAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionAuthenticationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionAuthentication) *StreamConnectionAuthentication {
+		return &v
+	}).(StreamConnectionAuthenticationPtrOutput)
+}
+
+// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+func (o StreamConnectionAuthenticationOutput) Mechanism() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionAuthentication) *string { return v.Mechanism }).(pulumi.StringPtrOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o StreamConnectionAuthenticationOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionAuthentication) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o StreamConnectionAuthenticationOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionAuthentication) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionAuthenticationPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionAuthenticationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionAuthentication)(nil)).Elem()
+}
+
+func (o StreamConnectionAuthenticationPtrOutput) ToStreamConnectionAuthenticationPtrOutput() StreamConnectionAuthenticationPtrOutput {
+	return o
+}
+
+func (o StreamConnectionAuthenticationPtrOutput) ToStreamConnectionAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionAuthenticationPtrOutput {
+	return o
+}
+
+func (o StreamConnectionAuthenticationPtrOutput) Elem() StreamConnectionAuthenticationOutput {
+	return o.ApplyT(func(v *StreamConnectionAuthentication) StreamConnectionAuthentication {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionAuthentication
+		return ret
+	}).(StreamConnectionAuthenticationOutput)
+}
+
+// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+func (o StreamConnectionAuthenticationPtrOutput) Mechanism() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Mechanism
+	}).(pulumi.StringPtrOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o StreamConnectionAuthenticationPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o StreamConnectionAuthenticationPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionDbRoleToExecute struct {
+	Role string `pulumi:"role"`
+	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+	Type string `pulumi:"type"`
+}
+
+// StreamConnectionDbRoleToExecuteInput is an input type that accepts StreamConnectionDbRoleToExecuteArgs and StreamConnectionDbRoleToExecuteOutput values.
+// You can construct a concrete instance of `StreamConnectionDbRoleToExecuteInput` via:
+//
+//	StreamConnectionDbRoleToExecuteArgs{...}
+type StreamConnectionDbRoleToExecuteInput interface {
+	pulumi.Input
+
+	ToStreamConnectionDbRoleToExecuteOutput() StreamConnectionDbRoleToExecuteOutput
+	ToStreamConnectionDbRoleToExecuteOutputWithContext(context.Context) StreamConnectionDbRoleToExecuteOutput
+}
+
+type StreamConnectionDbRoleToExecuteArgs struct {
+	Role pulumi.StringInput `pulumi:"role"`
+	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (StreamConnectionDbRoleToExecuteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionDbRoleToExecute)(nil)).Elem()
+}
+
+func (i StreamConnectionDbRoleToExecuteArgs) ToStreamConnectionDbRoleToExecuteOutput() StreamConnectionDbRoleToExecuteOutput {
+	return i.ToStreamConnectionDbRoleToExecuteOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionDbRoleToExecuteArgs) ToStreamConnectionDbRoleToExecuteOutputWithContext(ctx context.Context) StreamConnectionDbRoleToExecuteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionDbRoleToExecuteOutput)
+}
+
+func (i StreamConnectionDbRoleToExecuteArgs) ToStreamConnectionDbRoleToExecutePtrOutput() StreamConnectionDbRoleToExecutePtrOutput {
+	return i.ToStreamConnectionDbRoleToExecutePtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionDbRoleToExecuteArgs) ToStreamConnectionDbRoleToExecutePtrOutputWithContext(ctx context.Context) StreamConnectionDbRoleToExecutePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionDbRoleToExecuteOutput).ToStreamConnectionDbRoleToExecutePtrOutputWithContext(ctx)
+}
+
+// StreamConnectionDbRoleToExecutePtrInput is an input type that accepts StreamConnectionDbRoleToExecuteArgs, StreamConnectionDbRoleToExecutePtr and StreamConnectionDbRoleToExecutePtrOutput values.
+// You can construct a concrete instance of `StreamConnectionDbRoleToExecutePtrInput` via:
+//
+//	        StreamConnectionDbRoleToExecuteArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionDbRoleToExecutePtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionDbRoleToExecutePtrOutput() StreamConnectionDbRoleToExecutePtrOutput
+	ToStreamConnectionDbRoleToExecutePtrOutputWithContext(context.Context) StreamConnectionDbRoleToExecutePtrOutput
+}
+
+type streamConnectionDbRoleToExecutePtrType StreamConnectionDbRoleToExecuteArgs
+
+func StreamConnectionDbRoleToExecutePtr(v *StreamConnectionDbRoleToExecuteArgs) StreamConnectionDbRoleToExecutePtrInput {
+	return (*streamConnectionDbRoleToExecutePtrType)(v)
+}
+
+func (*streamConnectionDbRoleToExecutePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionDbRoleToExecute)(nil)).Elem()
+}
+
+func (i *streamConnectionDbRoleToExecutePtrType) ToStreamConnectionDbRoleToExecutePtrOutput() StreamConnectionDbRoleToExecutePtrOutput {
+	return i.ToStreamConnectionDbRoleToExecutePtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionDbRoleToExecutePtrType) ToStreamConnectionDbRoleToExecutePtrOutputWithContext(ctx context.Context) StreamConnectionDbRoleToExecutePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionDbRoleToExecutePtrOutput)
+}
+
+type StreamConnectionDbRoleToExecuteOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionDbRoleToExecuteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionDbRoleToExecute)(nil)).Elem()
+}
+
+func (o StreamConnectionDbRoleToExecuteOutput) ToStreamConnectionDbRoleToExecuteOutput() StreamConnectionDbRoleToExecuteOutput {
+	return o
+}
+
+func (o StreamConnectionDbRoleToExecuteOutput) ToStreamConnectionDbRoleToExecuteOutputWithContext(ctx context.Context) StreamConnectionDbRoleToExecuteOutput {
+	return o
+}
+
+func (o StreamConnectionDbRoleToExecuteOutput) ToStreamConnectionDbRoleToExecutePtrOutput() StreamConnectionDbRoleToExecutePtrOutput {
+	return o.ToStreamConnectionDbRoleToExecutePtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionDbRoleToExecuteOutput) ToStreamConnectionDbRoleToExecutePtrOutputWithContext(ctx context.Context) StreamConnectionDbRoleToExecutePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionDbRoleToExecute) *StreamConnectionDbRoleToExecute {
+		return &v
+	}).(StreamConnectionDbRoleToExecutePtrOutput)
+}
+
+func (o StreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+func (o StreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type StreamConnectionDbRoleToExecutePtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionDbRoleToExecutePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionDbRoleToExecute)(nil)).Elem()
+}
+
+func (o StreamConnectionDbRoleToExecutePtrOutput) ToStreamConnectionDbRoleToExecutePtrOutput() StreamConnectionDbRoleToExecutePtrOutput {
+	return o
+}
+
+func (o StreamConnectionDbRoleToExecutePtrOutput) ToStreamConnectionDbRoleToExecutePtrOutputWithContext(ctx context.Context) StreamConnectionDbRoleToExecutePtrOutput {
+	return o
+}
+
+func (o StreamConnectionDbRoleToExecutePtrOutput) Elem() StreamConnectionDbRoleToExecuteOutput {
+	return o.ApplyT(func(v *StreamConnectionDbRoleToExecute) StreamConnectionDbRoleToExecute {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionDbRoleToExecute
+		return ret
+	}).(StreamConnectionDbRoleToExecuteOutput)
+}
+
+func (o StreamConnectionDbRoleToExecutePtrOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionDbRoleToExecute) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Role
+	}).(pulumi.StringPtrOutput)
+}
+
+// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+func (o StreamConnectionDbRoleToExecutePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionDbRoleToExecute) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionSecurity struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate *string `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	Protocol *string `pulumi:"protocol"`
+}
+
+// StreamConnectionSecurityInput is an input type that accepts StreamConnectionSecurityArgs and StreamConnectionSecurityOutput values.
+// You can construct a concrete instance of `StreamConnectionSecurityInput` via:
+//
+//	StreamConnectionSecurityArgs{...}
+type StreamConnectionSecurityInput interface {
+	pulumi.Input
+
+	ToStreamConnectionSecurityOutput() StreamConnectionSecurityOutput
+	ToStreamConnectionSecurityOutputWithContext(context.Context) StreamConnectionSecurityOutput
+}
+
+type StreamConnectionSecurityArgs struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate pulumi.StringPtrInput `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+}
+
+func (StreamConnectionSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionSecurity)(nil)).Elem()
+}
+
+func (i StreamConnectionSecurityArgs) ToStreamConnectionSecurityOutput() StreamConnectionSecurityOutput {
+	return i.ToStreamConnectionSecurityOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionSecurityArgs) ToStreamConnectionSecurityOutputWithContext(ctx context.Context) StreamConnectionSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionSecurityOutput)
+}
+
+func (i StreamConnectionSecurityArgs) ToStreamConnectionSecurityPtrOutput() StreamConnectionSecurityPtrOutput {
+	return i.ToStreamConnectionSecurityPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionSecurityArgs) ToStreamConnectionSecurityPtrOutputWithContext(ctx context.Context) StreamConnectionSecurityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionSecurityOutput).ToStreamConnectionSecurityPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionSecurityPtrInput is an input type that accepts StreamConnectionSecurityArgs, StreamConnectionSecurityPtr and StreamConnectionSecurityPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionSecurityPtrInput` via:
+//
+//	        StreamConnectionSecurityArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionSecurityPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionSecurityPtrOutput() StreamConnectionSecurityPtrOutput
+	ToStreamConnectionSecurityPtrOutputWithContext(context.Context) StreamConnectionSecurityPtrOutput
+}
+
+type streamConnectionSecurityPtrType StreamConnectionSecurityArgs
+
+func StreamConnectionSecurityPtr(v *StreamConnectionSecurityArgs) StreamConnectionSecurityPtrInput {
+	return (*streamConnectionSecurityPtrType)(v)
+}
+
+func (*streamConnectionSecurityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionSecurity)(nil)).Elem()
+}
+
+func (i *streamConnectionSecurityPtrType) ToStreamConnectionSecurityPtrOutput() StreamConnectionSecurityPtrOutput {
+	return i.ToStreamConnectionSecurityPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionSecurityPtrType) ToStreamConnectionSecurityPtrOutputWithContext(ctx context.Context) StreamConnectionSecurityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionSecurityPtrOutput)
+}
+
+type StreamConnectionSecurityOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionSecurity)(nil)).Elem()
+}
+
+func (o StreamConnectionSecurityOutput) ToStreamConnectionSecurityOutput() StreamConnectionSecurityOutput {
+	return o
+}
+
+func (o StreamConnectionSecurityOutput) ToStreamConnectionSecurityOutputWithContext(ctx context.Context) StreamConnectionSecurityOutput {
+	return o
+}
+
+func (o StreamConnectionSecurityOutput) ToStreamConnectionSecurityPtrOutput() StreamConnectionSecurityPtrOutput {
+	return o.ToStreamConnectionSecurityPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionSecurityOutput) ToStreamConnectionSecurityPtrOutputWithContext(ctx context.Context) StreamConnectionSecurityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionSecurity) *StreamConnectionSecurity {
+		return &v
+	}).(StreamConnectionSecurityPtrOutput)
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+func (o StreamConnectionSecurityOutput) BrokerPublicCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionSecurity) *string { return v.BrokerPublicCertificate }).(pulumi.StringPtrOutput)
+}
+
+// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+func (o StreamConnectionSecurityOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionSecurity) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionSecurityPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionSecurityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionSecurity)(nil)).Elem()
+}
+
+func (o StreamConnectionSecurityPtrOutput) ToStreamConnectionSecurityPtrOutput() StreamConnectionSecurityPtrOutput {
+	return o
+}
+
+func (o StreamConnectionSecurityPtrOutput) ToStreamConnectionSecurityPtrOutputWithContext(ctx context.Context) StreamConnectionSecurityPtrOutput {
+	return o
+}
+
+func (o StreamConnectionSecurityPtrOutput) Elem() StreamConnectionSecurityOutput {
+	return o.ApplyT(func(v *StreamConnectionSecurity) StreamConnectionSecurity {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionSecurity
+		return ret
+	}).(StreamConnectionSecurityOutput)
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+func (o StreamConnectionSecurityPtrOutput) BrokerPublicCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionSecurity) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BrokerPublicCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
+// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+func (o StreamConnectionSecurityPtrOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionSecurity) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Protocol
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamInstanceDataProcessRegion struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region string `pulumi:"region"`
+}
+
+// StreamInstanceDataProcessRegionInput is an input type that accepts StreamInstanceDataProcessRegionArgs and StreamInstanceDataProcessRegionOutput values.
+// You can construct a concrete instance of `StreamInstanceDataProcessRegionInput` via:
+//
+//	StreamInstanceDataProcessRegionArgs{...}
+type StreamInstanceDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToStreamInstanceDataProcessRegionOutput() StreamInstanceDataProcessRegionOutput
+	ToStreamInstanceDataProcessRegionOutputWithContext(context.Context) StreamInstanceDataProcessRegionOutput
+}
+
+type StreamInstanceDataProcessRegionArgs struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (StreamInstanceDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (i StreamInstanceDataProcessRegionArgs) ToStreamInstanceDataProcessRegionOutput() StreamInstanceDataProcessRegionOutput {
+	return i.ToStreamInstanceDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i StreamInstanceDataProcessRegionArgs) ToStreamInstanceDataProcessRegionOutputWithContext(ctx context.Context) StreamInstanceDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamInstanceDataProcessRegionOutput)
+}
+
+func (i StreamInstanceDataProcessRegionArgs) ToStreamInstanceDataProcessRegionPtrOutput() StreamInstanceDataProcessRegionPtrOutput {
+	return i.ToStreamInstanceDataProcessRegionPtrOutputWithContext(context.Background())
+}
+
+func (i StreamInstanceDataProcessRegionArgs) ToStreamInstanceDataProcessRegionPtrOutputWithContext(ctx context.Context) StreamInstanceDataProcessRegionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamInstanceDataProcessRegionOutput).ToStreamInstanceDataProcessRegionPtrOutputWithContext(ctx)
+}
+
+// StreamInstanceDataProcessRegionPtrInput is an input type that accepts StreamInstanceDataProcessRegionArgs, StreamInstanceDataProcessRegionPtr and StreamInstanceDataProcessRegionPtrOutput values.
+// You can construct a concrete instance of `StreamInstanceDataProcessRegionPtrInput` via:
+//
+//	        StreamInstanceDataProcessRegionArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamInstanceDataProcessRegionPtrInput interface {
+	pulumi.Input
+
+	ToStreamInstanceDataProcessRegionPtrOutput() StreamInstanceDataProcessRegionPtrOutput
+	ToStreamInstanceDataProcessRegionPtrOutputWithContext(context.Context) StreamInstanceDataProcessRegionPtrOutput
+}
+
+type streamInstanceDataProcessRegionPtrType StreamInstanceDataProcessRegionArgs
+
+func StreamInstanceDataProcessRegionPtr(v *StreamInstanceDataProcessRegionArgs) StreamInstanceDataProcessRegionPtrInput {
+	return (*streamInstanceDataProcessRegionPtrType)(v)
+}
+
+func (*streamInstanceDataProcessRegionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (i *streamInstanceDataProcessRegionPtrType) ToStreamInstanceDataProcessRegionPtrOutput() StreamInstanceDataProcessRegionPtrOutput {
+	return i.ToStreamInstanceDataProcessRegionPtrOutputWithContext(context.Background())
+}
+
+func (i *streamInstanceDataProcessRegionPtrType) ToStreamInstanceDataProcessRegionPtrOutputWithContext(ctx context.Context) StreamInstanceDataProcessRegionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamInstanceDataProcessRegionPtrOutput)
+}
+
+type StreamInstanceDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (StreamInstanceDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (o StreamInstanceDataProcessRegionOutput) ToStreamInstanceDataProcessRegionOutput() StreamInstanceDataProcessRegionOutput {
+	return o
+}
+
+func (o StreamInstanceDataProcessRegionOutput) ToStreamInstanceDataProcessRegionOutputWithContext(ctx context.Context) StreamInstanceDataProcessRegionOutput {
+	return o
+}
+
+func (o StreamInstanceDataProcessRegionOutput) ToStreamInstanceDataProcessRegionPtrOutput() StreamInstanceDataProcessRegionPtrOutput {
+	return o.ToStreamInstanceDataProcessRegionPtrOutputWithContext(context.Background())
+}
+
+func (o StreamInstanceDataProcessRegionOutput) ToStreamInstanceDataProcessRegionPtrOutputWithContext(ctx context.Context) StreamInstanceDataProcessRegionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamInstanceDataProcessRegion) *StreamInstanceDataProcessRegion {
+		return &v
+	}).(StreamInstanceDataProcessRegionPtrOutput)
+}
+
+// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o StreamInstanceDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamInstanceDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o StreamInstanceDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamInstanceDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type StreamInstanceDataProcessRegionPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamInstanceDataProcessRegionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (o StreamInstanceDataProcessRegionPtrOutput) ToStreamInstanceDataProcessRegionPtrOutput() StreamInstanceDataProcessRegionPtrOutput {
+	return o
+}
+
+func (o StreamInstanceDataProcessRegionPtrOutput) ToStreamInstanceDataProcessRegionPtrOutputWithContext(ctx context.Context) StreamInstanceDataProcessRegionPtrOutput {
+	return o
+}
+
+func (o StreamInstanceDataProcessRegionPtrOutput) Elem() StreamInstanceDataProcessRegionOutput {
+	return o.ApplyT(func(v *StreamInstanceDataProcessRegion) StreamInstanceDataProcessRegion {
+		if v != nil {
+			return *v
+		}
+		var ret StreamInstanceDataProcessRegion
+		return ret
+	}).(StreamInstanceDataProcessRegionOutput)
+}
+
+// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o StreamInstanceDataProcessRegionPtrOutput) CloudProvider() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamInstanceDataProcessRegion) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.CloudProvider
+	}).(pulumi.StringPtrOutput)
+}
+
+// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o StreamInstanceDataProcessRegionPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamInstanceDataProcessRegion) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamInstanceStreamConfig struct {
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier *string `pulumi:"tier"`
+}
+
+// StreamInstanceStreamConfigInput is an input type that accepts StreamInstanceStreamConfigArgs and StreamInstanceStreamConfigOutput values.
+// You can construct a concrete instance of `StreamInstanceStreamConfigInput` via:
+//
+//	StreamInstanceStreamConfigArgs{...}
+type StreamInstanceStreamConfigInput interface {
+	pulumi.Input
+
+	ToStreamInstanceStreamConfigOutput() StreamInstanceStreamConfigOutput
+	ToStreamInstanceStreamConfigOutputWithContext(context.Context) StreamInstanceStreamConfigOutput
+}
+
+type StreamInstanceStreamConfigArgs struct {
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier pulumi.StringPtrInput `pulumi:"tier"`
+}
+
+func (StreamInstanceStreamConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (i StreamInstanceStreamConfigArgs) ToStreamInstanceStreamConfigOutput() StreamInstanceStreamConfigOutput {
+	return i.ToStreamInstanceStreamConfigOutputWithContext(context.Background())
+}
+
+func (i StreamInstanceStreamConfigArgs) ToStreamInstanceStreamConfigOutputWithContext(ctx context.Context) StreamInstanceStreamConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamInstanceStreamConfigOutput)
+}
+
+func (i StreamInstanceStreamConfigArgs) ToStreamInstanceStreamConfigPtrOutput() StreamInstanceStreamConfigPtrOutput {
+	return i.ToStreamInstanceStreamConfigPtrOutputWithContext(context.Background())
+}
+
+func (i StreamInstanceStreamConfigArgs) ToStreamInstanceStreamConfigPtrOutputWithContext(ctx context.Context) StreamInstanceStreamConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamInstanceStreamConfigOutput).ToStreamInstanceStreamConfigPtrOutputWithContext(ctx)
+}
+
+// StreamInstanceStreamConfigPtrInput is an input type that accepts StreamInstanceStreamConfigArgs, StreamInstanceStreamConfigPtr and StreamInstanceStreamConfigPtrOutput values.
+// You can construct a concrete instance of `StreamInstanceStreamConfigPtrInput` via:
+//
+//	        StreamInstanceStreamConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamInstanceStreamConfigPtrInput interface {
+	pulumi.Input
+
+	ToStreamInstanceStreamConfigPtrOutput() StreamInstanceStreamConfigPtrOutput
+	ToStreamInstanceStreamConfigPtrOutputWithContext(context.Context) StreamInstanceStreamConfigPtrOutput
+}
+
+type streamInstanceStreamConfigPtrType StreamInstanceStreamConfigArgs
+
+func StreamInstanceStreamConfigPtr(v *StreamInstanceStreamConfigArgs) StreamInstanceStreamConfigPtrInput {
+	return (*streamInstanceStreamConfigPtrType)(v)
+}
+
+func (*streamInstanceStreamConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (i *streamInstanceStreamConfigPtrType) ToStreamInstanceStreamConfigPtrOutput() StreamInstanceStreamConfigPtrOutput {
+	return i.ToStreamInstanceStreamConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *streamInstanceStreamConfigPtrType) ToStreamInstanceStreamConfigPtrOutputWithContext(ctx context.Context) StreamInstanceStreamConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamInstanceStreamConfigPtrOutput)
+}
+
+type StreamInstanceStreamConfigOutput struct{ *pulumi.OutputState }
+
+func (StreamInstanceStreamConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (o StreamInstanceStreamConfigOutput) ToStreamInstanceStreamConfigOutput() StreamInstanceStreamConfigOutput {
+	return o
+}
+
+func (o StreamInstanceStreamConfigOutput) ToStreamInstanceStreamConfigOutputWithContext(ctx context.Context) StreamInstanceStreamConfigOutput {
+	return o
+}
+
+func (o StreamInstanceStreamConfigOutput) ToStreamInstanceStreamConfigPtrOutput() StreamInstanceStreamConfigPtrOutput {
+	return o.ToStreamInstanceStreamConfigPtrOutputWithContext(context.Background())
+}
+
+func (o StreamInstanceStreamConfigOutput) ToStreamInstanceStreamConfigPtrOutputWithContext(ctx context.Context) StreamInstanceStreamConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamInstanceStreamConfig) *StreamInstanceStreamConfig {
+		return &v
+	}).(StreamInstanceStreamConfigPtrOutput)
+}
+
+// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o StreamInstanceStreamConfigOutput) Tier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamInstanceStreamConfig) *string { return v.Tier }).(pulumi.StringPtrOutput)
+}
+
+type StreamInstanceStreamConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamInstanceStreamConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (o StreamInstanceStreamConfigPtrOutput) ToStreamInstanceStreamConfigPtrOutput() StreamInstanceStreamConfigPtrOutput {
+	return o
+}
+
+func (o StreamInstanceStreamConfigPtrOutput) ToStreamInstanceStreamConfigPtrOutputWithContext(ctx context.Context) StreamInstanceStreamConfigPtrOutput {
+	return o
+}
+
+func (o StreamInstanceStreamConfigPtrOutput) Elem() StreamInstanceStreamConfigOutput {
+	return o.ApplyT(func(v *StreamInstanceStreamConfig) StreamInstanceStreamConfig {
+		if v != nil {
+			return *v
+		}
+		var ret StreamInstanceStreamConfig
+		return ret
+	}).(StreamInstanceStreamConfigOutput)
+}
+
+// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o StreamInstanceStreamConfigPtrOutput) Tier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamInstanceStreamConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Tier
+	}).(pulumi.StringPtrOutput)
+}
+
 type X509AuthenticationDatabaseUserCertificate struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	GroupId   *string `pulumi:"groupId"`
@@ -16178,11 +17018,9 @@ func (o Get509AuthenticationDatabaseUserCertificateArrayOutput) Index(i pulumi.I
 }
 
 type GetAccessListApiKeysResult struct {
-	AccessCount int `pulumi:"accessCount"`
-	// Range of IP addresses in CIDR notation to be added to the access list.
-	CidrBlock string `pulumi:"cidrBlock"`
-	Created   string `pulumi:"created"`
-	// Single IP address to be added to the access list.
+	AccessCount     int    `pulumi:"accessCount"`
+	CidrBlock       string `pulumi:"cidrBlock"`
+	Created         string `pulumi:"created"`
 	IpAddress       string `pulumi:"ipAddress"`
 	LastUsed        string `pulumi:"lastUsed"`
 	LastUsedAddress string `pulumi:"lastUsedAddress"`
@@ -16200,11 +17038,9 @@ type GetAccessListApiKeysResultInput interface {
 }
 
 type GetAccessListApiKeysResultArgs struct {
-	AccessCount pulumi.IntInput `pulumi:"accessCount"`
-	// Range of IP addresses in CIDR notation to be added to the access list.
-	CidrBlock pulumi.StringInput `pulumi:"cidrBlock"`
-	Created   pulumi.StringInput `pulumi:"created"`
-	// Single IP address to be added to the access list.
+	AccessCount     pulumi.IntInput    `pulumi:"accessCount"`
+	CidrBlock       pulumi.StringInput `pulumi:"cidrBlock"`
+	Created         pulumi.StringInput `pulumi:"created"`
 	IpAddress       pulumi.StringInput `pulumi:"ipAddress"`
 	LastUsed        pulumi.StringInput `pulumi:"lastUsed"`
 	LastUsedAddress pulumi.StringInput `pulumi:"lastUsedAddress"`
@@ -16265,7 +17101,6 @@ func (o GetAccessListApiKeysResultOutput) AccessCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAccessListApiKeysResult) int { return v.AccessCount }).(pulumi.IntOutput)
 }
 
-// Range of IP addresses in CIDR notation to be added to the access list.
 func (o GetAccessListApiKeysResultOutput) CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessListApiKeysResult) string { return v.CidrBlock }).(pulumi.StringOutput)
 }
@@ -16274,7 +17109,6 @@ func (o GetAccessListApiKeysResultOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessListApiKeysResult) string { return v.Created }).(pulumi.StringOutput)
 }
 
-// Single IP address to be added to the access list.
 func (o GetAccessListApiKeysResultOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessListApiKeysResult) string { return v.IpAddress }).(pulumi.StringOutput)
 }
@@ -16601,11 +17435,24 @@ func (o GetAdvancedClusterBiConnectorConfigArrayOutput) Index(i pulumi.IntInput)
 }
 
 type GetAdvancedClusterConnectionString struct {
-	Private          string                                              `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private string `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints []GetAdvancedClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv       string                                              `pulumi:"privateSrv"`
-	Standard         string                                              `pulumi:"standard"`
-	StandardSrv      string                                              `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv string `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard string `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv string `pulumi:"standardSrv"`
 }
 
 // GetAdvancedClusterConnectionStringInput is an input type that accepts GetAdvancedClusterConnectionStringArgs and GetAdvancedClusterConnectionStringOutput values.
@@ -16620,11 +17467,24 @@ type GetAdvancedClusterConnectionStringInput interface {
 }
 
 type GetAdvancedClusterConnectionStringArgs struct {
-	Private          pulumi.StringInput                                          `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private pulumi.StringInput `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints GetAdvancedClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv       pulumi.StringInput                                          `pulumi:"privateSrv"`
-	Standard         pulumi.StringInput                                          `pulumi:"standard"`
-	StandardSrv      pulumi.StringInput                                          `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv pulumi.StringInput `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard pulumi.StringInput `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv pulumi.StringInput `pulumi:"standardSrv"`
 }
 
 func (GetAdvancedClusterConnectionStringArgs) ElementType() reflect.Type {
@@ -16678,24 +17538,37 @@ func (o GetAdvancedClusterConnectionStringOutput) ToGetAdvancedClusterConnection
 	return o
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetAdvancedClusterConnectionStringOutput) Private() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionString) string { return v.Private }).(pulumi.StringOutput)
 }
 
+// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o GetAdvancedClusterConnectionStringOutput) PrivateEndpoints() GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionString) []GetAdvancedClusterConnectionStringPrivateEndpoint {
 		return v.PrivateEndpoints
 	}).(GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetAdvancedClusterConnectionStringOutput) PrivateSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionString) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
 
+// Public mongodb:// connection string for this cluster.
 func (o GetAdvancedClusterConnectionStringOutput) Standard() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionString) string { return v.Standard }).(pulumi.StringOutput)
 }
 
+// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
 func (o GetAdvancedClusterConnectionStringOutput) StandardSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionString) string { return v.StandardSrv }).(pulumi.StringOutput)
 }
@@ -17516,6 +18389,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -17538,6 +18413,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -17628,6 +18505,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskI
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -17677,6 +18556,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Di
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -17852,6 +18733,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -17874,6 +18757,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -17964,6 +18849,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskI
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -18013,6 +18900,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) Di
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -18046,6 +18935,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -18068,6 +18959,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -18158,6 +19051,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIo
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -18207,6 +19102,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Dis
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -18359,7 +19256,7 @@ type GetAdvancedClustersResult struct {
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 	//
-	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 	Labels []GetAdvancedClustersResultLabel `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -18412,7 +19309,7 @@ type GetAdvancedClustersResultArgs struct {
 	EncryptionAtRestProvider pulumi.StringInput `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 	//
-	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 	Labels GetAdvancedClustersResultLabelArrayInput `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion pulumi.StringInput `pulumi:"mongoDbMajorVersion"`
@@ -18534,7 +19431,7 @@ func (o GetAdvancedClustersResultOutput) EncryptionAtRestProvider() pulumi.Strin
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 //
-// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 func (o GetAdvancedClustersResultOutput) Labels() GetAdvancedClustersResultLabelArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultLabel { return v.Labels }).(GetAdvancedClustersResultLabelArrayOutput)
 }
@@ -18906,11 +19803,24 @@ func (o GetAdvancedClustersResultBiConnectorConfigArrayOutput) Index(i pulumi.In
 }
 
 type GetAdvancedClustersResultConnectionString struct {
-	Private          string                                                     `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private string `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints []GetAdvancedClustersResultConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv       string                                                     `pulumi:"privateSrv"`
-	Standard         string                                                     `pulumi:"standard"`
-	StandardSrv      string                                                     `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv string `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard string `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv string `pulumi:"standardSrv"`
 }
 
 // GetAdvancedClustersResultConnectionStringInput is an input type that accepts GetAdvancedClustersResultConnectionStringArgs and GetAdvancedClustersResultConnectionStringOutput values.
@@ -18925,11 +19835,24 @@ type GetAdvancedClustersResultConnectionStringInput interface {
 }
 
 type GetAdvancedClustersResultConnectionStringArgs struct {
-	Private          pulumi.StringInput                                                 `pulumi:"private"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private pulumi.StringInput `pulumi:"private"`
+	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints GetAdvancedClustersResultConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv       pulumi.StringInput                                                 `pulumi:"privateSrv"`
-	Standard         pulumi.StringInput                                                 `pulumi:"standard"`
-	StandardSrv      pulumi.StringInput                                                 `pulumi:"standardSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	PrivateSrv pulumi.StringInput `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard pulumi.StringInput `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+	StandardSrv pulumi.StringInput `pulumi:"standardSrv"`
 }
 
 func (GetAdvancedClustersResultConnectionStringArgs) ElementType() reflect.Type {
@@ -18983,24 +19906,37 @@ func (o GetAdvancedClustersResultConnectionStringOutput) ToGetAdvancedClustersRe
 	return o
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetAdvancedClustersResultConnectionStringOutput) Private() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) string { return v.Private }).(pulumi.StringOutput)
 }
 
+// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o GetAdvancedClustersResultConnectionStringOutput) PrivateEndpoints() GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) []GetAdvancedClustersResultConnectionStringPrivateEndpoint {
 		return v.PrivateEndpoints
 	}).(GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetAdvancedClustersResultConnectionStringOutput) PrivateSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
 
+// Public mongodb:// connection string for this cluster.
 func (o GetAdvancedClustersResultConnectionStringOutput) Standard() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) string { return v.Standard }).(pulumi.StringOutput)
 }
 
+// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
 func (o GetAdvancedClustersResultConnectionStringOutput) StandardSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) string { return v.StandardSrv }).(pulumi.StringOutput)
 }
@@ -19820,6 +20756,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -19842,6 +20780,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs stru
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -19932,6 +20872,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		return v.EbsVolumeType
@@ -19985,6 +20927,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOut
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -20157,6 +21101,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -20179,6 +21125,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs stru
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -20269,6 +21217,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *string {
 		return v.EbsVolumeType
@@ -20322,6 +21272,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOut
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -20355,6 +21307,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -20377,6 +21331,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs struc
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -20467,6 +21423,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *string {
 		return v.EbsVolumeType
@@ -20520,6 +21478,8 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutp
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -20660,8 +21620,15 @@ type GetAlertConfigurationMatcher struct {
 	FieldName string `pulumi:"fieldName"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value string `pulumi:"value"`
 }
 
@@ -20681,8 +21648,15 @@ type GetAlertConfigurationMatcherArgs struct {
 	FieldName pulumi.StringInput `pulumi:"fieldName"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -20744,11 +21718,18 @@ func (o GetAlertConfigurationMatcherOutput) FieldName() pulumi.StringOutput {
 
 // The operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
 func (o GetAlertConfigurationMatcherOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMatcher) string { return v.Operator }).(pulumi.StringOutput)
 }
 
 // Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+// - `PRIMARY`
+// - `SECONDARY`
+// - `STANDALONE`
+// - `CONFIG`
+// - `MONGOS`
 func (o GetAlertConfigurationMatcherOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMatcher) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -20780,6 +21761,8 @@ type GetAlertConfigurationMetricThresholdConfig struct {
 	Mode string `pulumi:"mode"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold float64 `pulumi:"threshold"`
@@ -20806,6 +21789,8 @@ type GetAlertConfigurationMetricThresholdConfigArgs struct {
 	Mode pulumi.StringInput `pulumi:"mode"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold pulumi.Float64Input `pulumi:"threshold"`
@@ -20877,6 +21862,8 @@ func (o GetAlertConfigurationMetricThresholdConfigOutput) Mode() pulumi.StringOu
 
 // The operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
 func (o GetAlertConfigurationMetricThresholdConfigOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMetricThresholdConfig) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -20927,13 +21914,15 @@ type GetAlertConfigurationNotification struct {
 	EmailAddress string `pulumi:"emailAddress"`
 	// Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
 	EmailEnabled bool `pulumi:"emailEnabled"`
+	// The ID of the associated integration, the credentials of which to use for requests.
+	IntegrationId string `pulumi:"integrationId"`
 	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 	IntervalMin int `pulumi:"intervalMin"`
 	// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
 	MicrosoftTeamsWebhookUrl string `pulumi:"microsoftTeamsWebhookUrl"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber string `pulumi:"mobileNumber"`
-	// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+	// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 	NotifierId string `pulumi:"notifierId"`
 	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 	OpsGenieApiKey string `pulumi:"opsGenieApiKey"`
@@ -20951,6 +21940,19 @@ type GetAlertConfigurationNotification struct {
 	TeamName string `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
+	// - `DATADOG`
+	// - `EMAIL`
+	// - `GROUP` (Project)
+	// - `OPS_GENIE`
+	// - `ORG`
+	// - `PAGER_DUTY`
+	// - `SLACK`
+	// - `SMS`
+	// - `TEAM`
+	// - `USER`
+	// - `VICTOR_OPS`
+	// - `WEBHOOK`
+	// - `MICROSOFT_TEAMS`
 	TypeName string `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username string `pulumi:"username"`
@@ -20990,13 +21992,15 @@ type GetAlertConfigurationNotificationArgs struct {
 	EmailAddress pulumi.StringInput `pulumi:"emailAddress"`
 	// Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
 	EmailEnabled pulumi.BoolInput `pulumi:"emailEnabled"`
+	// The ID of the associated integration, the credentials of which to use for requests.
+	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
 	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 	IntervalMin pulumi.IntInput `pulumi:"intervalMin"`
 	// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
 	MicrosoftTeamsWebhookUrl pulumi.StringInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber pulumi.StringInput `pulumi:"mobileNumber"`
-	// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+	// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 	NotifierId pulumi.StringInput `pulumi:"notifierId"`
 	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 	OpsGenieApiKey pulumi.StringInput `pulumi:"opsGenieApiKey"`
@@ -21014,6 +22018,19 @@ type GetAlertConfigurationNotificationArgs struct {
 	TeamName pulumi.StringInput `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
+	// - `DATADOG`
+	// - `EMAIL`
+	// - `GROUP` (Project)
+	// - `OPS_GENIE`
+	// - `ORG`
+	// - `PAGER_DUTY`
+	// - `SLACK`
+	// - `SMS`
+	// - `TEAM`
+	// - `USER`
+	// - `VICTOR_OPS`
+	// - `WEBHOOK`
+	// - `MICROSOFT_TEAMS`
 	TypeName pulumi.StringInput `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username pulumi.StringInput `pulumi:"username"`
@@ -21113,6 +22130,11 @@ func (o GetAlertConfigurationNotificationOutput) EmailEnabled() pulumi.BoolOutpu
 	return o.ApplyT(func(v GetAlertConfigurationNotification) bool { return v.EmailEnabled }).(pulumi.BoolOutput)
 }
 
+// The ID of the associated integration, the credentials of which to use for requests.
+func (o GetAlertConfigurationNotificationOutput) IntegrationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.IntegrationId }).(pulumi.StringOutput)
+}
+
 // Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 func (o GetAlertConfigurationNotificationOutput) IntervalMin() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) int { return v.IntervalMin }).(pulumi.IntOutput)
@@ -21128,7 +22150,7 @@ func (o GetAlertConfigurationNotificationOutput) MobileNumber() pulumi.StringOut
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.MobileNumber }).(pulumi.StringOutput)
 }
 
-// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 func (o GetAlertConfigurationNotificationOutput) NotifierId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.NotifierId }).(pulumi.StringOutput)
 }
@@ -21170,6 +22192,19 @@ func (o GetAlertConfigurationNotificationOutput) TeamName() pulumi.StringOutput 
 
 // Type of alert notification.
 // Accepted values are:
+// - `DATADOG`
+// - `EMAIL`
+// - `GROUP` (Project)
+// - `OPS_GENIE`
+// - `ORG`
+// - `PAGER_DUTY`
+// - `SLACK`
+// - `SMS`
+// - `TEAM`
+// - `USER`
+// - `VICTOR_OPS`
+// - `WEBHOOK`
+// - `MICROSOFT_TEAMS`
 func (o GetAlertConfigurationNotificationOutput) TypeName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.TypeName }).(pulumi.StringOutput)
 }
@@ -21223,6 +22258,11 @@ type GetAlertConfigurationOutput struct {
 	Label *string `pulumi:"label"`
 	Type  string  `pulumi:"type"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value string `pulumi:"value"`
 }
 
@@ -21241,6 +22281,11 @@ type GetAlertConfigurationOutputArgs struct {
 	Label pulumi.StringPtrInput `pulumi:"label"`
 	Type  pulumi.StringInput    `pulumi:"type"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -21304,6 +22349,11 @@ func (o GetAlertConfigurationOutputOutput) Type() pulumi.StringOutput {
 }
 
 // Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+// - `PRIMARY`
+// - `SECONDARY`
+// - `STANDALONE`
+// - `CONFIG`
+// - `MONGOS`
 func (o GetAlertConfigurationOutputOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationOutput) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -21331,6 +22381,8 @@ func (o GetAlertConfigurationOutputArrayOutput) Index(i pulumi.IntInput) GetAler
 type GetAlertConfigurationThresholdConfig struct {
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold float64 `pulumi:"threshold"`
@@ -21353,6 +22405,8 @@ type GetAlertConfigurationThresholdConfigInput interface {
 type GetAlertConfigurationThresholdConfigArgs struct {
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold pulumi.Float64Input `pulumi:"threshold"`
@@ -21414,6 +22468,8 @@ func (o GetAlertConfigurationThresholdConfigOutput) ToGetAlertConfigurationThres
 
 // The operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
 func (o GetAlertConfigurationThresholdConfigOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationThresholdConfig) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -21756,8 +22812,15 @@ type GetAlertConfigurationsResultMatcher struct {
 	FieldName string `pulumi:"fieldName"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value string `pulumi:"value"`
 }
 
@@ -21777,8 +22840,15 @@ type GetAlertConfigurationsResultMatcherArgs struct {
 	FieldName pulumi.StringInput `pulumi:"fieldName"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -21840,11 +22910,18 @@ func (o GetAlertConfigurationsResultMatcherOutput) FieldName() pulumi.StringOutp
 
 // The operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
 func (o GetAlertConfigurationsResultMatcherOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultMatcher) string { return v.Operator }).(pulumi.StringOutput)
 }
 
 // Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+// - `PRIMARY`
+// - `SECONDARY`
+// - `STANDALONE`
+// - `CONFIG`
+// - `MONGOS`
 func (o GetAlertConfigurationsResultMatcherOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultMatcher) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -21876,6 +22953,8 @@ type GetAlertConfigurationsResultMetricThresholdConfig struct {
 	Mode string `pulumi:"mode"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold float64 `pulumi:"threshold"`
@@ -21902,6 +22981,8 @@ type GetAlertConfigurationsResultMetricThresholdConfigArgs struct {
 	Mode pulumi.StringInput `pulumi:"mode"`
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold pulumi.Float64Input `pulumi:"threshold"`
@@ -21973,6 +23054,8 @@ func (o GetAlertConfigurationsResultMetricThresholdConfigOutput) Mode() pulumi.S
 
 // The operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
 func (o GetAlertConfigurationsResultMetricThresholdConfigOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultMetricThresholdConfig) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -22023,13 +23106,15 @@ type GetAlertConfigurationsResultNotification struct {
 	EmailAddress string `pulumi:"emailAddress"`
 	// Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
 	EmailEnabled bool `pulumi:"emailEnabled"`
+	// The ID of the associated integration, the credentials of which to use for requests.
+	IntegrationId string `pulumi:"integrationId"`
 	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 	IntervalMin int `pulumi:"intervalMin"`
 	// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
 	MicrosoftTeamsWebhookUrl string `pulumi:"microsoftTeamsWebhookUrl"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber string `pulumi:"mobileNumber"`
-	// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+	// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 	NotifierId string `pulumi:"notifierId"`
 	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 	OpsGenieApiKey string `pulumi:"opsGenieApiKey"`
@@ -22047,6 +23132,19 @@ type GetAlertConfigurationsResultNotification struct {
 	TeamName string `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
+	// - `DATADOG`
+	// - `EMAIL`
+	// - `GROUP` (Project)
+	// - `OPS_GENIE`
+	// - `ORG`
+	// - `PAGER_DUTY`
+	// - `SLACK`
+	// - `SMS`
+	// - `TEAM`
+	// - `USER`
+	// - `VICTOR_OPS`
+	// - `WEBHOOK`
+	// - `MICROSOFT_TEAMS`
 	TypeName string `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username string `pulumi:"username"`
@@ -22086,13 +23184,15 @@ type GetAlertConfigurationsResultNotificationArgs struct {
 	EmailAddress pulumi.StringInput `pulumi:"emailAddress"`
 	// Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
 	EmailEnabled pulumi.BoolInput `pulumi:"emailEnabled"`
+	// The ID of the associated integration, the credentials of which to use for requests.
+	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
 	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 	IntervalMin pulumi.IntInput `pulumi:"intervalMin"`
 	// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
 	MicrosoftTeamsWebhookUrl pulumi.StringInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber pulumi.StringInput `pulumi:"mobileNumber"`
-	// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+	// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 	NotifierId pulumi.StringInput `pulumi:"notifierId"`
 	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 	OpsGenieApiKey pulumi.StringInput `pulumi:"opsGenieApiKey"`
@@ -22110,6 +23210,19 @@ type GetAlertConfigurationsResultNotificationArgs struct {
 	TeamName pulumi.StringInput `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
+	// - `DATADOG`
+	// - `EMAIL`
+	// - `GROUP` (Project)
+	// - `OPS_GENIE`
+	// - `ORG`
+	// - `PAGER_DUTY`
+	// - `SLACK`
+	// - `SMS`
+	// - `TEAM`
+	// - `USER`
+	// - `VICTOR_OPS`
+	// - `WEBHOOK`
+	// - `MICROSOFT_TEAMS`
 	TypeName pulumi.StringInput `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username pulumi.StringInput `pulumi:"username"`
@@ -22209,6 +23322,11 @@ func (o GetAlertConfigurationsResultNotificationOutput) EmailEnabled() pulumi.Bo
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) bool { return v.EmailEnabled }).(pulumi.BoolOutput)
 }
 
+// The ID of the associated integration, the credentials of which to use for requests.
+func (o GetAlertConfigurationsResultNotificationOutput) IntegrationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.IntegrationId }).(pulumi.StringOutput)
+}
+
 // Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 func (o GetAlertConfigurationsResultNotificationOutput) IntervalMin() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) int { return v.IntervalMin }).(pulumi.IntOutput)
@@ -22224,7 +23342,7 @@ func (o GetAlertConfigurationsResultNotificationOutput) MobileNumber() pulumi.St
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.MobileNumber }).(pulumi.StringOutput)
 }
 
-// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
 func (o GetAlertConfigurationsResultNotificationOutput) NotifierId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.NotifierId }).(pulumi.StringOutput)
 }
@@ -22266,6 +23384,19 @@ func (o GetAlertConfigurationsResultNotificationOutput) TeamName() pulumi.String
 
 // Type of alert notification.
 // Accepted values are:
+// - `DATADOG`
+// - `EMAIL`
+// - `GROUP` (Project)
+// - `OPS_GENIE`
+// - `ORG`
+// - `PAGER_DUTY`
+// - `SLACK`
+// - `SMS`
+// - `TEAM`
+// - `USER`
+// - `VICTOR_OPS`
+// - `WEBHOOK`
+// - `MICROSOFT_TEAMS`
 func (o GetAlertConfigurationsResultNotificationOutput) TypeName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.TypeName }).(pulumi.StringOutput)
 }
@@ -22319,6 +23450,11 @@ type GetAlertConfigurationsResultOutputType struct {
 	Label string `pulumi:"label"`
 	Type  string `pulumi:"type"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value string `pulumi:"value"`
 }
 
@@ -22337,6 +23473,11 @@ type GetAlertConfigurationsResultOutputTypeArgs struct {
 	Label pulumi.StringInput `pulumi:"label"`
 	Type  pulumi.StringInput `pulumi:"type"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+	// - `PRIMARY`
+	// - `SECONDARY`
+	// - `STANDALONE`
+	// - `CONFIG`
+	// - `MONGOS`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -22400,6 +23541,11 @@ func (o GetAlertConfigurationsResultOutputTypeOutput) Type() pulumi.StringOutput
 }
 
 // Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
+// - `PRIMARY`
+// - `SECONDARY`
+// - `STANDALONE`
+// - `CONFIG`
+// - `MONGOS`
 func (o GetAlertConfigurationsResultOutputTypeOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultOutputType) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -22427,6 +23573,8 @@ func (o GetAlertConfigurationsResultOutputTypeArrayOutput) Index(i pulumi.IntInp
 type GetAlertConfigurationsResultThresholdConfig struct {
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold float64 `pulumi:"threshold"`
@@ -22449,6 +23597,8 @@ type GetAlertConfigurationsResultThresholdConfigInput interface {
 type GetAlertConfigurationsResultThresholdConfigArgs struct {
 	// The operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold pulumi.Float64Input `pulumi:"threshold"`
@@ -22510,6 +23660,8 @@ func (o GetAlertConfigurationsResultThresholdConfigOutput) ToGetAlertConfigurati
 
 // The operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
 func (o GetAlertConfigurationsResultThresholdConfigOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultThresholdConfig) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -22546,15 +23698,10 @@ func (o GetAlertConfigurationsResultThresholdConfigArrayOutput) Index(i pulumi.I
 }
 
 type GetApiKeysResult struct {
-	// Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
-	ApiKeyId string `pulumi:"apiKeyId"`
-	// Description of this Organization API key.
-	Description string `pulumi:"description"`
-	PublicKey   string `pulumi:"publicKey"`
-	// Name of the role. This resource returns all the roles the user has in Atlas.
-	//
-	// The following are valid roles:
-	RoleNames []string `pulumi:"roleNames"`
+	ApiKeyId    string   `pulumi:"apiKeyId"`
+	Description string   `pulumi:"description"`
+	PublicKey   string   `pulumi:"publicKey"`
+	RoleNames   []string `pulumi:"roleNames"`
 }
 
 // GetApiKeysResultInput is an input type that accepts GetApiKeysResultArgs and GetApiKeysResultOutput values.
@@ -22569,15 +23716,10 @@ type GetApiKeysResultInput interface {
 }
 
 type GetApiKeysResultArgs struct {
-	// Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
-	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
-	// Description of this Organization API key.
-	Description pulumi.StringInput `pulumi:"description"`
-	PublicKey   pulumi.StringInput `pulumi:"publicKey"`
-	// Name of the role. This resource returns all the roles the user has in Atlas.
-	//
-	// The following are valid roles:
-	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
+	ApiKeyId    pulumi.StringInput      `pulumi:"apiKeyId"`
+	Description pulumi.StringInput      `pulumi:"description"`
+	PublicKey   pulumi.StringInput      `pulumi:"publicKey"`
+	RoleNames   pulumi.StringArrayInput `pulumi:"roleNames"`
 }
 
 func (GetApiKeysResultArgs) ElementType() reflect.Type {
@@ -22631,12 +23773,10 @@ func (o GetApiKeysResultOutput) ToGetApiKeysResultOutputWithContext(ctx context.
 	return o
 }
 
-// Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
 func (o GetApiKeysResultOutput) ApiKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetApiKeysResult) string { return v.ApiKeyId }).(pulumi.StringOutput)
 }
 
-// Description of this Organization API key.
 func (o GetApiKeysResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetApiKeysResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -22645,9 +23785,6 @@ func (o GetApiKeysResultOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetApiKeysResult) string { return v.PublicKey }).(pulumi.StringOutput)
 }
 
-// Name of the role. This resource returns all the roles the user has in Atlas.
-//
-// The following are valid roles:
 func (o GetApiKeysResultOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetApiKeysResult) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
@@ -23299,15 +24436,15 @@ func (o GetAtlasUsersResultRoleArrayOutput) Index(i pulumi.IntInput) GetAtlasUse
 }
 
 type GetBackupCompliancePolicyOnDemandPolicyItem struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -23323,15 +24460,15 @@ type GetBackupCompliancePolicyOnDemandPolicyItemInput interface {
 }
 
 type GetBackupCompliancePolicyOnDemandPolicyItemArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -23361,12 +24498,12 @@ func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) ToGetBackupCompliance
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23376,26 +24513,26 @@ func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) Id() pulumi.StringOut
 	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetBackupCompliancePolicyOnDemandPolicyItemOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyOnDemandPolicyItem) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
 
 type GetBackupCompliancePolicyPolicyItemDaily struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -23411,15 +24548,15 @@ type GetBackupCompliancePolicyPolicyItemDailyInput interface {
 }
 
 type GetBackupCompliancePolicyPolicyItemDailyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -23449,12 +24586,12 @@ func (o GetBackupCompliancePolicyPolicyItemDailyOutput) ToGetBackupCompliancePol
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetBackupCompliancePolicyPolicyItemDailyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetBackupCompliancePolicyPolicyItemDailyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23464,26 +24601,26 @@ func (o GetBackupCompliancePolicyPolicyItemDailyOutput) Id() pulumi.StringOutput
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetBackupCompliancePolicyPolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetBackupCompliancePolicyPolicyItemDailyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemDaily) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
 
 type GetBackupCompliancePolicyPolicyItemHourly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -23499,15 +24636,15 @@ type GetBackupCompliancePolicyPolicyItemHourlyInput interface {
 }
 
 type GetBackupCompliancePolicyPolicyItemHourlyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -23537,12 +24674,12 @@ func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) ToGetBackupCompliancePo
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23552,26 +24689,26 @@ func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) Id() pulumi.StringOutpu
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetBackupCompliancePolicyPolicyItemHourlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemHourly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
 
 type GetBackupCompliancePolicyPolicyItemMonthly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -23587,15 +24724,15 @@ type GetBackupCompliancePolicyPolicyItemMonthlyInput interface {
 }
 
 type GetBackupCompliancePolicyPolicyItemMonthlyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -23650,12 +24787,12 @@ func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) ToGetBackupComplianceP
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23665,12 +24802,12 @@ func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) Id() pulumi.StringOutp
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetBackupCompliancePolicyPolicyItemMonthlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemMonthly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -23696,15 +24833,15 @@ func (o GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput) Index(i pulumi.In
 }
 
 type GetBackupCompliancePolicyPolicyItemWeekly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -23720,15 +24857,15 @@ type GetBackupCompliancePolicyPolicyItemWeeklyInput interface {
 }
 
 type GetBackupCompliancePolicyPolicyItemWeeklyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -23783,12 +24920,12 @@ func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) ToGetBackupCompliancePo
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -23798,12 +24935,12 @@ func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) Id() pulumi.StringOutpu
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetBackupCompliancePolicyPolicyItemWeeklyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemWeekly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -23828,10 +24965,143 @@ func (o GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput) Index(i pulumi.Int
 	}).(GetBackupCompliancePolicyPolicyItemWeeklyOutput)
 }
 
+type GetBackupCompliancePolicyPolicyItemYearly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetBackupCompliancePolicyPolicyItemYearlyInput is an input type that accepts GetBackupCompliancePolicyPolicyItemYearlyArgs and GetBackupCompliancePolicyPolicyItemYearlyOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyPolicyItemYearlyInput` via:
+//
+//	GetBackupCompliancePolicyPolicyItemYearlyArgs{...}
+type GetBackupCompliancePolicyPolicyItemYearlyInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyPolicyItemYearlyOutput() GetBackupCompliancePolicyPolicyItemYearlyOutput
+	ToGetBackupCompliancePolicyPolicyItemYearlyOutputWithContext(context.Context) GetBackupCompliancePolicyPolicyItemYearlyOutput
+}
+
+type GetBackupCompliancePolicyPolicyItemYearlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetBackupCompliancePolicyPolicyItemYearlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (i GetBackupCompliancePolicyPolicyItemYearlyArgs) ToGetBackupCompliancePolicyPolicyItemYearlyOutput() GetBackupCompliancePolicyPolicyItemYearlyOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemYearlyOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyPolicyItemYearlyArgs) ToGetBackupCompliancePolicyPolicyItemYearlyOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemYearlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemYearlyOutput)
+}
+
+// GetBackupCompliancePolicyPolicyItemYearlyArrayInput is an input type that accepts GetBackupCompliancePolicyPolicyItemYearlyArray and GetBackupCompliancePolicyPolicyItemYearlyArrayOutput values.
+// You can construct a concrete instance of `GetBackupCompliancePolicyPolicyItemYearlyArrayInput` via:
+//
+//	GetBackupCompliancePolicyPolicyItemYearlyArray{ GetBackupCompliancePolicyPolicyItemYearlyArgs{...} }
+type GetBackupCompliancePolicyPolicyItemYearlyArrayInput interface {
+	pulumi.Input
+
+	ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutput() GetBackupCompliancePolicyPolicyItemYearlyArrayOutput
+	ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(context.Context) GetBackupCompliancePolicyPolicyItemYearlyArrayOutput
+}
+
+type GetBackupCompliancePolicyPolicyItemYearlyArray []GetBackupCompliancePolicyPolicyItemYearlyInput
+
+func (GetBackupCompliancePolicyPolicyItemYearlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (i GetBackupCompliancePolicyPolicyItemYearlyArray) ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutput() GetBackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return i.ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackupCompliancePolicyPolicyItemYearlyArray) ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackupCompliancePolicyPolicyItemYearlyArrayOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemYearlyOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyPolicyItemYearlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) ToGetBackupCompliancePolicyPolicyItemYearlyOutput() GetBackupCompliancePolicyPolicyItemYearlyOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) ToGetBackupCompliancePolicyPolicyItemYearlyOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemYearlyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemYearly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemYearly) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemYearly) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemYearly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+func (o GetBackupCompliancePolicyPolicyItemYearlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBackupCompliancePolicyPolicyItemYearly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetBackupCompliancePolicyPolicyItemYearlyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackupCompliancePolicyPolicyItemYearlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackupCompliancePolicyPolicyItemYearly)(nil)).Elem()
+}
+
+func (o GetBackupCompliancePolicyPolicyItemYearlyArrayOutput) ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutput() GetBackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemYearlyArrayOutput) ToGetBackupCompliancePolicyPolicyItemYearlyArrayOutputWithContext(ctx context.Context) GetBackupCompliancePolicyPolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o GetBackupCompliancePolicyPolicyItemYearlyArrayOutput) Index(i pulumi.IntInput) GetBackupCompliancePolicyPolicyItemYearlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackupCompliancePolicyPolicyItemYearly {
+		return vs[0].([]GetBackupCompliancePolicyPolicyItemYearly)[vs[1].(int)]
+	}).(GetBackupCompliancePolicyPolicyItemYearlyOutput)
+}
+
 type GetCloudBackupScheduleCopySetting struct {
 	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
 	CloudProvider string `pulumi:"cloudProvider"`
-	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
 	Frequencies []string `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName string `pulumi:"regionName"`
@@ -23855,7 +25125,7 @@ type GetCloudBackupScheduleCopySettingInput interface {
 type GetCloudBackupScheduleCopySettingArgs struct {
 	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName pulumi.StringInput `pulumi:"regionName"`
@@ -23921,7 +25191,7 @@ func (o GetCloudBackupScheduleCopySettingOutput) CloudProvider() pulumi.StringOu
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
-// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
 func (o GetCloudBackupScheduleCopySettingOutput) Frequencies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) []string { return v.Frequencies }).(pulumi.StringArrayOutput)
 }
@@ -23964,7 +25234,7 @@ func (o GetCloudBackupScheduleCopySettingArrayOutput) Index(i pulumi.IntInput) G
 type GetCloudBackupScheduleExport struct {
 	// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
 	ExportBucketId string `pulumi:"exportBucketId"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 }
 
@@ -23982,7 +25252,7 @@ type GetCloudBackupScheduleExportInput interface {
 type GetCloudBackupScheduleExportArgs struct {
 	// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
 	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 }
 
@@ -24042,7 +25312,7 @@ func (o GetCloudBackupScheduleExportOutput) ExportBucketId() pulumi.StringOutput
 	return o.ApplyT(func(v GetCloudBackupScheduleExport) string { return v.ExportBucketId }).(pulumi.StringOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetCloudBackupScheduleExportOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupScheduleExport) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -24068,15 +25338,15 @@ func (o GetCloudBackupScheduleExportArrayOutput) Index(i pulumi.IntInput) GetClo
 }
 
 type GetCloudBackupSchedulePolicyItemDaily struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -24092,15 +25362,15 @@ type GetCloudBackupSchedulePolicyItemDailyInput interface {
 }
 
 type GetCloudBackupSchedulePolicyItemDailyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -24155,12 +25425,12 @@ func (o GetCloudBackupSchedulePolicyItemDailyOutput) ToGetCloudBackupSchedulePol
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetCloudBackupSchedulePolicyItemDailyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetCloudBackupSchedulePolicyItemDailyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -24170,12 +25440,12 @@ func (o GetCloudBackupSchedulePolicyItemDailyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetCloudBackupSchedulePolicyItemDailyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -24201,15 +25471,15 @@ func (o GetCloudBackupSchedulePolicyItemDailyArrayOutput) Index(i pulumi.IntInpu
 }
 
 type GetCloudBackupSchedulePolicyItemHourly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -24225,15 +25495,15 @@ type GetCloudBackupSchedulePolicyItemHourlyInput interface {
 }
 
 type GetCloudBackupSchedulePolicyItemHourlyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -24288,12 +25558,12 @@ func (o GetCloudBackupSchedulePolicyItemHourlyOutput) ToGetCloudBackupSchedulePo
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetCloudBackupSchedulePolicyItemHourlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetCloudBackupSchedulePolicyItemHourlyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -24303,12 +25573,12 @@ func (o GetCloudBackupSchedulePolicyItemHourlyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetCloudBackupSchedulePolicyItemHourlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -24334,15 +25604,15 @@ func (o GetCloudBackupSchedulePolicyItemHourlyArrayOutput) Index(i pulumi.IntInp
 }
 
 type GetCloudBackupSchedulePolicyItemMonthly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -24358,15 +25628,15 @@ type GetCloudBackupSchedulePolicyItemMonthlyInput interface {
 }
 
 type GetCloudBackupSchedulePolicyItemMonthlyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -24421,12 +25691,12 @@ func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) ToGetCloudBackupScheduleP
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -24436,12 +25706,12 @@ func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) Id() pulumi.StringOutput 
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -24467,15 +25737,15 @@ func (o GetCloudBackupSchedulePolicyItemMonthlyArrayOutput) Index(i pulumi.IntIn
 }
 
 type GetCloudBackupSchedulePolicyItemWeekly struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType string `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -24491,15 +25761,15 @@ type GetCloudBackupSchedulePolicyItemWeeklyInput interface {
 }
 
 type GetCloudBackupSchedulePolicyItemWeeklyArgs struct {
-	// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 	// Unique identifier of the backup policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, or `months`.
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -24554,12 +25824,12 @@ func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) ToGetCloudBackupSchedulePo
 	return o
 }
 
-// Desired frequency of the new backup policy item specified by `frequencyType` (monthly in this case). The supported values for weekly policies are
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
 func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -24569,12 +25839,12 @@ func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, or `months`.
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
 func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -24597,6 +25867,139 @@ func (o GetCloudBackupSchedulePolicyItemWeeklyArrayOutput) Index(i pulumi.IntInp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSchedulePolicyItemWeekly {
 		return vs[0].([]GetCloudBackupSchedulePolicyItemWeekly)[vs[1].(int)]
 	}).(GetCloudBackupSchedulePolicyItemWeeklyOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemYearly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetCloudBackupSchedulePolicyItemYearlyInput is an input type that accepts GetCloudBackupSchedulePolicyItemYearlyArgs and GetCloudBackupSchedulePolicyItemYearlyOutput values.
+// You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemYearlyInput` via:
+//
+//	GetCloudBackupSchedulePolicyItemYearlyArgs{...}
+type GetCloudBackupSchedulePolicyItemYearlyInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSchedulePolicyItemYearlyOutput() GetCloudBackupSchedulePolicyItemYearlyOutput
+	ToGetCloudBackupSchedulePolicyItemYearlyOutputWithContext(context.Context) GetCloudBackupSchedulePolicyItemYearlyOutput
+}
+
+type GetCloudBackupSchedulePolicyItemYearlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetCloudBackupSchedulePolicyItemYearlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (i GetCloudBackupSchedulePolicyItemYearlyArgs) ToGetCloudBackupSchedulePolicyItemYearlyOutput() GetCloudBackupSchedulePolicyItemYearlyOutput {
+	return i.ToGetCloudBackupSchedulePolicyItemYearlyOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSchedulePolicyItemYearlyArgs) ToGetCloudBackupSchedulePolicyItemYearlyOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemYearlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSchedulePolicyItemYearlyOutput)
+}
+
+// GetCloudBackupSchedulePolicyItemYearlyArrayInput is an input type that accepts GetCloudBackupSchedulePolicyItemYearlyArray and GetCloudBackupSchedulePolicyItemYearlyArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemYearlyArrayInput` via:
+//
+//	GetCloudBackupSchedulePolicyItemYearlyArray{ GetCloudBackupSchedulePolicyItemYearlyArgs{...} }
+type GetCloudBackupSchedulePolicyItemYearlyArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSchedulePolicyItemYearlyArrayOutput() GetCloudBackupSchedulePolicyItemYearlyArrayOutput
+	ToGetCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(context.Context) GetCloudBackupSchedulePolicyItemYearlyArrayOutput
+}
+
+type GetCloudBackupSchedulePolicyItemYearlyArray []GetCloudBackupSchedulePolicyItemYearlyInput
+
+func (GetCloudBackupSchedulePolicyItemYearlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (i GetCloudBackupSchedulePolicyItemYearlyArray) ToGetCloudBackupSchedulePolicyItemYearlyArrayOutput() GetCloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return i.ToGetCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSchedulePolicyItemYearlyArray) ToGetCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSchedulePolicyItemYearlyArrayOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemYearlyOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSchedulePolicyItemYearlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) ToGetCloudBackupSchedulePolicyItemYearlyOutput() GetCloudBackupSchedulePolicyItemYearlyOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) ToGetCloudBackupSchedulePolicyItemYearlyOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemYearlyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+func (o GetCloudBackupSchedulePolicyItemYearlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemYearlyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSchedulePolicyItemYearlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSchedulePolicyItemYearly)(nil)).Elem()
+}
+
+func (o GetCloudBackupSchedulePolicyItemYearlyArrayOutput) ToGetCloudBackupSchedulePolicyItemYearlyArrayOutput() GetCloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemYearlyArrayOutput) ToGetCloudBackupSchedulePolicyItemYearlyArrayOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemYearlyArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSchedulePolicyItemYearlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSchedulePolicyItemYearly {
+		return vs[0].([]GetCloudBackupSchedulePolicyItemYearly)[vs[1].(int)]
+	}).(GetCloudBackupSchedulePolicyItemYearlyOutput)
 }
 
 type GetCloudBackupSnapshotExportBucketsResult struct {
@@ -24957,6 +26360,10 @@ type GetCloudBackupSnapshotExportJobsResult struct {
 	// Unique identifier of the Cloud Backup snapshot to export.
 	SnapshotId string `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
+	// * `Queued` - indicates that the export job is queued
+	// * `InProgress` - indicates that the snapshot is being exported
+	// * `Successful` - indicates that the export job has completed successfully
+	// * `Failed` - indicates that the export job has failed
 	State string `pulumi:"state"`
 }
 
@@ -24993,6 +26400,10 @@ type GetCloudBackupSnapshotExportJobsResultArgs struct {
 	// Unique identifier of the Cloud Backup snapshot to export.
 	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
+	// * `Queued` - indicates that the export job is queued
+	// * `InProgress` - indicates that the snapshot is being exported
+	// * `Successful` - indicates that the export job has completed successfully
+	// * `Failed` - indicates that the export job has failed
 	State pulumi.StringInput `pulumi:"state"`
 }
 
@@ -25105,6 +26516,10 @@ func (o GetCloudBackupSnapshotExportJobsResultOutput) SnapshotId() pulumi.String
 }
 
 // Status of the export job. Value can be one of the following:
+// * `Queued` - indicates that the export job is queued
+// * `InProgress` - indicates that the snapshot is being exported
+// * `Successful` - indicates that the export job has completed successfully
+// * `Failed` - indicates that the export job has failed
 func (o GetCloudBackupSnapshotExportJobsResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.State }).(pulumi.StringOutput)
 }
@@ -25460,6 +26875,8 @@ type GetCloudBackupSnapshotRestoreJobsResult struct {
 	// Indicates whether the restore job was canceled.
 	Cancelled bool `pulumi:"cancelled"`
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	CreatedAt string `pulumi:"createdAt"`
 	// Type of restore job to create. Possible values are: automated and download.
 	DeliveryType string `pulumi:"deliveryType"`
@@ -25483,6 +26900,9 @@ type GetCloudBackupSnapshotRestoreJobsResult struct {
 	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
 	TargetProjectId string `pulumi:"targetProjectId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 	Timestamp string `pulumi:"timestamp"`
 }
 
@@ -25501,6 +26921,8 @@ type GetCloudBackupSnapshotRestoreJobsResultArgs struct {
 	// Indicates whether the restore job was canceled.
 	Cancelled pulumi.BoolInput `pulumi:"cancelled"`
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Type of restore job to create. Possible values are: automated and download.
 	DeliveryType pulumi.StringInput `pulumi:"deliveryType"`
@@ -25524,6 +26946,9 @@ type GetCloudBackupSnapshotRestoreJobsResultArgs struct {
 	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
 	TargetProjectId pulumi.StringInput `pulumi:"targetProjectId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 	Timestamp pulumi.StringInput `pulumi:"timestamp"`
 }
 
@@ -25584,6 +27009,8 @@ func (o GetCloudBackupSnapshotRestoreJobsResultOutput) Cancelled() pulumi.BoolOu
 }
 
 // UTC ISO 8601 formatted point in time when Atlas created the restore job.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 func (o GetCloudBackupSnapshotRestoreJobsResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -25646,6 +27073,9 @@ func (o GetCloudBackupSnapshotRestoreJobsResultOutput) TargetProjectId() pulumi.
 }
 
 // Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 func (o GetCloudBackupSnapshotRestoreJobsResultOutput) Timestamp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.Timestamp }).(pulumi.StringOutput)
 }
@@ -26514,13 +27944,25 @@ func (o GetClusterBiConnectorConfigArrayOutput) Index(i pulumi.IntInput) GetClus
 }
 
 type GetClusterConnectionString struct {
-	AwsPrivateLink    map[string]interface{}                      `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv map[string]interface{}                      `pulumi:"awsPrivateLinkSrv"`
-	Private           string                                      `pulumi:"private"`
-	PrivateEndpoints  []GetClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv        string                                      `pulumi:"privateSrv"`
-	Standard          string                                      `pulumi:"standard"`
-	StandardSrv       string                                      `pulumi:"standardSrv"`
+	AwsPrivateLink    map[string]interface{} `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv map[string]interface{} `pulumi:"awsPrivateLinkSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private          string                                      `pulumi:"private"`
+	PrivateEndpoints []GetClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+	PrivateSrv string `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard string `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
+	StandardSrv string `pulumi:"standardSrv"`
 }
 
 // GetClusterConnectionStringInput is an input type that accepts GetClusterConnectionStringArgs and GetClusterConnectionStringOutput values.
@@ -26535,13 +27977,25 @@ type GetClusterConnectionStringInput interface {
 }
 
 type GetClusterConnectionStringArgs struct {
-	AwsPrivateLink    pulumi.MapInput                                     `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv pulumi.MapInput                                     `pulumi:"awsPrivateLinkSrv"`
-	Private           pulumi.StringInput                                  `pulumi:"private"`
-	PrivateEndpoints  GetClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv        pulumi.StringInput                                  `pulumi:"privateSrv"`
-	Standard          pulumi.StringInput                                  `pulumi:"standard"`
-	StandardSrv       pulumi.StringInput                                  `pulumi:"standardSrv"`
+	AwsPrivateLink    pulumi.MapInput `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv pulumi.MapInput `pulumi:"awsPrivateLinkSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private          pulumi.StringInput                                  `pulumi:"private"`
+	PrivateEndpoints GetClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+	PrivateSrv pulumi.StringInput `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard pulumi.StringInput `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
+	StandardSrv pulumi.StringInput `pulumi:"standardSrv"`
 }
 
 func (GetClusterConnectionStringArgs) ElementType() reflect.Type {
@@ -26603,6 +28057,7 @@ func (o GetClusterConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
 	return o.ApplyT(func(v GetClusterConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetClusterConnectionStringOutput) Private() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnectionString) string { return v.Private }).(pulumi.StringOutput)
 }
@@ -26613,14 +28068,25 @@ func (o GetClusterConnectionStringOutput) PrivateEndpoints() GetClusterConnectio
 	}).(GetClusterConnectionStringPrivateEndpointArrayOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o GetClusterConnectionStringOutput) PrivateSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnectionString) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
 
+// Public mongodb:// connection string for this cluster.
 func (o GetClusterConnectionStringOutput) Standard() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnectionString) string { return v.Standard }).(pulumi.StringOutput)
 }
 
+// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
 func (o GetClusterConnectionStringOutput) StandardSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnectionString) string { return v.StandardSrv }).(pulumi.StringOutput)
 }
@@ -26982,10 +28448,14 @@ func (o GetClusterLabelArrayOutput) Index(i pulumi.IntInput) GetClusterLabelOutp
 
 type GetClusterOutageSimulationOutageFilter struct {
 	// The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+	// * `AWS`
+	// * `GCP`
+	// * `AZURE`
 	CloudProvider string `pulumi:"cloudProvider"`
 	// The Atlas name of the region undergoing an outage simulation.
 	RegionName string `pulumi:"regionName"`
 	// The type of cluster outage simulation. Following values are supported:
+	// * `REGION` (Simulates a cluster outage for a region)
 	Type string `pulumi:"type"`
 }
 
@@ -27002,10 +28472,14 @@ type GetClusterOutageSimulationOutageFilterInput interface {
 
 type GetClusterOutageSimulationOutageFilterArgs struct {
 	// The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+	// * `AWS`
+	// * `GCP`
+	// * `AZURE`
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// The Atlas name of the region undergoing an outage simulation.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 	// The type of cluster outage simulation. Following values are supported:
+	// * `REGION` (Simulates a cluster outage for a region)
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -27061,6 +28535,9 @@ func (o GetClusterOutageSimulationOutageFilterOutput) ToGetClusterOutageSimulati
 }
 
 // The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+// * `AWS`
+// * `GCP`
+// * `AZURE`
 func (o GetClusterOutageSimulationOutageFilterOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterOutageSimulationOutageFilter) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -27071,6 +28548,7 @@ func (o GetClusterOutageSimulationOutageFilterOutput) RegionName() pulumi.String
 }
 
 // The type of cluster outage simulation. Following values are supported:
+// * `REGION` (Simulates a cluster outage for a region)
 func (o GetClusterOutageSimulationOutageFilterOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterOutageSimulationOutageFilter) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -27838,18 +29316,6 @@ type GetClustersResult struct {
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType string `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-	// - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
-	// - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-	// - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-	// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
-	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
-	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	ConnectionStrings []GetClustersResultConnectionString `pulumi:"connectionStrings"`
 	// The Network Peering Container ID.
 	ContainerId string `pulumi:"containerId"`
@@ -27859,7 +29325,7 @@ type GetClustersResult struct {
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 	//
-	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 	Labels []GetClustersResultLabel `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
@@ -27953,18 +29419,6 @@ type GetClustersResultArgs struct {
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType pulumi.StringInput `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-	// - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
-	// - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-	// - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-	// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
-	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
-	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
-	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	ConnectionStrings GetClustersResultConnectionStringArrayInput `pulumi:"connectionStrings"`
 	// The Network Peering Container ID.
 	ContainerId pulumi.StringInput `pulumi:"containerId"`
@@ -27974,7 +29428,7 @@ type GetClustersResultArgs struct {
 	EncryptionAtRestProvider pulumi.StringInput `pulumi:"encryptionAtRestProvider"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 	//
-	// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 	Labels GetClustersResultLabelArrayInput `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.
 	MongoDbMajorVersion pulumi.StringInput `pulumi:"mongoDbMajorVersion"`
@@ -28131,18 +29585,6 @@ func (o GetClustersResultOutput) ClusterType() pulumi.StringOutput {
 }
 
 // Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-// - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
-// - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-// - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
-// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
-// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
-// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o GetClustersResultOutput) ConnectionStrings() GetClustersResultConnectionStringArrayOutput {
 	return o.ApplyT(func(v GetClustersResult) []GetClustersResultConnectionString { return v.ConnectionStrings }).(GetClustersResultConnectionStringArrayOutput)
 }
@@ -28164,7 +29606,7 @@ func (o GetClustersResultOutput) EncryptionAtRestProvider() pulumi.StringOutput 
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
 //
-// Deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags
+// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 func (o GetClustersResultOutput) Labels() GetClustersResultLabelArrayOutput {
 	return o.ApplyT(func(v GetClustersResult) []GetClustersResultLabel { return v.Labels }).(GetClustersResultLabelArrayOutput)
 }
@@ -28622,13 +30064,25 @@ func (o GetClustersResultBiConnectorConfigArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type GetClustersResultConnectionString struct {
-	AwsPrivateLink    map[string]interface{}                             `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv map[string]interface{}                             `pulumi:"awsPrivateLinkSrv"`
-	Private           string                                             `pulumi:"private"`
-	PrivateEndpoints  []GetClustersResultConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv        string                                             `pulumi:"privateSrv"`
-	Standard          string                                             `pulumi:"standard"`
-	StandardSrv       string                                             `pulumi:"standardSrv"`
+	AwsPrivateLink    map[string]interface{} `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv map[string]interface{} `pulumi:"awsPrivateLinkSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private          string                                             `pulumi:"private"`
+	PrivateEndpoints []GetClustersResultConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+	PrivateSrv string `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard string `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
+	StandardSrv string `pulumi:"standardSrv"`
 }
 
 // GetClustersResultConnectionStringInput is an input type that accepts GetClustersResultConnectionStringArgs and GetClustersResultConnectionStringOutput values.
@@ -28643,13 +30097,25 @@ type GetClustersResultConnectionStringInput interface {
 }
 
 type GetClustersResultConnectionStringArgs struct {
-	AwsPrivateLink    pulumi.MapInput                                            `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv pulumi.MapInput                                            `pulumi:"awsPrivateLinkSrv"`
-	Private           pulumi.StringInput                                         `pulumi:"private"`
-	PrivateEndpoints  GetClustersResultConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv        pulumi.StringInput                                         `pulumi:"privateSrv"`
-	Standard          pulumi.StringInput                                         `pulumi:"standard"`
-	StandardSrv       pulumi.StringInput                                         `pulumi:"standardSrv"`
+	AwsPrivateLink    pulumi.MapInput `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv pulumi.MapInput `pulumi:"awsPrivateLinkSrv"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	Private          pulumi.StringInput                                         `pulumi:"private"`
+	PrivateEndpoints GetClustersResultConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+	PrivateSrv pulumi.StringInput `pulumi:"privateSrv"`
+	// Public mongodb:// connection string for this cluster.
+	Standard pulumi.StringInput `pulumi:"standard"`
+	// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
+	StandardSrv pulumi.StringInput `pulumi:"standardSrv"`
 }
 
 func (GetClustersResultConnectionStringArgs) ElementType() reflect.Type {
@@ -28711,6 +30177,7 @@ func (o GetClustersResultConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapO
 	return o.ApplyT(func(v GetClustersResultConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetClustersResultConnectionStringOutput) Private() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultConnectionString) string { return v.Private }).(pulumi.StringOutput)
 }
@@ -28721,14 +30188,25 @@ func (o GetClustersResultConnectionStringOutput) PrivateEndpoints() GetClustersR
 	}).(GetClustersResultConnectionStringPrivateEndpointArrayOutput)
 }
 
+// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o GetClustersResultConnectionStringOutput) PrivateSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultConnectionString) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
 
+// Public mongodb:// connection string for this cluster.
 func (o GetClustersResultConnectionStringOutput) Standard() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultConnectionString) string { return v.Standard }).(pulumi.StringOutput)
 }
 
+// Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
 func (o GetClustersResultConnectionStringOutput) StandardSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultConnectionString) string { return v.StandardSrv }).(pulumi.StringOutput)
 }
@@ -32694,9 +34172,9 @@ type GetDatabaseUsersResult struct {
 	// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
 	LdapAuthType string `pulumi:"ldapAuthType"`
 	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+	// * `NONE` -	The user does not use OIDC federated authentication.
+	// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType string `pulumi:"oidcAuthType"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	Password string `pulumi:"password"`
 	// The unique ID for the project to get all database users.
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -32732,9 +34210,9 @@ type GetDatabaseUsersResultArgs struct {
 	// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
 	LdapAuthType pulumi.StringInput `pulumi:"ldapAuthType"`
 	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+	// * `NONE` -	The user does not use OIDC federated authentication.
+	// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType pulumi.StringInput `pulumi:"oidcAuthType"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	Password pulumi.StringInput `pulumi:"password"`
 	// The unique ID for the project to get all database users.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -32824,13 +34302,10 @@ func (o GetDatabaseUsersResultOutput) LdapAuthType() pulumi.StringOutput {
 }
 
 // (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+// * `NONE` -	The user does not use OIDC federated authentication.
+// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 func (o GetDatabaseUsersResultOutput) OidcAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.OidcAuthType }).(pulumi.StringOutput)
-}
-
-// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-func (o GetDatabaseUsersResultOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
 // The unique ID for the project to get all database users.
@@ -33299,8 +34774,10 @@ func (o GetEventTriggerEventProcessorArrayOutput) Index(i pulumi.IntInput) GetEv
 }
 
 type GetEventTriggerEventProcessorAwsEventbridge struct {
+	// AWS Account ID.
 	ConfigAccountId string `pulumi:"configAccountId"`
-	ConfigRegion    string `pulumi:"configRegion"`
+	// Region of AWS Account.
+	ConfigRegion string `pulumi:"configRegion"`
 }
 
 // GetEventTriggerEventProcessorAwsEventbridgeInput is an input type that accepts GetEventTriggerEventProcessorAwsEventbridgeArgs and GetEventTriggerEventProcessorAwsEventbridgeOutput values.
@@ -33315,8 +34792,10 @@ type GetEventTriggerEventProcessorAwsEventbridgeInput interface {
 }
 
 type GetEventTriggerEventProcessorAwsEventbridgeArgs struct {
+	// AWS Account ID.
 	ConfigAccountId pulumi.StringInput `pulumi:"configAccountId"`
-	ConfigRegion    pulumi.StringInput `pulumi:"configRegion"`
+	// Region of AWS Account.
+	ConfigRegion pulumi.StringInput `pulumi:"configRegion"`
 }
 
 func (GetEventTriggerEventProcessorAwsEventbridgeArgs) ElementType() reflect.Type {
@@ -33370,10 +34849,12 @@ func (o GetEventTriggerEventProcessorAwsEventbridgeOutput) ToGetEventTriggerEven
 	return o
 }
 
+// AWS Account ID.
 func (o GetEventTriggerEventProcessorAwsEventbridgeOutput) ConfigAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggerEventProcessorAwsEventbridge) string { return v.ConfigAccountId }).(pulumi.StringOutput)
 }
 
+// Region of AWS Account.
 func (o GetEventTriggerEventProcessorAwsEventbridgeOutput) ConfigRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggerEventProcessorAwsEventbridge) string { return v.ConfigRegion }).(pulumi.StringOutput)
 }
@@ -33424,8 +34905,6 @@ type GetEventTriggersResult struct {
 	// Status of a trigger.
 	Disabled bool `pulumi:"disabled"`
 	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
-	// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
-	// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
 	EventProcessors []GetEventTriggersResultEventProcessor `pulumi:"eventProcessors"`
 	// The ID of the function associated with the trigger.
 	FunctionId string `pulumi:"functionId"`
@@ -33477,8 +34956,6 @@ type GetEventTriggersResultArgs struct {
 	// Status of a trigger.
 	Disabled pulumi.BoolInput `pulumi:"disabled"`
 	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
-	// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
-	// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
 	EventProcessors GetEventTriggersResultEventProcessorArrayInput `pulumi:"eventProcessors"`
 	// The ID of the function associated with the trigger.
 	FunctionId pulumi.StringInput `pulumi:"functionId"`
@@ -33608,8 +35085,6 @@ func (o GetEventTriggersResultOutput) Disabled() pulumi.BoolOutput {
 }
 
 // An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
-// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
-// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
 func (o GetEventTriggersResultOutput) EventProcessors() GetEventTriggersResultEventProcessorArrayOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) []GetEventTriggersResultEventProcessor { return v.EventProcessors }).(GetEventTriggersResultEventProcessorArrayOutput)
 }
@@ -33760,8 +35235,10 @@ func (o GetEventTriggersResultEventProcessorArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetEventTriggersResultEventProcessorAwsEventbridge struct {
+	// AWS Account ID.
 	ConfigAccountId string `pulumi:"configAccountId"`
-	ConfigRegion    string `pulumi:"configRegion"`
+	// Region of AWS Account.
+	ConfigRegion string `pulumi:"configRegion"`
 }
 
 // GetEventTriggersResultEventProcessorAwsEventbridgeInput is an input type that accepts GetEventTriggersResultEventProcessorAwsEventbridgeArgs and GetEventTriggersResultEventProcessorAwsEventbridgeOutput values.
@@ -33776,8 +35253,10 @@ type GetEventTriggersResultEventProcessorAwsEventbridgeInput interface {
 }
 
 type GetEventTriggersResultEventProcessorAwsEventbridgeArgs struct {
+	// AWS Account ID.
 	ConfigAccountId pulumi.StringInput `pulumi:"configAccountId"`
-	ConfigRegion    pulumi.StringInput `pulumi:"configRegion"`
+	// Region of AWS Account.
+	ConfigRegion pulumi.StringInput `pulumi:"configRegion"`
 }
 
 func (GetEventTriggersResultEventProcessorAwsEventbridgeArgs) ElementType() reflect.Type {
@@ -33831,10 +35310,12 @@ func (o GetEventTriggersResultEventProcessorAwsEventbridgeOutput) ToGetEventTrig
 	return o
 }
 
+// AWS Account ID.
 func (o GetEventTriggersResultEventProcessorAwsEventbridgeOutput) ConfigAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResultEventProcessorAwsEventbridge) string { return v.ConfigAccountId }).(pulumi.StringOutput)
 }
 
+// Region of AWS Account.
 func (o GetEventTriggersResultEventProcessorAwsEventbridgeOutput) ConfigRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResultEventProcessorAwsEventbridge) string { return v.ConfigRegion }).(pulumi.StringOutput)
 }
@@ -34816,7 +36297,7 @@ type GetFederatedDatabaseInstanceStorageStore struct {
 	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
 	AllowInsecure            bool     `pulumi:"allowInsecure"`
 	Bucket                   string   `pulumi:"bucket"`
-	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	// Deprecated: This parameter is deprecated and will be removed by September 2024.
 	ClusterId     string `pulumi:"clusterId"`
 	ClusterName   string `pulumi:"clusterName"`
 	DefaultFormat string `pulumi:"defaultFormat"`
@@ -34850,7 +36331,7 @@ type GetFederatedDatabaseInstanceStorageStoreArgs struct {
 	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
 	AllowInsecure            pulumi.BoolInput        `pulumi:"allowInsecure"`
 	Bucket                   pulumi.StringInput      `pulumi:"bucket"`
-	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	// Deprecated: This parameter is deprecated and will be removed by September 2024.
 	ClusterId     pulumi.StringInput `pulumi:"clusterId"`
 	ClusterName   pulumi.StringInput `pulumi:"clusterName"`
 	DefaultFormat pulumi.StringInput `pulumi:"defaultFormat"`
@@ -34932,7 +36413,7 @@ func (o GetFederatedDatabaseInstanceStorageStoreOutput) Bucket() pulumi.StringOu
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStore) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// Deprecated: this parameter is deprecated and will be removed by September 2024
+// Deprecated: This parameter is deprecated and will be removed by September 2024.
 func (o GetFederatedDatabaseInstanceStorageStoreOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStore) string { return v.ClusterId }).(pulumi.StringOutput)
 }
@@ -35326,6 +36807,8 @@ type GetFederatedDatabaseInstancesResult struct {
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId string `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
+	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+	// * `DELETED` - The Federated Database Instance was deleted.
 	State string `pulumi:"state"`
 	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -35393,6 +36876,8 @@ type GetFederatedDatabaseInstancesResultArgs struct {
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
+	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+	// * `DELETED` - The Federated Database Instance was deleted.
 	State pulumi.StringInput `pulumi:"state"`
 	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -35518,6 +37003,8 @@ func (o GetFederatedDatabaseInstancesResultOutput) ProjectId() pulumi.StringOutp
 }
 
 // Current state of the Federated Database Instance:
+// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+// * `DELETED` - The Federated Database Instance was deleted.
 func (o GetFederatedDatabaseInstancesResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResult) string { return v.State }).(pulumi.StringOutput)
 }
@@ -36350,7 +37837,7 @@ type GetFederatedDatabaseInstancesResultStorageStore struct {
 	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
 	AllowInsecure            bool     `pulumi:"allowInsecure"`
 	Bucket                   string   `pulumi:"bucket"`
-	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	// Deprecated: This parameter is deprecated and will be removed by September 2024.
 	ClusterId     string `pulumi:"clusterId"`
 	ClusterName   string `pulumi:"clusterName"`
 	DefaultFormat string `pulumi:"defaultFormat"`
@@ -36383,7 +37870,7 @@ type GetFederatedDatabaseInstancesResultStorageStoreArgs struct {
 	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
 	AllowInsecure            pulumi.BoolInput        `pulumi:"allowInsecure"`
 	Bucket                   pulumi.StringInput      `pulumi:"bucket"`
-	// Deprecated: this parameter is deprecated and will be removed by September 2024
+	// Deprecated: This parameter is deprecated and will be removed by September 2024.
 	ClusterId     pulumi.StringInput `pulumi:"clusterId"`
 	ClusterName   pulumi.StringInput `pulumi:"clusterName"`
 	DefaultFormat pulumi.StringInput `pulumi:"defaultFormat"`
@@ -36464,7 +37951,7 @@ func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) Bucket() pulumi.S
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStore) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// Deprecated: this parameter is deprecated and will be removed by September 2024
+// Deprecated: This parameter is deprecated and will be removed by September 2024.
 func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStore) string { return v.ClusterId }).(pulumi.StringOutput)
 }
@@ -36851,6 +38338,8 @@ type GetFederatedQueryLimitsResult struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage int `pulumi:"currentUsage"`
 	// Default value of the limit.
+	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit     int    `pulumi:"defaultLimit"`
 	LastModifiedDate string `pulumi:"lastModifiedDate"`
 	LimitName        string `pulumi:"limitName"`
@@ -36878,6 +38367,8 @@ type GetFederatedQueryLimitsResultArgs struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage pulumi.IntInput `pulumi:"currentUsage"`
 	// Default value of the limit.
+	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit     pulumi.IntInput    `pulumi:"defaultLimit"`
 	LastModifiedDate pulumi.StringInput `pulumi:"lastModifiedDate"`
 	LimitName        pulumi.StringInput `pulumi:"limitName"`
@@ -36947,6 +38438,8 @@ func (o GetFederatedQueryLimitsResultOutput) CurrentUsage() pulumi.IntOutput {
 }
 
 // Default value of the limit.
+// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+// * `maximumLimit` - Maximum value of the limit.
 func (o GetFederatedQueryLimitsResultOutput) DefaultLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v GetFederatedQueryLimitsResult) int { return v.DefaultLimit }).(pulumi.IntOutput)
 }
@@ -37005,8 +38498,9 @@ type GetFederatedSettingsIdentityProviderAssociatedOrg struct {
 	// List that contains the approved domains from which organization users can log in.
 	DomainAllowLists []string `pulumi:"domainAllowLists"`
 	// Flag that indicates whether domain restriction is enabled for the connected organization.
-	DomainRestrictionEnabled bool   `pulumi:"domainRestrictionEnabled"`
-	IdentityProviderId       string `pulumi:"identityProviderId"`
+	DomainRestrictionEnabled bool `pulumi:"domainRestrictionEnabled"`
+	// Unique 24-hexadecimal digit string that identifies the IdP.
+	IdentityProviderId string `pulumi:"identityProviderId"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId string `pulumi:"orgId"`
 	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
@@ -37030,8 +38524,9 @@ type GetFederatedSettingsIdentityProviderAssociatedOrgArgs struct {
 	// List that contains the approved domains from which organization users can log in.
 	DomainAllowLists pulumi.StringArrayInput `pulumi:"domainAllowLists"`
 	// Flag that indicates whether domain restriction is enabled for the connected organization.
-	DomainRestrictionEnabled pulumi.BoolInput   `pulumi:"domainRestrictionEnabled"`
-	IdentityProviderId       pulumi.StringInput `pulumi:"identityProviderId"`
+	DomainRestrictionEnabled pulumi.BoolInput `pulumi:"domainRestrictionEnabled"`
+	// Unique 24-hexadecimal digit string that identifies the IdP.
+	IdentityProviderId pulumi.StringInput `pulumi:"identityProviderId"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
 	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
@@ -37101,6 +38596,7 @@ func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) DomainRestricti
 	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrg) bool { return v.DomainRestrictionEnabled }).(pulumi.BoolOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the IdP.
 func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) IdentityProviderId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrg) string { return v.IdentityProviderId }).(pulumi.StringOutput)
 }
@@ -37750,7 +39246,7 @@ type GetFederatedSettingsIdentityProvidersResult struct {
 	DisplayName string `pulumi:"displayName"`
 	// Identifier of the claim which contains IdP Group IDs in the token.
 	GroupsClaim string `pulumi:"groupsClaim"`
-	// Unique 20-hexadecimal digit string that identifies the IdP.
+	// Unique 24-hexadecimal digit string that identifies the IdP.
 	IdpId string `pulumi:"idpId"`
 	// Identifier for the issuer of the SAML Assertion.
 	IssuerUri    string                                                   `pulumi:"issuerUri"`
@@ -37806,7 +39302,7 @@ type GetFederatedSettingsIdentityProvidersResultArgs struct {
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// Identifier of the claim which contains IdP Group IDs in the token.
 	GroupsClaim pulumi.StringInput `pulumi:"groupsClaim"`
-	// Unique 20-hexadecimal digit string that identifies the IdP.
+	// Unique 24-hexadecimal digit string that identifies the IdP.
 	IdpId pulumi.StringInput `pulumi:"idpId"`
 	// Identifier for the issuer of the SAML Assertion.
 	IssuerUri    pulumi.StringInput                                               `pulumi:"issuerUri"`
@@ -37927,7 +39423,7 @@ func (o GetFederatedSettingsIdentityProvidersResultOutput) GroupsClaim() pulumi.
 	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.GroupsClaim }).(pulumi.StringOutput)
 }
 
-// Unique 20-hexadecimal digit string that identifies the IdP.
+// Unique 24-hexadecimal digit string that identifies the IdP.
 func (o GetFederatedSettingsIdentityProvidersResultOutput) IdpId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.IdpId }).(pulumi.StringOutput)
 }
@@ -40112,8 +41608,11 @@ func (o GetGlobalClusterConfigManagedNamespaceArrayOutput) Index(i pulumi.IntInp
 }
 
 type GetLdapConfigurationUserToDnMapping struct {
-	LdapQuery    string `pulumi:"ldapQuery"`
-	Match        string `pulumi:"match"`
+	// An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
+	LdapQuery string `pulumi:"ldapQuery"`
+	// A regular expression to match against a provided LDAP username.
+	Match string `pulumi:"match"`
+	// An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
 	Substitution string `pulumi:"substitution"`
 }
 
@@ -40129,8 +41628,11 @@ type GetLdapConfigurationUserToDnMappingInput interface {
 }
 
 type GetLdapConfigurationUserToDnMappingArgs struct {
-	LdapQuery    pulumi.StringInput `pulumi:"ldapQuery"`
-	Match        pulumi.StringInput `pulumi:"match"`
+	// An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
+	LdapQuery pulumi.StringInput `pulumi:"ldapQuery"`
+	// A regular expression to match against a provided LDAP username.
+	Match pulumi.StringInput `pulumi:"match"`
+	// An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
 	Substitution pulumi.StringInput `pulumi:"substitution"`
 }
 
@@ -40185,14 +41687,17 @@ func (o GetLdapConfigurationUserToDnMappingOutput) ToGetLdapConfigurationUserToD
 	return o
 }
 
+// An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
 func (o GetLdapConfigurationUserToDnMappingOutput) LdapQuery() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLdapConfigurationUserToDnMapping) string { return v.LdapQuery }).(pulumi.StringOutput)
 }
 
+// A regular expression to match against a provided LDAP username.
 func (o GetLdapConfigurationUserToDnMappingOutput) Match() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLdapConfigurationUserToDnMapping) string { return v.Match }).(pulumi.StringOutput)
 }
 
+// An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
 func (o GetLdapConfigurationUserToDnMappingOutput) Substitution() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLdapConfigurationUserToDnMapping) string { return v.Substitution }).(pulumi.StringOutput)
 }
@@ -42263,21 +43768,14 @@ func (o GetOrganizationLinkArrayOutput) Index(i pulumi.IntInput) GetOrganization
 }
 
 type GetOrganizationsResult struct {
-	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired bool `pulumi:"apiAccessListRequired"`
 	// Autogenerated Unique ID for this data source.
-	Id string `pulumi:"id"`
-	// Flag that indicates whether this organization has been deleted.
-	IsDeleted bool                         `pulumi:"isDeleted"`
-	Links     []GetOrganizationsResultLink `pulumi:"links"`
-	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
-	MultiFactorAuthRequired bool `pulumi:"multiFactorAuthRequired"`
-	// Human-readable label that identifies the organization.
-	Name string `pulumi:"name"`
-	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
-	//
-	// See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
-	RestrictEmployeeAccess bool `pulumi:"restrictEmployeeAccess"`
+	Id                      string                       `pulumi:"id"`
+	IsDeleted               bool                         `pulumi:"isDeleted"`
+	Links                   []GetOrganizationsResultLink `pulumi:"links"`
+	MultiFactorAuthRequired bool                         `pulumi:"multiFactorAuthRequired"`
+	Name                    string                       `pulumi:"name"`
+	RestrictEmployeeAccess  bool                         `pulumi:"restrictEmployeeAccess"`
 }
 
 // GetOrganizationsResultInput is an input type that accepts GetOrganizationsResultArgs and GetOrganizationsResultOutput values.
@@ -42292,21 +43790,14 @@ type GetOrganizationsResultInput interface {
 }
 
 type GetOrganizationsResultArgs struct {
-	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired pulumi.BoolInput `pulumi:"apiAccessListRequired"`
 	// Autogenerated Unique ID for this data source.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Flag that indicates whether this organization has been deleted.
-	IsDeleted pulumi.BoolInput                     `pulumi:"isDeleted"`
-	Links     GetOrganizationsResultLinkArrayInput `pulumi:"links"`
-	// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
-	MultiFactorAuthRequired pulumi.BoolInput `pulumi:"multiFactorAuthRequired"`
-	// Human-readable label that identifies the organization.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
-	//
-	// See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
-	RestrictEmployeeAccess pulumi.BoolInput `pulumi:"restrictEmployeeAccess"`
+	Id                      pulumi.StringInput                   `pulumi:"id"`
+	IsDeleted               pulumi.BoolInput                     `pulumi:"isDeleted"`
+	Links                   GetOrganizationsResultLinkArrayInput `pulumi:"links"`
+	MultiFactorAuthRequired pulumi.BoolInput                     `pulumi:"multiFactorAuthRequired"`
+	Name                    pulumi.StringInput                   `pulumi:"name"`
+	RestrictEmployeeAccess  pulumi.BoolInput                     `pulumi:"restrictEmployeeAccess"`
 }
 
 func (GetOrganizationsResultArgs) ElementType() reflect.Type {
@@ -42360,7 +43851,6 @@ func (o GetOrganizationsResultOutput) ToGetOrganizationsResultOutputWithContext(
 	return o
 }
 
-// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 func (o GetOrganizationsResultOutput) ApiAccessListRequired() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetOrganizationsResult) bool { return v.ApiAccessListRequired }).(pulumi.BoolOutput)
 }
@@ -42370,7 +43860,6 @@ func (o GetOrganizationsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Flag that indicates whether this organization has been deleted.
 func (o GetOrganizationsResultOutput) IsDeleted() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetOrganizationsResult) bool { return v.IsDeleted }).(pulumi.BoolOutput)
 }
@@ -42379,19 +43868,14 @@ func (o GetOrganizationsResultOutput) Links() GetOrganizationsResultLinkArrayOut
 	return o.ApplyT(func(v GetOrganizationsResult) []GetOrganizationsResultLink { return v.Links }).(GetOrganizationsResultLinkArrayOutput)
 }
 
-// Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
 func (o GetOrganizationsResultOutput) MultiFactorAuthRequired() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetOrganizationsResult) bool { return v.MultiFactorAuthRequired }).(pulumi.BoolOutput)
 }
 
-// Human-readable label that identifies the organization.
 func (o GetOrganizationsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationsResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
-//
-// See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
 func (o GetOrganizationsResultOutput) RestrictEmployeeAccess() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetOrganizationsResult) bool { return v.RestrictEmployeeAccess }).(pulumi.BoolOutput)
 }
@@ -42645,7 +44129,7 @@ type GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult struct {
 	Comment string `pulumi:"comment"`
 	// (Optional) Human-readable label to identify VPC endpoint DNS name.
 	CustomerEndpointDnsName string `pulumi:"customerEndpointDnsName"`
-	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](<https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature>).
+	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
 	EndpointId string `pulumi:"endpointId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
@@ -42671,7 +44155,7 @@ type GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultArgs struct 
 	Comment pulumi.StringInput `pulumi:"comment"`
 	// (Optional) Human-readable label to identify VPC endpoint DNS name.
 	CustomerEndpointDnsName pulumi.StringInput `pulumi:"customerEndpointDnsName"`
-	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](<https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature>).
+	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
 	EndpointId pulumi.StringInput `pulumi:"endpointId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
@@ -42744,7 +44228,7 @@ func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) C
 	}).(pulumi.StringOutput)
 }
 
-// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](<https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature>).
+// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
 func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) EndpointId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult) string { return v.EndpointId }).(pulumi.StringOutput)
 }
@@ -43729,37 +45213,24 @@ func (o GetProjectTeamArrayOutput) Index(i pulumi.IntInput) GetProjectTeamOutput
 }
 
 type GetProjectsResult struct {
-	// The number of Atlas clusters deployed in the project.
-	ClusterCount int `pulumi:"clusterCount"`
-	// The ISO-8601-formatted timestamp of when Atlas created the project.
-	Created string `pulumi:"created"`
+	ClusterCount int    `pulumi:"clusterCount"`
+	Created      string `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
-	Id string `pulumi:"id"`
-	// IP addresses in a project categorized by services. See IP Addresses.
-	IpAddresses GetProjectsResultIpAddresses `pulumi:"ipAddresses"`
-	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
-	IsCollectDatabaseSpecificsStatisticsEnabled bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
-	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
-	IsDataExplorerEnabled bool `pulumi:"isDataExplorerEnabled"`
-	// Flag that indicates whether to enable extended storage sizes for the specified project.
-	IsExtendedStorageSizesEnabled bool `pulumi:"isExtendedStorageSizesEnabled"`
-	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
-	IsPerformanceAdvisorEnabled bool `pulumi:"isPerformanceAdvisorEnabled"`
-	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
-	IsRealtimePerformancePanelEnabled bool `pulumi:"isRealtimePerformancePanelEnabled"`
-	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-	IsSchemaAdvisorEnabled bool `pulumi:"isSchemaAdvisorEnabled"`
-	// The limits for the specified project. See Limits.
-	Limits []GetProjectsResultLimit `pulumi:"limits"`
-	// Human-readable label that identifies this project limit.
-	Name string `pulumi:"name"`
-	// The ID of the organization you want to create the project within.
-	OrgId     string `pulumi:"orgId"`
-	ProjectId string `pulumi:"projectId"`
-	// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
-	RegionUsageRestrictions string `pulumi:"regionUsageRestrictions"`
-	// Returns all teams to which the authenticated user has access in the project. See Teams.
-	Teams []GetProjectsResultTeam `pulumi:"teams"`
+	Id                                          string                       `pulumi:"id"`
+	IpAddresses                                 GetProjectsResultIpAddresses `pulumi:"ipAddresses"`
+	IsCollectDatabaseSpecificsStatisticsEnabled bool                         `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
+	IsDataExplorerEnabled                       bool                         `pulumi:"isDataExplorerEnabled"`
+	IsExtendedStorageSizesEnabled               bool                         `pulumi:"isExtendedStorageSizesEnabled"`
+	IsPerformanceAdvisorEnabled                 bool                         `pulumi:"isPerformanceAdvisorEnabled"`
+	IsRealtimePerformancePanelEnabled           bool                         `pulumi:"isRealtimePerformancePanelEnabled"`
+	IsSchemaAdvisorEnabled                      bool                         `pulumi:"isSchemaAdvisorEnabled"`
+	Limits                                      []GetProjectsResultLimit     `pulumi:"limits"`
+	Name                                        string                       `pulumi:"name"`
+	OrgId                                       string                       `pulumi:"orgId"`
+	ProjectId                                   string                       `pulumi:"projectId"`
+	RegionUsageRestrictions                     string                       `pulumi:"regionUsageRestrictions"`
+	Tags                                        map[string]string            `pulumi:"tags"`
+	Teams                                       []GetProjectsResultTeam      `pulumi:"teams"`
 }
 
 // GetProjectsResultInput is an input type that accepts GetProjectsResultArgs and GetProjectsResultOutput values.
@@ -43774,37 +45245,24 @@ type GetProjectsResultInput interface {
 }
 
 type GetProjectsResultArgs struct {
-	// The number of Atlas clusters deployed in the project.
-	ClusterCount pulumi.IntInput `pulumi:"clusterCount"`
-	// The ISO-8601-formatted timestamp of when Atlas created the project.
-	Created pulumi.StringInput `pulumi:"created"`
+	ClusterCount pulumi.IntInput    `pulumi:"clusterCount"`
+	Created      pulumi.StringInput `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
-	Id pulumi.StringInput `pulumi:"id"`
-	// IP addresses in a project categorized by services. See IP Addresses.
-	IpAddresses GetProjectsResultIpAddressesInput `pulumi:"ipAddresses"`
-	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
-	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolInput `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
-	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
-	IsDataExplorerEnabled pulumi.BoolInput `pulumi:"isDataExplorerEnabled"`
-	// Flag that indicates whether to enable extended storage sizes for the specified project.
-	IsExtendedStorageSizesEnabled pulumi.BoolInput `pulumi:"isExtendedStorageSizesEnabled"`
-	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
-	IsPerformanceAdvisorEnabled pulumi.BoolInput `pulumi:"isPerformanceAdvisorEnabled"`
-	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
-	IsRealtimePerformancePanelEnabled pulumi.BoolInput `pulumi:"isRealtimePerformancePanelEnabled"`
-	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
-	IsSchemaAdvisorEnabled pulumi.BoolInput `pulumi:"isSchemaAdvisorEnabled"`
-	// The limits for the specified project. See Limits.
-	Limits GetProjectsResultLimitArrayInput `pulumi:"limits"`
-	// Human-readable label that identifies this project limit.
-	Name pulumi.StringInput `pulumi:"name"`
-	// The ID of the organization you want to create the project within.
-	OrgId     pulumi.StringInput `pulumi:"orgId"`
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
-	RegionUsageRestrictions pulumi.StringInput `pulumi:"regionUsageRestrictions"`
-	// Returns all teams to which the authenticated user has access in the project. See Teams.
-	Teams GetProjectsResultTeamArrayInput `pulumi:"teams"`
+	Id                                          pulumi.StringInput                `pulumi:"id"`
+	IpAddresses                                 GetProjectsResultIpAddressesInput `pulumi:"ipAddresses"`
+	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolInput                  `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
+	IsDataExplorerEnabled                       pulumi.BoolInput                  `pulumi:"isDataExplorerEnabled"`
+	IsExtendedStorageSizesEnabled               pulumi.BoolInput                  `pulumi:"isExtendedStorageSizesEnabled"`
+	IsPerformanceAdvisorEnabled                 pulumi.BoolInput                  `pulumi:"isPerformanceAdvisorEnabled"`
+	IsRealtimePerformancePanelEnabled           pulumi.BoolInput                  `pulumi:"isRealtimePerformancePanelEnabled"`
+	IsSchemaAdvisorEnabled                      pulumi.BoolInput                  `pulumi:"isSchemaAdvisorEnabled"`
+	Limits                                      GetProjectsResultLimitArrayInput  `pulumi:"limits"`
+	Name                                        pulumi.StringInput                `pulumi:"name"`
+	OrgId                                       pulumi.StringInput                `pulumi:"orgId"`
+	ProjectId                                   pulumi.StringInput                `pulumi:"projectId"`
+	RegionUsageRestrictions                     pulumi.StringInput                `pulumi:"regionUsageRestrictions"`
+	Tags                                        pulumi.StringMapInput             `pulumi:"tags"`
+	Teams                                       GetProjectsResultTeamArrayInput   `pulumi:"teams"`
 }
 
 func (GetProjectsResultArgs) ElementType() reflect.Type {
@@ -43858,12 +45316,10 @@ func (o GetProjectsResultOutput) ToGetProjectsResultOutputWithContext(ctx contex
 	return o
 }
 
-// The number of Atlas clusters deployed in the project.
 func (o GetProjectsResultOutput) ClusterCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetProjectsResult) int { return v.ClusterCount }).(pulumi.IntOutput)
 }
 
-// The ISO-8601-formatted timestamp of when Atlas created the project.
 func (o GetProjectsResultOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.Created }).(pulumi.StringOutput)
 }
@@ -43873,52 +45329,42 @@ func (o GetProjectsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// IP addresses in a project categorized by services. See IP Addresses.
 func (o GetProjectsResultOutput) IpAddresses() GetProjectsResultIpAddressesOutput {
 	return o.ApplyT(func(v GetProjectsResult) GetProjectsResultIpAddresses { return v.IpAddresses }).(GetProjectsResultIpAddressesOutput)
 }
 
-// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 func (o GetProjectsResultOutput) IsCollectDatabaseSpecificsStatisticsEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsCollectDatabaseSpecificsStatisticsEnabled }).(pulumi.BoolOutput)
 }
 
-// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
 func (o GetProjectsResultOutput) IsDataExplorerEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsDataExplorerEnabled }).(pulumi.BoolOutput)
 }
 
-// Flag that indicates whether to enable extended storage sizes for the specified project.
 func (o GetProjectsResultOutput) IsExtendedStorageSizesEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsExtendedStorageSizesEnabled }).(pulumi.BoolOutput)
 }
 
-// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
 func (o GetProjectsResultOutput) IsPerformanceAdvisorEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsPerformanceAdvisorEnabled }).(pulumi.BoolOutput)
 }
 
-// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
 func (o GetProjectsResultOutput) IsRealtimePerformancePanelEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsRealtimePerformancePanelEnabled }).(pulumi.BoolOutput)
 }
 
-// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 func (o GetProjectsResultOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
 }
 
-// The limits for the specified project. See Limits.
 func (o GetProjectsResultOutput) Limits() GetProjectsResultLimitArrayOutput {
 	return o.ApplyT(func(v GetProjectsResult) []GetProjectsResultLimit { return v.Limits }).(GetProjectsResultLimitArrayOutput)
 }
 
-// Human-readable label that identifies this project limit.
 func (o GetProjectsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The ID of the organization you want to create the project within.
 func (o GetProjectsResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.OrgId }).(pulumi.StringOutput)
 }
@@ -43927,12 +45373,14 @@ func (o GetProjectsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 func (o GetProjectsResultOutput) RegionUsageRestrictions() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.RegionUsageRestrictions }).(pulumi.StringOutput)
 }
 
-// Returns all teams to which the authenticated user has access in the project. See Teams.
+func (o GetProjectsResultOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetProjectsResult) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
+}
+
 func (o GetProjectsResultOutput) Teams() GetProjectsResultTeamArrayOutput {
 	return o.ApplyT(func(v GetProjectsResult) []GetProjectsResultTeam { return v.Teams }).(GetProjectsResultTeamArrayOutput)
 }
@@ -45168,6 +46616,8 @@ func (o GetServerlessInstanceTagArrayOutput) Index(i pulumi.IntInput) GetServerl
 }
 
 type GetServerlessInstancesResult struct {
+	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+	AutoIndexing                         bool     `pulumi:"autoIndexing"`
 	ConnectionStringsPrivateEndpointSrvs []string `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv string `pulumi:"connectionStringsStandardSrv"`
@@ -45209,6 +46659,8 @@ type GetServerlessInstancesResultInput interface {
 }
 
 type GetServerlessInstancesResultArgs struct {
+	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+	AutoIndexing                         pulumi.BoolInput        `pulumi:"autoIndexing"`
 	ConnectionStringsPrivateEndpointSrvs pulumi.StringArrayInput `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv pulumi.StringInput `pulumi:"connectionStringsStandardSrv"`
@@ -45287,6 +46739,11 @@ func (o GetServerlessInstancesResultOutput) ToGetServerlessInstancesResultOutput
 
 func (o GetServerlessInstancesResultOutput) ToGetServerlessInstancesResultOutputWithContext(ctx context.Context) GetServerlessInstancesResultOutput {
 	return o
+}
+
+// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
+func (o GetServerlessInstancesResultOutput) AutoIndexing() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) bool { return v.AutoIndexing }).(pulumi.BoolOutput)
 }
 
 func (o GetServerlessInstancesResultOutput) ConnectionStringsPrivateEndpointSrvs() pulumi.StringArrayOutput {
@@ -45871,6 +47328,939 @@ func (o GetSharedTierSnapshotsResultArrayOutput) Index(i pulumi.IntInput) GetSha
 	}).(GetSharedTierSnapshotsResultOutput)
 }
 
+type GetStreamConnectionAuthentication struct {
+	// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	Mechanism string `pulumi:"mechanism"`
+	// Password of the account to connect to the Kafka cluster.
+	Password string `pulumi:"password"`
+	// Username of the account to connect to the Kafka cluster.
+	Username string `pulumi:"username"`
+}
+
+// GetStreamConnectionAuthenticationInput is an input type that accepts GetStreamConnectionAuthenticationArgs and GetStreamConnectionAuthenticationOutput values.
+// You can construct a concrete instance of `GetStreamConnectionAuthenticationInput` via:
+//
+//	GetStreamConnectionAuthenticationArgs{...}
+type GetStreamConnectionAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionAuthenticationOutput() GetStreamConnectionAuthenticationOutput
+	ToGetStreamConnectionAuthenticationOutputWithContext(context.Context) GetStreamConnectionAuthenticationOutput
+}
+
+type GetStreamConnectionAuthenticationArgs struct {
+	// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	Mechanism pulumi.StringInput `pulumi:"mechanism"`
+	// Password of the account to connect to the Kafka cluster.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Username of the account to connect to the Kafka cluster.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetStreamConnectionAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionAuthentication)(nil)).Elem()
+}
+
+func (i GetStreamConnectionAuthenticationArgs) ToGetStreamConnectionAuthenticationOutput() GetStreamConnectionAuthenticationOutput {
+	return i.ToGetStreamConnectionAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionAuthenticationArgs) ToGetStreamConnectionAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionAuthenticationOutput)
+}
+
+type GetStreamConnectionAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionAuthentication)(nil)).Elem()
+}
+
+func (o GetStreamConnectionAuthenticationOutput) ToGetStreamConnectionAuthenticationOutput() GetStreamConnectionAuthenticationOutput {
+	return o
+}
+
+func (o GetStreamConnectionAuthenticationOutput) ToGetStreamConnectionAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionAuthenticationOutput {
+	return o
+}
+
+// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+func (o GetStreamConnectionAuthenticationOutput) Mechanism() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionAuthenticationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionAuthenticationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionDbRoleToExecute struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role string `pulumi:"role"`
+	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionDbRoleToExecuteInput is an input type that accepts GetStreamConnectionDbRoleToExecuteArgs and GetStreamConnectionDbRoleToExecuteOutput values.
+// You can construct a concrete instance of `GetStreamConnectionDbRoleToExecuteInput` via:
+//
+//	GetStreamConnectionDbRoleToExecuteArgs{...}
+type GetStreamConnectionDbRoleToExecuteInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionDbRoleToExecuteOutput() GetStreamConnectionDbRoleToExecuteOutput
+	ToGetStreamConnectionDbRoleToExecuteOutputWithContext(context.Context) GetStreamConnectionDbRoleToExecuteOutput
+}
+
+type GetStreamConnectionDbRoleToExecuteArgs struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role pulumi.StringInput `pulumi:"role"`
+	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionDbRoleToExecuteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionDbRoleToExecute)(nil)).Elem()
+}
+
+func (i GetStreamConnectionDbRoleToExecuteArgs) ToGetStreamConnectionDbRoleToExecuteOutput() GetStreamConnectionDbRoleToExecuteOutput {
+	return i.ToGetStreamConnectionDbRoleToExecuteOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionDbRoleToExecuteArgs) ToGetStreamConnectionDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionDbRoleToExecuteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionDbRoleToExecuteOutput)
+}
+
+type GetStreamConnectionDbRoleToExecuteOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionDbRoleToExecuteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionDbRoleToExecute)(nil)).Elem()
+}
+
+func (o GetStreamConnectionDbRoleToExecuteOutput) ToGetStreamConnectionDbRoleToExecuteOutput() GetStreamConnectionDbRoleToExecuteOutput {
+	return o
+}
+
+func (o GetStreamConnectionDbRoleToExecuteOutput) ToGetStreamConnectionDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionDbRoleToExecuteOutput {
+	return o
+}
+
+// The name of the role to use. Can be a built in role or a custom role.
+func (o GetStreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+func (o GetStreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionSecurity struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	Protocol string `pulumi:"protocol"`
+}
+
+// GetStreamConnectionSecurityInput is an input type that accepts GetStreamConnectionSecurityArgs and GetStreamConnectionSecurityOutput values.
+// You can construct a concrete instance of `GetStreamConnectionSecurityInput` via:
+//
+//	GetStreamConnectionSecurityArgs{...}
+type GetStreamConnectionSecurityInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionSecurityOutput() GetStreamConnectionSecurityOutput
+	ToGetStreamConnectionSecurityOutputWithContext(context.Context) GetStreamConnectionSecurityOutput
+}
+
+type GetStreamConnectionSecurityArgs struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+}
+
+func (GetStreamConnectionSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionSecurity)(nil)).Elem()
+}
+
+func (i GetStreamConnectionSecurityArgs) ToGetStreamConnectionSecurityOutput() GetStreamConnectionSecurityOutput {
+	return i.ToGetStreamConnectionSecurityOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionSecurityArgs) ToGetStreamConnectionSecurityOutputWithContext(ctx context.Context) GetStreamConnectionSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionSecurityOutput)
+}
+
+type GetStreamConnectionSecurityOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionSecurity)(nil)).Elem()
+}
+
+func (o GetStreamConnectionSecurityOutput) ToGetStreamConnectionSecurityOutput() GetStreamConnectionSecurityOutput {
+	return o
+}
+
+func (o GetStreamConnectionSecurityOutput) ToGetStreamConnectionSecurityOutputWithContext(ctx context.Context) GetStreamConnectionSecurityOutput {
+	return o
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+func (o GetStreamConnectionSecurityOutput) BrokerPublicCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
+}
+
+// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+func (o GetStreamConnectionSecurityOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionSecurity) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResult struct {
+	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
+	Authentication GetStreamConnectionsResultAuthentication `pulumi:"authentication"`
+	// Comma separated list of server addresses.
+	BootstrapServers string `pulumi:"bootstrapServers"`
+	// Name of the cluster configured for this connection.
+	ClusterName string `pulumi:"clusterName"`
+	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	Config map[string]string `pulumi:"config"`
+	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	ConnectionName string `pulumi:"connectionName"`
+	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
+	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecute `pulumi:"dbRoleToExecute"`
+	Id              string                                    `pulumi:"id"`
+	// Human-readable label that identifies the stream instance.
+	InstanceName string `pulumi:"instanceName"`
+	// Unique 24-hexadecimal digit string that identifies your project.
+	ProjectId string `pulumi:"projectId"`
+	// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+	Security GetStreamConnectionsResultSecurity `pulumi:"security"`
+	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionsResultInput is an input type that accepts GetStreamConnectionsResultArgs and GetStreamConnectionsResultOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultInput` via:
+//
+//	GetStreamConnectionsResultArgs{...}
+type GetStreamConnectionsResultInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultOutput() GetStreamConnectionsResultOutput
+	ToGetStreamConnectionsResultOutputWithContext(context.Context) GetStreamConnectionsResultOutput
+}
+
+type GetStreamConnectionsResultArgs struct {
+	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
+	Authentication GetStreamConnectionsResultAuthenticationInput `pulumi:"authentication"`
+	// Comma separated list of server addresses.
+	BootstrapServers pulumi.StringInput `pulumi:"bootstrapServers"`
+	// Name of the cluster configured for this connection.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	Config pulumi.StringMapInput `pulumi:"config"`
+	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
+	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
+	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecuteInput `pulumi:"dbRoleToExecute"`
+	Id              pulumi.StringInput                             `pulumi:"id"`
+	// Human-readable label that identifies the stream instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Unique 24-hexadecimal digit string that identifies your project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+	Security GetStreamConnectionsResultSecurityInput `pulumi:"security"`
+	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResult)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultArgs) ToGetStreamConnectionsResultOutput() GetStreamConnectionsResultOutput {
+	return i.ToGetStreamConnectionsResultOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultArgs) ToGetStreamConnectionsResultOutputWithContext(ctx context.Context) GetStreamConnectionsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultOutput)
+}
+
+// GetStreamConnectionsResultArrayInput is an input type that accepts GetStreamConnectionsResultArray and GetStreamConnectionsResultArrayOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultArrayInput` via:
+//
+//	GetStreamConnectionsResultArray{ GetStreamConnectionsResultArgs{...} }
+type GetStreamConnectionsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultArrayOutput() GetStreamConnectionsResultArrayOutput
+	ToGetStreamConnectionsResultArrayOutputWithContext(context.Context) GetStreamConnectionsResultArrayOutput
+}
+
+type GetStreamConnectionsResultArray []GetStreamConnectionsResultInput
+
+func (GetStreamConnectionsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamConnectionsResult)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultArray) ToGetStreamConnectionsResultArrayOutput() GetStreamConnectionsResultArrayOutput {
+	return i.ToGetStreamConnectionsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultArray) ToGetStreamConnectionsResultArrayOutputWithContext(ctx context.Context) GetStreamConnectionsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultArrayOutput)
+}
+
+type GetStreamConnectionsResultOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResult)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultOutput) ToGetStreamConnectionsResultOutput() GetStreamConnectionsResultOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultOutput) ToGetStreamConnectionsResultOutputWithContext(ctx context.Context) GetStreamConnectionsResultOutput {
+	return o
+}
+
+// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
+func (o GetStreamConnectionsResultOutput) Authentication() GetStreamConnectionsResultAuthenticationOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAuthentication { return v.Authentication }).(GetStreamConnectionsResultAuthenticationOutput)
+}
+
+// Comma separated list of server addresses.
+func (o GetStreamConnectionsResultOutput) BootstrapServers() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.BootstrapServers }).(pulumi.StringOutput)
+}
+
+// Name of the cluster configured for this connection.
+func (o GetStreamConnectionsResultOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+func (o GetStreamConnectionsResultOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) map[string]string { return v.Config }).(pulumi.StringMapOutput)
+}
+
+// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+func (o GetStreamConnectionsResultOutput) ConnectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ConnectionName }).(pulumi.StringOutput)
+}
+
+// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
+func (o GetStreamConnectionsResultOutput) DbRoleToExecute() GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultDbRoleToExecute { return v.DbRoleToExecute }).(GetStreamConnectionsResultDbRoleToExecuteOutput)
+}
+
+func (o GetStreamConnectionsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the stream instance.
+func (o GetStreamConnectionsResultOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project.
+func (o GetStreamConnectionsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use. See security.
+func (o GetStreamConnectionsResultOutput) Security() GetStreamConnectionsResultSecurityOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultSecurity { return v.Security }).(GetStreamConnectionsResultSecurityOutput)
+}
+
+// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+func (o GetStreamConnectionsResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamConnectionsResult)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultArrayOutput) ToGetStreamConnectionsResultArrayOutput() GetStreamConnectionsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultArrayOutput) ToGetStreamConnectionsResultArrayOutputWithContext(ctx context.Context) GetStreamConnectionsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultArrayOutput) Index(i pulumi.IntInput) GetStreamConnectionsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamConnectionsResult {
+		return vs[0].([]GetStreamConnectionsResult)[vs[1].(int)]
+	}).(GetStreamConnectionsResultOutput)
+}
+
+type GetStreamConnectionsResultAuthentication struct {
+	// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	Mechanism string `pulumi:"mechanism"`
+	// Password of the account to connect to the Kafka cluster.
+	Password string `pulumi:"password"`
+	// Username of the account to connect to the Kafka cluster.
+	Username string `pulumi:"username"`
+}
+
+// GetStreamConnectionsResultAuthenticationInput is an input type that accepts GetStreamConnectionsResultAuthenticationArgs and GetStreamConnectionsResultAuthenticationOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultAuthenticationInput` via:
+//
+//	GetStreamConnectionsResultAuthenticationArgs{...}
+type GetStreamConnectionsResultAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultAuthenticationOutput() GetStreamConnectionsResultAuthenticationOutput
+	ToGetStreamConnectionsResultAuthenticationOutputWithContext(context.Context) GetStreamConnectionsResultAuthenticationOutput
+}
+
+type GetStreamConnectionsResultAuthenticationArgs struct {
+	// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	Mechanism pulumi.StringInput `pulumi:"mechanism"`
+	// Password of the account to connect to the Kafka cluster.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Username of the account to connect to the Kafka cluster.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetStreamConnectionsResultAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAuthentication)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultAuthenticationArgs) ToGetStreamConnectionsResultAuthenticationOutput() GetStreamConnectionsResultAuthenticationOutput {
+	return i.ToGetStreamConnectionsResultAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultAuthenticationArgs) ToGetStreamConnectionsResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAuthenticationOutput)
+}
+
+type GetStreamConnectionsResultAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAuthentication)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultAuthenticationOutput) ToGetStreamConnectionsResultAuthenticationOutput() GetStreamConnectionsResultAuthenticationOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultAuthenticationOutput) ToGetStreamConnectionsResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationOutput {
+	return o
+}
+
+// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+func (o GetStreamConnectionsResultAuthenticationOutput) Mechanism() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionsResultAuthenticationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionsResultAuthenticationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultDbRoleToExecute struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role string `pulumi:"role"`
+	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionsResultDbRoleToExecuteInput is an input type that accepts GetStreamConnectionsResultDbRoleToExecuteArgs and GetStreamConnectionsResultDbRoleToExecuteOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultDbRoleToExecuteInput` via:
+//
+//	GetStreamConnectionsResultDbRoleToExecuteArgs{...}
+type GetStreamConnectionsResultDbRoleToExecuteInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultDbRoleToExecuteOutput() GetStreamConnectionsResultDbRoleToExecuteOutput
+	ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(context.Context) GetStreamConnectionsResultDbRoleToExecuteOutput
+}
+
+type GetStreamConnectionsResultDbRoleToExecuteArgs struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role pulumi.StringInput `pulumi:"role"`
+	// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionsResultDbRoleToExecuteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecute)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultDbRoleToExecuteArgs) ToGetStreamConnectionsResultDbRoleToExecuteOutput() GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return i.ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultDbRoleToExecuteArgs) ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultDbRoleToExecuteOutput)
+}
+
+type GetStreamConnectionsResultDbRoleToExecuteOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultDbRoleToExecuteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecute)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultDbRoleToExecuteOutput) ToGetStreamConnectionsResultDbRoleToExecuteOutput() GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultDbRoleToExecuteOutput) ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return o
+}
+
+// The name of the role to use. Can be a built in role or a custom role.
+func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// Type of the DB role. Can be either BUILT_IN or CUSTOM.
+func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultSecurity struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	Protocol string `pulumi:"protocol"`
+}
+
+// GetStreamConnectionsResultSecurityInput is an input type that accepts GetStreamConnectionsResultSecurityArgs and GetStreamConnectionsResultSecurityOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultSecurityInput` via:
+//
+//	GetStreamConnectionsResultSecurityArgs{...}
+type GetStreamConnectionsResultSecurityInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultSecurityOutput() GetStreamConnectionsResultSecurityOutput
+	ToGetStreamConnectionsResultSecurityOutputWithContext(context.Context) GetStreamConnectionsResultSecurityOutput
+}
+
+type GetStreamConnectionsResultSecurityArgs struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+}
+
+func (GetStreamConnectionsResultSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultSecurity)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultSecurityArgs) ToGetStreamConnectionsResultSecurityOutput() GetStreamConnectionsResultSecurityOutput {
+	return i.ToGetStreamConnectionsResultSecurityOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultSecurityArgs) ToGetStreamConnectionsResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionsResultSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultSecurityOutput)
+}
+
+type GetStreamConnectionsResultSecurityOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultSecurity)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultSecurityOutput) ToGetStreamConnectionsResultSecurityOutput() GetStreamConnectionsResultSecurityOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultSecurityOutput) ToGetStreamConnectionsResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionsResultSecurityOutput {
+	return o
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+func (o GetStreamConnectionsResultSecurityOutput) BrokerPublicCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
+}
+
+// Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+func (o GetStreamConnectionsResultSecurityOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultSecurity) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+type GetStreamInstanceDataProcessRegion struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region string `pulumi:"region"`
+}
+
+// GetStreamInstanceDataProcessRegionInput is an input type that accepts GetStreamInstanceDataProcessRegionArgs and GetStreamInstanceDataProcessRegionOutput values.
+// You can construct a concrete instance of `GetStreamInstanceDataProcessRegionInput` via:
+//
+//	GetStreamInstanceDataProcessRegionArgs{...}
+type GetStreamInstanceDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToGetStreamInstanceDataProcessRegionOutput() GetStreamInstanceDataProcessRegionOutput
+	ToGetStreamInstanceDataProcessRegionOutputWithContext(context.Context) GetStreamInstanceDataProcessRegionOutput
+}
+
+type GetStreamInstanceDataProcessRegionArgs struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetStreamInstanceDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetStreamInstanceDataProcessRegionArgs) ToGetStreamInstanceDataProcessRegionOutput() GetStreamInstanceDataProcessRegionOutput {
+	return i.ToGetStreamInstanceDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstanceDataProcessRegionArgs) ToGetStreamInstanceDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstanceDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstanceDataProcessRegionOutput)
+}
+
+type GetStreamInstanceDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstanceDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetStreamInstanceDataProcessRegionOutput) ToGetStreamInstanceDataProcessRegionOutput() GetStreamInstanceDataProcessRegionOutput {
+	return o
+}
+
+func (o GetStreamInstanceDataProcessRegionOutput) ToGetStreamInstanceDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstanceDataProcessRegionOutput {
+	return o
+}
+
+// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstanceDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstanceDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstanceDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstanceDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetStreamInstanceStreamConfig struct {
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier string `pulumi:"tier"`
+}
+
+// GetStreamInstanceStreamConfigInput is an input type that accepts GetStreamInstanceStreamConfigArgs and GetStreamInstanceStreamConfigOutput values.
+// You can construct a concrete instance of `GetStreamInstanceStreamConfigInput` via:
+//
+//	GetStreamInstanceStreamConfigArgs{...}
+type GetStreamInstanceStreamConfigInput interface {
+	pulumi.Input
+
+	ToGetStreamInstanceStreamConfigOutput() GetStreamInstanceStreamConfigOutput
+	ToGetStreamInstanceStreamConfigOutputWithContext(context.Context) GetStreamInstanceStreamConfigOutput
+}
+
+type GetStreamInstanceStreamConfigArgs struct {
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier pulumi.StringInput `pulumi:"tier"`
+}
+
+func (GetStreamInstanceStreamConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (i GetStreamInstanceStreamConfigArgs) ToGetStreamInstanceStreamConfigOutput() GetStreamInstanceStreamConfigOutput {
+	return i.ToGetStreamInstanceStreamConfigOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstanceStreamConfigArgs) ToGetStreamInstanceStreamConfigOutputWithContext(ctx context.Context) GetStreamInstanceStreamConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstanceStreamConfigOutput)
+}
+
+type GetStreamInstanceStreamConfigOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstanceStreamConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (o GetStreamInstanceStreamConfigOutput) ToGetStreamInstanceStreamConfigOutput() GetStreamInstanceStreamConfigOutput {
+	return o
+}
+
+func (o GetStreamInstanceStreamConfigOutput) ToGetStreamInstanceStreamConfigOutputWithContext(ctx context.Context) GetStreamInstanceStreamConfigOutput {
+	return o
+}
+
+// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstanceStreamConfigOutput) Tier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstanceStreamConfig) string { return v.Tier }).(pulumi.StringOutput)
+}
+
+type GetStreamInstancesResult struct {
+	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+	DataProcessRegion GetStreamInstancesResultDataProcessRegion `pulumi:"dataProcessRegion"`
+	// List that contains the hostnames assigned to the stream instance.
+	Hostnames []string `pulumi:"hostnames"`
+	Id        string   `pulumi:"id"`
+	// Human-readable label that identifies the stream instance.
+	InstanceName string `pulumi:"instanceName"`
+	// Unique 24-hexadecimal digit string that identifies your project.
+	ProjectId string `pulumi:"projectId"`
+	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+	StreamConfig GetStreamInstancesResultStreamConfig `pulumi:"streamConfig"`
+}
+
+// GetStreamInstancesResultInput is an input type that accepts GetStreamInstancesResultArgs and GetStreamInstancesResultOutput values.
+// You can construct a concrete instance of `GetStreamInstancesResultInput` via:
+//
+//	GetStreamInstancesResultArgs{...}
+type GetStreamInstancesResultInput interface {
+	pulumi.Input
+
+	ToGetStreamInstancesResultOutput() GetStreamInstancesResultOutput
+	ToGetStreamInstancesResultOutputWithContext(context.Context) GetStreamInstancesResultOutput
+}
+
+type GetStreamInstancesResultArgs struct {
+	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+	DataProcessRegion GetStreamInstancesResultDataProcessRegionInput `pulumi:"dataProcessRegion"`
+	// List that contains the hostnames assigned to the stream instance.
+	Hostnames pulumi.StringArrayInput `pulumi:"hostnames"`
+	Id        pulumi.StringInput      `pulumi:"id"`
+	// Human-readable label that identifies the stream instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Unique 24-hexadecimal digit string that identifies your project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+	StreamConfig GetStreamInstancesResultStreamConfigInput `pulumi:"streamConfig"`
+}
+
+func (GetStreamInstancesResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResult)(nil)).Elem()
+}
+
+func (i GetStreamInstancesResultArgs) ToGetStreamInstancesResultOutput() GetStreamInstancesResultOutput {
+	return i.ToGetStreamInstancesResultOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstancesResultArgs) ToGetStreamInstancesResultOutputWithContext(ctx context.Context) GetStreamInstancesResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultOutput)
+}
+
+// GetStreamInstancesResultArrayInput is an input type that accepts GetStreamInstancesResultArray and GetStreamInstancesResultArrayOutput values.
+// You can construct a concrete instance of `GetStreamInstancesResultArrayInput` via:
+//
+//	GetStreamInstancesResultArray{ GetStreamInstancesResultArgs{...} }
+type GetStreamInstancesResultArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamInstancesResultArrayOutput() GetStreamInstancesResultArrayOutput
+	ToGetStreamInstancesResultArrayOutputWithContext(context.Context) GetStreamInstancesResultArrayOutput
+}
+
+type GetStreamInstancesResultArray []GetStreamInstancesResultInput
+
+func (GetStreamInstancesResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamInstancesResult)(nil)).Elem()
+}
+
+func (i GetStreamInstancesResultArray) ToGetStreamInstancesResultArrayOutput() GetStreamInstancesResultArrayOutput {
+	return i.ToGetStreamInstancesResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstancesResultArray) ToGetStreamInstancesResultArrayOutputWithContext(ctx context.Context) GetStreamInstancesResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultArrayOutput)
+}
+
+type GetStreamInstancesResultOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstancesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResult)(nil)).Elem()
+}
+
+func (o GetStreamInstancesResultOutput) ToGetStreamInstancesResultOutput() GetStreamInstancesResultOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultOutput) ToGetStreamInstancesResultOutputWithContext(ctx context.Context) GetStreamInstancesResultOutput {
+	return o
+}
+
+// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+func (o GetStreamInstancesResultOutput) DataProcessRegion() GetStreamInstancesResultDataProcessRegionOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) GetStreamInstancesResultDataProcessRegion { return v.DataProcessRegion }).(GetStreamInstancesResultDataProcessRegionOutput)
+}
+
+// List that contains the hostnames assigned to the stream instance.
+func (o GetStreamInstancesResultOutput) Hostnames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) []string { return v.Hostnames }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStreamInstancesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the stream instance.
+func (o GetStreamInstancesResultOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project.
+func (o GetStreamInstancesResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+func (o GetStreamInstancesResultOutput) StreamConfig() GetStreamInstancesResultStreamConfigOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) GetStreamInstancesResultStreamConfig { return v.StreamConfig }).(GetStreamInstancesResultStreamConfigOutput)
+}
+
+type GetStreamInstancesResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstancesResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamInstancesResult)(nil)).Elem()
+}
+
+func (o GetStreamInstancesResultArrayOutput) ToGetStreamInstancesResultArrayOutput() GetStreamInstancesResultArrayOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultArrayOutput) ToGetStreamInstancesResultArrayOutputWithContext(ctx context.Context) GetStreamInstancesResultArrayOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultArrayOutput) Index(i pulumi.IntInput) GetStreamInstancesResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamInstancesResult {
+		return vs[0].([]GetStreamInstancesResult)[vs[1].(int)]
+	}).(GetStreamInstancesResultOutput)
+}
+
+type GetStreamInstancesResultDataProcessRegion struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region string `pulumi:"region"`
+}
+
+// GetStreamInstancesResultDataProcessRegionInput is an input type that accepts GetStreamInstancesResultDataProcessRegionArgs and GetStreamInstancesResultDataProcessRegionOutput values.
+// You can construct a concrete instance of `GetStreamInstancesResultDataProcessRegionInput` via:
+//
+//	GetStreamInstancesResultDataProcessRegionArgs{...}
+type GetStreamInstancesResultDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToGetStreamInstancesResultDataProcessRegionOutput() GetStreamInstancesResultDataProcessRegionOutput
+	ToGetStreamInstancesResultDataProcessRegionOutputWithContext(context.Context) GetStreamInstancesResultDataProcessRegionOutput
+}
+
+type GetStreamInstancesResultDataProcessRegionArgs struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetStreamInstancesResultDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetStreamInstancesResultDataProcessRegionArgs) ToGetStreamInstancesResultDataProcessRegionOutput() GetStreamInstancesResultDataProcessRegionOutput {
+	return i.ToGetStreamInstancesResultDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstancesResultDataProcessRegionArgs) ToGetStreamInstancesResultDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstancesResultDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultDataProcessRegionOutput)
+}
+
+type GetStreamInstancesResultDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstancesResultDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetStreamInstancesResultDataProcessRegionOutput) ToGetStreamInstancesResultDataProcessRegionOutput() GetStreamInstancesResultDataProcessRegionOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultDataProcessRegionOutput) ToGetStreamInstancesResultDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstancesResultDataProcessRegionOutput {
+	return o
+}
+
+// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstancesResultDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResultDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstancesResultDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResultDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetStreamInstancesResultStreamConfig struct {
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier string `pulumi:"tier"`
+}
+
+// GetStreamInstancesResultStreamConfigInput is an input type that accepts GetStreamInstancesResultStreamConfigArgs and GetStreamInstancesResultStreamConfigOutput values.
+// You can construct a concrete instance of `GetStreamInstancesResultStreamConfigInput` via:
+//
+//	GetStreamInstancesResultStreamConfigArgs{...}
+type GetStreamInstancesResultStreamConfigInput interface {
+	pulumi.Input
+
+	ToGetStreamInstancesResultStreamConfigOutput() GetStreamInstancesResultStreamConfigOutput
+	ToGetStreamInstancesResultStreamConfigOutputWithContext(context.Context) GetStreamInstancesResultStreamConfigOutput
+}
+
+type GetStreamInstancesResultStreamConfigArgs struct {
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier pulumi.StringInput `pulumi:"tier"`
+}
+
+func (GetStreamInstancesResultStreamConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResultStreamConfig)(nil)).Elem()
+}
+
+func (i GetStreamInstancesResultStreamConfigArgs) ToGetStreamInstancesResultStreamConfigOutput() GetStreamInstancesResultStreamConfigOutput {
+	return i.ToGetStreamInstancesResultStreamConfigOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstancesResultStreamConfigArgs) ToGetStreamInstancesResultStreamConfigOutputWithContext(ctx context.Context) GetStreamInstancesResultStreamConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultStreamConfigOutput)
+}
+
+type GetStreamInstancesResultStreamConfigOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstancesResultStreamConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResultStreamConfig)(nil)).Elem()
+}
+
+func (o GetStreamInstancesResultStreamConfigOutput) ToGetStreamInstancesResultStreamConfigOutput() GetStreamInstancesResultStreamConfigOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultStreamConfigOutput) ToGetStreamInstancesResultStreamConfigOutputWithContext(ctx context.Context) GetStreamInstancesResultStreamConfigOutput {
+	return o
+}
+
+// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstancesResultStreamConfigOutput) Tier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResultStreamConfig) string { return v.Tier }).(pulumi.StringOutput)
+}
+
 type GetThirdPartyIntegrationsResult struct {
 	AccountId string `pulumi:"accountId"`
 	// Your API Key.
@@ -45878,24 +48268,33 @@ type GetThirdPartyIntegrationsResult struct {
 	ChannelName string `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
 	Enabled *bool `pulumi:"enabled"`
+	// Unique identifier of the integration.
+	Id string `pulumi:"id"`
 	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
 	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+	// * `VICTOR_OPS`
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
+	// * `WEBHOOK`
 	RoutingKey string `pulumi:"routingKey"`
-	// Your Prometheus protocol scheme configured for requests.
+	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme *string `pulumi:"scheme"`
 	// An optional field for your webhook secret.
+	// * `MICROSOFT_TEAMS`
 	Secret string `pulumi:"secret"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
+	// * `DATADOG`
 	ServiceKey string `pulumi:"serviceKey"`
 	TeamName   string `pulumi:"teamName"`
-	// (Required) Thirt-Party service integration type.
+	// Thirt-Party service integration type.
 	Type string `pulumi:"type"`
 	// Your webhook URL.
 	Url string `pulumi:"url"`
@@ -45921,24 +48320,33 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	ChannelName pulumi.StringInput `pulumi:"channelName"`
 	// Whether your cluster has Prometheus enabled.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Unique identifier of the integration.
+	Id pulumi.StringInput `pulumi:"id"`
 	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+	// * `VICTOR_OPS`
 	Region pulumi.StringInput `pulumi:"region"`
 	// An optional field for your Routing Key.
+	// * `WEBHOOK`
 	RoutingKey pulumi.StringInput `pulumi:"routingKey"`
-	// Your Prometheus protocol scheme configured for requests.
+	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	Scheme pulumi.StringPtrInput `pulumi:"scheme"`
 	// An optional field for your webhook secret.
+	// * `MICROSOFT_TEAMS`
 	Secret pulumi.StringInput `pulumi:"secret"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery pulumi.StringPtrInput `pulumi:"serviceDiscovery"`
 	// Your Service Key.
+	// * `DATADOG`
 	ServiceKey pulumi.StringInput `pulumi:"serviceKey"`
 	TeamName   pulumi.StringInput `pulumi:"teamName"`
-	// (Required) Thirt-Party service integration type.
+	// Thirt-Party service integration type.
 	Type pulumi.StringInput `pulumi:"type"`
 	// Your webhook URL.
 	Url pulumi.StringInput `pulumi:"url"`
@@ -46015,7 +48423,13 @@ func (o GetThirdPartyIntegrationsResultOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
+// Unique identifier of the integration.
+func (o GetThirdPartyIntegrationsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
 // Your Microsoft Teams incoming webhook URL.
+// * `PROMETHEUS`
 func (o GetThirdPartyIntegrationsResultOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
 }
@@ -46026,21 +48440,26 @@ func (o GetThirdPartyIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+// * `VICTOR_OPS`
 func (o GetThirdPartyIntegrationsResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // An optional field for your Routing Key.
+// * `WEBHOOK`
 func (o GetThirdPartyIntegrationsResultOutput) RoutingKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.RoutingKey }).(pulumi.StringOutput)
 }
 
-// Your Prometheus protocol scheme configured for requests.
+// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 func (o GetThirdPartyIntegrationsResultOutput) Scheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.Scheme }).(pulumi.StringPtrOutput)
 }
 
 // An optional field for your webhook secret.
+// * `MICROSOFT_TEAMS`
 func (o GetThirdPartyIntegrationsResultOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Secret }).(pulumi.StringOutput)
 }
@@ -46051,6 +48470,7 @@ func (o GetThirdPartyIntegrationsResultOutput) ServiceDiscovery() pulumi.StringP
 }
 
 // Your Service Key.
+// * `DATADOG`
 func (o GetThirdPartyIntegrationsResultOutput) ServiceKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ServiceKey }).(pulumi.StringOutput)
 }
@@ -46059,7 +48479,7 @@ func (o GetThirdPartyIntegrationsResultOutput) TeamName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.TeamName }).(pulumi.StringOutput)
 }
 
-// (Required) Thirt-Party service integration type.
+// Thirt-Party service integration type.
 func (o GetThirdPartyIntegrationsResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -46259,6 +48679,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemMonthlyArrayInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemMonthlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemWeeklyInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemWeeklyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemWeeklyArrayInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemWeeklyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemYearlyInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemYearlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemYearlyArrayInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemYearlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleCopySettingInput)(nil)).Elem(), CloudBackupScheduleCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleCopySettingArrayInput)(nil)).Elem(), CloudBackupScheduleCopySettingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleExportInput)(nil)).Elem(), CloudBackupScheduleExportArgs{})
@@ -46271,6 +48693,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemMonthlyArrayInput)(nil)).Elem(), CloudBackupSchedulePolicyItemMonthlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemWeeklyInput)(nil)).Elem(), CloudBackupSchedulePolicyItemWeeklyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemWeeklyArrayInput)(nil)).Elem(), CloudBackupSchedulePolicyItemWeeklyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemYearlyInput)(nil)).Elem(), CloudBackupSchedulePolicyItemYearlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemYearlyArrayInput)(nil)).Elem(), CloudBackupSchedulePolicyItemYearlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobComponentInput)(nil)).Elem(), CloudBackupSnapshotExportJobComponentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobComponentArrayInput)(nil)).Elem(), CloudBackupSnapshotExportJobComponentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobCustomDataInput)(nil)).Elem(), CloudBackupSnapshotExportJobCustomDataArgs{})
@@ -46411,6 +48835,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamArrayInput)(nil)).Elem(), ProjectTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAssumeRoleInput)(nil)).Elem(), ProviderAssumeRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAssumeRolePtrInput)(nil)).Elem(), ProviderAssumeRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PushBasedLogExportTimeoutsInput)(nil)).Elem(), PushBasedLogExportTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PushBasedLogExportTimeoutsPtrInput)(nil)).Elem(), PushBasedLogExportTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentSpecInput)(nil)).Elem(), SearchDeploymentSpecArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentSpecArrayInput)(nil)).Elem(), SearchDeploymentSpecArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchDeploymentTimeoutsInput)(nil)).Elem(), SearchDeploymentTimeoutsArgs{})
@@ -46421,6 +48847,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceLinkArrayInput)(nil)).Elem(), ServerlessInstanceLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceTagInput)(nil)).Elem(), ServerlessInstanceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceTagArrayInput)(nil)).Elem(), ServerlessInstanceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationInput)(nil)).Elem(), StreamConnectionAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationPtrInput)(nil)).Elem(), StreamConnectionAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionDbRoleToExecuteInput)(nil)).Elem(), StreamConnectionDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionDbRoleToExecutePtrInput)(nil)).Elem(), StreamConnectionDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSecurityInput)(nil)).Elem(), StreamConnectionSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSecurityPtrInput)(nil)).Elem(), StreamConnectionSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceDataProcessRegionInput)(nil)).Elem(), StreamInstanceDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceDataProcessRegionPtrInput)(nil)).Elem(), StreamInstanceDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceStreamConfigInput)(nil)).Elem(), StreamInstanceStreamConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceStreamConfigPtrInput)(nil)).Elem(), StreamInstanceStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateArrayInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Get509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), Get509AuthenticationDatabaseUserCertificateArgs{})
@@ -46528,6 +48964,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemMonthlyArrayInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemMonthlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemWeeklyInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemWeeklyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemWeeklyArrayInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemWeeklyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemYearlyInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemYearlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemYearlyArrayInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemYearlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleCopySettingInput)(nil)).Elem(), GetCloudBackupScheduleCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleCopySettingArrayInput)(nil)).Elem(), GetCloudBackupScheduleCopySettingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleExportInput)(nil)).Elem(), GetCloudBackupScheduleExportArgs{})
@@ -46540,6 +48978,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemMonthlyArrayInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemMonthlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemWeeklyInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemWeeklyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemWeeklyArrayInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemWeeklyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemYearlyInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemYearlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemYearlyArrayInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemYearlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportBucketsResultInput)(nil)).Elem(), GetCloudBackupSnapshotExportBucketsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportBucketsResultArrayInput)(nil)).Elem(), GetCloudBackupSnapshotExportBucketsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobComponentInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobComponentArgs{})
@@ -46866,6 +49306,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierRestoreJobsResultArrayInput)(nil)).Elem(), GetSharedTierRestoreJobsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultInput)(nil)).Elem(), GetSharedTierSnapshotsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultArrayInput)(nil)).Elem(), GetSharedTierSnapshotsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAuthenticationInput)(nil)).Elem(), GetStreamConnectionAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionSecurityInput)(nil)).Elem(), GetStreamConnectionSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultInput)(nil)).Elem(), GetStreamConnectionsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultArrayInput)(nil)).Elem(), GetStreamConnectionsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionsResultDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultSecurityInput)(nil)).Elem(), GetStreamConnectionsResultSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstanceDataProcessRegionInput)(nil)).Elem(), GetStreamInstanceDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstanceStreamConfigInput)(nil)).Elem(), GetStreamInstanceStreamConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultInput)(nil)).Elem(), GetStreamInstancesResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultArrayInput)(nil)).Elem(), GetStreamInstancesResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultDataProcessRegionInput)(nil)).Elem(), GetStreamInstancesResultDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultStreamConfigInput)(nil)).Elem(), GetStreamInstancesResultStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultArrayInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArgs{})
@@ -46916,6 +49370,8 @@ func init() {
 	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemMonthlyArrayOutput{})
 	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemWeeklyOutput{})
 	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemWeeklyArrayOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemYearlyOutput{})
+	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemYearlyArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleCopySettingOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleCopySettingArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleExportOutput{})
@@ -46928,6 +49384,8 @@ func init() {
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemMonthlyArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemWeeklyOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemWeeklyArrayOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemYearlyOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemYearlyArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobComponentOutput{})
 	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobComponentArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobCustomDataOutput{})
@@ -47068,6 +49526,8 @@ func init() {
 	pulumi.RegisterOutputType(ProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(ProviderAssumeRoleOutput{})
 	pulumi.RegisterOutputType(ProviderAssumeRolePtrOutput{})
+	pulumi.RegisterOutputType(PushBasedLogExportTimeoutsOutput{})
+	pulumi.RegisterOutputType(PushBasedLogExportTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(SearchDeploymentSpecOutput{})
 	pulumi.RegisterOutputType(SearchDeploymentSpecArrayOutput{})
 	pulumi.RegisterOutputType(SearchDeploymentTimeoutsOutput{})
@@ -47078,6 +49538,16 @@ func init() {
 	pulumi.RegisterOutputType(ServerlessInstanceLinkArrayOutput{})
 	pulumi.RegisterOutputType(ServerlessInstanceTagOutput{})
 	pulumi.RegisterOutputType(ServerlessInstanceTagArrayOutput{})
+	pulumi.RegisterOutputType(StreamConnectionAuthenticationOutput{})
+	pulumi.RegisterOutputType(StreamConnectionAuthenticationPtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(StreamConnectionDbRoleToExecutePtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionSecurityOutput{})
+	pulumi.RegisterOutputType(StreamConnectionSecurityPtrOutput{})
+	pulumi.RegisterOutputType(StreamInstanceDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(StreamInstanceDataProcessRegionPtrOutput{})
+	pulumi.RegisterOutputType(StreamInstanceStreamConfigOutput{})
+	pulumi.RegisterOutputType(StreamInstanceStreamConfigPtrOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateArrayOutput{})
 	pulumi.RegisterOutputType(Get509AuthenticationDatabaseUserCertificateOutput{})
@@ -47185,6 +49655,8 @@ func init() {
 	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemMonthlyArrayOutput{})
 	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemWeeklyOutput{})
 	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemYearlyOutput{})
+	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemYearlyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleCopySettingOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleCopySettingArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleExportOutput{})
@@ -47197,6 +49669,8 @@ func init() {
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemMonthlyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemWeeklyOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemWeeklyArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemYearlyOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemYearlyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportBucketsResultOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportBucketsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobComponentOutput{})
@@ -47523,6 +49997,20 @@ func init() {
 	pulumi.RegisterOutputType(GetSharedTierRestoreJobsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultOutput{})
 	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionSecurityOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultSecurityOutput{})
+	pulumi.RegisterOutputType(GetStreamInstanceDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(GetStreamInstanceStreamConfigOutput{})
+	pulumi.RegisterOutputType(GetStreamInstancesResultOutput{})
+	pulumi.RegisterOutputType(GetStreamInstancesResultArrayOutput{})
+	pulumi.RegisterOutputType(GetStreamInstancesResultDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(GetStreamInstancesResultStreamConfigOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetX509AuthenticationDatabaseUserCertificateOutput{})

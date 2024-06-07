@@ -119,7 +119,8 @@ class Teams(pulumi.CustomResource):
                  usernames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a Teams resource with the given unique name, props, and options.
+        This resource is deprecated. Please transition to using `Team` which defines the same underlying implementation, aligning the name of the resource with the implementation which manages a single team.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -130,7 +131,8 @@ class Teams(pulumi.CustomResource):
                  args: TeamsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Teams resource with the given unique name, props, and options.
+        This resource is deprecated. Please transition to using `Team` which defines the same underlying implementation, aligning the name of the resource with the implementation which manages a single team.
+
         :param str resource_name: The name of the resource.
         :param TeamsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,8 +26,10 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testRole = new Mongodbatlas.CustomDbRole("testRole", new()
+    ///     var testRole = new Mongodbatlas.CustomDbRole("test_role", new()
     ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         RoleName = "myCustomRole",
     ///         Actions = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.CustomDbRoleActionArgs
@@ -68,17 +69,13 @@ namespace Pulumi.Mongodbatlas
     ///                 },
     ///             },
     ///         },
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         RoleName = "myCustomRole",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### With Inherited Roles
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -87,7 +84,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var inheritedRoleOne = new Mongodbatlas.CustomDbRole("inheritedRoleOne", new()
+    ///     var inheritedRoleOne = new Mongodbatlas.CustomDbRole("inherited_role_one", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         RoleName = "insertRole",
@@ -108,7 +105,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var inheritedRoleTwo = new Mongodbatlas.CustomDbRole("inheritedRoleTwo", new()
+    ///     var inheritedRoleTwo = new Mongodbatlas.CustomDbRole("inherited_role_two", new()
     ///     {
     ///         ProjectId = inheritedRoleOne.ProjectId,
     ///         RoleName = "statusServerRole",
@@ -128,7 +125,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var testRole = new Mongodbatlas.CustomDbRole("testRole", new()
+    ///     var testRole = new Mongodbatlas.CustomDbRole("test_role", new()
     ///     {
     ///         ProjectId = inheritedRoleOne.ProjectId,
     ///         RoleName = "myCustomRole",
@@ -176,7 +173,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

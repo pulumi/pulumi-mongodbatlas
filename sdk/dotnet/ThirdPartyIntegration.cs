@@ -22,7 +22,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,17 +30,16 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("testDatadog", new()
+    ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
     ///     {
-    ///         ApiKey = "&lt;API-KEY&gt;",
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         Region = "&lt;REGION&gt;",
     ///         Type = "DATADOG",
+    ///         ApiKey = "&lt;API-KEY&gt;",
+    ///         Region = "&lt;REGION&gt;",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -55,30 +53,18 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration")]
     public partial class ThirdPartyIntegration : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Your API Key.
-        /// </summary>
         [Output("apiKey")]
         public Output<string> ApiKey { get; private set; } = null!;
 
         [Output("channelName")]
         public Output<string> ChannelName { get; private set; } = null!;
 
-        /// <summary>
-        /// Whether your cluster has Prometheus enabled.
-        /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
 
-        /// <summary>
-        /// Your Microsoft Teams incoming webhook URL.
-        /// </summary>
         [Output("microsoftTeamsWebhookUrl")]
         public Output<string> MicrosoftTeamsWebhookUrl { get; private set; } = null!;
 
-        /// <summary>
-        /// Your Prometheus password.
-        /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
 
@@ -88,39 +74,21 @@ namespace Pulumi.Mongodbatlas
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
-        /// <summary>
-        /// Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-        /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
-        /// <summary>
-        /// An optional field for your Routing Key.
-        /// </summary>
         [Output("routingKey")]
         public Output<string> RoutingKey { get; private set; } = null!;
 
-        /// <summary>
-        /// Your Prometheus protocol scheme configured for requests.
-        /// </summary>
         [Output("scheme")]
         public Output<string> Scheme { get; private set; } = null!;
 
-        /// <summary>
-        /// An optional field for your webhook secret.
-        /// </summary>
         [Output("secret")]
         public Output<string?> Secret { get; private set; } = null!;
 
-        /// <summary>
-        /// Indicates which service discovery method is used, either file or http.
-        /// </summary>
         [Output("serviceDiscovery")]
         public Output<string> ServiceDiscovery { get; private set; } = null!;
 
-        /// <summary>
-        /// Your Service Key.
-        /// </summary>
         [Output("serviceKey")]
         public Output<string> ServiceKey { get; private set; } = null!;
 
@@ -136,19 +104,16 @@ namespace Pulumi.Mongodbatlas
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
+        /// 
+        /// 
+        /// * `PAGER_DUTY`
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
-        /// <summary>
-        /// Your webhook URL.
-        /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
 
-        /// <summary>
-        /// Your Prometheus username.
-        /// </summary>
         [Output("userName")]
         public Output<string> UserName { get; private set; } = null!;
 
@@ -211,10 +176,6 @@ namespace Pulumi.Mongodbatlas
     {
         [Input("apiKey")]
         private Input<string>? _apiKey;
-
-        /// <summary>
-        /// Your API Key.
-        /// </summary>
         public Input<string>? ApiKey
         {
             get => _apiKey;
@@ -228,18 +189,11 @@ namespace Pulumi.Mongodbatlas
         [Input("channelName")]
         public Input<string>? ChannelName { get; set; }
 
-        /// <summary>
-        /// Whether your cluster has Prometheus enabled.
-        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         [Input("microsoftTeamsWebhookUrl")]
         private Input<string>? _microsoftTeamsWebhookUrl;
-
-        /// <summary>
-        /// Your Microsoft Teams incoming webhook URL.
-        /// </summary>
         public Input<string>? MicrosoftTeamsWebhookUrl
         {
             get => _microsoftTeamsWebhookUrl;
@@ -252,10 +206,6 @@ namespace Pulumi.Mongodbatlas
 
         [Input("password")]
         private Input<string>? _password;
-
-        /// <summary>
-        /// Your Prometheus password.
-        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -272,18 +222,11 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
-        /// <summary>
-        /// Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         [Input("routingKey")]
         private Input<string>? _routingKey;
-
-        /// <summary>
-        /// An optional field for your Routing Key.
-        /// </summary>
         public Input<string>? RoutingKey
         {
             get => _routingKey;
@@ -294,18 +237,11 @@ namespace Pulumi.Mongodbatlas
             }
         }
 
-        /// <summary>
-        /// Your Prometheus protocol scheme configured for requests.
-        /// </summary>
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }
 
         [Input("secret")]
         private Input<string>? _secret;
-
-        /// <summary>
-        /// An optional field for your webhook secret.
-        /// </summary>
         public Input<string>? Secret
         {
             get => _secret;
@@ -318,10 +254,6 @@ namespace Pulumi.Mongodbatlas
 
         [Input("serviceDiscovery")]
         private Input<string>? _serviceDiscovery;
-
-        /// <summary>
-        /// Indicates which service discovery method is used, either file or http.
-        /// </summary>
         public Input<string>? ServiceDiscovery
         {
             get => _serviceDiscovery;
@@ -334,10 +266,6 @@ namespace Pulumi.Mongodbatlas
 
         [Input("serviceKey")]
         private Input<string>? _serviceKey;
-
-        /// <summary>
-        /// Your Service Key.
-        /// </summary>
         public Input<string>? ServiceKey
         {
             get => _serviceKey;
@@ -360,22 +288,18 @@ namespace Pulumi.Mongodbatlas
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
+        /// 
+        /// 
+        /// * `PAGER_DUTY`
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
-        /// <summary>
-        /// Your webhook URL.
-        /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 
         [Input("userName")]
         private Input<string>? _userName;
-
-        /// <summary>
-        /// Your Prometheus username.
-        /// </summary>
         public Input<string>? UserName
         {
             get => _userName;
@@ -396,10 +320,6 @@ namespace Pulumi.Mongodbatlas
     {
         [Input("apiKey")]
         private Input<string>? _apiKey;
-
-        /// <summary>
-        /// Your API Key.
-        /// </summary>
         public Input<string>? ApiKey
         {
             get => _apiKey;
@@ -413,18 +333,11 @@ namespace Pulumi.Mongodbatlas
         [Input("channelName")]
         public Input<string>? ChannelName { get; set; }
 
-        /// <summary>
-        /// Whether your cluster has Prometheus enabled.
-        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         [Input("microsoftTeamsWebhookUrl")]
         private Input<string>? _microsoftTeamsWebhookUrl;
-
-        /// <summary>
-        /// Your Microsoft Teams incoming webhook URL.
-        /// </summary>
         public Input<string>? MicrosoftTeamsWebhookUrl
         {
             get => _microsoftTeamsWebhookUrl;
@@ -437,10 +350,6 @@ namespace Pulumi.Mongodbatlas
 
         [Input("password")]
         private Input<string>? _password;
-
-        /// <summary>
-        /// Your Prometheus password.
-        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -457,18 +366,11 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
-        /// <summary>
-        /// Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         [Input("routingKey")]
         private Input<string>? _routingKey;
-
-        /// <summary>
-        /// An optional field for your Routing Key.
-        /// </summary>
         public Input<string>? RoutingKey
         {
             get => _routingKey;
@@ -479,18 +381,11 @@ namespace Pulumi.Mongodbatlas
             }
         }
 
-        /// <summary>
-        /// Your Prometheus protocol scheme configured for requests.
-        /// </summary>
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }
 
         [Input("secret")]
         private Input<string>? _secret;
-
-        /// <summary>
-        /// An optional field for your webhook secret.
-        /// </summary>
         public Input<string>? Secret
         {
             get => _secret;
@@ -503,10 +398,6 @@ namespace Pulumi.Mongodbatlas
 
         [Input("serviceDiscovery")]
         private Input<string>? _serviceDiscovery;
-
-        /// <summary>
-        /// Indicates which service discovery method is used, either file or http.
-        /// </summary>
         public Input<string>? ServiceDiscovery
         {
             get => _serviceDiscovery;
@@ -519,10 +410,6 @@ namespace Pulumi.Mongodbatlas
 
         [Input("serviceKey")]
         private Input<string>? _serviceKey;
-
-        /// <summary>
-        /// Your Service Key.
-        /// </summary>
         public Input<string>? ServiceKey
         {
             get => _serviceKey;
@@ -545,22 +432,18 @@ namespace Pulumi.Mongodbatlas
         /// * WEBHOOK
         /// * MICROSOFT_TEAMS
         /// * PROMETHEUS
+        /// 
+        /// 
+        /// * `PAGER_DUTY`
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
-        /// <summary>
-        /// Your webhook URL.
-        /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 
         [Input("userName")]
         private Input<string>? _userName;
-
-        /// <summary>
-        /// Your Prometheus username.
-        /// </summary>
         public Input<string>? UserName
         {
             get => _userName;

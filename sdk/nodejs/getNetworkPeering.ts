@@ -12,6 +12,27 @@ import * as utilities from "./utilities";
  * > **NOTE:** If you need to get an existing container ID see the How-To Guide.
  *
  * ## Example Usage
+ *
+ * ### Basic Example (AWS).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
+ *     accepterRegionName: "us-east-1",
+ *     projectId: "<YOUR-PROJEC-ID>",
+ *     containerId: "507f1f77bcf86cd799439011",
+ *     providerName: "AWS",
+ *     routeTableCidrBlock: "192.168.0.0/24",
+ *     vpcId: "vpc-abc123abc123",
+ *     awsAccountId: "abc123abc123",
+ * });
+ * const test = mongodbatlas.getNetworkPeeringOutput({
+ *     projectId: testNetworkPeering.projectId,
+ *     peeringId: testNetworkPeering.id,
+ * });
+ * ```
  */
 export function getNetworkPeering(args: GetNetworkPeeringArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkPeeringResult> {
 
@@ -126,6 +147,27 @@ export interface GetNetworkPeeringResult {
  * > **NOTE:** If you need to get an existing container ID see the How-To Guide.
  *
  * ## Example Usage
+ *
+ * ### Basic Example (AWS).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
+ *     accepterRegionName: "us-east-1",
+ *     projectId: "<YOUR-PROJEC-ID>",
+ *     containerId: "507f1f77bcf86cd799439011",
+ *     providerName: "AWS",
+ *     routeTableCidrBlock: "192.168.0.0/24",
+ *     vpcId: "vpc-abc123abc123",
+ *     awsAccountId: "abc123abc123",
+ * });
+ * const test = mongodbatlas.getNetworkPeeringOutput({
+ *     projectId: testNetworkPeering.projectId,
+ *     peeringId: testNetworkPeering.id,
+ * });
+ * ```
  */
 export function getNetworkPeeringOutput(args: GetNetworkPeeringOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkPeeringResult> {
     return pulumi.output(args).apply((a: any) => getNetworkPeering(a, opts))

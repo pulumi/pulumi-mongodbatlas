@@ -11,23 +11,21 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("orgConnections", {
+ * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("org_connections", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
  *     orgId: "627a9683ea7ff7f74de306f14",
  *     domainRestrictionEnabled: false,
  *     domainAllowLists: ["mydomain.com"],
  *     postAuthRoleGrants: ["ORG_MEMBER"],
  * });
- * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigsOutput({
- *     federationSettingsId: orgConnections.id,
+ * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigs({
+ *     federationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedSettingsOrgConfigs(args: GetFederatedSettingsOrgConfigsArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgConfigsResult> {
 
@@ -73,6 +71,7 @@ export interface GetFederatedSettingsOrgConfigsResult {
     readonly pageNum?: number;
     /**
      * Includes cloudProviderSnapshot object for each item detailed in the results array section.
+     * * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
      */
     readonly results: outputs.GetFederatedSettingsOrgConfigsResult[];
 }
@@ -81,23 +80,21 @@ export interface GetFederatedSettingsOrgConfigsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("orgConnections", {
+ * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("org_connections", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
  *     orgId: "627a9683ea7ff7f74de306f14",
  *     domainRestrictionEnabled: false,
  *     domainAllowLists: ["mydomain.com"],
  *     postAuthRoleGrants: ["ORG_MEMBER"],
  * });
- * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigsOutput({
- *     federationSettingsId: orgConnections.id,
+ * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigs({
+ *     federationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedSettingsOrgConfigsOutput(args: GetFederatedSettingsOrgConfigsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsOrgConfigsResult> {
     return pulumi.output(args).apply((a: any) => getFederatedSettingsOrgConfigs(a, opts))

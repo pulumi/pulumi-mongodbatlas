@@ -172,6 +172,93 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_alert_configuration = mongodbatlas.AlertConfiguration("test",
+        project_id="<PROJECT-ID>",
+        event_type="OUTSIDE_METRIC_THRESHOLD",
+        enabled=True,
+        notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+            type_name="GROUP",
+            interval_min=5,
+            delay_min=0,
+            sms_enabled=False,
+            email_enabled=True,
+        )],
+        matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+            field_name="HOSTNAME_AND_PORT",
+            operator="EQUALS",
+            value="SECONDARY",
+        )],
+        metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
+            metric_name="ASSERT_REGULAR",
+            operator="LESS_THAN",
+            threshold=99,
+            units="RAW",
+            mode="AVERAGE",
+        ))
+    test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
+        alert_configuration_id=test_alert_configuration.alert_configuration_id)
+    ```
+
+    > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_alert_configuration = mongodbatlas.AlertConfiguration("test",
+        project_id="<PROJECT-ID>",
+        event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+        enabled=True,
+        notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+            type_name="GROUP",
+            interval_min=5,
+            delay_min=0,
+            sms_enabled=False,
+            email_enabled=True,
+            roles=[
+                "GROUP_CHARTS_ADMIN",
+                "GROUP_CLUSTER_MANAGER",
+            ],
+        )],
+        matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+            field_name="HOSTNAME_AND_PORT",
+            operator="EQUALS",
+            value="SECONDARY",
+        )],
+        threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
+            operator="LESS_THAN",
+            threshold=1,
+            units="HOURS",
+        ))
+    test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
+        alert_configuration_id=test_alert_configuration.alert_configuration_id)
+    ```
+
+    Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_alert_configuration(project_id=project_id,
+        alert_configuration_id=alert_configuration_id,
+        outputs=[
+            mongodbatlas.GetAlertConfigurationOutputArgs(
+                type="resource_hcl",
+                label="test",
+            ),
+            mongodbatlas.GetAlertConfigurationOutputArgs(
+                type="resource_import",
+                label="test",
+            ),
+        ])
+    ```
+
 
     :param str alert_configuration_id: Unique identifier for the alert configuration.
     :param Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']] outputs: List of formatted output requested for this alert configuration
@@ -209,6 +296,93 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
     `AlertConfiguration` describes an Alert Configuration.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_alert_configuration = mongodbatlas.AlertConfiguration("test",
+        project_id="<PROJECT-ID>",
+        event_type="OUTSIDE_METRIC_THRESHOLD",
+        enabled=True,
+        notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+            type_name="GROUP",
+            interval_min=5,
+            delay_min=0,
+            sms_enabled=False,
+            email_enabled=True,
+        )],
+        matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+            field_name="HOSTNAME_AND_PORT",
+            operator="EQUALS",
+            value="SECONDARY",
+        )],
+        metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
+            metric_name="ASSERT_REGULAR",
+            operator="LESS_THAN",
+            threshold=99,
+            units="RAW",
+            mode="AVERAGE",
+        ))
+    test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
+        alert_configuration_id=test_alert_configuration.alert_configuration_id)
+    ```
+
+    > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_alert_configuration = mongodbatlas.AlertConfiguration("test",
+        project_id="<PROJECT-ID>",
+        event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+        enabled=True,
+        notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+            type_name="GROUP",
+            interval_min=5,
+            delay_min=0,
+            sms_enabled=False,
+            email_enabled=True,
+            roles=[
+                "GROUP_CHARTS_ADMIN",
+                "GROUP_CLUSTER_MANAGER",
+            ],
+        )],
+        matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+            field_name="HOSTNAME_AND_PORT",
+            operator="EQUALS",
+            value="SECONDARY",
+        )],
+        threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
+            operator="LESS_THAN",
+            threshold=1,
+            units="HOURS",
+        ))
+    test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
+        alert_configuration_id=test_alert_configuration.alert_configuration_id)
+    ```
+
+    Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_alert_configuration(project_id=project_id,
+        alert_configuration_id=alert_configuration_id,
+        outputs=[
+            mongodbatlas.GetAlertConfigurationOutputArgs(
+                type="resource_hcl",
+                label="test",
+            ),
+            mongodbatlas.GetAlertConfigurationOutputArgs(
+                type="resource_import",
+                label="test",
+            ),
+        ])
+    ```
 
 
     :param str alert_configuration_id: Unique identifier for the alert configuration.

@@ -22,7 +22,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -36,8 +35,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewOrganization(ctx, "test", &mongodbatlas.OrganizationArgs{
-//				Description: pulumi.String("test API key from Org Creation Test"),
 //				OrgOwnerId:  pulumi.String("6205e5fffff79cde6f"),
+//				Name:        pulumi.String("testCreateORG"),
+//				Description: pulumi.String("test API key from Org Creation Test"),
 //				RoleNames: pulumi.StringArray{
 //					pulumi.String("ORG_OWNER"),
 //				},
@@ -50,7 +50,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type Organization struct {
 	pulumi.CustomResourceState
 

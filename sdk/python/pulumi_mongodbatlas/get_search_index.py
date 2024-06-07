@@ -234,16 +234,14 @@ def get_search_index(analyzer: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_search_index(cluster_name="<CLUSTER_NAME>",
-        index_id="<INDEX_ID",
-        project_id="<PROJECT_ID>")
+    test = mongodbatlas.get_search_index(index_id="<INDEX_ID",
+        project_id="<PROJECT_ID>",
+        cluster_name="<CLUSTER_NAME>")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
@@ -316,16 +314,14 @@ def get_search_index_output(analyzer: Optional[pulumi.Input[Optional[str]]] = No
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_search_index(cluster_name="<CLUSTER_NAME>",
-        index_id="<INDEX_ID",
-        project_id="<PROJECT_ID>")
+    test = mongodbatlas.get_search_index(index_id="<INDEX_ID",
+        project_id="<PROJECT_ID>",
+        cluster_name="<CLUSTER_NAME>")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.

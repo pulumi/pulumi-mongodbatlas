@@ -48,7 +48,8 @@ import javax.annotation.Nullable;
  * ### Example single provider and single region
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -70,35 +71,38 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AdvancedCluster(&#34;test&#34;, AdvancedClusterArgs.builder()        
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .projectId(&#34;PROJECT ID&#34;)
+ *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
  *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
  *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                     .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                         .instanceSize(&#34;M10&#34;)
- *                         .nodeCount(1)
- *                         .build())
  *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                         .instanceSize(&#34;M10&#34;)
+ *                         .instanceSize("M10")
  *                         .nodeCount(3)
  *                         .build())
+ *                     .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(1)
+ *                         .build())
+ *                     .providerName("AWS")
  *                     .priority(7)
- *                     .providerName(&#34;AWS&#34;)
- *                     .regionName(&#34;US_EAST_1&#34;)
+ *                     .regionName("US_EAST_1")
  *                     .build())
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Tenant Cluster
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -120,31 +124,34 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AdvancedCluster(&#34;test&#34;, AdvancedClusterArgs.builder()        
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .projectId(&#34;PROJECT ID&#34;)
+ *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
  *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
  *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                     .backingProviderName(&#34;AWS&#34;)
  *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                         .instanceSize(&#34;M5&#34;)
+ *                         .instanceSize("M5")
  *                         .build())
+ *                     .providerName("TENANT")
+ *                     .backingProviderName("AWS")
+ *                     .regionName("US_EAST_1")
  *                     .priority(7)
- *                     .providerName(&#34;TENANT&#34;)
- *                     .regionName(&#34;US_EAST_1&#34;)
  *                     .build())
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Tenant Cluster Upgrade
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -166,29 +173,32 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AdvancedCluster(&#34;test&#34;, AdvancedClusterArgs.builder()        
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .projectId(&#34;PROJECT ID&#34;)
+ *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
  *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
  *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                         .instanceSize(&#34;M10&#34;)
+ *                         .instanceSize("M10")
  *                         .build())
+ *                     .providerName("AWS")
+ *                     .regionName("US_EAST_1")
  *                     .priority(7)
- *                     .providerName(&#34;AWS&#34;)
- *                     .regionName(&#34;US_EAST_1&#34;)
  *                     .build())
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Multi-Cloud Cluster
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -210,44 +220,47 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AdvancedCluster(&#34;test&#34;, AdvancedClusterArgs.builder()        
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .projectId(&#34;PROJECT ID&#34;)
+ *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
  *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
  *                 .regionConfigs(                
  *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                         .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
- *                             .nodeCount(1)
- *                             .build())
  *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
+ *                             .instanceSize("M10")
  *                             .nodeCount(3)
  *                             .build())
+ *                         .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
+ *                             .instanceSize("M10")
+ *                             .nodeCount(1)
+ *                             .build())
+ *                         .providerName("AWS")
  *                         .priority(7)
- *                         .providerName(&#34;AWS&#34;)
- *                         .regionName(&#34;US_EAST_1&#34;)
+ *                         .regionName("US_EAST_1")
  *                         .build(),
  *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
+ *                             .instanceSize("M10")
  *                             .nodeCount(2)
  *                             .build())
+ *                         .providerName("GCP")
  *                         .priority(6)
- *                         .providerName(&#34;GCP&#34;)
- *                         .regionName(&#34;NORTH_AMERICA_NORTHEAST_1&#34;)
+ *                         .regionName("NORTH_AMERICA_NORTHEAST_1")
  *                         .build())
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * ### Example of a Multi-Cloud Cluster
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -270,51 +283,52 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cluster = new AdvancedCluster(&#34;cluster&#34;, AdvancedClusterArgs.builder()        
- *             .projectId(mongodbatlas_project.project().id())
- *             .clusterType(&#34;SHARDED&#34;)
+ *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+ *             .projectId(project.id())
+ *             .name(clusterName)
+ *             .clusterType("SHARDED")
  *             .backupEnabled(true)
  *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
  *                 .numShards(3)
  *                 .regionConfigs(                
  *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
+ *                             .instanceSize("M10")
  *                             .nodeCount(3)
  *                             .build())
  *                         .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
+ *                             .instanceSize("M10")
  *                             .nodeCount(1)
  *                             .build())
- *                         .providerName(&#34;AWS&#34;)
+ *                         .providerName("AWS")
  *                         .priority(7)
- *                         .regionName(&#34;US_EAST_1&#34;)
+ *                         .regionName("US_EAST_1")
  *                         .build(),
  *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
+ *                             .instanceSize("M10")
  *                             .nodeCount(2)
  *                             .build())
  *                         .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
+ *                             .instanceSize("M10")
  *                             .nodeCount(1)
  *                             .build())
- *                         .providerName(&#34;AZURE&#34;)
+ *                         .providerName("AZURE")
  *                         .priority(6)
- *                         .regionName(&#34;US_EAST_2&#34;)
+ *                         .regionName("US_EAST_2")
  *                         .build(),
  *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
+ *                             .instanceSize("M10")
  *                             .nodeCount(2)
  *                             .build())
  *                         .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
+ *                             .instanceSize("M10")
  *                             .nodeCount(1)
  *                             .build())
- *                         .providerName(&#34;GCP&#34;)
+ *                         .providerName("GCP")
  *                         .priority(5)
- *                         .regionName(&#34;US_EAST_4&#34;)
+ *                         .regionName("US_EAST_4")
  *                         .build())
  *                 .build())
  *             .advancedConfiguration(AdvancedClusterAdvancedConfigurationArgs.builder()
@@ -326,12 +340,14 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example of a Global Cluster
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -354,97 +370,98 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cluster = new AdvancedCluster(&#34;cluster&#34;, AdvancedClusterArgs.builder()        
- *             .projectId(mongodbatlas_project.project().id())
- *             .clusterType(&#34;GEOSHARDED&#34;)
+ *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+ *             .projectId(project.id())
+ *             .name(clusterName)
+ *             .clusterType("GEOSHARDED")
  *             .backupEnabled(true)
  *             .replicationSpecs(            
  *                 AdvancedClusterReplicationSpecArgs.builder()
- *                     .zoneName(&#34;zone n1&#34;)
+ *                     .zoneName("zone n1")
  *                     .numShards(3)
  *                     .regionConfigs(                    
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize(&#34;M10&#34;)
+ *                                 .instanceSize("M10")
  *                                 .nodeCount(3)
  *                                 .build())
  *                             .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                                 .instanceSize(&#34;M10&#34;)
+ *                                 .instanceSize("M10")
  *                                 .nodeCount(1)
  *                                 .build())
- *                             .providerName(&#34;AWS&#34;)
+ *                             .providerName("AWS")
  *                             .priority(7)
- *                             .regionName(&#34;US_EAST_1&#34;)
+ *                             .regionName("US_EAST_1")
  *                             .build(),
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize(&#34;M10&#34;)
+ *                                 .instanceSize("M10")
  *                                 .nodeCount(2)
  *                                 .build())
  *                             .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                                 .instanceSize(&#34;M10&#34;)
+ *                                 .instanceSize("M10")
  *                                 .nodeCount(1)
  *                                 .build())
- *                             .providerName(&#34;AZURE&#34;)
+ *                             .providerName("AZURE")
  *                             .priority(6)
- *                             .regionName(&#34;US_EAST_2&#34;)
+ *                             .regionName("US_EAST_2")
  *                             .build(),
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize(&#34;M10&#34;)
+ *                                 .instanceSize("M10")
  *                                 .nodeCount(2)
  *                                 .build())
  *                             .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                                 .instanceSize(&#34;M10&#34;)
+ *                                 .instanceSize("M10")
  *                                 .nodeCount(1)
  *                                 .build())
- *                             .providerName(&#34;GCP&#34;)
+ *                             .providerName("GCP")
  *                             .priority(5)
- *                             .regionName(&#34;US_EAST_4&#34;)
+ *                             .regionName("US_EAST_4")
  *                             .build())
  *                     .build(),
  *                 AdvancedClusterReplicationSpecArgs.builder()
- *                     .zoneName(&#34;zone n2&#34;)
+ *                     .zoneName("zone n2")
  *                     .numShards(2)
  *                     .regionConfigs(                    
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize(&#34;M10&#34;)
+ *                                 .instanceSize("M10")
  *                                 .nodeCount(3)
  *                                 .build())
  *                             .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                                 .instanceSize(&#34;M10&#34;)
+ *                                 .instanceSize("M10")
  *                                 .nodeCount(1)
  *                                 .build())
- *                             .providerName(&#34;AWS&#34;)
+ *                             .providerName("AWS")
  *                             .priority(7)
- *                             .regionName(&#34;EU_WEST_1&#34;)
+ *                             .regionName("EU_WEST_1")
  *                             .build(),
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize(&#34;M10&#34;)
+ *                                 .instanceSize("M10")
  *                                 .nodeCount(2)
  *                                 .build())
  *                             .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                                 .instanceSize(&#34;M10&#34;)
+ *                                 .instanceSize("M10")
  *                                 .nodeCount(1)
  *                                 .build())
- *                             .providerName(&#34;AZURE&#34;)
+ *                             .providerName("AZURE")
  *                             .priority(6)
- *                             .regionName(&#34;EUROPE_NORTH&#34;)
+ *                             .regionName("EUROPE_NORTH")
  *                             .build(),
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize(&#34;M10&#34;)
+ *                                 .instanceSize("M10")
  *                                 .nodeCount(2)
  *                                 .build())
  *                             .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                                 .instanceSize(&#34;M10&#34;)
+ *                                 .instanceSize("M10")
  *                                 .nodeCount(1)
  *                                 .build())
- *                             .providerName(&#34;GCP&#34;)
+ *                             .providerName("GCP")
  *                             .priority(5)
- *                             .regionName(&#34;US_EAST_4&#34;)
+ *                             .regionName("US_EAST_4")
  *                             .build())
  *                     .build())
  *             .advancedConfiguration(AdvancedClusterAdvancedConfigurationArgs.builder()
@@ -456,13 +473,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example - Return a Connection String
  * Standard
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -481,14 +500,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export(&#34;standard&#34;, mongodbatlas_cluster.cluster-test().connection_strings()[0].standard());
+ *         ctx.export("standard", cluster_test.connectionStrings()[0].standard());
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * Standard srv
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -507,68 +528,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export(&#34;standardSrv&#34;, mongodbatlas_cluster.cluster-test().connection_strings()[0].standard_srv());
+ *         ctx.export("standardSrv", cluster_test.connectionStrings()[0].standardSrv());
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * Private with Network peering and Custom DNS AWS enabled
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         ctx.export(&#34;private&#34;, mongodbatlas_cluster.cluster-test().connection_strings()[0].private());
- *         // Example return string: private = &#34;mongodb://cluster-atlas-shard-00-00-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-01-pri.ygo1m.mongodb.net:27017,cluster-atlas-shard-00-02-pri.ygo1m.mongodb.net:27017/?ssl=true&amp;authSource=admin&amp;replicaSet=atlas-12diht-shard-0&#34;
- *         final var private = &#34;mongodb+srv://cluster-atlas-pri.ygo1m.mongodb.net&#34;;
- * 
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * Private srv with Network peering and Custom DNS AWS enabled
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         ctx.export(&#34;privateSrv&#34;, mongodbatlas_cluster.cluster-test().connection_strings()[0].private_srv());
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * By endpoint_service_id
  * ## Import
  * 
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -662,6 +628,9 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     /**
      * Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     @Export(name="clusterType", refs={String.class}, tree="[0]")
@@ -670,6 +639,9 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     /**
      * @return Type of the cluster that you want to create.
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED`	Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     public Output<String> clusterType() {
@@ -727,10 +699,10 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
     @Export(name="labels", refs={List.class,AdvancedClusterLabel.class}, tree="[0,1]")
     private Output</* @Nullable */ List<AdvancedClusterLabel>> labels;
 
@@ -742,14 +714,14 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.labels);
     }
     /**
-     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
      * 
      */
     @Export(name="mongoDbMajorVersion", refs={String.class}, tree="[0]")
     private Output<String> mongoDbMajorVersion;
 
     /**
-     * @return Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
+     * @return Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.&lt;type&gt;Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
      * 
      */
     public Output<String> mongoDbMajorVersion() {
@@ -915,6 +887,8 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     }
     /**
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
      * 
      */
     @Export(name="versionReleaseSystem", refs={String.class}, tree="[0]")
@@ -922,6 +896,8 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
      * 
      */
     public Output<String> versionReleaseSystem() {

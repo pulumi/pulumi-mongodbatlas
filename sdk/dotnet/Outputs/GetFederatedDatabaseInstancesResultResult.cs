@@ -26,6 +26,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string ProjectId;
         /// <summary>
         /// Current state of the Federated Database Instance:
+        /// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+        /// * `DELETED` - The Federated Database Instance was deleted.
         /// </summary>
         public readonly string State;
         /// <summary>

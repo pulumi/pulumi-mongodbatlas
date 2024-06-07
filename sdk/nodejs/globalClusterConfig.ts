@@ -11,17 +11,19 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
+ * > **IMPORTANT:** A Global Cluster Configuration, once created, can only be deleted. You can recreate the Global Cluster with the same data only in the Atlas UI. This is because the configuration and its related collection with shard key and indexes are managed separately and they would end up in an inconsistent state. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/)
+ *
  * ## Examples Usage
  *
  * ### Example Global cluster
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.Cluster("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "<CLUSTER-NAME>",
  *     cloudBackup: true,
  *     clusterType: "GEOSHARDED",
  *     providerName: "AWS",
@@ -65,17 +67,16 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Global cluster config
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
  *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
  *     clusterType: "REPLICASET",
  *     replicationSpecs: [{
  *         numShards: 1,
@@ -88,13 +89,13 @@ import * as utilities from "./utilities";
  *     }],
  *     backupEnabled: true,
  *     autoScalingDiskGbEnabled: true,
- *     mongoDbMajorVersion: "4.0",
+ *     mongoDbMajorVersion: "7.0",
  *     providerName: "AWS",
  *     providerInstanceSizeName: "M40",
  * });
  * const config = new mongodbatlas.GlobalClusterConfig("config", {
- *     projectId: mongodbatlas_cluster.test.project_id,
- *     clusterName: mongodbatlas_cluster.test.name,
+ *     projectId: test.projectId,
+ *     clusterName: test.name,
  *     managedNamespaces: [{
  *         db: "mydata",
  *         collection: "publishers",
@@ -106,7 +107,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -13,13 +13,13 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", {
+ * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     name: "mongodb_federation_test",
  *     associatedDomains: ["yourdomain.com"],
  *     ssoDebugEnabled: true,
  *     status: "ACTIVE",
@@ -30,10 +30,9 @@ import * as utilities from "./utilities";
  * });
  * const identityProviderDs = mongodbatlas.getFederatedSettingsIdentityProviderOutput({
  *     federationSettingsId: identityProvider.id,
- *     identityProviderId: "0oad47f7fXnk1297",
+ *     identityProviderId: "0oad4fas87jL5Xnk12971234",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedSettingsIdentityProvider(args: GetFederatedSettingsIdentityProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsIdentityProviderResult> {
 
@@ -52,6 +51,9 @@ export interface GetFederatedSettingsIdentityProviderArgs {
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
     federationSettingsId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the IdP.
+     */
     identityProviderId: string;
 }
 
@@ -157,13 +159,13 @@ export interface GetFederatedSettingsIdentityProviderResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", {
+ * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     name: "mongodb_federation_test",
  *     associatedDomains: ["yourdomain.com"],
  *     ssoDebugEnabled: true,
  *     status: "ACTIVE",
@@ -174,10 +176,9 @@ export interface GetFederatedSettingsIdentityProviderResult {
  * });
  * const identityProviderDs = mongodbatlas.getFederatedSettingsIdentityProviderOutput({
  *     federationSettingsId: identityProvider.id,
- *     identityProviderId: "0oad47f7fXnk1297",
+ *     identityProviderId: "0oad4fas87jL5Xnk12971234",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedSettingsIdentityProviderOutput(args: GetFederatedSettingsIdentityProviderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsIdentityProviderResult> {
     return pulumi.output(args).apply((a: any) => getFederatedSettingsIdentityProvider(a, opts))
@@ -191,5 +192,8 @@ export interface GetFederatedSettingsIdentityProviderOutputArgs {
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
     federationSettingsId: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the IdP.
+     */
     identityProviderId: pulumi.Input<string>;
 }

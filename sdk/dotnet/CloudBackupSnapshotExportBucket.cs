@@ -16,7 +16,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,15 +26,14 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
     ///     {
+    ///         ProjectId = "{PROJECT_ID}",
+    ///         IamRoleId = "{IAM_ROLE_ID}",
     ///         BucketName = "example-bucket",
     ///         CloudProvider = "AWS",
-    ///         IamRoleId = "{IAM_ROLE_ID}",
-    ///         ProjectId = "{PROJECT_ID}",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

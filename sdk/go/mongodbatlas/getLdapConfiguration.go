@@ -14,6 +14,47 @@ import (
 // `LdapConfiguration` describes a LDAP Configuration.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testProject, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("NAME OF THE PROJECT"),
+//				OrgId: pulumi.String("ORG ID"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testLdapConfiguration, err := mongodbatlas.NewLdapConfiguration(ctx, "test", &mongodbatlas.LdapConfigurationArgs{
+//				ProjectId:             testProject.ID(),
+//				AuthenticationEnabled: pulumi.Bool(true),
+//				Hostname:              pulumi.String("HOSTNAME"),
+//				Port:                  pulumi.Int(636),
+//				BindUsername:          pulumi.String("USERNAME"),
+//				BindPassword:          pulumi.String("PASSWORD"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupLdapConfigurationOutput(ctx, mongodbatlas.GetLdapConfigurationOutputArgs{
+//				ProjectId: testLdapConfiguration.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupLdapConfiguration(ctx *pulumi.Context, args *LookupLdapConfigurationArgs, opts ...pulumi.InvokeOption) (*LookupLdapConfigurationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLdapConfigurationResult
@@ -52,9 +93,6 @@ type LookupLdapConfigurationResult struct {
 	Port      int    `pulumi:"port"`
 	ProjectId string `pulumi:"projectId"`
 	// Maps an LDAP username for authentication to an LDAP Distinguished Name (DN).
-	// * `user_to_dn_mapping.0.match` - A regular expression to match against a provided LDAP username.
-	// * `user_to_dn_mapping.0.substitution` - An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
-	// * `user_to_dn_mapping.0.ldap_query` - An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
 	UserToDnMappings []GetLdapConfigurationUserToDnMapping `pulumi:"userToDnMappings"`
 }
 
@@ -146,9 +184,6 @@ func (o LookupLdapConfigurationResultOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Maps an LDAP username for authentication to an LDAP Distinguished Name (DN).
-// * `user_to_dn_mapping.0.match` - A regular expression to match against a provided LDAP username.
-// * `user_to_dn_mapping.0.substitution` - An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
-// * `user_to_dn_mapping.0.ldap_query` - An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
 func (o LookupLdapConfigurationResultOutput) UserToDnMappings() GetLdapConfigurationUserToDnMappingArrayOutput {
 	return o.ApplyT(func(v LookupLdapConfigurationResult) []GetLdapConfigurationUserToDnMapping { return v.UserToDnMappings }).(GetLdapConfigurationUserToDnMappingArrayOutput)
 }

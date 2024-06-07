@@ -24,7 +24,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,16 +34,14 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.MaintenanceWindow("test", new()
     ///     {
+    ///         ProjectId = "&lt;your-project-id&gt;",
     ///         DayOfWeek = 3,
     ///         HourOfDay = 4,
-    ///         ProjectId = "&lt;your-project-id&gt;",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -55,13 +52,12 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.MaintenanceWindow("test", new()
     ///     {
-    ///         Defer = true,
     ///         ProjectId = "&lt;your-project-id&gt;",
+    ///         Defer = true,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

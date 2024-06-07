@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -27,11 +26,12 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRolesOrgId = Mongodbatlas.GetRolesOrgId.Invoke();
+        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
         /// 
-        ///     var testProject = new Mongodbatlas.Project("testProject", new()
+        ///     var testProject = new Mongodbatlas.Project("test", new()
         ///     {
-        ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+        ///         Name = "project-name",
+        ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
         ///         Teams = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.ProjectTeamArgs
@@ -62,7 +62,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testProjects = Mongodbatlas.GetProjects.Invoke(new()
+        ///     var testGetProjects = Mongodbatlas.GetProjects.Invoke(new()
         ///     {
         ///         PageNum = 1,
         ///         ItemsPerPage = 5,
@@ -70,7 +70,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetProjectsResult> InvokeAsync(GetProjectsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectsResult>("mongodbatlas:index/getProjects:getProjects", args ?? new GetProjectsArgs(), options.WithDefaults());
@@ -82,7 +81,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -91,11 +89,12 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRolesOrgId = Mongodbatlas.GetRolesOrgId.Invoke();
+        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
         /// 
-        ///     var testProject = new Mongodbatlas.Project("testProject", new()
+        ///     var testProject = new Mongodbatlas.Project("test", new()
         ///     {
-        ///         OrgId = testRolesOrgId.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+        ///         Name = "project-name",
+        ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
         ///         Teams = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.ProjectTeamArgs
@@ -126,7 +125,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testProjects = Mongodbatlas.GetProjects.Invoke(new()
+        ///     var testGetProjects = Mongodbatlas.GetProjects.Invoke(new()
         ///     {
         ///         PageNum = 1,
         ///         ItemsPerPage = 5,
@@ -134,7 +133,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetProjectsResult> Invoke(GetProjectsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectsResult>("mongodbatlas:index/getProjects:getProjects", args ?? new GetProjectsInvokeArgs(), options.WithDefaults());

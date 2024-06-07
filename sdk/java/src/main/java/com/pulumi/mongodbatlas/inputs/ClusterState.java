@@ -115,30 +115,6 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
      * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
      * * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
      * * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
      * * The default value is false.  M10 and above only.
      * 
      */
@@ -150,30 +126,6 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
      * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
      * * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
      * * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
      * * The default value is false.  M10 and above only.
      * 
      */
@@ -225,6 +177,9 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
      * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
      * 
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED` Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     @Import(name="clusterType")
@@ -237,6 +192,9 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
      * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
      * 
      * Accepted values include:
+     * - `REPLICASET` Replica set
+     * - `SHARDED` Sharded cluster
+     * - `GEOSHARDED` Global Cluster
      * 
      */
     public Optional<Output<String>> clusterType() {
@@ -315,10 +273,10 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
     @Import(name="labels")
     private @Nullable Output<List<ClusterLabelArgs>> labels;
 
@@ -326,23 +284,23 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
-     * this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+    @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
     public Optional<Output<List<ClusterLabelArgs>>> labels() {
         return Optional.ofNullable(this.labels);
     }
 
     /**
-     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+     * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
      * 
      */
     @Import(name="mongoDbMajorVersion")
     private @Nullable Output<String> mongoDbMajorVersion;
 
     /**
-     * @return Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+     * @return Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
      * 
      */
     public Optional<Output<String>> mongoDbMajorVersion() {
@@ -588,6 +546,11 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
      * 
      * The possible values are:
      * 
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+     * 
      */
     @Import(name="providerName")
     private @Nullable Output<String> providerName;
@@ -596,6 +559,11 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
      * @return Cloud service provider on which the servers are provisioned.
      * 
      * The possible values are:
+     * 
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
      * 
      */
     public Optional<Output<String>> providerName() {
@@ -770,6 +738,8 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
      * 
      */
     @Import(name="versionReleaseSystem")
@@ -777,6 +747,8 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
      * 
      */
     public Optional<Output<String>> versionReleaseSystem() {
@@ -964,30 +936,6 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
          * * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
          * * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-         * &lt;!--Start PulumiCodeChooser --&gt;
-         * ```java
-         * package generated_program;
-         * 
-         * import com.pulumi.Context;
-         * import com.pulumi.Pulumi;
-         * import com.pulumi.core.Output;
-         * import java.util.List;
-         * import java.util.ArrayList;
-         * import java.util.Map;
-         * import java.io.File;
-         * import java.nio.file.Files;
-         * import java.nio.file.Paths;
-         * 
-         * public class App {
-         *     public static void main(String[] args) {
-         *         Pulumi.run(App::stack);
-         *     }
-         * 
-         *     public static void stack(Context ctx) {
-         *     }
-         * }
-         * ```
-         * &lt;!--End PulumiCodeChooser --&gt;
          * * The default value is false.  M10 and above only.
          * 
          * @return builder
@@ -1003,30 +951,6 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
          * * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `cloud_backup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
          * * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
-         * &lt;!--Start PulumiCodeChooser --&gt;
-         * ```java
-         * package generated_program;
-         * 
-         * import com.pulumi.Context;
-         * import com.pulumi.Pulumi;
-         * import com.pulumi.core.Output;
-         * import java.util.List;
-         * import java.util.ArrayList;
-         * import java.util.Map;
-         * import java.io.File;
-         * import java.nio.file.Files;
-         * import java.nio.file.Paths;
-         * 
-         * public class App {
-         *     public static void main(String[] args) {
-         *         Pulumi.run(App::stack);
-         *     }
-         * 
-         *     public static void stack(Context ctx) {
-         *     }
-         * }
-         * ```
-         * &lt;!--End PulumiCodeChooser --&gt;
          * * The default value is false.  M10 and above only.
          * 
          * @return builder
@@ -1094,6 +1018,9 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
          * 
          * Accepted values include:
+         * - `REPLICASET` Replica set
+         * - `SHARDED` Sharded cluster
+         * - `GEOSHARDED` Global Cluster
          * 
          * @return builder
          * 
@@ -1110,6 +1037,9 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * When you set replication_specs, when you are deploying Global Clusters or when you are deploying non-Global replica sets and sharded clusters.
          * 
          * Accepted values include:
+         * - `REPLICASET` Replica set
+         * - `SHARDED` Sharded cluster
+         * - `GEOSHARDED` Global Cluster
          * 
          * @return builder
          * 
@@ -1226,10 +1156,10 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * this parameter is deprecated and will be removed by September 2024, please transition to tags
+         * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
          * 
          */
-        @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+        @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
         public Builder labels(@Nullable Output<List<ClusterLabelArgs>> labels) {
             $.labels = labels;
             return this;
@@ -1241,10 +1171,10 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * this parameter is deprecated and will be removed by September 2024, please transition to tags
+         * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
          * 
          */
-        @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+        @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
         public Builder labels(List<ClusterLabelArgs> labels) {
             return labels(Output.of(labels));
         }
@@ -1255,16 +1185,16 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          * @deprecated
-         * this parameter is deprecated and will be removed by September 2024, please transition to tags
+         * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
          * 
          */
-        @Deprecated /* this parameter is deprecated and will be removed by September 2024, please transition to tags */
+        @Deprecated /* This parameter is deprecated and will be removed by September 2024. Please transition to tags. */
         public Builder labels(ClusterLabelArgs... labels) {
             return labels(List.of(labels));
         }
 
         /**
-         * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+         * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
          * 
          * @return builder
          * 
@@ -1275,7 +1205,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
+         * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
          * 
          * @return builder
          * 
@@ -1611,6 +1541,11 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * 
          * The possible values are:
          * 
+         * - `AWS` - Amazon AWS
+         * - `GCP` - Google Cloud Platform
+         * - `AZURE` - Microsoft Azure
+         * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
+         * 
          * @return builder
          * 
          */
@@ -1623,6 +1558,11 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * @param providerName Cloud service provider on which the servers are provisioned.
          * 
          * The possible values are:
+         * 
+         * - `AWS` - Amazon AWS
+         * - `GCP` - Google Cloud Platform
+         * - `AZURE` - Microsoft Azure
+         * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
          * 
          * @return builder
          * 
@@ -1889,6 +1829,8 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param versionReleaseSystem Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+         * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+         * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
          * 
          * @return builder
          * 
@@ -1900,6 +1842,8 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param versionReleaseSystem Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+         * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+         * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
          * 
          * @return builder
          * 

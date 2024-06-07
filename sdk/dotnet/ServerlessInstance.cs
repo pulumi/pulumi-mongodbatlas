@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ### Basic
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,6 +29,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.ServerlessInstance("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         Name = "&lt;SERVERLESS_INSTANCE_NAME&gt;",
     ///         ProviderSettingsBackingProviderName = "AWS",
     ///         ProviderSettingsProviderName = "SERVERLESS",
     ///         ProviderSettingsRegionName = "US_EAST_1",
@@ -37,7 +37,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
     /// That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\
@@ -61,6 +60,12 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("mongodbatlas:index/serverlessInstance:ServerlessInstance")]
     public partial class ServerlessInstance : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+        /// </summary>
+        [Output("autoIndexing")]
+        public Output<bool> AutoIndexing { get; private set; } = null!;
+
         /// <summary>
         /// List of Serverless Private Endpoint Connections
         /// </summary>
@@ -189,6 +194,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class ServerlessInstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+        /// </summary>
+        [Input("autoIndexing")]
+        public Input<bool>? AutoIndexing { get; set; }
+
+        /// <summary>
         /// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
         /// </summary>
         [Input("continuousBackupEnabled")]
@@ -264,6 +275,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class ServerlessInstanceState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+        /// </summary>
+        [Input("autoIndexing")]
+        public Input<bool>? AutoIndexing { get; set; }
+
         [Input("connectionStringsPrivateEndpointSrvs")]
         private InputList<string>? _connectionStringsPrivateEndpointSrvs;
 

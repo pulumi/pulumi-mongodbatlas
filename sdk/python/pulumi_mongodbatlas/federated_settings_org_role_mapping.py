@@ -87,13 +87,15 @@ class _FederatedSettingsOrgRoleMappingState:
                  external_group_name: Optional[pulumi.Input[str]] = None,
                  federation_settings_id: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]] = None):
+                 role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]] = None,
+                 role_mapping_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FederatedSettingsOrgRoleMapping resources.
         :param pulumi.Input[str] external_group_name: Unique human-readable label that identifies the identity provider group to which this role mapping applies.
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        :param pulumi.Input[str] role_mapping_id: Unique 24-hexadecimal digit string that identifies this role mapping.
         """
         if external_group_name is not None:
             pulumi.set(__self__, "external_group_name", external_group_name)
@@ -103,6 +105,8 @@ class _FederatedSettingsOrgRoleMappingState:
             pulumi.set(__self__, "org_id", org_id)
         if role_assignments is not None:
             pulumi.set(__self__, "role_assignments", role_assignments)
+        if role_mapping_id is not None:
+            pulumi.set(__self__, "role_mapping_id", role_mapping_id)
 
     @property
     @pulumi.getter(name="externalGroupName")
@@ -152,6 +156,18 @@ class _FederatedSettingsOrgRoleMappingState:
     def role_assignments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]]):
         pulumi.set(self, "role_assignments", value)
 
+    @property
+    @pulumi.getter(name="roleMappingId")
+    def role_mapping_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies this role mapping.
+        """
+        return pulumi.get(self, "role_mapping_id")
+
+    @role_mapping_id.setter
+    def role_mapping_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_mapping_id", value)
+
 
 class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
     @overload
@@ -168,15 +184,14 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport",
-            external_group_name="myGrouptest",
+        org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import",
             federation_settings_id="627a9687f7f7f7f774de306f14",
             org_id="627a9683e7f7f7ff7fe306f14",
+            external_group_name="myGrouptest",
             role_assignments=[
                 mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
                     org_id="627a9683e7f7f7ff7fe306f14",
@@ -207,7 +222,6 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -236,15 +250,14 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport",
-            external_group_name="myGrouptest",
+        org_group_role_mapping_import = mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import",
             federation_settings_id="627a9687f7f7f7f774de306f14",
             org_id="627a9683e7f7f7ff7fe306f14",
+            external_group_name="myGrouptest",
             role_assignments=[
                 mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
                     org_id="627a9683e7f7f7ff7fe306f14",
@@ -275,7 +288,6 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
                 ),
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -326,6 +338,7 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
             if role_assignments is None and not opts.urn:
                 raise TypeError("Missing required property 'role_assignments'")
             __props__.__dict__["role_assignments"] = role_assignments
+            __props__.__dict__["role_mapping_id"] = None
         super(FederatedSettingsOrgRoleMapping, __self__).__init__(
             'mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping',
             resource_name,
@@ -339,7 +352,8 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
             external_group_name: Optional[pulumi.Input[str]] = None,
             federation_settings_id: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
-            role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]]] = None) -> 'FederatedSettingsOrgRoleMapping':
+            role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]]] = None,
+            role_mapping_id: Optional[pulumi.Input[str]] = None) -> 'FederatedSettingsOrgRoleMapping':
         """
         Get an existing FederatedSettingsOrgRoleMapping resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -351,6 +365,7 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        :param pulumi.Input[str] role_mapping_id: Unique 24-hexadecimal digit string that identifies this role mapping.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -360,6 +375,7 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
         __props__.__dict__["federation_settings_id"] = federation_settings_id
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["role_assignments"] = role_assignments
+        __props__.__dict__["role_mapping_id"] = role_mapping_id
         return FederatedSettingsOrgRoleMapping(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -393,4 +409,12 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
         Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
         return pulumi.get(self, "role_assignments")
+
+    @property
+    @pulumi.getter(name="roleMappingId")
+    def role_mapping_id(self) -> pulumi.Output[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies this role mapping.
+        """
+        return pulumi.get(self, "role_mapping_id")
 

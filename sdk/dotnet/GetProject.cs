@@ -17,6 +17,110 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### Using project_id attribute to query
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
+        /// 
+        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     {
+        ///         Name = "project-name",
+        ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+        ///         Teams = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e0fa8c99ccf641c722fe645",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_READ_ONLY",
+        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
+        ///                 },
+        ///             },
+        ///         },
+        ///         Limits = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectLimitArgs
+        ///             {
+        ///                 Name = "atlas.project.deployment.clusters",
+        ///                 Value = 26,
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var testGetProject = Mongodbatlas.GetProject.Invoke(new()
+        ///     {
+        ///         ProjectId = testProject.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Using name attribute to query
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     {
+        ///         Name = "project-name",
+        ///         OrgId = "&lt;ORG_ID&gt;",
+        ///         Teams = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e0fa8c99ccf641c722fe645",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_READ_ONLY",
+        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
+        ///                 },
+        ///             },
+        ///         },
+        ///         Limits = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectLimitArgs
+        ///             {
+        ///                 Name = "atlas.project.deployment.clusters",
+        ///                 Value = 26,
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetProject.Invoke(new()
+        ///     {
+        ///         Name = testProject.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetProjectResult> InvokeAsync(GetProjectArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("mongodbatlas:index/getProject:getProject", args ?? new GetProjectArgs(), options.WithDefaults());
@@ -27,6 +131,110 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### Using project_id attribute to query
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
+        /// 
+        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     {
+        ///         Name = "project-name",
+        ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
+        ///         Teams = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e0fa8c99ccf641c722fe645",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_READ_ONLY",
+        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
+        ///                 },
+        ///             },
+        ///         },
+        ///         Limits = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectLimitArgs
+        ///             {
+        ///                 Name = "atlas.project.deployment.clusters",
+        ///                 Value = 26,
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var testGetProject = Mongodbatlas.GetProject.Invoke(new()
+        ///     {
+        ///         ProjectId = testProject.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Using name attribute to query
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     {
+        ///         Name = "project-name",
+        ///         OrgId = "&lt;ORG_ID&gt;",
+        ///         Teams = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e0fa8c99ccf641c722fe645",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
+        ///             {
+        ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
+        ///                 RoleNames = new[]
+        ///                 {
+        ///                     "GROUP_READ_ONLY",
+        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
+        ///                 },
+        ///             },
+        ///         },
+        ///         Limits = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ProjectLimitArgs
+        ///             {
+        ///                 Name = "atlas.project.deployment.clusters",
+        ///                 Value = 26,
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetProject.Invoke(new()
+        ///     {
+        ///         Name = testProject.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetProjectResult> Invoke(GetProjectInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectResult>("mongodbatlas:index/getProject:getProject", args ?? new GetProjectInvokeArgs(), options.WithDefaults());
@@ -136,6 +344,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string RegionUsageRestrictions;
         /// <summary>
+        /// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
+        /// </summary>
+        public readonly ImmutableDictionary<string, string> Tags;
+        /// <summary>
         /// Returns all teams to which the authenticated user has access in the project. See Teams.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetProjectTeamResult> Teams;
@@ -172,6 +384,8 @@ namespace Pulumi.Mongodbatlas
 
             string regionUsageRestrictions,
 
+            ImmutableDictionary<string, string> tags,
+
             ImmutableArray<Outputs.GetProjectTeamResult> teams)
         {
             ClusterCount = clusterCount;
@@ -189,6 +403,7 @@ namespace Pulumi.Mongodbatlas
             OrgId = orgId;
             ProjectId = projectId;
             RegionUsageRestrictions = regionUsageRestrictions;
+            Tags = tags;
             Teams = teams;
         }
     }

@@ -162,8 +162,8 @@ class GetAdvancedClusterResult:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
-        warnings.warn("""this parameter is deprecated and will be removed by September 2024, please transition to tags""", DeprecationWarning)
-        pulumi.log.warn("""labels is deprecated: this parameter is deprecated and will be removed by September 2024, please transition to tags""")
+        warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
+        pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
 
         return pulumi.get(self, "labels")
 
@@ -301,6 +301,31 @@ def get_advanced_cluster(name: Optional[str] = None,
     <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
     <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example_advanced_cluster = mongodbatlas.AdvancedCluster("example",
+        project_id="<YOUR-PROJECT-ID>",
+        name="cluster-test",
+        cluster_type="REPLICASET",
+        replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+            region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                    instance_size="M5",
+                ),
+                provider_name="TENANT",
+                backing_provider_name="AWS",
+                region_name="US_EAST_1",
+                priority=7,
+            )],
+        )])
+    example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
+        name=example_advanced_cluster.name)
+    ```
+
 
     :param str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
     :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
@@ -351,6 +376,31 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
     > **IMPORTANT:**
     <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
     <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example_advanced_cluster = mongodbatlas.AdvancedCluster("example",
+        project_id="<YOUR-PROJECT-ID>",
+        name="cluster-test",
+        cluster_type="REPLICASET",
+        replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+            region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                    instance_size="M5",
+                ),
+                provider_name="TENANT",
+                backing_provider_name="AWS",
+                region_name="US_EAST_1",
+                priority=7,
+            )],
+        )])
+    example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
+        name=example_advanced_cluster.name)
+    ```
 
 
     :param str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.

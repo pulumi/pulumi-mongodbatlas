@@ -38,16 +38,11 @@ public final class GetDatabaseUsersResult {
     private String ldapAuthType;
     /**
      * @return (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use OIDC federated authentication.
+     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     private String oidcAuthType;
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    private String password;
     /**
      * @return The unique ID for the project to get all database users.
      * 
@@ -109,19 +104,12 @@ public final class GetDatabaseUsersResult {
     }
     /**
      * @return (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use OIDC federated authentication.
+     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public String oidcAuthType() {
         return this.oidcAuthType;
-    }
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    public String password() {
-        return this.password;
     }
     /**
      * @return The unique ID for the project to get all database users.
@@ -174,7 +162,6 @@ public final class GetDatabaseUsersResult {
         private List<GetDatabaseUsersResultLabel> labels;
         private String ldapAuthType;
         private String oidcAuthType;
-        private String password;
         private String projectId;
         private List<GetDatabaseUsersResultRole> roles;
         private List<GetDatabaseUsersResultScope> scopes;
@@ -189,7 +176,6 @@ public final class GetDatabaseUsersResult {
     	      this.labels = defaults.labels;
     	      this.ldapAuthType = defaults.ldapAuthType;
     	      this.oidcAuthType = defaults.oidcAuthType;
-    	      this.password = defaults.password;
     	      this.projectId = defaults.projectId;
     	      this.roles = defaults.roles;
     	      this.scopes = defaults.scopes;
@@ -249,14 +235,6 @@ public final class GetDatabaseUsersResult {
             return this;
         }
         @CustomType.Setter
-        public Builder password(String password) {
-            if (password == null) {
-              throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "password");
-            }
-            this.password = password;
-            return this;
-        }
-        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetDatabaseUsersResult", "projectId");
@@ -310,7 +288,6 @@ public final class GetDatabaseUsersResult {
             _resultValue.labels = labels;
             _resultValue.ldapAuthType = ldapAuthType;
             _resultValue.oidcAuthType = oidcAuthType;
-            _resultValue.password = password;
             _resultValue.projectId = projectId;
             _resultValue.roles = roles;
             _resultValue.scopes = scopes;

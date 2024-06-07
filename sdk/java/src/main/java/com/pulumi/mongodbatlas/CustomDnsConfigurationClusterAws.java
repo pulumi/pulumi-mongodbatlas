@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,14 +48,15 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new CustomDnsConfigurationClusterAws(&#34;test&#34;, CustomDnsConfigurationClusterAwsArgs.builder()        
+ *         var test = new CustomDnsConfigurationClusterAws("test", CustomDnsConfigurationClusterAwsArgs.builder()
+ *             .projectId("<PROJECT-ID>")
  *             .enabled(true)
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example with AWS
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -27,29 +26,30 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("testServerlessInstance", new()
+        ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "test-db",
         ///         ProviderSettingsBackingProviderName = "AWS",
         ///         ProviderSettingsProviderName = "SERVERLESS",
         ///         ProviderSettingsRegionName = "US_EAST_1",
         ///         ContinuousBackupEnabled = true,
         ///     });
         /// 
-        ///     var testPrivatelinkEndpointsServiceServerless = Mongodbatlas.GetPrivatelinkEndpointsServiceServerless.Invoke(new()
+        ///     var test = Mongodbatlas.GetPrivatelinkEndpointsServiceServerless.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         InstanceName = testServerlessInstance.Name,
         ///     });
         /// 
-        ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", new()
+        ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         InstanceName = testServerlessInstance.Name,
         ///         ProviderName = "AWS",
         ///     });
         /// 
-        ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", new()
+        ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         InstanceName = "test-db",
@@ -60,11 +60,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ## Example with AZURE
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -73,29 +71,30 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("testServerlessInstance", new()
+        ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "test-db",
         ///         ProviderSettingsBackingProviderName = "AZURE",
         ///         ProviderSettingsProviderName = "SERVERLESS",
         ///         ProviderSettingsRegionName = "US_EAST",
         ///         ContinuousBackupEnabled = true,
         ///     });
         /// 
-        ///     var testPrivatelinkEndpointsServiceServerless = Mongodbatlas.GetPrivatelinkEndpointsServiceServerless.Invoke(new()
+        ///     var test = Mongodbatlas.GetPrivatelinkEndpointsServiceServerless.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         InstanceName = testServerlessInstance.Name,
         ///     });
         /// 
-        ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", new()
+        ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         InstanceName = testServerlessInstance.Name,
         ///         ProviderName = "AZURE",
         ///     });
         /// 
-        ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", new()
+        ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         InstanceName = "test-db",
@@ -106,7 +105,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetPrivatelinkEndpointsServiceServerlessResult> InvokeAsync(GetPrivatelinkEndpointsServiceServerlessArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivatelinkEndpointsServiceServerlessResult>("mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless", args ?? new GetPrivatelinkEndpointsServiceServerlessArgs(), options.WithDefaults());
@@ -118,7 +116,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example with AWS
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -127,29 +124,30 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("testServerlessInstance", new()
+        ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "test-db",
         ///         ProviderSettingsBackingProviderName = "AWS",
         ///         ProviderSettingsProviderName = "SERVERLESS",
         ///         ProviderSettingsRegionName = "US_EAST_1",
         ///         ContinuousBackupEnabled = true,
         ///     });
         /// 
-        ///     var testPrivatelinkEndpointsServiceServerless = Mongodbatlas.GetPrivatelinkEndpointsServiceServerless.Invoke(new()
+        ///     var test = Mongodbatlas.GetPrivatelinkEndpointsServiceServerless.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         InstanceName = testServerlessInstance.Name,
         ///     });
         /// 
-        ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", new()
+        ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         InstanceName = testServerlessInstance.Name,
         ///         ProviderName = "AWS",
         ///     });
         /// 
-        ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", new()
+        ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         InstanceName = "test-db",
@@ -160,11 +158,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ## Example with AZURE
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -173,29 +169,30 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("testServerlessInstance", new()
+        ///     var testServerlessInstance = new Mongodbatlas.ServerlessInstance("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "test-db",
         ///         ProviderSettingsBackingProviderName = "AZURE",
         ///         ProviderSettingsProviderName = "SERVERLESS",
         ///         ProviderSettingsRegionName = "US_EAST",
         ///         ContinuousBackupEnabled = true,
         ///     });
         /// 
-        ///     var testPrivatelinkEndpointsServiceServerless = Mongodbatlas.GetPrivatelinkEndpointsServiceServerless.Invoke(new()
+        ///     var test = Mongodbatlas.GetPrivatelinkEndpointsServiceServerless.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         InstanceName = testServerlessInstance.Name,
         ///     });
         /// 
-        ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", new()
+        ///     var testPrivatelinkEndpointServerless = new Mongodbatlas.PrivatelinkEndpointServerless("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         InstanceName = testServerlessInstance.Name,
         ///         ProviderName = "AZURE",
         ///     });
         /// 
-        ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", new()
+        ///     var testPrivatelinkEndpointServiceServerless = new Mongodbatlas.PrivatelinkEndpointServiceServerless("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         InstanceName = "test-db",
@@ -206,7 +203,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetPrivatelinkEndpointsServiceServerlessResult> Invoke(GetPrivatelinkEndpointsServiceServerlessInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointsServiceServerlessResult>("mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless", args ?? new GetPrivatelinkEndpointsServiceServerlessInvokeArgs(), options.WithDefaults());

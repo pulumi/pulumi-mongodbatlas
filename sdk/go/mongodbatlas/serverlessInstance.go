@@ -20,7 +20,6 @@ import (
 // ## Example Usage
 //
 // ### Basic
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -35,6 +34,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewServerlessInstance(ctx, "test", &mongodbatlas.ServerlessInstanceArgs{
 //				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				Name:                                pulumi.String("<SERVERLESS_INSTANCE_NAME>"),
 //				ProviderSettingsBackingProviderName: pulumi.String("AWS"),
 //				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
 //				ProviderSettingsRegionName:          pulumi.String("US_EAST_1"),
@@ -47,7 +47,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
 // That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
@@ -70,6 +69,8 @@ import (
 type ServerlessInstance struct {
 	pulumi.CustomResourceState
 
+	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+	AutoIndexing pulumi.BoolOutput `pulumi:"autoIndexing"`
 	// List of Serverless Private Endpoint Connections
 	ConnectionStringsPrivateEndpointSrvs pulumi.StringArrayOutput `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
@@ -141,6 +142,8 @@ func GetServerlessInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServerlessInstance resources.
 type serverlessInstanceState struct {
+	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+	AutoIndexing *bool `pulumi:"autoIndexing"`
 	// List of Serverless Private Endpoint Connections
 	ConnectionStringsPrivateEndpointSrvs []string `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
@@ -171,6 +174,8 @@ type serverlessInstanceState struct {
 }
 
 type ServerlessInstanceState struct {
+	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+	AutoIndexing pulumi.BoolPtrInput
 	// List of Serverless Private Endpoint Connections
 	ConnectionStringsPrivateEndpointSrvs pulumi.StringArrayInput
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
@@ -205,6 +210,8 @@ func (ServerlessInstanceState) ElementType() reflect.Type {
 }
 
 type serverlessInstanceArgs struct {
+	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+	AutoIndexing *bool `pulumi:"autoIndexing"`
 	// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
 	ContinuousBackupEnabled *bool                    `pulumi:"continuousBackupEnabled"`
 	Links                   []ServerlessInstanceLink `pulumi:"links"`
@@ -228,6 +235,8 @@ type serverlessInstanceArgs struct {
 
 // The set of arguments for constructing a ServerlessInstance resource.
 type ServerlessInstanceArgs struct {
+	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+	AutoIndexing pulumi.BoolPtrInput
 	// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
 	ContinuousBackupEnabled pulumi.BoolPtrInput
 	Links                   ServerlessInstanceLinkArrayInput
@@ -334,6 +343,11 @@ func (o ServerlessInstanceOutput) ToServerlessInstanceOutput() ServerlessInstanc
 
 func (o ServerlessInstanceOutput) ToServerlessInstanceOutputWithContext(ctx context.Context) ServerlessInstanceOutput {
 	return o
+}
+
+// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+func (o ServerlessInstanceOutput) AutoIndexing() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.BoolOutput { return v.AutoIndexing }).(pulumi.BoolOutput)
 }
 
 // List of Serverless Private Endpoint Connections

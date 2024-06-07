@@ -14,6 +14,40 @@ import (
 // `CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testCloudBackupSnapshot, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "test", &mongodbatlas.CloudBackupSnapshotArgs{
+//				ProjectId:       pulumi.String("5d0f1f73cf09a29120e173cf"),
+//				ClusterName:     pulumi.String("MyClusterTest"),
+//				Description:     pulumi.String("SomeDescription"),
+//				RetentionInDays: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCloudBackupSnapshotOutput(ctx, mongodbatlas.GetCloudBackupSnapshotOutputArgs{
+//				SnapshotId:  pulumi.String("5d1285acd5ec13b6c2d1726a"),
+//				ProjectId:   testCloudBackupSnapshot.ProjectId,
+//				ClusterName: testCloudBackupSnapshot.ClusterName,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCloudBackupSnapshot(ctx *pulumi.Context, args *LookupCloudBackupSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotResult

@@ -10,6 +10,29 @@ import * as utilities from "./utilities";
  * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORG ID",
+ * });
+ * const testLdapConfiguration = new mongodbatlas.LdapConfiguration("test", {
+ *     projectId: testProject.id,
+ *     authenticationEnabled: true,
+ *     hostname: "HOSTNAME",
+ *     port: 636,
+ *     bindUsername: "USERNAME",
+ *     bindPassword: "PASSWORD",
+ * });
+ * const test = mongodbatlas.getLdapConfigurationOutput({
+ *     projectId: testLdapConfiguration.id,
+ * });
+ * ```
  */
 export function getLdapConfiguration(args: GetLdapConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetLdapConfigurationResult> {
 
@@ -72,9 +95,6 @@ export interface GetLdapConfigurationResult {
     readonly projectId: string;
     /**
      * Maps an LDAP username for authentication to an LDAP Distinguished Name (DN).
-     * * `user_to_dn_mapping.0.match` - A regular expression to match against a provided LDAP username.
-     * * `user_to_dn_mapping.0.substitution` - An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
-     * * `user_to_dn_mapping.0.ldap_query` - An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
      */
     readonly userToDnMappings: outputs.GetLdapConfigurationUserToDnMapping[];
 }
@@ -82,6 +102,29 @@ export interface GetLdapConfigurationResult {
  * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "NAME OF THE PROJECT",
+ *     orgId: "ORG ID",
+ * });
+ * const testLdapConfiguration = new mongodbatlas.LdapConfiguration("test", {
+ *     projectId: testProject.id,
+ *     authenticationEnabled: true,
+ *     hostname: "HOSTNAME",
+ *     port: 636,
+ *     bindUsername: "USERNAME",
+ *     bindPassword: "PASSWORD",
+ * });
+ * const test = mongodbatlas.getLdapConfigurationOutput({
+ *     projectId: testLdapConfiguration.id,
+ * });
+ * ```
  */
 export function getLdapConfigurationOutput(args: GetLdapConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLdapConfigurationResult> {
     return pulumi.output(args).apply((a: any) => getLdapConfiguration(a, opts))

@@ -67,34 +67,16 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAwsArgs extends c
         return Optional.ofNullable(this.iamUserArn);
     }
 
-    /**
-     * Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
-     * 
-     */
     @Import(name="roleId", required=true)
     private Output<String> roleId;
 
-    /**
-     * @return Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
-     * 
-     */
     public Output<String> roleId() {
         return this.roleId;
     }
 
-    /**
-     * Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-     * ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
-     * 
-     */
     @Import(name="testS3Bucket", required=true)
     private Output<String> testS3Bucket;
 
-    /**
-     * @return Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-     * ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
-     * 
-     */
     public Output<String> testS3Bucket() {
         return this.testS3Bucket;
     }
@@ -196,46 +178,20 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAwsArgs extends c
             return iamUserArn(Output.of(iamUserArn));
         }
 
-        /**
-         * @param roleId Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder roleId(Output<String> roleId) {
             $.roleId = roleId;
             return this;
         }
 
-        /**
-         * @param roleId Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder roleId(String roleId) {
             return roleId(Output.of(roleId));
         }
 
-        /**
-         * @param testS3Bucket Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-         * ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
-         * 
-         * @return builder
-         * 
-         */
         public Builder testS3Bucket(Output<String> testS3Bucket) {
             $.testS3Bucket = testS3Bucket;
             return this;
         }
 
-        /**
-         * @param testS3Bucket Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-         * ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
-         * 
-         * @return builder
-         * 
-         */
         public Builder testS3Bucket(String testS3Bucket) {
             return testS3Bucket(Output.of(testS3Bucket));
         }

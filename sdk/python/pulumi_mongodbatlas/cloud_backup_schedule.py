@@ -25,6 +25,7 @@ class CloudBackupScheduleArgs:
                  policy_item_hourly: Optional[pulumi.Input['CloudBackupSchedulePolicyItemHourlyArgs']] = None,
                  policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemMonthlyArgs']]]] = None,
                  policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemWeeklyArgs']]]] = None,
+                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemYearlyArgs']]]] = None,
                  reference_hour_of_day: Optional[pulumi.Input[int]] = None,
                  reference_minute_of_hour: Optional[pulumi.Input[int]] = None,
                  restore_window_days: Optional[pulumi.Input[int]] = None,
@@ -35,13 +36,13 @@ class CloudBackupScheduleArgs:
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-               
-               true - enables automatic export of cloud backup snapshots to the AWS bucket
-               false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+               * true - enables automatic export of cloud backup snapshots to the AWS bucket
+               * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input['CloudBackupSchedulePolicyItemDailyArgs'] policy_item_daily: Daily policy item
         :param pulumi.Input['CloudBackupSchedulePolicyItemHourlyArgs'] policy_item_hourly: Hourly policy item
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemMonthlyArgs']]] policy_item_monthlies: Monthly policy item
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemWeeklyArgs']]] policy_item_weeklies: Weekly policy item
+        :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemYearlyArgs']]] policy_item_yearlies: Yearly policy item
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
@@ -63,6 +64,8 @@ class CloudBackupScheduleArgs:
             pulumi.set(__self__, "policy_item_monthlies", policy_item_monthlies)
         if policy_item_weeklies is not None:
             pulumi.set(__self__, "policy_item_weeklies", policy_item_weeklies)
+        if policy_item_yearlies is not None:
+            pulumi.set(__self__, "policy_item_yearlies", policy_item_yearlies)
         if reference_hour_of_day is not None:
             pulumi.set(__self__, "reference_hour_of_day", reference_hour_of_day)
         if reference_minute_of_hour is not None:
@@ -103,9 +106,8 @@ class CloudBackupScheduleArgs:
     def auto_export_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-
-        true - enables automatic export of cloud backup snapshots to the AWS bucket
-        false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        * true - enables automatic export of cloud backup snapshots to the AWS bucket
+        * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         """
         return pulumi.get(self, "auto_export_enabled")
 
@@ -180,6 +182,18 @@ class CloudBackupScheduleArgs:
         pulumi.set(self, "policy_item_weeklies", value)
 
     @property
+    @pulumi.getter(name="policyItemYearlies")
+    def policy_item_yearlies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemYearlyArgs']]]]:
+        """
+        Yearly policy item
+        """
+        return pulumi.get(self, "policy_item_yearlies")
+
+    @policy_item_yearlies.setter
+    def policy_item_yearlies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemYearlyArgs']]]]):
+        pulumi.set(self, "policy_item_yearlies", value)
+
+    @property
     @pulumi.getter(name="referenceHourOfDay")
     def reference_hour_of_day(self) -> Optional[pulumi.Input[int]]:
         """
@@ -251,6 +265,7 @@ class _CloudBackupScheduleState:
                  policy_item_hourly: Optional[pulumi.Input['CloudBackupSchedulePolicyItemHourlyArgs']] = None,
                  policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemMonthlyArgs']]]] = None,
                  policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemWeeklyArgs']]]] = None,
+                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemYearlyArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reference_hour_of_day: Optional[pulumi.Input[int]] = None,
                  reference_minute_of_hour: Optional[pulumi.Input[int]] = None,
@@ -260,9 +275,8 @@ class _CloudBackupScheduleState:
         """
         Input properties used for looking up and filtering CloudBackupSchedule resources.
         :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-               
-               true - enables automatic export of cloud backup snapshots to the AWS bucket
-               false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+               * true - enables automatic export of cloud backup snapshots to the AWS bucket
+               * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input[str] cluster_id: Unique identifier of the Atlas cluster.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] id_policy: Unique identifier of the backup policy.
@@ -271,6 +285,7 @@ class _CloudBackupScheduleState:
         :param pulumi.Input['CloudBackupSchedulePolicyItemHourlyArgs'] policy_item_hourly: Hourly policy item
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemMonthlyArgs']]] policy_item_monthlies: Monthly policy item
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemWeeklyArgs']]] policy_item_weeklies: Weekly policy item
+        :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemYearlyArgs']]] policy_item_yearlies: Yearly policy item
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
@@ -299,6 +314,8 @@ class _CloudBackupScheduleState:
             pulumi.set(__self__, "policy_item_monthlies", policy_item_monthlies)
         if policy_item_weeklies is not None:
             pulumi.set(__self__, "policy_item_weeklies", policy_item_weeklies)
+        if policy_item_yearlies is not None:
+            pulumi.set(__self__, "policy_item_yearlies", policy_item_yearlies)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if reference_hour_of_day is not None:
@@ -317,9 +334,8 @@ class _CloudBackupScheduleState:
     def auto_export_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-
-        true - enables automatic export of cloud backup snapshots to the AWS bucket
-        false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        * true - enables automatic export of cloud backup snapshots to the AWS bucket
+        * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         """
         return pulumi.get(self, "auto_export_enabled")
 
@@ -442,6 +458,18 @@ class _CloudBackupScheduleState:
         pulumi.set(self, "policy_item_weeklies", value)
 
     @property
+    @pulumi.getter(name="policyItemYearlies")
+    def policy_item_yearlies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemYearlyArgs']]]]:
+        """
+        Yearly policy item
+        """
+        return pulumi.get(self, "policy_item_yearlies")
+
+    @policy_item_yearlies.setter
+    def policy_item_yearlies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemYearlyArgs']]]]):
+        pulumi.set(self, "policy_item_yearlies", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -524,6 +552,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
                  policy_item_hourly: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']]] = None,
                  policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemMonthlyArgs']]]]] = None,
                  policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemWeeklyArgs']]]]] = None,
+                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemYearlyArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reference_hour_of_day: Optional[pulumi.Input[int]] = None,
                  reference_minute_of_hour: Optional[pulumi.Input[int]] = None,
@@ -544,14 +573,14 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-               
-               true - enables automatic export of cloud backup snapshots to the AWS bucket
-               false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+               * true - enables automatic export of cloud backup snapshots to the AWS bucket
+               * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemDailyArgs']] policy_item_daily: Daily policy item
         :param pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']] policy_item_hourly: Hourly policy item
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemMonthlyArgs']]]] policy_item_monthlies: Monthly policy item
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemWeeklyArgs']]]] policy_item_weeklies: Weekly policy item
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemYearlyArgs']]]] policy_item_yearlies: Yearly policy item
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
@@ -597,6 +626,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
                  policy_item_hourly: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']]] = None,
                  policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemMonthlyArgs']]]]] = None,
                  policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemWeeklyArgs']]]]] = None,
+                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemYearlyArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reference_hour_of_day: Optional[pulumi.Input[int]] = None,
                  reference_minute_of_hour: Optional[pulumi.Input[int]] = None,
@@ -622,6 +652,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
             __props__.__dict__["policy_item_hourly"] = policy_item_hourly
             __props__.__dict__["policy_item_monthlies"] = policy_item_monthlies
             __props__.__dict__["policy_item_weeklies"] = policy_item_weeklies
+            __props__.__dict__["policy_item_yearlies"] = policy_item_yearlies
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -654,6 +685,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
             policy_item_hourly: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']]] = None,
             policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemMonthlyArgs']]]]] = None,
             policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemWeeklyArgs']]]]] = None,
+            policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemYearlyArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             reference_hour_of_day: Optional[pulumi.Input[int]] = None,
             reference_minute_of_hour: Optional[pulumi.Input[int]] = None,
@@ -668,9 +700,8 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_export_enabled: Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-               
-               true - enables automatic export of cloud backup snapshots to the AWS bucket
-               false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+               * true - enables automatic export of cloud backup snapshots to the AWS bucket
+               * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input[str] cluster_id: Unique identifier of the Atlas cluster.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] id_policy: Unique identifier of the backup policy.
@@ -679,6 +710,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']] policy_item_hourly: Hourly policy item
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemMonthlyArgs']]]] policy_item_monthlies: Monthly policy item
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemWeeklyArgs']]]] policy_item_weeklies: Weekly policy item
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemYearlyArgs']]]] policy_item_yearlies: Yearly policy item
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
@@ -700,6 +732,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         __props__.__dict__["policy_item_hourly"] = policy_item_hourly
         __props__.__dict__["policy_item_monthlies"] = policy_item_monthlies
         __props__.__dict__["policy_item_weeklies"] = policy_item_weeklies
+        __props__.__dict__["policy_item_yearlies"] = policy_item_yearlies
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["reference_hour_of_day"] = reference_hour_of_day
         __props__.__dict__["reference_minute_of_hour"] = reference_minute_of_hour
@@ -713,9 +746,8 @@ class CloudBackupSchedule(pulumi.CustomResource):
     def auto_export_enabled(self) -> pulumi.Output[bool]:
         """
         Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-
-        true - enables automatic export of cloud backup snapshots to the AWS bucket
-        false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+        * true - enables automatic export of cloud backup snapshots to the AWS bucket
+        * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         """
         return pulumi.get(self, "auto_export_enabled")
 
@@ -792,6 +824,14 @@ class CloudBackupSchedule(pulumi.CustomResource):
         Weekly policy item
         """
         return pulumi.get(self, "policy_item_weeklies")
+
+    @property
+    @pulumi.getter(name="policyItemYearlies")
+    def policy_item_yearlies(self) -> pulumi.Output[Optional[Sequence['outputs.CloudBackupSchedulePolicyItemYearly']]]:
+        """
+        Yearly policy item
+        """
+        return pulumi.get(self, "policy_item_yearlies")
 
     @property
     @pulumi.getter(name="projectId")

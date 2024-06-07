@@ -16,11 +16,12 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
+// > **IMPORTANT:** A Global Cluster Configuration, once created, can only be deleted. You can recreate the Global Cluster with the same data only in the Atlas UI. This is because the configuration and its related collection with shard key and indexes are managed separately and they would end up in an inconsistent state. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/)
+//
 // ## Examples Usage
 //
 // ### Example Global cluster
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -35,6 +36,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			test, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
 //				ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
+//				Name:                     pulumi.String("<CLUSTER-NAME>"),
 //				CloudBackup:              pulumi.Bool(true),
 //				ClusterType:              pulumi.String("GEOSHARDED"),
 //				ProviderName:             pulumi.String("AWS"),
@@ -96,11 +98,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Global cluster config
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -115,6 +115,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewCluster(ctx, "cluster-test", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
+//				Name:        pulumi.String("cluster-test"),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 //					&mongodbatlas.ClusterReplicationSpecArgs{
@@ -131,7 +132,7 @@ import (
 //				},
 //				BackupEnabled:            pulumi.Bool(true),
 //				AutoScalingDiskGbEnabled: pulumi.Bool(true),
-//				MongoDbMajorVersion:      pulumi.String("4.0"),
+//				MongoDbMajorVersion:      pulumi.String("7.0"),
 //				ProviderName:             pulumi.String("AWS"),
 //				ProviderInstanceSizeName: pulumi.String("M40"),
 //			})
@@ -139,8 +140,8 @@ import (
 //				return err
 //			}
 //			_, err = mongodbatlas.NewGlobalClusterConfig(ctx, "config", &mongodbatlas.GlobalClusterConfigArgs{
-//				ProjectId:   pulumi.Any(mongodbatlas_cluster.Test.Project_id),
-//				ClusterName: pulumi.Any(mongodbatlas_cluster.Test.Name),
+//				ProjectId:   pulumi.Any(test.ProjectId),
+//				ClusterName: pulumi.Any(test.Name),
 //				ManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{
 //					&mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{
 //						Db:             pulumi.String("mydata"),
@@ -163,7 +164,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

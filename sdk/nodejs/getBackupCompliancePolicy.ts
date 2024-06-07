@@ -8,6 +8,99 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.Cluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "clusterTest",
+ *     providerName: "AWS",
+ *     providerRegionName: "EU_CENTRAL_1",
+ *     providerInstanceSizeName: "M10",
+ *     cloudBackup: true,
+ * });
+ * const testCloudBackupSchedule = new mongodbatlas.CloudBackupSchedule("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     referenceHourOfDay: 3,
+ *     referenceMinuteOfHour: 45,
+ *     restoreWindowDays: 4,
+ *     policyItemHourly: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 1,
+ *     },
+ *     policyItemDaily: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 2,
+ *     },
+ *     policyItemWeeklies: [{
+ *         frequencyInterval: 4,
+ *         retentionUnit: "weeks",
+ *         retentionValue: 3,
+ *     }],
+ *     policyItemMonthlies: [{
+ *         frequencyInterval: 5,
+ *         retentionUnit: "months",
+ *         retentionValue: 4,
+ *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
+ *     }],
+ * });
+ * const test = mongodbatlas.getCloudBackupScheduleOutput({
+ *     projectId: testCloudBackupSchedule.projectId,
+ *     clusterName: testCloudBackupSchedule.clusterName,
+ * });
+ * const backupPolicy = mongodbatlas.getBackupCompliancePolicyOutput({
+ *     projectId: testCloudBackupSchedule.id,
+ * });
+ * const backupPolicyBackupCompliancePolicy = new mongodbatlas.BackupCompliancePolicy("backup_policy", {
+ *     projectId: "<PROJECT-ID>",
+ *     authorizedEmail: "user@email.com",
+ *     authorizedUserFirstName: "First",
+ *     authorizedUserLastName: "Last",
+ *     copyProtectionEnabled: false,
+ *     pitEnabled: false,
+ *     encryptionAtRestEnabled: false,
+ *     restoreWindowDays: 7,
+ *     onDemandPolicyItem: {
+ *         frequencyInterval: 0,
+ *         retentionUnit: "days",
+ *         retentionValue: 3,
+ *     },
+ *     policyItemHourly: {
+ *         frequencyInterval: 6,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemDaily: {
+ *         frequencyInterval: 0,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemWeeklies: [{
+ *         frequencyInterval: 0,
+ *         retentionUnit: "weeks",
+ *         retentionValue: 4,
+ *     }],
+ *     policyItemMonthlies: [{
+ *         frequencyInterval: 0,
+ *         retentionUnit: "months",
+ *         retentionValue: 12,
+ *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
+ *     }],
+ * });
+ * ```
  */
 export function getBackupCompliancePolicy(args: GetBackupCompliancePolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetBackupCompliancePolicyResult> {
 
@@ -64,6 +157,7 @@ export interface GetBackupCompliancePolicyResult {
     readonly policyItemHourly: outputs.GetBackupCompliancePolicyPolicyItemHourly;
     readonly policyItemMonthlies: outputs.GetBackupCompliancePolicyPolicyItemMonthly[];
     readonly policyItemWeeklies: outputs.GetBackupCompliancePolicyPolicyItemWeekly[];
+    readonly policyItemYearlies: outputs.GetBackupCompliancePolicyPolicyItemYearly[];
     readonly projectId: string;
     /**
      * Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
@@ -84,6 +178,99 @@ export interface GetBackupCompliancePolicyResult {
 }
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.Cluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "clusterTest",
+ *     providerName: "AWS",
+ *     providerRegionName: "EU_CENTRAL_1",
+ *     providerInstanceSizeName: "M10",
+ *     cloudBackup: true,
+ * });
+ * const testCloudBackupSchedule = new mongodbatlas.CloudBackupSchedule("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     referenceHourOfDay: 3,
+ *     referenceMinuteOfHour: 45,
+ *     restoreWindowDays: 4,
+ *     policyItemHourly: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 1,
+ *     },
+ *     policyItemDaily: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 2,
+ *     },
+ *     policyItemWeeklies: [{
+ *         frequencyInterval: 4,
+ *         retentionUnit: "weeks",
+ *         retentionValue: 3,
+ *     }],
+ *     policyItemMonthlies: [{
+ *         frequencyInterval: 5,
+ *         retentionUnit: "months",
+ *         retentionValue: 4,
+ *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
+ *     }],
+ * });
+ * const test = mongodbatlas.getCloudBackupScheduleOutput({
+ *     projectId: testCloudBackupSchedule.projectId,
+ *     clusterName: testCloudBackupSchedule.clusterName,
+ * });
+ * const backupPolicy = mongodbatlas.getBackupCompliancePolicyOutput({
+ *     projectId: testCloudBackupSchedule.id,
+ * });
+ * const backupPolicyBackupCompliancePolicy = new mongodbatlas.BackupCompliancePolicy("backup_policy", {
+ *     projectId: "<PROJECT-ID>",
+ *     authorizedEmail: "user@email.com",
+ *     authorizedUserFirstName: "First",
+ *     authorizedUserLastName: "Last",
+ *     copyProtectionEnabled: false,
+ *     pitEnabled: false,
+ *     encryptionAtRestEnabled: false,
+ *     restoreWindowDays: 7,
+ *     onDemandPolicyItem: {
+ *         frequencyInterval: 0,
+ *         retentionUnit: "days",
+ *         retentionValue: 3,
+ *     },
+ *     policyItemHourly: {
+ *         frequencyInterval: 6,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemDaily: {
+ *         frequencyInterval: 0,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemWeeklies: [{
+ *         frequencyInterval: 0,
+ *         retentionUnit: "weeks",
+ *         retentionValue: 4,
+ *     }],
+ *     policyItemMonthlies: [{
+ *         frequencyInterval: 0,
+ *         retentionUnit: "months",
+ *         retentionValue: 12,
+ *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
+ *     }],
+ * });
+ * ```
  */
 export function getBackupCompliancePolicyOutput(args: GetBackupCompliancePolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackupCompliancePolicyResult> {
     return pulumi.output(args).apply((a: any) => getBackupCompliancePolicy(a, opts))

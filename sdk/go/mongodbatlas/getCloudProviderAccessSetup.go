@@ -18,7 +18,6 @@ import (
 // ## Example Usage
 //
 // ### With AWS
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -31,7 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testRole, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "testRole", &mongodbatlas.CloudProviderAccessSetupArgs{
+//			testRole, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "test_role", &mongodbatlas.CloudProviderAccessSetupArgs{
 //				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
 //				ProviderName: pulumi.String("AWS"),
 //			})
@@ -48,10 +47,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### With AZURE
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -64,7 +61,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testRole, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "testRole", &mongodbatlas.CloudProviderAccessSetupArgs{
+//			testRole, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "test_role", &mongodbatlas.CloudProviderAccessSetupArgs{
 //				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
 //				ProviderName: pulumi.String("AZURE"),
 //				AzureConfigs: mongodbatlas.CloudProviderAccessSetupAzureConfigArray{
@@ -88,7 +85,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupCloudProviderAccessSetup(ctx *pulumi.Context, args *LookupCloudProviderAccessSetupArgs, opts ...pulumi.InvokeOption) (*LookupCloudProviderAccessSetupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudProviderAccessSetupResult

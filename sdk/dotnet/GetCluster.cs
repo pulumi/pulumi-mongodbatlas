@@ -20,6 +20,53 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn't return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "cluster-test",
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+        ///             {
+        ///                 NumShards = 1,
+        ///                 RegionsConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+        ///                     {
+        ///                         RegionName = "US_EAST_1",
+        ///                         ElectableNodes = 3,
+        ///                         Priority = 7,
+        ///                         ReadOnlyNodes = 0,
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///         CloudBackup = true,
+        ///         AutoScalingDiskGbEnabled = true,
+        ///         ProviderName = "AWS",
+        ///         ProviderInstanceSizeName = "M40",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCluster.Invoke(new()
+        ///     {
+        ///         ProjectId = testCluster.ProjectId,
+        ///         Name = testCluster.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetClusterResult> InvokeAsync(GetClusterArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClusterResult>("mongodbatlas:index/getCluster:getCluster", args ?? new GetClusterArgs(), options.WithDefaults());
@@ -33,6 +80,53 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn't return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "cluster-test",
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+        ///             {
+        ///                 NumShards = 1,
+        ///                 RegionsConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+        ///                     {
+        ///                         RegionName = "US_EAST_1",
+        ///                         ElectableNodes = 3,
+        ///                         Priority = 7,
+        ///                         ReadOnlyNodes = 0,
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///         CloudBackup = true,
+        ///         AutoScalingDiskGbEnabled = true,
+        ///         ProviderName = "AWS",
+        ///         ProviderInstanceSizeName = "M40",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCluster.Invoke(new()
+        ///     {
+        ///         ProjectId = testCluster.ProjectId,
+        ///         Name = testCluster.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetClusterResult> Invoke(GetClusterInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClusterResult>("mongodbatlas:index/getCluster:getCluster", args ?? new GetClusterInvokeArgs(), options.WithDefaults());

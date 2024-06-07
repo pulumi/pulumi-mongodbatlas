@@ -18,6 +18,53 @@ import (
 // ## Example Usage
 //
 // ### S
+//
+// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testX509AuthenticationDatabaseUser, err := mongodbatlas.NewX509AuthenticationDatabaseUser(ctx, "test", &mongodbatlas.X509AuthenticationDatabaseUserArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				CustomerX509Cas: pulumi.String(`-----BEGIN CERTIFICATE-----
+//
+// MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+// VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+// c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+// SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+// MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+// VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+// BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+// c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+// iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+// cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+// Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+// SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+// 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+// iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+// -----END CERTIFICATE-----"
+// `),
+//
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupX509AuthenticationDatabaseUserOutput(ctx, mongodbatlas.GetX509AuthenticationDatabaseUserOutputArgs{
+//				ProjectId: testX509AuthenticationDatabaseUser.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupX509AuthenticationDatabaseUser(ctx *pulumi.Context, args *LookupX509AuthenticationDatabaseUserArgs, opts ...pulumi.InvokeOption) (*LookupX509AuthenticationDatabaseUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupX509AuthenticationDatabaseUserResult

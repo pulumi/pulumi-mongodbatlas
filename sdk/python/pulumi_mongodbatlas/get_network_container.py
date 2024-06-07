@@ -206,6 +206,21 @@ def get_network_container(container_id: Optional[str] = None,
 
     ## Example Usage
 
+    ### Basic Example.
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_network_container = mongodbatlas.NetworkContainer("test",
+        project_id="<YOUR-PROJECT-ID>",
+        atlas_cidr_block="10.8.0.0/21",
+        provider_name="AWS",
+        region_name="US_EAST_1")
+    test = mongodbatlas.get_network_container_output(project_id=test_network_container.project_id,
+        container_id=test_network_container.id)
+    ```
+
 
     :param str container_id: The Network Peering Container ID.
     :param str project_id: The unique ID for the project to create the database user.
@@ -245,6 +260,21 @@ def get_network_container_output(container_id: Optional[pulumi.Input[str]] = Non
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
     ## Example Usage
+
+    ### Basic Example.
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_network_container = mongodbatlas.NetworkContainer("test",
+        project_id="<YOUR-PROJECT-ID>",
+        atlas_cidr_block="10.8.0.0/21",
+        provider_name="AWS",
+        region_name="US_EAST_1")
+    test = mongodbatlas.get_network_container_output(project_id=test_network_container.project_id,
+        container_id=test_network_container.id)
+    ```
 
 
     :param str container_id: The Network Peering Container ID.

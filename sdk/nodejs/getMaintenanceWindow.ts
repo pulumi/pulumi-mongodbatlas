@@ -8,6 +8,36 @@ import * as utilities from "./utilities";
  * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Examples Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testMaintenanceWindow = new mongodbatlas.MaintenanceWindow("test", {
+ *     projectId: "<your-project-id>",
+ *     dayOfWeek: 3,
+ *     hourOfDay: 4,
+ *     autoDeferOnceEnabled: true,
+ * });
+ * const test = mongodbatlas.getMaintenanceWindowOutput({
+ *     projectId: testMaintenanceWindow.id,
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testMaintenanceWindow = new mongodbatlas.MaintenanceWindow("test", {
+ *     projectId: "<your-project-id>",
+ *     startAsap: true,
+ * });
+ * const test = mongodbatlas.getMaintenanceWindowOutput({
+ *     projectId: testMaintenanceWindow.id,
+ * });
+ * ```
  */
 export function getMaintenanceWindow(args: GetMaintenanceWindowArgs, opts?: pulumi.InvokeOptions): Promise<GetMaintenanceWindowResult> {
 
@@ -62,6 +92,36 @@ export interface GetMaintenanceWindowResult {
  * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Examples Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testMaintenanceWindow = new mongodbatlas.MaintenanceWindow("test", {
+ *     projectId: "<your-project-id>",
+ *     dayOfWeek: 3,
+ *     hourOfDay: 4,
+ *     autoDeferOnceEnabled: true,
+ * });
+ * const test = mongodbatlas.getMaintenanceWindowOutput({
+ *     projectId: testMaintenanceWindow.id,
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testMaintenanceWindow = new mongodbatlas.MaintenanceWindow("test", {
+ *     projectId: "<your-project-id>",
+ *     startAsap: true,
+ * });
+ * const test = mongodbatlas.getMaintenanceWindowOutput({
+ *     projectId: testMaintenanceWindow.id,
+ * });
+ * ```
  */
 export function getMaintenanceWindowOutput(args: GetMaintenanceWindowOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMaintenanceWindowResult> {
     return pulumi.output(args).apply((a: any) => getMaintenanceWindow(a, opts))

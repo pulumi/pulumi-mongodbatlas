@@ -157,61 +157,59 @@ def get_privatelink_endpoint_service_serverless(endpoint_id: Optional[str] = Non
 
     ## Example with AWS
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
+    test_serverless_instance = mongodbatlas.ServerlessInstance("test",
         project_id="<PROJECT_ID>",
+        name="test-db",
         provider_settings_backing_provider_name="AWS",
         provider_settings_provider_name="SERVERLESS",
         provider_settings_region_name="US_EAST_1",
         continuous_backup_enabled=True)
-    test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
+    test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("test",
         project_id="<PROJECT_ID>",
         instance_name=test_serverless_instance.name,
         provider_name="AWS")
-    test_privatelink_endpoint_service_serverless = mongodbatlas.get_privatelink_endpoint_service_serverless_output(project_id="<PROJECT_ID>",
+    test = mongodbatlas.get_privatelink_endpoint_service_serverless_output(project_id="<PROJECT_ID>",
         instance_name=test_serverless_instance.name,
         endpoint_id=test_privatelink_endpoint_serverless.endpoint_id)
-    test_index_privatelink_endpoint_service_serverless_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless",
+    test_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("test",
         project_id="<PROJECT_ID>",
         instance_name="test-db",
         endpoint_id=test_privatelink_endpoint_serverless.endpoint_id,
         provider_name="AWS",
         comment="New serverless endpoint")
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Example with AZURE
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
+    test_serverless_instance = mongodbatlas.ServerlessInstance("test",
         project_id="<PROJECT_ID>",
+        name="test-db",
         provider_settings_backing_provider_name="AZURE",
         provider_settings_provider_name="SERVERLESS",
         provider_settings_region_name="US_EAST",
         continuous_backup_enabled=True)
-    test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
+    test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("test",
         project_id="<PROJECT_ID>",
         instance_name=test_serverless_instance.name,
         provider_name="AZURE")
-    test_privatelink_endpoint_service_serverless = mongodbatlas.get_privatelink_endpoint_service_serverless_output(project_id="<PROJECT_ID>",
+    test = mongodbatlas.get_privatelink_endpoint_service_serverless_output(project_id="<PROJECT_ID>",
         instance_name=test_serverless_instance.name,
         endpoint_id=test_privatelink_endpoint_serverless.endpoint_id)
-    test_index_privatelink_endpoint_service_serverless_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless",
+    test_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("test",
         project_id="<PROJECT_ID>",
         instance_name="test-db",
         endpoint_id=test_privatelink_endpoint_serverless.endpoint_id,
         provider_name="AZURE",
         comment="New serverless endpoint")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Available complete examples
     - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
@@ -254,61 +252,59 @@ def get_privatelink_endpoint_service_serverless_output(endpoint_id: Optional[pul
 
     ## Example with AWS
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
+    test_serverless_instance = mongodbatlas.ServerlessInstance("test",
         project_id="<PROJECT_ID>",
+        name="test-db",
         provider_settings_backing_provider_name="AWS",
         provider_settings_provider_name="SERVERLESS",
         provider_settings_region_name="US_EAST_1",
         continuous_backup_enabled=True)
-    test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
+    test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("test",
         project_id="<PROJECT_ID>",
         instance_name=test_serverless_instance.name,
         provider_name="AWS")
-    test_privatelink_endpoint_service_serverless = mongodbatlas.get_privatelink_endpoint_service_serverless_output(project_id="<PROJECT_ID>",
+    test = mongodbatlas.get_privatelink_endpoint_service_serverless_output(project_id="<PROJECT_ID>",
         instance_name=test_serverless_instance.name,
         endpoint_id=test_privatelink_endpoint_serverless.endpoint_id)
-    test_index_privatelink_endpoint_service_serverless_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless",
+    test_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("test",
         project_id="<PROJECT_ID>",
         instance_name="test-db",
         endpoint_id=test_privatelink_endpoint_serverless.endpoint_id,
         provider_name="AWS",
         comment="New serverless endpoint")
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Example with AZURE
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_serverless_instance = mongodbatlas.ServerlessInstance("testServerlessInstance",
+    test_serverless_instance = mongodbatlas.ServerlessInstance("test",
         project_id="<PROJECT_ID>",
+        name="test-db",
         provider_settings_backing_provider_name="AZURE",
         provider_settings_provider_name="SERVERLESS",
         provider_settings_region_name="US_EAST",
         continuous_backup_enabled=True)
-    test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless",
+    test_privatelink_endpoint_serverless = mongodbatlas.PrivatelinkEndpointServerless("test",
         project_id="<PROJECT_ID>",
         instance_name=test_serverless_instance.name,
         provider_name="AZURE")
-    test_privatelink_endpoint_service_serverless = mongodbatlas.get_privatelink_endpoint_service_serverless_output(project_id="<PROJECT_ID>",
+    test = mongodbatlas.get_privatelink_endpoint_service_serverless_output(project_id="<PROJECT_ID>",
         instance_name=test_serverless_instance.name,
         endpoint_id=test_privatelink_endpoint_serverless.endpoint_id)
-    test_index_privatelink_endpoint_service_serverless_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless",
+    test_privatelink_endpoint_service_serverless = mongodbatlas.PrivatelinkEndpointServiceServerless("test",
         project_id="<PROJECT_ID>",
         instance_name="test-db",
         endpoint_id=test_privatelink_endpoint_serverless.endpoint_id,
         provider_name="AZURE",
         comment="New serverless endpoint")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Available complete examples
     - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC

@@ -13,14 +13,14 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRolesOrgId = mongodbatlas.getRolesOrgId({});
- * const testProject = new mongodbatlas.Project("testProject", {
- *     orgId: testRolesOrgId.then(testRolesOrgId => testRolesOrgId.orgId),
+ * const test = mongodbatlas.getRolesOrgId({});
+ * const testProject = new mongodbatlas.Project("test", {
+ *     name: "project-name",
+ *     orgId: test.then(test => test.orgId),
  *     projectOwnerId: "<OWNER_ACCOUNT_ID>",
  *     teams: [
  *         {
@@ -53,7 +53,6 @@ import * as utilities from "./utilities";
  *     isSchemaAdvisorEnabled: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -144,7 +143,11 @@ export class Project extends pulumi.CustomResource {
     /**
      * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      */
-    public readonly regionUsageRestrictions!: pulumi.Output<string | undefined>;
+    public readonly regionUsageRestrictions!: pulumi.Output<string>;
+    /**
+     * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+     */
+    public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly teams!: pulumi.Output<outputs.ProjectTeam[] | undefined>;
     /**
      * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
@@ -178,6 +181,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["projectOwnerId"] = state ? state.projectOwnerId : undefined;
             resourceInputs["regionUsageRestrictions"] = state ? state.regionUsageRestrictions : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["teams"] = state ? state.teams : undefined;
             resourceInputs["withDefaultAlertsSettings"] = state ? state.withDefaultAlertsSettings : undefined;
         } else {
@@ -196,6 +200,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["projectOwnerId"] = args ? args.projectOwnerId : undefined;
             resourceInputs["regionUsageRestrictions"] = args ? args.regionUsageRestrictions : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["teams"] = args ? args.teams : undefined;
             resourceInputs["withDefaultAlertsSettings"] = args ? args.withDefaultAlertsSettings : undefined;
             resourceInputs["clusterCount"] = undefined /*out*/;
@@ -264,6 +269,10 @@ export interface ProjectState {
      * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      */
     regionUsageRestrictions?: pulumi.Input<string>;
+    /**
+     * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+     */
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
     /**
      * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
@@ -316,6 +325,10 @@ export interface ProjectArgs {
      * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      */
     regionUsageRestrictions?: pulumi.Input<string>;
+    /**
+     * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+     */
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
     /**
      * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.

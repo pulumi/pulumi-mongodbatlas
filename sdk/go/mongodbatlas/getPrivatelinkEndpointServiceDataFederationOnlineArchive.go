@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -31,7 +30,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewProject(ctx, "atlas-project", &mongodbatlas.ProjectArgs{
-//				OrgId: pulumi.Any(_var.Atlas_org_id),
+//				OrgId: pulumi.Any(atlasOrgId),
+//				Name:  pulumi.Any(atlasProjectName),
 //			})
 //			if err != nil {
 //				return err
@@ -56,7 +56,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx *pulumi.Context, args *LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs, opts ...pulumi.InvokeOption) (*LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult
@@ -69,7 +68,7 @@ func LookupPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx *pulumi.Con
 
 // A collection of arguments for invoking getPrivatelinkEndpointServiceDataFederationOnlineArchive.
 type LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
-	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](<https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature>).
+	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
 	EndpointId string `pulumi:"endpointId"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
@@ -108,7 +107,7 @@ func LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput(ctx *pulu
 
 // A collection of arguments for invoking getPrivatelinkEndpointServiceDataFederationOnlineArchive.
 type LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputArgs struct {
-	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](<https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature>).
+	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
 	EndpointId pulumi.StringInput `pulumi:"endpointId"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`

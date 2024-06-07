@@ -29,6 +29,7 @@ public final class GetCloudBackupSnapshotExportBucketsInvokeResult {
     private String projectId;
     /**
      * @return Includes CloudProviderSnapshotExportBucket object for each item detailed in the results array section.
+     * * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
      * 
      */
     private List<GetCloudBackupSnapshotExportBucketsResult> results;
@@ -57,6 +58,7 @@ public final class GetCloudBackupSnapshotExportBucketsInvokeResult {
     }
     /**
      * @return Includes CloudProviderSnapshotExportBucket object for each item detailed in the results array section.
+     * * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
      * 
      */
     public List<GetCloudBackupSnapshotExportBucketsResult> results() {

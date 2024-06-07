@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -53,26 +54,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myCluster = new Cluster(&#34;myCluster&#34;, ClusterArgs.builder()        
- *             .projectId(&#34;5cf5a45a9ccf6400e60981b6&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .providerRegionName(&#34;EU_WEST_2&#34;)
- *             .providerInstanceSizeName(&#34;M10&#34;)
+ *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
+ *             .projectId("5cf5a45a9ccf6400e60981b6")
+ *             .name("MyCluster")
+ *             .providerName("AWS")
+ *             .providerRegionName("EU_WEST_2")
+ *             .providerInstanceSizeName("M10")
  *             .cloudBackup(true)
  *             .build());
  * 
- *         // enable cloud backup snapshots
- *         var testCloudBackupSnapshot = new CloudBackupSnapshot(&#34;testCloudBackupSnapshot&#34;, CloudBackupSnapshotArgs.builder()        
+ *         var test = new CloudBackupSnapshot("test", CloudBackupSnapshotArgs.builder()
  *             .projectId(myCluster.projectId())
  *             .clusterName(myCluster.name())
- *             .description(&#34;myDescription&#34;)
+ *             .description("myDescription")
  *             .retentionInDays(1)
  *             .build());
  * 
- *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob(&#34;testCloudBackupSnapshotRestoreJob&#34;, CloudBackupSnapshotRestoreJobArgs.builder()        
- *             .projectId(testCloudBackupSnapshot.projectId())
- *             .clusterName(testCloudBackupSnapshot.clusterName())
- *             .snapshotId(testCloudBackupSnapshot.snapshotId())
+ *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
+ *             .projectId(test.projectId())
+ *             .clusterName(test.clusterName())
+ *             .snapshotId(test.snapshotId())
  *             .deliveryTypeConfig(CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs.builder()
  *                 .download(true)
  *                 .build())
@@ -80,7 +81,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

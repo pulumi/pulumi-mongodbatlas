@@ -12,6 +12,24 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  * ## Example Usage
+ *
+ * ### Basic Example.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testNetworkContainer = new mongodbatlas.NetworkContainer("test", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     atlasCidrBlock: "10.8.0.0/21",
+ *     providerName: "AWS",
+ *     regionName: "US_EAST_1",
+ * });
+ * const test = mongodbatlas.getNetworkContainerOutput({
+ *     projectId: testNetworkContainer.projectId,
+ *     containerId: testNetworkContainer.id,
+ * });
+ * ```
  */
 export function getNetworkContainer(args: GetNetworkContainerArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkContainerResult> {
 
@@ -99,6 +117,24 @@ export interface GetNetworkContainerResult {
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  * ## Example Usage
+ *
+ * ### Basic Example.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testNetworkContainer = new mongodbatlas.NetworkContainer("test", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     atlasCidrBlock: "10.8.0.0/21",
+ *     providerName: "AWS",
+ *     regionName: "US_EAST_1",
+ * });
+ * const test = mongodbatlas.getNetworkContainerOutput({
+ *     projectId: testNetworkContainer.projectId,
+ *     containerId: testNetworkContainer.id,
+ * });
+ * ```
  */
 export function getNetworkContainerOutput(args: GetNetworkContainerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkContainerResult> {
     return pulumi.output(args).apply((a: any) => getNetworkContainer(a, opts))

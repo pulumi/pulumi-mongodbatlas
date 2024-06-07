@@ -20,7 +20,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -29,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", new()
+        ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("test", new()
         ///     {
         ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///         ClusterName = "MyCluster",
@@ -37,7 +36,7 @@ namespace Pulumi.Mongodbatlas
         ///         RetentionInDays = 1,
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", new()
+        ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("test", new()
         ///     {
         ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///         ClusterName = "MyCluster",
@@ -50,7 +49,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotRestoreJobs = Mongodbatlas.GetCloudBackupSnapshotRestoreJobs.Invoke(new()
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotRestoreJobs.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSnapshotRestoreJob.ProjectId,
         ///         ClusterName = testCloudBackupSnapshotRestoreJob.ClusterName,
@@ -60,7 +59,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetCloudBackupSnapshotRestoreJobsResult> InvokeAsync(GetCloudBackupSnapshotRestoreJobsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs", args ?? new GetCloudBackupSnapshotRestoreJobsArgs(), options.WithDefaults());
@@ -74,7 +72,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -83,7 +80,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", new()
+        ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("test", new()
         ///     {
         ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///         ClusterName = "MyCluster",
@@ -91,7 +88,7 @@ namespace Pulumi.Mongodbatlas
         ///         RetentionInDays = 1,
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", new()
+        ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("test", new()
         ///     {
         ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///         ClusterName = "MyCluster",
@@ -104,7 +101,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotRestoreJobs = Mongodbatlas.GetCloudBackupSnapshotRestoreJobs.Invoke(new()
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotRestoreJobs.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSnapshotRestoreJob.ProjectId,
         ///         ClusterName = testCloudBackupSnapshotRestoreJob.ClusterName,
@@ -114,7 +111,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetCloudBackupSnapshotRestoreJobsResult> Invoke(GetCloudBackupSnapshotRestoreJobsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs", args ?? new GetCloudBackupSnapshotRestoreJobsInvokeArgs(), options.WithDefaults());
@@ -199,6 +195,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string ProjectId;
         /// <summary>
         /// Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
+        /// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSnapshotRestoreJobsResultResult> Results;
         public readonly int TotalCount;

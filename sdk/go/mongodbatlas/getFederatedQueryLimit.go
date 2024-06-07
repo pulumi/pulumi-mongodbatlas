@@ -19,7 +19,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -33,9 +32,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupFederatedQueryLimit(ctx, &mongodbatlas.LookupFederatedQueryLimitArgs{
-//				LimitName:  "LIMIT_NAME",
 //				ProjectId:  "PROJECT_ID",
 //				TenantName: "FEDERATED_DATABASE_INSTANCE_NAME",
+//				LimitName:  "LIMIT_NAME",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -45,7 +44,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupFederatedQueryLimit(ctx *pulumi.Context, args *LookupFederatedQueryLimitArgs, opts ...pulumi.InvokeOption) (*LookupFederatedQueryLimitResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedQueryLimitResult
@@ -75,6 +73,8 @@ type LookupFederatedQueryLimitResult struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage int `pulumi:"currentUsage"`
 	// Default value of the limit.
+	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit int `pulumi:"defaultLimit"`
 	// The provider-assigned unique ID for this managed resource.
 	Id               string `pulumi:"id"`
@@ -139,6 +139,8 @@ func (o LookupFederatedQueryLimitResultOutput) CurrentUsage() pulumi.IntOutput {
 }
 
 // Default value of the limit.
+// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+// * `maximumLimit` - Maximum value of the limit.
 func (o LookupFederatedQueryLimitResultOutput) DefaultLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFederatedQueryLimitResult) int { return v.DefaultLimit }).(pulumi.IntOutput)
 }

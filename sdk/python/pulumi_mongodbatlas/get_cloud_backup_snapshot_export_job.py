@@ -144,6 +144,9 @@ class GetCloudBackupSnapshotExportJobResult:
     @property
     @pulumi.getter
     def id(self) -> str:
+        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.""", DeprecationWarning)
+        pulumi.log.warn("""id is deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.""")
+
         return pulumi.get(self, "id")
 
     @property
@@ -169,6 +172,10 @@ class GetCloudBackupSnapshotExportJobResult:
     def state(self) -> str:
         """
         Status of the export job. Value can be one of the following:
+        * `Queued` - indicates that the export job is queued
+        * `InProgress` - indicates that the snapshot is being exported
+        * `Successful` - indicates that the export job has completed successfully
+        * `Failed` - indicates that the export job has failed
         """
         return pulumi.get(self, "state")
 
@@ -206,6 +213,31 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("test",
+        project_id="{PROJECT_ID}",
+        iam_role_id="{IAM_ROLE_ID}",
+        bucket_name="example_bucket",
+        cloud_provider="AWS")
+    test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("test",
+        project_id="{PROJECT_ID}",
+        cluster_name="{CLUSTER_NAME}",
+        snapshot_id="{SNAPSHOT_ID}",
+        export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id,
+        custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
+            key="exported by",
+            value="myName",
+        )])
+    test = mongodbatlas.get_cloud_backup_snapshot_export_job_output(project_id="{PROJECT_ID}",
+        cluster_name="{CLUSTER_NAME}",
+        export_job_id=test_cloud_backup_snapshot_export_job.export_job_id)
+    ```
+
 
     :param str cluster_name: Name of the Atlas cluster whose export job you want to retrieve.
     :param str export_job_id: Unique identifier of the export job to retrieve.
@@ -240,13 +272,38 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
 @_utilities.lift_output_func(get_cloud_backup_snapshot_export_job)
 def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                                 export_job_id: Optional[pulumi.Input[str]] = None,
-                                                id: Optional[pulumi.Input[str]] = None,
+                                                id: Optional[pulumi.Input[Optional[str]]] = None,
                                                 project_id: Optional[pulumi.Input[str]] = None,
                                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotExportJobResult]:
     """
     `CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("test",
+        project_id="{PROJECT_ID}",
+        iam_role_id="{IAM_ROLE_ID}",
+        bucket_name="example_bucket",
+        cloud_provider="AWS")
+    test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("test",
+        project_id="{PROJECT_ID}",
+        cluster_name="{CLUSTER_NAME}",
+        snapshot_id="{SNAPSHOT_ID}",
+        export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id,
+        custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
+            key="exported by",
+            value="myName",
+        )])
+    test = mongodbatlas.get_cloud_backup_snapshot_export_job_output(project_id="{PROJECT_ID}",
+        cluster_name="{CLUSTER_NAME}",
+        export_job_id=test_cloud_backup_snapshot_export_job.export_job_id)
+    ```
 
 
     :param str cluster_name: Name of the Atlas cluster whose export job you want to retrieve.

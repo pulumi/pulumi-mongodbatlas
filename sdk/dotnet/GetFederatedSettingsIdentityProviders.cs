@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -27,9 +26,10 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
+        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
         ///     {
-        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f",
+        ///         Name = "mongodb_federation_test",
         ///         AssociatedDomains = new[]
         ///         {
         ///             "yourdomain.com",
@@ -47,7 +47,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetFederatedSettingsIdentityProvidersResult> InvokeAsync(GetFederatedSettingsIdentityProvidersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersArgs(), options.WithDefaults());
@@ -59,7 +58,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -68,9 +66,10 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
+        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
         ///     {
-        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f",
+        ///         Name = "mongodb_federation_test",
         ///         AssociatedDomains = new[]
         ///         {
         ///             "yourdomain.com",
@@ -88,7 +87,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetFederatedSettingsIdentityProvidersResult> Invoke(GetFederatedSettingsIdentityProvidersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersInvokeArgs(), options.WithDefaults());
@@ -104,13 +102,13 @@ namespace Pulumi.Mongodbatlas
         public string FederationSettingsId { get; set; } = null!;
 
         /// <summary>
-        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
         /// </summary>
         [Input("itemsPerPage")]
         public int? ItemsPerPage { get; set; }
 
         /// <summary>
-        /// The page to return. Defaults to `1`.
+        /// The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
         /// </summary>
         [Input("pageNum")]
         public int? PageNum { get; set; }
@@ -130,13 +128,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string> FederationSettingsId { get; set; } = null!;
 
         /// <summary>
-        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
         /// </summary>
         [Input("itemsPerPage")]
         public Input<int>? ItemsPerPage { get; set; }
 
         /// <summary>
-        /// The page to return. Defaults to `1`.
+        /// The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
         /// </summary>
         [Input("pageNum")]
         public Input<int>? PageNum { get; set; }
@@ -163,6 +161,7 @@ namespace Pulumi.Mongodbatlas
         public readonly int? PageNum;
         /// <summary>
         /// Includes cloudProviderSnapshot object for each item detailed in the results array section.
+        /// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetFederatedSettingsIdentityProvidersResultResult> Results;
 

@@ -15,12 +15,11 @@ import * as utilities from "./utilities";
  *
  * ### Basic Example (AWS).
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testNetworkPeering = new mongodbatlas.NetworkPeering("testNetworkPeering", {
+ * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
  *     accepterRegionName: "us-east-1",
  *     projectId: "<YOUR-PROJEC-ID>",
  *     containerId: "507f1f77bcf86cd799439011",
@@ -29,11 +28,10 @@ import * as utilities from "./utilities";
  *     vpcId: "vpc-abc123abc123",
  *     awsAccountId: "abc123abc123",
  * });
- * const testNetworkPeerings = mongodbatlas.getNetworkPeeringsOutput({
+ * const test = mongodbatlas.getNetworkPeeringsOutput({
  *     projectId: testNetworkPeering.projectId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNetworkPeerings(args: GetNetworkPeeringsArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkPeeringsResult> {
 
@@ -76,12 +74,11 @@ export interface GetNetworkPeeringsResult {
  *
  * ### Basic Example (AWS).
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testNetworkPeering = new mongodbatlas.NetworkPeering("testNetworkPeering", {
+ * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
  *     accepterRegionName: "us-east-1",
  *     projectId: "<YOUR-PROJEC-ID>",
  *     containerId: "507f1f77bcf86cd799439011",
@@ -90,11 +87,10 @@ export interface GetNetworkPeeringsResult {
  *     vpcId: "vpc-abc123abc123",
  *     awsAccountId: "abc123abc123",
  * });
- * const testNetworkPeerings = mongodbatlas.getNetworkPeeringsOutput({
+ * const test = mongodbatlas.getNetworkPeeringsOutput({
  *     projectId: testNetworkPeering.projectId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNetworkPeeringsOutput(args: GetNetworkPeeringsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkPeeringsResult> {
     return pulumi.output(args).apply((a: any) => getNetworkPeerings(a, opts))

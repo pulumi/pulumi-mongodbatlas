@@ -19,7 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -28,14 +27,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("testPagerDuty", new()
+        ///     var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("test_pager_duty", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "PAGER_DUTY",
         ///         ServiceKey = "&lt;PAGER-DUTY-SERVICE-KEY&gt;",
         ///     });
         /// 
-        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("testDatadog", new()
+        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "DATADOG",
@@ -50,7 +49,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetThirdPartyIntegrationsResult> InvokeAsync(GetThirdPartyIntegrationsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetThirdPartyIntegrationsResult>("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args ?? new GetThirdPartyIntegrationsArgs(), options.WithDefaults());
@@ -63,7 +61,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -72,14 +69,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("testPagerDuty", new()
+        ///     var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("test_pager_duty", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "PAGER_DUTY",
         ///         ServiceKey = "&lt;PAGER-DUTY-SERVICE-KEY&gt;",
         ///     });
         /// 
-        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("testDatadog", new()
+        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "DATADOG",
@@ -94,7 +91,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetThirdPartyIntegrationsResult> Invoke(GetThirdPartyIntegrationsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationsResult>("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args ?? new GetThirdPartyIntegrationsInvokeArgs(), options.WithDefaults());
@@ -138,7 +134,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+        /// ID of the Atlas project the Third-Party Service Integration belongs to.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

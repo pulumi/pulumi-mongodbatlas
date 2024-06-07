@@ -16,6 +16,50 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         IamRoleId = "{IAM_ROLE_ID}",
+        ///         BucketName = "example_bucket",
+        ///         CloudProvider = "AWS",
+        ///     });
+        /// 
+        ///     var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("test", new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         ClusterName = "{CLUSTER_NAME}",
+        ///         SnapshotId = "{SNAPSHOT_ID}",
+        ///         ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,
+        ///         CustomDatas = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.CloudBackupSnapshotExportJobCustomDataArgs
+        ///             {
+        ///                 Key = "exported by",
+        ///                 Value = "myName",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportJob.Invoke(new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         ClusterName = "{CLUSTER_NAME}",
+        ///         ExportJobId = testCloudBackupSnapshotExportJob.ExportJobId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetCloudBackupSnapshotExportJobResult> InvokeAsync(GetCloudBackupSnapshotExportJobArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportJobResult>("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", args ?? new GetCloudBackupSnapshotExportJobArgs(), options.WithDefaults());
@@ -25,6 +69,50 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         IamRoleId = "{IAM_ROLE_ID}",
+        ///         BucketName = "example_bucket",
+        ///         CloudProvider = "AWS",
+        ///     });
+        /// 
+        ///     var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("test", new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         ClusterName = "{CLUSTER_NAME}",
+        ///         SnapshotId = "{SNAPSHOT_ID}",
+        ///         ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,
+        ///         CustomDatas = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.CloudBackupSnapshotExportJobCustomDataArgs
+        ///             {
+        ///                 Key = "exported by",
+        ///                 Value = "myName",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportJob.Invoke(new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         ClusterName = "{CLUSTER_NAME}",
+        ///         ExportJobId = testCloudBackupSnapshotExportJob.ExportJobId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCloudBackupSnapshotExportJobResult> Invoke(GetCloudBackupSnapshotExportJobInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportJobResult>("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", args ?? new GetCloudBackupSnapshotExportJobInvokeArgs(), options.WithDefaults());
@@ -45,8 +133,8 @@ namespace Pulumi.Mongodbatlas
         [Input("exportJobId", required: true)]
         public string ExportJobId { get; set; } = null!;
 
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
+        [Input("id")]
+        public string? Id { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
@@ -74,8 +162,8 @@ namespace Pulumi.Mongodbatlas
         [Input("exportJobId", required: true)]
         public Input<string> ExportJobId { get; set; } = null!;
 
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
+        [Input("id")]
+        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
@@ -134,6 +222,10 @@ namespace Pulumi.Mongodbatlas
         public readonly string SnapshotId;
         /// <summary>
         /// Status of the export job. Value can be one of the following:
+        /// * `Queued` - indicates that the export job is queued
+        /// * `InProgress` - indicates that the snapshot is being exported
+        /// * `Successful` - indicates that the export job has completed successfully
+        /// * `Failed` - indicates that the export job has failed
         /// </summary>
         public readonly string State;
 

@@ -14,6 +14,10 @@ import java.lang.String;
 import java.util.List;
 import javax.annotation.Nullable;
 
+/**
+ * This resource is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the resource with the implementation which manages a single team.
+ * 
+ */
 @ResourceType(type="mongodbatlas:index/teams:Teams")
 public class Teams extends com.pulumi.resources.CustomResource {
     @Export(name="name", refs={String.class}, tree="[0]")

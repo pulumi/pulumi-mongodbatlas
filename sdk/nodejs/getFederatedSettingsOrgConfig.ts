@@ -11,24 +11,22 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("orgConnections", {
+ * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("org_connections", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
  *     orgId: "627a9683ea7ff7f74de306f14",
  *     domainRestrictionEnabled: false,
  *     domainAllowLists: ["mydomain.com"],
  *     postAuthRoleGrants: ["ORG_MEMBER"],
  * });
- * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigOutput({
- *     federationSettingsId: orgConnections.id,
+ * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfig({
+ *     federationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id,
  *     orgId: "627a9683ea7ff7f74de306f14",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedSettingsOrgConfig(args: GetFederatedSettingsOrgConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgConfigResult> {
 
@@ -90,24 +88,22 @@ export interface GetFederatedSettingsOrgConfigResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("orgConnections", {
+ * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("org_connections", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
  *     orgId: "627a9683ea7ff7f74de306f14",
  *     domainRestrictionEnabled: false,
  *     domainAllowLists: ["mydomain.com"],
  *     postAuthRoleGrants: ["ORG_MEMBER"],
  * });
- * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigOutput({
- *     federationSettingsId: orgConnections.id,
+ * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfig({
+ *     federationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id,
  *     orgId: "627a9683ea7ff7f74de306f14",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedSettingsOrgConfigOutput(args: GetFederatedSettingsOrgConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsOrgConfigResult> {
     return pulumi.output(args).apply((a: any) => getFederatedSettingsOrgConfig(a, opts))

@@ -21,7 +21,11 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
     /**
      * @return UTC ISO 8601 formatted point in time when Atlas created the restore job.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     private String createdAt;
     /**
      * @return Type of restore job to create. Possible values are: automated and download.
@@ -73,6 +77,9 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
     private String targetProjectId;
     /**
      * @return Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
      * 
      */
     private String timestamp;
@@ -88,7 +95,11 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
     /**
      * @return UTC ISO 8601 formatted point in time when Atlas created the restore job.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public String createdAt() {
         return this.createdAt;
     }
@@ -166,6 +177,9 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
     }
     /**
      * @return Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
      * 
      */
     public String timestamp() {

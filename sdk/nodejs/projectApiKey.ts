@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ### Create And Assign PAK Together
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -24,11 +23,9 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Create And Assign PAK To Multiple Projects
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -50,7 +47,6 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -99,14 +95,6 @@ export class ProjectApiKey extends pulumi.CustomResource {
     public readonly description!: pulumi.Output<string>;
     public /*out*/ readonly privateKey!: pulumi.Output<string>;
     public readonly projectAssignments!: pulumi.Output<outputs.ProjectApiKeyProjectAssignment[]>;
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-     *
-     * > **NOTE:** Project created by API Keys must belong to an existing organization.
-     *
-     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
-     */
-    public readonly projectId!: pulumi.Output<string>;
     public /*out*/ readonly publicKey!: pulumi.Output<string>;
 
     /**
@@ -126,7 +114,6 @@ export class ProjectApiKey extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
             resourceInputs["projectAssignments"] = state ? state.projectAssignments : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["publicKey"] = state ? state.publicKey : undefined;
         } else {
             const args = argsOrState as ProjectApiKeyArgs | undefined;
@@ -138,7 +125,6 @@ export class ProjectApiKey extends pulumi.CustomResource {
             }
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["projectAssignments"] = args ? args.projectAssignments : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["apiKeyId"] = undefined /*out*/;
             resourceInputs["privateKey"] = undefined /*out*/;
             resourceInputs["publicKey"] = undefined /*out*/;
@@ -164,14 +150,6 @@ export interface ProjectApiKeyState {
     description?: pulumi.Input<string>;
     privateKey?: pulumi.Input<string>;
     projectAssignments?: pulumi.Input<pulumi.Input<inputs.ProjectApiKeyProjectAssignment>[]>;
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-     *
-     * > **NOTE:** Project created by API Keys must belong to an existing organization.
-     *
-     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
-     */
-    projectId?: pulumi.Input<string>;
     publicKey?: pulumi.Input<string>;
 }
 
@@ -184,12 +162,4 @@ export interface ProjectApiKeyArgs {
      */
     description: pulumi.Input<string>;
     projectAssignments: pulumi.Input<pulumi.Input<inputs.ProjectApiKeyProjectAssignment>[]>;
-    /**
-     * Unique 24-hexadecimal digit string that identifies your project. **WARNING:** this parameter is deprecated as it no longer needs to be defined. It will be removed in version 1.16.0.
-     *
-     * > **NOTE:** Project created by API Keys must belong to an existing organization.
-     *
-     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
-     */
-    projectId?: pulumi.Input<string>;
 }

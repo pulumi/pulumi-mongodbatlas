@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -25,14 +24,13 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetProjectApiKeys.Invoke(new()
         ///     {
-        ///         ItemsPerPage = 5,
         ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
         ///         ProjectId = "32b6e34b3d91647abb20e7b8",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetProjectApiKeysResult> InvokeAsync(GetProjectApiKeysArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectApiKeysResult>("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", args ?? new GetProjectApiKeysArgs(), options.WithDefaults());
@@ -40,7 +38,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -51,14 +48,13 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetProjectApiKeys.Invoke(new()
         ///     {
-        ///         ItemsPerPage = 5,
         ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
         ///         ProjectId = "32b6e34b3d91647abb20e7b8",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetProjectApiKeysResult> Invoke(GetProjectApiKeysInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectApiKeysResult>("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", args ?? new GetProjectApiKeysInvokeArgs(), options.WithDefaults());

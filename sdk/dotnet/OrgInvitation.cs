@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ### S
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -25,19 +24,17 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test0 = new Mongodbatlas.OrgInvitation("test0", new()
     ///     {
+    ///         Username = "test0-acc-username",
     ///         OrgId = "&lt;ORG-ID&gt;",
     ///         Roles = new[]
     ///         {
     ///             "ORG_OWNER",
     ///         },
-    ///         Username = "test0-acc-username",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -48,20 +45,18 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test0 = new Mongodbatlas.OrgInvitation("test0", new()
     ///     {
+    ///         Username = "test0-acc-username",
     ///         OrgId = "&lt;ORG-ID&gt;",
     ///         Roles = new[]
     ///         {
     ///             "ORG_MEMBER",
     ///             "ORG_BILLING_ADMIN",
     ///         },
-    ///         Username = "test0-acc-username",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -72,22 +67,21 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test1 = new Mongodbatlas.OrgInvitation("test1", new()
     ///     {
+    ///         Username = "test1-acc-username",
     ///         OrgId = "&lt;ORG-ID&gt;",
-    ///         Roles = new[]
-    ///         {
-    ///             "ORG_MEMBER",
-    ///         },
     ///         TeamsIds = new[]
     ///         {
     ///             "&lt;TEAM-0-ID&gt;",
     ///             "&lt;TEAM-1-ID&gt;",
     ///         },
-    ///         Username = "test1-acc-username",
+    ///         Roles = new[]
+    ///         {
+    ///             "ORG_MEMBER",
+    ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

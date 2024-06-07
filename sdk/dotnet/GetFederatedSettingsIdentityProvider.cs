@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -27,9 +26,10 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
+        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
         ///     {
         ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         Name = "mongodb_federation_test",
         ///         AssociatedDomains = new[]
         ///         {
         ///             "yourdomain.com",
@@ -45,12 +45,11 @@ namespace Pulumi.Mongodbatlas
         ///     var identityProviderDs = Mongodbatlas.GetFederatedSettingsIdentityProvider.Invoke(new()
         ///     {
         ///         FederationSettingsId = identityProvider.Id,
-        ///         IdentityProviderId = "0oad47f7fXnk1297",
+        ///         IdentityProviderId = "0oad4fas87jL5Xnk12971234",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetFederatedSettingsIdentityProviderResult> InvokeAsync(GetFederatedSettingsIdentityProviderArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsIdentityProviderResult>("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", args ?? new GetFederatedSettingsIdentityProviderArgs(), options.WithDefaults());
@@ -62,7 +61,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -71,9 +69,10 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
+        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
         ///     {
         ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         Name = "mongodb_federation_test",
         ///         AssociatedDomains = new[]
         ///         {
         ///             "yourdomain.com",
@@ -89,12 +88,11 @@ namespace Pulumi.Mongodbatlas
         ///     var identityProviderDs = Mongodbatlas.GetFederatedSettingsIdentityProvider.Invoke(new()
         ///     {
         ///         FederationSettingsId = identityProvider.Id,
-        ///         IdentityProviderId = "0oad47f7fXnk1297",
+        ///         IdentityProviderId = "0oad4fas87jL5Xnk12971234",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetFederatedSettingsIdentityProviderResult> Invoke(GetFederatedSettingsIdentityProviderInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsIdentityProviderResult>("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", args ?? new GetFederatedSettingsIdentityProviderInvokeArgs(), options.WithDefaults());
@@ -109,6 +107,9 @@ namespace Pulumi.Mongodbatlas
         [Input("federationSettingsId", required: true)]
         public string FederationSettingsId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the IdP.
+        /// </summary>
         [Input("identityProviderId", required: true)]
         public string IdentityProviderId { get; set; } = null!;
 
@@ -126,6 +127,9 @@ namespace Pulumi.Mongodbatlas
         [Input("federationSettingsId", required: true)]
         public Input<string> FederationSettingsId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the IdP.
+        /// </summary>
         [Input("identityProviderId", required: true)]
         public Input<string> IdentityProviderId { get; set; } = null!;
 

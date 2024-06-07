@@ -15,6 +15,57 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     {
+        ///         Name = "NAME OF THE PROJECT",
+        ///         OrgId = "ORG ID",
+        ///     });
+        /// 
+        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
+        ///     {
+        ///         ProjectId = testProject.Id,
+        ///         Name = "NAME OF THE CLUSTER",
+        ///         ProviderName = "AWS",
+        ///         ProviderRegionName = "US_EAST_2",
+        ///         ProviderInstanceSizeName = "M10",
+        ///         CloudBackup = true,
+        ///     });
+        /// 
+        ///     var testLdapVerify = new Mongodbatlas.LdapVerify("test", new()
+        ///     {
+        ///         ProjectId = testProject.Id,
+        ///         Hostname = "HOSTNAME",
+        ///         Port = 636,
+        ///         BindUsername = "USERNAME",
+        ///         BindPassword = "PASSWORD",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             testCluster,
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetLdapVerify.Invoke(new()
+        ///     {
+        ///         ProjectId = testLdapVerify.ProjectId,
+        ///         RequestId = testLdapVerify.RequestId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetLdapVerifyResult> InvokeAsync(GetLdapVerifyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLdapVerifyResult>("mongodbatlas:index/getLdapVerify:getLdapVerify", args ?? new GetLdapVerifyArgs(), options.WithDefaults());
@@ -23,6 +74,57 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     {
+        ///         Name = "NAME OF THE PROJECT",
+        ///         OrgId = "ORG ID",
+        ///     });
+        /// 
+        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
+        ///     {
+        ///         ProjectId = testProject.Id,
+        ///         Name = "NAME OF THE CLUSTER",
+        ///         ProviderName = "AWS",
+        ///         ProviderRegionName = "US_EAST_2",
+        ///         ProviderInstanceSizeName = "M10",
+        ///         CloudBackup = true,
+        ///     });
+        /// 
+        ///     var testLdapVerify = new Mongodbatlas.LdapVerify("test", new()
+        ///     {
+        ///         ProjectId = testProject.Id,
+        ///         Hostname = "HOSTNAME",
+        ///         Port = 636,
+        ///         BindUsername = "USERNAME",
+        ///         BindPassword = "PASSWORD",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             testCluster,
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetLdapVerify.Invoke(new()
+        ///     {
+        ///         ProjectId = testLdapVerify.ProjectId,
+        ///         RequestId = testLdapVerify.RequestId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetLdapVerifyResult> Invoke(GetLdapVerifyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLdapVerifyResult>("mongodbatlas:index/getLdapVerify:getLdapVerify", args ?? new GetLdapVerifyInvokeArgs(), options.WithDefaults());

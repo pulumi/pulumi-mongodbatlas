@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,28 +48,31 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
- *             .orgId(&#34;ORG ID&#34;)
+ *         var test = new Project("test", ProjectArgs.builder()
+ *             .name("NAME OF THE PROJECT")
+ *             .orgId("ORG ID")
  *             .build());
  * 
- *         var testLdapConfiguration = new LdapConfiguration(&#34;testLdapConfiguration&#34;, LdapConfigurationArgs.builder()        
- *             .projectId(testProject.id())
+ *         var testLdapConfiguration = new LdapConfiguration("testLdapConfiguration", LdapConfigurationArgs.builder()
+ *             .projectId(test.id())
  *             .authenticationEnabled(true)
- *             .hostname(&#34;HOSTNAME&#34;)
+ *             .hostname("HOSTNAME")
  *             .port(636)
- *             .bindUsername(&#34;USERNAME&#34;)
- *             .bindPassword(&#34;PASSWORD&#34;)
+ *             .bindUsername("USERNAME")
+ *             .bindPassword("PASSWORD")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### LDAP With User To DN Mapping
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -92,28 +96,30 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
- *             .orgId(&#34;ORG ID&#34;)
+ *         var test = new Project("test", ProjectArgs.builder()
+ *             .name("NAME OF THE PROJECT")
+ *             .orgId("ORG ID")
  *             .build());
  * 
- *         var testLdapConfiguration = new LdapConfiguration(&#34;testLdapConfiguration&#34;, LdapConfigurationArgs.builder()        
- *             .projectId(testProject.id())
+ *         var testLdapConfiguration = new LdapConfiguration("testLdapConfiguration", LdapConfigurationArgs.builder()
+ *             .projectId(test.id())
  *             .authenticationEnabled(true)
- *             .hostname(&#34;HOSTNAME&#34;)
+ *             .hostname("HOSTNAME")
  *             .port(636)
- *             .bindUsername(&#34;USERNAME&#34;)
- *             .bindPassword(&#34;PASSWORD&#34;)
- *             .caCertificate(&#34;CA CERTIFICATE&#34;)
- *             .authzQueryTemplate(&#34;{USER}?memberOf?base&#34;)
+ *             .bindUsername("USERNAME")
+ *             .bindPassword("PASSWORD")
+ *             .caCertificate("CA CERTIFICATE")
+ *             .authzQueryTemplate("{USER}?memberOf?base")
  *             .userToDnMappings(LdapConfigurationUserToDnMappingArgs.builder()
- *                 .match(&#34;(.+)&#34;)
- *                 .ldapQuery(&#34;DC=example,DC=com??sub?(userPrincipalName={0})&#34;)
+ *                 .match("(.+)")
+ *                 .ldapQuery("DC=example,DC=com??sub?(userPrincipalName={0})")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -121,6 +121,30 @@ def get_maintenance_window(project_id: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Examples Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_maintenance_window = mongodbatlas.MaintenanceWindow("test",
+        project_id="<your-project-id>",
+        day_of_week=3,
+        hour_of_day=4,
+        auto_defer_once_enabled=True)
+    test = mongodbatlas.get_maintenance_window_output(project_id=test_maintenance_window.id)
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_maintenance_window = mongodbatlas.MaintenanceWindow("test",
+        project_id="<your-project-id>",
+        start_asap=True)
+    test = mongodbatlas.get_maintenance_window_output(project_id=test_maintenance_window.id)
+    ```
+
 
     :param str project_id: The unique identifier of the project for the Maintenance Window.
     """
@@ -146,6 +170,30 @@ def get_maintenance_window_output(project_id: Optional[pulumi.Input[str]] = None
     `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Examples Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_maintenance_window = mongodbatlas.MaintenanceWindow("test",
+        project_id="<your-project-id>",
+        day_of_week=3,
+        hour_of_day=4,
+        auto_defer_once_enabled=True)
+    test = mongodbatlas.get_maintenance_window_output(project_id=test_maintenance_window.id)
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_maintenance_window = mongodbatlas.MaintenanceWindow("test",
+        project_id="<your-project-id>",
+        start_asap=True)
+    test = mongodbatlas.get_maintenance_window_output(project_id=test_maintenance_window.id)
+    ```
 
 
     :param str project_id: The unique identifier of the project for the Maintenance Window.

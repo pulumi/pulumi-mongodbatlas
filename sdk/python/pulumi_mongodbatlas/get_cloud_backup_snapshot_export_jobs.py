@@ -81,6 +81,7 @@ class GetCloudBackupSnapshotExportJobsResult:
     def results(self) -> Sequence['outputs.GetCloudBackupSnapshotExportJobsResultResult']:
         """
         Includes CloudProviderSnapshotExportJob object for each item detailed in the results array section.
+        * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
         """
         return pulumi.get(self, "results")
 
@@ -117,17 +118,16 @@ def get_cloud_backup_snapshot_export_jobs(cluster_name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
+    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("test",
         project_id="{PROJECT_ID}",
         iam_role_id="{IAM_ROLE_ID}",
         bucket_name="example_bucket",
         cloud_provider="AWS")
-    test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob",
+    test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("test",
         project_id="{PROJECT_ID}",
         cluster_name="{CLUSTER_NAME}",
         snapshot_id="{SNAPSHOT_ID}",
@@ -136,10 +136,9 @@ def get_cloud_backup_snapshot_export_jobs(cluster_name: Optional[str] = None,
             key="exported by",
             value="myName",
         )])
-    test_cloud_backup_snapshot_export_jobs = mongodbatlas.get_cloud_backup_snapshot_export_jobs(project_id="{PROJECT_ID}",
+    test = mongodbatlas.get_cloud_backup_snapshot_export_jobs(project_id="{PROJECT_ID}",
         cluster_name="{CLUSTER_NAME}")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: Name of the Atlas cluster whose export job you want to retrieve.
@@ -178,17 +177,16 @@ def get_cloud_backup_snapshot_export_jobs_output(cluster_name: Optional[pulumi.I
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
+    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("test",
         project_id="{PROJECT_ID}",
         iam_role_id="{IAM_ROLE_ID}",
         bucket_name="example_bucket",
         cloud_provider="AWS")
-    test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob",
+    test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("test",
         project_id="{PROJECT_ID}",
         cluster_name="{CLUSTER_NAME}",
         snapshot_id="{SNAPSHOT_ID}",
@@ -197,10 +195,9 @@ def get_cloud_backup_snapshot_export_jobs_output(cluster_name: Optional[pulumi.I
             key="exported by",
             value="myName",
         )])
-    test_cloud_backup_snapshot_export_jobs = mongodbatlas.get_cloud_backup_snapshot_export_jobs(project_id="{PROJECT_ID}",
+    test = mongodbatlas.get_cloud_backup_snapshot_export_jobs(project_id="{PROJECT_ID}",
         cluster_name="{CLUSTER_NAME}")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: Name of the Atlas cluster whose export job you want to retrieve.

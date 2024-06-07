@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -41,16 +42,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Auditing(&#34;test&#34;, AuditingArgs.builder()        
+ *         var test = new Auditing("test", AuditingArgs.builder()
+ *             .projectId("<project-id>")
+ *             .auditFilter("{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}")
  *             .auditAuthorizationSuccess(false)
- *             .auditFilter(&#34;{ &#39;atype&#39;: &#39;authenticate&#39;, &#39;param&#39;: {   &#39;user&#39;: &#39;auditAdmin&#39;,   &#39;db&#39;: &#39;admin&#39;,   &#39;mechanism&#39;: &#39;SCRAM-SHA-1&#39; }}&#34;)
  *             .enabled(true)
- *             .projectId(&#34;&lt;project-id&gt;&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

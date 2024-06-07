@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,16 +43,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new CloudBackupSnapshotExportBucket(&#34;test&#34;, CloudBackupSnapshotExportBucketArgs.builder()        
- *             .bucketName(&#34;example-bucket&#34;)
- *             .cloudProvider(&#34;AWS&#34;)
- *             .iamRoleId(&#34;{IAM_ROLE_ID}&#34;)
- *             .projectId(&#34;{PROJECT_ID}&#34;)
+ *         var test = new CloudBackupSnapshotExportBucket("test", CloudBackupSnapshotExportBucketArgs.builder()
+ *             .projectId("{PROJECT_ID}")
+ *             .iamRoleId("{IAM_ROLE_ID}")
+ *             .bucketName("example-bucket")
+ *             .cloudProvider("AWS")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

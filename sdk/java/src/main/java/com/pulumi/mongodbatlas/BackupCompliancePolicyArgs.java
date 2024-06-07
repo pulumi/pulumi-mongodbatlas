@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemDailyArgs;
 import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemHourlyArgs;
 import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
 import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
+import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -149,6 +150,13 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.policyItemWeeklies);
     }
 
+    @Import(name="policyItemYearlies")
+    private @Nullable Output<List<BackupCompliancePolicyPolicyItemYearlyArgs>> policyItemYearlies;
+
+    public Optional<Output<List<BackupCompliancePolicyPolicyItemYearlyArgs>>> policyItemYearlies() {
+        return Optional.ofNullable(this.policyItemYearlies);
+    }
+
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      * 
@@ -193,6 +201,7 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
         this.policyItemHourly = $.policyItemHourly;
         this.policyItemMonthlies = $.policyItemMonthlies;
         this.policyItemWeeklies = $.policyItemWeeklies;
+        this.policyItemYearlies = $.policyItemYearlies;
         this.projectId = $.projectId;
         this.restoreWindowDays = $.restoreWindowDays;
     }
@@ -392,6 +401,19 @@ public final class BackupCompliancePolicyArgs extends com.pulumi.resources.Resou
 
         public Builder policyItemWeeklies(BackupCompliancePolicyPolicyItemWeeklyArgs... policyItemWeeklies) {
             return policyItemWeeklies(List.of(policyItemWeeklies));
+        }
+
+        public Builder policyItemYearlies(@Nullable Output<List<BackupCompliancePolicyPolicyItemYearlyArgs>> policyItemYearlies) {
+            $.policyItemYearlies = policyItemYearlies;
+            return this;
+        }
+
+        public Builder policyItemYearlies(List<BackupCompliancePolicyPolicyItemYearlyArgs> policyItemYearlies) {
+            return policyItemYearlies(Output.of(policyItemYearlies));
+        }
+
+        public Builder policyItemYearlies(BackupCompliancePolicyPolicyItemYearlyArgs... policyItemYearlies) {
+            return policyItemYearlies(List.of(policyItemYearlies));
         }
 
         /**

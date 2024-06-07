@@ -198,32 +198,28 @@ class ProjectInvitation(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.ProjectInvitation("test",
+            username="test-acc-username",
             project_id="<PROJECT-ID>",
-            roles=["GROUP_DATA_ACCESS_READ_WRITE"],
-            username="test-acc-username")
+            roles=["GROUP_DATA_ACCESS_READ_WRITE"])
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.ProjectInvitation("test",
+            username="test-acc-username",
             project_id="<PROJECT-ID>",
             roles=[
                 "GROUP_READ_ONLY",
                 "GROUP_DATA_ACCESS_READ_ONLY",
-            ],
-            username="test-acc-username")
+            ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -253,32 +249,28 @@ class ProjectInvitation(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.ProjectInvitation("test",
+            username="test-acc-username",
             project_id="<PROJECT-ID>",
-            roles=["GROUP_DATA_ACCESS_READ_WRITE"],
-            username="test-acc-username")
+            roles=["GROUP_DATA_ACCESS_READ_WRITE"])
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.ProjectInvitation("test",
+            username="test-acc-username",
             project_id="<PROJECT-ID>",
             roles=[
                 "GROUP_READ_ONLY",
                 "GROUP_DATA_ACCESS_READ_ONLY",
-            ],
-            username="test-acc-username")
+            ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -462,16 +462,15 @@ class OnlineArchive(pulumi.CustomResource):
         ## Example Usage
 
         ### S
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.OnlineArchive("test",
-            project_id=var["project_id"],
-            cluster_name=var["cluster_name"],
-            coll_name=var["collection_name"],
-            db_name=var["database_name"],
+            project_id=project_id,
+            cluster_name=cluster_name,
+            coll_name=collection_name,
+            db_name=database_name,
             partition_fields=[
                 mongodbatlas.OnlineArchivePartitionFieldArgs(
                     field_name="dateField",
@@ -499,20 +498,18 @@ class OnlineArchive(pulumi.CustomResource):
                 start_minute=1,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         For custom criteria example
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.OnlineArchive("test",
-            project_id=var["project_id"],
-            cluster_name=var["cluster_name"],
-            coll_name=var["collection_name"],
-            db_name=var["database_name"],
+            project_id=project_id,
+            cluster_name=cluster_name,
+            coll_name=collection_name,
+            db_name=database_name,
             partition_fields=[
                 mongodbatlas.OnlineArchivePartitionFieldArgs(
                     field_name="firstName",
@@ -528,7 +525,31 @@ class OnlineArchive(pulumi.CustomResource):
                 query="{ \\"department\\": \\"engineering\\" }",
             ))
         ```
-        <!--End PulumiCodeChooser -->
+
+        Defining custom provider and region example
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.OnlineArchive("test",
+            project_id=project_id,
+            cluster_name=cluster_name,
+            coll_name=collection_name,
+            db_name=database_name,
+            data_process_region=mongodbatlas.OnlineArchiveDataProcessRegionArgs(
+                cloud_provider="AZURE",
+                region="US_EAST_2",
+            ),
+            partition_fields=[mongodbatlas.OnlineArchivePartitionFieldArgs(
+                field_name="firstName",
+                order=0,
+            )],
+            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
+                type="CUSTOM",
+                query="{ \\"department\\": \\"engineering\\" }",
+            ))
+        ```
 
         ## Import
 
@@ -566,16 +587,15 @@ class OnlineArchive(pulumi.CustomResource):
         ## Example Usage
 
         ### S
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.OnlineArchive("test",
-            project_id=var["project_id"],
-            cluster_name=var["cluster_name"],
-            coll_name=var["collection_name"],
-            db_name=var["database_name"],
+            project_id=project_id,
+            cluster_name=cluster_name,
+            coll_name=collection_name,
+            db_name=database_name,
             partition_fields=[
                 mongodbatlas.OnlineArchivePartitionFieldArgs(
                     field_name="dateField",
@@ -603,20 +623,18 @@ class OnlineArchive(pulumi.CustomResource):
                 start_minute=1,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         For custom criteria example
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.OnlineArchive("test",
-            project_id=var["project_id"],
-            cluster_name=var["cluster_name"],
-            coll_name=var["collection_name"],
-            db_name=var["database_name"],
+            project_id=project_id,
+            cluster_name=cluster_name,
+            coll_name=collection_name,
+            db_name=database_name,
             partition_fields=[
                 mongodbatlas.OnlineArchivePartitionFieldArgs(
                     field_name="firstName",
@@ -632,7 +650,31 @@ class OnlineArchive(pulumi.CustomResource):
                 query="{ \\"department\\": \\"engineering\\" }",
             ))
         ```
-        <!--End PulumiCodeChooser -->
+
+        Defining custom provider and region example
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.OnlineArchive("test",
+            project_id=project_id,
+            cluster_name=cluster_name,
+            coll_name=collection_name,
+            db_name=database_name,
+            data_process_region=mongodbatlas.OnlineArchiveDataProcessRegionArgs(
+                cloud_provider="AZURE",
+                region="US_EAST_2",
+            ),
+            partition_fields=[mongodbatlas.OnlineArchivePartitionFieldArgs(
+                field_name="firstName",
+                order=0,
+            )],
+            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
+                type="CUSTOM",
+                query="{ \\"department\\": \\"engineering\\" }",
+            ))
+        ```
 
         ## Import
 

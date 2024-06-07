@@ -13,14 +13,25 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.AlertConfiguration("test", {
- *     enabled: true,
+ *     projectId: "<PROJECT-ID>",
  *     eventType: "OUTSIDE_METRIC_THRESHOLD",
+ *     enabled: true,
+ *     notifications: [{
+ *         typeName: "GROUP",
+ *         intervalMin: 5,
+ *         delayMin: 0,
+ *         smsEnabled: false,
+ *         emailEnabled: true,
+ *         roles: [
+ *             "GROUP_CHARTS_ADMIN",
+ *             "GROUP_CLUSTER_MANAGER",
+ *         ],
+ *     }],
  *     matchers: [{
  *         fieldName: "HOSTNAME_AND_PORT",
  *         operator: "EQUALS",
@@ -28,54 +39,40 @@ import * as utilities from "./utilities";
  *     }],
  *     metricThresholdConfig: {
  *         metricName: "ASSERT_REGULAR",
- *         mode: "AVERAGE",
  *         operator: "LESS_THAN",
  *         threshold: 99,
  *         units: "RAW",
+ *         mode: "AVERAGE",
  *     },
- *     notifications: [{
- *         delayMin: 0,
- *         emailEnabled: true,
- *         intervalMin: 5,
- *         roles: [
- *             "GROUP_CHARTS_ADMIN",
- *             "GROUP_CLUSTER_MANAGER",
- *         ],
- *         smsEnabled: false,
- *         typeName: "GROUP",
- *     }],
- *     projectId: "<PROJECT-ID>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.AlertConfiguration("test", {
- *     enabled: true,
+ *     projectId: "<PROJECT-ID>",
  *     eventType: "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+ *     enabled: true,
+ *     notifications: [{
+ *         typeName: "GROUP",
+ *         intervalMin: 5,
+ *         delayMin: 0,
+ *         smsEnabled: false,
+ *         emailEnabled: true,
+ *         roles: [
+ *             "GROUP_CHARTS_ADMIN",
+ *             "GROUP_CLUSTER_MANAGER",
+ *         ],
+ *     }],
  *     matchers: [{
  *         fieldName: "HOSTNAME_AND_PORT",
  *         operator: "EQUALS",
  *         value: "SECONDARY",
  *     }],
- *     notifications: [{
- *         delayMin: 0,
- *         emailEnabled: true,
- *         intervalMin: 5,
- *         roles: [
- *             "GROUP_CHARTS_ADMIN",
- *             "GROUP_CLUSTER_MANAGER",
- *         ],
- *         smsEnabled: false,
- *         typeName: "GROUP",
- *     }],
- *     projectId: "<PROJECT-ID>",
  *     thresholdConfig: {
  *         operator: "LESS_THAN",
  *         threshold: 1,
@@ -83,18 +80,38 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Create an alert with two notifications using Email and SMS
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.AlertConfiguration("test", {
- *     enabled: true,
+ *     projectId: "PROJECT ID",
  *     eventType: "OUTSIDE_METRIC_THRESHOLD",
+ *     enabled: true,
+ *     notifications: [
+ *         {
+ *             typeName: "GROUP",
+ *             intervalMin: 5,
+ *             delayMin: 0,
+ *             smsEnabled: false,
+ *             emailEnabled: true,
+ *             roles: [
+ *                 "GROUP_DATA_ACCESS_READ_ONLY",
+ *                 "GROUP_CLUSTER_MANAGER",
+ *                 "GROUP_DATA_ACCESS_ADMIN",
+ *             ],
+ *         },
+ *         {
+ *             typeName: "ORG",
+ *             intervalMin: 5,
+ *             delayMin: 0,
+ *             smsEnabled: true,
+ *             emailEnabled: false,
+ *         },
+ *     ],
  *     matchers: [{
  *         fieldName: "HOSTNAME_AND_PORT",
  *         operator: "EQUALS",
@@ -102,36 +119,34 @@ import * as utilities from "./utilities";
  *     }],
  *     metricThresholdConfig: {
  *         metricName: "ASSERT_REGULAR",
- *         mode: "AVERAGE",
  *         operator: "LESS_THAN",
  *         threshold: 99,
  *         units: "RAW",
+ *         mode: "AVERAGE",
  *     },
- *     notifications: [
- *         {
- *             delayMin: 0,
- *             emailEnabled: true,
- *             intervalMin: 5,
- *             roles: [
- *                 "GROUP_DATA_ACCESS_READ_ONLY",
- *                 "GROUP_CLUSTER_MANAGER",
- *                 "GROUP_DATA_ACCESS_ADMIN",
- *             ],
- *             smsEnabled: false,
- *             typeName: "GROUP",
- *         },
- *         {
- *             delayMin: 0,
- *             emailEnabled: false,
- *             intervalMin: 5,
- *             smsEnabled: true,
- *             typeName: "ORG",
- *         },
- *     ],
- *     projectId: "PROJECT ID",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
+ *
+ * ### Create third party notification using credentials from existing third party integration
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getThirdPartyIntegration({
+ *     projectId: "PROJECT ID",
+ *     type: "PAGER_DUTY",
+ * });
+ * const testAlertConfiguration = new mongodbatlas.AlertConfiguration("test", {
+ *     projectId: "PROJECT ID",
+ *     enabled: true,
+ *     eventType: "USERS_WITHOUT_MULTI_FACTOR_AUTH",
+ *     notifications: [{
+ *         typeName: "PAGER_DUTY",
+ *         integrationId: test.then(test => test.id),
+ *     }],
+ * });
+ * ```
  *
  * ## Import
  *

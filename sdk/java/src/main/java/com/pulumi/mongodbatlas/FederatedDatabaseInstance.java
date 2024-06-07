@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ### S With MongoDB Atlas Cluster As Storage Database
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -52,39 +53,42 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new FederatedDatabaseInstance(&#34;test&#34;, FederatedDatabaseInstanceArgs.builder()        
- *             .projectId(&#34;PROJECT ID&#34;)
+ *         var test = new FederatedDatabaseInstance("test", FederatedDatabaseInstanceArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
  *             .storageDatabases(FederatedDatabaseInstanceStorageDatabaseArgs.builder()
+ *                 .name("VirtualDatabase0")
  *                 .collections(FederatedDatabaseInstanceStorageDatabaseCollectionArgs.builder()
+ *                     .name("NAME OF THE COLLECTION")
  *                     .dataSources(FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs.builder()
- *                         .collection(&#34;COLLECTION IN THE CLUSTER&#34;)
- *                         .database(&#34;DB IN THE CLUSTER&#34;)
- *                         .storeName(&#34;CLUSTER NAME&#34;)
+ *                         .collection("COLLECTION IN THE CLUSTER")
+ *                         .database("DB IN THE CLUSTER")
+ *                         .storeName("CLUSTER NAME")
  *                         .build())
- *                     .name(&#34;NAME OF THE COLLECTION&#34;)
  *                     .build())
- *                 .name(&#34;VirtualDatabase0&#34;)
  *                 .build())
  *             .storageStores(FederatedDatabaseInstanceStorageStoreArgs.builder()
- *                 .clusterName(&#34;CLUSTER NAME&#34;)
- *                 .name(&#34;STORE 1 NAME&#34;)
- *                 .projectId(&#34;PROJECT ID&#34;)
- *                 .provider(&#34;atlas&#34;)
+ *                 .name("STORE 1 NAME")
+ *                 .clusterName("CLUSTER NAME")
+ *                 .projectId("PROJECT ID")
+ *                 .provider("atlas")
  *                 .readPreference(FederatedDatabaseInstanceStorageStoreReadPreferenceArgs.builder()
- *                     .mode(&#34;secondary&#34;)
+ *                     .mode("secondary")
  *                     .build())
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### S With Amazon S3 Bucket As Storage Database
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -110,53 +114,96 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new FederatedDatabaseInstance(&#34;test&#34;, FederatedDatabaseInstanceArgs.builder()        
+ *         var test = new FederatedDatabaseInstance("test", FederatedDatabaseInstanceArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
  *             .cloudProviderConfig(FederatedDatabaseInstanceCloudProviderConfigArgs.builder()
  *                 .aws(FederatedDatabaseInstanceCloudProviderConfigAwsArgs.builder()
- *                     .roleId(&#34;AWS ROLE ID&#34;)
- *                     .testS3Bucket(&#34;S3 BUCKET NAME&#34;)
+ *                     .roleId("AWS ROLE ID")
+ *                     .testS3Bucket("S3 BUCKET NAME")
  *                     .build())
  *                 .build())
- *             .projectId(&#34;PROJECT ID&#34;)
  *             .storageDatabases(FederatedDatabaseInstanceStorageDatabaseArgs.builder()
+ *                 .name("VirtualDatabase0")
  *                 .collections(FederatedDatabaseInstanceStorageDatabaseCollectionArgs.builder()
+ *                     .name("NAME OF THE COLLECTION")
  *                     .dataSources(                    
  *                         FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs.builder()
- *                             .collection(&#34;COLLECTION IN THE CLUSTER&#34;)
- *                             .database(&#34;DB IN THE CLUSTER&#34;)
- *                             .storeName(&#34;CLUSTER NAME&#34;)
+ *                             .collection("COLLECTION IN THE CLUSTER")
+ *                             .database("DB IN THE CLUSTER")
+ *                             .storeName("CLUSTER NAME")
  *                             .build(),
  *                         FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs.builder()
- *                             .path(&#34;S3 BUCKET PATH&#34;)
- *                             .storeName(&#34;S3 BUCKET NAME&#34;)
+ *                             .storeName("S3 BUCKET NAME")
+ *                             .path("S3 BUCKET PATH")
  *                             .build())
- *                     .name(&#34;NAME OF THE COLLECTION&#34;)
  *                     .build())
- *                 .name(&#34;VirtualDatabase0&#34;)
  *                 .build())
  *             .storageStores(            
  *                 FederatedDatabaseInstanceStorageStoreArgs.builder()
- *                     .clusterName(&#34;CLUSTER NAME&#34;)
- *                     .name(&#34;STORE 1 NAME&#34;)
- *                     .projectId(&#34;PROJECT ID&#34;)
- *                     .provider(&#34;atlas&#34;)
+ *                     .name("STORE 1 NAME")
+ *                     .clusterName("CLUSTER NAME")
+ *                     .projectId("PROJECT ID")
+ *                     .provider("atlas")
  *                     .readPreference(FederatedDatabaseInstanceStorageStoreReadPreferenceArgs.builder()
- *                         .mode(&#34;secondary&#34;)
+ *                         .mode("secondary")
  *                         .build())
  *                     .build(),
  *                 FederatedDatabaseInstanceStorageStoreArgs.builder()
- *                     .bucket(&#34;STORE 2 NAME&#34;)
- *                     .delimiter(&#34;/&#34;)
- *                     .name(&#34;S3 BUCKET NAME&#34;)
- *                     .prefix(&#34;S3 BUCKET PREFIX&#34;)
- *                     .provider(&#34;s3&#34;)
- *                     .region(&#34;AWS REGION&#34;)
+ *                     .bucket("STORE 2 NAME")
+ *                     .delimiter("/")
+ *                     .name("S3 BUCKET NAME")
+ *                     .prefix("S3 BUCKET PREFIX")
+ *                     .provider("s3")
+ *                     .region("AWS REGION")
  *                     .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ## Example specifying data process region and provider
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.FederatedDatabaseInstance;
+ * import com.pulumi.mongodbatlas.FederatedDatabaseInstanceArgs;
+ * import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceDataProcessRegionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new FederatedDatabaseInstance("test", FederatedDatabaseInstanceArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF THE FEDERATED DATABASE INSTANCE")
+ *             .dataProcessRegion(FederatedDatabaseInstanceDataProcessRegionArgs.builder()
+ *                 .cloudProvider("AWS")
+ *                 .region("OREGON_USA")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -178,15 +225,41 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance")
 public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResource {
+    /**
+     * Cloud provider linked to this data federated instance.
+     * * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     * * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
+     * * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
+     * 
+     */
     @Export(name="cloudProviderConfig", refs={FederatedDatabaseInstanceCloudProviderConfig.class}, tree="[0]")
     private Output<FederatedDatabaseInstanceCloudProviderConfig> cloudProviderConfig;
 
+    /**
+     * @return Cloud provider linked to this data federated instance.
+     * * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
+     * * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
+     * * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
+     * 
+     */
     public Output<FederatedDatabaseInstanceCloudProviderConfig> cloudProviderConfig() {
         return this.cloudProviderConfig;
     }
+    /**
+     * The cloud provider region to which the Federated Instance routes client connections for data processing.
+     * * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
+     * * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+     * 
+     */
     @Export(name="dataProcessRegion", refs={FederatedDatabaseInstanceDataProcessRegion.class}, tree="[0]")
     private Output<FederatedDatabaseInstanceDataProcessRegion> dataProcessRegion;
 
+    /**
+     * @return The cloud provider region to which the Federated Instance routes client connections for data processing.
+     * * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
+     * * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+     * 
+     */
     public Output<FederatedDatabaseInstanceDataProcessRegion> dataProcessRegion() {
         return this.dataProcessRegion;
     }
@@ -206,8 +279,6 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
     }
     /**
      * Name of the Atlas Federated Database Instance.
-     * ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
@@ -215,8 +286,6 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
 
     /**
      * @return Name of the Atlas Federated Database Instance.
-     * ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
      * 
      */
     public Output<String> name() {
@@ -238,6 +307,8 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
     }
     /**
      * Current state of the Federated Database Instance:
+     * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+     * * `DELETED` - The Federated Database Instance was deleted.
      * 
      */
     @Export(name="state", refs={String.class}, tree="[0]")
@@ -245,6 +316,8 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
 
     /**
      * @return Current state of the Federated Database Instance:
+     * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+     * * `DELETED` - The Federated Database Instance was deleted.
      * 
      */
     public Output<String> state() {

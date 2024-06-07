@@ -18,16 +18,15 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### S
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.OnlineArchive("test", {
- *     projectId: _var.project_id,
- *     clusterName: _var.cluster_name,
- *     collName: _var.collection_name,
- *     dbName: _var.database_name,
+ *     projectId: projectId,
+ *     clusterName: clusterName,
+ *     collName: collectionName,
+ *     dbName: databaseName,
  *     partitionFields: [
  *         {
  *             fieldName: "dateField",
@@ -56,20 +55,18 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * For custom criteria example
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.OnlineArchive("test", {
- *     projectId: _var.project_id,
- *     clusterName: _var.cluster_name,
- *     collName: _var.collection_name,
- *     dbName: _var.database_name,
+ *     projectId: projectId,
+ *     clusterName: clusterName,
+ *     collName: collectionName,
+ *     dbName: databaseName,
  *     partitionFields: [
  *         {
  *             fieldName: "firstName",
@@ -86,7 +83,32 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
+ *
+ * Defining custom provider and region example
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.OnlineArchive("test", {
+ *     projectId: projectId,
+ *     clusterName: clusterName,
+ *     collName: collectionName,
+ *     dbName: databaseName,
+ *     dataProcessRegion: {
+ *         cloudProvider: "AZURE",
+ *         region: "US_EAST_2",
+ *     },
+ *     partitionFields: [{
+ *         fieldName: "firstName",
+ *         order: 0,
+ *     }],
+ *     criteria: {
+ *         type: "CUSTOM",
+ *         query: "{ \"department\": \"engineering\" }",
+ *     },
+ * });
+ * ```
  *
  * ## Import
  *

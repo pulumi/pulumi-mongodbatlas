@@ -63,14 +63,14 @@ public final class CloudBackupSchedulePolicyItemWeeklyArgs extends com.pulumi.re
     }
 
     /**
-     * Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      * 
      */
     @Import(name="retentionUnit", required=true)
     private Output<String> retentionUnit;
 
     /**
-     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * @return Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      * 
      */
     public Output<String> retentionUnit() {
@@ -184,7 +184,7 @@ public final class CloudBackupSchedulePolicyItemWeeklyArgs extends com.pulumi.re
         }
 
         /**
-         * @param retentionUnit Scope of the backup policy item: `days`, `weeks`, or `months`.
+         * @param retentionUnit Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
          * 
          * @return builder
          * 
@@ -195,7 +195,7 @@ public final class CloudBackupSchedulePolicyItemWeeklyArgs extends com.pulumi.re
         }
 
         /**
-         * @param retentionUnit Scope of the backup policy item: `days`, `weeks`, or `months`.
+         * @param retentionUnit Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
          * 
          * @return builder
          * 

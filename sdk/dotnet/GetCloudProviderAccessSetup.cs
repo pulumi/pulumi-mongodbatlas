@@ -19,7 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### With AWS
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -28,7 +27,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
         ///     {
         ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ProviderName = "AWS",
@@ -43,11 +42,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// 
         /// ### With AZURE
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -56,7 +53,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
         ///     {
         ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ProviderName = "AZURE",
@@ -80,7 +77,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetCloudProviderAccessSetupResult> InvokeAsync(GetCloudProviderAccessSetupArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderAccessSetupResult>("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args ?? new GetCloudProviderAccessSetupArgs(), options.WithDefaults());
@@ -93,7 +89,6 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### With AWS
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -102,7 +97,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
         ///     {
         ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ProviderName = "AWS",
@@ -117,11 +112,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// 
         /// ### With AZURE
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -130,7 +123,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("testRole", new()
+        ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
         ///     {
         ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ProviderName = "AZURE",
@@ -154,7 +147,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetCloudProviderAccessSetupResult> Invoke(GetCloudProviderAccessSetupInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudProviderAccessSetupResult>("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args ?? new GetCloudProviderAccessSetupInvokeArgs(), options.WithDefaults());

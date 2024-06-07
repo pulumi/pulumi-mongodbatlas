@@ -23,7 +23,6 @@ import (
 // ## Example Usage
 //
 // ### S
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,10 +36,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewOnlineArchive(ctx, "test", &mongodbatlas.OnlineArchiveArgs{
-//				ProjectId:   pulumi.Any(_var.Project_id),
-//				ClusterName: pulumi.Any(_var.Cluster_name),
-//				CollName:    pulumi.Any(_var.Collection_name),
-//				DbName:      pulumi.Any(_var.Database_name),
+//				ProjectId:   pulumi.Any(projectId),
+//				ClusterName: pulumi.Any(clusterName),
+//				CollName:    pulumi.Any(collectionName),
+//				DbName:      pulumi.Any(databaseName),
 //				PartitionFields: mongodbatlas.OnlineArchivePartitionFieldArray{
 //					&mongodbatlas.OnlineArchivePartitionFieldArgs{
 //						FieldName: pulumi.String("dateField"),
@@ -76,11 +75,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // # For custom criteria example
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -94,10 +91,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewOnlineArchive(ctx, "test", &mongodbatlas.OnlineArchiveArgs{
-//				ProjectId:   pulumi.Any(_var.Project_id),
-//				ClusterName: pulumi.Any(_var.Cluster_name),
-//				CollName:    pulumi.Any(_var.Collection_name),
-//				DbName:      pulumi.Any(_var.Database_name),
+//				ProjectId:   pulumi.Any(projectId),
+//				ClusterName: pulumi.Any(clusterName),
+//				CollName:    pulumi.Any(collectionName),
+//				DbName:      pulumi.Any(databaseName),
 //				PartitionFields: mongodbatlas.OnlineArchivePartitionFieldArray{
 //					&mongodbatlas.OnlineArchivePartitionFieldArgs{
 //						FieldName: pulumi.String("firstName"),
@@ -121,7 +118,49 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
+//
+// # Defining custom provider and region example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewOnlineArchive(ctx, "test", &mongodbatlas.OnlineArchiveArgs{
+//				ProjectId:   pulumi.Any(projectId),
+//				ClusterName: pulumi.Any(clusterName),
+//				CollName:    pulumi.Any(collectionName),
+//				DbName:      pulumi.Any(databaseName),
+//				DataProcessRegion: &mongodbatlas.OnlineArchiveDataProcessRegionArgs{
+//					CloudProvider: pulumi.String("AZURE"),
+//					Region:        pulumi.String("US_EAST_2"),
+//				},
+//				PartitionFields: mongodbatlas.OnlineArchivePartitionFieldArray{
+//					&mongodbatlas.OnlineArchivePartitionFieldArgs{
+//						FieldName: pulumi.String("firstName"),
+//						Order:     pulumi.Int(0),
+//					},
+//				},
+//				Criteria: &mongodbatlas.OnlineArchiveCriteriaArgs{
+//					Type:  pulumi.String("CUSTOM"),
+//					Query: pulumi.String("{ \"department\": \"engineering\" }"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

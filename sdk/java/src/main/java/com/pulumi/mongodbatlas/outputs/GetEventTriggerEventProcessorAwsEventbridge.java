@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class GetEventTriggerEventProcessorAwsEventbridge {
+    /**
+     * @return AWS Account ID.
+     * 
+     */
     private String configAccountId;
+    /**
+     * @return Region of AWS Account.
+     * 
+     */
     private String configRegion;
 
     private GetEventTriggerEventProcessorAwsEventbridge() {}
+    /**
+     * @return AWS Account ID.
+     * 
+     */
     public String configAccountId() {
         return this.configAccountId;
     }
+    /**
+     * @return Region of AWS Account.
+     * 
+     */
     public String configRegion() {
         return this.configRegion;
     }

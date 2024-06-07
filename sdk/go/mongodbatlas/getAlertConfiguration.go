@@ -14,6 +14,154 @@ import (
 // `AlertConfiguration` describes an Alert Configuration.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testAlertConfiguration, err := mongodbatlas.NewAlertConfiguration(ctx, "test", &mongodbatlas.AlertConfigurationArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				EventType: pulumi.String("OUTSIDE_METRIC_THRESHOLD"),
+//				Enabled:   pulumi.Bool(true),
+//				Notifications: mongodbatlas.AlertConfigurationNotificationArray{
+//					&mongodbatlas.AlertConfigurationNotificationArgs{
+//						TypeName:     pulumi.String("GROUP"),
+//						IntervalMin:  pulumi.Int(5),
+//						DelayMin:     pulumi.Int(0),
+//						SmsEnabled:   pulumi.Bool(false),
+//						EmailEnabled: pulumi.Bool(true),
+//					},
+//				},
+//				Matchers: mongodbatlas.AlertConfigurationMatcherArray{
+//					&mongodbatlas.AlertConfigurationMatcherArgs{
+//						FieldName: pulumi.String("HOSTNAME_AND_PORT"),
+//						Operator:  pulumi.String("EQUALS"),
+//						Value:     pulumi.String("SECONDARY"),
+//					},
+//				},
+//				MetricThresholdConfig: &mongodbatlas.AlertConfigurationMetricThresholdConfigArgs{
+//					MetricName: pulumi.String("ASSERT_REGULAR"),
+//					Operator:   pulumi.String("LESS_THAN"),
+//					Threshold:  pulumi.Float64(99),
+//					Units:      pulumi.String("RAW"),
+//					Mode:       pulumi.String("AVERAGE"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupAlertConfigurationOutput(ctx, mongodbatlas.GetAlertConfigurationOutputArgs{
+//				ProjectId:            testAlertConfiguration.ProjectId,
+//				AlertConfigurationId: testAlertConfiguration.AlertConfigurationId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testAlertConfiguration, err := mongodbatlas.NewAlertConfiguration(ctx, "test", &mongodbatlas.AlertConfigurationArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				EventType: pulumi.String("REPLICATION_OPLOG_WINDOW_RUNNING_OUT"),
+//				Enabled:   pulumi.Bool(true),
+//				Notifications: mongodbatlas.AlertConfigurationNotificationArray{
+//					&mongodbatlas.AlertConfigurationNotificationArgs{
+//						TypeName:     pulumi.String("GROUP"),
+//						IntervalMin:  pulumi.Int(5),
+//						DelayMin:     pulumi.Int(0),
+//						SmsEnabled:   pulumi.Bool(false),
+//						EmailEnabled: pulumi.Bool(true),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("GROUP_CHARTS_ADMIN"),
+//							pulumi.String("GROUP_CLUSTER_MANAGER"),
+//						},
+//					},
+//				},
+//				Matchers: mongodbatlas.AlertConfigurationMatcherArray{
+//					&mongodbatlas.AlertConfigurationMatcherArgs{
+//						FieldName: pulumi.String("HOSTNAME_AND_PORT"),
+//						Operator:  pulumi.String("EQUALS"),
+//						Value:     pulumi.String("SECONDARY"),
+//					},
+//				},
+//				ThresholdConfig: &mongodbatlas.AlertConfigurationThresholdConfigArgs{
+//					Operator:  pulumi.String("LESS_THAN"),
+//					Threshold: pulumi.Float64(1),
+//					Units:     pulumi.String("HOURS"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupAlertConfigurationOutput(ctx, mongodbatlas.GetAlertConfigurationOutputArgs{
+//				ProjectId:            testAlertConfiguration.ProjectId,
+//				AlertConfigurationId: testAlertConfiguration.AlertConfigurationId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Utilize dataSource to generate resource hcl and import statement. Useful if you have a specific alertConfigurationId and are looking to manage it as is in state. To import all alerts, refer to the documentation on dataSourceMongodbatlasAlertConfigurations
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.LookupAlertConfiguration(ctx, &mongodbatlas.LookupAlertConfigurationArgs{
+//				ProjectId:            projectId,
+//				AlertConfigurationId: alertConfigurationId,
+//				Outputs: []mongodbatlas.GetAlertConfigurationOutput{
+//					{
+//						Type:  "resource_hcl",
+//						Label: pulumi.StringRef("test"),
+//					},
+//					{
+//						Type:  "resource_import",
+//						Label: pulumi.StringRef("test"),
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupAlertConfiguration(ctx *pulumi.Context, args *LookupAlertConfigurationArgs, opts ...pulumi.InvokeOption) (*LookupAlertConfigurationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAlertConfigurationResult

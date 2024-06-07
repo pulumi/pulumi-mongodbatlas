@@ -14,6 +14,55 @@ import (
 // `CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testCloudBackupSnapshotExportBucket, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//				ProjectId:     pulumi.String("{PROJECT_ID}"),
+//				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
+//				BucketName:    pulumi.String("example_bucket"),
+//				CloudProvider: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testCloudBackupSnapshotExportJob, err := mongodbatlas.NewCloudBackupSnapshotExportJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportJobArgs{
+//				ProjectId:      pulumi.String("{PROJECT_ID}"),
+//				ClusterName:    pulumi.String("{CLUSTER_NAME}"),
+//				SnapshotId:     pulumi.String("{SNAPSHOT_ID}"),
+//				ExportBucketId: testCloudBackupSnapshotExportBucket.ExportBucketId,
+//				CustomDatas: mongodbatlas.CloudBackupSnapshotExportJobCustomDataArray{
+//					&mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs{
+//						Key:   pulumi.String("exported by"),
+//						Value: pulumi.String("myName"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCloudBackupSnapshotExportJobOutput(ctx, mongodbatlas.GetCloudBackupSnapshotExportJobOutputArgs{
+//				ProjectId:   pulumi.String("{PROJECT_ID}"),
+//				ClusterName: pulumi.String("{CLUSTER_NAME}"),
+//				ExportJobId: testCloudBackupSnapshotExportJob.ExportJobId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCloudBackupSnapshotExportJob(ctx *pulumi.Context, args *LookupCloudBackupSnapshotExportJobArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotExportJobResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotExportJobResult
@@ -30,7 +79,8 @@ type LookupCloudBackupSnapshotExportJobArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// Unique identifier of the export job to retrieve.
 	ExportJobId string `pulumi:"exportJobId"`
-	Id          string `pulumi:"id"`
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+	Id *string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
 	ProjectId string `pulumi:"projectId"`
 }
@@ -55,12 +105,17 @@ type LookupCloudBackupSnapshotExportJobResult struct {
 	ExportStatusTotalCollections    int    `pulumi:"exportStatusTotalCollections"`
 	// Timestamp in ISO 8601 date and time format in UTC when the export job completes.
 	FinishedAt string `pulumi:"finishedAt"`
-	Id         string `pulumi:"id"`
-	Prefix     string `pulumi:"prefix"`
-	ProjectId  string `pulumi:"projectId"`
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+	Id        string `pulumi:"id"`
+	Prefix    string `pulumi:"prefix"`
+	ProjectId string `pulumi:"projectId"`
 	// Unique identifier of the Cloud Backup snapshot to export.
 	SnapshotId string `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
+	// * `Queued` - indicates that the export job is queued
+	// * `InProgress` - indicates that the snapshot is being exported
+	// * `Successful` - indicates that the export job has completed successfully
+	// * `Failed` - indicates that the export job has failed
 	State string `pulumi:"state"`
 }
 
@@ -83,7 +138,8 @@ type LookupCloudBackupSnapshotExportJobOutputArgs struct {
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
 	// Unique identifier of the export job to retrieve.
 	ExportJobId pulumi.StringInput `pulumi:"exportJobId"`
-	Id          pulumi.StringInput `pulumi:"id"`
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
@@ -159,6 +215,7 @@ func (o LookupCloudBackupSnapshotExportJobResultOutput) FinishedAt() pulumi.Stri
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobResult) string { return v.FinishedAt }).(pulumi.StringOutput)
 }
 
+// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
 func (o LookupCloudBackupSnapshotExportJobResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -177,6 +234,10 @@ func (o LookupCloudBackupSnapshotExportJobResultOutput) SnapshotId() pulumi.Stri
 }
 
 // Status of the export job. Value can be one of the following:
+// * `Queued` - indicates that the export job is queued
+// * `InProgress` - indicates that the snapshot is being exported
+// * `Successful` - indicates that the export job has completed successfully
+// * `Failed` - indicates that the export job has failed
 func (o LookupCloudBackupSnapshotExportJobResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobResult) string { return v.State }).(pulumi.StringOutput)
 }

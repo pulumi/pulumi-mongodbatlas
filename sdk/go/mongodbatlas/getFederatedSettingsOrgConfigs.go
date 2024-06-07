@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			orgConnections, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, "orgConnections", &mongodbatlas.FederatedSettingsOrgConfigArgs{
+//			_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, "org_connections", &mongodbatlas.FederatedSettingsOrgConfigArgs{
 //				FederationSettingsId:     pulumi.String("627a9687f7f7f7f774de306f14"),
 //				OrgId:                    pulumi.String("627a9683ea7ff7f74de306f14"),
 //				DomainRestrictionEnabled: pulumi.Bool(false),
@@ -42,15 +41,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupFederatedSettingsOrgConfigsOutput(ctx, mongodbatlas.GetFederatedSettingsOrgConfigsOutputArgs{
-//				FederationSettingsId: orgConnections.ID(),
+//			_, err = mongodbatlas.LookupFederatedSettingsOrgConfigs(ctx, &mongodbatlas.LookupFederatedSettingsOrgConfigsArgs{
+//				FederationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,
 //			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupFederatedSettingsOrgConfigs(ctx *pulumi.Context, args *LookupFederatedSettingsOrgConfigsArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsOrgConfigsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsOrgConfigsResult
@@ -80,6 +81,7 @@ type LookupFederatedSettingsOrgConfigsResult struct {
 	ItemsPerPage *int   `pulumi:"itemsPerPage"`
 	PageNum      *int   `pulumi:"pageNum"`
 	// Includes cloudProviderSnapshot object for each item detailed in the results array section.
+	// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 	Results []GetFederatedSettingsOrgConfigsResult `pulumi:"results"`
 }
 
@@ -144,6 +146,7 @@ func (o LookupFederatedSettingsOrgConfigsResultOutput) PageNum() pulumi.IntPtrOu
 }
 
 // Includes cloudProviderSnapshot object for each item detailed in the results array section.
+// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 func (o LookupFederatedSettingsOrgConfigsResultOutput) Results() GetFederatedSettingsOrgConfigsResultArrayOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsOrgConfigsResult) []GetFederatedSettingsOrgConfigsResult {
 		return v.Results

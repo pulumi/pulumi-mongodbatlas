@@ -14,17 +14,16 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testPagerDuty = new mongodbatlas.ThirdPartyIntegration("testPagerDuty", {
+ * const testPagerDuty = new mongodbatlas.ThirdPartyIntegration("test_pager_duty", {
  *     projectId: "<PROJECT-ID>",
  *     type: "PAGER_DUTY",
  *     serviceKey: "<PAGER-DUTY-SERVICE-KEY>",
  * });
- * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("test_datadog", {
  *     projectId: "<PROJECT-ID>",
  *     type: "DATADOG",
  *     apiKey: "<API-KEY>",
@@ -34,7 +33,6 @@ import * as utilities from "./utilities";
  *     projectId: testPagerDuty.projectId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getThirdPartyIntegrations(args: GetThirdPartyIntegrationsArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationsResult> {
 
@@ -63,7 +61,7 @@ export interface GetThirdPartyIntegrationsResult {
      */
     readonly id: string;
     /**
-     * (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+     * ID of the Atlas project the Third-Party Service Integration belongs to.
      */
     readonly projectId: string;
     /**
@@ -79,17 +77,16 @@ export interface GetThirdPartyIntegrationsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testPagerDuty = new mongodbatlas.ThirdPartyIntegration("testPagerDuty", {
+ * const testPagerDuty = new mongodbatlas.ThirdPartyIntegration("test_pager_duty", {
  *     projectId: "<PROJECT-ID>",
  *     type: "PAGER_DUTY",
  *     serviceKey: "<PAGER-DUTY-SERVICE-KEY>",
  * });
- * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("test_datadog", {
  *     projectId: "<PROJECT-ID>",
  *     type: "DATADOG",
  *     apiKey: "<API-KEY>",
@@ -99,7 +96,6 @@ export interface GetThirdPartyIntegrationsResult {
  *     projectId: testPagerDuty.projectId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getThirdPartyIntegrationsOutput(args: GetThirdPartyIntegrationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationsResult> {
     return pulumi.output(args).apply((a: any) => getThirdPartyIntegrations(a, opts))

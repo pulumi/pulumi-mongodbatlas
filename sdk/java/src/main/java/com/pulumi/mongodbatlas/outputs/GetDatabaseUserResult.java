@@ -33,16 +33,11 @@ public final class GetDatabaseUserResult {
     private String ldapAuthType;
     /**
      * @return (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use OIDC federated authentication.
+     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     private String oidcAuthType;
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    private String password;
     private String projectId;
     /**
      * @return List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -91,19 +86,12 @@ public final class GetDatabaseUserResult {
     }
     /**
      * @return (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use OIDC federated authentication.
+     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public String oidcAuthType() {
         return this.oidcAuthType;
-    }
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    public String password() {
-        return this.password;
     }
     public String projectId() {
         return this.projectId;
@@ -148,7 +136,6 @@ public final class GetDatabaseUserResult {
         private List<GetDatabaseUserLabel> labels;
         private String ldapAuthType;
         private String oidcAuthType;
-        private String password;
         private String projectId;
         private List<GetDatabaseUserRole> roles;
         private List<GetDatabaseUserScope> scopes;
@@ -163,7 +150,6 @@ public final class GetDatabaseUserResult {
     	      this.labels = defaults.labels;
     	      this.ldapAuthType = defaults.ldapAuthType;
     	      this.oidcAuthType = defaults.oidcAuthType;
-    	      this.password = defaults.password;
     	      this.projectId = defaults.projectId;
     	      this.roles = defaults.roles;
     	      this.scopes = defaults.scopes;
@@ -223,14 +209,6 @@ public final class GetDatabaseUserResult {
             return this;
         }
         @CustomType.Setter
-        public Builder password(String password) {
-            if (password == null) {
-              throw new MissingRequiredPropertyException("GetDatabaseUserResult", "password");
-            }
-            this.password = password;
-            return this;
-        }
-        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetDatabaseUserResult", "projectId");
@@ -284,7 +262,6 @@ public final class GetDatabaseUserResult {
             _resultValue.labels = labels;
             _resultValue.ldapAuthType = ldapAuthType;
             _resultValue.oidcAuthType = oidcAuthType;
-            _resultValue.password = password;
             _resultValue.projectId = projectId;
             _resultValue.roles = roles;
             _resultValue.scopes = scopes;

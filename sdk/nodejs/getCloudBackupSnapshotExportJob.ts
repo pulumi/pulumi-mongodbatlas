@@ -10,6 +10,35 @@ import * as utilities from "./utilities";
  * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
+ *     projectId: "{PROJECT_ID}",
+ *     iamRoleId: "{IAM_ROLE_ID}",
+ *     bucketName: "example_bucket",
+ *     cloudProvider: "AWS",
+ * });
+ * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("test", {
+ *     projectId: "{PROJECT_ID}",
+ *     clusterName: "{CLUSTER_NAME}",
+ *     snapshotId: "{SNAPSHOT_ID}",
+ *     exportBucketId: testCloudBackupSnapshotExportBucket.exportBucketId,
+ *     customDatas: [{
+ *         key: "exported by",
+ *         value: "myName",
+ *     }],
+ * });
+ * const test = mongodbatlas.getCloudBackupSnapshotExportJobOutput({
+ *     projectId: "{PROJECT_ID}",
+ *     clusterName: "{CLUSTER_NAME}",
+ *     exportJobId: testCloudBackupSnapshotExportJob.exportJobId,
+ * });
+ * ```
  */
 export function getCloudBackupSnapshotExportJob(args: GetCloudBackupSnapshotExportJobArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotExportJobResult> {
 
@@ -34,7 +63,10 @@ export interface GetCloudBackupSnapshotExportJobArgs {
      * Unique identifier of the export job to retrieve.
      */
     exportJobId: string;
-    id: string;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     */
+    id?: string;
     /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
      */
@@ -77,6 +109,9 @@ export interface GetCloudBackupSnapshotExportJobResult {
      * Timestamp in ISO 8601 date and time format in UTC when the export job completes.
      */
     readonly finishedAt: string;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     */
     readonly id: string;
     readonly prefix: string;
     readonly projectId: string;
@@ -86,6 +121,10 @@ export interface GetCloudBackupSnapshotExportJobResult {
     readonly snapshotId: string;
     /**
      * Status of the export job. Value can be one of the following:
+     * * `Queued` - indicates that the export job is queued
+     * * `InProgress` - indicates that the snapshot is being exported
+     * * `Successful` - indicates that the export job has completed successfully
+     * * `Failed` - indicates that the export job has failed
      */
     readonly state: string;
 }
@@ -93,6 +132,35 @@ export interface GetCloudBackupSnapshotExportJobResult {
  * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
+ *     projectId: "{PROJECT_ID}",
+ *     iamRoleId: "{IAM_ROLE_ID}",
+ *     bucketName: "example_bucket",
+ *     cloudProvider: "AWS",
+ * });
+ * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("test", {
+ *     projectId: "{PROJECT_ID}",
+ *     clusterName: "{CLUSTER_NAME}",
+ *     snapshotId: "{SNAPSHOT_ID}",
+ *     exportBucketId: testCloudBackupSnapshotExportBucket.exportBucketId,
+ *     customDatas: [{
+ *         key: "exported by",
+ *         value: "myName",
+ *     }],
+ * });
+ * const test = mongodbatlas.getCloudBackupSnapshotExportJobOutput({
+ *     projectId: "{PROJECT_ID}",
+ *     clusterName: "{CLUSTER_NAME}",
+ *     exportJobId: testCloudBackupSnapshotExportJob.exportJobId,
+ * });
+ * ```
  */
 export function getCloudBackupSnapshotExportJobOutput(args: GetCloudBackupSnapshotExportJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportJobResult> {
     return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotExportJob(a, opts))
@@ -110,7 +178,10 @@ export interface GetCloudBackupSnapshotExportJobOutputArgs {
      * Unique identifier of the export job to retrieve.
      */
     exportJobId: pulumi.Input<string>;
-    id: pulumi.Input<string>;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     */
+    id?: pulumi.Input<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
      */

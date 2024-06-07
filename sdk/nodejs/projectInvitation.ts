@@ -9,34 +9,30 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.ProjectInvitation("test", {
+ *     username: "test-acc-username",
  *     projectId: "<PROJECT-ID>",
  *     roles: ["GROUP_DATA_ACCESS_READ_WRITE"],
- *     username: "test-acc-username",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.ProjectInvitation("test", {
+ *     username: "test-acc-username",
  *     projectId: "<PROJECT-ID>",
  *     roles: [
  *         "GROUP_READ_ONLY",
  *         "GROUP_DATA_ACCESS_READ_ONLY",
  *     ],
- *     username: "test-acc-username",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

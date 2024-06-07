@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -29,7 +28,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
         ///     {
-        ///         OrgId = @var.Atlas_org_id,
+        ///         OrgId = atlasOrgId,
+        ///         Name = atlasProjectName,
         ///     });
         /// 
         ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
@@ -50,7 +50,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> InvokeAsync(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult>("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", args ?? new GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs(), options.WithDefaults());
@@ -62,7 +61,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -73,7 +71,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
         ///     {
-        ///         OrgId = @var.Atlas_org_id,
+        ///         OrgId = atlasOrgId,
+        ///         Name = atlasProjectName,
         ///     });
         /// 
         ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
@@ -94,7 +93,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult> Invoke(GetPrivatelinkEndpointServiceDataFederationOnlineArchiveInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult>("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", args ?? new GetPrivatelinkEndpointServiceDataFederationOnlineArchiveInvokeArgs(), options.WithDefaults());
@@ -104,7 +102,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature).
+        /// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
         /// </summary>
         [Input("endpointId", required: true)]
         public string EndpointId { get; set; } = null!;
@@ -124,7 +122,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%!D(MISSING)ata%!L(MISSING)ake%!s(MISSING)upports%!A(MISSING)mazon%!W(MISSING)eb%!S(MISSING)ervices%!p(MISSING)rivate%!e(MISSING)ndpoints%!u(MISSING)sing%!t(MISSING)he%!A(MISSING)WS%!P(MISSING)rivateLink%!f(MISSING)eature).
+        /// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
         /// </summary>
         [Input("endpointId", required: true)]
         public Input<string> EndpointId { get; set; } = null!;

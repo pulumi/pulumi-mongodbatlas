@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,11 +22,11 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", new()
+    ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
     ///     {
-    ///         ExternalGroupName = "myGrouptest",
     ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
     ///         OrgId = "627a9683e7f7f7ff7fe306f14",
+    ///         ExternalGroupName = "myGrouptest",
     ///         RoleAssignments = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
@@ -68,7 +67,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -105,6 +103,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("roleAssignments")]
         public Output<ImmutableArray<Outputs.FederatedSettingsOrgRoleMappingRoleAssignment>> RoleAssignments { get; private set; } = null!;
+
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies this role mapping.
+        /// </summary>
+        [Output("roleMappingId")]
+        public Output<string> RoleMappingId { get; private set; } = null!;
 
 
         /// <summary>
@@ -219,6 +223,12 @@ namespace Pulumi.Mongodbatlas
             get => _roleAssignments ?? (_roleAssignments = new InputList<Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentGetArgs>());
             set => _roleAssignments = value;
         }
+
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies this role mapping.
+        /// </summary>
+        [Input("roleMappingId")]
+        public Input<string>? RoleMappingId { get; set; }
 
         public FederatedSettingsOrgRoleMappingState()
         {

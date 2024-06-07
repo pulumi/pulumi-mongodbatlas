@@ -15,6 +15,44 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster. 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myCluster = new Mongodbatlas.Cluster("my_cluster", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Name = "clusterTest",
+        ///         ProviderName = "AWS",
+        ///         ProviderRegionName = "EU_CENTRAL_1",
+        ///         ProviderInstanceSizeName = "M10",
+        ///         CloudBackup = true,
+        ///     });
+        /// 
+        ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()
+        ///     {
+        ///         ProjectId = myCluster.ProjectId,
+        ///         ClusterName = myCluster.Name,
+        ///         ReferenceHourOfDay = 3,
+        ///         ReferenceMinuteOfHour = 45,
+        ///         RestoreWindowDays = 4,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
+        ///     {
+        ///         ProjectId = testCloudBackupSchedule.ProjectId,
+        ///         ClusterName = testCloudBackupSchedule.ClusterName,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetCloudBackupScheduleResult> InvokeAsync(GetCloudBackupScheduleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupScheduleResult>("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args ?? new GetCloudBackupScheduleArgs(), options.WithDefaults());
@@ -23,6 +61,44 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster. 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myCluster = new Mongodbatlas.Cluster("my_cluster", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Name = "clusterTest",
+        ///         ProviderName = "AWS",
+        ///         ProviderRegionName = "EU_CENTRAL_1",
+        ///         ProviderInstanceSizeName = "M10",
+        ///         CloudBackup = true,
+        ///     });
+        /// 
+        ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()
+        ///     {
+        ///         ProjectId = myCluster.ProjectId,
+        ///         ClusterName = myCluster.Name,
+        ///         ReferenceHourOfDay = 3,
+        ///         ReferenceMinuteOfHour = 45,
+        ///         RestoreWindowDays = 4,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
+        ///     {
+        ///         ProjectId = testCloudBackupSchedule.ProjectId,
+        ///         ClusterName = testCloudBackupSchedule.ClusterName,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCloudBackupScheduleResult> Invoke(GetCloudBackupScheduleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupScheduleResult>("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args ?? new GetCloudBackupScheduleInvokeArgs(), options.WithDefaults());
@@ -75,6 +151,8 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+        /// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+        /// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         /// </summary>
         public readonly bool AutoExportEnabled;
         /// <summary>
@@ -112,6 +190,10 @@ namespace Pulumi.Mongodbatlas
         /// Weekly policy item
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemWeeklyResult> PolicyItemWeeklies;
+        /// <summary>
+        /// Yearly policy item
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemYearlyResult> PolicyItemYearlies;
         public readonly string ProjectId;
         /// <summary>
         /// UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.
@@ -156,6 +238,8 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemWeeklyResult> policyItemWeeklies,
 
+            ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemYearlyResult> policyItemYearlies,
+
             string projectId,
 
             int referenceHourOfDay,
@@ -178,6 +262,7 @@ namespace Pulumi.Mongodbatlas
             PolicyItemHourlies = policyItemHourlies;
             PolicyItemMonthlies = policyItemMonthlies;
             PolicyItemWeeklies = policyItemWeeklies;
+            PolicyItemYearlies = policyItemYearlies;
             ProjectId = projectId;
             ReferenceHourOfDay = referenceHourOfDay;
             ReferenceMinuteOfHour = referenceMinuteOfHour;

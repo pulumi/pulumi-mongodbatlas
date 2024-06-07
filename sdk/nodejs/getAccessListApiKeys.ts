@@ -24,19 +24,11 @@ export function getAccessListApiKeys(args: GetAccessListApiKeysArgs, opts?: pulu
  * A collection of arguments for invoking getAccessListApiKeys.
  */
 export interface GetAccessListApiKeysArgs {
-    /**
-     * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-     * *
-     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` not both.
-     */
     apiKeyId: string;
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
     itemsPerPage?: number;
-    /**
-     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-     */
     orgId: string;
     /**
      * The page to return. Defaults to `1`.
@@ -69,19 +61,11 @@ export function getAccessListApiKeysOutput(args: GetAccessListApiKeysOutputArgs,
  * A collection of arguments for invoking getAccessListApiKeys.
  */
 export interface GetAccessListApiKeysOutputArgs {
-    /**
-     * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-     * *
-     * > **NOTE:** One of the following attributes must set: `cidrBlock`  or `ipAddress` not both.
-     */
     apiKeyId: pulumi.Input<string>;
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
     itemsPerPage?: pulumi.Input<number>;
-    /**
-     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-     */
     orgId: pulumi.Input<string>;
     /**
      * The page to return. Defaults to `1`.

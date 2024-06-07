@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
         /// ### S
         /// 
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -28,13 +27,12 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var outageSimulation = Mongodbatlas.GetClusterOutageSimulation.Invoke(new()
         ///     {
-        ///         ClusterName = "Cluster0",
         ///         ProjectId = "64707f06c519c20c3a2b1b03",
+        ///         ClusterName = "Cluster0",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClusterOutageSimulationResult> InvokeAsync(GetClusterOutageSimulationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClusterOutageSimulationResult>("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", args ?? new GetClusterOutageSimulationArgs(), options.WithDefaults());
@@ -45,7 +43,6 @@ namespace Pulumi.Mongodbatlas
         /// ### S
         /// 
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -56,13 +53,12 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var outageSimulation = Mongodbatlas.GetClusterOutageSimulation.Invoke(new()
         ///     {
-        ///         ClusterName = "Cluster0",
         ///         ProjectId = "64707f06c519c20c3a2b1b03",
+        ///         ClusterName = "Cluster0",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClusterOutageSimulationResult> Invoke(GetClusterOutageSimulationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClusterOutageSimulationResult>("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", args ?? new GetClusterOutageSimulationInvokeArgs(), options.WithDefaults());
@@ -133,6 +129,12 @@ namespace Pulumi.Mongodbatlas
         public readonly string StartRequestDate;
         /// <summary>
         /// Current phase of the outage simulation:
+        /// * `START_REQUESTED` - User has requested cluster outage simulation.
+        /// * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+        /// * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+        /// * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+        /// * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+        /// * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
         /// </summary>
         public readonly string State;
 

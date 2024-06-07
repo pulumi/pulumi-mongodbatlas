@@ -17,36 +17,32 @@ import * as utilities from "./utilities";
  *
  * ### S With MongoDB Atlas Cluster As Storage Database
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getFederatedDatabaseInstance({
- *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  *     projectId: "PROJECT ID",
+ *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### S With Amazon S3 Bucket As Storage Database
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getFederatedDatabaseInstance({
+ *     projectId: "PROJECT ID",
+ *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  *     cloudProviderConfig: {
  *         aws: {
  *             testS3Bucket: "Amazon S3 Bucket Name",
  *         },
  *     },
- *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
- *     projectId: "PROJECT ID",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedDatabaseInstance(args: GetFederatedDatabaseInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedDatabaseInstanceResult> {
 
@@ -91,6 +87,8 @@ export interface GetFederatedDatabaseInstanceResult {
     readonly projectId: string;
     /**
      * Current state of the Federated Database Instance:
+     * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+     * * `DELETED` - The Federated Database Instance was deleted.
      */
     readonly state: string;
     /**
@@ -153,36 +151,32 @@ export interface GetFederatedDatabaseInstanceResult {
  *
  * ### S With MongoDB Atlas Cluster As Storage Database
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getFederatedDatabaseInstance({
- *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  *     projectId: "PROJECT ID",
+ *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### S With Amazon S3 Bucket As Storage Database
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getFederatedDatabaseInstance({
+ *     projectId: "PROJECT ID",
+ *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
  *     cloudProviderConfig: {
  *         aws: {
  *             testS3Bucket: "Amazon S3 Bucket Name",
  *         },
  *     },
- *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
- *     projectId: "PROJECT ID",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedDatabaseInstanceOutput(args: GetFederatedDatabaseInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedDatabaseInstanceResult> {
     return pulumi.output(args).apply((a: any) => getFederatedDatabaseInstance(a, opts))

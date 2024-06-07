@@ -34,7 +34,8 @@ import javax.annotation.Nullable;
  * ### S
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,8 +43,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.DatabaseUser;
  * import com.pulumi.mongodbatlas.DatabaseUserArgs;
- * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
  * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
  * import com.pulumi.mongodbatlas.inputs.DatabaseUserScopeArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -58,91 +59,44 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
- *             .authDatabaseName(&#34;admin&#34;)
- *             .labels(DatabaseUserLabelArgs.builder()
- *                 .key(&#34;My Key&#34;)
- *                 .value(&#34;My Value&#34;)
- *                 .build())
- *             .password(&#34;test-acc-password&#34;)
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *         var test = new DatabaseUser("test", DatabaseUserArgs.builder()
+ *             .username("test-acc-username")
+ *             .password("test-acc-password")
+ *             .projectId("<PROJECT-ID>")
+ *             .authDatabaseName("admin")
  *             .roles(            
  *                 DatabaseUserRoleArgs.builder()
- *                     .databaseName(&#34;dbforApp&#34;)
- *                     .roleName(&#34;readWrite&#34;)
+ *                     .roleName("readWrite")
+ *                     .databaseName("dbforApp")
  *                     .build(),
  *                 DatabaseUserRoleArgs.builder()
- *                     .databaseName(&#34;admin&#34;)
- *                     .roleName(&#34;readAnyDatabase&#34;)
+ *                     .roleName("readAnyDatabase")
+ *                     .databaseName("admin")
  *                     .build())
+ *             .labels(DatabaseUserLabelArgs.builder()
+ *                 .key("My Key")
+ *                 .value("My Value")
+ *                 .build())
  *             .scopes(            
  *                 DatabaseUserScopeArgs.builder()
- *                     .name(&#34;My cluster name&#34;)
- *                     .type(&#34;CLUSTER&#34;)
+ *                     .name("My cluster name")
+ *                     .type("CLUSTER")
  *                     .build(),
  *                 DatabaseUserScopeArgs.builder()
- *                     .name(&#34;My second cluster name&#34;)
- *                     .type(&#34;CLUSTER&#34;)
+ *                     .name("My second cluster name")
+ *                     .type("CLUSTER")
  *                     .build())
- *             .username(&#34;test-acc-username&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.DatabaseUser;
- * import com.pulumi.mongodbatlas.DatabaseUserArgs;
- * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
- * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
- * import com.pulumi.mongodbatlas.inputs.DatabaseUserScopeArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
- *             .authDatabaseName(&#34;$external&#34;)
- *             .labels(DatabaseUserLabelArgs.builder()
- *                 .key(&#34;%s&#34;)
- *                 .value(&#34;%s&#34;)
- *                 .build())
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .roles(DatabaseUserRoleArgs.builder()
- *                 .databaseName(&#34;admin&#34;)
- *                 .roleName(&#34;readAnyDatabase&#34;)
- *                 .build())
- *             .scopes(DatabaseUserScopeArgs.builder()
- *                 .name(&#34;My cluster name&#34;)
- *                 .type(&#34;CLUSTER&#34;)
- *                 .build())
- *             .username(&#34;test-acc-username&#34;)
- *             .x509Type(&#34;MANAGED&#34;)
- *             .build());
- * 
- *     }
  * }
- * ```
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -166,34 +120,87 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
- *             .username(aws_iam_role.test().arn())
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
- *             .authDatabaseName(&#34;$external&#34;)
- *             .awsIamType(&#34;ROLE&#34;)
+ *         var test = new DatabaseUser("test", DatabaseUserArgs.builder()
+ *             .username("test-acc-username")
+ *             .x509Type("MANAGED")
+ *             .projectId("<PROJECT-ID>")
+ *             .authDatabaseName("$external")
  *             .roles(DatabaseUserRoleArgs.builder()
- *                 .roleName(&#34;readAnyDatabase&#34;)
- *                 .databaseName(&#34;admin&#34;)
+ *                 .roleName("readAnyDatabase")
+ *                 .databaseName("admin")
  *                 .build())
  *             .labels(DatabaseUserLabelArgs.builder()
- *                 .key(&#34;%s&#34;)
- *                 .value(&#34;%s&#34;)
+ *                 .key("%s")
+ *                 .value("%s")
  *                 .build())
  *             .scopes(DatabaseUserScopeArgs.builder()
- *                 .name(&#34;My cluster name&#34;)
- *                 .type(&#34;CLUSTER&#34;)
+ *                 .name("My cluster name")
+ *                 .type("CLUSTER")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.DatabaseUser;
+ * import com.pulumi.mongodbatlas.DatabaseUserArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
+ * import com.pulumi.mongodbatlas.inputs.DatabaseUserScopeArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new DatabaseUser("test", DatabaseUserArgs.builder()
+ *             .username(testAwsIamRole.arn())
+ *             .projectId("<PROJECT-ID>")
+ *             .authDatabaseName("$external")
+ *             .awsIamType("ROLE")
+ *             .roles(DatabaseUserRoleArgs.builder()
+ *                 .roleName("readAnyDatabase")
+ *                 .databaseName("admin")
+ *                 .build())
+ *             .labels(DatabaseUserLabelArgs.builder()
+ *                 .key("%s")
+ *                 .value("%s")
+ *                 .build())
+ *             .scopes(DatabaseUserScopeArgs.builder()
+ *                 .name("My cluster name")
+ *                 .type("CLUSTER")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Example of how to create a OIDC federated authentication user
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -215,20 +222,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new DatabaseUser(&#34;test&#34;, DatabaseUserArgs.builder()        
- *             .authDatabaseName(&#34;admin&#34;)
- *             .oidcAuthType(&#34;IDP_GROUP&#34;)
- *             .projectId(&#34;6414908c207f4d22f4d8f232&#34;)
+ *         var test = new DatabaseUser("test", DatabaseUserArgs.builder()
+ *             .username("64d613677e1ad50839cce4db/testUserOr")
+ *             .projectId("6414908c207f4d22f4d8f232")
+ *             .authDatabaseName("admin")
+ *             .oidcAuthType("IDP_GROUP")
  *             .roles(DatabaseUserRoleArgs.builder()
- *                 .databaseName(&#34;admin&#34;)
- *                 .roleName(&#34;readWriteAnyDatabase&#34;)
+ *                 .roleName("readWriteAnyDatabase")
+ *                 .databaseName("admin")
  *                 .build())
- *             .username(&#34;64d613677e1ad50839cce4db/testUserOr&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a &#39;/&#39;, followed by the IdP group name
  * 
@@ -264,6 +272,9 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
     }
     /**
      * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use AWS IAM credentials.
+     * * `USER` - New database user has AWS IAM user credentials.
+     * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
      * 
      */
     @Export(name="awsIamType", refs={String.class}, tree="[0]")
@@ -271,6 +282,9 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
 
     /**
      * @return If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use AWS IAM credentials.
+     * * `USER` - New database user has AWS IAM user credentials.
+     * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
      * 
      */
     public Output<String> awsIamType() {
@@ -284,6 +298,9 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
     }
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+     * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+     * * `USER` - LDAP server authenticates this user through the user&#39;s LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+     * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      * 
      */
     @Export(name="ldapAuthType", refs={String.class}, tree="[0]")
@@ -291,6 +308,9 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+     * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+     * * `USER` - LDAP server authenticates this user through the user&#39;s LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+     * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      * 
      */
     public Output<String> ldapAuthType() {
@@ -298,6 +318,8 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
     }
     /**
      * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use OIDC federated authentication.
+     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     @Export(name="oidcAuthType", refs={String.class}, tree="[0]")
@@ -305,6 +327,8 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+     * * `NONE` -	The user does not use OIDC federated authentication.
+     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public Output<String> oidcAuthType() {
@@ -366,6 +390,9 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
     }
     /**
      * X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * * `NONE` -	The user does not use X.509 authentication.
+     * * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+     * * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
      * 
      */
     @Export(name="x509Type", refs={String.class}, tree="[0]")
@@ -373,6 +400,9 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
 
     /**
      * @return X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+     * * `NONE` -	The user does not use X.509 authentication.
+     * * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
+     * * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
      * 
      */
     public Output<String> x509Type() {

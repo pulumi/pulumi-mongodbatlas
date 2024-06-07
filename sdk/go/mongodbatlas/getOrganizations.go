@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -29,8 +28,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupOrganizations(ctx, &mongodbatlas.LookupOrganizationsArgs{
-//				ItemsPerPage: pulumi.IntRef(5),
 //				PageNum:      pulumi.IntRef(1),
+//				ItemsPerPage: pulumi.IntRef(5),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -40,7 +39,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupOrganizations(ctx *pulumi.Context, args *LookupOrganizationsArgs, opts ...pulumi.InvokeOption) (*LookupOrganizationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOrganizationsResult
@@ -53,12 +51,9 @@ func LookupOrganizations(ctx *pulumi.Context, args *LookupOrganizationsArgs, opt
 
 // A collection of arguments for invoking getOrganizations.
 type LookupOrganizationsArgs struct {
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	IncludeDeletedOrgs *bool `pulumi:"includeDeletedOrgs"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-	ItemsPerPage *int `pulumi:"itemsPerPage"`
-	// Human-readable label that identifies the organization.
-	Name *string `pulumi:"name"`
+	ItemsPerPage *int    `pulumi:"itemsPerPage"`
+	Name         *string `pulumi:"name"`
 	// The page to return. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
 }
@@ -66,14 +61,12 @@ type LookupOrganizationsArgs struct {
 // A collection of values returned by getOrganizations.
 type LookupOrganizationsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	IncludeDeletedOrgs *bool                    `pulumi:"includeDeletedOrgs"`
-	ItemsPerPage       *int                     `pulumi:"itemsPerPage"`
-	Name               *string                  `pulumi:"name"`
-	PageNum            *int                     `pulumi:"pageNum"`
-	Results            []GetOrganizationsResult `pulumi:"results"`
-	TotalCount         int                      `pulumi:"totalCount"`
+	Id           string                   `pulumi:"id"`
+	ItemsPerPage *int                     `pulumi:"itemsPerPage"`
+	Name         *string                  `pulumi:"name"`
+	PageNum      *int                     `pulumi:"pageNum"`
+	Results      []GetOrganizationsResult `pulumi:"results"`
+	TotalCount   int                      `pulumi:"totalCount"`
 }
 
 func LookupOrganizationsOutput(ctx *pulumi.Context, args LookupOrganizationsOutputArgs, opts ...pulumi.InvokeOption) LookupOrganizationsResultOutput {
@@ -91,12 +84,9 @@ func LookupOrganizationsOutput(ctx *pulumi.Context, args LookupOrganizationsOutp
 
 // A collection of arguments for invoking getOrganizations.
 type LookupOrganizationsOutputArgs struct {
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	IncludeDeletedOrgs pulumi.BoolPtrInput `pulumi:"includeDeletedOrgs"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
-	// Human-readable label that identifies the organization.
-	Name pulumi.StringPtrInput `pulumi:"name"`
+	ItemsPerPage pulumi.IntPtrInput    `pulumi:"itemsPerPage"`
+	Name         pulumi.StringPtrInput `pulumi:"name"`
 	// The page to return. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
 }
@@ -123,11 +113,6 @@ func (o LookupOrganizationsResultOutput) ToLookupOrganizationsResultOutputWithCo
 // The provider-assigned unique ID for this managed resource.
 func (o LookupOrganizationsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationsResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-func (o LookupOrganizationsResultOutput) IncludeDeletedOrgs() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupOrganizationsResult) *bool { return v.IncludeDeletedOrgs }).(pulumi.BoolPtrOutput)
 }
 
 func (o LookupOrganizationsResultOutput) ItemsPerPage() pulumi.IntPtrOutput {

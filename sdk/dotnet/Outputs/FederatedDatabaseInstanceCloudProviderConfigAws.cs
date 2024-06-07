@@ -28,14 +28,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
         /// </summary>
         public readonly string? IamUserArn;
-        /// <summary>
-        /// Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
-        /// </summary>
         public readonly string RoleId;
-        /// <summary>
-        /// Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-        /// ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
-        /// </summary>
         public readonly string TestS3Bucket;
 
         [OutputConstructor]

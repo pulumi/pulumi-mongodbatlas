@@ -19,6 +19,8 @@ public final class FederatedQueryLimitArgs extends com.pulumi.resources.Resource
 
     /**
      * Default value of the limit.
+     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     @Import(name="defaultLimit")
@@ -26,6 +28,8 @@ public final class FederatedQueryLimitArgs extends com.pulumi.resources.Resource
 
     /**
      * @return Default value of the limit.
+     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     public Optional<Output<Integer>> defaultLimit() {
@@ -154,6 +158,8 @@ public final class FederatedQueryLimitArgs extends com.pulumi.resources.Resource
 
         /**
          * @param defaultLimit Default value of the limit.
+         * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+         * * `maximumLimit` - Maximum value of the limit.
          * 
          * @return builder
          * 
@@ -165,6 +171,8 @@ public final class FederatedQueryLimitArgs extends com.pulumi.resources.Resource
 
         /**
          * @param defaultLimit Default value of the limit.
+         * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+         * * `maximumLimit` - Maximum value of the limit.
          * 
          * @return builder
          * 

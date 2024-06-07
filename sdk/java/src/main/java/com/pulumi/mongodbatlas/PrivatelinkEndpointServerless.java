@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * 
  * ### AWS Example
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,23 +47,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
- *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
- *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
- *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+ *         var testServerlessInstance = new ServerlessInstance("testServerlessInstance", ServerlessInstanceArgs.builder()
+ *             .projectId("<PROJECT_ID>")
+ *             .name("test-db")
+ *             .providerSettingsBackingProviderName("AWS")
+ *             .providerSettingsProviderName("SERVERLESS")
+ *             .providerSettingsRegionName("US_EAST_1")
  *             .continuousBackupEnabled(true)
  *             .build());
  * 
- *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+ *         var test = new PrivatelinkEndpointServerless("test", PrivatelinkEndpointServerlessArgs.builder()
+ *             .projectId("<PROJECT_ID>")
  *             .instanceName(testServerlessInstance.name())
- *             .providerName(&#34;AWS&#34;)
+ *             .providerName("AWS")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

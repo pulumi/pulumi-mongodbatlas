@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -65,6 +63,15 @@ type ApiKey struct {
 	PublicKey  pulumi.StringOutput `pulumi:"publicKey"`
 	// Name of the role. This resource returns all the roles the user has in Atlas.
 	// The following are valid roles:
+	// * `ORG_OWNER`
+	// * `ORG_GROUP_CREATOR`
+	// * `ORG_BILLING_ADMIN`
+	// * `ORG_READ_ONLY`
+	// * `ORG_MEMBER`
+	//
+	// ## Attributes Reference
+	//
+	// In addition to all arguments above, the following attributes are exported:
 	RoleNames pulumi.StringArrayOutput `pulumi:"roleNames"`
 }
 
@@ -121,6 +128,15 @@ type apiKeyState struct {
 	PublicKey  *string `pulumi:"publicKey"`
 	// Name of the role. This resource returns all the roles the user has in Atlas.
 	// The following are valid roles:
+	// * `ORG_OWNER`
+	// * `ORG_GROUP_CREATOR`
+	// * `ORG_BILLING_ADMIN`
+	// * `ORG_READ_ONLY`
+	// * `ORG_MEMBER`
+	//
+	// ## Attributes Reference
+	//
+	// In addition to all arguments above, the following attributes are exported:
 	RoleNames []string `pulumi:"roleNames"`
 }
 
@@ -135,6 +151,15 @@ type ApiKeyState struct {
 	PublicKey  pulumi.StringPtrInput
 	// Name of the role. This resource returns all the roles the user has in Atlas.
 	// The following are valid roles:
+	// * `ORG_OWNER`
+	// * `ORG_GROUP_CREATOR`
+	// * `ORG_BILLING_ADMIN`
+	// * `ORG_READ_ONLY`
+	// * `ORG_MEMBER`
+	//
+	// ## Attributes Reference
+	//
+	// In addition to all arguments above, the following attributes are exported:
 	RoleNames pulumi.StringArrayInput
 }
 
@@ -149,6 +174,15 @@ type apiKeyArgs struct {
 	OrgId string `pulumi:"orgId"`
 	// Name of the role. This resource returns all the roles the user has in Atlas.
 	// The following are valid roles:
+	// * `ORG_OWNER`
+	// * `ORG_GROUP_CREATOR`
+	// * `ORG_BILLING_ADMIN`
+	// * `ORG_READ_ONLY`
+	// * `ORG_MEMBER`
+	//
+	// ## Attributes Reference
+	//
+	// In addition to all arguments above, the following attributes are exported:
 	RoleNames []string `pulumi:"roleNames"`
 }
 
@@ -160,6 +194,15 @@ type ApiKeyArgs struct {
 	OrgId pulumi.StringInput
 	// Name of the role. This resource returns all the roles the user has in Atlas.
 	// The following are valid roles:
+	// * `ORG_OWNER`
+	// * `ORG_GROUP_CREATOR`
+	// * `ORG_BILLING_ADMIN`
+	// * `ORG_READ_ONLY`
+	// * `ORG_MEMBER`
+	//
+	// ## Attributes Reference
+	//
+	// In addition to all arguments above, the following attributes are exported:
 	RoleNames pulumi.StringArrayInput
 }
 
@@ -275,6 +318,15 @@ func (o ApiKeyOutput) PublicKey() pulumi.StringOutput {
 
 // Name of the role. This resource returns all the roles the user has in Atlas.
 // The following are valid roles:
+// * `ORG_OWNER`
+// * `ORG_GROUP_CREATOR`
+// * `ORG_BILLING_ADMIN`
+// * `ORG_READ_ONLY`
+// * `ORG_MEMBER`
+//
+// ## Attributes Reference
+//
+// In addition to all arguments above, the following attributes are exported:
 func (o ApiKeyOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ApiKey) pulumi.StringArrayOutput { return v.RoleNames }).(pulumi.StringArrayOutput)
 }

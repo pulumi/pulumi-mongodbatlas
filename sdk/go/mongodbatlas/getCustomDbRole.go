@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testRole, err := mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
+//			testRole, err := mongodbatlas.NewCustomDbRole(ctx, "test_role", &mongodbatlas.CustomDbRoleArgs{
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				RoleName:  pulumi.String("myCustomRole"),
 //				Actions: mongodbatlas.CustomDbRoleActionArray{
@@ -66,7 +65,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupCustomDbRole(ctx *pulumi.Context, args *LookupCustomDbRoleArgs, opts ...pulumi.InvokeOption) (*LookupCustomDbRoleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCustomDbRoleResult

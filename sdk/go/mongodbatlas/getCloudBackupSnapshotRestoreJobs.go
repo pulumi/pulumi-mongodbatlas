@@ -19,7 +19,6 @@ import (
 //
 // First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -32,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testCloudBackupSnapshot, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "testCloudBackupSnapshot", &mongodbatlas.CloudBackupSnapshotArgs{
+//			testCloudBackupSnapshot, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "test", &mongodbatlas.CloudBackupSnapshotArgs{
 //				ProjectId:       pulumi.String("5cf5a45a9ccf6400e60981b6"),
 //				ClusterName:     pulumi.String("MyCluster"),
 //				Description:     pulumi.String("MyDescription"),
@@ -41,7 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testCloudBackupSnapshotRestoreJob, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "testCloudBackupSnapshotRestoreJob", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
+//			testCloudBackupSnapshotRestoreJob, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
 //				ProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
 //				ClusterName: pulumi.String("MyCluster"),
 //				SnapshotId:  testCloudBackupSnapshot.ID(),
@@ -69,7 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupCloudBackupSnapshotRestoreJobs(ctx *pulumi.Context, args *LookupCloudBackupSnapshotRestoreJobsArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotRestoreJobsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotRestoreJobsResult
@@ -101,6 +99,7 @@ type LookupCloudBackupSnapshotRestoreJobsResult struct {
 	PageNum      *int   `pulumi:"pageNum"`
 	ProjectId    string `pulumi:"projectId"`
 	// Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
+	// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 	Results    []GetCloudBackupSnapshotRestoreJobsResult `pulumi:"results"`
 	TotalCount int                                       `pulumi:"totalCount"`
 }
@@ -171,6 +170,7 @@ func (o LookupCloudBackupSnapshotRestoreJobsResultOutput) ProjectId() pulumi.Str
 }
 
 // Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
+// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 func (o LookupCloudBackupSnapshotRestoreJobsResultOutput) Results() GetCloudBackupSnapshotRestoreJobsResultArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobsResult) []GetCloudBackupSnapshotRestoreJobsResult {
 		return v.Results

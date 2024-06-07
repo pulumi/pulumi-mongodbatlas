@@ -24,12 +24,12 @@ import * as utilities from "./utilities";
  *
  * ### S
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const outageSimulation = new mongodbatlas.ClusterOutageSimulation("outageSimulation", {
+ * const outageSimulation = new mongodbatlas.ClusterOutageSimulation("outage_simulation", {
+ *     projectId: "64707f06c519c20c3a2b1b03",
  *     clusterName: "Cluster0",
  *     outageFilters: [
  *         {
@@ -41,10 +41,8 @@ import * as utilities from "./utilities";
  *             regionName: "US_EAST_2",
  *         },
  *     ],
- *     projectId: "64707f06c519c20c3a2b1b03",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -102,6 +100,12 @@ export class ClusterOutageSimulation extends pulumi.CustomResource {
     public /*out*/ readonly startRequestDate!: pulumi.Output<string>;
     /**
      * Current phase of the outage simulation:
+     * * `START_REQUESTED` - User has requested cluster outage simulation.
+     * * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+     * * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+     * * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+     * * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+     * * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
 
@@ -173,6 +177,12 @@ export interface ClusterOutageSimulationState {
     startRequestDate?: pulumi.Input<string>;
     /**
      * Current phase of the outage simulation:
+     * * `START_REQUESTED` - User has requested cluster outage simulation.
+     * * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+     * * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+     * * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+     * * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+     * * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
      */
     state?: pulumi.Input<string>;
 }

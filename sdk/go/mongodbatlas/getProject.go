@@ -16,6 +16,110 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // ## Example Usage
+//
+// ### Using projectId attribute to query
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := mongodbatlas.GetRolesOrgId(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			testProject, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("project-name"),
+//				OrgId: pulumi.String(test.OrgId),
+//				Teams: mongodbatlas.ProjectTeamArray{
+//					&mongodbatlas.ProjectTeamArgs{
+//						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_OWNER"),
+//						},
+//					},
+//					&mongodbatlas.ProjectTeamArgs{
+//						TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_READ_ONLY"),
+//							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
+//						},
+//					},
+//				},
+//				Limits: mongodbatlas.ProjectLimitArray{
+//					&mongodbatlas.ProjectLimitArgs{
+//						Name:  pulumi.String("atlas.project.deployment.clusters"),
+//						Value: pulumi.Int(26),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupProjectOutput(ctx, mongodbatlas.GetProjectOutputArgs{
+//				ProjectId: testProject.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Using name attribute to query
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testProject, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
+//				Name:  pulumi.String("project-name"),
+//				OrgId: pulumi.String("<ORG_ID>"),
+//				Teams: mongodbatlas.ProjectTeamArray{
+//					&mongodbatlas.ProjectTeamArgs{
+//						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_OWNER"),
+//						},
+//					},
+//					&mongodbatlas.ProjectTeamArgs{
+//						TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_READ_ONLY"),
+//							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
+//						},
+//					},
+//				},
+//				Limits: mongodbatlas.ProjectLimitArray{
+//					&mongodbatlas.ProjectLimitArgs{
+//						Name:  pulumi.String("atlas.project.deployment.clusters"),
+//						Value: pulumi.Int(26),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupProjectOutput(ctx, mongodbatlas.GetProjectOutputArgs{
+//				Name: testProject.Name,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.InvokeOption) (*LookupProjectResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectResult
@@ -66,6 +170,8 @@ type LookupProjectResult struct {
 	ProjectId *string `pulumi:"projectId"`
 	// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions string `pulumi:"regionUsageRestrictions"`
+	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
+	Tags map[string]string `pulumi:"tags"`
 	// Returns all teams to which the authenticated user has access in the project. See Teams.
 	Teams []GetProjectTeam `pulumi:"teams"`
 }
@@ -183,6 +289,11 @@ func (o LookupProjectResultOutput) ProjectId() pulumi.StringPtrOutput {
 // If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 func (o LookupProjectResultOutput) RegionUsageRestrictions() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.RegionUsageRestrictions }).(pulumi.StringOutput)
+}
+
+// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
+func (o LookupProjectResultOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupProjectResult) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
 
 // Returns all teams to which the authenticated user has access in the project. See Teams.

@@ -4,6 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * This resource is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the resource with the implementation which manages a single team.
+ */
 export class Teams extends pulumi.CustomResource {
     /**
      * Get an existing Teams resource's state with the given name, ID, and optional extra

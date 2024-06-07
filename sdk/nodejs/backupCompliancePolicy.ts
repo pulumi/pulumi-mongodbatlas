@@ -9,6 +9,99 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.Cluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "clusterTest",
+ *     providerName: "AWS",
+ *     providerRegionName: "EU_CENTRAL_1",
+ *     providerInstanceSizeName: "M10",
+ *     cloudBackup: true,
+ * });
+ * const testCloudBackupSchedule = new mongodbatlas.CloudBackupSchedule("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     referenceHourOfDay: 3,
+ *     referenceMinuteOfHour: 45,
+ *     restoreWindowDays: 4,
+ *     policyItemHourly: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemDaily: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemWeeklies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "weeks",
+ *         retentionValue: 4,
+ *     }],
+ *     policyItemMonthlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "months",
+ *         retentionValue: 12,
+ *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
+ *     }],
+ * });
+ * const test = mongodbatlas.getCloudBackupScheduleOutput({
+ *     projectId: testCloudBackupSchedule.projectId,
+ *     clusterName: testCloudBackupSchedule.clusterName,
+ * });
+ * const backupPolicy = mongodbatlas.getBackupCompliancePolicyOutput({
+ *     projectId: testCloudBackupSchedule.projectId,
+ * });
+ * const backupPolicyBackupCompliancePolicy = new mongodbatlas.BackupCompliancePolicy("backup_policy", {
+ *     projectId: "<PROJECT-ID>",
+ *     authorizedEmail: "user@email.com",
+ *     authorizedUserFirstName: "First",
+ *     authorizedUserLastName: "Last",
+ *     copyProtectionEnabled: false,
+ *     pitEnabled: false,
+ *     encryptionAtRestEnabled: false,
+ *     restoreWindowDays: 7,
+ *     onDemandPolicyItem: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 3,
+ *     },
+ *     policyItemHourly: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemDaily: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 7,
+ *     },
+ *     policyItemWeeklies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "weeks",
+ *         retentionValue: 4,
+ *     }],
+ *     policyItemMonthlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "months",
+ *         retentionValue: 12,
+ *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Backup Compliance Policy entries can be imported using project project_id  in the format `project_id`, e.g.
@@ -75,6 +168,7 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
     public readonly policyItemHourly!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemHourly | undefined>;
     public readonly policyItemMonthlies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemMonthly[] | undefined>;
     public readonly policyItemWeeklies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemWeekly[] | undefined>;
+    public readonly policyItemYearlies!: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemYearly[] | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
@@ -120,6 +214,7 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
             resourceInputs["policyItemHourly"] = state ? state.policyItemHourly : undefined;
             resourceInputs["policyItemMonthlies"] = state ? state.policyItemMonthlies : undefined;
             resourceInputs["policyItemWeeklies"] = state ? state.policyItemWeeklies : undefined;
+            resourceInputs["policyItemYearlies"] = state ? state.policyItemYearlies : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["restoreWindowDays"] = state ? state.restoreWindowDays : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
@@ -153,6 +248,7 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
             resourceInputs["policyItemHourly"] = args ? args.policyItemHourly : undefined;
             resourceInputs["policyItemMonthlies"] = args ? args.policyItemMonthlies : undefined;
             resourceInputs["policyItemWeeklies"] = args ? args.policyItemWeeklies : undefined;
+            resourceInputs["policyItemYearlies"] = args ? args.policyItemYearlies : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["restoreWindowDays"] = args ? args.restoreWindowDays : undefined;
             resourceInputs["state"] = undefined /*out*/;
@@ -197,6 +293,7 @@ export interface BackupCompliancePolicyState {
     policyItemHourly?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemHourly>;
     policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemMonthly>[]>;
     policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemWeekly>[]>;
+    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemYearly>[]>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
@@ -252,6 +349,7 @@ export interface BackupCompliancePolicyArgs {
     policyItemHourly?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemHourly>;
     policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemMonthly>[]>;
     policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemWeekly>[]>;
+    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemYearly>[]>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */

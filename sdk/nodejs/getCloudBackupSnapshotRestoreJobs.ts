@@ -15,18 +15,17 @@ import * as utilities from "./utilities";
  *
  * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", {
+ * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("test", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     clusterName: "MyCluster",
  *     description: "MyDescription",
  *     retentionInDays: 1,
  * });
- * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", {
+ * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("test", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     clusterName: "MyCluster",
  *     snapshotId: testCloudBackupSnapshot.id,
@@ -36,14 +35,13 @@ import * as utilities from "./utilities";
  *         targetProjectId: "5cf5a45a9ccf6400e60981b6",
  *     },
  * });
- * const testCloudBackupSnapshotRestoreJobs = pulumi.all([testCloudBackupSnapshotRestoreJob.projectId, testCloudBackupSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudBackupSnapshotRestoreJobsOutput({
+ * const test = pulumi.all([testCloudBackupSnapshotRestoreJob.projectId, testCloudBackupSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudBackupSnapshotRestoreJobsOutput({
  *     projectId: projectId,
  *     clusterName: clusterName,
  *     pageNum: 1,
  *     itemsPerPage: 5,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupSnapshotRestoreJobs(args: GetCloudBackupSnapshotRestoreJobsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotRestoreJobsResult> {
 
@@ -92,6 +90,7 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
     readonly projectId: string;
     /**
      * Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
+     * * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
      */
     readonly results: outputs.GetCloudBackupSnapshotRestoreJobsResult[];
     readonly totalCount: number;
@@ -105,18 +104,17 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
  *
  * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", {
+ * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("test", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     clusterName: "MyCluster",
  *     description: "MyDescription",
  *     retentionInDays: 1,
  * });
- * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", {
+ * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("test", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     clusterName: "MyCluster",
  *     snapshotId: testCloudBackupSnapshot.id,
@@ -126,14 +124,13 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
  *         targetProjectId: "5cf5a45a9ccf6400e60981b6",
  *     },
  * });
- * const testCloudBackupSnapshotRestoreJobs = pulumi.all([testCloudBackupSnapshotRestoreJob.projectId, testCloudBackupSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudBackupSnapshotRestoreJobsOutput({
+ * const test = pulumi.all([testCloudBackupSnapshotRestoreJob.projectId, testCloudBackupSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudBackupSnapshotRestoreJobsOutput({
  *     projectId: projectId,
  *     clusterName: clusterName,
  *     pageNum: 1,
  *     itemsPerPage: 5,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupSnapshotRestoreJobsOutput(args: GetCloudBackupSnapshotRestoreJobsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotRestoreJobsResult> {
     return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotRestoreJobs(a, opts))

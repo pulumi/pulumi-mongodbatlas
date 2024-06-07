@@ -20,7 +20,6 @@ import (
 // ## Example Usage
 //
 // ### AWS Example
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -33,8 +32,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "testServerlessInstance", &mongodbatlas.ServerlessInstanceArgs{
+//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "test", &mongodbatlas.ServerlessInstanceArgs{
 //				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				Name:                                pulumi.String("test-db"),
 //				ProviderSettingsBackingProviderName: pulumi.String("AWS"),
 //				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
 //				ProviderSettingsRegionName:          pulumi.String("US_EAST_1"),
@@ -43,7 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "testPrivatelinkEndpointServerless", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
+//			_, err = mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: testServerlessInstance.Name,
 //				ProviderName: pulumi.String("AWS"),
@@ -56,7 +56,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

@@ -166,6 +166,11 @@ class GetPrivateLinkEndpointResult:
         """
         Status of the AWS PrivateLink connection.
         Returns one of the following values:
+        * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
+        * `INITIATING` 	Atlas is creating the network load balancer and VPC endpoint service.
+        * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+        * `FAILED` 	A system failure has occurred.
+        * `DELETING` 	The Private Link service is being deleted.
         """
         return pulumi.get(self, "status")
 
@@ -200,6 +205,24 @@ def get_private_link_endpoint(private_link_id: Optional[str] = None,
     `PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("test",
+        project_id="<PROJECT-ID>",
+        provider_name="AWS",
+        region="US_EAST_1")
+    test = mongodbatlas.get_private_link_endpoint_output(project_id=test_private_link_endpoint.project_id,
+        private_link_id=test_private_link_endpoint.private_link_id,
+        provider_name="AWS")
+    ```
+
+    ### Available complete examples
+    - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
 
 
     :param str private_link_id: Unique identifier of the private endpoint service that you want to retrieve.
@@ -239,6 +262,24 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[str]
     `PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("test",
+        project_id="<PROJECT-ID>",
+        provider_name="AWS",
+        region="US_EAST_1")
+    test = mongodbatlas.get_private_link_endpoint_output(project_id=test_private_link_endpoint.project_id,
+        private_link_id=test_private_link_endpoint.private_link_id,
+        provider_name="AWS")
+    ```
+
+    ### Available complete examples
+    - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
 
 
     :param str private_link_id: Unique identifier of the private endpoint service that you want to retrieve.

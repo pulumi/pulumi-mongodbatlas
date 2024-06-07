@@ -16,6 +16,100 @@ import (
 // Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testDatabaseUser, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				Username:         pulumi.String("test-acc-username"),
+//				Password:         pulumi.String("test-acc-password"),
+//				ProjectId:        pulumi.String("<PROJECT-ID>"),
+//				AuthDatabaseName: pulumi.String("admin"),
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("readWrite"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("atlasAdmin"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//				},
+//				Labels: mongodbatlas.DatabaseUserLabelArray{
+//					&mongodbatlas.DatabaseUserLabelArgs{
+//						Key:   pulumi.String("key 1"),
+//						Value: pulumi.String("value 1"),
+//					},
+//					&mongodbatlas.DatabaseUserLabelArgs{
+//						Key:   pulumi.String("key 2"),
+//						Value: pulumi.String("value 2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupDatabaseUserOutput(ctx, mongodbatlas.GetDatabaseUserOutputArgs{
+//				ProjectId: testDatabaseUser.ProjectId,
+//				Username:  testDatabaseUser.Username,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// **Example of usage with a OIDC federated authentication user**
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testDatabaseUser, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				Username:         pulumi.String("64d613677e1ad50839cce4db/testUserOrGroup"),
+//				ProjectId:        pulumi.String("6414908c207f4d22f4d8f232"),
+//				AuthDatabaseName: pulumi.String("admin"),
+//				OidcAuthType:     pulumi.String("IDP_GROUP"),
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("readWriteAnyDatabase"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupDatabaseUserOutput(ctx, mongodbatlas.GetDatabaseUserOutputArgs{
+//				Username:         testDatabaseUser.Username,
+//				ProjectId:        pulumi.String("6414908c207f4d22f4d8f232"),
+//				AuthDatabaseName: pulumi.String("admin"),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+// Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 func LookupDatabaseUser(ctx *pulumi.Context, args *LookupDatabaseUserArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseUserResult
@@ -47,10 +141,10 @@ type LookupDatabaseUserResult struct {
 	// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
 	LdapAuthType string `pulumi:"ldapAuthType"`
 	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+	// * `NONE` -	The user does not use OIDC federated authentication.
+	// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType string `pulumi:"oidcAuthType"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-	Password  string `pulumi:"password"`
-	ProjectId string `pulumi:"projectId"`
+	ProjectId    string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles []GetDatabaseUserRole `pulumi:"roles"`
 	// Array of clusters and Atlas Data Lakes that this user has access to.
@@ -126,13 +220,10 @@ func (o LookupDatabaseUserResultOutput) LdapAuthType() pulumi.StringOutput {
 }
 
 // (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
+// * `NONE` -	The user does not use OIDC federated authentication.
+// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 func (o LookupDatabaseUserResultOutput) OidcAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.OidcAuthType }).(pulumi.StringOutput)
-}
-
-// Deprecated: this parameter is deprecated and will be removed in version 1.16.0
-func (o LookupDatabaseUserResultOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
 func (o LookupDatabaseUserResultOutput) ProjectId() pulumi.StringOutput {

@@ -18,7 +18,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -39,15 +40,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ApiKey(&#34;test&#34;, ApiKeyArgs.builder()        
- *             .description(&#34;key-name&#34;)
- *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
- *             .roleNames(&#34;ORG_READ_ONLY&#34;)
+ *         var test = new ApiKey("test", ApiKeyArgs.builder()
+ *             .description("key-name")
+ *             .orgId("<ORG_ID>")
+ *             .roleNames("ORG_READ_ONLY")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -119,6 +121,15 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
     /**
      * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
+     * * `ORG_OWNER`
+     * * `ORG_GROUP_CREATOR`
+     * * `ORG_BILLING_ADMIN`
+     * * `ORG_READ_ONLY`
+     * * `ORG_MEMBER`
+     * 
+     * ## Attributes Reference
+     * 
+     * In addition to all arguments above, the following attributes are exported:
      * 
      */
     @Export(name="roleNames", refs={List.class,String.class}, tree="[0,1]")
@@ -127,6 +138,15 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
     /**
      * @return Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
+     * * `ORG_OWNER`
+     * * `ORG_GROUP_CREATOR`
+     * * `ORG_BILLING_ADMIN`
+     * * `ORG_READ_ONLY`
+     * * `ORG_MEMBER`
+     * 
+     * ## Attributes Reference
+     * 
+     * In addition to all arguments above, the following attributes are exported:
      * 
      */
     public Output<List<String>> roleNames() {

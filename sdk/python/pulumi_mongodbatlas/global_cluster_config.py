@@ -186,17 +186,19 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+        > **IMPORTANT:** A Global Cluster Configuration, once created, can only be deleted. You can recreate the Global Cluster with the same data only in the Atlas UI. This is because the configuration and its related collection with shard key and indexes are managed separately and they would end up in an inconsistent state. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/)
+
         ## Examples Usage
 
         ### Example Global cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Cluster("test",
             project_id="<YOUR-PROJECT-ID>",
+            name="<CLUSTER-NAME>",
             cloud_backup=True,
             cluster_type="GEOSHARDED",
             provider_name="AWS",
@@ -238,17 +240,16 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 zone="Zone 1",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Global cluster config
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
             project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -261,12 +262,12 @@ class GlobalClusterConfig(pulumi.CustomResource):
             )],
             backup_enabled=True,
             auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="4.0",
+            mongo_db_major_version="7.0",
             provider_name="AWS",
             provider_instance_size_name="M40")
         config = mongodbatlas.GlobalClusterConfig("config",
-            project_id=mongodbatlas_cluster["test"]["project_id"],
-            cluster_name=mongodbatlas_cluster["test"]["name"],
+            project_id=test["projectId"],
+            cluster_name=test["name"],
             managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
                 db="mydata",
                 collection="publishers",
@@ -277,7 +278,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 zone="Zone 1",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -306,17 +306,19 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+        > **IMPORTANT:** A Global Cluster Configuration, once created, can only be deleted. You can recreate the Global Cluster with the same data only in the Atlas UI. This is because the configuration and its related collection with shard key and indexes are managed separately and they would end up in an inconsistent state. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/)
+
         ## Examples Usage
 
         ### Example Global cluster
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.Cluster("test",
             project_id="<YOUR-PROJECT-ID>",
+            name="<CLUSTER-NAME>",
             cloud_backup=True,
             cluster_type="GEOSHARDED",
             provider_name="AWS",
@@ -358,17 +360,16 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 zone="Zone 1",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Global cluster config
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
             project_id="<YOUR-PROJECT-ID>",
+            name="cluster-test",
             cluster_type="REPLICASET",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
@@ -381,12 +382,12 @@ class GlobalClusterConfig(pulumi.CustomResource):
             )],
             backup_enabled=True,
             auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="4.0",
+            mongo_db_major_version="7.0",
             provider_name="AWS",
             provider_instance_size_name="M40")
         config = mongodbatlas.GlobalClusterConfig("config",
-            project_id=mongodbatlas_cluster["test"]["project_id"],
-            cluster_name=mongodbatlas_cluster["test"]["name"],
+            project_id=test["projectId"],
+            cluster_name=test["name"],
             managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
                 db="mydata",
                 collection="publishers",
@@ -397,7 +398,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 zone="Zone 1",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

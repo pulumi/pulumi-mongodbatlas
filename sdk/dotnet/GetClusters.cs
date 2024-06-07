@@ -23,7 +23,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -32,9 +31,10 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
+        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "cluster-test",
         ///         ClusterType = "REPLICASET",
         ///         ReplicationSpecs = new[]
         ///         {
@@ -59,14 +59,13 @@ namespace Pulumi.Mongodbatlas
         ///         ProviderInstanceSizeName = "M40",
         ///     });
         /// 
-        ///     var testClusters = Mongodbatlas.GetClusters.Invoke(new()
+        ///     var test = Mongodbatlas.GetClusters.Invoke(new()
         ///     {
         ///         ProjectId = testCluster.ProjectId,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClustersResult> InvokeAsync(GetClustersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClustersResult>("mongodbatlas:index/getClusters:getClusters", args ?? new GetClustersArgs(), options.WithDefaults());
@@ -83,7 +82,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -92,9 +90,10 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
+        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "cluster-test",
         ///         ClusterType = "REPLICASET",
         ///         ReplicationSpecs = new[]
         ///         {
@@ -119,14 +118,13 @@ namespace Pulumi.Mongodbatlas
         ///         ProviderInstanceSizeName = "M40",
         ///     });
         /// 
-        ///     var testClusters = Mongodbatlas.GetClusters.Invoke(new()
+        ///     var test = Mongodbatlas.GetClusters.Invoke(new()
         ///     {
         ///         ProjectId = testCluster.ProjectId,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClustersResult> Invoke(GetClustersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClustersResult>("mongodbatlas:index/getClusters:getClusters", args ?? new GetClustersInvokeArgs(), options.WithDefaults());

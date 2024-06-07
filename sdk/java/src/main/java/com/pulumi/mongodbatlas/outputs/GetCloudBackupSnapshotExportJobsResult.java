@@ -60,6 +60,10 @@ public final class GetCloudBackupSnapshotExportJobsResult {
     private String snapshotId;
     /**
      * @return Status of the export job. Value can be one of the following:
+     * * `Queued` - indicates that the export job is queued
+     * * `InProgress` - indicates that the snapshot is being exported
+     * * `Successful` - indicates that the export job has completed successfully
+     * * `Failed` - indicates that the export job has failed
      * 
      */
     private String state;
@@ -133,6 +137,10 @@ public final class GetCloudBackupSnapshotExportJobsResult {
     }
     /**
      * @return Status of the export job. Value can be one of the following:
+     * * `Queued` - indicates that the export job is queued
+     * * `InProgress` - indicates that the snapshot is being exported
+     * * `Successful` - indicates that the export job has completed successfully
+     * * `Failed` - indicates that the export job has failed
      * 
      */
     public String state() {

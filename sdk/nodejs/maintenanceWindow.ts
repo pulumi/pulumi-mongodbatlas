@@ -19,30 +19,26 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.MaintenanceWindow("test", {
+ *     projectId: "<your-project-id>",
  *     dayOfWeek: 3,
  *     hourOfDay: 4,
- *     projectId: "<your-project-id>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.MaintenanceWindow("test", {
- *     defer: true,
  *     projectId: "<your-project-id>",
+ *     defer: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

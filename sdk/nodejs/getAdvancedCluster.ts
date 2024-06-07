@@ -14,6 +14,34 @@ import * as utilities from "./utilities";
  * > **IMPORTANT:**
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const exampleAdvancedCluster = new mongodbatlas.AdvancedCluster("example", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             electableSpecs: {
+ *                 instanceSize: "M5",
+ *             },
+ *             providerName: "TENANT",
+ *             backingProviderName: "AWS",
+ *             regionName: "US_EAST_1",
+ *             priority: 7,
+ *         }],
+ *     }],
+ * });
+ * const example = mongodbatlas.getAdvancedClusterOutput({
+ *     projectId: exampleAdvancedCluster.projectId,
+ *     name: exampleAdvancedCluster.name,
+ * });
+ * ```
  */
 export function getAdvancedCluster(args: GetAdvancedClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetAdvancedClusterResult> {
 
@@ -80,7 +108,7 @@ export interface GetAdvancedClusterResult {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      *
-     * @deprecated this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      */
     readonly labels: outputs.GetAdvancedClusterLabel[];
     /**
@@ -134,6 +162,34 @@ export interface GetAdvancedClusterResult {
  * > **IMPORTANT:**
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const exampleAdvancedCluster = new mongodbatlas.AdvancedCluster("example", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             electableSpecs: {
+ *                 instanceSize: "M5",
+ *             },
+ *             providerName: "TENANT",
+ *             backingProviderName: "AWS",
+ *             regionName: "US_EAST_1",
+ *             priority: 7,
+ *         }],
+ *     }],
+ * });
+ * const example = mongodbatlas.getAdvancedClusterOutput({
+ *     projectId: exampleAdvancedCluster.projectId,
+ *     name: exampleAdvancedCluster.name,
+ * });
+ * ```
  */
 export function getAdvancedClusterOutput(args: GetAdvancedClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAdvancedClusterResult> {
     return pulumi.output(args).apply((a: any) => getAdvancedCluster(a, opts))

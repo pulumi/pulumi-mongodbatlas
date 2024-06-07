@@ -91,14 +91,14 @@ def get_projects(items_per_page: Optional[int] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_roles_org_id = mongodbatlas.get_roles_org_id()
-    test_project = mongodbatlas.Project("testProject",
-        org_id=test_roles_org_id.org_id,
+    test = mongodbatlas.get_roles_org_id()
+    test_project = mongodbatlas.Project("test",
+        name="project-name",
+        org_id=test.org_id,
         teams=[
             mongodbatlas.ProjectTeamArgs(
                 team_id="5e0fa8c99ccf641c722fe645",
@@ -116,10 +116,9 @@ def get_projects(items_per_page: Optional[int] = None,
             name="atlas.project.deployment.clusters",
             value=26,
         )])
-    test_projects = mongodbatlas.get_projects(page_num=1,
+    test_get_projects = mongodbatlas.get_projects(page_num=1,
         items_per_page=5)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -150,14 +149,14 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_roles_org_id = mongodbatlas.get_roles_org_id()
-    test_project = mongodbatlas.Project("testProject",
-        org_id=test_roles_org_id.org_id,
+    test = mongodbatlas.get_roles_org_id()
+    test_project = mongodbatlas.Project("test",
+        name="project-name",
+        org_id=test.org_id,
         teams=[
             mongodbatlas.ProjectTeamArgs(
                 team_id="5e0fa8c99ccf641c722fe645",
@@ -175,10 +174,9 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
             name="atlas.project.deployment.clusters",
             value=26,
         )])
-    test_projects = mongodbatlas.get_projects(page_num=1,
+    test_get_projects = mongodbatlas.get_projects(page_num=1,
         items_per_page=5)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.

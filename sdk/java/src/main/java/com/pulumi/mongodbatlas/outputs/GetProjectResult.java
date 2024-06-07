@@ -12,6 +12,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -85,6 +86,11 @@ public final class GetProjectResult {
      * 
      */
     private String regionUsageRestrictions;
+    /**
+     * @return Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
+     * 
+     */
+    private Map<String,String> tags;
     /**
      * @return Returns all teams to which the authenticated user has access in the project. See Teams.
      * 
@@ -190,6 +196,13 @@ public final class GetProjectResult {
         return this.regionUsageRestrictions;
     }
     /**
+     * @return Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
+     * 
+     */
+    public Map<String,String> tags() {
+        return this.tags;
+    }
+    /**
      * @return Returns all teams to which the authenticated user has access in the project. See Teams.
      * 
      */
@@ -221,6 +234,7 @@ public final class GetProjectResult {
         private String orgId;
         private @Nullable String projectId;
         private String regionUsageRestrictions;
+        private Map<String,String> tags;
         private List<GetProjectTeam> teams;
         public Builder() {}
         public Builder(GetProjectResult defaults) {
@@ -240,6 +254,7 @@ public final class GetProjectResult {
     	      this.orgId = defaults.orgId;
     	      this.projectId = defaults.projectId;
     	      this.regionUsageRestrictions = defaults.regionUsageRestrictions;
+    	      this.tags = defaults.tags;
     	      this.teams = defaults.teams;
         }
 
@@ -363,6 +378,14 @@ public final class GetProjectResult {
             return this;
         }
         @CustomType.Setter
+        public Builder tags(Map<String,String> tags) {
+            if (tags == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "tags");
+            }
+            this.tags = tags;
+            return this;
+        }
+        @CustomType.Setter
         public Builder teams(List<GetProjectTeam> teams) {
             if (teams == null) {
               throw new MissingRequiredPropertyException("GetProjectResult", "teams");
@@ -390,6 +413,7 @@ public final class GetProjectResult {
             _resultValue.orgId = orgId;
             _resultValue.projectId = projectId;
             _resultValue.regionUsageRestrictions = regionUsageRestrictions;
+            _resultValue.tags = tags;
             _resultValue.teams = teams;
             return _resultValue;
         }

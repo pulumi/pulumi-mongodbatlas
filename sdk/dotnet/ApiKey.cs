@@ -12,7 +12,6 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,7 +32,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -74,6 +72,15 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Name of the role. This resource returns all the roles the user has in Atlas.
         /// The following are valid roles:
+        /// * `ORG_OWNER`
+        /// * `ORG_GROUP_CREATOR`
+        /// * `ORG_BILLING_ADMIN`
+        /// * `ORG_READ_ONLY`
+        /// * `ORG_MEMBER`
+        /// 
+        /// ## Attributes Reference
+        /// 
+        /// In addition to all arguments above, the following attributes are exported:
         /// </summary>
         [Output("roleNames")]
         public Output<ImmutableArray<string>> RoleNames { get; private set; } = null!;
@@ -146,6 +153,15 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Name of the role. This resource returns all the roles the user has in Atlas.
         /// The following are valid roles:
+        /// * `ORG_OWNER`
+        /// * `ORG_GROUP_CREATOR`
+        /// * `ORG_BILLING_ADMIN`
+        /// * `ORG_READ_ONLY`
+        /// * `ORG_MEMBER`
+        /// 
+        /// ## Attributes Reference
+        /// 
+        /// In addition to all arguments above, the following attributes are exported:
         /// </summary>
         public InputList<string> RoleNames
         {
@@ -200,6 +216,15 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Name of the role. This resource returns all the roles the user has in Atlas.
         /// The following are valid roles:
+        /// * `ORG_OWNER`
+        /// * `ORG_GROUP_CREATOR`
+        /// * `ORG_BILLING_ADMIN`
+        /// * `ORG_READ_ONLY`
+        /// * `ORG_MEMBER`
+        /// 
+        /// ## Attributes Reference
+        /// 
+        /// In addition to all arguments above, the following attributes are exported:
         /// </summary>
         public InputList<string> RoleNames
         {

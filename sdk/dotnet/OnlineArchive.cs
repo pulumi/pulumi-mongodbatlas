@@ -21,7 +21,6 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ### S
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -32,10 +31,10 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.OnlineArchive("test", new()
     ///     {
-    ///         ProjectId = @var.Project_id,
-    ///         ClusterName = @var.Cluster_name,
-    ///         CollName = @var.Collection_name,
-    ///         DbName = @var.Database_name,
+    ///         ProjectId = projectId,
+    ///         ClusterName = clusterName,
+    ///         CollName = collectionName,
+    ///         DbName = databaseName,
     ///         PartitionFields = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs
@@ -72,11 +71,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// For custom criteria example
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -87,10 +84,10 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.OnlineArchive("test", new()
     ///     {
-    ///         ProjectId = @var.Project_id,
-    ///         ClusterName = @var.Cluster_name,
-    ///         CollName = @var.Collection_name,
-    ///         DbName = @var.Database_name,
+    ///         ProjectId = projectId,
+    ///         ClusterName = clusterName,
+    ///         CollName = collectionName,
+    ///         DbName = databaseName,
     ///         PartitionFields = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs
@@ -113,7 +110,45 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// Defining custom provider and region example
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.OnlineArchive("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ClusterName = clusterName,
+    ///         CollName = collectionName,
+    ///         DbName = databaseName,
+    ///         DataProcessRegion = new Mongodbatlas.Inputs.OnlineArchiveDataProcessRegionArgs
+    ///         {
+    ///             CloudProvider = "AZURE",
+    ///             Region = "US_EAST_2",
+    ///         },
+    ///         PartitionFields = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.OnlineArchivePartitionFieldArgs
+    ///             {
+    ///                 FieldName = "firstName",
+    ///                 Order = 0,
+    ///             },
+    ///         },
+    ///         Criteria = new Mongodbatlas.Inputs.OnlineArchiveCriteriaArgs
+    ///         {
+    ///             Type = "CUSTOM",
+    ///             Query = "{ \"department\": \"engineering\" }",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

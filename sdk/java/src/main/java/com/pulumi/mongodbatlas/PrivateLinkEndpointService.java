@@ -31,7 +31,8 @@ import javax.annotation.Nullable;
  * ## Example with AWS
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -39,8 +40,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
- * import com.pulumi.aws.ec2.VpcEndpoint;
- * import com.pulumi.aws.ec2.VpcEndpointArgs;
+ * import com.pulumi.aws.vpcEndpoint;
+ * import com.pulumi.aws.VpcEndpointArgs;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
  * import java.util.List;
@@ -56,36 +57,38 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint(&#34;testPrivateLinkEndpoint&#34;, PrivateLinkEndpointArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .region(&#34;US_EAST_1&#34;)
+ *         var test = new PrivateLinkEndpoint("test", PrivateLinkEndpointArgs.builder()
+ *             .projectId("<PROJECT_ID>")
+ *             .providerName("AWS")
+ *             .region("US_EAST_1")
  *             .build());
  * 
- *         var ptfeService = new VpcEndpoint(&#34;ptfeService&#34;, VpcEndpointArgs.builder()        
- *             .vpcId(&#34;vpc-7fc0a543&#34;)
- *             .serviceName(testPrivateLinkEndpoint.endpointServiceName())
- *             .vpcEndpointType(&#34;Interface&#34;)
- *             .subnetIds(&#34;subnet-de0406d2&#34;)
- *             .securityGroupIds(&#34;sg-3f238186&#34;)
+ *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()
+ *             .vpcId("vpc-7fc0a543")
+ *             .serviceName(test.endpointServiceName())
+ *             .vpcEndpointType("Interface")
+ *             .subnetIds("subnet-de0406d2")
+ *             .securityGroupIds("sg-3f238186")
  *             .build());
  * 
- *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService(&#34;testPrivateLinkEndpointService&#34;, PrivateLinkEndpointServiceArgs.builder()        
- *             .projectId(testPrivateLinkEndpoint.projectId())
- *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+ *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
+ *             .projectId(test.projectId())
+ *             .privateLinkId(test.privateLinkId())
  *             .endpointServiceId(ptfeService.id())
- *             .providerName(&#34;AWS&#34;)
+ *             .providerName("AWS")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Example with Azure
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -93,9 +96,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
- * import com.pulumi.azure.privatelink.Endpoint;
- * import com.pulumi.azure.privatelink.EndpointArgs;
- * import com.pulumi.azure.privatelink.inputs.EndpointPrivateServiceConnectionArgs;
+ * import com.pulumi.azurerm.privateEndpoint;
+ * import com.pulumi.azurerm.PrivateEndpointArgs;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
  * import java.util.List;
@@ -111,133 +113,37 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint(&#34;testPrivateLinkEndpoint&#34;, PrivateLinkEndpointArgs.builder()        
- *             .projectId(var_.project_id())
- *             .providerName(&#34;AZURE&#34;)
- *             .region(&#34;eastus2&#34;)
+ *         var test = new PrivateLinkEndpoint("test", PrivateLinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .providerName("AZURE")
+ *             .region("eastus2")
  *             .build());
  * 
- *         var testEndpoint = new Endpoint(&#34;testEndpoint&#34;, EndpointArgs.builder()        
- *             .location(data.azurerm_resource_group().test().location())
- *             .resourceGroupName(var_.resource_group_name())
- *             .subnetId(azurerm_subnet.test().id())
- *             .privateServiceConnection(EndpointPrivateServiceConnectionArgs.builder()
- *                 .name(testPrivateLinkEndpoint.privateLinkServiceName())
- *                 .privateConnectionResourceId(testPrivateLinkEndpoint.privateLinkServiceResourceId())
- *                 .isManualConnection(true)
- *                 .requestMessage(&#34;Azure Private Link test&#34;)
- *                 .build())
+ *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()
+ *             .name("endpoint-test")
+ *             .location(testAzurermResourceGroup.location())
+ *             .resourceGroupName(resourceGroupName)
+ *             .subnetId(testAzurermSubnet.id())
+ *             .privateServiceConnection(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .build());
  * 
- *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService(&#34;testPrivateLinkEndpointService&#34;, PrivateLinkEndpointServiceArgs.builder()        
- *             .projectId(testPrivateLinkEndpoint.projectId())
- *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
- *             .endpointServiceId(testEndpoint.id())
- *             .privateEndpointIpAddress(testEndpoint.privateServiceConnection().applyValue(privateServiceConnection -&gt; privateServiceConnection.privateIpAddress()))
- *             .providerName(&#34;AZURE&#34;)
+ *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
+ *             .projectId(test.projectId())
+ *             .privateLinkId(test.privateLinkId())
+ *             .endpointServiceId(testPrivateEndpoint.id())
+ *             .privateEndpointIpAddress(testPrivateEndpoint.privateServiceConnection()[0].privateIpAddress())
+ *             .providerName("AZURE")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Example with GCP
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
- * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
- * import com.pulumi.gcp.compute.Network;
- * import com.pulumi.gcp.compute.NetworkArgs;
- * import com.pulumi.gcp.compute.Subnetwork;
- * import com.pulumi.gcp.compute.SubnetworkArgs;
- * import com.pulumi.gcp.compute.Address;
- * import com.pulumi.gcp.compute.AddressArgs;
- * import com.pulumi.gcp.compute.ForwardingRule;
- * import com.pulumi.gcp.compute.ForwardingRuleArgs;
- * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
- * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
- * import com.pulumi.codegen.internal.KeyedValue;
- * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint(&#34;testPrivateLinkEndpoint&#34;, PrivateLinkEndpointArgs.builder()        
- *             .projectId(var_.project_id())
- *             .providerName(&#34;GCP&#34;)
- *             .region(var_.gcp_region())
- *             .build());
- * 
- *         // Create a Google Network
- *         var defaultNetwork = new Network(&#34;defaultNetwork&#34;, NetworkArgs.builder()        
- *             .project(var_.gcp_project())
- *             .build());
- * 
- *         // Create a Google Sub Network
- *         var defaultSubnetwork = new Subnetwork(&#34;defaultSubnetwork&#34;, SubnetworkArgs.builder()        
- *             .project(defaultNetwork.project())
- *             .ipCidrRange(&#34;10.0.0.0/16&#34;)
- *             .region(var_.gcp_region())
- *             .network(defaultNetwork.id())
- *             .build());
- * 
- *         // Create Google 50 Addresses
- *         for (var i = 0; i &lt; 50; i++) {
- *             new Address(&#34;defaultAddress-&#34; + i, AddressArgs.builder()            
- *                 .project(defaultSubnetwork.project())
- *                 .subnetwork(defaultSubnetwork.id())
- *                 .addressType(&#34;INTERNAL&#34;)
- *                 .address(String.format(&#34;10.0.42.%s&#34;, range.value()))
- *                 .region(var_.gcp_region())
- *                 .build(), CustomResourceOptions.builder()
- *                     .dependsOn(testPrivateLinkEndpoint)
- *                     .build());
- * 
- *         
- * }
- *         // Create 50 Forwarding rules
- *         for (var i = 0; i &lt; 50; i++) {
- *             new ForwardingRule(&#34;defaultForwardingRule-&#34; + i, ForwardingRuleArgs.builder()            
- *                 .target(testPrivateLinkEndpoint.serviceAttachmentNames().applyValue(serviceAttachmentNames -&gt; serviceAttachmentNames[range.value()]))
- *                 .project(defaultAddress[range.value()].project())
- *                 .region(defaultAddress[range.value()].region())
- *                 .ipAddress(defaultAddress[range.value()].id())
- *                 .network(defaultNetwork.id())
- *                 .loadBalancingScheme(&#34;&#34;)
- *                 .build());
- * 
- *         
- * }
- *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService(&#34;testPrivateLinkEndpointService&#34;, PrivateLinkEndpointServiceArgs.builder()        
- *             .projectId(testPrivateLinkEndpoint.projectId())
- *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
- *             .providerName(&#34;GCP&#34;)
- *             .endpointServiceId(defaultNetwork.name())
- *             .gcpProjectId(var_.gcp_project())
- *             .dynamic(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(defaultForwardingRule)
- *                 .build());
- * 
- *     }
- * }
- * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Available complete examples
@@ -258,6 +164,12 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
     /**
      * Status of the interface endpoint for AWS.
      * Returns one of the following values:
+     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+     * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+     * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+     * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+     * * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+     * * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
      * 
      */
     @Export(name="awsConnectionStatus", refs={String.class}, tree="[0]")
@@ -266,6 +178,12 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
     /**
      * @return Status of the interface endpoint for AWS.
      * Returns one of the following values:
+     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+     * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+     * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+     * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+     * * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+     * * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
      * 
      */
     public Output<String> awsConnectionStatus() {
@@ -274,6 +192,10 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
     /**
      * Status of the interface endpoint for AZURE.
      * Returns one of the following values:
+     * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+     * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+     * * `FAILED` - Atlas failed to accept the connection your private endpoint.
+     * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      * 
      */
     @Export(name="azureStatus", refs={String.class}, tree="[0]")
@@ -282,6 +204,10 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
     /**
      * @return Status of the interface endpoint for AZURE.
      * Returns one of the following values:
+     * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+     * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+     * * `FAILED` - Atlas failed to accept the connection your private endpoint.
+     * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      * 
      */
     public Output<String> azureStatus() {
@@ -374,6 +300,10 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
     /**
      * Status of the interface endpoint for GCP.
      * Returns one of the following values:
+     * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+     * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+     * * `FAILED` - Atlas failed to accept the connection your private endpoint.
+     * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      * 
      */
     @Export(name="gcpStatus", refs={String.class}, tree="[0]")
@@ -382,6 +312,10 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
     /**
      * @return Status of the interface endpoint for GCP.
      * Returns one of the following values:
+     * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+     * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+     * * `FAILED` - Atlas failed to accept the connection your private endpoint.
+     * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      * 
      */
     public Output<String> gcpStatus() {

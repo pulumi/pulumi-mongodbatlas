@@ -29,7 +29,7 @@ public final class CloudBackupSchedulePolicyItemMonthly {
      */
     private @Nullable String id;
     /**
-     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * @return Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      * 
      */
     private String retentionUnit;
@@ -62,7 +62,7 @@ public final class CloudBackupSchedulePolicyItemMonthly {
         return Optional.ofNullable(this.id);
     }
     /**
-     * @return Scope of the backup policy item: `days`, `weeks`, or `months`.
+     * @return Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      * 
      */
     public String retentionUnit() {

@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -27,8 +26,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupProjectApiKeys(ctx, &mongodbatlas.LookupProjectApiKeysArgs{
-//				ItemsPerPage: pulumi.IntRef(5),
 //				PageNum:      pulumi.IntRef(1),
+//				ItemsPerPage: pulumi.IntRef(5),
 //				ProjectId:    "32b6e34b3d91647abb20e7b8",
 //			}, nil)
 //			if err != nil {
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupProjectApiKeys(ctx *pulumi.Context, args *LookupProjectApiKeysArgs, opts ...pulumi.InvokeOption) (*LookupProjectApiKeysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectApiKeysResult

@@ -15,7 +15,6 @@ import (
 //
 // ### S
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -29,8 +28,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupClusterOutageSimulation(ctx, &mongodbatlas.LookupClusterOutageSimulationArgs{
-//				ClusterName: "Cluster0",
 //				ProjectId:   "64707f06c519c20c3a2b1b03",
+//				ClusterName: "Cluster0",
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -40,7 +39,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupClusterOutageSimulation(ctx *pulumi.Context, args *LookupClusterOutageSimulationArgs, opts ...pulumi.InvokeOption) (*LookupClusterOutageSimulationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClusterOutageSimulationResult
@@ -72,6 +70,12 @@ type LookupClusterOutageSimulationResult struct {
 	// Date and time when MongoDB Cloud started the regional outage simulation.
 	StartRequestDate string `pulumi:"startRequestDate"`
 	// Current phase of the outage simulation:
+	// * `START_REQUESTED` - User has requested cluster outage simulation.
+	// * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+	// * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+	// * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+	// * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+	// * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
 	State string `pulumi:"state"`
 }
 
@@ -146,6 +150,12 @@ func (o LookupClusterOutageSimulationResultOutput) StartRequestDate() pulumi.Str
 }
 
 // Current phase of the outage simulation:
+// * `START_REQUESTED` - User has requested cluster outage simulation.
+// * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+// * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+// * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+// * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+// * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
 func (o LookupClusterOutageSimulationResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterOutageSimulationResult) string { return v.State }).(pulumi.StringOutput)
 }

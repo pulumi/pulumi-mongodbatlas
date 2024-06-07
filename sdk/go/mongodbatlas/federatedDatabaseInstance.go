@@ -20,7 +20,6 @@ import (
 //
 // ### S With MongoDB Atlas Cluster As Storage Database
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -35,10 +34,13 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewFederatedDatabaseInstance(ctx, "test", &mongodbatlas.FederatedDatabaseInstanceArgs{
 //				ProjectId: pulumi.String("PROJECT ID"),
+//				Name:      pulumi.String("TENANT NAME OF THE FEDERATED DATABASE INSTANCE"),
 //				StorageDatabases: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArray{
 //					&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs{
+//						Name: pulumi.String("VirtualDatabase0"),
 //						Collections: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArray{
 //							&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs{
+//								Name: pulumi.String("NAME OF THE COLLECTION"),
 //								DataSources: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArray{
 //									&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs{
 //										Collection: pulumi.String("COLLECTION IN THE CLUSTER"),
@@ -46,16 +48,14 @@ import (
 //										StoreName:  pulumi.String("CLUSTER NAME"),
 //									},
 //								},
-//								Name: pulumi.String("NAME OF THE COLLECTION"),
 //							},
 //						},
-//						Name: pulumi.String("VirtualDatabase0"),
 //					},
 //				},
 //				StorageStores: mongodbatlas.FederatedDatabaseInstanceStorageStoreArray{
 //					&mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs{
-//						ClusterName: pulumi.String("CLUSTER NAME"),
 //						Name:        pulumi.String("STORE 1 NAME"),
+//						ClusterName: pulumi.String("CLUSTER NAME"),
 //						ProjectId:   pulumi.String("PROJECT ID"),
 //						Provider:    pulumi.String("atlas"),
 //						ReadPreference: &mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs{
@@ -72,11 +72,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### S With Amazon S3 Bucket As Storage Database
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -90,17 +88,20 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewFederatedDatabaseInstance(ctx, "test", &mongodbatlas.FederatedDatabaseInstanceArgs{
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				Name:      pulumi.String("TENANT NAME OF THE FEDERATED DATABASE INSTANCE"),
 //				CloudProviderConfig: &mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigArgs{
 //					Aws: &mongodbatlas.FederatedDatabaseInstanceCloudProviderConfigAwsArgs{
 //						RoleId:       pulumi.String("AWS ROLE ID"),
 //						TestS3Bucket: pulumi.String("S3 BUCKET NAME"),
 //					},
 //				},
-//				ProjectId: pulumi.String("PROJECT ID"),
 //				StorageDatabases: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArray{
 //					&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseArgs{
+//						Name: pulumi.String("VirtualDatabase0"),
 //						Collections: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArray{
 //							&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionArgs{
+//								Name: pulumi.String("NAME OF THE COLLECTION"),
 //								DataSources: mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArray{
 //									&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs{
 //										Collection: pulumi.String("COLLECTION IN THE CLUSTER"),
@@ -108,20 +109,18 @@ import (
 //										StoreName:  pulumi.String("CLUSTER NAME"),
 //									},
 //									&mongodbatlas.FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs{
-//										Path:      pulumi.String("S3 BUCKET PATH"),
 //										StoreName: pulumi.String("S3 BUCKET NAME"),
+//										Path:      pulumi.String("S3 BUCKET PATH"),
 //									},
 //								},
-//								Name: pulumi.String("NAME OF THE COLLECTION"),
 //							},
 //						},
-//						Name: pulumi.String("VirtualDatabase0"),
 //					},
 //				},
 //				StorageStores: mongodbatlas.FederatedDatabaseInstanceStorageStoreArray{
 //					&mongodbatlas.FederatedDatabaseInstanceStorageStoreArgs{
-//						ClusterName: pulumi.String("CLUSTER NAME"),
 //						Name:        pulumi.String("STORE 1 NAME"),
+//						ClusterName: pulumi.String("CLUSTER NAME"),
 //						ProjectId:   pulumi.String("PROJECT ID"),
 //						Provider:    pulumi.String("atlas"),
 //						ReadPreference: &mongodbatlas.FederatedDatabaseInstanceStorageStoreReadPreferenceArgs{
@@ -146,7 +145,37 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
+//
+// ## Example specifying data process region and provider
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewFederatedDatabaseInstance(ctx, "test", &mongodbatlas.FederatedDatabaseInstanceArgs{
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				Name:      pulumi.String("NAME OF THE FEDERATED DATABASE INSTANCE"),
+//				DataProcessRegion: &mongodbatlas.FederatedDatabaseInstanceDataProcessRegionArgs{
+//					CloudProvider: pulumi.String("AWS"),
+//					Region:        pulumi.String("OREGON_USA"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //
@@ -166,17 +195,24 @@ import (
 type FederatedDatabaseInstance struct {
 	pulumi.CustomResourceState
 
+	// Cloud provider linked to this data federated instance.
+	// * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+	// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
+	// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
 	CloudProviderConfig FederatedDatabaseInstanceCloudProviderConfigOutput `pulumi:"cloudProviderConfig"`
-	DataProcessRegion   FederatedDatabaseInstanceDataProcessRegionOutput   `pulumi:"dataProcessRegion"`
+	// The cloud provider region to which the Federated Instance routes client connections for data processing.
+	// * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
+	// * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+	DataProcessRegion FederatedDatabaseInstanceDataProcessRegionOutput `pulumi:"dataProcessRegion"`
 	// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
 	Hostnames pulumi.StringArrayOutput `pulumi:"hostnames"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
+	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+	// * `DELETED` - The Federated Database Instance was deleted.
 	State pulumi.StringOutput `pulumi:"state"`
 	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -257,17 +293,24 @@ func GetFederatedDatabaseInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FederatedDatabaseInstance resources.
 type federatedDatabaseInstanceState struct {
+	// Cloud provider linked to this data federated instance.
+	// * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+	// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
+	// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
 	CloudProviderConfig *FederatedDatabaseInstanceCloudProviderConfig `pulumi:"cloudProviderConfig"`
-	DataProcessRegion   *FederatedDatabaseInstanceDataProcessRegion   `pulumi:"dataProcessRegion"`
+	// The cloud provider region to which the Federated Instance routes client connections for data processing.
+	// * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
+	// * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+	DataProcessRegion *FederatedDatabaseInstanceDataProcessRegion `pulumi:"dataProcessRegion"`
 	// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
 	Hostnames []string `pulumi:"hostnames"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name *string `pulumi:"name"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId *string `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
+	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+	// * `DELETED` - The Federated Database Instance was deleted.
 	State *string `pulumi:"state"`
 	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -316,17 +359,24 @@ type federatedDatabaseInstanceState struct {
 }
 
 type FederatedDatabaseInstanceState struct {
+	// Cloud provider linked to this data federated instance.
+	// * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+	// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
+	// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
 	CloudProviderConfig FederatedDatabaseInstanceCloudProviderConfigPtrInput
-	DataProcessRegion   FederatedDatabaseInstanceDataProcessRegionPtrInput
+	// The cloud provider region to which the Federated Instance routes client connections for data processing.
+	// * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
+	// * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+	DataProcessRegion FederatedDatabaseInstanceDataProcessRegionPtrInput
 	// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
 	Hostnames pulumi.StringArrayInput
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name pulumi.StringPtrInput
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId pulumi.StringPtrInput
 	// Current state of the Federated Database Instance:
+	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+	// * `DELETED` - The Federated Database Instance was deleted.
 	State pulumi.StringPtrInput
 	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -379,11 +429,16 @@ func (FederatedDatabaseInstanceState) ElementType() reflect.Type {
 }
 
 type federatedDatabaseInstanceArgs struct {
+	// Cloud provider linked to this data federated instance.
+	// * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+	// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
+	// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
 	CloudProviderConfig *FederatedDatabaseInstanceCloudProviderConfig `pulumi:"cloudProviderConfig"`
-	DataProcessRegion   *FederatedDatabaseInstanceDataProcessRegion   `pulumi:"dataProcessRegion"`
+	// The cloud provider region to which the Federated Instance routes client connections for data processing.
+	// * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
+	// * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+	DataProcessRegion *FederatedDatabaseInstanceDataProcessRegion `pulumi:"dataProcessRegion"`
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name *string `pulumi:"name"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId string `pulumi:"projectId"`
@@ -435,11 +490,16 @@ type federatedDatabaseInstanceArgs struct {
 
 // The set of arguments for constructing a FederatedDatabaseInstance resource.
 type FederatedDatabaseInstanceArgs struct {
+	// Cloud provider linked to this data federated instance.
+	// * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+	// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
+	// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
 	CloudProviderConfig FederatedDatabaseInstanceCloudProviderConfigPtrInput
-	DataProcessRegion   FederatedDatabaseInstanceDataProcessRegionPtrInput
+	// The cloud provider region to which the Federated Instance routes client connections for data processing.
+	// * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
+	// * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
+	DataProcessRegion FederatedDatabaseInstanceDataProcessRegionPtrInput
 	// Name of the Atlas Federated Database Instance.
-	// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-	// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 	Name pulumi.StringPtrInput
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId pulumi.StringInput
@@ -576,12 +636,19 @@ func (o FederatedDatabaseInstanceOutput) ToFederatedDatabaseInstanceOutputWithCo
 	return o
 }
 
+// Cloud provider linked to this data federated instance.
+// * `cloud_provider_config.aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
+// * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
+// * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
 func (o FederatedDatabaseInstanceOutput) CloudProviderConfig() FederatedDatabaseInstanceCloudProviderConfigOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstance) FederatedDatabaseInstanceCloudProviderConfigOutput {
 		return v.CloudProviderConfig
 	}).(FederatedDatabaseInstanceCloudProviderConfigOutput)
 }
 
+// The cloud provider region to which the Federated Instance routes client connections for data processing.
+// * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Atlas Federated Database only supports AWS.
+// * `data_process_region.region` - (Required) Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
 func (o FederatedDatabaseInstanceOutput) DataProcessRegion() FederatedDatabaseInstanceDataProcessRegionOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstance) FederatedDatabaseInstanceDataProcessRegionOutput {
 		return v.DataProcessRegion
@@ -594,8 +661,6 @@ func (o FederatedDatabaseInstanceOutput) Hostnames() pulumi.StringArrayOutput {
 }
 
 // Name of the Atlas Federated Database Instance.
-// ### `cloudProviderConfig` - (Optional) Cloud provider linked to this data federated instance.
-// #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloudProviderConfig` since AWS is currently the only supported Cloud vendor on this feature at this time.
 func (o FederatedDatabaseInstanceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstance) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -606,6 +671,8 @@ func (o FederatedDatabaseInstanceOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Current state of the Federated Database Instance:
+// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+// * `DELETED` - The Federated Database Instance was deleted.
 func (o FederatedDatabaseInstanceOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstance) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }

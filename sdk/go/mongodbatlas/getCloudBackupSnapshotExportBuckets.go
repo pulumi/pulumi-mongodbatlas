@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,11 +29,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "testCloudBackupSnapshotExportBucket", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//			_, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//				ProjectId:     pulumi.String("{PROJECT_ID}"),
+//				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
 //				BucketName:    pulumi.String("example-bucket"),
 //				CloudProvider: pulumi.String("AWS"),
-//				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
-//				ProjectId:     pulumi.String("{PROJECT_ID}"),
 //			})
 //			if err != nil {
 //				return err
@@ -50,7 +49,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupCloudBackupSnapshotExportBuckets(ctx *pulumi.Context, args *LookupCloudBackupSnapshotExportBucketsArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotExportBucketsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotExportBucketsResult
@@ -80,6 +78,7 @@ type LookupCloudBackupSnapshotExportBucketsResult struct {
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
 	// Includes CloudProviderSnapshotExportBucket object for each item detailed in the results array section.
+	// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 	Results    []GetCloudBackupSnapshotExportBucketsResult `pulumi:"results"`
 	TotalCount int                                         `pulumi:"totalCount"`
 }
@@ -145,6 +144,7 @@ func (o LookupCloudBackupSnapshotExportBucketsResultOutput) ProjectId() pulumi.S
 }
 
 // Includes CloudProviderSnapshotExportBucket object for each item detailed in the results array section.
+// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 func (o LookupCloudBackupSnapshotExportBucketsResultOutput) Results() GetCloudBackupSnapshotExportBucketsResultArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketsResult) []GetCloudBackupSnapshotExportBucketsResult {
 		return v.Results

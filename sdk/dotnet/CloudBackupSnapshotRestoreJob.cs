@@ -12,8 +12,8 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ### Example of a point in time restore
-    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ### Example automated delivery type
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -22,9 +22,95 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var clusterTest = new Mongodbatlas.Cluster("clusterTest", new()
+    ///     var myCluster = new Mongodbatlas.Cluster("my_cluster", new()
     ///     {
-    ///         ProjectId = mongodbatlas_project.Project_test.Id,
+    ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         Name = "MyCluster",
+    ///         ProviderName = "AWS",
+    ///         ProviderRegionName = "EU_WEST_2",
+    ///         ProviderInstanceSizeName = "M10",
+    ///         CloudBackup = true,
+    ///     });
+    /// 
+    ///     var test = new Mongodbatlas.Index.CloudProviderSnapshot("test", new()
+    ///     {
+    ///         ProjectId = myCluster.ProjectId,
+    ///         ClusterName = myCluster.Name,
+    ///         Description = "myDescription",
+    ///         RetentionInDays = 1,
+    ///     });
+    /// 
+    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("test", new()
+    ///     {
+    ///         ProjectId = test.ProjectId,
+    ///         ClusterName = test.ClusterName,
+    ///         SnapshotId = test.SnapshotId,
+    ///         DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
+    ///         {
+    ///             Automated = true,
+    ///             TargetClusterName = "MyCluster",
+    ///             TargetProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example download delivery type
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myCluster = new Mongodbatlas.Cluster("my_cluster", new()
+    ///     {
+    ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         Name = "MyCluster",
+    ///         ProviderName = "AWS",
+    ///         ProviderRegionName = "EU_WEST_2",
+    ///         ProviderInstanceSizeName = "M10",
+    ///         CloudBackup = true,
+    ///     });
+    /// 
+    ///     var test = new Mongodbatlas.Index.CloudProviderSnapshot("test", new()
+    ///     {
+    ///         ProjectId = myCluster.ProjectId,
+    ///         ClusterName = myCluster.Name,
+    ///         Description = "myDescription",
+    ///         RetentionInDays = 1,
+    ///     });
+    /// 
+    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("test", new()
+    ///     {
+    ///         ProjectId = test.ProjectId,
+    ///         ClusterName = test.ClusterName,
+    ///         SnapshotId = test.SnapshotId,
+    ///         DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
+    ///         {
+    ///             Download = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example of a point in time restore
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var clusterTest = new Mongodbatlas.Cluster("cluster_test", new()
+    ///     {
+    ///         ProjectId = projectTest.Id,
+    ///         Name = clusterName,
     ///         ProviderName = "AWS",
     ///         ProviderRegionName = "US_EAST_1",
     ///         ProviderInstanceSizeName = "M10",
@@ -32,7 +118,7 @@ namespace Pulumi.Mongodbatlas
     ///         PitEnabled = true,
     ///     });
     /// 
-    ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", new()
+    ///     var test = new Mongodbatlas.CloudBackupSnapshot("test", new()
     ///     {
     ///         ProjectId = clusterTest.ProjectId,
     ///         ClusterName = clusterTest.Name,
@@ -41,26 +127,25 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     var testCloudBackupSnapshotRestoreJob = new List&lt;Mongodbatlas.CloudBackupSnapshotRestoreJob&gt;();
-    ///     for (var rangeIndex = 0; rangeIndex &lt; ((@var.Point_in_time_utc_seconds == 0 ? 0 : 1) == true); rangeIndex++)
+    ///     for (var rangeIndex = 0; rangeIndex &lt; (pointInTimeUtcSeconds == 0 ? 0 : 1); rangeIndex++)
     ///     {
     ///         var range = new { Value = rangeIndex };
-    ///         testCloudBackupSnapshotRestoreJob.Add(new Mongodbatlas.CloudBackupSnapshotRestoreJob($"testCloudBackupSnapshotRestoreJob-{range.Value}", new()
+    ///         testCloudBackupSnapshotRestoreJob.Add(new Mongodbatlas.CloudBackupSnapshotRestoreJob($"test-{range.Value}", new()
     ///         {
-    ///             ProjectId = testCloudBackupSnapshot.ProjectId,
-    ///             ClusterName = testCloudBackupSnapshot.ClusterName,
-    ///             SnapshotId = testCloudBackupSnapshot.Id,
+    ///             ProjectId = test.ProjectId,
+    ///             ClusterName = test.ClusterName,
+    ///             SnapshotId = test.Id,
     ///             DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
     ///             {
     ///                 PointInTime = true,
     ///                 TargetClusterName = clusterTest.Name,
     ///                 TargetProjectId = clusterTest.ProjectId,
-    ///                 PointInTimeUtcSeconds = @var.Point_in_time_utc_seconds,
+    ///                 PointInTimeUtcSeconds = pointInTimeUtcSeconds,
     ///             },
     ///         }));
     ///     }
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Available complete examples
     /// - Restore from backup snapshot at point in time
@@ -154,6 +239,20 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        /// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+        /// Three conditions apply to this parameter:
+        /// * Enable Continuous Cloud Backup on your cluster.
+        /// * Specify oplogInc.
+        /// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        /// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+        /// Three conditions apply to this parameter:
+        /// * Enable Continuous Cloud Backup on your cluster.
+        /// * Specify oplogTs.
+        /// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        /// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+        /// Two conditions apply to this parameter:
+        /// * Enable Continuous Cloud Backup on your cluster.
+        /// * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
         /// </summary>
         [Output("timestamp")]
         public Output<string> Timestamp { get; private set; } = null!;
@@ -326,6 +425,20 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        /// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+        /// Three conditions apply to this parameter:
+        /// * Enable Continuous Cloud Backup on your cluster.
+        /// * Specify oplogInc.
+        /// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        /// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+        /// Three conditions apply to this parameter:
+        /// * Enable Continuous Cloud Backup on your cluster.
+        /// * Specify oplogTs.
+        /// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        /// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+        /// Two conditions apply to this parameter:
+        /// * Enable Continuous Cloud Backup on your cluster.
+        /// * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
         /// </summary>
         [Input("timestamp")]
         public Input<string>? Timestamp { get; set; }

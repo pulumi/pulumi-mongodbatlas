@@ -117,6 +117,21 @@ def get_project_api_key(api_key_id: Optional[str] = None,
     """
     ## Example Usage
 
+    ### Using project_id and api_key_id attribute to query
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project_api_key = mongodbatlas.ProjectApiKey("test",
+        description="Description of your API key",
+        project_assignments=[mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
+            project_id="64259ee860c43338194b0f8e",
+            role_names=["GROUP_READ_ONLY"],
+        )])
+    test = mongodbatlas.get_project_api_key(project_id="64259ee860c43338194b0f8e",
+        api_key_id=test_mongodbatlas_api_key["apiKeyId"])
+    ```
+
 
     :param str api_key_id: Unique identifier for this Project API key.
     :param str project_id: The unique ID for the project.
@@ -143,6 +158,21 @@ def get_project_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectApiKeyResult]:
     """
     ## Example Usage
+
+    ### Using project_id and api_key_id attribute to query
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project_api_key = mongodbatlas.ProjectApiKey("test",
+        description="Description of your API key",
+        project_assignments=[mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
+            project_id="64259ee860c43338194b0f8e",
+            role_names=["GROUP_READ_ONLY"],
+        )])
+    test = mongodbatlas.get_project_api_key(project_id="64259ee860c43338194b0f8e",
+        api_key_id=test_mongodbatlas_api_key["apiKeyId"])
+    ```
 
 
     :param str api_key_id: Unique identifier for this Project API key.

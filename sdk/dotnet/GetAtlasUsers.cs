@@ -20,7 +20,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Using org_id attribute to query Organization Atlas Users
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -36,11 +35,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### Using project_id attribute to query Project Atlas Users
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -56,11 +53,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### Using team_id and org_id attribute to query Team Atlas Users
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -71,13 +66,12 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
         ///     {
-        ///         OrgId = "&lt;ORG_ID&gt;",
         ///         TeamId = "&lt;TEAM_ID&gt;",
+        ///         OrgId = "&lt;ORG_ID&gt;",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAtlasUsersResult> InvokeAsync(GetAtlasUsersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAtlasUsersResult>("mongodbatlas:index/getAtlasUsers:getAtlasUsers", args ?? new GetAtlasUsersArgs(), options.WithDefaults());
@@ -91,7 +85,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Using org_id attribute to query Organization Atlas Users
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -107,11 +100,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### Using project_id attribute to query Project Atlas Users
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -127,11 +118,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### Using team_id and org_id attribute to query Team Atlas Users
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -142,13 +131,12 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
         ///     {
-        ///         OrgId = "&lt;ORG_ID&gt;",
         ///         TeamId = "&lt;TEAM_ID&gt;",
+        ///         OrgId = "&lt;ORG_ID&gt;",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAtlasUsersResult> Invoke(GetAtlasUsersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAtlasUsersResult>("mongodbatlas:index/getAtlasUsers:getAtlasUsers", args ?? new GetAtlasUsersInvokeArgs(), options.WithDefaults());

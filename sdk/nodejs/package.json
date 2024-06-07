@@ -1,6 +1,6 @@
 {
     "name": "@pulumi/mongodbatlas",
-    "version": "${VERSION}",
+    "version": "3.0.0-alpha.0+dev",
     "description": "A Pulumi package for creating and managing mongodbatlas cloud resources.",
     "keywords": [
         "pulumi",
@@ -22,6 +22,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "mongodbatlas"
+        "name": "mongodbatlas",
+        "version": "3.0.0-alpha.0+dev"
     }
 }

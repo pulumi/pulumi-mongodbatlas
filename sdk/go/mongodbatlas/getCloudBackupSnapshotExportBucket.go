@@ -14,6 +14,39 @@ import (
 // `CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testCloudBackupSnapshotExportBucket, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//				ProjectId:     pulumi.String("{PROJECT_ID}"),
+//				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
+//				BucketName:    pulumi.String("example-bucket"),
+//				CloudProvider: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCloudBackupSnapshotExportBucketOutput(ctx, mongodbatlas.GetCloudBackupSnapshotExportBucketOutputArgs{
+//				ProjectId:      pulumi.String("{PROJECT_ID}"),
+//				ExportBucketId: testCloudBackupSnapshotExportBucket.ExportBucketId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCloudBackupSnapshotExportBucket(ctx *pulumi.Context, args *LookupCloudBackupSnapshotExportBucketArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotExportBucketResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotExportBucketResult
@@ -28,7 +61,8 @@ func LookupCloudBackupSnapshotExportBucket(ctx *pulumi.Context, args *LookupClou
 type LookupCloudBackupSnapshotExportBucketArgs struct {
 	// Unique identifier of the snapshot export bucket.
 	ExportBucketId string `pulumi:"exportBucketId"`
-	Id             string `pulumi:"id"`
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+	Id *string `pulumi:"id"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
 }
@@ -42,6 +76,7 @@ type LookupCloudBackupSnapshotExportBucketResult struct {
 	ExportBucketId string `pulumi:"exportBucketId"`
 	// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
 	IamRoleId string `pulumi:"iamRoleId"`
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 }
@@ -63,7 +98,8 @@ func LookupCloudBackupSnapshotExportBucketOutput(ctx *pulumi.Context, args Looku
 type LookupCloudBackupSnapshotExportBucketOutputArgs struct {
 	// Unique identifier of the snapshot export bucket.
 	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
-	Id             pulumi.StringInput `pulumi:"id"`
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
@@ -106,6 +142,7 @@ func (o LookupCloudBackupSnapshotExportBucketResultOutput) IamRoleId() pulumi.St
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.IamRoleId }).(pulumi.StringOutput)
 }
 
+// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
 func (o LookupCloudBackupSnapshotExportBucketResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.Id }).(pulumi.StringOutput)
 }

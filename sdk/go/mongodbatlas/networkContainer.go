@@ -26,7 +26,6 @@ import (
 //
 // ### Example with AWS
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,8 +39,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
-//				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
 //				ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
+//				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
 //				ProviderName:   pulumi.String("AWS"),
 //				RegionName:     pulumi.String("US_EAST_1"),
 //			})
@@ -53,11 +52,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example with GCP
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -71,8 +68,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
-//				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
 //				ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
+//				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
 //				ProviderName:   pulumi.String("GCP"),
 //				Regions: pulumi.StringArray{
 //					pulumi.String("US_EAST_4"),
@@ -87,11 +84,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example with Azure
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -105,8 +100,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
-//				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
 //				ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
+//				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
 //				ProviderName:   pulumi.String("AZURE"),
 //				Region:         pulumi.String("US_EAST_2"),
 //			})
@@ -118,7 +113,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

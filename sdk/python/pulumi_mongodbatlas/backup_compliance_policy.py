@@ -28,6 +28,7 @@ class BackupCompliancePolicyArgs:
                  policy_item_hourly: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']] = None,
                  policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]] = None,
                  policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]] = None,
+                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]] = None,
                  restore_window_days: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a BackupCompliancePolicy resource.
@@ -59,6 +60,8 @@ class BackupCompliancePolicyArgs:
             pulumi.set(__self__, "policy_item_monthlies", policy_item_monthlies)
         if policy_item_weeklies is not None:
             pulumi.set(__self__, "policy_item_weeklies", policy_item_weeklies)
+        if policy_item_yearlies is not None:
+            pulumi.set(__self__, "policy_item_yearlies", policy_item_yearlies)
         if restore_window_days is not None:
             pulumi.set(__self__, "restore_window_days", restore_window_days)
 
@@ -192,6 +195,15 @@ class BackupCompliancePolicyArgs:
         pulumi.set(self, "policy_item_weeklies", value)
 
     @property
+    @pulumi.getter(name="policyItemYearlies")
+    def policy_item_yearlies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]:
+        return pulumi.get(self, "policy_item_yearlies")
+
+    @policy_item_yearlies.setter
+    def policy_item_yearlies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]):
+        pulumi.set(self, "policy_item_yearlies", value)
+
+    @property
     @pulumi.getter(name="restoreWindowDays")
     def restore_window_days(self) -> Optional[pulumi.Input[int]]:
         """
@@ -218,6 +230,7 @@ class _BackupCompliancePolicyState:
                  policy_item_hourly: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']] = None,
                  policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]] = None,
                  policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]] = None,
+                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  restore_window_days: Optional[pulumi.Input[int]] = None,
                  state: Optional[pulumi.Input[str]] = None,
@@ -259,6 +272,8 @@ class _BackupCompliancePolicyState:
             pulumi.set(__self__, "policy_item_monthlies", policy_item_monthlies)
         if policy_item_weeklies is not None:
             pulumi.set(__self__, "policy_item_weeklies", policy_item_weeklies)
+        if policy_item_yearlies is not None:
+            pulumi.set(__self__, "policy_item_yearlies", policy_item_yearlies)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if restore_window_days is not None:
@@ -388,6 +403,15 @@ class _BackupCompliancePolicyState:
         pulumi.set(self, "policy_item_weeklies", value)
 
     @property
+    @pulumi.getter(name="policyItemYearlies")
+    def policy_item_yearlies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]:
+        return pulumi.get(self, "policy_item_yearlies")
+
+    @policy_item_yearlies.setter
+    def policy_item_yearlies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]):
+        pulumi.set(self, "policy_item_yearlies", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -464,11 +488,98 @@ class BackupCompliancePolicy(pulumi.CustomResource):
                  policy_item_hourly: Optional[pulumi.Input[pulumi.InputType['BackupCompliancePolicyPolicyItemHourlyArgs']]] = None,
                  policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]] = None,
                  policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]] = None,
+                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupCompliancePolicyPolicyItemYearlyArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  restore_window_days: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("my_cluster",
+            project_id="<PROJECT-ID>",
+            name="clusterTest",
+            provider_name="AWS",
+            provider_region_name="EU_CENTRAL_1",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        test_cloud_backup_schedule = mongodbatlas.CloudBackupSchedule("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            reference_hour_of_day=3,
+            reference_minute_of_hour=45,
+            restore_window_days=4,
+            policy_item_hourly=mongodbatlas.CloudBackupSchedulePolicyItemHourlyArgs(
+                frequency_interval=1,
+                retention_unit="days",
+                retention_value=7,
+            ),
+            policy_item_daily=mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs(
+                frequency_interval=1,
+                retention_unit="days",
+                retention_value=7,
+            ),
+            policy_item_weeklies=[mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArgs(
+                frequency_interval=1,
+                retention_unit="weeks",
+                retention_value=4,
+            )],
+            policy_item_monthlies=[mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArgs(
+                frequency_interval=1,
+                retention_unit="months",
+                retention_value=12,
+            )],
+            policy_item_yearlies=[mongodbatlas.CloudBackupSchedulePolicyItemYearlyArgs(
+                frequency_interval=1,
+                retention_unit="years",
+                retention_value=1,
+            )])
+        test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
+            cluster_name=test_cloud_backup_schedule.cluster_name)
+        backup_policy = mongodbatlas.get_backup_compliance_policy_output(project_id=test_cloud_backup_schedule.project_id)
+        backup_policy_backup_compliance_policy = mongodbatlas.BackupCompliancePolicy("backup_policy",
+            project_id="<PROJECT-ID>",
+            authorized_email="user@email.com",
+            authorized_user_first_name="First",
+            authorized_user_last_name="Last",
+            copy_protection_enabled=False,
+            pit_enabled=False,
+            encryption_at_rest_enabled=False,
+            restore_window_days=7,
+            on_demand_policy_item=mongodbatlas.BackupCompliancePolicyOnDemandPolicyItemArgs(
+                frequency_interval=1,
+                retention_unit="days",
+                retention_value=3,
+            ),
+            policy_item_hourly=mongodbatlas.BackupCompliancePolicyPolicyItemHourlyArgs(
+                frequency_interval=1,
+                retention_unit="days",
+                retention_value=7,
+            ),
+            policy_item_daily=mongodbatlas.BackupCompliancePolicyPolicyItemDailyArgs(
+                frequency_interval=1,
+                retention_unit="days",
+                retention_value=7,
+            ),
+            policy_item_weeklies=[mongodbatlas.BackupCompliancePolicyPolicyItemWeeklyArgs(
+                frequency_interval=1,
+                retention_unit="weeks",
+                retention_value=4,
+            )],
+            policy_item_monthlies=[mongodbatlas.BackupCompliancePolicyPolicyItemMonthlyArgs(
+                frequency_interval=1,
+                retention_unit="months",
+                retention_value=12,
+            )],
+            policy_item_yearlies=[mongodbatlas.BackupCompliancePolicyPolicyItemYearlyArgs(
+                frequency_interval=1,
+                retention_unit="years",
+                retention_value=1,
+            )])
+        ```
 
         ## Import
 
@@ -498,6 +609,92 @@ class BackupCompliancePolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("my_cluster",
+            project_id="<PROJECT-ID>",
+            name="clusterTest",
+            provider_name="AWS",
+            provider_region_name="EU_CENTRAL_1",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        test_cloud_backup_schedule = mongodbatlas.CloudBackupSchedule("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            reference_hour_of_day=3,
+            reference_minute_of_hour=45,
+            restore_window_days=4,
+            policy_item_hourly=mongodbatlas.CloudBackupSchedulePolicyItemHourlyArgs(
+                frequency_interval=1,
+                retention_unit="days",
+                retention_value=7,
+            ),
+            policy_item_daily=mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs(
+                frequency_interval=1,
+                retention_unit="days",
+                retention_value=7,
+            ),
+            policy_item_weeklies=[mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArgs(
+                frequency_interval=1,
+                retention_unit="weeks",
+                retention_value=4,
+            )],
+            policy_item_monthlies=[mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArgs(
+                frequency_interval=1,
+                retention_unit="months",
+                retention_value=12,
+            )],
+            policy_item_yearlies=[mongodbatlas.CloudBackupSchedulePolicyItemYearlyArgs(
+                frequency_interval=1,
+                retention_unit="years",
+                retention_value=1,
+            )])
+        test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
+            cluster_name=test_cloud_backup_schedule.cluster_name)
+        backup_policy = mongodbatlas.get_backup_compliance_policy_output(project_id=test_cloud_backup_schedule.project_id)
+        backup_policy_backup_compliance_policy = mongodbatlas.BackupCompliancePolicy("backup_policy",
+            project_id="<PROJECT-ID>",
+            authorized_email="user@email.com",
+            authorized_user_first_name="First",
+            authorized_user_last_name="Last",
+            copy_protection_enabled=False,
+            pit_enabled=False,
+            encryption_at_rest_enabled=False,
+            restore_window_days=7,
+            on_demand_policy_item=mongodbatlas.BackupCompliancePolicyOnDemandPolicyItemArgs(
+                frequency_interval=1,
+                retention_unit="days",
+                retention_value=3,
+            ),
+            policy_item_hourly=mongodbatlas.BackupCompliancePolicyPolicyItemHourlyArgs(
+                frequency_interval=1,
+                retention_unit="days",
+                retention_value=7,
+            ),
+            policy_item_daily=mongodbatlas.BackupCompliancePolicyPolicyItemDailyArgs(
+                frequency_interval=1,
+                retention_unit="days",
+                retention_value=7,
+            ),
+            policy_item_weeklies=[mongodbatlas.BackupCompliancePolicyPolicyItemWeeklyArgs(
+                frequency_interval=1,
+                retention_unit="weeks",
+                retention_value=4,
+            )],
+            policy_item_monthlies=[mongodbatlas.BackupCompliancePolicyPolicyItemMonthlyArgs(
+                frequency_interval=1,
+                retention_unit="months",
+                retention_value=12,
+            )],
+            policy_item_yearlies=[mongodbatlas.BackupCompliancePolicyPolicyItemYearlyArgs(
+                frequency_interval=1,
+                retention_unit="years",
+                retention_value=1,
+            )])
+        ```
 
         ## Import
 
@@ -534,6 +731,7 @@ class BackupCompliancePolicy(pulumi.CustomResource):
                  policy_item_hourly: Optional[pulumi.Input[pulumi.InputType['BackupCompliancePolicyPolicyItemHourlyArgs']]] = None,
                  policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]] = None,
                  policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]] = None,
+                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupCompliancePolicyPolicyItemYearlyArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  restore_window_days: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -564,6 +762,7 @@ class BackupCompliancePolicy(pulumi.CustomResource):
             __props__.__dict__["policy_item_hourly"] = policy_item_hourly
             __props__.__dict__["policy_item_monthlies"] = policy_item_monthlies
             __props__.__dict__["policy_item_weeklies"] = policy_item_weeklies
+            __props__.__dict__["policy_item_yearlies"] = policy_item_yearlies
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -592,6 +791,7 @@ class BackupCompliancePolicy(pulumi.CustomResource):
             policy_item_hourly: Optional[pulumi.Input[pulumi.InputType['BackupCompliancePolicyPolicyItemHourlyArgs']]] = None,
             policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]] = None,
             policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]] = None,
+            policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackupCompliancePolicyPolicyItemYearlyArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             restore_window_days: Optional[pulumi.Input[int]] = None,
             state: Optional[pulumi.Input[str]] = None,
@@ -631,6 +831,7 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         __props__.__dict__["policy_item_hourly"] = policy_item_hourly
         __props__.__dict__["policy_item_monthlies"] = policy_item_monthlies
         __props__.__dict__["policy_item_weeklies"] = policy_item_weeklies
+        __props__.__dict__["policy_item_yearlies"] = policy_item_yearlies
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["restore_window_days"] = restore_window_days
         __props__.__dict__["state"] = state
@@ -710,6 +911,11 @@ class BackupCompliancePolicy(pulumi.CustomResource):
     @pulumi.getter(name="policyItemWeeklies")
     def policy_item_weeklies(self) -> pulumi.Output[Optional[Sequence['outputs.BackupCompliancePolicyPolicyItemWeekly']]]:
         return pulumi.get(self, "policy_item_weeklies")
+
+    @property
+    @pulumi.getter(name="policyItemYearlies")
+    def policy_item_yearlies(self) -> pulumi.Output[Optional[Sequence['outputs.BackupCompliancePolicyPolicyItemYearly']]]:
+        return pulumi.get(self, "policy_item_yearlies")
 
     @property
     @pulumi.getter(name="projectId")

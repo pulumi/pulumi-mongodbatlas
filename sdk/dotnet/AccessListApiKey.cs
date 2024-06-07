@@ -13,7 +13,6 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ### Using CIDR Block
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -24,17 +23,15 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.AccessListApiKey("test", new()
     ///     {
-    ///         ApiKeyId = "a29120e123cd",
-    ///         CidrBlock = "1.2.3.4/32",
     ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         CidrBlock = "1.2.3.4/32",
+    ///         ApiKeyId = "a29120e123cd",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Using IP Address
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -45,14 +42,13 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.AccessListApiKey("test", new()
     ///     {
-    ///         ApiKeyId = "a29120e123cd",
-    ///         IpAddress = "2.3.4.5",
     ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         IpAddress = "2.3.4.5",
+    ///         ApiKeyId = "a29120e123cd",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

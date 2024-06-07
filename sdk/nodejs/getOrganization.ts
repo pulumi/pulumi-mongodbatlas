@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Using projectId attribute to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -21,7 +20,6 @@ import * as utilities from "./utilities";
  *     orgId: "<org_id>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOrganization(args: GetOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
 
@@ -78,7 +76,6 @@ export interface GetOrganizationResult {
  * ## Example Usage
  *
  * ### Using projectId attribute to query
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -87,7 +84,6 @@ export interface GetOrganizationResult {
  *     orgId: "<org_id>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOrganizationOutput(args: GetOrganizationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationResult> {
     return pulumi.output(args).apply((a: any) => getOrganization(a, opts))

@@ -9,18 +9,16 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getProjectApiKeys({
- *     itemsPerPage: 5,
  *     pageNum: 1,
+ *     itemsPerPage: 5,
  *     projectId: "32b6e34b3d91647abb20e7b8",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getProjectApiKeys(args: GetProjectApiKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectApiKeysResult> {
 
@@ -72,18 +70,16 @@ export interface GetProjectApiKeysResult {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getProjectApiKeys({
- *     itemsPerPage: 5,
  *     pageNum: 1,
+ *     itemsPerPage: 5,
  *     projectId: "32b6e34b3d91647abb20e7b8",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getProjectApiKeysOutput(args: GetProjectApiKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectApiKeysResult> {
     return pulumi.output(args).apply((a: any) => getProjectApiKeys(a, opts))

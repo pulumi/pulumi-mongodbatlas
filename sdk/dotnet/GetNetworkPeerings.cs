@@ -21,7 +21,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Basic Example (AWS).
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -30,7 +29,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
+        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
         ///     {
         ///         AccepterRegionName = "us-east-1",
         ///         ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
@@ -41,14 +40,13 @@ namespace Pulumi.Mongodbatlas
         ///         AwsAccountId = "abc123abc123",
         ///     });
         /// 
-        ///     var testNetworkPeerings = Mongodbatlas.GetNetworkPeerings.Invoke(new()
+        ///     var test = Mongodbatlas.GetNetworkPeerings.Invoke(new()
         ///     {
         ///         ProjectId = testNetworkPeering.ProjectId,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetNetworkPeeringsResult> InvokeAsync(GetNetworkPeeringsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworkPeeringsResult>("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args ?? new GetNetworkPeeringsArgs(), options.WithDefaults());
@@ -63,7 +61,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Basic Example (AWS).
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -72,7 +69,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
+        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
         ///     {
         ///         AccepterRegionName = "us-east-1",
         ///         ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
@@ -83,14 +80,13 @@ namespace Pulumi.Mongodbatlas
         ///         AwsAccountId = "abc123abc123",
         ///     });
         /// 
-        ///     var testNetworkPeerings = Mongodbatlas.GetNetworkPeerings.Invoke(new()
+        ///     var test = Mongodbatlas.GetNetworkPeerings.Invoke(new()
         ///     {
         ///         ProjectId = testNetworkPeering.ProjectId,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetNetworkPeeringsResult> Invoke(GetNetworkPeeringsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkPeeringsResult>("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args ?? new GetNetworkPeeringsInvokeArgs(), options.WithDefaults());

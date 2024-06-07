@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,8 +29,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			identityProvider, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identityProvider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
+//			identityProvider, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identity_provider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
 //				FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f14"),
+//				Name:                 pulumi.String("mongodb_federation_test"),
 //				AssociatedDomains: pulumi.StringArray{
 //					pulumi.String("yourdomain.com"),
 //				},
@@ -47,14 +47,13 @@ import (
 //			}
 //			_ = mongodbatlas.LookupFederatedSettingsIdentityProviderOutput(ctx, mongodbatlas.GetFederatedSettingsIdentityProviderOutputArgs{
 //				FederationSettingsId: identityProvider.ID(),
-//				IdentityProviderId:   pulumi.String("0oad47f7fXnk1297"),
+//				IdentityProviderId:   pulumi.String("0oad4fas87jL5Xnk12971234"),
 //			}, nil)
 //			return nil
 //		})
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupFederatedSettingsIdentityProvider(ctx *pulumi.Context, args *LookupFederatedSettingsIdentityProviderArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsIdentityProviderResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsIdentityProviderResult
@@ -69,7 +68,8 @@ func LookupFederatedSettingsIdentityProvider(ctx *pulumi.Context, args *LookupFe
 type LookupFederatedSettingsIdentityProviderArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId string `pulumi:"federationSettingsId"`
-	IdentityProviderId   string `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the IdP.
+	IdentityProviderId string `pulumi:"identityProviderId"`
 }
 
 // A collection of values returned by getFederatedSettingsIdentityProvider.
@@ -141,7 +141,8 @@ func LookupFederatedSettingsIdentityProviderOutput(ctx *pulumi.Context, args Loo
 type LookupFederatedSettingsIdentityProviderOutputArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId pulumi.StringInput `pulumi:"federationSettingsId"`
-	IdentityProviderId   pulumi.StringInput `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the IdP.
+	IdentityProviderId pulumi.StringInput `pulumi:"identityProviderId"`
 }
 
 func (LookupFederatedSettingsIdentityProviderOutputArgs) ElementType() reflect.Type {

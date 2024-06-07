@@ -13,8 +13,6 @@ import javax.annotation.Nullable;
 public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
     /**
      * @return Name of the Atlas Federated Database Instance.
-     * ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
      * 
      */
     private @Nullable String name;
@@ -23,8 +21,6 @@ public final class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag 
     private FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag() {}
     /**
      * @return Name of the Atlas Federated Database Instance.
-     * ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
      * 
      */
     public Optional<String> name() {

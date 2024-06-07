@@ -14,9 +14,17 @@ public final class FederatedDatabaseInstanceCloudProviderConfigArgs extends com.
 
     public static final FederatedDatabaseInstanceCloudProviderConfigArgs Empty = new FederatedDatabaseInstanceCloudProviderConfigArgs();
 
+    /**
+     * Name of the cloud service that hosts the data lake&#39;s data stores.
+     * 
+     */
     @Import(name="aws", required=true)
     private Output<FederatedDatabaseInstanceCloudProviderConfigAwsArgs> aws;
 
+    /**
+     * @return Name of the cloud service that hosts the data lake&#39;s data stores.
+     * 
+     */
     public Output<FederatedDatabaseInstanceCloudProviderConfigAwsArgs> aws() {
         return this.aws;
     }
@@ -45,11 +53,23 @@ public final class FederatedDatabaseInstanceCloudProviderConfigArgs extends com.
             $ = new FederatedDatabaseInstanceCloudProviderConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param aws Name of the cloud service that hosts the data lake&#39;s data stores.
+         * 
+         * @return builder
+         * 
+         */
         public Builder aws(Output<FederatedDatabaseInstanceCloudProviderConfigAwsArgs> aws) {
             $.aws = aws;
             return this;
         }
 
+        /**
+         * @param aws Name of the cloud service that hosts the data lake&#39;s data stores.
+         * 
+         * @return builder
+         * 
+         */
         public Builder aws(FederatedDatabaseInstanceCloudProviderConfigAwsArgs aws) {
             return aws(Output.of(aws));
         }

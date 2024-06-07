@@ -11,12 +11,11 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("test_datadog", {
  *     projectId: "<PROJECT-ID>",
  *     type: "DATADOG",
  *     apiKey: "<API-KEY>",
@@ -24,9 +23,9 @@ import * as utilities from "./utilities";
  * });
  * const test = mongodbatlas.getThirdPartyIntegrationOutput({
  *     projectId: testDatadog.projectId,
+ *     type: "DATADOG",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationResult> {
 
@@ -52,6 +51,7 @@ export interface GetThirdPartyIntegrationArgs {
     enabled?: boolean;
     /**
      * Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
      */
     microsoftTeamsWebhookUrl?: string;
     /**
@@ -59,7 +59,9 @@ export interface GetThirdPartyIntegrationArgs {
      */
     projectId: string;
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     scheme?: string;
     /**
@@ -98,28 +100,34 @@ export interface GetThirdPartyIntegrationResult {
      */
     readonly enabled?: boolean;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * Unique identifier of the integration.
      */
     readonly id: string;
     /**
      * Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
      */
     readonly microsoftTeamsWebhookUrl?: string;
     readonly projectId: string;
     /**
      * Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+     * * `VICTOR_OPS`
      */
     readonly region: string;
     /**
      * An optional field for your Routing Key.
+     * * `WEBHOOK`
      */
     readonly routingKey: string;
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     readonly scheme?: string;
     /**
      * An optional field for your webhook secret.
+     * * `MICROSOFT_TEAMS`
      */
     readonly secret: string;
     /**
@@ -128,12 +136,10 @@ export interface GetThirdPartyIntegrationResult {
     readonly serviceDiscovery?: string;
     /**
      * Your Service Key.
+     * * `DATADOG`
      */
     readonly serviceKey: string;
     readonly teamName: string;
-    /**
-     * Property equal to its own integration type
-     */
     readonly type: string;
     /**
      * Your webhook URL.
@@ -151,12 +157,11 @@ export interface GetThirdPartyIntegrationResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("test_datadog", {
  *     projectId: "<PROJECT-ID>",
  *     type: "DATADOG",
  *     apiKey: "<API-KEY>",
@@ -164,9 +169,9 @@ export interface GetThirdPartyIntegrationResult {
  * });
  * const test = mongodbatlas.getThirdPartyIntegrationOutput({
  *     projectId: testDatadog.projectId,
+ *     type: "DATADOG",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationResult> {
     return pulumi.output(args).apply((a: any) => getThirdPartyIntegration(a, opts))
@@ -182,6 +187,7 @@ export interface GetThirdPartyIntegrationOutputArgs {
     enabled?: pulumi.Input<boolean>;
     /**
      * Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
      */
     microsoftTeamsWebhookUrl?: pulumi.Input<string>;
     /**
@@ -189,7 +195,9 @@ export interface GetThirdPartyIntegrationOutputArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     scheme?: pulumi.Input<string>;
     /**

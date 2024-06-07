@@ -140,21 +140,19 @@ def get_federated_settings_org_config(federation_settings_id: Optional[str] = No
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    org_connections = mongodbatlas.FederatedSettingsOrgConfig("orgConnections",
+    org_connections = mongodbatlas.FederatedSettingsOrgConfig("org_connections",
         federation_settings_id="627a9687f7f7f7f774de306f14",
         org_id="627a9683ea7ff7f74de306f14",
         domain_restriction_enabled=False,
         domain_allow_lists=["mydomain.com"],
         post_auth_role_grants=["ORG_MEMBER"])
-    org_configs_ds = mongodbatlas.get_federated_settings_org_config_output(federation_settings_id=org_connections.id,
+    org_configs_ds = mongodbatlas.get_federated_settings_org_config(federation_settings_id=org_connections_mongodbatlas_federated_settings_org_config["id"],
         org_id="627a9683ea7ff7f74de306f14")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -187,21 +185,19 @@ def get_federated_settings_org_config_output(federation_settings_id: Optional[pu
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    org_connections = mongodbatlas.FederatedSettingsOrgConfig("orgConnections",
+    org_connections = mongodbatlas.FederatedSettingsOrgConfig("org_connections",
         federation_settings_id="627a9687f7f7f7f774de306f14",
         org_id="627a9683ea7ff7f74de306f14",
         domain_restriction_enabled=False,
         domain_allow_lists=["mydomain.com"],
         post_auth_role_grants=["ORG_MEMBER"])
-    org_configs_ds = mongodbatlas.get_federated_settings_org_config_output(federation_settings_id=org_connections.id,
+    org_configs_ds = mongodbatlas.get_federated_settings_org_config(federation_settings_id=org_connections_mongodbatlas_federated_settings_org_config["id"],
         org_id="627a9683ea7ff7f74de306f14")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.

@@ -66,6 +66,8 @@ class GetFederatedQueryLimitResult:
     def default_limit(self) -> int:
         """
         Default value of the limit.
+        * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+        * `maximumLimit` - Maximum value of the limit.
         """
         return pulumi.get(self, "default_limit")
 
@@ -144,16 +146,14 @@ def get_federated_query_limit(limit_name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_query_limit(limit_name="LIMIT_NAME",
-        project_id="PROJECT_ID",
-        tenant_name="FEDERATED_DATABASE_INSTANCE_NAME")
+    test = mongodbatlas.get_federated_query_limit(project_id="PROJECT_ID",
+        tenant_name="FEDERATED_DATABASE_INSTANCE_NAME",
+        limit_name="LIMIT_NAME")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
@@ -198,16 +198,14 @@ def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[str]] = N
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_query_limit(limit_name="LIMIT_NAME",
-        project_id="PROJECT_ID",
-        tenant_name="FEDERATED_DATABASE_INSTANCE_NAME")
+    test = mongodbatlas.get_federated_query_limit(project_id="PROJECT_ID",
+        tenant_name="FEDERATED_DATABASE_INSTANCE_NAME",
+        limit_name="LIMIT_NAME")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:

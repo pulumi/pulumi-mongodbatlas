@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * 
  * ### Basic
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,16 +50,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ServerlessInstance(&#34;test&#34;, ServerlessInstanceArgs.builder()        
- *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
- *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
- *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
- *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+ *         var test = new ServerlessInstance("test", ServerlessInstanceArgs.builder()
+ *             .projectId("<PROJECT_ID>")
+ *             .name("<SERVERLESS_INSTANCE_NAME>")
+ *             .providerSettingsBackingProviderName("AWS")
+ *             .providerSettingsProviderName("SERVERLESS")
+ *             .providerSettingsRegionName("US_EAST_1")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
@@ -83,6 +86,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/serverlessInstance:ServerlessInstance")
 public class ServerlessInstance extends com.pulumi.resources.CustomResource {
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+     * 
+     */
+    @Export(name="autoIndexing", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> autoIndexing;
+
+    /**
+     * @return Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+     * 
+     */
+    public Output<Boolean> autoIndexing() {
+        return this.autoIndexing;
+    }
     /**
      * List of Serverless Private Endpoint Connections
      * 

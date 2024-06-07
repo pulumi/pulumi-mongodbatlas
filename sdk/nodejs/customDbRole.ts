@@ -15,12 +15,13 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRole = new mongodbatlas.CustomDbRole("testRole", {
+ * const testRole = new mongodbatlas.CustomDbRole("test_role", {
+ *     projectId: "<PROJECT-ID>",
+ *     roleName: "myCustomRole",
  *     actions: [
  *         {
  *             action: "UPDATE",
@@ -44,20 +45,16 @@ import * as utilities from "./utilities";
  *             }],
  *         },
  *     ],
- *     projectId: "<PROJECT-ID>",
- *     roleName: "myCustomRole",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### With Inherited Roles
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const inheritedRoleOne = new mongodbatlas.CustomDbRole("inheritedRoleOne", {
+ * const inheritedRoleOne = new mongodbatlas.CustomDbRole("inherited_role_one", {
  *     projectId: "<PROJECT-ID>",
  *     roleName: "insertRole",
  *     actions: [{
@@ -68,7 +65,7 @@ import * as utilities from "./utilities";
  *         }],
  *     }],
  * });
- * const inheritedRoleTwo = new mongodbatlas.CustomDbRole("inheritedRoleTwo", {
+ * const inheritedRoleTwo = new mongodbatlas.CustomDbRole("inherited_role_two", {
  *     projectId: inheritedRoleOne.projectId,
  *     roleName: "statusServerRole",
  *     actions: [{
@@ -78,7 +75,7 @@ import * as utilities from "./utilities";
  *         }],
  *     }],
  * });
- * const testRole = new mongodbatlas.CustomDbRole("testRole", {
+ * const testRole = new mongodbatlas.CustomDbRole("test_role", {
  *     projectId: inheritedRoleOne.projectId,
  *     roleName: "myCustomRole",
  *     actions: [
@@ -109,7 +106,6 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

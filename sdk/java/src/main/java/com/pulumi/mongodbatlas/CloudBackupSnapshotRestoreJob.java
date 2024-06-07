@@ -20,9 +20,134 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * ### Example automated delivery type
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.cloudProviderSnapshot;
+ * import com.pulumi.mongodbatlas.CloudProviderSnapshotArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
+ *             .projectId("5cf5a45a9ccf6400e60981b6")
+ *             .name("MyCluster")
+ *             .providerName("AWS")
+ *             .providerRegionName("EU_WEST_2")
+ *             .providerInstanceSizeName("M10")
+ *             .cloudBackup(true)
+ *             .build());
+ * 
+ *         var test = new CloudProviderSnapshot("test", CloudProviderSnapshotArgs.builder()
+ *             .projectId(myCluster.projectId())
+ *             .clusterName(myCluster.name())
+ *             .description("myDescription")
+ *             .retentionInDays(1)
+ *             .build());
+ * 
+ *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
+ *             .projectId(test.projectId())
+ *             .clusterName(test.clusterName())
+ *             .snapshotId(test.snapshotId())
+ *             .deliveryTypeConfig(CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs.builder()
+ *                 .automated(true)
+ *                 .targetClusterName("MyCluster")
+ *                 .targetProjectId("5cf5a45a9ccf6400e60981b6")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Example download delivery type
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Cluster;
+ * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.cloudProviderSnapshot;
+ * import com.pulumi.mongodbatlas.CloudProviderSnapshotArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
+ *             .projectId("5cf5a45a9ccf6400e60981b6")
+ *             .name("MyCluster")
+ *             .providerName("AWS")
+ *             .providerRegionName("EU_WEST_2")
+ *             .providerInstanceSizeName("M10")
+ *             .cloudBackup(true)
+ *             .build());
+ * 
+ *         var test = new CloudProviderSnapshot("test", CloudProviderSnapshotArgs.builder()
+ *             .projectId(myCluster.projectId())
+ *             .clusterName(myCluster.name())
+ *             .description("myDescription")
+ *             .retentionInDays(1)
+ *             .build());
+ * 
+ *         var testCloudBackupSnapshotRestoreJob = new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", CloudBackupSnapshotRestoreJobArgs.builder()
+ *             .projectId(test.projectId())
+ *             .clusterName(test.clusterName())
+ *             .snapshotId(test.snapshotId())
+ *             .deliveryTypeConfig(CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs.builder()
+ *                 .download(true)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### Example of a point in time restore
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,32 +174,33 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var clusterTest = new Cluster(&#34;clusterTest&#34;, ClusterArgs.builder()        
- *             .projectId(mongodbatlas_project.project_test().id())
- *             .providerName(&#34;AWS&#34;)
- *             .providerRegionName(&#34;US_EAST_1&#34;)
- *             .providerInstanceSizeName(&#34;M10&#34;)
+ *         var clusterTest = new Cluster("clusterTest", ClusterArgs.builder()
+ *             .projectId(projectTest.id())
+ *             .name(clusterName)
+ *             .providerName("AWS")
+ *             .providerRegionName("US_EAST_1")
+ *             .providerInstanceSizeName("M10")
  *             .cloudBackup(true)
  *             .pitEnabled(true)
  *             .build());
  * 
- *         var testCloudBackupSnapshot = new CloudBackupSnapshot(&#34;testCloudBackupSnapshot&#34;, CloudBackupSnapshotArgs.builder()        
+ *         var test = new CloudBackupSnapshot("test", CloudBackupSnapshotArgs.builder()
  *             .projectId(clusterTest.projectId())
  *             .clusterName(clusterTest.name())
- *             .description(&#34;My description&#34;)
- *             .retentionInDays(&#34;1&#34;)
+ *             .description("My description")
+ *             .retentionInDays("1")
  *             .build());
  * 
- *         for (var i = 0; i &lt; ((var_.point_in_time_utc_seconds() == 0 ? 0 : 1) == true); i++) {
- *             new CloudBackupSnapshotRestoreJob(&#34;testCloudBackupSnapshotRestoreJob-&#34; + i, CloudBackupSnapshotRestoreJobArgs.builder()            
- *                 .projectId(testCloudBackupSnapshot.projectId())
- *                 .clusterName(testCloudBackupSnapshot.clusterName())
- *                 .snapshotId(testCloudBackupSnapshot.id())
+ *         for (var i = 0; i < (pointInTimeUtcSeconds == 0 ? 0 : 1); i++) {
+ *             new CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob-" + i, CloudBackupSnapshotRestoreJobArgs.builder()
+ *                 .projectId(test.projectId())
+ *                 .clusterName(test.clusterName())
+ *                 .snapshotId(test.id())
  *                 .deliveryTypeConfig(CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs.builder()
  *                     .pointInTime(true)
  *                     .targetClusterName(clusterTest.name())
  *                     .targetProjectId(clusterTest.projectId())
- *                     .pointInTimeUtcSeconds(var_.point_in_time_utc_seconds())
+ *                     .pointInTimeUtcSeconds(pointInTimeUtcSeconds)
  *                     .build())
  *                 .build());
  * 
@@ -82,7 +208,8 @@ import javax.annotation.Nullable;
  * }
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Available complete examples
@@ -132,7 +259,11 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
     /**
      * UTC ISO 8601 formatted point in time when Atlas created the restore job.
      * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
+     * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
@@ -273,6 +404,20 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
     }
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+     *   Three conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify oplogInc.
+     * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+     *   Three conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify oplogTs.
+     * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+     *   Two conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
      * 
      */
     @Export(name="timestamp", refs={String.class}, tree="[0]")
@@ -280,6 +425,20 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
 
     /**
      * @return Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+     *   Three conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify oplogInc.
+     * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+     *   Three conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify oplogTs.
+     * * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+     *   Two conditions apply to this parameter:
+     * * Enable Continuous Cloud Backup on your cluster.
+     * * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
      * 
      */
     public Output<String> timestamp() {

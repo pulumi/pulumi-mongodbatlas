@@ -45,7 +45,7 @@ class GetThirdPartyIntegrationsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
-        (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+        ID of the Atlas project the Third-Party Service Integration belongs to.
         """
         return pulumi.get(self, "project_id")
 
@@ -79,23 +79,21 @@ def get_third_party_integrations(project_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_pager_duty = mongodbatlas.ThirdPartyIntegration("testPagerDuty",
+    test_pager_duty = mongodbatlas.ThirdPartyIntegration("test_pager_duty",
         project_id="<PROJECT-ID>",
         type="PAGER_DUTY",
         service_key="<PAGER-DUTY-SERVICE-KEY>")
-    test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
+    test_datadog = mongodbatlas.ThirdPartyIntegration("test_datadog",
         project_id="<PROJECT-ID>",
         type="DATADOG",
         api_key="<API-KEY>",
         region="<REGION>")
     test = mongodbatlas.get_third_party_integrations_output(project_id=test_pager_duty.project_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: The unique ID for the project to get all Third-Party service integrations
@@ -122,23 +120,21 @@ def get_third_party_integrations_output(project_id: Optional[pulumi.Input[str]] 
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_pager_duty = mongodbatlas.ThirdPartyIntegration("testPagerDuty",
+    test_pager_duty = mongodbatlas.ThirdPartyIntegration("test_pager_duty",
         project_id="<PROJECT-ID>",
         type="PAGER_DUTY",
         service_key="<PAGER-DUTY-SERVICE-KEY>")
-    test_datadog = mongodbatlas.ThirdPartyIntegration("testDatadog",
+    test_datadog = mongodbatlas.ThirdPartyIntegration("test_datadog",
         project_id="<PROJECT-ID>",
         type="DATADOG",
         api_key="<API-KEY>",
         region="<REGION>")
     test = mongodbatlas.get_third_party_integrations_output(project_id=test_pager_duty.project_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str project_id: The unique ID for the project to get all Third-Party service integrations

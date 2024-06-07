@@ -73,6 +73,9 @@ class GetCloudBackupSnapshotExportBucketResult:
     @property
     @pulumi.getter
     def id(self) -> str:
+        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.""", DeprecationWarning)
+        pulumi.log.warn("""id is deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.""")
+
         return pulumi.get(self, "id")
 
     @property
@@ -104,6 +107,21 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[str] = No
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("test",
+        project_id="{PROJECT_ID}",
+        iam_role_id="{IAM_ROLE_ID}",
+        bucket_name="example-bucket",
+        cloud_provider="AWS")
+    test = mongodbatlas.get_cloud_backup_snapshot_export_bucket_output(project_id="{PROJECT_ID}",
+        export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id)
+    ```
+
 
     :param str export_bucket_id: Unique identifier of the snapshot export bucket.
     :param str project_id: The unique identifier of the project for the Atlas cluster.
@@ -126,13 +144,28 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[str] = No
 
 @_utilities.lift_output_func(get_cloud_backup_snapshot_export_bucket)
 def get_cloud_backup_snapshot_export_bucket_output(export_bucket_id: Optional[pulumi.Input[str]] = None,
-                                                   id: Optional[pulumi.Input[str]] = None,
+                                                   id: Optional[pulumi.Input[Optional[str]]] = None,
                                                    project_id: Optional[pulumi.Input[str]] = None,
                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotExportBucketResult]:
     """
     `CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("test",
+        project_id="{PROJECT_ID}",
+        iam_role_id="{IAM_ROLE_ID}",
+        bucket_name="example-bucket",
+        cloud_provider="AWS")
+    test = mongodbatlas.get_cloud_backup_snapshot_export_bucket_output(project_id="{PROJECT_ID}",
+        export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id)
+    ```
 
 
     :param str export_bucket_id: Unique identifier of the snapshot export bucket.

@@ -384,51 +384,45 @@ class NetworkContainer(pulumi.CustomResource):
 
         ### Example with AWS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.NetworkContainer("test",
-            atlas_cidr_block="10.8.0.0/21",
             project_id="<YOUR-PROJECT-ID>",
+            atlas_cidr_block="10.8.0.0/21",
             provider_name="AWS",
             region_name="US_EAST_1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with GCP
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.NetworkContainer("test",
-            atlas_cidr_block="10.8.0.0/21",
             project_id="<YOUR-PROJECT-ID>",
+            atlas_cidr_block="10.8.0.0/21",
             provider_name="GCP",
             regions=[
                 "US_EAST_4",
                 "US_WEST_3",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with Azure
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.NetworkContainer("test",
-            atlas_cidr_block="10.8.0.0/21",
             project_id="<YOUR-PROJECT-ID>",
+            atlas_cidr_block="10.8.0.0/21",
             provider_name="AZURE",
             region="US_EAST_2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -478,51 +472,45 @@ class NetworkContainer(pulumi.CustomResource):
 
         ### Example with AWS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.NetworkContainer("test",
-            atlas_cidr_block="10.8.0.0/21",
             project_id="<YOUR-PROJECT-ID>",
+            atlas_cidr_block="10.8.0.0/21",
             provider_name="AWS",
             region_name="US_EAST_1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with GCP
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.NetworkContainer("test",
-            atlas_cidr_block="10.8.0.0/21",
             project_id="<YOUR-PROJECT-ID>",
+            atlas_cidr_block="10.8.0.0/21",
             provider_name="GCP",
             regions=[
                 "US_EAST_4",
                 "US_WEST_3",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example with Azure
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.NetworkContainer("test",
-            atlas_cidr_block="10.8.0.0/21",
             project_id="<YOUR-PROJECT-ID>",
+            atlas_cidr_block="10.8.0.0/21",
             provider_name="AZURE",
             region="US_EAST_2")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

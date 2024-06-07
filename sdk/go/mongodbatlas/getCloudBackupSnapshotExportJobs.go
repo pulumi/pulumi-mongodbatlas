@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testCloudBackupSnapshotExportBucket, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "testCloudBackupSnapshotExportBucket", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//			testCloudBackupSnapshotExportBucket, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
 //				ProjectId:     pulumi.String("{PROJECT_ID}"),
 //				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
 //				BucketName:    pulumi.String("example_bucket"),
@@ -39,7 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewCloudBackupSnapshotExportJob(ctx, "testCloudBackupSnapshotExportJob", &mongodbatlas.CloudBackupSnapshotExportJobArgs{
+//			_, err = mongodbatlas.NewCloudBackupSnapshotExportJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportJobArgs{
 //				ProjectId:      pulumi.String("{PROJECT_ID}"),
 //				ClusterName:    pulumi.String("{CLUSTER_NAME}"),
 //				SnapshotId:     pulumi.String("{SNAPSHOT_ID}"),
@@ -66,7 +65,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupCloudBackupSnapshotExportJobs(ctx *pulumi.Context, args *LookupCloudBackupSnapshotExportJobsArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotExportJobsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotExportJobsResult
@@ -99,6 +97,7 @@ type LookupCloudBackupSnapshotExportJobsResult struct {
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
 	// Includes CloudProviderSnapshotExportJob object for each item detailed in the results array section.
+	// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 	Results    []GetCloudBackupSnapshotExportJobsResult `pulumi:"results"`
 	TotalCount int                                      `pulumi:"totalCount"`
 }
@@ -170,6 +169,7 @@ func (o LookupCloudBackupSnapshotExportJobsResultOutput) ProjectId() pulumi.Stri
 }
 
 // Includes CloudProviderSnapshotExportJob object for each item detailed in the results array section.
+// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 func (o LookupCloudBackupSnapshotExportJobsResultOutput) Results() GetCloudBackupSnapshotExportJobsResultArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobsResult) []GetCloudBackupSnapshotExportJobsResult {
 		return v.Results

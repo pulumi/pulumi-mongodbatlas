@@ -19,7 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -28,7 +27,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///         IamRoleId = "{IAM_ROLE_ID}",
@@ -36,7 +35,7 @@ namespace Pulumi.Mongodbatlas
         ///         CloudProvider = "AWS",
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", new()
+        ///     var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("test", new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///         ClusterName = "{CLUSTER_NAME}",
@@ -52,7 +51,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotExportJobs = Mongodbatlas.GetCloudBackupSnapshotExportJobs.Invoke(new()
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportJobs.Invoke(new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///         ClusterName = "{CLUSTER_NAME}",
@@ -60,7 +59,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetCloudBackupSnapshotExportJobsResult> InvokeAsync(GetCloudBackupSnapshotExportJobsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportJobsResult>("mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs", args ?? new GetCloudBackupSnapshotExportJobsArgs(), options.WithDefaults());
@@ -73,7 +71,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -82,7 +79,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///         IamRoleId = "{IAM_ROLE_ID}",
@@ -90,7 +87,7 @@ namespace Pulumi.Mongodbatlas
         ///         CloudProvider = "AWS",
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", new()
+        ///     var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("test", new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///         ClusterName = "{CLUSTER_NAME}",
@@ -106,7 +103,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotExportJobs = Mongodbatlas.GetCloudBackupSnapshotExportJobs.Invoke(new()
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportJobs.Invoke(new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///         ClusterName = "{CLUSTER_NAME}",
@@ -114,7 +111,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetCloudBackupSnapshotExportJobsResult> Invoke(GetCloudBackupSnapshotExportJobsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportJobsResult>("mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs", args ?? new GetCloudBackupSnapshotExportJobsInvokeArgs(), options.WithDefaults());
@@ -202,6 +198,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string ProjectId;
         /// <summary>
         /// Includes CloudProviderSnapshotExportJob object for each item detailed in the results array section.
+        /// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSnapshotExportJobsResultResult> Results;
         public readonly int TotalCount;

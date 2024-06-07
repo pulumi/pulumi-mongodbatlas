@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -27,7 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("testDatadog", new()
+        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "DATADOG",
@@ -38,11 +37,11 @@ namespace Pulumi.Mongodbatlas
         ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
         ///     {
         ///         ProjectId = testDatadog.ProjectId,
+        ///         Type = "DATADOG",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetThirdPartyIntegrationResult> InvokeAsync(GetThirdPartyIntegrationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationArgs(), options.WithDefaults());
@@ -54,7 +53,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -63,7 +61,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("testDatadog", new()
+        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "DATADOG",
@@ -74,11 +72,11 @@ namespace Pulumi.Mongodbatlas
         ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
         ///     {
         ///         ProjectId = testDatadog.ProjectId,
+        ///         Type = "DATADOG",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetThirdPartyIntegrationResult> Invoke(GetThirdPartyIntegrationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationInvokeArgs(), options.WithDefaults());
@@ -98,6 +96,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
         /// </summary>
         public string? MicrosoftTeamsWebhookUrl
         {
@@ -112,7 +111,7 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Your Prometheus protocol scheme configured for requests.
+        /// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         /// </summary>
         [Input("scheme")]
         public string? Scheme { get; set; }
@@ -173,6 +172,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
         /// </summary>
         public Input<string>? MicrosoftTeamsWebhookUrl
         {
@@ -191,7 +191,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Your Prometheus protocol scheme configured for requests.
+        /// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         /// </summary>
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }
@@ -262,28 +262,32 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// Unique identifier of the integration.
         /// </summary>
         public readonly string Id;
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
         /// </summary>
         public readonly string? MicrosoftTeamsWebhookUrl;
         public readonly string ProjectId;
         /// <summary>
         /// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/getThirdPartyIntegration) for more details. Opsgenie will use US by default.
+        /// * `VICTOR_OPS`
         /// </summary>
         public readonly string Region;
         /// <summary>
         /// An optional field for your Routing Key.
+        /// * `WEBHOOK`
         /// </summary>
         public readonly string RoutingKey;
         /// <summary>
-        /// Your Prometheus protocol scheme configured for requests.
+        /// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         /// </summary>
         public readonly string? Scheme;
         /// <summary>
         /// An optional field for your webhook secret.
+        /// * `MICROSOFT_TEAMS`
         /// </summary>
         public readonly string Secret;
         /// <summary>
@@ -292,12 +296,10 @@ namespace Pulumi.Mongodbatlas
         public readonly string? ServiceDiscovery;
         /// <summary>
         /// Your Service Key.
+        /// * `DATADOG`
         /// </summary>
         public readonly string ServiceKey;
         public readonly string TeamName;
-        /// <summary>
-        /// Property equal to its own integration type
-        /// </summary>
         public readonly string Type;
         /// <summary>
         /// Your webhook URL.

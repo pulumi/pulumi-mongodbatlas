@@ -13,41 +13,85 @@ import * as utilities from "./utilities";
  *
  * ## Example with AWS
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testServerlessInstance = new mongodbatlas.ServerlessInstance("testServerlessInstance", {
+ * const testServerlessInstance = new mongodbatlas.ServerlessInstance("test", {
  *     projectId: "<PROJECT_ID>",
+ *     name: "test-db",
  *     providerSettingsBackingProviderName: "AWS",
  *     providerSettingsProviderName: "SERVERLESS",
  *     providerSettingsRegionName: "US_EAST_1",
  *     continuousBackupEnabled: true,
  * });
- * const testPrivatelinkEndpointServerless = new mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", {
+ * const test = new mongodbatlas.PrivatelinkEndpointServerless("test", {
  *     projectId: "<PROJECT_ID>",
  *     instanceName: testServerlessInstance.name,
  *     providerName: "AWS",
  * });
- * const ptfeService = new aws.ec2.VpcEndpoint("ptfeService", {
+ * const ptfeService = new aws.index.VpcEndpoint("ptfe_service", {
  *     vpcId: "vpc-7fc0a543",
- *     serviceName: testPrivatelinkEndpointServerless.endpointServiceName,
+ *     serviceName: test.endpointServiceName,
  *     vpcEndpointType: "Interface",
  *     subnetIds: ["subnet-de0406d2"],
  *     securityGroupIds: ["sg-3f238186"],
  * });
- * const testPrivatelinkEndpointServiceServerless = new mongodbatlas.PrivatelinkEndpointServiceServerless("testPrivatelinkEndpointServiceServerless", {
+ * const testPrivatelinkEndpointServiceServerless = new mongodbatlas.PrivatelinkEndpointServiceServerless("test", {
  *     projectId: "<PROJECT_ID>",
  *     instanceName: testServerlessInstance.name,
- *     endpointId: testPrivatelinkEndpointServerless.endpointId,
+ *     endpointId: test.endpointId,
  *     cloudProviderEndpointId: ptfeService.id,
  *     providerName: "AWS",
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
+ *
+ * ## Example with AZURE
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as azurerm from "@pulumi/azurerm";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.PrivatelinkEndpointServerless("test", {
+ *     projectId: projectId,
+ *     providerName: "AZURE",
+ * });
+ * const testPrivateEndpoint = new azurerm.index.PrivateEndpoint("test", {
+ *     name: "endpoint-test",
+ *     location: testAzurermResourceGroup.location,
+ *     resourceGroupName: resourceGroupName,
+ *     subnetId: testAzurermSubnet.id,
+ *     privateServiceConnection: [{
+ *         name: test.privateLinkServiceName,
+ *         privateConnectionResourceId: test.privateLinkServiceResourceId,
+ *         isManualConnection: true,
+ *         requestMessage: "Azure Private Link test",
+ *     }],
+ * });
+ * const testServerlessInstance = new mongodbatlas.ServerlessInstance("test", {
+ *     projectId: "<PROJECT_ID>",
+ *     name: "test-db",
+ *     providerSettingsBackingProviderName: "AZURE",
+ *     providerSettingsProviderName: "SERVERLESS",
+ *     providerSettingsRegionName: "US_EAST",
+ *     continuousBackupEnabled: true,
+ * });
+ * const testPrivatelinkEndpointServiceServerless = new mongodbatlas.PrivatelinkEndpointServiceServerless("test", {
+ *     projectId: test.projectId,
+ *     instanceName: testServerlessInstance.name,
+ *     endpointId: test.endpointId,
+ *     cloudProviderEndpointId: testPrivateEndpoint.id,
+ *     privateEndpointIpAddress: testPrivateEndpoint.privateServiceConnection[0].privateIpAddress,
+ *     providerName: "AZURE",
+ *     comment: "test",
+ * });
+ * ```
+ *
+ * ### Available complete examples
+ * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
  *
  * ## Import
  *

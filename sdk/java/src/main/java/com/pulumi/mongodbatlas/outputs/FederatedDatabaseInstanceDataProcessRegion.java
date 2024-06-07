@@ -10,29 +10,13 @@ import java.util.Objects;
 
 @CustomType
 public final class FederatedDatabaseInstanceDataProcessRegion {
-    /**
-     * @return Name of the cloud service provider. Atlas Federated Database only supports AWS.
-     * 
-     */
     private String cloudProvider;
-    /**
-     * @return Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-     * 
-     */
     private String region;
 
     private FederatedDatabaseInstanceDataProcessRegion() {}
-    /**
-     * @return Name of the cloud service provider. Atlas Federated Database only supports AWS.
-     * 
-     */
     public String cloudProvider() {
         return this.cloudProvider;
     }
-    /**
-     * @return Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-     * 
-     */
     public String region() {
         return this.region;
     }

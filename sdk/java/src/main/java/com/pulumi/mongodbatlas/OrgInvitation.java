@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ### S
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -41,19 +42,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test0 = new OrgInvitation(&#34;test0&#34;, OrgInvitationArgs.builder()        
- *             .orgId(&#34;&lt;ORG-ID&gt;&#34;)
- *             .roles(&#34;ORG_OWNER&#34;)
- *             .username(&#34;test0-acc-username&#34;)
+ *         var test0 = new OrgInvitation("test0", OrgInvitationArgs.builder()
+ *             .username("test0-acc-username")
+ *             .orgId("<ORG-ID>")
+ *             .roles("ORG_OWNER")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -74,21 +77,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test0 = new OrgInvitation(&#34;test0&#34;, OrgInvitationArgs.builder()        
- *             .orgId(&#34;&lt;ORG-ID&gt;&#34;)
+ *         var test0 = new OrgInvitation("test0", OrgInvitationArgs.builder()
+ *             .username("test0-acc-username")
+ *             .orgId("<ORG-ID>")
  *             .roles(            
- *                 &#34;ORG_MEMBER&#34;,
- *                 &#34;ORG_BILLING_ADMIN&#34;)
- *             .username(&#34;test0-acc-username&#34;)
+ *                 "ORG_MEMBER",
+ *                 "ORG_BILLING_ADMIN")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -109,18 +114,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test1 = new OrgInvitation(&#34;test1&#34;, OrgInvitationArgs.builder()        
- *             .orgId(&#34;&lt;ORG-ID&gt;&#34;)
- *             .roles(&#34;ORG_MEMBER&#34;)
+ *         var test1 = new OrgInvitation("test1", OrgInvitationArgs.builder()
+ *             .username("test1-acc-username")
+ *             .orgId("<ORG-ID>")
  *             .teamsIds(            
- *                 &#34;&lt;TEAM-0-ID&gt;&#34;,
- *                 &#34;&lt;TEAM-1-ID&gt;&#34;)
- *             .username(&#34;test1-acc-username&#34;)
+ *                 "<TEAM-0-ID>",
+ *                 "<TEAM-1-ID>")
+ *             .roles("ORG_MEMBER")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -131,7 +137,7 @@ import javax.annotation.Nullable;
  * Import a user&#39;s invitation to an organization by separating the `org_id` and the `username` with a hyphen:
  * 
  * ```sh
- * $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+ * $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user{@literal @}mongodb.com
  * ```
  * 
  */

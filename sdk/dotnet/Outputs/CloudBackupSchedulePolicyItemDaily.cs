@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// Scope of the backup policy item: `days`, `weeks`, or `months`.
+        /// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         /// </summary>
         public readonly string RetentionUnit;
         /// <summary>

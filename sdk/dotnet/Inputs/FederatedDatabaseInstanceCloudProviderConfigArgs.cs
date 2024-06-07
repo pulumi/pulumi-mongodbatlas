@@ -12,6 +12,9 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class FederatedDatabaseInstanceCloudProviderConfigArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of the cloud service that hosts the data lake's data stores.
+        /// </summary>
         [Input("aws", required: true)]
         public Input<Inputs.FederatedDatabaseInstanceCloudProviderConfigAwsArgs> Aws { get; set; } = null!;
 

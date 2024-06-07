@@ -22,19 +22,9 @@ public final class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs ex
         return Optional.ofNullable(this.endpointId);
     }
 
-    /**
-     * Cloud service provider on which the servers are provisioned.
-     * The possible values are:
-     * 
-     */
     @Import(name="providerName")
     private @Nullable Output<String> providerName;
 
-    /**
-     * @return Cloud service provider on which the servers are provisioned.
-     * The possible values are:
-     * 
-     */
     public Optional<Output<String>> providerName() {
         return Optional.ofNullable(this.providerName);
     }
@@ -81,25 +71,11 @@ public final class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs ex
             return endpointId(Output.of(endpointId));
         }
 
-        /**
-         * @param providerName Cloud service provider on which the servers are provisioned.
-         * The possible values are:
-         * 
-         * @return builder
-         * 
-         */
         public Builder providerName(@Nullable Output<String> providerName) {
             $.providerName = providerName;
             return this;
         }
 
-        /**
-         * @param providerName Cloud service provider on which the servers are provisioned.
-         * The possible values are:
-         * 
-         * @return builder
-         * 
-         */
         public Builder providerName(String providerName) {
             return providerName(Output.of(providerName));
         }

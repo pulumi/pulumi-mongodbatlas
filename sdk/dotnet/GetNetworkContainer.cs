@@ -20,6 +20,33 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// ## Example Usage
+        /// 
+        /// ### Basic Example.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("test", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         AtlasCidrBlock = "10.8.0.0/21",
+        ///         ProviderName = "AWS",
+        ///         RegionName = "US_EAST_1",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetNetworkContainer.Invoke(new()
+        ///     {
+        ///         ProjectId = testNetworkContainer.ProjectId,
+        ///         ContainerId = testNetworkContainer.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetNetworkContainerResult> InvokeAsync(GetNetworkContainerArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworkContainerResult>("mongodbatlas:index/getNetworkContainer:getNetworkContainer", args ?? new GetNetworkContainerArgs(), options.WithDefaults());
@@ -33,6 +60,33 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// ## Example Usage
+        /// 
+        /// ### Basic Example.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("test", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         AtlasCidrBlock = "10.8.0.0/21",
+        ///         ProviderName = "AWS",
+        ///         RegionName = "US_EAST_1",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetNetworkContainer.Invoke(new()
+        ///     {
+        ///         ProjectId = testNetworkContainer.ProjectId,
+        ///         ContainerId = testNetworkContainer.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetNetworkContainerResult> Invoke(GetNetworkContainerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkContainerResult>("mongodbatlas:index/getNetworkContainer:getNetworkContainer", args ?? new GetNetworkContainerInvokeArgs(), options.WithDefaults());

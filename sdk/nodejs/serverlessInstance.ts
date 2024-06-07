@@ -15,19 +15,18 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Basic
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.ServerlessInstance("test", {
  *     projectId: "<PROJECT_ID>",
+ *     name: "<SERVERLESS_INSTANCE_NAME>",
  *     providerSettingsBackingProviderName: "AWS",
  *     providerSettingsProviderName: "SERVERLESS",
  *     providerSettingsRegionName: "US_EAST_1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * **NOTE:**  `mongodbatlas.ServerlessInstance` and `mongodbatlas.PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
  * That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
@@ -76,6 +75,10 @@ export class ServerlessInstance extends pulumi.CustomResource {
         return obj['__pulumiType'] === ServerlessInstance.__pulumiType;
     }
 
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+     */
+    public readonly autoIndexing!: pulumi.Output<boolean>;
     /**
      * List of Serverless Private Endpoint Connections
      */
@@ -143,6 +146,7 @@ export class ServerlessInstance extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServerlessInstanceState | undefined;
+            resourceInputs["autoIndexing"] = state ? state.autoIndexing : undefined;
             resourceInputs["connectionStringsPrivateEndpointSrvs"] = state ? state.connectionStringsPrivateEndpointSrvs : undefined;
             resourceInputs["connectionStringsStandardSrv"] = state ? state.connectionStringsStandardSrv : undefined;
             resourceInputs["continuousBackupEnabled"] = state ? state.continuousBackupEnabled : undefined;
@@ -171,6 +175,7 @@ export class ServerlessInstance extends pulumi.CustomResource {
             if ((!args || args.providerSettingsRegionName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerSettingsRegionName'");
             }
+            resourceInputs["autoIndexing"] = args ? args.autoIndexing : undefined;
             resourceInputs["continuousBackupEnabled"] = args ? args.continuousBackupEnabled : undefined;
             resourceInputs["links"] = args ? args.links : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -195,6 +200,10 @@ export class ServerlessInstance extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ServerlessInstance resources.
  */
 export interface ServerlessInstanceState {
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+     */
+    autoIndexing?: pulumi.Input<boolean>;
     /**
      * List of Serverless Private Endpoint Connections
      */
@@ -254,6 +263,10 @@ export interface ServerlessInstanceState {
  * The set of arguments for constructing a ServerlessInstance resource.
  */
 export interface ServerlessInstanceArgs {
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
+     */
+    autoIndexing?: pulumi.Input<boolean>;
     /**
      * Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
      */

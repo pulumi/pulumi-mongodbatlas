@@ -33,6 +33,8 @@ class FederatedQueryLimitArgs:
         :param pulumi.Input[str] tenant_name: Name of the Atlas Federated Database Instance.
         :param pulumi.Input[int] value: Amount to set the limit to.
         :param pulumi.Input[int] default_limit: Default value of the limit.
+               * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+               * `maximumLimit` - Maximum value of the limit.
         """
         pulumi.set(__self__, "limit_name", limit_name)
         pulumi.set(__self__, "overrun_policy", overrun_policy)
@@ -113,6 +115,8 @@ class FederatedQueryLimitArgs:
     def default_limit(self) -> Optional[pulumi.Input[int]]:
         """
         Default value of the limit.
+        * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+        * `maximumLimit` - Maximum value of the limit.
         """
         return pulumi.get(self, "default_limit")
 
@@ -146,6 +150,8 @@ class _FederatedQueryLimitState:
         Input properties used for looking up and filtering FederatedQueryLimit resources.
         :param pulumi.Input[int] current_usage: Amount that indicates the current usage of the limit.
         :param pulumi.Input[int] default_limit: Default value of the limit.
+               * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+               * `maximumLimit` - Maximum value of the limit.
         :param pulumi.Input[str] limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
                * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
                * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
@@ -192,6 +198,8 @@ class _FederatedQueryLimitState:
     def default_limit(self) -> Optional[pulumi.Input[int]]:
         """
         Default value of the limit.
+        * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+        * `maximumLimit` - Maximum value of the limit.
         """
         return pulumi.get(self, "default_limit")
 
@@ -304,19 +312,17 @@ class FederatedQueryLimit(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.FederatedQueryLimit("test",
-            limit_name="bytesProcessed.weekly",
-            overrun_policy="BLOCK",
             project_id="64707f06c519c20c3a2b1b03",
             tenant_name="FederatedDatabseInstance0",
+            limit_name="bytesProcessed.weekly",
+            overrun_policy="BLOCK",
             value=5147483648)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -331,6 +337,8 @@ class FederatedQueryLimit(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] default_limit: Default value of the limit.
+               * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+               * `maximumLimit` - Maximum value of the limit.
         :param pulumi.Input[str] limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
                * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
                * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
@@ -356,19 +364,17 @@ class FederatedQueryLimit(pulumi.CustomResource):
 
         ### S
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.FederatedQueryLimit("test",
-            limit_name="bytesProcessed.weekly",
-            overrun_policy="BLOCK",
             project_id="64707f06c519c20c3a2b1b03",
             tenant_name="FederatedDatabseInstance0",
+            limit_name="bytesProcessed.weekly",
+            overrun_policy="BLOCK",
             value=5147483648)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -458,6 +464,8 @@ class FederatedQueryLimit(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] current_usage: Amount that indicates the current usage of the limit.
         :param pulumi.Input[int] default_limit: Default value of the limit.
+               * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+               * `maximumLimit` - Maximum value of the limit.
         :param pulumi.Input[str] limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
                * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
                * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
@@ -496,6 +504,8 @@ class FederatedQueryLimit(pulumi.CustomResource):
     def default_limit(self) -> pulumi.Output[Optional[int]]:
         """
         Default value of the limit.
+        * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+        * `maximumLimit` - Maximum value of the limit.
         """
         return pulumi.get(self, "default_limit")
 

@@ -14,8 +14,8 @@ import (
 
 // ## Example Usage
 //
-// ### Example of a point in time restore
-// <!--Start PulumiCodeChooser -->
+// ### Example automated delivery type
+//
 // ```go
 // package main
 //
@@ -25,55 +25,164 @@ import (
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// clusterTest, err := mongodbatlas.NewCluster(ctx, "clusterTest", &mongodbatlas.ClusterArgs{
-// ProjectId: pulumi.Any(mongodbatlas_project.Project_test.Id),
-// ProviderName: pulumi.String("AWS"),
-// ProviderRegionName: pulumi.String("US_EAST_1"),
-// ProviderInstanceSizeName: pulumi.String("M10"),
-// CloudBackup: pulumi.Bool(true),
-// PitEnabled: pulumi.Bool(true),
-// })
-// if err != nil {
-// return err
-// }
-// testCloudBackupSnapshot, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "testCloudBackupSnapshot", &mongodbatlas.CloudBackupSnapshotArgs{
-// ProjectId: clusterTest.ProjectId,
-// ClusterName: clusterTest.Name,
-// Description: pulumi.String("My description"),
-// RetentionInDays: pulumi.Int(1),
-// })
-// if err != nil {
-// return err
-// }
-// var testCloudBackupSnapshotRestoreJob []*mongodbatlas.CloudBackupSnapshotRestoreJob
 //
-//	for index := 0; index < ()%!v(PANIC=Format method: fatal: A failure has occurred: unlowered conditional expression @ #-resources-mongodbatlas:index-cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob.pp:18,19-61) == true; index++ {
-//	    key0 := index
-//	    _ := index
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myCluster, err := mongodbatlas.NewCluster(ctx, "my_cluster", &mongodbatlas.ClusterArgs{
+//				ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				Name:                     pulumi.String("MyCluster"),
+//				ProviderName:             pulumi.String("AWS"),
+//				ProviderRegionName:       pulumi.String("EU_WEST_2"),
+//				ProviderInstanceSizeName: pulumi.String("M10"),
+//				CloudBackup:              pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "test", &mongodbatlas.CloudProviderSnapshotArgs{
+//				ProjectId:       myCluster.ProjectId,
+//				ClusterName:     myCluster.Name,
+//				Description:     "myDescription",
+//				RetentionInDays: 1,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
+//				ProjectId:   test.ProjectId,
+//				ClusterName: test.ClusterName,
+//				SnapshotId:  test.SnapshotId,
+//				DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
+//					Automated:         pulumi.Bool(true),
+//					TargetClusterName: pulumi.String("MyCluster"),
+//					TargetProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
 //
-// __res, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, fmt.Sprintf("testCloudBackupSnapshotRestoreJob-%v", key0), &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
-// ProjectId: testCloudBackupSnapshot.ProjectId,
-// ClusterName: testCloudBackupSnapshot.ClusterName,
-// SnapshotId: testCloudBackupSnapshot.ID(),
-// DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
-// PointInTime: pulumi.Bool(true),
-// TargetClusterName: clusterTest.Name,
-// TargetProjectId: clusterTest.ProjectId,
-// PointInTimeUtcSeconds: pulumi.Any(_var.Point_in_time_utc_seconds),
-// },
-// })
-// if err != nil {
-// return err
-// }
-// testCloudBackupSnapshotRestoreJob = append(testCloudBackupSnapshotRestoreJob, __res)
-// }
-// return nil
-// })
-// }
 // ```
-// <!--End PulumiCodeChooser -->
+//
+// ### Example download delivery type
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myCluster, err := mongodbatlas.NewCluster(ctx, "my_cluster", &mongodbatlas.ClusterArgs{
+//				ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				Name:                     pulumi.String("MyCluster"),
+//				ProviderName:             pulumi.String("AWS"),
+//				ProviderRegionName:       pulumi.String("EU_WEST_2"),
+//				ProviderInstanceSizeName: pulumi.String("M10"),
+//				CloudBackup:              pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "test", &mongodbatlas.CloudProviderSnapshotArgs{
+//				ProjectId:       myCluster.ProjectId,
+//				ClusterName:     myCluster.Name,
+//				Description:     "myDescription",
+//				RetentionInDays: 1,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
+//				ProjectId:   test.ProjectId,
+//				ClusterName: test.ClusterName,
+//				SnapshotId:  test.SnapshotId,
+//				DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
+//					Download: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example of a point in time restore
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			clusterTest, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
+//				ProjectId:                pulumi.Any(projectTest.Id),
+//				Name:                     pulumi.Any(clusterName),
+//				ProviderName:             pulumi.String("AWS"),
+//				ProviderRegionName:       pulumi.String("US_EAST_1"),
+//				ProviderInstanceSizeName: pulumi.String("M10"),
+//				CloudBackup:              pulumi.Bool(true),
+//				PitEnabled:               pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "test", &mongodbatlas.CloudBackupSnapshotArgs{
+//				ProjectId:       clusterTest.ProjectId,
+//				ClusterName:     clusterTest.Name,
+//				Description:     pulumi.String("My description"),
+//				RetentionInDays: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			var tmp0 float64
+//			if pointInTimeUtcSeconds == 0 {
+//				tmp0 = 0
+//			} else {
+//				tmp0 = 1
+//			}
+//			var testCloudBackupSnapshotRestoreJob []*mongodbatlas.CloudBackupSnapshotRestoreJob
+//			for index := 0; index < tmp0; index++ {
+//				key0 := index
+//				_ := index
+//				__res, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, fmt.Sprintf("test-%v", key0), &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
+//					ProjectId:   test.ProjectId,
+//					ClusterName: test.ClusterName,
+//					SnapshotId:  test.ID(),
+//					DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
+//						PointInTime:           pulumi.Bool(true),
+//						TargetClusterName:     clusterTest.Name,
+//						TargetProjectId:       clusterTest.ProjectId,
+//						PointInTimeUtcSeconds: pulumi.Any(pointInTimeUtcSeconds),
+//					},
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				testCloudBackupSnapshotRestoreJob = append(testCloudBackupSnapshotRestoreJob, __res)
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ### Available complete examples
 // - Restore from backup snapshot at point in time
@@ -95,6 +204,8 @@ type CloudBackupSnapshotRestoreJob struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -121,6 +232,20 @@ type CloudBackupSnapshotRestoreJob struct {
 	// The unique identifier of the restore job.
 	SnapshotRestoreJobId pulumi.StringOutput `pulumi:"snapshotRestoreJobId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+	//   Three conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify oplogInc.
+	// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+	//   Three conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify oplogTs.
+	// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+	//   Two conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
 	Timestamp pulumi.StringOutput `pulumi:"timestamp"`
 }
 
@@ -165,6 +290,8 @@ type cloudBackupSnapshotRestoreJobState struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName *string `pulumi:"clusterName"`
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	CreatedAt *string `pulumi:"createdAt"`
 	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -191,6 +318,20 @@ type cloudBackupSnapshotRestoreJobState struct {
 	// The unique identifier of the restore job.
 	SnapshotRestoreJobId *string `pulumi:"snapshotRestoreJobId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+	//   Three conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify oplogInc.
+	// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+	//   Three conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify oplogTs.
+	// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+	//   Two conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
 	Timestamp *string `pulumi:"timestamp"`
 }
 
@@ -200,6 +341,8 @@ type CloudBackupSnapshotRestoreJobState struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName pulumi.StringPtrInput
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	CreatedAt pulumi.StringPtrInput
 	// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
 	// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -226,6 +369,20 @@ type CloudBackupSnapshotRestoreJobState struct {
 	// The unique identifier of the restore job.
 	SnapshotRestoreJobId pulumi.StringPtrInput
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+	//   Three conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify oplogInc.
+	// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+	//   Three conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify oplogTs.
+	// * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+	//   Two conditions apply to this parameter:
+	// * Enable Continuous Cloud Backup on your cluster.
+	// * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
 	Timestamp pulumi.StringPtrInput
 }
 
@@ -370,6 +527,8 @@ func (o CloudBackupSnapshotRestoreJobOutput) ClusterName() pulumi.StringOutput {
 }
 
 // UTC ISO 8601 formatted point in time when Atlas created the restore job.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 func (o CloudBackupSnapshotRestoreJobOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -425,6 +584,20 @@ func (o CloudBackupSnapshotRestoreJobOutput) SnapshotRestoreJobId() pulumi.Strin
 }
 
 // Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+//   - `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+//     Three conditions apply to this parameter:
+//   - Enable Continuous Cloud Backup on your cluster.
+//   - Specify oplogInc.
+//   - Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+//   - `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+//     Three conditions apply to this parameter:
+//   - Enable Continuous Cloud Backup on your cluster.
+//   - Specify oplogTs.
+//   - Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+//   - `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+//     Two conditions apply to this parameter:
+//   - Enable Continuous Cloud Backup on your cluster.
+//   - Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
 func (o CloudBackupSnapshotRestoreJobOutput) Timestamp() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringOutput { return v.Timestamp }).(pulumi.StringOutput)
 }

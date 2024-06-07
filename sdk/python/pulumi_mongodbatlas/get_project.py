@@ -22,7 +22,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, teams=None):
+    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, tags=None, teams=None):
         if cluster_count and not isinstance(cluster_count, int):
             raise TypeError("Expected argument 'cluster_count' to be a int")
         pulumi.set(__self__, "cluster_count", cluster_count)
@@ -68,6 +68,9 @@ class GetProjectResult:
         if region_usage_restrictions and not isinstance(region_usage_restrictions, str):
             raise TypeError("Expected argument 'region_usage_restrictions' to be a str")
         pulumi.set(__self__, "region_usage_restrictions", region_usage_restrictions)
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
+        pulumi.set(__self__, "tags", tags)
         if teams and not isinstance(teams, list):
             raise TypeError("Expected argument 'teams' to be a list")
         pulumi.set(__self__, "teams", teams)
@@ -188,6 +191,14 @@ class GetProjectResult:
 
     @property
     @pulumi.getter
+    def tags(self) -> Mapping[str, str]:
+        """
+        Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter
     def teams(self) -> Sequence['outputs.GetProjectTeamResult']:
         """
         Returns all teams to which the authenticated user has access in the project. See Teams.
@@ -216,6 +227,7 @@ class AwaitableGetProjectResult(GetProjectResult):
             org_id=self.org_id,
             project_id=self.project_id,
             region_usage_restrictions=self.region_usage_restrictions,
+            tags=self.tags,
             teams=self.teams)
 
 
@@ -228,6 +240,63 @@ def get_project(name: Optional[str] = None,
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
+
+    ### Using project_id attribute to query
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_roles_org_id()
+    test_project = mongodbatlas.Project("test",
+        name="project-name",
+        org_id=test.org_id,
+        teams=[
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e0fa8c99ccf641c722fe645",
+                role_names=["GROUP_OWNER"],
+            ),
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                role_names=[
+                    "GROUP_READ_ONLY",
+                    "GROUP_DATA_ACCESS_READ_WRITE",
+                ],
+            ),
+        ],
+        limits=[mongodbatlas.ProjectLimitArgs(
+            name="atlas.project.deployment.clusters",
+            value=26,
+        )])
+    test_get_project = mongodbatlas.get_project_output(project_id=test_project.id)
+    ```
+
+    ### Using name attribute to query
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project = mongodbatlas.Project("test",
+        name="project-name",
+        org_id="<ORG_ID>",
+        teams=[
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e0fa8c99ccf641c722fe645",
+                role_names=["GROUP_OWNER"],
+            ),
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                role_names=[
+                    "GROUP_READ_ONLY",
+                    "GROUP_DATA_ACCESS_READ_WRITE",
+                ],
+            ),
+        ],
+        limits=[mongodbatlas.ProjectLimitArgs(
+            name="atlas.project.deployment.clusters",
+            value=26,
+        )])
+    test = mongodbatlas.get_project_output(name=test_project.name)
+    ```
 
 
     :param str name: The unique ID for the project.
@@ -257,6 +326,7 @@ def get_project(name: Optional[str] = None,
         org_id=pulumi.get(__ret__, 'org_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region_usage_restrictions=pulumi.get(__ret__, 'region_usage_restrictions'),
+        tags=pulumi.get(__ret__, 'tags'),
         teams=pulumi.get(__ret__, 'teams'))
 
 
@@ -270,6 +340,63 @@ def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
+
+    ### Using project_id attribute to query
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_roles_org_id()
+    test_project = mongodbatlas.Project("test",
+        name="project-name",
+        org_id=test.org_id,
+        teams=[
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e0fa8c99ccf641c722fe645",
+                role_names=["GROUP_OWNER"],
+            ),
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                role_names=[
+                    "GROUP_READ_ONLY",
+                    "GROUP_DATA_ACCESS_READ_WRITE",
+                ],
+            ),
+        ],
+        limits=[mongodbatlas.ProjectLimitArgs(
+            name="atlas.project.deployment.clusters",
+            value=26,
+        )])
+    test_get_project = mongodbatlas.get_project_output(project_id=test_project.id)
+    ```
+
+    ### Using name attribute to query
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project = mongodbatlas.Project("test",
+        name="project-name",
+        org_id="<ORG_ID>",
+        teams=[
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e0fa8c99ccf641c722fe645",
+                role_names=["GROUP_OWNER"],
+            ),
+            mongodbatlas.ProjectTeamArgs(
+                team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                role_names=[
+                    "GROUP_READ_ONLY",
+                    "GROUP_DATA_ACCESS_READ_WRITE",
+                ],
+            ),
+        ],
+        limits=[mongodbatlas.ProjectLimitArgs(
+            name="atlas.project.deployment.clusters",
+            value=26,
+        )])
+    test = mongodbatlas.get_project_output(name=test_project.name)
+    ```
 
 
     :param str name: The unique ID for the project.

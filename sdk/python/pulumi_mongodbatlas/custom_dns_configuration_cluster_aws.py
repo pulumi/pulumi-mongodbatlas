@@ -108,16 +108,14 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.CustomDnsConfigurationClusterAws("test",
-            enabled=True,
-            project_id="<PROJECT-ID>")
+            project_id="<PROJECT-ID>",
+            enabled=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -150,16 +148,14 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.CustomDnsConfigurationClusterAws("test",
-            enabled=True,
-            project_id="<PROJECT-ID>")
+            project_id="<PROJECT-ID>",
+            enabled=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -17,6 +17,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -28,7 +29,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -52,29 +54,30 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         final var testRolesOrgId = MongodbatlasFunctions.getRolesOrgId();
+ *         final var test = MongodbatlasFunctions.getRolesOrgId();
  * 
- *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
- *             .orgId(testRolesOrgId.applyValue(getRolesOrgIdResult -&gt; getRolesOrgIdResult.orgId()))
- *             .projectOwnerId(&#34;&lt;OWNER_ACCOUNT_ID&gt;&#34;)
+ *         var testProject = new Project("testProject", ProjectArgs.builder()
+ *             .name("project-name")
+ *             .orgId(test.applyValue(getRolesOrgIdResult -> getRolesOrgIdResult.orgId()))
+ *             .projectOwnerId("<OWNER_ACCOUNT_ID>")
  *             .teams(            
  *                 ProjectTeamArgs.builder()
- *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
- *                     .roleNames(&#34;GROUP_OWNER&#34;)
+ *                     .teamId("5e0fa8c99ccf641c722fe645")
+ *                     .roleNames("GROUP_OWNER")
  *                     .build(),
  *                 ProjectTeamArgs.builder()
- *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+ *                     .teamId("5e1dd7b4f2a30ba80a70cd4rw")
  *                     .roleNames(                    
- *                         &#34;GROUP_READ_ONLY&#34;,
- *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+ *                         "GROUP_READ_ONLY",
+ *                         "GROUP_DATA_ACCESS_READ_WRITE")
  *                     .build())
  *             .limits(            
  *                 ProjectLimitArgs.builder()
- *                     .name(&#34;atlas.project.deployment.clusters&#34;)
+ *                     .name("atlas.project.deployment.clusters")
  *                     .value(26)
  *                     .build(),
  *                 ProjectLimitArgs.builder()
- *                     .name(&#34;atlas.project.deployment.nodesPerPrivateLinkRegion&#34;)
+ *                     .name("atlas.project.deployment.nodesPerPrivateLinkRegion")
  *                     .value(51)
  *                     .build())
  *             .isCollectDatabaseSpecificsStatisticsEnabled(true)
@@ -87,7 +90,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -281,14 +285,28 @@ public class Project extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="regionUsageRestrictions", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> regionUsageRestrictions;
+    private Output<String> regionUsageRestrictions;
 
     /**
      * @return Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      * 
      */
-    public Output<Optional<String>> regionUsageRestrictions() {
-        return Codegen.optional(this.regionUsageRestrictions);
+    public Output<String> regionUsageRestrictions() {
+        return this.regionUsageRestrictions;
+    }
+    /**
+     * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+     * 
+     */
+    @Export(name="tags", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> tags;
+
+    /**
+     * @return Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> tags() {
+        return Codegen.optional(this.tags);
     }
     @Export(name="teams", refs={List.class,ProjectTeam.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ProjectTeam>> teams;

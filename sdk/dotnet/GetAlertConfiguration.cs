@@ -15,6 +15,149 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testAlertConfiguration = new Mongodbatlas.AlertConfiguration("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         EventType = "OUTSIDE_METRIC_THRESHOLD",
+        ///         Enabled = true,
+        ///         Notifications = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+        ///             {
+        ///                 TypeName = "GROUP",
+        ///                 IntervalMin = 5,
+        ///                 DelayMin = 0,
+        ///                 SmsEnabled = false,
+        ///                 EmailEnabled = true,
+        ///             },
+        ///         },
+        ///         Matchers = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
+        ///             {
+        ///                 FieldName = "HOSTNAME_AND_PORT",
+        ///                 Operator = "EQUALS",
+        ///                 Value = "SECONDARY",
+        ///             },
+        ///         },
+        ///         MetricThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdConfigArgs
+        ///         {
+        ///             MetricName = "ASSERT_REGULAR",
+        ///             Operator = "LESS_THAN",
+        ///             Threshold = 99,
+        ///             Units = "RAW",
+        ///             Mode = "AVERAGE",
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetAlertConfiguration.Invoke(new()
+        ///     {
+        ///         ProjectId = testAlertConfiguration.ProjectId,
+        ///         AlertConfigurationId = testAlertConfiguration.AlertConfigurationId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testAlertConfiguration = new Mongodbatlas.AlertConfiguration("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         EventType = "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+        ///         Enabled = true,
+        ///         Notifications = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+        ///             {
+        ///                 TypeName = "GROUP",
+        ///                 IntervalMin = 5,
+        ///                 DelayMin = 0,
+        ///                 SmsEnabled = false,
+        ///                 EmailEnabled = true,
+        ///                 Roles = new[]
+        ///                 {
+        ///                     "GROUP_CHARTS_ADMIN",
+        ///                     "GROUP_CLUSTER_MANAGER",
+        ///                 },
+        ///             },
+        ///         },
+        ///         Matchers = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
+        ///             {
+        ///                 FieldName = "HOSTNAME_AND_PORT",
+        ///                 Operator = "EQUALS",
+        ///                 Value = "SECONDARY",
+        ///             },
+        ///         },
+        ///         ThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationThresholdConfigArgs
+        ///         {
+        ///             Operator = "LESS_THAN",
+        ///             Threshold = 1,
+        ///             Units = "HOURS",
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetAlertConfiguration.Invoke(new()
+        ///     {
+        ///         ProjectId = testAlertConfiguration.ProjectId,
+        ///         AlertConfigurationId = testAlertConfiguration.AlertConfigurationId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetAlertConfiguration.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         AlertConfigurationId = alertConfigurationId,
+        ///         Outputs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.GetAlertConfigurationOutputInputArgs
+        ///             {
+        ///                 Type = "resource_hcl",
+        ///                 Label = "test",
+        ///             },
+        ///             new Mongodbatlas.Inputs.GetAlertConfigurationOutputInputArgs
+        ///             {
+        ///                 Type = "resource_import",
+        ///                 Label = "test",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetAlertConfigurationResult> InvokeAsync(GetAlertConfigurationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlertConfigurationResult>("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args ?? new GetAlertConfigurationArgs(), options.WithDefaults());
@@ -23,6 +166,149 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testAlertConfiguration = new Mongodbatlas.AlertConfiguration("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         EventType = "OUTSIDE_METRIC_THRESHOLD",
+        ///         Enabled = true,
+        ///         Notifications = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+        ///             {
+        ///                 TypeName = "GROUP",
+        ///                 IntervalMin = 5,
+        ///                 DelayMin = 0,
+        ///                 SmsEnabled = false,
+        ///                 EmailEnabled = true,
+        ///             },
+        ///         },
+        ///         Matchers = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
+        ///             {
+        ///                 FieldName = "HOSTNAME_AND_PORT",
+        ///                 Operator = "EQUALS",
+        ///                 Value = "SECONDARY",
+        ///             },
+        ///         },
+        ///         MetricThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdConfigArgs
+        ///         {
+        ///             MetricName = "ASSERT_REGULAR",
+        ///             Operator = "LESS_THAN",
+        ///             Threshold = 99,
+        ///             Units = "RAW",
+        ///             Mode = "AVERAGE",
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetAlertConfiguration.Invoke(new()
+        ///     {
+        ///         ProjectId = testAlertConfiguration.ProjectId,
+        ///         AlertConfigurationId = testAlertConfiguration.AlertConfigurationId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testAlertConfiguration = new Mongodbatlas.AlertConfiguration("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         EventType = "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+        ///         Enabled = true,
+        ///         Notifications = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+        ///             {
+        ///                 TypeName = "GROUP",
+        ///                 IntervalMin = 5,
+        ///                 DelayMin = 0,
+        ///                 SmsEnabled = false,
+        ///                 EmailEnabled = true,
+        ///                 Roles = new[]
+        ///                 {
+        ///                     "GROUP_CHARTS_ADMIN",
+        ///                     "GROUP_CLUSTER_MANAGER",
+        ///                 },
+        ///             },
+        ///         },
+        ///         Matchers = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
+        ///             {
+        ///                 FieldName = "HOSTNAME_AND_PORT",
+        ///                 Operator = "EQUALS",
+        ///                 Value = "SECONDARY",
+        ///             },
+        ///         },
+        ///         ThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationThresholdConfigArgs
+        ///         {
+        ///             Operator = "LESS_THAN",
+        ///             Threshold = 1,
+        ///             Units = "HOURS",
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetAlertConfiguration.Invoke(new()
+        ///     {
+        ///         ProjectId = testAlertConfiguration.ProjectId,
+        ///         AlertConfigurationId = testAlertConfiguration.AlertConfigurationId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// Utilize data_source to generate resource hcl and import statement. Useful if you have a specific alert_configuration_id and are looking to manage it as is in state. To import all alerts, refer to the documentation on data_source_mongodbatlas_alert_configurations
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetAlertConfiguration.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         AlertConfigurationId = alertConfigurationId,
+        ///         Outputs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.GetAlertConfigurationOutputInputArgs
+        ///             {
+        ///                 Type = "resource_hcl",
+        ///                 Label = "test",
+        ///             },
+        ///             new Mongodbatlas.Inputs.GetAlertConfigurationOutputInputArgs
+        ///             {
+        ///                 Type = "resource_import",
+        ///                 Label = "test",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAlertConfigurationResult> Invoke(GetAlertConfigurationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlertConfigurationResult>("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args ?? new GetAlertConfigurationInvokeArgs(), options.WithDefaults());

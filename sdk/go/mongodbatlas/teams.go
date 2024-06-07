@@ -12,6 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// This resource is deprecated. Please transition to using `Team` which defines the same underlying implementation, aligning the name of the resource with the implementation which manages a single team.
 type Teams struct {
 	pulumi.CustomResourceState
 

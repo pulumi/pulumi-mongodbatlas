@@ -19,7 +19,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -32,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testDatabaseUser, err := mongodbatlas.NewDatabaseUser(ctx, "testDatabaseUser", &mongodbatlas.DatabaseUserArgs{
+//			testDatabaseUser, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
 //				Username:         pulumi.String("test-acc-username"),
 //				Password:         pulumi.String("test-acc-password"),
 //				ProjectId:        pulumi.String("<PROJECT-ID>"),
@@ -69,10 +68,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // **Example of usage with a OIDC federated authentication user**
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -85,17 +82,17 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewDatabaseUser(ctx, "testDatabaseUser", &mongodbatlas.DatabaseUserArgs{
+//			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				Username:         pulumi.String("64d613677e1ad50839cce4db/testUserOrGroup"),
+//				ProjectId:        pulumi.String("6414908c207f4d22f4d8f232"),
 //				AuthDatabaseName: pulumi.String("admin"),
 //				OidcAuthType:     pulumi.String("IDP_GROUP"),
-//				ProjectId:        pulumi.String("6414908c207f4d22f4d8f232"),
 //				Roles: mongodbatlas.DatabaseUserRoleArray{
 //					&mongodbatlas.DatabaseUserRoleArgs{
-//						DatabaseName: pulumi.String("admin"),
 //						RoleName:     pulumi.String("readWriteAnyDatabase"),
+//						DatabaseName: pulumi.String("admin"),
 //					},
 //				},
-//				Username: pulumi.String("64d613677e1ad50839cce4db/testUserOrGroup"),
 //			})
 //			if err != nil {
 //				return err
@@ -111,7 +108,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 func LookupDatabaseUsers(ctx *pulumi.Context, args *LookupDatabaseUsersArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseUsersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

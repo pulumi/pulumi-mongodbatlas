@@ -42,6 +42,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool EmailEnabled;
         /// <summary>
+        /// The ID of the associated integration, the credentials of which to use for requests.
+        /// </summary>
+        public readonly string IntegrationId;
+        /// <summary>
         /// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
         /// </summary>
         public readonly int IntervalMin;
@@ -54,7 +58,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string MobileNumber;
         /// <summary>
-        /// The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
+        /// The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
         /// </summary>
         public readonly string NotifierId;
         /// <summary>
@@ -88,6 +92,19 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Type of alert notification.
         /// Accepted values are:
+        /// - `DATADOG`
+        /// - `EMAIL`
+        /// - `GROUP` (Project)
+        /// - `OPS_GENIE`
+        /// - `ORG`
+        /// - `PAGER_DUTY`
+        /// - `SLACK`
+        /// - `SMS`
+        /// - `TEAM`
+        /// - `USER`
+        /// - `VICTOR_OPS`
+        /// - `WEBHOOK`
+        /// - `MICROSOFT_TEAMS`
         /// </summary>
         public readonly string TypeName;
         /// <summary>
@@ -126,6 +143,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             string emailAddress,
 
             bool emailEnabled,
+
+            string integrationId,
 
             int intervalMin,
 
@@ -168,6 +187,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             DelayMin = delayMin;
             EmailAddress = emailAddress;
             EmailEnabled = emailEnabled;
+            IntegrationId = integrationId;
             IntervalMin = intervalMin;
             MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             MobileNumber = mobileNumber;

@@ -20,7 +20,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -31,14 +30,13 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedQueryLimit.Invoke(new()
         ///     {
-        ///         LimitName = "LIMIT_NAME",
         ///         ProjectId = "PROJECT_ID",
         ///         TenantName = "FEDERATED_DATABASE_INSTANCE_NAME",
+        ///         LimitName = "LIMIT_NAME",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetFederatedQueryLimitResult> InvokeAsync(GetFederatedQueryLimitArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedQueryLimitResult>("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", args ?? new GetFederatedQueryLimitArgs(), options.WithDefaults());
@@ -52,7 +50,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -63,14 +60,13 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedQueryLimit.Invoke(new()
         ///     {
-        ///         LimitName = "LIMIT_NAME",
         ///         ProjectId = "PROJECT_ID",
         ///         TenantName = "FEDERATED_DATABASE_INSTANCE_NAME",
+        ///         LimitName = "LIMIT_NAME",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetFederatedQueryLimitResult> Invoke(GetFederatedQueryLimitInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedQueryLimitResult>("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", args ?? new GetFederatedQueryLimitInvokeArgs(), options.WithDefaults());
@@ -147,6 +143,8 @@ namespace Pulumi.Mongodbatlas
         public readonly int CurrentUsage;
         /// <summary>
         /// Default value of the limit.
+        /// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+        /// * `maximumLimit` - Maximum value of the limit.
         /// </summary>
         public readonly int DefaultLimit;
         /// <summary>

@@ -61,8 +61,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly bool Disabled;
         /// <summary>
         /// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
-        /// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
-        /// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetEventTriggersResultEventProcessorResult> EventProcessors;
         /// <summary>

@@ -34,7 +34,8 @@ import javax.annotation.Nullable;
  * ### S
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -56,23 +57,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var outageSimulation = new ClusterOutageSimulation(&#34;outageSimulation&#34;, ClusterOutageSimulationArgs.builder()        
- *             .clusterName(&#34;Cluster0&#34;)
+ *         var outageSimulation = new ClusterOutageSimulation("outageSimulation", ClusterOutageSimulationArgs.builder()
+ *             .projectId("64707f06c519c20c3a2b1b03")
+ *             .clusterName("Cluster0")
  *             .outageFilters(            
  *                 ClusterOutageSimulationOutageFilterArgs.builder()
- *                     .cloudProvider(&#34;AWS&#34;)
- *                     .regionName(&#34;US_EAST_1&#34;)
+ *                     .cloudProvider("AWS")
+ *                     .regionName("US_EAST_1")
  *                     .build(),
  *                 ClusterOutageSimulationOutageFilterArgs.builder()
- *                     .cloudProvider(&#34;AWS&#34;)
- *                     .regionName(&#34;US_EAST_2&#34;)
+ *                     .cloudProvider("AWS")
+ *                     .regionName("US_EAST_2")
  *                     .build())
- *             .projectId(&#34;64707f06c519c20c3a2b1b03&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -156,6 +158,12 @@ public class ClusterOutageSimulation extends com.pulumi.resources.CustomResource
     }
     /**
      * Current phase of the outage simulation:
+     * * `START_REQUESTED` - User has requested cluster outage simulation.
+     * * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+     * * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+     * * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+     * * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+     * * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
      * 
      */
     @Export(name="state", refs={String.class}, tree="[0]")
@@ -163,6 +171,12 @@ public class ClusterOutageSimulation extends com.pulumi.resources.CustomResource
 
     /**
      * @return Current phase of the outage simulation:
+     * * `START_REQUESTED` - User has requested cluster outage simulation.
+     * * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+     * * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+     * * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+     * * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+     * * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
      * 
      */
     public Output<String> state() {

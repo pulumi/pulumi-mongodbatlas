@@ -22,7 +22,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### S With MongoDB Atlas Cluster As Storage Database
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,18 +32,16 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// 
         /// ### S With Amazon S3 Bucket As Storage Database
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -55,6 +52,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
+        ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
         ///         {
         ///             Aws = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsInputArgs
@@ -62,13 +61,10 @@ namespace Pulumi.Mongodbatlas
         ///                 TestS3Bucket = "Amazon S3 Bucket Name",
         ///             },
         ///         },
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        ///         ProjectId = "PROJECT ID",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetFederatedDatabaseInstanceResult> InvokeAsync(GetFederatedDatabaseInstanceArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedDatabaseInstanceResult>("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", args ?? new GetFederatedDatabaseInstanceArgs(), options.WithDefaults());
@@ -84,7 +80,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### S With MongoDB Atlas Cluster As Storage Database
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -95,18 +90,16 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// 
         /// ### S With Amazon S3 Bucket As Storage Database
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -117,6 +110,8 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
+        ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
         ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
         ///         {
         ///             Aws = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsInputArgs
@@ -124,13 +119,10 @@ namespace Pulumi.Mongodbatlas
         ///                 TestS3Bucket = "Amazon S3 Bucket Name",
         ///             },
         ///         },
-        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        ///         ProjectId = "PROJECT ID",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetFederatedDatabaseInstanceResult> Invoke(GetFederatedDatabaseInstanceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedDatabaseInstanceResult>("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", args ?? new GetFederatedDatabaseInstanceInvokeArgs(), options.WithDefaults());
@@ -201,6 +193,8 @@ namespace Pulumi.Mongodbatlas
         public readonly string ProjectId;
         /// <summary>
         /// Current state of the Federated Database Instance:
+        /// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+        /// * `DELETED` - The Federated Database Instance was deleted.
         /// </summary>
         public readonly string State;
         /// <summary>

@@ -20,7 +20,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -33,7 +32,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
+//			_, err := mongodbatlas.NewCustomDbRole(ctx, "test_role", &mongodbatlas.CustomDbRoleArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				RoleName:  pulumi.String("myCustomRole"),
 //				Actions: mongodbatlas.CustomDbRoleActionArray{
 //					&mongodbatlas.CustomDbRoleActionArgs{
 //						Action: pulumi.String("UPDATE"),
@@ -63,8 +64,6 @@ import (
 //						},
 //					},
 //				},
-//				ProjectId: pulumi.String("<PROJECT-ID>"),
-//				RoleName:  pulumi.String("myCustomRole"),
 //			})
 //			if err != nil {
 //				return err
@@ -74,11 +73,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### With Inherited Roles
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -91,7 +88,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			inheritedRoleOne, err := mongodbatlas.NewCustomDbRole(ctx, "inheritedRoleOne", &mongodbatlas.CustomDbRoleArgs{
+//			inheritedRoleOne, err := mongodbatlas.NewCustomDbRole(ctx, "inherited_role_one", &mongodbatlas.CustomDbRoleArgs{
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				RoleName:  pulumi.String("insertRole"),
 //				Actions: mongodbatlas.CustomDbRoleActionArray{
@@ -109,7 +106,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			inheritedRoleTwo, err := mongodbatlas.NewCustomDbRole(ctx, "inheritedRoleTwo", &mongodbatlas.CustomDbRoleArgs{
+//			inheritedRoleTwo, err := mongodbatlas.NewCustomDbRole(ctx, "inherited_role_two", &mongodbatlas.CustomDbRoleArgs{
 //				ProjectId: inheritedRoleOne.ProjectId,
 //				RoleName:  pulumi.String("statusServerRole"),
 //				Actions: mongodbatlas.CustomDbRoleActionArray{
@@ -126,7 +123,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
+//			_, err = mongodbatlas.NewCustomDbRole(ctx, "test_role", &mongodbatlas.CustomDbRoleArgs{
 //				ProjectId: inheritedRoleOne.ProjectId,
 //				RoleName:  pulumi.String("myCustomRole"),
 //				Actions: mongodbatlas.CustomDbRoleActionArray{
@@ -168,7 +165,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

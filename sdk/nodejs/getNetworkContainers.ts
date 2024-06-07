@@ -15,23 +15,21 @@ import * as utilities from "./utilities";
  *
  * ### Basic Example.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testNetworkContainer = new mongodbatlas.NetworkContainer("testNetworkContainer", {
+ * const testNetworkContainer = new mongodbatlas.NetworkContainer("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     atlasCidrBlock: "10.8.0.0/21",
  *     providerName: "AWS",
  *     regionName: "US_EAST_1",
  * });
- * const testNetworkContainers = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
+ * const test = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
  *     projectId: projectId,
  *     providerName: providerName,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNetworkContainers(args: GetNetworkContainersArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkContainersResult> {
 
@@ -83,23 +81,21 @@ export interface GetNetworkContainersResult {
  *
  * ### Basic Example.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testNetworkContainer = new mongodbatlas.NetworkContainer("testNetworkContainer", {
+ * const testNetworkContainer = new mongodbatlas.NetworkContainer("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     atlasCidrBlock: "10.8.0.0/21",
  *     providerName: "AWS",
  *     regionName: "US_EAST_1",
  * });
- * const testNetworkContainers = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
+ * const test = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
  *     projectId: projectId,
  *     providerName: providerName,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNetworkContainersOutput(args: GetNetworkContainersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkContainersResult> {
     return pulumi.output(args).apply((a: any) => getNetworkContainers(a, opts))

@@ -11,13 +11,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", {
- *     federationSettingsId: data.mongodbatlas_federated_settings.federated_settings.id,
+ * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", {
+ *     federationSettingsId: federatedSettings.id,
  *     orgId: "627a9683e7f7f7ff7fe306f14",
  *     externalGroupName: "myGrouptest",
  *     roleAssignments: [
@@ -56,7 +55,6 @@ import * as utilities from "./utilities";
  *     roleMappingId: "627a9673e7f7f7ff7fe306f14",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedSettingsOrgRoleMapping(args: GetFederatedSettingsOrgRoleMappingArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgRoleMappingResult> {
 
@@ -108,13 +106,12 @@ export interface GetFederatedSettingsOrgRoleMappingResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", {
- *     federationSettingsId: data.mongodbatlas_federated_settings.federated_settings.id,
+ * const orgGroupRoleMappingImport = new mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", {
+ *     federationSettingsId: federatedSettings.id,
  *     orgId: "627a9683e7f7f7ff7fe306f14",
  *     externalGroupName: "myGrouptest",
  *     roleAssignments: [
@@ -153,7 +150,6 @@ export interface GetFederatedSettingsOrgRoleMappingResult {
  *     roleMappingId: "627a9673e7f7f7ff7fe306f14",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getFederatedSettingsOrgRoleMappingOutput(args: GetFederatedSettingsOrgRoleMappingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsOrgRoleMappingResult> {
     return pulumi.output(args).apply((a: any) => getFederatedSettingsOrgRoleMapping(a, opts))

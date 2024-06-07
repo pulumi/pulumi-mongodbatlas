@@ -92,6 +92,12 @@ class GetClusterOutageSimulationResult:
     def state(self) -> str:
         """
         Current phase of the outage simulation:
+        * `START_REQUESTED` - User has requested cluster outage simulation.
+        * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+        * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+        * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+        * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+        * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
         """
         return pulumi.get(self, "state")
 
@@ -119,15 +125,13 @@ def get_cluster_outage_simulation(cluster_name: Optional[str] = None,
 
     ### S
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    outage_simulation = mongodbatlas.get_cluster_outage_simulation(cluster_name="Cluster0",
-        project_id="64707f06c519c20c3a2b1b03")
+    outage_simulation = mongodbatlas.get_cluster_outage_simulation(project_id="64707f06c519c20c3a2b1b03",
+        cluster_name="Cluster0")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: Name of the Atlas Cluster that is undergoing outage simulation.
@@ -158,15 +162,13 @@ def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[str
 
     ### S
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    outage_simulation = mongodbatlas.get_cluster_outage_simulation(cluster_name="Cluster0",
-        project_id="64707f06c519c20c3a2b1b03")
+    outage_simulation = mongodbatlas.get_cluster_outage_simulation(project_id="64707f06c519c20c3a2b1b03",
+        cluster_name="Cluster0")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cluster_name: Name of the Atlas Cluster that is undergoing outage simulation.

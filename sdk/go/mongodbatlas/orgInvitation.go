@@ -16,7 +16,6 @@ import (
 //
 // ### S
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,11 +29,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewOrgInvitation(ctx, "test0", &mongodbatlas.OrgInvitationArgs{
-//				OrgId: pulumi.String("<ORG-ID>"),
+//				Username: pulumi.String("test0-acc-username"),
+//				OrgId:    pulumi.String("<ORG-ID>"),
 //				Roles: pulumi.StringArray{
 //					pulumi.String("ORG_OWNER"),
 //				},
-//				Username: pulumi.String("test0-acc-username"),
 //			})
 //			if err != nil {
 //				return err
@@ -44,9 +43,7 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -60,12 +57,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewOrgInvitation(ctx, "test0", &mongodbatlas.OrgInvitationArgs{
-//				OrgId: pulumi.String("<ORG-ID>"),
+//				Username: pulumi.String("test0-acc-username"),
+//				OrgId:    pulumi.String("<ORG-ID>"),
 //				Roles: pulumi.StringArray{
 //					pulumi.String("ORG_MEMBER"),
 //					pulumi.String("ORG_BILLING_ADMIN"),
 //				},
-//				Username: pulumi.String("test0-acc-username"),
 //			})
 //			if err != nil {
 //				return err
@@ -75,9 +72,7 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -91,15 +86,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewOrgInvitation(ctx, "test1", &mongodbatlas.OrgInvitationArgs{
-//				OrgId: pulumi.String("<ORG-ID>"),
-//				Roles: pulumi.StringArray{
-//					pulumi.String("ORG_MEMBER"),
-//				},
+//				Username: pulumi.String("test1-acc-username"),
+//				OrgId:    pulumi.String("<ORG-ID>"),
 //				TeamsIds: pulumi.StringArray{
 //					pulumi.String("<TEAM-0-ID>"),
 //					pulumi.String("<TEAM-1-ID>"),
 //				},
-//				Username: pulumi.String("test1-acc-username"),
+//				Roles: pulumi.StringArray{
+//					pulumi.String("ORG_MEMBER"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -109,7 +104,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

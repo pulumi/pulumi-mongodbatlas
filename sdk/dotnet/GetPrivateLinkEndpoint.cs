@@ -15,6 +15,36 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         ProviderName = "AWS",
+        ///         Region = "US_EAST_1",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetPrivateLinkEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = testPrivateLinkEndpoint.ProjectId,
+        ///         PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
+        ///         ProviderName = "AWS",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Available complete examples
+        /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
         /// </summary>
         public static Task<GetPrivateLinkEndpointResult> InvokeAsync(GetPrivateLinkEndpointArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivateLinkEndpointResult>("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", args ?? new GetPrivateLinkEndpointArgs(), options.WithDefaults());
@@ -23,6 +53,36 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("test", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         ProviderName = "AWS",
+        ///         Region = "US_EAST_1",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetPrivateLinkEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = testPrivateLinkEndpoint.ProjectId,
+        ///         PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
+        ///         ProviderName = "AWS",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Available complete examples
+        /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
         /// </summary>
         public static Output<GetPrivateLinkEndpointResult> Invoke(GetPrivateLinkEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivateLinkEndpointResult>("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", args ?? new GetPrivateLinkEndpointInvokeArgs(), options.WithDefaults());
@@ -131,6 +191,11 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Status of the AWS PrivateLink connection.
         /// Returns one of the following values:
+        /// * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
+        /// * `INITIATING` 	Atlas is creating the network load balancer and VPC endpoint service.
+        /// * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+        /// * `FAILED` 	A system failure has occurred.
+        /// * `DELETING` 	The Private Link service is being deleted.
         /// </summary>
         public readonly string Status;
 

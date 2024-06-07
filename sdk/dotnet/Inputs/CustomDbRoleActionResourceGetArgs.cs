@@ -18,11 +18,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("collectionName")]
         public Input<string>? CollectionName { get; set; }
 
-        /// <summary>
-        /// Database on which the inherited role is granted.
-        /// 
-        /// &gt; **NOTE** This value should be admin for all roles except read and readWrite.
-        /// </summary>
         [Input("databaseName")]
         public Input<string>? DatabaseName { get; set; }
 

@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * 
  * ### Example Usage: Database Trigger with Function
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -51,44 +52,47 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new EventTrigger(&#34;test&#34;, EventTriggerArgs.builder()        
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .appId(&#34;APPLICATION ID&#34;)
- *             .type(&#34;DATABASE&#34;)
- *             .functionId(&#34;FUNCTION ID&#34;)
+ *         var test = new EventTrigger("test", EventTriggerArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .appId("APPLICATION ID")
+ *             .name("NAME OF THE TRIGGER")
+ *             .type("DATABASE")
+ *             .functionId("FUNCTION ID")
  *             .disabled(false)
  *             .configOperationTypes(            
- *                 &#34;INSERT&#34;,
- *                 &#34;UPDATE&#34;)
- *             .configDatabase(&#34;DATABASE NAME&#34;)
- *             .configCollection(&#34;COLLECTION NAME&#34;)
- *             .configServiceId(&#34;SERVICE ID&#34;)
- *             .configMatch(&#34;&#34;&#34;
+ *                 "INSERT",
+ *                 "UPDATE")
+ *             .configDatabase("DATABASE NAME")
+ *             .configCollection("COLLECTION NAME")
+ *             .configServiceId("SERVICE ID")
+ *             .configMatch("""
  * {
- *   &#34;updateDescription.updatedFields&#34;: {
- *     &#34;status&#34;: &#34;blocked&#34;
+ *   "updateDescription.updatedFields": {
+ *     "status": "blocked"
  *   }
  * }
- *             &#34;&#34;&#34;)
- *             .configProject(&#34;{\&#34;updateDescription.updatedFields\&#34;:{\&#34;status\&#34;:\&#34;blocked\&#34;}}&#34;)
+ *             """)
+ *             .configProject("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
  *             .configFullDocument(false)
  *             .configFullDocumentBefore(false)
  *             .eventProcessors(EventTriggerEventProcessorsArgs.builder()
  *                 .awsEventbridge(EventTriggerEventProcessorsAwsEventbridgeArgs.builder()
- *                     .configAccountId(&#34;AWS ACCOUNT ID&#34;)
- *                     .configRegion(&#34;AWS REGIOn&#34;)
+ *                     .configAccountId("AWS ACCOUNT ID")
+ *                     .configRegion("AWS REGIOn")
  *                     .build())
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Usage: Database Trigger with EventBridge
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -111,41 +115,44 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new EventTrigger(&#34;test&#34;, EventTriggerArgs.builder()        
- *             .appId(&#34;APPLICATION ID&#34;)
- *             .configCollection(&#34;COLLECTION NAME&#34;)
- *             .configDatabase(&#34;DATABASE NAME&#34;)
+ *         var test = new EventTrigger("test", EventTriggerArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .appId("APPLICATION ID")
+ *             .name("NAME OF THE TRIGGER")
+ *             .type("DATABASE")
+ *             .disabled(false)
+ *             .unordered(false)
+ *             .configOperationTypes(            
+ *                 "INSERT",
+ *                 "UPDATE")
+ *             .configOperationType("LOGIN")
+ *             .configProviders("anon-user")
+ *             .configDatabase("DATABASE NAME")
+ *             .configCollection("COLLECTION NAME")
+ *             .configServiceId("1")
+ *             .configMatch("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
+ *             .configProject("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
  *             .configFullDocument(false)
  *             .configFullDocumentBefore(false)
- *             .configMatch(&#34;{\&#34;updateDescription.updatedFields\&#34;:{\&#34;status\&#34;:\&#34;blocked\&#34;}}&#34;)
- *             .configOperationType(&#34;LOGIN&#34;)
- *             .configOperationTypes(            
- *                 &#34;INSERT&#34;,
- *                 &#34;UPDATE&#34;)
- *             .configProject(&#34;{\&#34;updateDescription.updatedFields\&#34;:{\&#34;status\&#34;:\&#34;blocked\&#34;}}&#34;)
- *             .configProviders(&#34;anon-user&#34;)
- *             .configSchedule(&#34;*&#34;)
- *             .configServiceId(&#34;1&#34;)
- *             .disabled(false)
+ *             .configSchedule("*")
  *             .eventProcessors(EventTriggerEventProcessorsArgs.builder()
  *                 .awsEventbridge(EventTriggerEventProcessorsAwsEventbridgeArgs.builder()
- *                     .configAccountId(&#34;AWS ACCOUNT ID&#34;)
- *                     .configRegion(&#34;AWS REGIOn&#34;)
+ *                     .configAccountId("AWS ACCOUNT ID")
+ *                     .configRegion("AWS REGIOn")
  *                     .build())
  *                 .build())
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .type(&#34;DATABASE&#34;)
- *             .unordered(false)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Usage: Authentication Trigger
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -166,24 +173,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new EventTrigger(&#34;test&#34;, EventTriggerArgs.builder()        
- *             .appId(&#34;APPLICATION ID&#34;)
- *             .configOperationType(&#34;LOGIN&#34;)
- *             .configProviders(&#34;anon-user&#34;)
+ *         var test = new EventTrigger("test", EventTriggerArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .appId("APPLICATION ID")
+ *             .name("NAME OF THE TRIGGER")
+ *             .type("AUTHENTICATION")
+ *             .functionId("1")
  *             .disabled(false)
- *             .functionId(&#34;1&#34;)
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .type(&#34;AUTHENTICATION&#34;)
+ *             .configOperationType("LOGIN")
+ *             .configProviders("anon-user")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Usage: Scheduled Trigger
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -204,18 +214,20 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new EventTrigger(&#34;test&#34;, EventTriggerArgs.builder()        
- *             .appId(&#34;APPLICATION ID&#34;)
- *             .configSchedule(&#34;*&#34;)
+ *         var test = new EventTrigger("test", EventTriggerArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .appId("APPLICATION ID")
+ *             .name("NAME OF THE TRIGGER")
+ *             .type("SCHEDULED")
+ *             .functionId("1")
  *             .disabled(false)
- *             .functionId(&#34;1&#34;)
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .type(&#34;SCHEDULED&#34;)
+ *             .configSchedule("*")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

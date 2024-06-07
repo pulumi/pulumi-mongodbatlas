@@ -22,7 +22,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -36,8 +35,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewCustomDnsConfigurationClusterAws(ctx, "test", &mongodbatlas.CustomDnsConfigurationClusterAwsArgs{
-//				Enabled:   pulumi.Bool(true),
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Enabled:   pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -47,7 +46,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

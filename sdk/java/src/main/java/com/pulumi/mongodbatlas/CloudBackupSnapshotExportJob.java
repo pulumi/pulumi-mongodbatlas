@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * ### Export one snapshot
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -51,33 +52,35 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testCloudBackupSnapshotExportBucket = new CloudBackupSnapshotExportBucket(&#34;testCloudBackupSnapshotExportBucket&#34;, CloudBackupSnapshotExportBucketArgs.builder()        
- *             .projectId(&#34;{PROJECT_ID}&#34;)
- *             .iamRoleId(&#34;{IAM_ROLE_ID}&#34;)
- *             .bucketName(&#34;example_bucket&#34;)
- *             .cloudProvider(&#34;AWS&#34;)
+ *         var test = new CloudBackupSnapshotExportBucket("test", CloudBackupSnapshotExportBucketArgs.builder()
+ *             .projectId("{PROJECT_ID}")
+ *             .iamRoleId("{IAM_ROLE_ID}")
+ *             .bucketName("example_bucket")
+ *             .cloudProvider("AWS")
  *             .build());
  * 
- *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob(&#34;testCloudBackupSnapshotExportJob&#34;, CloudBackupSnapshotExportJobArgs.builder()        
- *             .projectId(&#34;{PROJECT_ID}&#34;)
- *             .clusterName(&#34;{CLUSTER_NAME}&#34;)
- *             .snapshotId(&#34;{SNAPSHOT_ID}&#34;)
- *             .exportBucketId(testCloudBackupSnapshotExportBucket.exportBucketId())
+ *         var testCloudBackupSnapshotExportJob = new CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", CloudBackupSnapshotExportJobArgs.builder()
+ *             .projectId("{PROJECT_ID}")
+ *             .clusterName("{CLUSTER_NAME}")
+ *             .snapshotId("{SNAPSHOT_ID}")
+ *             .exportBucketId(test.exportBucketId())
  *             .customDatas(CloudBackupSnapshotExportJobCustomDataArgs.builder()
- *                 .key(&#34;exported by&#34;)
- *                 .value(&#34;myName&#34;)
+ *                 .key("exported by")
+ *                 .value("myName")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Create backup and automatic snapshot export policies
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -105,20 +108,20 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var export = new CloudBackupSnapshotExportBucket(&#34;export&#34;, CloudBackupSnapshotExportBucketArgs.builder()        
- *             .projectId(&#34;{PROJECT_ID}&#34;)
- *             .iamRoleId(&#34;{IAM_ROLE_ID}&#34;)
- *             .bucketName(&#34;example_bucket&#34;)
- *             .cloudProvider(&#34;AWS&#34;)
+ *         var export = new CloudBackupSnapshotExportBucket("export", CloudBackupSnapshotExportBucketArgs.builder()
+ *             .projectId("{PROJECT_ID}")
+ *             .iamRoleId("{IAM_ROLE_ID}")
+ *             .bucketName("example_bucket")
+ *             .cloudProvider("AWS")
  *             .build());
  * 
- *         var backup = new CloudBackupSchedule(&#34;backup&#34;, CloudBackupScheduleArgs.builder()        
- *             .projectId(&#34;{PROJECT_ID}&#34;)
- *             .clusterName(&#34;{CLUSTER_NAME}&#34;)
+ *         var backup = new CloudBackupSchedule("backup", CloudBackupScheduleArgs.builder()
+ *             .projectId("{PROJECT_ID}")
+ *             .clusterName("{CLUSTER_NAME}")
  *             .autoExportEnabled(true)
  *             .export(CloudBackupScheduleExportArgs.builder()
  *                 .exportBucketId(export.exportBucketId())
- *                 .frequencyType(&#34;daily&#34;)
+ *                 .frequencyType("daily")
  *                 .build())
  *             .useOrgAndGroupNamesInExportPrefix(true)
  *             .referenceHourOfDay(7)
@@ -126,29 +129,30 @@ import javax.annotation.Nullable;
  *             .restoreWindowDays(5)
  *             .policyItemHourly(CloudBackupSchedulePolicyItemHourlyArgs.builder()
  *                 .frequencyInterval(6)
- *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionUnit("days")
  *                 .retentionValue(7)
  *                 .build())
  *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
  *                 .frequencyInterval(1)
- *                 .retentionUnit(&#34;days&#34;)
+ *                 .retentionUnit("days")
  *                 .retentionValue(7)
  *                 .build())
  *             .policyItemWeeklies(CloudBackupSchedulePolicyItemWeeklyArgs.builder()
  *                 .frequencyInterval(6)
- *                 .retentionUnit(&#34;weeks&#34;)
+ *                 .retentionUnit("weeks")
  *                 .retentionValue(4)
  *                 .build())
  *             .policyItemMonthlies(CloudBackupSchedulePolicyItemMonthlyArgs.builder()
  *                 .frequencyInterval(28)
- *                 .retentionUnit(&#34;months&#34;)
+ *                 .retentionUnit("months")
  *                 .retentionValue(12)
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -325,6 +329,10 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
     }
     /**
      * Status of the export job. Value can be one of the following:
+     * * `Queued` - indicates that the export job is queued
+     * * `InProgress` - indicates that the snapshot is being exported
+     * * `Successful` - indicates that the export job has completed successfully
+     * * `Failed` - indicates that the export job has failed
      * 
      */
     @Export(name="state", refs={String.class}, tree="[0]")
@@ -332,6 +340,10 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
 
     /**
      * @return Status of the export job. Value can be one of the following:
+     * * `Queued` - indicates that the export job is queued
+     * * `InProgress` - indicates that the snapshot is being exported
+     * * `Successful` - indicates that the export job has completed successfully
+     * * `Failed` - indicates that the export job has failed
      * 
      */
     public Output<String> state() {

@@ -152,8 +152,18 @@ class _PrivateLinkEndpointServiceState:
         Input properties used for looking up and filtering PrivateLinkEndpointService resources.
         :param pulumi.Input[str] aws_connection_status: Status of the interface endpoint for AWS.
                Returns one of the following values:
+               * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+               * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+               * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+               * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+               * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+               * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
         :param pulumi.Input[str] azure_status: Status of the interface endpoint for AZURE.
                Returns one of the following values:
+               * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+               * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+               * `FAILED` - Atlas failed to accept the connection your private endpoint.
+               * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         :param pulumi.Input[bool] delete_requested: Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
         :param pulumi.Input[str] endpoint_group_name: (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
         :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
@@ -162,6 +172,10 @@ class _PrivateLinkEndpointServiceState:
         :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
         :param pulumi.Input[str] gcp_status: Status of the interface endpoint for GCP.
                Returns one of the following values:
+               * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+               * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+               * `FAILED` - Atlas failed to accept the connection your private endpoint.
+               * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         :param pulumi.Input[str] interface_endpoint_id: Unique identifier of the interface endpoint.
         :param pulumi.Input[str] private_endpoint_connection_name: Name of the connection for this private endpoint that Atlas generates.
         :param pulumi.Input[str] private_endpoint_ip_address: Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
@@ -209,6 +223,12 @@ class _PrivateLinkEndpointServiceState:
         """
         Status of the interface endpoint for AWS.
         Returns one of the following values:
+        * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+        * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+        * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+        * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+        * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+        * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
         """
         return pulumi.get(self, "aws_connection_status")
 
@@ -222,6 +242,10 @@ class _PrivateLinkEndpointServiceState:
         """
         Status of the interface endpoint for AZURE.
         Returns one of the following values:
+        * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+        * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+        * `FAILED` - Atlas failed to accept the connection your private endpoint.
+        * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         """
         return pulumi.get(self, "azure_status")
 
@@ -307,6 +331,10 @@ class _PrivateLinkEndpointServiceState:
         """
         Status of the interface endpoint for GCP.
         Returns one of the following values:
+        * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+        * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+        * `FAILED` - Atlas failed to accept the connection your private endpoint.
+        * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         """
         return pulumi.get(self, "gcp_status")
 
@@ -425,60 +453,117 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         ## Example with AWS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
+        test = mongodbatlas.PrivateLinkEndpoint("test",
             project_id="<PROJECT_ID>",
             provider_name="AWS",
             region="US_EAST_1")
-        ptfe_service = aws.ec2.VpcEndpoint("ptfeService",
-            vpc_id="vpc-7fc0a543",
-            service_name=test_private_link_endpoint.endpoint_service_name,
-            vpc_endpoint_type="Interface",
-            subnet_ids=["subnet-de0406d2"],
-            security_group_ids=["sg-3f238186"])
-        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
-            project_id=test_private_link_endpoint.project_id,
-            private_link_id=test_private_link_endpoint.private_link_id,
-            endpoint_service_id=ptfe_service.id,
+        ptfe_service = aws.index.VpcEndpoint("ptfe_service",
+            vpc_id=vpc-7fc0a543,
+            service_name=test.endpoint_service_name,
+            vpc_endpoint_type=Interface,
+            subnet_ids=[subnet-de0406d2],
+            security_group_ids=[sg-3f238186])
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
+            project_id=test.project_id,
+            private_link_id=test.private_link_id,
+            endpoint_service_id=ptfe_service["id"],
             provider_name="AWS")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Example with Azure
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
-        import pulumi_azure as azure
+        import pulumi_azurerm as azurerm
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
-            project_id=var["project_id"],
+        test = mongodbatlas.PrivateLinkEndpoint("test",
+            project_id=project_id,
             provider_name="AZURE",
             region="eastus2")
-        test_endpoint = azure.privatelink.Endpoint("testEndpoint",
-            location=data["azurerm_resource_group"]["test"]["location"],
-            resource_group_name=var["resource_group_name"],
-            subnet_id=azurerm_subnet["test"]["id"],
-            private_service_connection=azure.privatelink.EndpointPrivateServiceConnectionArgs(
-                name=test_private_link_endpoint.private_link_service_name,
-                private_connection_resource_id=test_private_link_endpoint.private_link_service_resource_id,
-                is_manual_connection=True,
-                request_message="Azure Private Link test",
-            ))
-        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
-            project_id=test_private_link_endpoint.project_id,
-            private_link_id=test_private_link_endpoint.private_link_id,
-            endpoint_service_id=test_endpoint.id,
-            private_endpoint_ip_address=test_endpoint.private_service_connection.private_ip_address,
+        test_private_endpoint = azurerm.index.PrivateEndpoint("test",
+            name=endpoint-test,
+            location=test_azurerm_resource_group.location,
+            resource_group_name=resource_group_name,
+            subnet_id=test_azurerm_subnet.id,
+            private_service_connection=[{
+                name: test.private_link_service_name,
+                privateConnectionResourceId: test.private_link_service_resource_id,
+                isManualConnection: True,
+                requestMessage: Azure Private Link test,
+            }])
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
+            project_id=test.project_id,
+            private_link_id=test.private_link_id,
+            endpoint_service_id=test_private_endpoint["id"],
+            private_endpoint_ip_address=test_private_endpoint["privateServiceConnection"][0]["privateIpAddress"],
             provider_name="AZURE")
         ```
-        <!--End PulumiCodeChooser -->
+
+        ## Example with GCP
+
+        ```python
+        import pulumi
+        import pulumi_google as google
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.PrivateLinkEndpoint("test",
+            project_id=project_id,
+            provider_name="GCP",
+            region=gcp_region)
+        # Create a Google Network
+        default = google.index.ComputeNetwork("default",
+            project=gcp_project,
+            name=my-network)
+        # Create a Google Sub Network
+        default_compute_subnetwork = google.index.ComputeSubnetwork("default",
+            project=default.project,
+            name=my-subnet,
+            ip_cidr_range=10.0.0.0/16,
+            region=gcp_region,
+            network=default.id)
+        # Create Google 50 Addresses
+        default_compute_address = []
+        for range in [{"value": i} for i in range(0, 50)]:
+            default_compute_address.append(google.index.ComputeAddress(f"default-{range['value']}",
+                project=default_compute_subnetwork.project,
+                name=ftf-test{range.value},
+                subnetwork=default_compute_subnetwork.id,
+                address_type=INTERNAL,
+                address=f10.0.42.{range.value},
+                region=gcp_region,
+                opts=pulumi.ResourceOptions(depends_on=[test])))
+        # Create 50 Forwarding rules
+        default_compute_forwarding_rule = []
+        for range in [{"value": i} for i in range(0, 50)]:
+            default_compute_forwarding_rule.append(google.index.ComputeForwardingRule(f"default-{range['value']}",
+                target=test.service_attachment_names[range.value],
+                project=default_compute_address[range.value].project,
+                region=default_compute_address[range.value].region,
+                name=default_compute_address[range.value].name,
+                ip_address=default_compute_address[range.value].id,
+                network=default.id,
+                load_balancing_scheme=))
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
+            endpoints=[mongodbatlas.PrivateLinkEndpointServiceEndpointArgs(
+                ip_address=entry["value"]["address"],
+                endpoint_name=default_compute_forwarding_rule[entry["key"]]["name"],
+            ) for entry in [{"key": k, "value": v} for k, v in default_compute_address]],
+            project_id=test.project_id,
+            private_link_id=test.private_link_id,
+            provider_name="GCP",
+            endpoint_service_id=default["name"],
+            gcp_project_id=gcp_project,
+            opts=pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
+        ```
+
+        ### Available complete examples
+        - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
 
         ## Import
 
@@ -518,60 +603,117 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         ## Example with AWS
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
+        test = mongodbatlas.PrivateLinkEndpoint("test",
             project_id="<PROJECT_ID>",
             provider_name="AWS",
             region="US_EAST_1")
-        ptfe_service = aws.ec2.VpcEndpoint("ptfeService",
-            vpc_id="vpc-7fc0a543",
-            service_name=test_private_link_endpoint.endpoint_service_name,
-            vpc_endpoint_type="Interface",
-            subnet_ids=["subnet-de0406d2"],
-            security_group_ids=["sg-3f238186"])
-        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
-            project_id=test_private_link_endpoint.project_id,
-            private_link_id=test_private_link_endpoint.private_link_id,
-            endpoint_service_id=ptfe_service.id,
+        ptfe_service = aws.index.VpcEndpoint("ptfe_service",
+            vpc_id=vpc-7fc0a543,
+            service_name=test.endpoint_service_name,
+            vpc_endpoint_type=Interface,
+            subnet_ids=[subnet-de0406d2],
+            security_group_ids=[sg-3f238186])
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
+            project_id=test.project_id,
+            private_link_id=test.private_link_id,
+            endpoint_service_id=ptfe_service["id"],
             provider_name="AWS")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Example with Azure
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
-        import pulumi_azure as azure
+        import pulumi_azurerm as azurerm
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
-            project_id=var["project_id"],
+        test = mongodbatlas.PrivateLinkEndpoint("test",
+            project_id=project_id,
             provider_name="AZURE",
             region="eastus2")
-        test_endpoint = azure.privatelink.Endpoint("testEndpoint",
-            location=data["azurerm_resource_group"]["test"]["location"],
-            resource_group_name=var["resource_group_name"],
-            subnet_id=azurerm_subnet["test"]["id"],
-            private_service_connection=azure.privatelink.EndpointPrivateServiceConnectionArgs(
-                name=test_private_link_endpoint.private_link_service_name,
-                private_connection_resource_id=test_private_link_endpoint.private_link_service_resource_id,
-                is_manual_connection=True,
-                request_message="Azure Private Link test",
-            ))
-        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
-            project_id=test_private_link_endpoint.project_id,
-            private_link_id=test_private_link_endpoint.private_link_id,
-            endpoint_service_id=test_endpoint.id,
-            private_endpoint_ip_address=test_endpoint.private_service_connection.private_ip_address,
+        test_private_endpoint = azurerm.index.PrivateEndpoint("test",
+            name=endpoint-test,
+            location=test_azurerm_resource_group.location,
+            resource_group_name=resource_group_name,
+            subnet_id=test_azurerm_subnet.id,
+            private_service_connection=[{
+                name: test.private_link_service_name,
+                privateConnectionResourceId: test.private_link_service_resource_id,
+                isManualConnection: True,
+                requestMessage: Azure Private Link test,
+            }])
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
+            project_id=test.project_id,
+            private_link_id=test.private_link_id,
+            endpoint_service_id=test_private_endpoint["id"],
+            private_endpoint_ip_address=test_private_endpoint["privateServiceConnection"][0]["privateIpAddress"],
             provider_name="AZURE")
         ```
-        <!--End PulumiCodeChooser -->
+
+        ## Example with GCP
+
+        ```python
+        import pulumi
+        import pulumi_google as google
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.PrivateLinkEndpoint("test",
+            project_id=project_id,
+            provider_name="GCP",
+            region=gcp_region)
+        # Create a Google Network
+        default = google.index.ComputeNetwork("default",
+            project=gcp_project,
+            name=my-network)
+        # Create a Google Sub Network
+        default_compute_subnetwork = google.index.ComputeSubnetwork("default",
+            project=default.project,
+            name=my-subnet,
+            ip_cidr_range=10.0.0.0/16,
+            region=gcp_region,
+            network=default.id)
+        # Create Google 50 Addresses
+        default_compute_address = []
+        for range in [{"value": i} for i in range(0, 50)]:
+            default_compute_address.append(google.index.ComputeAddress(f"default-{range['value']}",
+                project=default_compute_subnetwork.project,
+                name=ftf-test{range.value},
+                subnetwork=default_compute_subnetwork.id,
+                address_type=INTERNAL,
+                address=f10.0.42.{range.value},
+                region=gcp_region,
+                opts=pulumi.ResourceOptions(depends_on=[test])))
+        # Create 50 Forwarding rules
+        default_compute_forwarding_rule = []
+        for range in [{"value": i} for i in range(0, 50)]:
+            default_compute_forwarding_rule.append(google.index.ComputeForwardingRule(f"default-{range['value']}",
+                target=test.service_attachment_names[range.value],
+                project=default_compute_address[range.value].project,
+                region=default_compute_address[range.value].region,
+                name=default_compute_address[range.value].name,
+                ip_address=default_compute_address[range.value].id,
+                network=default.id,
+                load_balancing_scheme=))
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
+            endpoints=[mongodbatlas.PrivateLinkEndpointServiceEndpointArgs(
+                ip_address=entry["value"]["address"],
+                endpoint_name=default_compute_forwarding_rule[entry["key"]]["name"],
+            ) for entry in [{"key": k, "value": v} for k, v in default_compute_address]],
+            project_id=test.project_id,
+            private_link_id=test.private_link_id,
+            provider_name="GCP",
+            endpoint_service_id=default["name"],
+            gcp_project_id=gcp_project,
+            opts=pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
+        ```
+
+        ### Available complete examples
+        - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
 
         ## Import
 
@@ -672,8 +814,18 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] aws_connection_status: Status of the interface endpoint for AWS.
                Returns one of the following values:
+               * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+               * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+               * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+               * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+               * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+               * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
         :param pulumi.Input[str] azure_status: Status of the interface endpoint for AZURE.
                Returns one of the following values:
+               * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+               * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+               * `FAILED` - Atlas failed to accept the connection your private endpoint.
+               * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         :param pulumi.Input[bool] delete_requested: Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
         :param pulumi.Input[str] endpoint_group_name: (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
         :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
@@ -682,6 +834,10 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
         :param pulumi.Input[str] gcp_status: Status of the interface endpoint for GCP.
                Returns one of the following values:
+               * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+               * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+               * `FAILED` - Atlas failed to accept the connection your private endpoint.
+               * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         :param pulumi.Input[str] interface_endpoint_id: Unique identifier of the interface endpoint.
         :param pulumi.Input[str] private_endpoint_connection_name: Name of the connection for this private endpoint that Atlas generates.
         :param pulumi.Input[str] private_endpoint_ip_address: Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
@@ -718,6 +874,12 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         """
         Status of the interface endpoint for AWS.
         Returns one of the following values:
+        * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+        * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
+        * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
+        * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
+        * `REJECTED` - AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.
+        * `DELETING` - Atlas is removing the interface endpoint from the private endpoint connection.
         """
         return pulumi.get(self, "aws_connection_status")
 
@@ -727,6 +889,10 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         """
         Status of the interface endpoint for AZURE.
         Returns one of the following values:
+        * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+        * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+        * `FAILED` - Atlas failed to accept the connection your private endpoint.
+        * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         """
         return pulumi.get(self, "azure_status")
 
@@ -784,6 +950,10 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         """
         Status of the interface endpoint for GCP.
         Returns one of the following values:
+        * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
+        * `AVAILABLE` - Atlas approved the connection to your private endpoint.
+        * `FAILED` - Atlas failed to accept the connection your private endpoint.
+        * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
         """
         return pulumi.get(self, "gcp_status")
 

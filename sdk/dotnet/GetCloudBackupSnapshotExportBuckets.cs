@@ -19,7 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -28,22 +27,21 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
         ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         IamRoleId = "{IAM_ROLE_ID}",
         ///         BucketName = "example-bucket",
         ///         CloudProvider = "AWS",
-        ///         IamRoleId = "{IAM_ROLE_ID}",
-        ///         ProjectId = "{PROJECT_ID}",
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotExportBuckets = Mongodbatlas.GetCloudBackupSnapshotExportBuckets.Invoke(new()
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportBuckets.Invoke(new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetCloudBackupSnapshotExportBucketsResult> InvokeAsync(GetCloudBackupSnapshotExportBucketsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportBucketsResult>("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", args ?? new GetCloudBackupSnapshotExportBucketsArgs(), options.WithDefaults());
@@ -56,7 +54,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -65,22 +62,21 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
         ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///         IamRoleId = "{IAM_ROLE_ID}",
         ///         BucketName = "example-bucket",
         ///         CloudProvider = "AWS",
-        ///         IamRoleId = "{IAM_ROLE_ID}",
-        ///         ProjectId = "{PROJECT_ID}",
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotExportBuckets = Mongodbatlas.GetCloudBackupSnapshotExportBuckets.Invoke(new()
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportBuckets.Invoke(new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetCloudBackupSnapshotExportBucketsResult> Invoke(GetCloudBackupSnapshotExportBucketsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportBucketsResult>("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", args ?? new GetCloudBackupSnapshotExportBucketsInvokeArgs(), options.WithDefaults());
@@ -155,6 +151,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string ProjectId;
         /// <summary>
         /// Includes CloudProviderSnapshotExportBucket object for each item detailed in the results array section.
+        /// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSnapshotExportBucketsResultResult> Results;
         public readonly int TotalCount;

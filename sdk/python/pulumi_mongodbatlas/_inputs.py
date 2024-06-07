@@ -33,12 +33,14 @@ __all__ = [
     'BackupCompliancePolicyPolicyItemHourlyArgs',
     'BackupCompliancePolicyPolicyItemMonthlyArgs',
     'BackupCompliancePolicyPolicyItemWeeklyArgs',
+    'BackupCompliancePolicyPolicyItemYearlyArgs',
     'CloudBackupScheduleCopySettingArgs',
     'CloudBackupScheduleExportArgs',
     'CloudBackupSchedulePolicyItemDailyArgs',
     'CloudBackupSchedulePolicyItemHourlyArgs',
     'CloudBackupSchedulePolicyItemMonthlyArgs',
     'CloudBackupSchedulePolicyItemWeeklyArgs',
+    'CloudBackupSchedulePolicyItemYearlyArgs',
     'CloudBackupSnapshotExportJobComponentArgs',
     'CloudBackupSnapshotExportJobCustomDataArgs',
     'CloudBackupSnapshotMemberArgs',
@@ -109,11 +111,17 @@ __all__ = [
     'ProjectLimitArgs',
     'ProjectTeamArgs',
     'ProviderAssumeRoleArgs',
+    'PushBasedLogExportTimeoutsArgs',
     'SearchDeploymentSpecArgs',
     'SearchDeploymentTimeoutsArgs',
     'SearchIndexSynonymArgs',
     'ServerlessInstanceLinkArgs',
     'ServerlessInstanceTagArgs',
+    'StreamConnectionAuthenticationArgs',
+    'StreamConnectionDbRoleToExecuteArgs',
+    'StreamConnectionSecurityArgs',
+    'StreamInstanceDataProcessRegionArgs',
+    'StreamInstanceStreamConfigArgs',
     'X509AuthenticationDatabaseUserCertificateArgs',
     'GetAlertConfigurationOutputArgs',
     'GetAlertConfigurationsListOptionArgs',
@@ -139,24 +147,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
                  sample_refresh_interval_bi_connector: Optional[pulumi.Input[int]] = None,
                  sample_size_bi_connector: Optional[pulumi.Input[int]] = None,
                  transaction_lifetime_limit_seconds: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[str] default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
-        :param pulumi.Input[str] default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param pulumi.Input[bool] fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-        :param pulumi.Input[bool] javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
-        :param pulumi.Input[str] minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-               
-               - TLS1_0
-               - TLS1_1
-               - TLS1_2
-        :param pulumi.Input[bool] no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-        :param pulumi.Input[int] oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-               * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-        :param pulumi.Input[int] oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
-        :param pulumi.Input[int] sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-        :param pulumi.Input[int] sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-        :param pulumi.Input[int] transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
-        """
         if default_read_concern is not None:
             pulumi.set(__self__, "default_read_concern", default_read_concern)
         if default_write_concern is not None:
@@ -183,9 +173,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="defaultReadConcern")
     def default_read_concern(self) -> Optional[pulumi.Input[str]]:
-        """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
-        """
         return pulumi.get(self, "default_read_concern")
 
     @default_read_concern.setter
@@ -195,9 +182,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> Optional[pulumi.Input[str]]:
-        """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        """
         return pulumi.get(self, "default_write_concern")
 
     @default_write_concern.setter
@@ -207,9 +191,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
     def fail_index_key_too_long(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-        """
         return pulumi.get(self, "fail_index_key_too_long")
 
     @fail_index_key_too_long.setter
@@ -219,9 +200,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="javascriptEnabled")
     def javascript_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
-        """
         return pulumi.get(self, "javascript_enabled")
 
     @javascript_enabled.setter
@@ -231,13 +209,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="minimumEnabledTlsProtocol")
     def minimum_enabled_tls_protocol(self) -> Optional[pulumi.Input[str]]:
-        """
-        Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-
-        - TLS1_0
-        - TLS1_1
-        - TLS1_2
-        """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
     @minimum_enabled_tls_protocol.setter
@@ -247,9 +218,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="noTableScan")
     def no_table_scan(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-        """
         return pulumi.get(self, "no_table_scan")
 
     @no_table_scan.setter
@@ -259,10 +227,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="oplogMinRetentionHours")
     def oplog_min_retention_hours(self) -> Optional[pulumi.Input[int]]:
-        """
-        Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-        * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-        """
         return pulumi.get(self, "oplog_min_retention_hours")
 
     @oplog_min_retention_hours.setter
@@ -272,9 +236,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="oplogSizeMb")
     def oplog_size_mb(self) -> Optional[pulumi.Input[int]]:
-        """
-        The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
-        """
         return pulumi.get(self, "oplog_size_mb")
 
     @oplog_size_mb.setter
@@ -284,9 +245,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="sampleRefreshIntervalBiConnector")
     def sample_refresh_interval_bi_connector(self) -> Optional[pulumi.Input[int]]:
-        """
-        Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-        """
         return pulumi.get(self, "sample_refresh_interval_bi_connector")
 
     @sample_refresh_interval_bi_connector.setter
@@ -296,9 +254,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="sampleSizeBiConnector")
     def sample_size_bi_connector(self) -> Optional[pulumi.Input[int]]:
-        """
-        Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-        """
         return pulumi.get(self, "sample_size_bi_connector")
 
     @sample_size_bi_connector.setter
@@ -308,9 +263,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
     def transaction_lifetime_limit_seconds(self) -> Optional[pulumi.Input[int]]:
-        """
-        Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
-        """
         return pulumi.get(self, "transaction_lifetime_limit_seconds")
 
     @transaction_lifetime_limit_seconds.setter
@@ -383,6 +335,21 @@ class AdvancedClusterConnectionStringArgs:
                  private_srv: Optional[pulumi.Input[str]] = None,
                  standard: Optional[pulumi.Input[str]] = None,
                  standard_srv: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] private: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointArgs']]] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+               - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+               - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+               - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+               - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+               - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+               - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+               - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+               - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        :param pulumi.Input[str] private_srv: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        :param pulumi.Input[str] standard: Public mongodb:// connection string for this cluster.
+        :param pulumi.Input[str] standard_srv: Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+        """
         if private is not None:
             pulumi.set(__self__, "private", private)
         if private_endpoints is not None:
@@ -397,6 +364,9 @@ class AdvancedClusterConnectionStringArgs:
     @property
     @pulumi.getter
     def private(self) -> Optional[pulumi.Input[str]]:
+        """
+        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        """
         return pulumi.get(self, "private")
 
     @private.setter
@@ -406,6 +376,17 @@ class AdvancedClusterConnectionStringArgs:
     @property
     @pulumi.getter(name="privateEndpoints")
     def private_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointArgs']]]]:
+        """
+        Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+        - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        """
         return pulumi.get(self, "private_endpoints")
 
     @private_endpoints.setter
@@ -415,6 +396,9 @@ class AdvancedClusterConnectionStringArgs:
     @property
     @pulumi.getter(name="privateSrv")
     def private_srv(self) -> Optional[pulumi.Input[str]]:
+        """
+        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        """
         return pulumi.get(self, "private_srv")
 
     @private_srv.setter
@@ -424,6 +408,9 @@ class AdvancedClusterConnectionStringArgs:
     @property
     @pulumi.getter
     def standard(self) -> Optional[pulumi.Input[str]]:
+        """
+        Public mongodb:// connection string for this cluster.
+        """
         return pulumi.get(self, "standard")
 
     @standard.setter
@@ -433,6 +420,9 @@ class AdvancedClusterConnectionStringArgs:
     @property
     @pulumi.getter(name="standardSrv")
     def standard_srv(self) -> Optional[pulumi.Input[str]]:
+        """
+        Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+        """
         return pulumi.get(self, "standard_srv")
 
     @standard_srv.setter
@@ -511,10 +501,6 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
-               The possible values are:
-        """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
         if provider_name is not None:
@@ -534,10 +520,6 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
     @property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Cloud service provider on which the servers are provisioned.
-        The possible values are:
-        """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
@@ -695,6 +677,11 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
                * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
+               
+               - `AWS` - Amazon AWS
+               - `GCP` - Google Cloud Platform
+               - `AZURE` - Microsoft Azure
+               - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         :param pulumi.Input[str] region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs'] analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
@@ -739,6 +726,11 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         """
         Cloud service provider on which the servers are provisioned.
         The possible values are:
+
+        - `AWS` - Amazon AWS
+        - `GCP` - Google Cloud Platform
+        - `AZURE` - Microsoft Azure
+        - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -925,6 +917,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
         :param pulumi.Input[str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
         :param pulumi.Input[int] disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
         :param pulumi.Input[str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param pulumi.Input[int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "instance_size", instance_size)
@@ -964,6 +958,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
     def ebs_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -1074,6 +1070,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
         :param pulumi.Input[str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
         :param pulumi.Input[int] disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
         :param pulumi.Input[str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param pulumi.Input[int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "instance_size", instance_size)
@@ -1113,6 +1111,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
     def ebs_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -1144,6 +1144,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
         :param pulumi.Input[str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
         :param pulumi.Input[int] disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
         :param pulumi.Input[str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param pulumi.Input[int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "instance_size", instance_size)
@@ -1183,6 +1185,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
     def ebs_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -1250,24 +1254,6 @@ class AlertConfigurationMatcherArgs:
                  field_name: pulumi.Input[str],
                  operator: pulumi.Input[str],
                  value: pulumi.Input[str]):
-        """
-        :param pulumi.Input[str] field_name: Name of the field in the target object to match on.
-               
-               | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-               |:----------           |:-------------       |:------                 |
-               | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-               | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-               | `PORT`              | `CLUSTER_NAME`      |                         |
-               | `HOSTNAME_AND_PORT` |                     |                         |
-               | `REPLICA_SET_NAME`  |                     |                         |
-               
-               
-               
-               All other types of alerts do not support matchers.
-        :param pulumi.Input[str] operator: The operator to test the field’s value.
-               Accepted values are:
-        :param pulumi.Input[str] value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-        """
         pulumi.set(__self__, "field_name", field_name)
         pulumi.set(__self__, "operator", operator)
         pulumi.set(__self__, "value", value)
@@ -1275,21 +1261,6 @@ class AlertConfigurationMatcherArgs:
     @property
     @pulumi.getter(name="fieldName")
     def field_name(self) -> pulumi.Input[str]:
-        """
-        Name of the field in the target object to match on.
-
-        | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
-        |:----------           |:-------------       |:------                 |
-        | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
-        | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
-        | `PORT`              | `CLUSTER_NAME`      |                         |
-        | `HOSTNAME_AND_PORT` |                     |                         |
-        | `REPLICA_SET_NAME`  |                     |                         |
-
-
-
-        All other types of alerts do not support matchers.
-        """
         return pulumi.get(self, "field_name")
 
     @field_name.setter
@@ -1299,10 +1270,6 @@ class AlertConfigurationMatcherArgs:
     @property
     @pulumi.getter
     def operator(self) -> pulumi.Input[str]:
-        """
-        The operator to test the field’s value.
-        Accepted values are:
-        """
         return pulumi.get(self, "operator")
 
     @operator.setter
@@ -1312,9 +1279,6 @@ class AlertConfigurationMatcherArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
-        """
-        Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-        """
         return pulumi.get(self, "value")
 
     @value.setter
@@ -1330,15 +1294,6 @@ class AlertConfigurationMetricThresholdConfigArgs:
                  operator: Optional[pulumi.Input[str]] = None,
                  threshold: Optional[pulumi.Input[float]] = None,
                  units: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] metric_name: Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
-        :param pulumi.Input[str] mode: This must be set to AVERAGE. Atlas computes the current metric value as an average.
-        :param pulumi.Input[str] operator: The operator to test the field’s value.
-               Accepted values are:
-        :param pulumi.Input[float] threshold: Threshold value outside of which an alert will be triggered.
-        :param pulumi.Input[str] units: The units for the threshold value. Depends on the type of metric.
-               Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-        """
         pulumi.set(__self__, "metric_name", metric_name)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
@@ -1352,9 +1307,6 @@ class AlertConfigurationMetricThresholdConfigArgs:
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> pulumi.Input[str]:
-        """
-        Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
-        """
         return pulumi.get(self, "metric_name")
 
     @metric_name.setter
@@ -1364,9 +1316,6 @@ class AlertConfigurationMetricThresholdConfigArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        This must be set to AVERAGE. Atlas computes the current metric value as an average.
-        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -1376,10 +1325,6 @@ class AlertConfigurationMetricThresholdConfigArgs:
     @property
     @pulumi.getter
     def operator(self) -> Optional[pulumi.Input[str]]:
-        """
-        The operator to test the field’s value.
-        Accepted values are:
-        """
         return pulumi.get(self, "operator")
 
     @operator.setter
@@ -1389,9 +1334,6 @@ class AlertConfigurationMetricThresholdConfigArgs:
     @property
     @pulumi.getter
     def threshold(self) -> Optional[pulumi.Input[float]]:
-        """
-        Threshold value outside of which an alert will be triggered.
-        """
         return pulumi.get(self, "threshold")
 
     @threshold.setter
@@ -1401,10 +1343,6 @@ class AlertConfigurationMetricThresholdConfigArgs:
     @property
     @pulumi.getter
     def units(self) -> Optional[pulumi.Input[str]]:
-        """
-        The units for the threshold value. Depends on the type of metric.
-        Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-        """
         return pulumi.get(self, "units")
 
     @units.setter
@@ -1423,6 +1361,7 @@ class AlertConfigurationNotificationArgs:
                  delay_min: Optional[pulumi.Input[int]] = None,
                  email_address: Optional[pulumi.Input[str]] = None,
                  email_enabled: Optional[pulumi.Input[bool]] = None,
+                 integration_id: Optional[pulumi.Input[str]] = None,
                  interval_min: Optional[pulumi.Input[int]] = None,
                  microsoft_teams_webhook_url: Optional[pulumi.Input[str]] = None,
                  mobile_number: Optional[pulumi.Input[str]] = None,
@@ -1439,44 +1378,6 @@ class AlertConfigurationNotificationArgs:
                  victor_ops_routing_key: Optional[pulumi.Input[str]] = None,
                  webhook_secret: Optional[pulumi.Input[str]] = None,
                  webhook_url: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] type_name: Type of alert notification.
-               Accepted values are:
-        :param pulumi.Input[str] api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        :param pulumi.Input[str] channel_name: Slack channel name. Required for the SLACK notifications type.
-        :param pulumi.Input[str] datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-        :param pulumi.Input[str] datadog_region: Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
-        :param pulumi.Input[int] delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
-        :param pulumi.Input[str] email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
-        :param pulumi.Input[bool] email_enabled: Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-        :param pulumi.Input[int] interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
-        :param pulumi.Input[str] microsoft_teams_webhook_url: Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
-        :param pulumi.Input[str] mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
-        :param pulumi.Input[str] notifier_id: The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
-        :param pulumi.Input[str] ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        :param pulumi.Input[str] ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-               Accepted values are:
-               
-               | Project roles                   | Organization roles  |
-               |:----------                      |:-----------         |
-               | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-               | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-               | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-               | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-               | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-               | `GROUP_OWNER`                   |                     |
-               | `GROUP_READ_ONLY`               |                     |
-        :param pulumi.Input[str] service_key: PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-        :param pulumi.Input[bool] sms_enabled: Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-        :param pulumi.Input[str] team_id: Unique identifier of a team.
-        :param pulumi.Input[str] team_name: Label for the team that receives this notification.
-        :param pulumi.Input[str] username: Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
-        :param pulumi.Input[str] victor_ops_api_key: VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-        :param pulumi.Input[str] victor_ops_routing_key: VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-        :param pulumi.Input[str] webhook_secret: Optional authentication secret for the `WEBHOOK` notifications type.
-        :param pulumi.Input[str] webhook_url: Target URL  for the `WEBHOOK` notifications type.
-        """
         pulumi.set(__self__, "type_name", type_name)
         if api_token is not None:
             pulumi.set(__self__, "api_token", api_token)
@@ -1492,6 +1393,8 @@ class AlertConfigurationNotificationArgs:
             pulumi.set(__self__, "email_address", email_address)
         if email_enabled is not None:
             pulumi.set(__self__, "email_enabled", email_enabled)
+        if integration_id is not None:
+            pulumi.set(__self__, "integration_id", integration_id)
         if interval_min is not None:
             pulumi.set(__self__, "interval_min", interval_min)
         if microsoft_teams_webhook_url is not None:
@@ -1528,10 +1431,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="typeName")
     def type_name(self) -> pulumi.Input[str]:
-        """
-        Type of alert notification.
-        Accepted values are:
-        """
         return pulumi.get(self, "type_name")
 
     @type_name.setter
@@ -1541,9 +1440,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> Optional[pulumi.Input[str]]:
-        """
-        Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
@@ -1553,9 +1449,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="channelName")
     def channel_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Slack channel name. Required for the SLACK notifications type.
-        """
         return pulumi.get(self, "channel_name")
 
     @channel_name.setter
@@ -1565,9 +1458,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="datadogApiKey")
     def datadog_api_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-        """
         return pulumi.get(self, "datadog_api_key")
 
     @datadog_api_key.setter
@@ -1577,9 +1467,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> Optional[pulumi.Input[str]]:
-        """
-        Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Alert-Configurations/operation/createAlertConfiguration) for more details. The default Datadog region is US.
-        """
         return pulumi.get(self, "datadog_region")
 
     @datadog_region.setter
@@ -1589,9 +1476,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="delayMin")
     def delay_min(self) -> Optional[pulumi.Input[int]]:
-        """
-        Number of minutes to wait after an alert condition is detected before sending out the first notification.
-        """
         return pulumi.get(self, "delay_min")
 
     @delay_min.setter
@@ -1601,9 +1485,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="emailAddress")
     def email_address(self) -> Optional[pulumi.Input[str]]:
-        """
-        Email address to which alert notifications are sent. Required for the EMAIL notifications type.
-        """
         return pulumi.get(self, "email_address")
 
     @email_address.setter
@@ -1613,9 +1494,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="emailEnabled")
     def email_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-        """
         return pulumi.get(self, "email_enabled")
 
     @email_enabled.setter
@@ -1623,11 +1501,17 @@ class AlertConfigurationNotificationArgs:
         pulumi.set(self, "email_enabled", value)
 
     @property
+    @pulumi.getter(name="integrationId")
+    def integration_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "integration_id")
+
+    @integration_id.setter
+    def integration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "integration_id", value)
+
+    @property
     @pulumi.getter(name="intervalMin")
     def interval_min(self) -> Optional[pulumi.Input[int]]:
-        """
-        Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
-        """
         return pulumi.get(self, "interval_min")
 
     @interval_min.setter
@@ -1637,9 +1521,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="microsoftTeamsWebhookUrl")
     def microsoft_teams_webhook_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
-        """
         return pulumi.get(self, "microsoft_teams_webhook_url")
 
     @microsoft_teams_webhook_url.setter
@@ -1649,9 +1530,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="mobileNumber")
     def mobile_number(self) -> Optional[pulumi.Input[str]]:
-        """
-        Mobile number to which alert notifications are sent. Required for the SMS notifications type.
-        """
         return pulumi.get(self, "mobile_number")
 
     @mobile_number.setter
@@ -1661,9 +1539,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="notifierId")
     def notifier_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The notifier id is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
-        """
         return pulumi.get(self, "notifier_id")
 
     @notifier_id.setter
@@ -1673,9 +1548,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="opsGenieApiKey")
     def ops_genie_api_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        """
         return pulumi.get(self, "ops_genie_api_key")
 
     @ops_genie_api_key.setter
@@ -1685,9 +1557,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="opsGenieRegion")
     def ops_genie_region(self) -> Optional[pulumi.Input[str]]:
-        """
-        Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
-        """
         return pulumi.get(self, "ops_genie_region")
 
     @ops_genie_region.setter
@@ -1697,20 +1566,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-        Accepted values are:
-
-        | Project roles                   | Organization roles  |
-        |:----------                      |:-----------         |
-        | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-        | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-        | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-        | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-        | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-        | `GROUP_OWNER`                   |                     |
-        | `GROUP_READ_ONLY`               |                     |
-        """
         return pulumi.get(self, "roles")
 
     @roles.setter
@@ -1720,9 +1575,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="serviceKey")
     def service_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-        """
         return pulumi.get(self, "service_key")
 
     @service_key.setter
@@ -1732,9 +1584,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="smsEnabled")
     def sms_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
-        """
         return pulumi.get(self, "sms_enabled")
 
     @sms_enabled.setter
@@ -1744,9 +1593,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Unique identifier of a team.
-        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -1756,9 +1602,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="teamName")
     def team_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Label for the team that receives this notification.
-        """
         return pulumi.get(self, "team_name")
 
     @team_name.setter
@@ -1768,9 +1611,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
-        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -1780,9 +1620,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="victorOpsApiKey")
     def victor_ops_api_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-        """
         return pulumi.get(self, "victor_ops_api_key")
 
     @victor_ops_api_key.setter
@@ -1792,9 +1629,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="victorOpsRoutingKey")
     def victor_ops_routing_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-        """
         return pulumi.get(self, "victor_ops_routing_key")
 
     @victor_ops_routing_key.setter
@@ -1804,9 +1638,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="webhookSecret")
     def webhook_secret(self) -> Optional[pulumi.Input[str]]:
-        """
-        Optional authentication secret for the `WEBHOOK` notifications type.
-        """
         return pulumi.get(self, "webhook_secret")
 
     @webhook_secret.setter
@@ -1816,9 +1647,6 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter(name="webhookUrl")
     def webhook_url(self) -> Optional[pulumi.Input[str]]:
-        """
-        Target URL  for the `WEBHOOK` notifications type.
-        """
         return pulumi.get(self, "webhook_url")
 
     @webhook_url.setter
@@ -1832,13 +1660,6 @@ class AlertConfigurationThresholdConfigArgs:
                  operator: Optional[pulumi.Input[str]] = None,
                  threshold: Optional[pulumi.Input[float]] = None,
                  units: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] operator: The operator to test the field’s value.
-               Accepted values are:
-        :param pulumi.Input[float] threshold: Threshold value outside of which an alert will be triggered.
-        :param pulumi.Input[str] units: The units for the threshold value. Depends on the type of metric.
-               Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-        """
         if operator is not None:
             pulumi.set(__self__, "operator", operator)
         if threshold is not None:
@@ -1849,10 +1670,6 @@ class AlertConfigurationThresholdConfigArgs:
     @property
     @pulumi.getter
     def operator(self) -> Optional[pulumi.Input[str]]:
-        """
-        The operator to test the field’s value.
-        Accepted values are:
-        """
         return pulumi.get(self, "operator")
 
     @operator.setter
@@ -1862,9 +1679,6 @@ class AlertConfigurationThresholdConfigArgs:
     @property
     @pulumi.getter
     def threshold(self) -> Optional[pulumi.Input[float]]:
-        """
-        Threshold value outside of which an alert will be triggered.
-        """
         return pulumi.get(self, "threshold")
 
     @threshold.setter
@@ -1874,10 +1688,6 @@ class AlertConfigurationThresholdConfigArgs:
     @property
     @pulumi.getter
     def units(self) -> Optional[pulumi.Input[str]]:
-        """
-        The units for the threshold value. Depends on the type of metric.
-        Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
-        """
         return pulumi.get(self, "units")
 
     @units.setter
@@ -1894,10 +1704,10 @@ class BackupCompliancePolicyOnDemandPolicyItemArgs:
                  frequency_type: Optional[pulumi.Input[str]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
@@ -1912,7 +1722,7 @@ class BackupCompliancePolicyOnDemandPolicyItemArgs:
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> pulumi.Input[int]:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -1924,7 +1734,7 @@ class BackupCompliancePolicyOnDemandPolicyItemArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -1936,7 +1746,7 @@ class BackupCompliancePolicyOnDemandPolicyItemArgs:
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> pulumi.Input[int]:
         """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
         """
         return pulumi.get(self, "retention_value")
 
@@ -1948,7 +1758,7 @@ class BackupCompliancePolicyOnDemandPolicyItemArgs:
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -1978,10 +1788,10 @@ class BackupCompliancePolicyPolicyItemDailyArgs:
                  frequency_type: Optional[pulumi.Input[str]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
@@ -1996,7 +1806,7 @@ class BackupCompliancePolicyPolicyItemDailyArgs:
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> pulumi.Input[int]:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -2008,7 +1818,7 @@ class BackupCompliancePolicyPolicyItemDailyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2020,7 +1830,7 @@ class BackupCompliancePolicyPolicyItemDailyArgs:
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> pulumi.Input[int]:
         """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
         """
         return pulumi.get(self, "retention_value")
 
@@ -2032,7 +1842,7 @@ class BackupCompliancePolicyPolicyItemDailyArgs:
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -2062,10 +1872,10 @@ class BackupCompliancePolicyPolicyItemHourlyArgs:
                  frequency_type: Optional[pulumi.Input[str]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
@@ -2080,7 +1890,7 @@ class BackupCompliancePolicyPolicyItemHourlyArgs:
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> pulumi.Input[int]:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -2092,7 +1902,7 @@ class BackupCompliancePolicyPolicyItemHourlyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2104,7 +1914,7 @@ class BackupCompliancePolicyPolicyItemHourlyArgs:
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> pulumi.Input[int]:
         """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
         """
         return pulumi.get(self, "retention_value")
 
@@ -2116,7 +1926,7 @@ class BackupCompliancePolicyPolicyItemHourlyArgs:
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -2146,10 +1956,10 @@ class BackupCompliancePolicyPolicyItemMonthlyArgs:
                  frequency_type: Optional[pulumi.Input[str]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
@@ -2164,7 +1974,7 @@ class BackupCompliancePolicyPolicyItemMonthlyArgs:
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> pulumi.Input[int]:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -2176,7 +1986,7 @@ class BackupCompliancePolicyPolicyItemMonthlyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2188,7 +1998,7 @@ class BackupCompliancePolicyPolicyItemMonthlyArgs:
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> pulumi.Input[int]:
         """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
         """
         return pulumi.get(self, "retention_value")
 
@@ -2200,7 +2010,7 @@ class BackupCompliancePolicyPolicyItemMonthlyArgs:
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -2230,10 +2040,10 @@ class BackupCompliancePolicyPolicyItemWeeklyArgs:
                  frequency_type: Optional[pulumi.Input[str]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
-        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
-        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
@@ -2248,7 +2058,7 @@ class BackupCompliancePolicyPolicyItemWeeklyArgs:
     @pulumi.getter(name="frequencyInterval")
     def frequency_interval(self) -> pulumi.Input[int]:
         """
-        Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         """
         return pulumi.get(self, "frequency_interval")
 
@@ -2260,7 +2070,7 @@ class BackupCompliancePolicyPolicyItemWeeklyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2272,7 +2082,7 @@ class BackupCompliancePolicyPolicyItemWeeklyArgs:
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> pulumi.Input[int]:
         """
-        Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
         """
         return pulumi.get(self, "retention_value")
 
@@ -2284,7 +2094,91 @@ class BackupCompliancePolicyPolicyItemWeeklyArgs:
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        """
+        return pulumi.get(self, "frequency_type")
+
+    @frequency_type.setter
+    def frequency_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the backup policy item.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+
+@pulumi.input_type
+class BackupCompliancePolicyPolicyItemYearlyArgs:
+    def __init__(__self__, *,
+                 frequency_interval: pulumi.Input[int],
+                 retention_unit: pulumi.Input[str],
+                 retention_value: pulumi.Input[int],
+                 frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[str] id: Unique identifier of the backup policy item.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> pulumi.Input[int]:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @frequency_interval.setter
+    def frequency_interval(self, value: pulumi.Input[int]):
+        pulumi.set(self, "frequency_interval", value)
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> pulumi.Input[str]:
+        """
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @retention_unit.setter
+    def retention_unit(self, value: pulumi.Input[str]):
+        pulumi.set(self, "retention_unit", value)
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> pulumi.Input[int]:
+        """
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @retention_value.setter
+    def retention_value(self, value: pulumi.Input[int]):
+        pulumi.set(self, "retention_value", value)
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -2313,13 +2207,6 @@ class CloudBackupScheduleCopySettingArgs:
                  region_name: Optional[pulumi.Input[str]] = None,
                  replication_spec_id: Optional[pulumi.Input[str]] = None,
                  should_copy_oplogs: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[str] cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
-        :param pulumi.Input[str] region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        :param pulumi.Input[str] replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
-        :param pulumi.Input[bool] should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
-        """
         if cloud_provider is not None:
             pulumi.set(__self__, "cloud_provider", cloud_provider)
         if frequencies is not None:
@@ -2334,9 +2221,6 @@ class CloudBackupScheduleCopySettingArgs:
     @property
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> Optional[pulumi.Input[str]]:
-        """
-        Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
-        """
         return pulumi.get(self, "cloud_provider")
 
     @cloud_provider.setter
@@ -2346,9 +2230,6 @@ class CloudBackupScheduleCopySettingArgs:
     @property
     @pulumi.getter
     def frequencies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
-        """
         return pulumi.get(self, "frequencies")
 
     @frequencies.setter
@@ -2358,9 +2239,6 @@ class CloudBackupScheduleCopySettingArgs:
     @property
     @pulumi.getter(name="regionName")
     def region_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        """
         return pulumi.get(self, "region_name")
 
     @region_name.setter
@@ -2370,9 +2248,6 @@ class CloudBackupScheduleCopySettingArgs:
     @property
     @pulumi.getter(name="replicationSpecId")
     def replication_spec_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
-        """
         return pulumi.get(self, "replication_spec_id")
 
     @replication_spec_id.setter
@@ -2382,9 +2257,6 @@ class CloudBackupScheduleCopySettingArgs:
     @property
     @pulumi.getter(name="shouldCopyOplogs")
     def should_copy_oplogs(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
-        """
         return pulumi.get(self, "should_copy_oplogs")
 
     @should_copy_oplogs.setter
@@ -2441,7 +2313,7 @@ class CloudBackupSchedulePolicyItemDailyArgs:
                  id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
         :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
@@ -2470,7 +2342,7 @@ class CloudBackupSchedulePolicyItemDailyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2525,7 +2397,7 @@ class CloudBackupSchedulePolicyItemHourlyArgs:
                  id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`.
         :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
@@ -2554,7 +2426,7 @@ class CloudBackupSchedulePolicyItemHourlyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2609,7 +2481,7 @@ class CloudBackupSchedulePolicyItemMonthlyArgs:
                  id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
         :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
@@ -2638,7 +2510,7 @@ class CloudBackupSchedulePolicyItemMonthlyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2693,7 +2565,7 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
                  id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (weekly in this case). The supported values for weekly policies are `1` through `7`, where `1` represents Monday and `7` represents Sunday.
-        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, or `months`.
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
         :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         :param pulumi.Input[str] id: Unique identifier of the backup policy item.
@@ -2722,7 +2594,7 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> pulumi.Input[str]:
         """
-        Scope of the backup policy item: `days`, `weeks`, or `months`.
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -2747,6 +2619,90 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
         """
         Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        """
+        return pulumi.get(self, "frequency_type")
+
+    @frequency_type.setter
+    def frequency_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the backup policy item.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+
+@pulumi.input_type
+class CloudBackupSchedulePolicyItemYearlyArgs:
+    def __init__(__self__, *,
+                 frequency_interval: pulumi.Input[int],
+                 retention_unit: pulumi.Input[str],
+                 retention_value: pulumi.Input[int],
+                 frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param pulumi.Input[str] id: Unique identifier of the backup policy item.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> pulumi.Input[int]:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @frequency_interval.setter
+    def frequency_interval(self, value: pulumi.Input[int]):
+        pulumi.set(self, "frequency_interval", value)
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> pulumi.Input[str]:
+        """
+        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @retention_unit.setter
+    def retention_unit(self, value: pulumi.Input[str]):
+        pulumi.set(self, "retention_unit", value)
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> pulumi.Input[int]:
+        """
+        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @retention_value.setter
+    def retention_value(self, value: pulumi.Input[int]):
+        pulumi.set(self, "retention_value", value)
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -3173,24 +3129,6 @@ class ClusterAdvancedConfigurationArgs:
                  sample_refresh_interval_bi_connector: Optional[pulumi.Input[int]] = None,
                  sample_size_bi_connector: Optional[pulumi.Input[int]] = None,
                  transaction_lifetime_limit_seconds: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[str] default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
-        :param pulumi.Input[str] default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param pulumi.Input[bool] fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-        :param pulumi.Input[bool] javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
-        :param pulumi.Input[str] minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-               
-               - TLS1_0
-               - TLS1_1
-               - TLS1_2
-        :param pulumi.Input[bool] no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-        :param pulumi.Input[int] oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-               * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-        :param pulumi.Input[int] oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
-        :param pulumi.Input[int] sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-        :param pulumi.Input[int] sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-        :param pulumi.Input[int] transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
-        """
         if default_read_concern is not None:
             pulumi.set(__self__, "default_read_concern", default_read_concern)
         if default_write_concern is not None:
@@ -3217,9 +3155,6 @@ class ClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="defaultReadConcern")
     def default_read_concern(self) -> Optional[pulumi.Input[str]]:
-        """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
-        """
         return pulumi.get(self, "default_read_concern")
 
     @default_read_concern.setter
@@ -3229,9 +3164,6 @@ class ClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> Optional[pulumi.Input[str]]:
-        """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        """
         return pulumi.get(self, "default_write_concern")
 
     @default_write_concern.setter
@@ -3241,9 +3173,6 @@ class ClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
     def fail_index_key_too_long(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-        """
         return pulumi.get(self, "fail_index_key_too_long")
 
     @fail_index_key_too_long.setter
@@ -3253,9 +3182,6 @@ class ClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="javascriptEnabled")
     def javascript_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
-        """
         return pulumi.get(self, "javascript_enabled")
 
     @javascript_enabled.setter
@@ -3265,13 +3191,6 @@ class ClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="minimumEnabledTlsProtocol")
     def minimum_enabled_tls_protocol(self) -> Optional[pulumi.Input[str]]:
-        """
-        Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
-
-        - TLS1_0
-        - TLS1_1
-        - TLS1_2
-        """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
     @minimum_enabled_tls_protocol.setter
@@ -3281,9 +3200,6 @@ class ClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="noTableScan")
     def no_table_scan(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-        """
         return pulumi.get(self, "no_table_scan")
 
     @no_table_scan.setter
@@ -3293,10 +3209,6 @@ class ClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="oplogMinRetentionHours")
     def oplog_min_retention_hours(self) -> Optional[pulumi.Input[int]]:
-        """
-        Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-        * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-        """
         return pulumi.get(self, "oplog_min_retention_hours")
 
     @oplog_min_retention_hours.setter
@@ -3306,9 +3218,6 @@ class ClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="oplogSizeMb")
     def oplog_size_mb(self) -> Optional[pulumi.Input[int]]:
-        """
-        The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
-        """
         return pulumi.get(self, "oplog_size_mb")
 
     @oplog_size_mb.setter
@@ -3318,9 +3227,6 @@ class ClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="sampleRefreshIntervalBiConnector")
     def sample_refresh_interval_bi_connector(self) -> Optional[pulumi.Input[int]]:
-        """
-        Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-        """
         return pulumi.get(self, "sample_refresh_interval_bi_connector")
 
     @sample_refresh_interval_bi_connector.setter
@@ -3330,9 +3236,6 @@ class ClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="sampleSizeBiConnector")
     def sample_size_bi_connector(self) -> Optional[pulumi.Input[int]]:
-        """
-        Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-        """
         return pulumi.get(self, "sample_size_bi_connector")
 
     @sample_size_bi_connector.setter
@@ -3342,9 +3245,6 @@ class ClusterAdvancedConfigurationArgs:
     @property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
     def transaction_lifetime_limit_seconds(self) -> Optional[pulumi.Input[int]]:
-        """
-        Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
-        """
         return pulumi.get(self, "transaction_lifetime_limit_seconds")
 
     @transaction_lifetime_limit_seconds.setter
@@ -3357,19 +3257,6 @@ class ClusterBiConnectorConfigArgs:
     def __init__(__self__, *,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  read_preference: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[bool] enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-               *
-               - Set to `true` to enable BI Connector for Atlas.
-               - Set to `false` to disable BI Connector for Atlas.
-        :param pulumi.Input[str] read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-               
-               - Set to "primary" to have BI Connector for Atlas read from the primary.
-               
-               - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
-               
-               - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
-        """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if read_preference is not None:
@@ -3378,12 +3265,6 @@ class ClusterBiConnectorConfigArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-        *
-        - Set to `true` to enable BI Connector for Atlas.
-        - Set to `false` to disable BI Connector for Atlas.
-        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -3393,15 +3274,6 @@ class ClusterBiConnectorConfigArgs:
     @property
     @pulumi.getter(name="readPreference")
     def read_preference(self) -> Optional[pulumi.Input[str]]:
-        """
-        Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-
-        - Set to "primary" to have BI Connector for Atlas read from the primary.
-
-        - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster.
-
-        - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
-        """
         return pulumi.get(self, "read_preference")
 
     @read_preference.setter
@@ -3417,6 +3289,21 @@ class ClusterConnectionStringArgs:
                  private_srv: Optional[pulumi.Input[str]] = None,
                  standard: Optional[pulumi.Input[str]] = None,
                  standard_srv: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] private: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+               - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+               - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+               - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+               - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+               - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+               - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+               - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+               - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        :param pulumi.Input[str] private_srv: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        :param pulumi.Input[str] standard: Public mongodb:// connection string for this cluster.
+        :param pulumi.Input[str] standard_srv: Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+        """
         if private is not None:
             pulumi.set(__self__, "private", private)
         if private_endpoints is not None:
@@ -3431,6 +3318,9 @@ class ClusterConnectionStringArgs:
     @property
     @pulumi.getter
     def private(self) -> Optional[pulumi.Input[str]]:
+        """
+        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        """
         return pulumi.get(self, "private")
 
     @private.setter
@@ -3440,6 +3330,17 @@ class ClusterConnectionStringArgs:
     @property
     @pulumi.getter(name="privateEndpoints")
     def private_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]]:
+        """
+        Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[n].connection_string`
+        - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        """
         return pulumi.get(self, "private_endpoints")
 
     @private_endpoints.setter
@@ -3449,6 +3350,9 @@ class ClusterConnectionStringArgs:
     @property
     @pulumi.getter(name="privateSrv")
     def private_srv(self) -> Optional[pulumi.Input[str]]:
+        """
+        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        """
         return pulumi.get(self, "private_srv")
 
     @private_srv.setter
@@ -3458,6 +3362,9 @@ class ClusterConnectionStringArgs:
     @property
     @pulumi.getter
     def standard(self) -> Optional[pulumi.Input[str]]:
+        """
+        Public mongodb:// connection string for this cluster.
+        """
         return pulumi.get(self, "standard")
 
     @standard.setter
@@ -3467,6 +3374,9 @@ class ClusterConnectionStringArgs:
     @property
     @pulumi.getter(name="standardSrv")
     def standard_srv(self) -> Optional[pulumi.Input[str]]:
+        """
+        Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
+        """
         return pulumi.get(self, "standard_srv")
 
     @standard_srv.setter
@@ -3549,6 +3459,11 @@ class ClusterConnectionStringPrivateEndpointEndpointArgs:
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
                
                The possible values are:
+               
+               - `AWS` - Amazon AWS
+               - `GCP` - Google Cloud Platform
+               - `AZURE` - Microsoft Azure
+               - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -3573,6 +3488,11 @@ class ClusterConnectionStringPrivateEndpointEndpointArgs:
         Cloud service provider on which the servers are provisioned.
 
         The possible values are:
+
+        - `AWS` - Amazon AWS
+        - `GCP` - Google Cloud Platform
+        - `AZURE` - Microsoft Azure
+        - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.
         """
         return pulumi.get(self, "provider_name")
 
@@ -3641,8 +3561,12 @@ class ClusterOutageSimulationOutageFilterArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] cloud_provider: The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+               * `AWS`
+               * `GCP`
+               * `AZURE`
         :param pulumi.Input[str] region_name: The Atlas name of the region to undergo an outage simulation.
         :param pulumi.Input[str] type: The type of cluster outage simulation. Following values are supported:
+               * `REGION` - Simulates a cluster outage for a region
         """
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         pulumi.set(__self__, "region_name", region_name)
@@ -3654,6 +3578,9 @@ class ClusterOutageSimulationOutageFilterArgs:
     def cloud_provider(self) -> pulumi.Input[str]:
         """
         The cloud provider of the region that undergoes the outage simulation. Following values are supported:
+        * `AWS`
+        * `GCP`
+        * `AZURE`
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -3678,6 +3605,7 @@ class ClusterOutageSimulationOutageFilterArgs:
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         The type of cluster outage simulation. Following values are supported:
+        * `REGION` - Simulates a cluster outage for a region
         """
         return pulumi.get(self, "type")
 
@@ -3695,12 +3623,6 @@ class ClusterReplicationSpecArgs:
                  zone_name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
-        :param pulumi.Input[str] id: Unique identifer of the replication document for a zone in a Global Cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]] regions_configs: Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
-        :param pulumi.Input[str] zone_name: Name for the zone in a Global Cluster.
-               
-               
-               **Region Config**
         """
         pulumi.set(__self__, "num_shards", num_shards)
         if id is not None:
@@ -3725,9 +3647,6 @@ class ClusterReplicationSpecArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Unique identifer of the replication document for a zone in a Global Cluster.
-        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -3737,9 +3656,6 @@ class ClusterReplicationSpecArgs:
     @property
     @pulumi.getter(name="regionsConfigs")
     def regions_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]]]:
-        """
-        Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
-        """
         return pulumi.get(self, "regions_configs")
 
     @regions_configs.setter
@@ -3749,12 +3665,6 @@ class ClusterReplicationSpecArgs:
     @property
     @pulumi.getter(name="zoneName")
     def zone_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name for the zone in a Global Cluster.
-
-
-        **Region Config**
-        """
         return pulumi.get(self, "zone_name")
 
     @zone_name.setter
@@ -3770,19 +3680,6 @@ class ClusterReplicationSpecRegionsConfigArgs:
                  electable_nodes: Optional[pulumi.Input[int]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  read_only_nodes: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[str] region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-        :param pulumi.Input[int] analytics_nodes: The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
-        :param pulumi.Input[int] electable_nodes: Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
-               * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
-               * Specify 0 if you do not want any electable nodes in the region.
-               * You cannot create electable nodes in a region if `priority` is 0.
-        :param pulumi.Input[int] priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
-               * For regions where `electable_nodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
-               * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
-               * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
-        :param pulumi.Input[int] read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
-        """
         pulumi.set(__self__, "region_name", region_name)
         if analytics_nodes is not None:
             pulumi.set(__self__, "analytics_nodes", analytics_nodes)
@@ -3796,9 +3693,6 @@ class ClusterReplicationSpecRegionsConfigArgs:
     @property
     @pulumi.getter(name="regionName")
     def region_name(self) -> pulumi.Input[str]:
-        """
-        Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-        """
         return pulumi.get(self, "region_name")
 
     @region_name.setter
@@ -3808,9 +3702,6 @@ class ClusterReplicationSpecRegionsConfigArgs:
     @property
     @pulumi.getter(name="analyticsNodes")
     def analytics_nodes(self) -> Optional[pulumi.Input[int]]:
-        """
-        The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
-        """
         return pulumi.get(self, "analytics_nodes")
 
     @analytics_nodes.setter
@@ -3820,12 +3711,6 @@ class ClusterReplicationSpecRegionsConfigArgs:
     @property
     @pulumi.getter(name="electableNodes")
     def electable_nodes(self) -> Optional[pulumi.Input[int]]:
-        """
-        Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
-        * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
-        * Specify 0 if you do not want any electable nodes in the region.
-        * You cannot create electable nodes in a region if `priority` is 0.
-        """
         return pulumi.get(self, "electable_nodes")
 
     @electable_nodes.setter
@@ -3835,12 +3720,6 @@ class ClusterReplicationSpecRegionsConfigArgs:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
-        """
-        Election priority of the region. For regions with only read-only nodes, set this value to 0.
-        * For regions where `electable_nodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
-        * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
-        * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
-        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -3850,9 +3729,6 @@ class ClusterReplicationSpecRegionsConfigArgs:
     @property
     @pulumi.getter(name="readOnlyNodes")
     def read_only_nodes(self) -> Optional[pulumi.Input[int]]:
-        """
-        Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
-        """
         return pulumi.get(self, "read_only_nodes")
 
     @read_only_nodes.setter
@@ -3972,9 +3848,6 @@ class ClusterSnapshotBackupPolicyPolicyArgs:
     def __init__(__self__, *,
                  id: Optional[pulumi.Input[str]] = None,
                  policy_items: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyPolicyItemArgs']]]] = None):
-        """
-        :param pulumi.Input[str] id: Unique identifer of the replication document for a zone in a Global Cluster.
-        """
         if id is not None:
             pulumi.set(__self__, "id", id)
         if policy_items is not None:
@@ -3983,9 +3856,6 @@ class ClusterSnapshotBackupPolicyPolicyArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Unique identifer of the replication document for a zone in a Global Cluster.
-        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -4010,9 +3880,6 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs:
                  id: Optional[pulumi.Input[str]] = None,
                  retention_unit: Optional[pulumi.Input[str]] = None,
                  retention_value: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[str] id: Unique identifer of the replication document for a zone in a Global Cluster.
-        """
         if frequency_interval is not None:
             pulumi.set(__self__, "frequency_interval", frequency_interval)
         if frequency_type is not None:
@@ -4045,9 +3912,6 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Unique identifer of the replication document for a zone in a Global Cluster.
-        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -4183,11 +4047,6 @@ class CustomDbRoleActionResourceArgs:
                  cluster: Optional[pulumi.Input[bool]] = None,
                  collection_name: Optional[pulumi.Input[str]] = None,
                  database_name: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] database_name: Database on which the inherited role is granted.
-               
-               > **NOTE** This value should be admin for all roles except read and readWrite.
-        """
         if cluster is not None:
             pulumi.set(__self__, "cluster", cluster)
         if collection_name is not None:
@@ -4216,11 +4075,6 @@ class CustomDbRoleActionResourceArgs:
     @property
     @pulumi.getter(name="databaseName")
     def database_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Database on which the inherited role is granted.
-
-        > **NOTE** This value should be admin for all roles except read and readWrite.
-        """
         return pulumi.get(self, "database_name")
 
     @database_name.setter
@@ -5245,11 +5099,17 @@ class EventTriggerEventProcessorsAwsEventbridgeArgs:
 class FederatedDatabaseInstanceCloudProviderConfigArgs:
     def __init__(__self__, *,
                  aws: pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']):
+        """
+        :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs'] aws: Name of the cloud service that hosts the data lake's data stores.
+        """
         pulumi.set(__self__, "aws", aws)
 
     @property
     @pulumi.getter
     def aws(self) -> pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']:
+        """
+        Name of the cloud service that hosts the data lake's data stores.
+        """
         return pulumi.get(self, "aws")
 
     @aws.setter
@@ -5266,9 +5126,6 @@ class FederatedDatabaseInstanceCloudProviderConfigAwsArgs:
                  iam_assumed_role_arn: Optional[pulumi.Input[str]] = None,
                  iam_user_arn: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] role_id: Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
-        :param pulumi.Input[str] test_s3_bucket: Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-               ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
         :param pulumi.Input[str] external_id: Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
         :param pulumi.Input[str] iam_assumed_role_arn: Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
                * `s3:GetObject`
@@ -5288,9 +5145,6 @@ class FederatedDatabaseInstanceCloudProviderConfigAwsArgs:
     @property
     @pulumi.getter(name="roleId")
     def role_id(self) -> pulumi.Input[str]:
-        """
-        Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
-        """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
@@ -5300,10 +5154,6 @@ class FederatedDatabaseInstanceCloudProviderConfigAwsArgs:
     @property
     @pulumi.getter(name="testS3Bucket")
     def test_s3_bucket(self) -> pulumi.Input[str]:
-        """
-        Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
-        ### `data_process_region` - (Optional) The cloud provider region to which the Federated Instance routes client connections for data processing.
-        """
         return pulumi.get(self, "test_s3_bucket")
 
     @test_s3_bucket.setter
@@ -5355,19 +5205,12 @@ class FederatedDatabaseInstanceDataProcessRegionArgs:
     def __init__(__self__, *,
                  cloud_provider: pulumi.Input[str],
                  region: pulumi.Input[str]):
-        """
-        :param pulumi.Input[str] cloud_provider: Name of the cloud service provider. Atlas Federated Database only supports AWS.
-        :param pulumi.Input[str] region: Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-        """
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> pulumi.Input[str]:
-        """
-        Name of the cloud service provider. Atlas Federated Database only supports AWS.
-        """
         return pulumi.get(self, "cloud_provider")
 
     @cloud_provider.setter
@@ -5377,9 +5220,6 @@ class FederatedDatabaseInstanceDataProcessRegionArgs:
     @property
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
-        """
-        Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -5396,8 +5236,6 @@ class FederatedDatabaseInstanceStorageDatabaseArgs:
                  views: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         if collections is not None:
             pulumi.set(__self__, "collections", collections)
@@ -5431,8 +5269,6 @@ class FederatedDatabaseInstanceStorageDatabaseArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5457,8 +5293,6 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         if data_sources is not None:
             pulumi.set(__self__, "data_sources", data_sources)
@@ -5479,8 +5313,6 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5634,8 +5466,6 @@ class FederatedDatabaseInstanceStorageDatabaseViewArgs:
                  source: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -5649,8 +5479,6 @@ class FederatedDatabaseInstanceStorageDatabaseViewArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5698,10 +5526,7 @@ class FederatedDatabaseInstanceStorageStoreArgs:
                  urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         :param pulumi.Input[str] project_id: The unique ID for the project to create a Federated Database Instance.
-        :param pulumi.Input[str] region: Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         """
         if additional_storage_classes is not None:
             pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
@@ -5710,8 +5535,8 @@ class FederatedDatabaseInstanceStorageStoreArgs:
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
         if cluster_id is not None:
-            warnings.warn("""this parameter is deprecated and will be removed by September 2024""", DeprecationWarning)
-            pulumi.log.warn("""cluster_id is deprecated: this parameter is deprecated and will be removed by September 2024""")
+            warnings.warn("""This parameter is deprecated and will be removed by September 2024.""", DeprecationWarning)
+            pulumi.log.warn("""cluster_id is deprecated: This parameter is deprecated and will be removed by September 2024.""")
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
         if cluster_name is not None:
@@ -5769,8 +5594,8 @@ class FederatedDatabaseInstanceStorageStoreArgs:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
-        warnings.warn("""this parameter is deprecated and will be removed by September 2024""", DeprecationWarning)
-        pulumi.log.warn("""cluster_id is deprecated: this parameter is deprecated and will be removed by September 2024""")
+        warnings.warn("""This parameter is deprecated and will be removed by September 2024.""", DeprecationWarning)
+        pulumi.log.warn("""cluster_id is deprecated: This parameter is deprecated and will be removed by September 2024.""")
 
         return pulumi.get(self, "cluster_id")
 
@@ -5819,8 +5644,6 @@ class FederatedDatabaseInstanceStorageStoreArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -5879,9 +5702,6 @@ class FederatedDatabaseInstanceStorageStoreArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -5962,8 +5782,6 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs:
                  value: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: Name of the Atlas Federated Database Instance.
-               ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-               #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -5975,8 +5793,6 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Atlas Federated Database Instance.
-        ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-        #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
         """
         return pulumi.get(self, "name")
 
@@ -6056,10 +5872,6 @@ class GlobalClusterConfigCustomZoneMappingArgs:
     def __init__(__self__, *,
                  location: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] location: The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
-        :param pulumi.Input[str] zone: The name of the zone in your Global Cluster that you want to map to location.
-        """
         if location is not None:
             pulumi.set(__self__, "location", location)
         if zone is not None:
@@ -6068,9 +5880,6 @@ class GlobalClusterConfigCustomZoneMappingArgs:
     @property
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
-        """
         return pulumi.get(self, "location")
 
     @location.setter
@@ -6080,9 +5889,6 @@ class GlobalClusterConfigCustomZoneMappingArgs:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of the zone in your Global Cluster that you want to map to location.
-        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -6098,13 +5904,6 @@ class GlobalClusterConfigManagedNamespaceArgs:
                  db: pulumi.Input[str],
                  is_custom_shard_key_hashed: Optional[pulumi.Input[bool]] = None,
                  is_shard_key_unique: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[str] collection: The name of the collection associated with the managed namespace.
-        :param pulumi.Input[str] custom_shard_key: The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
-        :param pulumi.Input[str] db: The name of the database containing the collection.
-        :param pulumi.Input[bool] is_custom_shard_key_hashed: Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
-        :param pulumi.Input[bool] is_shard_key_unique: Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
-        """
         pulumi.set(__self__, "collection", collection)
         pulumi.set(__self__, "custom_shard_key", custom_shard_key)
         pulumi.set(__self__, "db", db)
@@ -6116,9 +5915,6 @@ class GlobalClusterConfigManagedNamespaceArgs:
     @property
     @pulumi.getter
     def collection(self) -> pulumi.Input[str]:
-        """
-        The name of the collection associated with the managed namespace.
-        """
         return pulumi.get(self, "collection")
 
     @collection.setter
@@ -6128,9 +5924,6 @@ class GlobalClusterConfigManagedNamespaceArgs:
     @property
     @pulumi.getter(name="customShardKey")
     def custom_shard_key(self) -> pulumi.Input[str]:
-        """
-        The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
-        """
         return pulumi.get(self, "custom_shard_key")
 
     @custom_shard_key.setter
@@ -6140,9 +5933,6 @@ class GlobalClusterConfigManagedNamespaceArgs:
     @property
     @pulumi.getter
     def db(self) -> pulumi.Input[str]:
-        """
-        The name of the database containing the collection.
-        """
         return pulumi.get(self, "db")
 
     @db.setter
@@ -6152,9 +5942,6 @@ class GlobalClusterConfigManagedNamespaceArgs:
     @property
     @pulumi.getter(name="isCustomShardKeyHashed")
     def is_custom_shard_key_hashed(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
-        """
         return pulumi.get(self, "is_custom_shard_key_hashed")
 
     @is_custom_shard_key_hashed.setter
@@ -6164,9 +5951,6 @@ class GlobalClusterConfigManagedNamespaceArgs:
     @property
     @pulumi.getter(name="isShardKeyUnique")
     def is_shard_key_unique(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
-        """
         return pulumi.get(self, "is_shard_key_unique")
 
     @is_shard_key_unique.setter
@@ -6405,7 +6189,7 @@ class OnlineArchiveDataProcessRegionArgs:
                  cloud_provider: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] cloud_provider: Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+        :param pulumi.Input[str] cloud_provider: Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
         :param pulumi.Input[str] region: Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Online-Archive/operation/createOnlineArchive)
         """
         if cloud_provider is not None:
@@ -6417,7 +6201,7 @@ class OnlineArchiveDataProcessRegionArgs:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> Optional[pulumi.Input[str]]:
         """
-        Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+        Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -6444,11 +6228,6 @@ class OnlineArchivePartitionFieldArgs:
                  field_name: pulumi.Input[str],
                  order: pulumi.Input[int],
                  field_type: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] field_name: Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
-        :param pulumi.Input[int] order: Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-        :param pulumi.Input[str] field_type: Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
-        """
         pulumi.set(__self__, "field_name", field_name)
         pulumi.set(__self__, "order", order)
         if field_type is not None:
@@ -6457,9 +6236,6 @@ class OnlineArchivePartitionFieldArgs:
     @property
     @pulumi.getter(name="fieldName")
     def field_name(self) -> pulumi.Input[str]:
-        """
-        Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
-        """
         return pulumi.get(self, "field_name")
 
     @field_name.setter
@@ -6469,9 +6245,6 @@ class OnlineArchivePartitionFieldArgs:
     @property
     @pulumi.getter
     def order(self) -> pulumi.Input[int]:
-        """
-        Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-        """
         return pulumi.get(self, "order")
 
     @order.setter
@@ -6481,9 +6254,6 @@ class OnlineArchivePartitionFieldArgs:
     @property
     @pulumi.getter(name="fieldType")
     def field_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
-        """
         return pulumi.get(self, "field_type")
 
     @field_type.setter
@@ -6627,6 +6397,9 @@ class PrivateLinkEndpointServiceEndpointArgs:
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
         if service_attachment_name is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
+            pulumi.log.warn("""service_attachment_name is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
+        if service_attachment_name is not None:
             pulumi.set(__self__, "service_attachment_name", service_attachment_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
@@ -6661,6 +6434,9 @@ class PrivateLinkEndpointServiceEndpointArgs:
         """
         Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
         """
+        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
+        pulumi.log.warn("""service_attachment_name is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
+
         return pulumi.get(self, "service_attachment_name")
 
     @service_attachment_name.setter
@@ -7097,6 +6873,61 @@ class ProviderAssumeRoleArgs:
 
 
 @pulumi.input_type
+class PushBasedLogExportTimeoutsArgs:
+    def __init__(__self__, *,
+                 create: Optional[pulumi.Input[str]] = None,
+                 delete: Optional[pulumi.Input[str]] = None,
+                 update: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param pulumi.Input[str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param pulumi.Input[str] update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @property
+    @pulumi.getter
+    def create(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "create", value)
+
+    @property
+    @pulumi.getter
+    def delete(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "delete", value)
+
+    @property
+    @pulumi.getter
+    def update(self) -> Optional[pulumi.Input[str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update", value)
+
+
+@pulumi.input_type
 class SearchDeploymentSpecArgs:
     def __init__(__self__, *,
                  instance_size: pulumi.Input[str],
@@ -7311,6 +7142,193 @@ class ServerlessInstanceTagArgs:
 
 
 @pulumi.input_type
+class StreamConnectionAuthenticationArgs:
+    def __init__(__self__, *,
+                 mechanism: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] mechanism: Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        :param pulumi.Input[str] password: Password of the account to connect to the Kafka cluster.
+        :param pulumi.Input[str] username: Username of the account to connect to the Kafka cluster.
+        """
+        if mechanism is not None:
+            pulumi.set(__self__, "mechanism", mechanism)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def mechanism(self) -> Optional[pulumi.Input[str]]:
+        """
+        Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        """
+        return pulumi.get(self, "mechanism")
+
+    @mechanism.setter
+    def mechanism(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mechanism", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password of the account to connect to the Kafka cluster.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username of the account to connect to the Kafka cluster.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+
+@pulumi.input_type
+class StreamConnectionDbRoleToExecuteArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] type: Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class StreamConnectionSecurityArgs:
+    def __init__(__self__, *,
+                 broker_public_certificate: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] broker_public_certificate: A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+        :param pulumi.Input[str] protocol: Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        """
+        if broker_public_certificate is not None:
+            pulumi.set(__self__, "broker_public_certificate", broker_public_certificate)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+
+    @property
+    @pulumi.getter(name="brokerPublicCertificate")
+    def broker_public_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+        """
+        return pulumi.get(self, "broker_public_certificate")
+
+    @broker_public_certificate.setter
+    def broker_public_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "broker_public_certificate", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Describes the transport type. Can be either `PLAINTEXT` or `SSL`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
+
+
+@pulumi.input_type
+class StreamInstanceDataProcessRegionArgs:
+    def __init__(__self__, *,
+                 cloud_provider: pulumi.Input[str],
+                 region: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] cloud_provider: Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+        :param pulumi.Input[str] region: Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> pulumi.Input[str]:
+        """
+        Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @cloud_provider.setter
+    def cloud_provider(self, value: pulumi.Input[str]):
+        pulumi.set(self, "cloud_provider", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[str]:
+        """
+        Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[str]):
+        pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class StreamInstanceStreamConfigArgs:
+    def __init__(__self__, *,
+                 tier: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] tier: Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+        """
+        if tier is not None:
+            pulumi.set(__self__, "tier", tier)
+
+    @property
+    @pulumi.getter
+    def tier(self) -> Optional[pulumi.Input[str]]:
+        """
+        Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+        """
+        return pulumi.get(self, "tier")
+
+    @tier.setter
+    def tier(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tier", value)
+
+
+@pulumi.input_type
 class X509AuthenticationDatabaseUserCertificateArgs:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[str]] = None,
@@ -7383,6 +7401,11 @@ class GetAlertConfigurationOutputArgs:
                  label: Optional[str] = None):
         """
         :param str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+               - `PRIMARY`
+               - `SECONDARY`
+               - `STANDALONE`
+               - `CONFIG`
+               - `MONGOS`
         """
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "value", value)
@@ -7403,6 +7426,11 @@ class GetAlertConfigurationOutputArgs:
     def value(self) -> str:
         """
         Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        - `PRIMARY`
+        - `SECONDARY`
+        - `STANDALONE`
+        - `CONFIG`
+        - `MONGOS`
         """
         return pulumi.get(self, "value")
 

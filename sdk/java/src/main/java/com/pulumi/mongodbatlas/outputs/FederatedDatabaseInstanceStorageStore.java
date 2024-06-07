@@ -19,10 +19,10 @@ public final class FederatedDatabaseInstanceStorageStore {
     private @Nullable String bucket;
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed by September 2024
+     * This parameter is deprecated and will be removed by September 2024.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed by September 2024 */
+    @Deprecated /* This parameter is deprecated and will be removed by September 2024. */
     private @Nullable String clusterId;
     private @Nullable String clusterName;
     private @Nullable String defaultFormat;
@@ -30,8 +30,6 @@ public final class FederatedDatabaseInstanceStorageStore {
     private @Nullable Boolean includeTags;
     /**
      * @return Name of the Atlas Federated Database Instance.
-     * ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
      * 
      */
     private @Nullable String name;
@@ -44,10 +42,6 @@ public final class FederatedDatabaseInstanceStorageStore {
     private @Nullable String provider;
     private @Nullable String public_;
     private @Nullable FederatedDatabaseInstanceStorageStoreReadPreference readPreference;
-    /**
-     * @return Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-     * 
-     */
     private @Nullable String region;
     private @Nullable List<String> urls;
 
@@ -63,10 +57,10 @@ public final class FederatedDatabaseInstanceStorageStore {
     }
     /**
      * @deprecated
-     * this parameter is deprecated and will be removed by September 2024
+     * This parameter is deprecated and will be removed by September 2024.
      * 
      */
-    @Deprecated /* this parameter is deprecated and will be removed by September 2024 */
+    @Deprecated /* This parameter is deprecated and will be removed by September 2024. */
     public Optional<String> clusterId() {
         return Optional.ofNullable(this.clusterId);
     }
@@ -84,8 +78,6 @@ public final class FederatedDatabaseInstanceStorageStore {
     }
     /**
      * @return Name of the Atlas Federated Database Instance.
-     * ### `cloud_provider_config` - (Optional) Cloud provider linked to this data federated instance.
-     * #### `aws` - (Required) AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket. Note this parameter is only required if using `cloud_provider_config` since AWS is currently the only supported Cloud vendor on this feature at this time.
      * 
      */
     public Optional<String> name() {
@@ -110,10 +102,6 @@ public final class FederatedDatabaseInstanceStorageStore {
     public Optional<FederatedDatabaseInstanceStorageStoreReadPreference> readPreference() {
         return Optional.ofNullable(this.readPreference);
     }
-    /**
-     * @return Name of the region to which the Federanted Instnace routes client connections for data processing. See the [documention](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
-     * 
-     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }

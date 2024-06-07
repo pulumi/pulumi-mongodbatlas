@@ -17,17 +17,9 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
 
     public static final ThirdPartyIntegrationArgs Empty = new ThirdPartyIntegrationArgs();
 
-    /**
-     * Your API Key.
-     * 
-     */
     @Import(name="apiKey")
     private @Nullable Output<String> apiKey;
 
-    /**
-     * @return Your API Key.
-     * 
-     */
     public Optional<Output<String>> apiKey() {
         return Optional.ofNullable(this.apiKey);
     }
@@ -39,47 +31,23 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
         return Optional.ofNullable(this.channelName);
     }
 
-    /**
-     * Whether your cluster has Prometheus enabled.
-     * 
-     */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
-    /**
-     * @return Whether your cluster has Prometheus enabled.
-     * 
-     */
     public Optional<Output<Boolean>> enabled() {
         return Optional.ofNullable(this.enabled);
     }
 
-    /**
-     * Your Microsoft Teams incoming webhook URL.
-     * 
-     */
     @Import(name="microsoftTeamsWebhookUrl")
     private @Nullable Output<String> microsoftTeamsWebhookUrl;
 
-    /**
-     * @return Your Microsoft Teams incoming webhook URL.
-     * 
-     */
     public Optional<Output<String>> microsoftTeamsWebhookUrl() {
         return Optional.ofNullable(this.microsoftTeamsWebhookUrl);
     }
 
-    /**
-     * Your Prometheus password.
-     * 
-     */
     @Import(name="password")
     private @Nullable Output<String> password;
 
-    /**
-     * @return Your Prometheus password.
-     * 
-     */
     public Optional<Output<String>> password() {
         return Optional.ofNullable(this.password);
     }
@@ -99,92 +67,56 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
         return this.projectId;
     }
 
-    /**
-     * Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use &#34;US&#34; by default.
-     * 
-     */
     @Import(name="region")
     private @Nullable Output<String> region;
 
-    /**
-     * @return Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use &#34;US&#34; by default.
-     * 
-     */
     public Optional<Output<String>> region() {
         return Optional.ofNullable(this.region);
     }
 
-    /**
-     * An optional field for your Routing Key.
-     * 
-     */
     @Import(name="routingKey")
     private @Nullable Output<String> routingKey;
 
-    /**
-     * @return An optional field for your Routing Key.
-     * 
-     */
     public Optional<Output<String>> routingKey() {
         return Optional.ofNullable(this.routingKey);
     }
 
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     @Import(name="scheme")
     private @Nullable Output<String> scheme;
 
     /**
-     * @return Your Prometheus protocol scheme configured for requests.
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.18.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<Output<String>> scheme() {
         return Optional.ofNullable(this.scheme);
     }
 
-    /**
-     * An optional field for your webhook secret.
-     * 
-     */
     @Import(name="secret")
     private @Nullable Output<String> secret;
 
-    /**
-     * @return An optional field for your webhook secret.
-     * 
-     */
     public Optional<Output<String>> secret() {
         return Optional.ofNullable(this.secret);
     }
 
-    /**
-     * Indicates which service discovery method is used, either file or http.
-     * 
-     */
     @Import(name="serviceDiscovery")
     private @Nullable Output<String> serviceDiscovery;
 
-    /**
-     * @return Indicates which service discovery method is used, either file or http.
-     * 
-     */
     public Optional<Output<String>> serviceDiscovery() {
         return Optional.ofNullable(this.serviceDiscovery);
     }
 
-    /**
-     * Your Service Key.
-     * 
-     */
     @Import(name="serviceKey")
     private @Nullable Output<String> serviceKey;
 
-    /**
-     * @return Your Service Key.
-     * 
-     */
     public Optional<Output<String>> serviceKey() {
         return Optional.ofNullable(this.serviceKey);
     }
@@ -206,6 +138,8 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
+     * * `PAGER_DUTY`
+     * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
@@ -220,37 +154,23 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
      * 
+     * * `PAGER_DUTY`
+     * 
      */
     public Output<String> type() {
         return this.type;
     }
 
-    /**
-     * Your webhook URL.
-     * 
-     */
     @Import(name="url")
     private @Nullable Output<String> url;
 
-    /**
-     * @return Your webhook URL.
-     * 
-     */
     public Optional<Output<String>> url() {
         return Optional.ofNullable(this.url);
     }
 
-    /**
-     * Your Prometheus username.
-     * 
-     */
     @Import(name="userName")
     private @Nullable Output<String> userName;
 
-    /**
-     * @return Your Prometheus username.
-     * 
-     */
     public Optional<Output<String>> userName() {
         return Optional.ofNullable(this.userName);
     }
@@ -294,23 +214,11 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
             $ = new ThirdPartyIntegrationArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param apiKey Your API Key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder apiKey(@Nullable Output<String> apiKey) {
             $.apiKey = apiKey;
             return this;
         }
 
-        /**
-         * @param apiKey Your API Key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder apiKey(String apiKey) {
             return apiKey(Output.of(apiKey));
         }
@@ -324,65 +232,29 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
             return channelName(Output.of(channelName));
         }
 
-        /**
-         * @param enabled Whether your cluster has Prometheus enabled.
-         * 
-         * @return builder
-         * 
-         */
         public Builder enabled(@Nullable Output<Boolean> enabled) {
             $.enabled = enabled;
             return this;
         }
 
-        /**
-         * @param enabled Whether your cluster has Prometheus enabled.
-         * 
-         * @return builder
-         * 
-         */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
         }
 
-        /**
-         * @param microsoftTeamsWebhookUrl Your Microsoft Teams incoming webhook URL.
-         * 
-         * @return builder
-         * 
-         */
         public Builder microsoftTeamsWebhookUrl(@Nullable Output<String> microsoftTeamsWebhookUrl) {
             $.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             return this;
         }
 
-        /**
-         * @param microsoftTeamsWebhookUrl Your Microsoft Teams incoming webhook URL.
-         * 
-         * @return builder
-         * 
-         */
         public Builder microsoftTeamsWebhookUrl(String microsoftTeamsWebhookUrl) {
             return microsoftTeamsWebhookUrl(Output.of(microsoftTeamsWebhookUrl));
         }
 
-        /**
-         * @param password Your Prometheus password.
-         * 
-         * @return builder
-         * 
-         */
         public Builder password(@Nullable Output<String> password) {
             $.password = password;
             return this;
         }
 
-        /**
-         * @param password Your Prometheus password.
-         * 
-         * @return builder
-         * 
-         */
         public Builder password(String password) {
             return password(Output.of(password));
         }
@@ -408,128 +280,72 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
             return projectId(Output.of(projectId));
         }
 
-        /**
-         * @param region Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use &#34;US&#34; by default.
-         * 
-         * @return builder
-         * 
-         */
         public Builder region(@Nullable Output<String> region) {
             $.region = region;
             return this;
         }
 
-        /**
-         * @param region Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use &#34;US&#34; by default.
-         * 
-         * @return builder
-         * 
-         */
         public Builder region(String region) {
             return region(Output.of(region));
         }
 
-        /**
-         * @param routingKey An optional field for your Routing Key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder routingKey(@Nullable Output<String> routingKey) {
             $.routingKey = routingKey;
             return this;
         }
 
-        /**
-         * @param routingKey An optional field for your Routing Key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder routingKey(String routingKey) {
             return routingKey(Output.of(routingKey));
         }
 
         /**
-         * @param scheme Your Prometheus protocol scheme configured for requests.
-         * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder scheme(@Nullable Output<String> scheme) {
             $.scheme = scheme;
             return this;
         }
 
         /**
-         * @param scheme Your Prometheus protocol scheme configured for requests.
-         * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.18.0.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder scheme(String scheme) {
             return scheme(Output.of(scheme));
         }
 
-        /**
-         * @param secret An optional field for your webhook secret.
-         * 
-         * @return builder
-         * 
-         */
         public Builder secret(@Nullable Output<String> secret) {
             $.secret = secret;
             return this;
         }
 
-        /**
-         * @param secret An optional field for your webhook secret.
-         * 
-         * @return builder
-         * 
-         */
         public Builder secret(String secret) {
             return secret(Output.of(secret));
         }
 
-        /**
-         * @param serviceDiscovery Indicates which service discovery method is used, either file or http.
-         * 
-         * @return builder
-         * 
-         */
         public Builder serviceDiscovery(@Nullable Output<String> serviceDiscovery) {
             $.serviceDiscovery = serviceDiscovery;
             return this;
         }
 
-        /**
-         * @param serviceDiscovery Indicates which service discovery method is used, either file or http.
-         * 
-         * @return builder
-         * 
-         */
         public Builder serviceDiscovery(String serviceDiscovery) {
             return serviceDiscovery(Output.of(serviceDiscovery));
         }
 
-        /**
-         * @param serviceKey Your Service Key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder serviceKey(@Nullable Output<String> serviceKey) {
             $.serviceKey = serviceKey;
             return this;
         }
 
-        /**
-         * @param serviceKey Your Service Key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder serviceKey(String serviceKey) {
             return serviceKey(Output.of(serviceKey));
         }
@@ -553,6 +369,8 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
          * 
+         * * `PAGER_DUTY`
+         * 
          * @return builder
          * 
          */
@@ -571,6 +389,8 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
          * * MICROSOFT_TEAMS
          * * PROMETHEUS
          * 
+         * * `PAGER_DUTY`
+         * 
          * @return builder
          * 
          */
@@ -578,44 +398,20 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
             return type(Output.of(type));
         }
 
-        /**
-         * @param url Your webhook URL.
-         * 
-         * @return builder
-         * 
-         */
         public Builder url(@Nullable Output<String> url) {
             $.url = url;
             return this;
         }
 
-        /**
-         * @param url Your webhook URL.
-         * 
-         * @return builder
-         * 
-         */
         public Builder url(String url) {
             return url(Output.of(url));
         }
 
-        /**
-         * @param userName Your Prometheus username.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userName(@Nullable Output<String> userName) {
             $.userName = userName;
             return this;
         }
 
-        /**
-         * @param userName Your Prometheus username.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userName(String userName) {
             return userName(Output.of(userName));
         }

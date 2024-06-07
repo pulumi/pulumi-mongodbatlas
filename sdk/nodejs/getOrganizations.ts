@@ -11,24 +11,21 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getOrganizations({
- *     itemsPerPage: 5,
  *     pageNum: 1,
+ *     itemsPerPage: 5,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOrganizations(args?: GetOrganizationsArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationsResult> {
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getOrganizations:getOrganizations", {
-        "includeDeletedOrgs": args.includeDeletedOrgs,
         "itemsPerPage": args.itemsPerPage,
         "name": args.name,
         "pageNum": args.pageNum,
@@ -40,16 +37,9 @@ export function getOrganizations(args?: GetOrganizationsArgs, opts?: pulumi.Invo
  */
 export interface GetOrganizationsArgs {
     /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
-     */
-    includeDeletedOrgs?: boolean;
-    /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
     itemsPerPage?: number;
-    /**
-     * Human-readable label that identifies the organization.
-     */
     name?: string;
     /**
      * The page to return. Defaults to `1`.
@@ -65,10 +55,6 @@ export interface GetOrganizationsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
-     */
-    readonly includeDeletedOrgs?: boolean;
     readonly itemsPerPage?: number;
     readonly name?: string;
     readonly pageNum?: number;
@@ -80,17 +66,15 @@ export interface GetOrganizationsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = mongodbatlas.getOrganizations({
- *     itemsPerPage: 5,
  *     pageNum: 1,
+ *     itemsPerPage: 5,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOrganizationsOutput(args?: GetOrganizationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrganizationsResult> {
     return pulumi.output(args).apply((a: any) => getOrganizations(a, opts))
@@ -101,16 +85,9 @@ export function getOrganizationsOutput(args?: GetOrganizationsOutputArgs, opts?:
  */
 export interface GetOrganizationsOutputArgs {
     /**
-     * @deprecated this parameter is deprecated and will be removed in version 1.16.0
-     */
-    includeDeletedOrgs?: pulumi.Input<boolean>;
-    /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
     itemsPerPage?: pulumi.Input<number>;
-    /**
-     * Human-readable label that identifies the organization.
-     */
     name?: pulumi.Input<string>;
     /**
      * The page to return. Defaults to `1`.

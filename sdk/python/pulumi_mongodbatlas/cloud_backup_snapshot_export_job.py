@@ -127,6 +127,10 @@ class _CloudBackupSnapshotExportJobState:
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
         :param pulumi.Input[str] state: Status of the export job. Value can be one of the following:
+               * `Queued` - indicates that the export job is queued
+               * `InProgress` - indicates that the snapshot is being exported
+               * `Successful` - indicates that the export job has completed successfully
+               * `Failed` - indicates that the export job has failed
         """
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
@@ -310,6 +314,10 @@ class _CloudBackupSnapshotExportJobState:
     def state(self) -> Optional[pulumi.Input[str]]:
         """
         Status of the export job. Value can be one of the following:
+        * `Queued` - indicates that the export job is queued
+        * `InProgress` - indicates that the snapshot is being exported
+        * `Successful` - indicates that the export job has completed successfully
+        * `Failed` - indicates that the export job has failed
         """
         return pulumi.get(self, "state")
 
@@ -338,31 +346,28 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
 
         ### Export one snapshot
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
+        test = mongodbatlas.CloudBackupSnapshotExportBucket("test",
             project_id="{PROJECT_ID}",
             iam_role_id="{IAM_ROLE_ID}",
             bucket_name="example_bucket",
             cloud_provider="AWS")
-        test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob",
+        test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("test",
             project_id="{PROJECT_ID}",
             cluster_name="{CLUSTER_NAME}",
             snapshot_id="{SNAPSHOT_ID}",
-            export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id,
+            export_bucket_id=test.export_bucket_id,
             custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
                 key="exported by",
                 value="myName",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create backup and automatic snapshot export policies
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -405,7 +410,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                 retention_value=12,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -439,31 +443,28 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
 
         ### Export one snapshot
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_cloud_backup_snapshot_export_bucket = mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket",
+        test = mongodbatlas.CloudBackupSnapshotExportBucket("test",
             project_id="{PROJECT_ID}",
             iam_role_id="{IAM_ROLE_ID}",
             bucket_name="example_bucket",
             cloud_provider="AWS")
-        test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob",
+        test_cloud_backup_snapshot_export_job = mongodbatlas.CloudBackupSnapshotExportJob("test",
             project_id="{PROJECT_ID}",
             cluster_name="{CLUSTER_NAME}",
             snapshot_id="{SNAPSHOT_ID}",
-            export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id,
+            export_bucket_id=test.export_bucket_id,
             custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
                 key="exported by",
                 value="myName",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Create backup and automatic snapshot export policies
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -506,7 +507,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                 retention_value=12,
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -613,6 +613,10 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
         :param pulumi.Input[str] state: Status of the export job. Value can be one of the following:
+               * `Queued` - indicates that the export job is queued
+               * `InProgress` - indicates that the snapshot is being exported
+               * `Successful` - indicates that the export job has completed successfully
+               * `Failed` - indicates that the export job has failed
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -735,6 +739,10 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
     def state(self) -> pulumi.Output[str]:
         """
         Status of the export job. Value can be one of the following:
+        * `Queued` - indicates that the export job is queued
+        * `InProgress` - indicates that the snapshot is being exported
+        * `Successful` - indicates that the export job has completed successfully
+        * `Failed` - indicates that the export job has failed
         """
         return pulumi.get(self, "state")
 

@@ -27,7 +27,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ### S
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,8 +35,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var outageSimulation = new Mongodbatlas.ClusterOutageSimulation("outageSimulation", new()
+    ///     var outageSimulation = new Mongodbatlas.ClusterOutageSimulation("outage_simulation", new()
     ///     {
+    ///         ProjectId = "64707f06c519c20c3a2b1b03",
     ///         ClusterName = "Cluster0",
     ///         OutageFilters = new[]
     ///         {
@@ -52,12 +52,10 @@ namespace Pulumi.Mongodbatlas
     ///                 RegionName = "US_EAST_2",
     ///             },
     ///         },
-    ///         ProjectId = "64707f06c519c20c3a2b1b03",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -100,6 +98,12 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Current phase of the outage simulation:
+        /// * `START_REQUESTED` - User has requested cluster outage simulation.
+        /// * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+        /// * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+        /// * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+        /// * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+        /// * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
@@ -220,6 +224,12 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Current phase of the outage simulation:
+        /// * `START_REQUESTED` - User has requested cluster outage simulation.
+        /// * `STARTING` - MongoDB Cloud is starting cluster outage simulation.
+        /// * `SIMULATING` - MongoDB Cloud is simulating cluster outage.
+        /// * `RECOVERY_REQUESTED` - User has requested recovery from the simulated outage.
+        /// * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
+        /// * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }

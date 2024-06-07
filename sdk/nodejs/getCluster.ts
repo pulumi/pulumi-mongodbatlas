@@ -15,6 +15,36 @@ import * as utilities from "./utilities";
  * <br> &#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn't return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCluster = new mongodbatlas.Cluster("test", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         numShards: 1,
+ *         regionsConfigs: [{
+ *             regionName: "US_EAST_1",
+ *             electableNodes: 3,
+ *             priority: 7,
+ *             readOnlyNodes: 0,
+ *         }],
+ *     }],
+ *     cloudBackup: true,
+ *     autoScalingDiskGbEnabled: true,
+ *     providerName: "AWS",
+ *     providerInstanceSizeName: "M40",
+ * });
+ * const test = mongodbatlas.getClusterOutput({
+ *     projectId: testCluster.projectId,
+ *     name: testCluster.name,
+ * });
+ * ```
  */
 export function getCluster(args: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
 
@@ -98,7 +128,7 @@ export interface GetClusterResult {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      *
-     * @deprecated this parameter is deprecated and will be removed by September 2024, please transition to tags
+     * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      */
     readonly labels: outputs.GetClusterLabel[];
     /**
@@ -225,6 +255,36 @@ export interface GetClusterResult {
  * <br> &#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn't return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCluster = new mongodbatlas.Cluster("test", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         numShards: 1,
+ *         regionsConfigs: [{
+ *             regionName: "US_EAST_1",
+ *             electableNodes: 3,
+ *             priority: 7,
+ *             readOnlyNodes: 0,
+ *         }],
+ *     }],
+ *     cloudBackup: true,
+ *     autoScalingDiskGbEnabled: true,
+ *     providerName: "AWS",
+ *     providerInstanceSizeName: "M40",
+ * });
+ * const test = mongodbatlas.getClusterOutput({
+ *     projectId: testCluster.projectId,
+ *     name: testCluster.name,
+ * });
+ * ```
  */
 export function getClusterOutput(args: GetClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterResult> {
     return pulumi.output(args).apply((a: any) => getCluster(a, opts))

@@ -10,9 +10,17 @@ import java.util.Objects;
 
 @CustomType
 public final class FederatedDatabaseInstanceCloudProviderConfig {
+    /**
+     * @return Name of the cloud service that hosts the data lake&#39;s data stores.
+     * 
+     */
     private FederatedDatabaseInstanceCloudProviderConfigAws aws;
 
     private FederatedDatabaseInstanceCloudProviderConfig() {}
+    /**
+     * @return Name of the cloud service that hosts the data lake&#39;s data stores.
+     * 
+     */
     public FederatedDatabaseInstanceCloudProviderConfigAws aws() {
         return this.aws;
     }

@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.outputs.GetCloudBackupSchedulePolicyItemDaily;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSchedulePolicyItemHourly;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSchedulePolicyItemMonthly;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSchedulePolicyItemWeekly;
+import com.pulumi.mongodbatlas.outputs.GetCloudBackupSchedulePolicyItemYearly;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -21,6 +22,8 @@ import java.util.Objects;
 public final class GetCloudBackupScheduleResult {
     /**
      * @return Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+     * * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      * 
      */
     private Boolean autoExportEnabled;
@@ -67,6 +70,11 @@ public final class GetCloudBackupScheduleResult {
      * 
      */
     private List<GetCloudBackupSchedulePolicyItemWeekly> policyItemWeeklies;
+    /**
+     * @return Yearly policy item
+     * 
+     */
+    private List<GetCloudBackupSchedulePolicyItemYearly> policyItemYearlies;
     private String projectId;
     /**
      * @return UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.
@@ -92,6 +100,8 @@ public final class GetCloudBackupScheduleResult {
     private GetCloudBackupScheduleResult() {}
     /**
      * @return Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+     * * true - enables automatic export of cloud backup snapshots to the AWS bucket
+     * * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
      * 
      */
     public Boolean autoExportEnabled() {
@@ -162,6 +172,13 @@ public final class GetCloudBackupScheduleResult {
     public List<GetCloudBackupSchedulePolicyItemWeekly> policyItemWeeklies() {
         return this.policyItemWeeklies;
     }
+    /**
+     * @return Yearly policy item
+     * 
+     */
+    public List<GetCloudBackupSchedulePolicyItemYearly> policyItemYearlies() {
+        return this.policyItemYearlies;
+    }
     public String projectId() {
         return this.projectId;
     }
@@ -215,6 +232,7 @@ public final class GetCloudBackupScheduleResult {
         private List<GetCloudBackupSchedulePolicyItemHourly> policyItemHourlies;
         private List<GetCloudBackupSchedulePolicyItemMonthly> policyItemMonthlies;
         private List<GetCloudBackupSchedulePolicyItemWeekly> policyItemWeeklies;
+        private List<GetCloudBackupSchedulePolicyItemYearly> policyItemYearlies;
         private String projectId;
         private Integer referenceHourOfDay;
         private Integer referenceMinuteOfHour;
@@ -235,6 +253,7 @@ public final class GetCloudBackupScheduleResult {
     	      this.policyItemHourlies = defaults.policyItemHourlies;
     	      this.policyItemMonthlies = defaults.policyItemMonthlies;
     	      this.policyItemWeeklies = defaults.policyItemWeeklies;
+    	      this.policyItemYearlies = defaults.policyItemYearlies;
     	      this.projectId = defaults.projectId;
     	      this.referenceHourOfDay = defaults.referenceHourOfDay;
     	      this.referenceMinuteOfHour = defaults.referenceMinuteOfHour;
@@ -357,6 +376,17 @@ public final class GetCloudBackupScheduleResult {
             return policyItemWeeklies(List.of(policyItemWeeklies));
         }
         @CustomType.Setter
+        public Builder policyItemYearlies(List<GetCloudBackupSchedulePolicyItemYearly> policyItemYearlies) {
+            if (policyItemYearlies == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "policyItemYearlies");
+            }
+            this.policyItemYearlies = policyItemYearlies;
+            return this;
+        }
+        public Builder policyItemYearlies(GetCloudBackupSchedulePolicyItemYearly... policyItemYearlies) {
+            return policyItemYearlies(List.of(policyItemYearlies));
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "projectId");
@@ -410,6 +440,7 @@ public final class GetCloudBackupScheduleResult {
             _resultValue.policyItemHourlies = policyItemHourlies;
             _resultValue.policyItemMonthlies = policyItemMonthlies;
             _resultValue.policyItemWeeklies = policyItemWeeklies;
+            _resultValue.policyItemYearlies = policyItemYearlies;
             _resultValue.projectId = projectId;
             _resultValue.referenceHourOfDay = referenceHourOfDay;
             _resultValue.referenceMinuteOfHour = referenceMinuteOfHour;

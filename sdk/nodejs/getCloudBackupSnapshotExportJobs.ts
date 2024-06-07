@@ -13,18 +13,17 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
  *     projectId: "{PROJECT_ID}",
  *     iamRoleId: "{IAM_ROLE_ID}",
  *     bucketName: "example_bucket",
  *     cloudProvider: "AWS",
  * });
- * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", {
+ * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("test", {
  *     projectId: "{PROJECT_ID}",
  *     clusterName: "{CLUSTER_NAME}",
  *     snapshotId: "{SNAPSHOT_ID}",
@@ -34,12 +33,11 @@ import * as utilities from "./utilities";
  *         value: "myName",
  *     }],
  * });
- * const testCloudBackupSnapshotExportJobs = mongodbatlas.getCloudBackupSnapshotExportJobs({
+ * const test = mongodbatlas.getCloudBackupSnapshotExportJobs({
  *     projectId: "{PROJECT_ID}",
  *     clusterName: "{CLUSTER_NAME}",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupSnapshotExportJobs(args: GetCloudBackupSnapshotExportJobsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotExportJobsResult> {
 
@@ -91,6 +89,7 @@ export interface GetCloudBackupSnapshotExportJobsResult {
     readonly projectId: string;
     /**
      * Includes CloudProviderSnapshotExportJob object for each item detailed in the results array section.
+     * * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
      */
     readonly results: outputs.GetCloudBackupSnapshotExportJobsResult[];
     readonly totalCount: number;
@@ -102,18 +101,17 @@ export interface GetCloudBackupSnapshotExportJobsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
  *     projectId: "{PROJECT_ID}",
  *     iamRoleId: "{IAM_ROLE_ID}",
  *     bucketName: "example_bucket",
  *     cloudProvider: "AWS",
  * });
- * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", {
+ * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("test", {
  *     projectId: "{PROJECT_ID}",
  *     clusterName: "{CLUSTER_NAME}",
  *     snapshotId: "{SNAPSHOT_ID}",
@@ -123,12 +121,11 @@ export interface GetCloudBackupSnapshotExportJobsResult {
  *         value: "myName",
  *     }],
  * });
- * const testCloudBackupSnapshotExportJobs = mongodbatlas.getCloudBackupSnapshotExportJobs({
+ * const test = mongodbatlas.getCloudBackupSnapshotExportJobs({
  *     projectId: "{PROJECT_ID}",
  *     clusterName: "{CLUSTER_NAME}",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCloudBackupSnapshotExportJobsOutput(args: GetCloudBackupSnapshotExportJobsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportJobsResult> {
     return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotExportJobs(a, opts))

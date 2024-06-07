@@ -5,7 +5,6 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -16,25 +15,6 @@ import javax.annotation.Nullable;
 public final class GetOrganizationsArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetOrganizationsArgs Empty = new GetOrganizationsArgs();
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    @Import(name="includeDeletedOrgs")
-    private @Nullable Output<Boolean> includeDeletedOrgs;
-
-    /**
-     * @deprecated
-     * this parameter is deprecated and will be removed in version 1.16.0
-     * 
-     */
-    @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-    public Optional<Output<Boolean>> includeDeletedOrgs() {
-        return Optional.ofNullable(this.includeDeletedOrgs);
-    }
 
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -51,17 +31,9 @@ public final class GetOrganizationsArgs extends com.pulumi.resources.InvokeArgs 
         return Optional.ofNullable(this.itemsPerPage);
     }
 
-    /**
-     * Human-readable label that identifies the organization.
-     * 
-     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
-    /**
-     * @return Human-readable label that identifies the organization.
-     * 
-     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
@@ -84,7 +56,6 @@ public final class GetOrganizationsArgs extends com.pulumi.resources.InvokeArgs 
     private GetOrganizationsArgs() {}
 
     private GetOrganizationsArgs(GetOrganizationsArgs $) {
-        this.includeDeletedOrgs = $.includeDeletedOrgs;
         this.itemsPerPage = $.itemsPerPage;
         this.name = $.name;
         this.pageNum = $.pageNum;
@@ -109,31 +80,6 @@ public final class GetOrganizationsArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in version 1.16.0
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-        public Builder includeDeletedOrgs(@Nullable Output<Boolean> includeDeletedOrgs) {
-            $.includeDeletedOrgs = includeDeletedOrgs;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * this parameter is deprecated and will be removed in version 1.16.0
-         * 
-         */
-        @Deprecated /* this parameter is deprecated and will be removed in version 1.16.0 */
-        public Builder includeDeletedOrgs(Boolean includeDeletedOrgs) {
-            return includeDeletedOrgs(Output.of(includeDeletedOrgs));
-        }
-
-        /**
          * @param itemsPerPage Number of items to return per page, up to a maximum of 500. Defaults to `100`.
          * 
          * @return builder
@@ -154,23 +100,11 @@ public final class GetOrganizationsArgs extends com.pulumi.resources.InvokeArgs 
             return itemsPerPage(Output.of(itemsPerPage));
         }
 
-        /**
-         * @param name Human-readable label that identifies the organization.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
-        /**
-         * @param name Human-readable label that identifies the organization.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(String name) {
             return name(Output.of(name));
         }

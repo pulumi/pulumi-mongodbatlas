@@ -24,9 +24,8 @@ type CloudBackupSchedule struct {
 	pulumi.CustomResourceState
 
 	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-	//
-	// true - enables automatic export of cloud backup snapshots to the AWS bucket
-	// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+	// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+	// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled pulumi.BoolOutput `pulumi:"autoExportEnabled"`
 	// Unique identifier of the Atlas cluster.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
@@ -46,6 +45,8 @@ type CloudBackupSchedule struct {
 	PolicyItemMonthlies CloudBackupSchedulePolicyItemMonthlyArrayOutput `pulumi:"policyItemMonthlies"`
 	// Weekly policy item
 	PolicyItemWeeklies CloudBackupSchedulePolicyItemWeeklyArrayOutput `pulumi:"policyItemWeeklies"`
+	// Yearly policy item
+	PolicyItemYearlies CloudBackupSchedulePolicyItemYearlyArrayOutput `pulumi:"policyItemYearlies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -96,9 +97,8 @@ func GetCloudBackupSchedule(ctx *pulumi.Context,
 // Input properties used for looking up and filtering CloudBackupSchedule resources.
 type cloudBackupScheduleState struct {
 	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-	//
-	// true - enables automatic export of cloud backup snapshots to the AWS bucket
-	// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+	// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+	// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled *bool `pulumi:"autoExportEnabled"`
 	// Unique identifier of the Atlas cluster.
 	ClusterId *string `pulumi:"clusterId"`
@@ -118,6 +118,8 @@ type cloudBackupScheduleState struct {
 	PolicyItemMonthlies []CloudBackupSchedulePolicyItemMonthly `pulumi:"policyItemMonthlies"`
 	// Weekly policy item
 	PolicyItemWeeklies []CloudBackupSchedulePolicyItemWeekly `pulumi:"policyItemWeeklies"`
+	// Yearly policy item
+	PolicyItemYearlies []CloudBackupSchedulePolicyItemYearly `pulumi:"policyItemYearlies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId *string `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -133,9 +135,8 @@ type cloudBackupScheduleState struct {
 
 type CloudBackupScheduleState struct {
 	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-	//
-	// true - enables automatic export of cloud backup snapshots to the AWS bucket
-	// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+	// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+	// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled pulumi.BoolPtrInput
 	// Unique identifier of the Atlas cluster.
 	ClusterId pulumi.StringPtrInput
@@ -155,6 +156,8 @@ type CloudBackupScheduleState struct {
 	PolicyItemMonthlies CloudBackupSchedulePolicyItemMonthlyArrayInput
 	// Weekly policy item
 	PolicyItemWeeklies CloudBackupSchedulePolicyItemWeeklyArrayInput
+	// Yearly policy item
+	PolicyItemYearlies CloudBackupSchedulePolicyItemYearlyArrayInput
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringPtrInput
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -174,9 +177,8 @@ func (CloudBackupScheduleState) ElementType() reflect.Type {
 
 type cloudBackupScheduleArgs struct {
 	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-	//
-	// true - enables automatic export of cloud backup snapshots to the AWS bucket
-	// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+	// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+	// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled *bool `pulumi:"autoExportEnabled"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName  string                           `pulumi:"clusterName"`
@@ -190,6 +192,8 @@ type cloudBackupScheduleArgs struct {
 	PolicyItemMonthlies []CloudBackupSchedulePolicyItemMonthly `pulumi:"policyItemMonthlies"`
 	// Weekly policy item
 	PolicyItemWeeklies []CloudBackupSchedulePolicyItemWeekly `pulumi:"policyItemWeeklies"`
+	// Yearly policy item
+	PolicyItemYearlies []CloudBackupSchedulePolicyItemYearly `pulumi:"policyItemYearlies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -206,9 +210,8 @@ type cloudBackupScheduleArgs struct {
 // The set of arguments for constructing a CloudBackupSchedule resource.
 type CloudBackupScheduleArgs struct {
 	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-	//
-	// true - enables automatic export of cloud backup snapshots to the AWS bucket
-	// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+	// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+	// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled pulumi.BoolPtrInput
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName  pulumi.StringInput
@@ -222,6 +225,8 @@ type CloudBackupScheduleArgs struct {
 	PolicyItemMonthlies CloudBackupSchedulePolicyItemMonthlyArrayInput
 	// Weekly policy item
 	PolicyItemWeeklies CloudBackupSchedulePolicyItemWeeklyArrayInput
+	// Yearly policy item
+	PolicyItemYearlies CloudBackupSchedulePolicyItemYearlyArrayInput
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringInput
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -323,9 +328,8 @@ func (o CloudBackupScheduleOutput) ToCloudBackupScheduleOutputWithContext(ctx co
 }
 
 // Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
-//
-// true - enables automatic export of cloud backup snapshots to the AWS bucket
-// false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
+// * true - enables automatic export of cloud backup snapshots to the AWS bucket
+// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 func (o CloudBackupScheduleOutput) AutoExportEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolOutput { return v.AutoExportEnabled }).(pulumi.BoolOutput)
 }
@@ -380,6 +384,13 @@ func (o CloudBackupScheduleOutput) PolicyItemWeeklies() CloudBackupSchedulePolic
 	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupSchedulePolicyItemWeeklyArrayOutput {
 		return v.PolicyItemWeeklies
 	}).(CloudBackupSchedulePolicyItemWeeklyArrayOutput)
+}
+
+// Yearly policy item
+func (o CloudBackupScheduleOutput) PolicyItemYearlies() CloudBackupSchedulePolicyItemYearlyArrayOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupSchedulePolicyItemYearlyArrayOutput {
+		return v.PolicyItemYearlies
+	}).(CloudBackupSchedulePolicyItemYearlyArrayOutput)
 }
 
 // The unique identifier of the project for the Atlas cluster.

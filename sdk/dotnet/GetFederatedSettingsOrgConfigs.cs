@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -26,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("orgConnections", new()
+        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("org_connections", new()
         ///     {
         ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
         ///         OrgId = "627a9683ea7ff7f74de306f14",
@@ -43,12 +42,11 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()
         ///     {
-        ///         FederationSettingsId = orgConnections.Id,
+        ///         FederationSettingsId = orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetFederatedSettingsOrgConfigsResult> InvokeAsync(GetFederatedSettingsOrgConfigsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsOrgConfigsResult>("mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs", args ?? new GetFederatedSettingsOrgConfigsArgs(), options.WithDefaults());
@@ -59,7 +57,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -68,7 +65,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("orgConnections", new()
+        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("org_connections", new()
         ///     {
         ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
         ///         OrgId = "627a9683ea7ff7f74de306f14",
@@ -85,12 +82,11 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()
         ///     {
-        ///         FederationSettingsId = orgConnections.Id,
+        ///         FederationSettingsId = orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetFederatedSettingsOrgConfigsResult> Invoke(GetFederatedSettingsOrgConfigsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgConfigsResult>("mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs", args ?? new GetFederatedSettingsOrgConfigsInvokeArgs(), options.WithDefaults());
@@ -165,6 +161,7 @@ namespace Pulumi.Mongodbatlas
         public readonly int? PageNum;
         /// <summary>
         /// Includes cloudProviderSnapshot object for each item detailed in the results array section.
+        /// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetFederatedSettingsOrgConfigsResultResult> Results;
 

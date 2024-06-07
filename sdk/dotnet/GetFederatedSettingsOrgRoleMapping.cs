@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -26,9 +25,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", new()
+        ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
         ///     {
-        ///         FederationSettingsId = data.Mongodbatlas_federated_settings.Federated_settings.Id,
+        ///         FederationSettingsId = federatedSettings.Id,
         ///         OrgId = "627a9683e7f7f7ff7fe306f14",
         ///         ExternalGroupName = "myGrouptest",
         ///         RoleAssignments = new[]
@@ -78,7 +77,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetFederatedSettingsOrgRoleMappingResult> InvokeAsync(GetFederatedSettingsOrgRoleMappingArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsOrgRoleMappingResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", args ?? new GetFederatedSettingsOrgRoleMappingArgs(), options.WithDefaults());
@@ -89,7 +87,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -98,9 +95,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", new()
+        ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
         ///     {
-        ///         FederationSettingsId = data.Mongodbatlas_federated_settings.Federated_settings.Id,
+        ///         FederationSettingsId = federatedSettings.Id,
         ///         OrgId = "627a9683e7f7f7ff7fe306f14",
         ///         ExternalGroupName = "myGrouptest",
         ///         RoleAssignments = new[]
@@ -150,7 +147,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetFederatedSettingsOrgRoleMappingResult> Invoke(GetFederatedSettingsOrgRoleMappingInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgRoleMappingResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", args ?? new GetFederatedSettingsOrgRoleMappingInvokeArgs(), options.WithDefaults());

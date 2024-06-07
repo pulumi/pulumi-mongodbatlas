@@ -31,7 +31,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -52,19 +53,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new MaintenanceWindow(&#34;test&#34;, MaintenanceWindowArgs.builder()        
+ *         var test = new MaintenanceWindow("test", MaintenanceWindowArgs.builder()
+ *             .projectId("<your-project-id>")
  *             .dayOfWeek(3)
  *             .hourOfDay(4)
- *             .projectId(&#34;&lt;your-project-id&gt;&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -85,14 +88,15 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new MaintenanceWindow(&#34;test&#34;, MaintenanceWindowArgs.builder()        
+ *         var test = new MaintenanceWindow("test", MaintenanceWindowArgs.builder()
+ *             .projectId("<your-project-id>")
  *             .defer(true)
- *             .projectId(&#34;&lt;your-project-id&gt;&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

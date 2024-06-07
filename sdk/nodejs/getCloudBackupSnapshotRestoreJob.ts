@@ -16,6 +16,7 @@ export function getCloudBackupSnapshotRestoreJob(args: GetCloudBackupSnapshotRes
         "clusterName": args.clusterName,
         "jobId": args.jobId,
         "projectId": args.projectId,
+        "snapshotRestoreJobId": args.snapshotRestoreJobId,
     }, opts);
 }
 
@@ -28,13 +29,19 @@ export interface GetCloudBackupSnapshotRestoreJobArgs {
      */
     clusterName: string;
     /**
-     * The unique identifier of the restore job to retrieve.
+     * A base64-encoded ID  of `projectId`, `clusterName`, and `jobId` of this resource. **Note**: This attribute is deprecated, use `snapshotRestoreJobId` instead.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Use snapshotRestoreJobId instead.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
     projectId: string;
+    /**
+     * The unique identifier of the restore job to retrieve. Required for versions 1.18.0 and later.
+     */
+    snapshotRestoreJobId?: string;
 }
 
 /**
@@ -48,6 +55,8 @@ export interface GetCloudBackupSnapshotRestoreJobResult {
     readonly clusterName: string;
     /**
      * UTC ISO 8601 formatted point in time when Atlas created the restore job.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     readonly createdAt: string;
     /**
@@ -74,7 +83,10 @@ export interface GetCloudBackupSnapshotRestoreJobResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly jobId: string;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Use snapshotRestoreJobId instead.
+     */
+    readonly jobId?: string;
     readonly oplogInc: number;
     readonly oplogTs: number;
     readonly pointInTimeUtcSeconds: number;
@@ -83,6 +95,7 @@ export interface GetCloudBackupSnapshotRestoreJobResult {
      * Unique identifier of the source snapshot ID of the restore job.
      */
     readonly snapshotId: string;
+    readonly snapshotRestoreJobId?: string;
     /**
      * Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
      */
@@ -93,6 +106,9 @@ export interface GetCloudBackupSnapshotRestoreJobResult {
     readonly targetProjectId: string;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
+     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
      */
     readonly timestamp: string;
 }
@@ -114,11 +130,17 @@ export interface GetCloudBackupSnapshotRestoreJobOutputArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
-     * The unique identifier of the restore job to retrieve.
+     * A base64-encoded ID  of `projectId`, `clusterName`, and `jobId` of this resource. **Note**: This attribute is deprecated, use `snapshotRestoreJobId` instead.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Use snapshotRestoreJobId instead.
      */
-    jobId: pulumi.Input<string>;
+    jobId?: pulumi.Input<string>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * The unique identifier of the restore job to retrieve. Required for versions 1.18.0 and later.
+     */
+    snapshotRestoreJobId?: pulumi.Input<string>;
 }

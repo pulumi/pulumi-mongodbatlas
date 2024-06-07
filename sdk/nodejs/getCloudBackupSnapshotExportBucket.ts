@@ -8,6 +8,24 @@ import * as utilities from "./utilities";
  * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
+ *     projectId: "{PROJECT_ID}",
+ *     iamRoleId: "{IAM_ROLE_ID}",
+ *     bucketName: "example-bucket",
+ *     cloudProvider: "AWS",
+ * });
+ * const test = mongodbatlas.getCloudBackupSnapshotExportBucketOutput({
+ *     projectId: "{PROJECT_ID}",
+ *     exportBucketId: testCloudBackupSnapshotExportBucket.exportBucketId,
+ * });
+ * ```
  */
 export function getCloudBackupSnapshotExportBucket(args: GetCloudBackupSnapshotExportBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotExportBucketResult> {
 
@@ -27,7 +45,10 @@ export interface GetCloudBackupSnapshotExportBucketArgs {
      * Unique identifier of the snapshot export bucket.
      */
     exportBucketId: string;
-    id: string;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     */
+    id?: string;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
@@ -51,6 +72,9 @@ export interface GetCloudBackupSnapshotExportBucketResult {
      * Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
      */
     readonly iamRoleId: string;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     */
     readonly id: string;
     readonly projectId: string;
 }
@@ -58,6 +82,24 @@ export interface GetCloudBackupSnapshotExportBucketResult {
  * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
+ *     projectId: "{PROJECT_ID}",
+ *     iamRoleId: "{IAM_ROLE_ID}",
+ *     bucketName: "example-bucket",
+ *     cloudProvider: "AWS",
+ * });
+ * const test = mongodbatlas.getCloudBackupSnapshotExportBucketOutput({
+ *     projectId: "{PROJECT_ID}",
+ *     exportBucketId: testCloudBackupSnapshotExportBucket.exportBucketId,
+ * });
+ * ```
  */
 export function getCloudBackupSnapshotExportBucketOutput(args: GetCloudBackupSnapshotExportBucketOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportBucketResult> {
     return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotExportBucket(a, opts))
@@ -71,7 +113,10 @@ export interface GetCloudBackupSnapshotExportBucketOutputArgs {
      * Unique identifier of the snapshot export bucket.
      */
     exportBucketId: pulumi.Input<string>;
-    id: pulumi.Input<string>;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
+     */
+    id?: pulumi.Input<string>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */

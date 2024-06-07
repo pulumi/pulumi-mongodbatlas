@@ -93,6 +93,8 @@ class GetFederatedDatabaseInstanceResult:
     def state(self) -> str:
         """
         Current state of the Federated Database Instance:
+        * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
+        * `DELETED` - The Federated Database Instance was deleted.
         """
         return pulumi.get(self, "state")
 
@@ -185,32 +187,28 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
 
     ### S With MongoDB Atlas Cluster As Storage Database
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_database_instance(name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        project_id="PROJECT ID")
+    test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
+        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### S With Amazon S3 Bucket As Storage Database
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_database_instance(cloud_provider_config=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigArgs(
+    test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
+        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+        cloud_provider_config=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigArgs(
             aws=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs(
                 test_s3_bucket="Amazon S3 Bucket Name",
             ),
-        ),
-        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        project_id="PROJECT ID")
+        ))
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the Atlas Federated Database Instance.
@@ -251,32 +249,28 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
 
     ### S With MongoDB Atlas Cluster As Storage Database
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_database_instance(name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        project_id="PROJECT ID")
+    test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
+        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### S With Amazon S3 Bucket As Storage Database
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_federated_database_instance(cloud_provider_config=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigArgs(
+    test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
+        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+        cloud_provider_config=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigArgs(
             aws=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs(
                 test_s3_bucket="Amazon S3 Bucket Name",
             ),
-        ),
-        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        project_id="PROJECT ID")
+        ))
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: Name of the Atlas Federated Database Instance.

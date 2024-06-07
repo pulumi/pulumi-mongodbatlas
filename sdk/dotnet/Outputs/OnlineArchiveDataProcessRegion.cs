@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class OnlineArchiveDataProcessRegion
     {
         /// <summary>
-        /// Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
+        /// Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
         /// </summary>
         public readonly string? CloudProvider;
         /// <summary>

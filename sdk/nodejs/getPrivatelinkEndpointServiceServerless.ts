@@ -11,29 +11,29 @@ import * as utilities from "./utilities";
  *
  * ## Example with AWS
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testServerlessInstance = new mongodbatlas.ServerlessInstance("testServerlessInstance", {
+ * const testServerlessInstance = new mongodbatlas.ServerlessInstance("test", {
  *     projectId: "<PROJECT_ID>",
+ *     name: "test-db",
  *     providerSettingsBackingProviderName: "AWS",
  *     providerSettingsProviderName: "SERVERLESS",
  *     providerSettingsRegionName: "US_EAST_1",
  *     continuousBackupEnabled: true,
  * });
- * const testPrivatelinkEndpointServerless = new mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", {
+ * const testPrivatelinkEndpointServerless = new mongodbatlas.PrivatelinkEndpointServerless("test", {
  *     projectId: "<PROJECT_ID>",
  *     instanceName: testServerlessInstance.name,
  *     providerName: "AWS",
  * });
- * const testPrivatelinkEndpointServiceServerless = mongodbatlas.getPrivatelinkEndpointServiceServerlessOutput({
+ * const test = mongodbatlas.getPrivatelinkEndpointServiceServerlessOutput({
  *     projectId: "<PROJECT_ID>",
  *     instanceName: testServerlessInstance.name,
  *     endpointId: testPrivatelinkEndpointServerless.endpointId,
  * });
- * const testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new mongodbatlas.PrivatelinkEndpointServiceServerless("testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless", {
+ * const testPrivatelinkEndpointServiceServerless = new mongodbatlas.PrivatelinkEndpointServiceServerless("test", {
  *     projectId: "<PROJECT_ID>",
  *     instanceName: "test-db",
  *     endpointId: testPrivatelinkEndpointServerless.endpointId,
@@ -41,33 +41,32 @@ import * as utilities from "./utilities";
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Example with AZURE
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testServerlessInstance = new mongodbatlas.ServerlessInstance("testServerlessInstance", {
+ * const testServerlessInstance = new mongodbatlas.ServerlessInstance("test", {
  *     projectId: "<PROJECT_ID>",
+ *     name: "test-db",
  *     providerSettingsBackingProviderName: "AZURE",
  *     providerSettingsProviderName: "SERVERLESS",
  *     providerSettingsRegionName: "US_EAST",
  *     continuousBackupEnabled: true,
  * });
- * const testPrivatelinkEndpointServerless = new mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", {
+ * const testPrivatelinkEndpointServerless = new mongodbatlas.PrivatelinkEndpointServerless("test", {
  *     projectId: "<PROJECT_ID>",
  *     instanceName: testServerlessInstance.name,
  *     providerName: "AZURE",
  * });
- * const testPrivatelinkEndpointServiceServerless = mongodbatlas.getPrivatelinkEndpointServiceServerlessOutput({
+ * const test = mongodbatlas.getPrivatelinkEndpointServiceServerlessOutput({
  *     projectId: "<PROJECT_ID>",
  *     instanceName: testServerlessInstance.name,
  *     endpointId: testPrivatelinkEndpointServerless.endpointId,
  * });
- * const testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new mongodbatlas.PrivatelinkEndpointServiceServerless("testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless", {
+ * const testPrivatelinkEndpointServiceServerless = new mongodbatlas.PrivatelinkEndpointServiceServerless("test", {
  *     projectId: "<PROJECT_ID>",
  *     instanceName: "test-db",
  *     endpointId: testPrivatelinkEndpointServerless.endpointId,
@@ -75,7 +74,6 @@ import * as utilities from "./utilities";
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Available complete examples
  * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC
@@ -146,29 +144,29 @@ export interface GetPrivatelinkEndpointServiceServerlessResult {
  *
  * ## Example with AWS
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testServerlessInstance = new mongodbatlas.ServerlessInstance("testServerlessInstance", {
+ * const testServerlessInstance = new mongodbatlas.ServerlessInstance("test", {
  *     projectId: "<PROJECT_ID>",
+ *     name: "test-db",
  *     providerSettingsBackingProviderName: "AWS",
  *     providerSettingsProviderName: "SERVERLESS",
  *     providerSettingsRegionName: "US_EAST_1",
  *     continuousBackupEnabled: true,
  * });
- * const testPrivatelinkEndpointServerless = new mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", {
+ * const testPrivatelinkEndpointServerless = new mongodbatlas.PrivatelinkEndpointServerless("test", {
  *     projectId: "<PROJECT_ID>",
  *     instanceName: testServerlessInstance.name,
  *     providerName: "AWS",
  * });
- * const testPrivatelinkEndpointServiceServerless = mongodbatlas.getPrivatelinkEndpointServiceServerlessOutput({
+ * const test = mongodbatlas.getPrivatelinkEndpointServiceServerlessOutput({
  *     projectId: "<PROJECT_ID>",
  *     instanceName: testServerlessInstance.name,
  *     endpointId: testPrivatelinkEndpointServerless.endpointId,
  * });
- * const testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new mongodbatlas.PrivatelinkEndpointServiceServerless("testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless", {
+ * const testPrivatelinkEndpointServiceServerless = new mongodbatlas.PrivatelinkEndpointServiceServerless("test", {
  *     projectId: "<PROJECT_ID>",
  *     instanceName: "test-db",
  *     endpointId: testPrivatelinkEndpointServerless.endpointId,
@@ -176,33 +174,32 @@ export interface GetPrivatelinkEndpointServiceServerlessResult {
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Example with AZURE
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testServerlessInstance = new mongodbatlas.ServerlessInstance("testServerlessInstance", {
+ * const testServerlessInstance = new mongodbatlas.ServerlessInstance("test", {
  *     projectId: "<PROJECT_ID>",
+ *     name: "test-db",
  *     providerSettingsBackingProviderName: "AZURE",
  *     providerSettingsProviderName: "SERVERLESS",
  *     providerSettingsRegionName: "US_EAST",
  *     continuousBackupEnabled: true,
  * });
- * const testPrivatelinkEndpointServerless = new mongodbatlas.PrivatelinkEndpointServerless("testPrivatelinkEndpointServerless", {
+ * const testPrivatelinkEndpointServerless = new mongodbatlas.PrivatelinkEndpointServerless("test", {
  *     projectId: "<PROJECT_ID>",
  *     instanceName: testServerlessInstance.name,
  *     providerName: "AZURE",
  * });
- * const testPrivatelinkEndpointServiceServerless = mongodbatlas.getPrivatelinkEndpointServiceServerlessOutput({
+ * const test = mongodbatlas.getPrivatelinkEndpointServiceServerlessOutput({
  *     projectId: "<PROJECT_ID>",
  *     instanceName: testServerlessInstance.name,
  *     endpointId: testPrivatelinkEndpointServerless.endpointId,
  * });
- * const testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new mongodbatlas.PrivatelinkEndpointServiceServerless("testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless", {
+ * const testPrivatelinkEndpointServiceServerless = new mongodbatlas.PrivatelinkEndpointServiceServerless("test", {
  *     projectId: "<PROJECT_ID>",
  *     instanceName: "test-db",
  *     endpointId: testPrivatelinkEndpointServerless.endpointId,
@@ -210,7 +207,6 @@ export interface GetPrivatelinkEndpointServiceServerlessResult {
  *     comment: "New serverless endpoint",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Available complete examples
  * - Setup private connection to a MongoDB Atlas Serverless Instance with AWS VPC

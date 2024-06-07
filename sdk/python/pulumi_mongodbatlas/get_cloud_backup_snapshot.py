@@ -237,6 +237,22 @@ def get_cloud_backup_snapshot(cluster_name: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("test",
+        project_id="5d0f1f73cf09a29120e173cf",
+        cluster_name="MyClusterTest",
+        description="SomeDescription",
+        retention_in_days=1)
+    test = mongodbatlas.get_cloud_backup_snapshot_output(snapshot_id="5d1285acd5ec13b6c2d1726a",
+        project_id=test_cloud_backup_snapshot.project_id,
+        cluster_name=test_cloud_backup_snapshot.cluster_name)
+    ```
+
 
     :param str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.
     :param str project_id: The unique identifier of the project for the Atlas cluster.
@@ -278,6 +294,22 @@ def get_cloud_backup_snapshot_output(cluster_name: Optional[pulumi.Input[str]] =
     `CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("test",
+        project_id="5d0f1f73cf09a29120e173cf",
+        cluster_name="MyClusterTest",
+        description="SomeDescription",
+        retention_in_days=1)
+    test = mongodbatlas.get_cloud_backup_snapshot_output(snapshot_id="5d1285acd5ec13b6c2d1726a",
+        project_id=test_cloud_backup_snapshot.project_id,
+        cluster_name=test_cloud_backup_snapshot.cluster_name)
+    ```
 
 
     :param str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.

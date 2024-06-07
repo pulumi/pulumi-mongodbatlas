@@ -18,7 +18,7 @@ public final class GetThirdPartyIntegrationsInvokeResult {
      */
     private String id;
     /**
-     * @return (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+     * @return ID of the Atlas project the Third-Party Service Integration belongs to.
      * 
      */
     private String projectId;
@@ -37,7 +37,7 @@ public final class GetThirdPartyIntegrationsInvokeResult {
         return this.id;
     }
     /**
-     * @return (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+     * @return ID of the Atlas project the Third-Party Service Integration belongs to.
      * 
      */
     public String projectId() {

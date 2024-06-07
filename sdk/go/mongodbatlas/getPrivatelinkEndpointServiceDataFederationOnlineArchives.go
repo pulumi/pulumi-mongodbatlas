@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -31,7 +30,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewProject(ctx, "atlas-project", &mongodbatlas.ProjectArgs{
-//				OrgId: pulumi.Any(_var.Atlas_org_id),
+//				OrgId: pulumi.Any(atlasOrgId),
+//				Name:  pulumi.Any(atlasProjectName),
 //			})
 //			if err != nil {
 //				return err
@@ -55,7 +55,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupPrivatelinkEndpointServiceDataFederationOnlineArchives(ctx *pulumi.Context, args *LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs, opts ...pulumi.InvokeOption) (*LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResult

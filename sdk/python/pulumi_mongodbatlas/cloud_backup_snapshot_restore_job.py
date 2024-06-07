@@ -136,11 +136,28 @@ class _CloudBackupSnapshotRestoreJobState:
         :param pulumi.Input[str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         :param pulumi.Input[str] snapshot_restore_job_id: The unique identifier of the restore job.
         :param pulumi.Input[str] timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+               * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+               Three conditions apply to this parameter:
+               * Enable Continuous Cloud Backup on your cluster.
+               * Specify oplogInc.
+               * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+               * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+               Three conditions apply to this parameter:
+               * Enable Continuous Cloud Backup on your cluster.
+               * Specify oplogTs.
+               * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+               * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+               Two conditions apply to this parameter:
+               * Enable Continuous Cloud Backup on your cluster.
+               * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
         """
         if cancelled is not None:
             pulumi.set(__self__, "cancelled", cancelled)
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
+        if created_at is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
+            pulumi.log.warn("""created_at is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if delivery_type_config is not None:
@@ -192,6 +209,9 @@ class _CloudBackupSnapshotRestoreJobState:
         """
         UTC ISO 8601 formatted point in time when Atlas created the restore job.
         """
+        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
+        pulumi.log.warn("""created_at is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
+
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -307,6 +327,20 @@ class _CloudBackupSnapshotRestoreJobState:
     def timestamp(self) -> Optional[pulumi.Input[str]]:
         """
         Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+        Three conditions apply to this parameter:
+        * Enable Continuous Cloud Backup on your cluster.
+        * Specify oplogInc.
+        * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+        Three conditions apply to this parameter:
+        * Enable Continuous Cloud Backup on your cluster.
+        * Specify oplogTs.
+        * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+        Two conditions apply to this parameter:
+        * Enable Continuous Cloud Backup on your cluster.
+        * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
         """
         return pulumi.get(self, "timestamp")
 
@@ -328,38 +362,93 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### Example of a point in time restore
-        <!--Start PulumiCodeChooser -->
+        ### Example automated delivery type
+
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        cluster_test = mongodbatlas.Cluster("clusterTest",
-            project_id=mongodbatlas_project["project_test"]["id"],
+        my_cluster = mongodbatlas.Cluster("my_cluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            name="MyCluster",
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        test = mongodbatlas.index.CloudProviderSnapshot("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description=myDescription,
+            retention_in_days=1)
+        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
+            project_id=test["projectId"],
+            cluster_name=test["clusterName"],
+            snapshot_id=test["snapshotId"],
+            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
+                automated=True,
+                target_cluster_name="MyCluster",
+                target_project_id="5cf5a45a9ccf6400e60981b6",
+            ))
+        ```
+
+        ### Example download delivery type
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("my_cluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            name="MyCluster",
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        test = mongodbatlas.index.CloudProviderSnapshot("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description=myDescription,
+            retention_in_days=1)
+        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
+            project_id=test["projectId"],
+            cluster_name=test["clusterName"],
+            snapshot_id=test["snapshotId"],
+            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
+                download=True,
+            ))
+        ```
+
+        ### Example of a point in time restore
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster_test",
+            project_id=project_test["id"],
+            name=cluster_name,
             provider_name="AWS",
             provider_region_name="US_EAST_1",
             provider_instance_size_name="M10",
             cloud_backup=True,
             pit_enabled=True)
-        test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
+        test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=cluster_test.project_id,
             cluster_name=cluster_test.name,
             description="My description",
             retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = None
-        if (0 if var.point_in_time_utc_seconds == 0 else 1) == True:
-            test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-                project_id=test_cloud_backup_snapshot.project_id,
-                cluster_name=test_cloud_backup_snapshot.cluster_name,
-                snapshot_id=test_cloud_backup_snapshot.id,
+        test_cloud_backup_snapshot_restore_job = []
+        for range in [{"value": i} for i in range(0, 0 if point_in_time_utc_seconds == 0 else 1)]:
+            test_cloud_backup_snapshot_restore_job.append(mongodbatlas.CloudBackupSnapshotRestoreJob(f"test-{range['value']}",
+                project_id=test.project_id,
+                cluster_name=test.cluster_name,
+                snapshot_id=test.id,
                 delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
                     point_in_time=True,
                     target_cluster_name=cluster_test.name,
                     target_project_id=cluster_test.project_id,
-                    point_in_time_utc_seconds=var["point_in_time_utc_seconds"],
-                ))
+                    point_in_time_utc_seconds=point_in_time_utc_seconds,
+                )))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Available complete examples
         - Restore from backup snapshot at point in time
@@ -398,38 +487,93 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### Example of a point in time restore
-        <!--Start PulumiCodeChooser -->
+        ### Example automated delivery type
+
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        cluster_test = mongodbatlas.Cluster("clusterTest",
-            project_id=mongodbatlas_project["project_test"]["id"],
+        my_cluster = mongodbatlas.Cluster("my_cluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            name="MyCluster",
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        test = mongodbatlas.index.CloudProviderSnapshot("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description=myDescription,
+            retention_in_days=1)
+        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
+            project_id=test["projectId"],
+            cluster_name=test["clusterName"],
+            snapshot_id=test["snapshotId"],
+            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
+                automated=True,
+                target_cluster_name="MyCluster",
+                target_project_id="5cf5a45a9ccf6400e60981b6",
+            ))
+        ```
+
+        ### Example download delivery type
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("my_cluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            name="MyCluster",
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            cloud_backup=True)
+        test = mongodbatlas.index.CloudProviderSnapshot("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description=myDescription,
+            retention_in_days=1)
+        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
+            project_id=test["projectId"],
+            cluster_name=test["clusterName"],
+            snapshot_id=test["snapshotId"],
+            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
+                download=True,
+            ))
+        ```
+
+        ### Example of a point in time restore
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster_test",
+            project_id=project_test["id"],
+            name=cluster_name,
             provider_name="AWS",
             provider_region_name="US_EAST_1",
             provider_instance_size_name="M10",
             cloud_backup=True,
             pit_enabled=True)
-        test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
+        test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=cluster_test.project_id,
             cluster_name=cluster_test.name,
             description="My description",
             retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = None
-        if (0 if var.point_in_time_utc_seconds == 0 else 1) == True:
-            test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-                project_id=test_cloud_backup_snapshot.project_id,
-                cluster_name=test_cloud_backup_snapshot.cluster_name,
-                snapshot_id=test_cloud_backup_snapshot.id,
+        test_cloud_backup_snapshot_restore_job = []
+        for range in [{"value": i} for i in range(0, 0 if point_in_time_utc_seconds == 0 else 1)]:
+            test_cloud_backup_snapshot_restore_job.append(mongodbatlas.CloudBackupSnapshotRestoreJob(f"test-{range['value']}",
+                project_id=test.project_id,
+                cluster_name=test.cluster_name,
+                snapshot_id=test.id,
                 delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
                     point_in_time=True,
                     target_cluster_name=cluster_test.name,
                     target_project_id=cluster_test.project_id,
-                    point_in_time_utc_seconds=var["point_in_time_utc_seconds"],
-                ))
+                    point_in_time_utc_seconds=point_in_time_utc_seconds,
+                )))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Available complete examples
         - Restore from backup snapshot at point in time
@@ -537,6 +681,20 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.Input[str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         :param pulumi.Input[str] snapshot_restore_job_id: The unique identifier of the restore job.
         :param pulumi.Input[str] timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+               * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+               Three conditions apply to this parameter:
+               * Enable Continuous Cloud Backup on your cluster.
+               * Specify oplogInc.
+               * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+               * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+               Three conditions apply to this parameter:
+               * Enable Continuous Cloud Backup on your cluster.
+               * Specify oplogTs.
+               * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+               * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+               Two conditions apply to this parameter:
+               * Enable Continuous Cloud Backup on your cluster.
+               * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -578,6 +736,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         """
         UTC ISO 8601 formatted point in time when Atlas created the restore job.
         """
+        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
+        pulumi.log.warn("""created_at is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
+
         return pulumi.get(self, "created_at")
 
     @property
@@ -657,6 +818,20 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
     def timestamp(self) -> pulumi.Output[str]:
         """
         Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
+        Three conditions apply to this parameter:
+        * Enable Continuous Cloud Backup on your cluster.
+        * Specify oplogInc.
+        * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        * `oplogInc` - Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp.
+        Three conditions apply to this parameter:
+        * Enable Continuous Cloud Backup on your cluster.
+        * Specify oplogTs.
+        * Specify either oplogTs and oplogInc or pointInTimeUTCSeconds, but not both.
+        * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot.
+        Two conditions apply to this parameter:
+        * Enable Continuous Cloud Backup on your cluster.
+        * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
         """
         return pulumi.get(self, "timestamp")
 

@@ -13,41 +13,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class OnlineArchivePartitionField {
-    /**
-     * @return Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
-     * 
-     */
     private String fieldName;
-    /**
-     * @return Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
-     * 
-     */
     private @Nullable String fieldType;
-    /**
-     * @return Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-     * 
-     */
     private Integer order;
 
     private OnlineArchivePartitionField() {}
-    /**
-     * @return Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
-     * 
-     */
     public String fieldName() {
         return this.fieldName;
     }
-    /**
-     * @return Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
-     * 
-     */
     public Optional<String> fieldType() {
         return Optional.ofNullable(this.fieldType);
     }
-    /**
-     * @return Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
-     * 
-     */
     public Integer order() {
         return this.order;
     }

@@ -15,6 +15,41 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     {
+        ///         Name = "NAME OF THE PROJECT",
+        ///         OrgId = "ORG ID",
+        ///     });
+        /// 
+        ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("test", new()
+        ///     {
+        ///         ProjectId = testProject.Id,
+        ///         AuthenticationEnabled = true,
+        ///         Hostname = "HOSTNAME",
+        ///         Port = 636,
+        ///         BindUsername = "USERNAME",
+        ///         BindPassword = "PASSWORD",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetLdapConfiguration.Invoke(new()
+        ///     {
+        ///         ProjectId = testLdapConfiguration.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetLdapConfigurationResult> InvokeAsync(GetLdapConfigurationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLdapConfigurationResult>("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args ?? new GetLdapConfigurationArgs(), options.WithDefaults());
@@ -23,6 +58,41 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     {
+        ///         Name = "NAME OF THE PROJECT",
+        ///         OrgId = "ORG ID",
+        ///     });
+        /// 
+        ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("test", new()
+        ///     {
+        ///         ProjectId = testProject.Id,
+        ///         AuthenticationEnabled = true,
+        ///         Hostname = "HOSTNAME",
+        ///         Port = 636,
+        ///         BindUsername = "USERNAME",
+        ///         BindPassword = "PASSWORD",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetLdapConfiguration.Invoke(new()
+        ///     {
+        ///         ProjectId = testLdapConfiguration.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetLdapConfigurationResult> Invoke(GetLdapConfigurationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLdapConfigurationResult>("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args ?? new GetLdapConfigurationInvokeArgs(), options.WithDefaults());
@@ -100,9 +170,6 @@ namespace Pulumi.Mongodbatlas
         public readonly string ProjectId;
         /// <summary>
         /// Maps an LDAP username for authentication to an LDAP Distinguished Name (DN).
-        /// * `user_to_dn_mapping.0.match` - A regular expression to match against a provided LDAP username.
-        /// * `user_to_dn_mapping.0.substitution` - An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name.
-        /// * `user_to_dn_mapping.0.ldap_query` - An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLdapConfigurationUserToDnMappingResult> UserToDnMappings;
 

@@ -20,7 +20,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,13 +30,12 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.CustomDnsConfigurationClusterAws("test", new()
     ///     {
-    ///         Enabled = true,
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Enabled = true,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

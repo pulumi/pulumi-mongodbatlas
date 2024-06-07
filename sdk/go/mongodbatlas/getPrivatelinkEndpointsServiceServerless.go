@@ -17,7 +17,6 @@ import (
 //
 // ## Example with AWS
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,8 +29,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "testServerlessInstance", &mongodbatlas.ServerlessInstanceArgs{
+//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "test", &mongodbatlas.ServerlessInstanceArgs{
 //				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				Name:                                pulumi.String("test-db"),
 //				ProviderSettingsBackingProviderName: pulumi.String("AWS"),
 //				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
 //				ProviderSettingsRegionName:          pulumi.String("US_EAST_1"),
@@ -44,7 +44,7 @@ import (
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: testServerlessInstance.Name,
 //			}, nil)
-//			testPrivatelinkEndpointServerless, err := mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "testPrivatelinkEndpointServerless", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
+//			testPrivatelinkEndpointServerless, err := mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: testServerlessInstance.Name,
 //				ProviderName: pulumi.String("AWS"),
@@ -52,7 +52,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "testPrivatelinkEndpointServiceServerless", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
+//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: pulumi.String("test-db"),
 //				EndpointId:   testPrivatelinkEndpointServerless.EndpointId,
@@ -67,11 +67,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Example with AZURE
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -84,8 +82,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "testServerlessInstance", &mongodbatlas.ServerlessInstanceArgs{
+//			testServerlessInstance, err := mongodbatlas.NewServerlessInstance(ctx, "test", &mongodbatlas.ServerlessInstanceArgs{
 //				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				Name:                                pulumi.String("test-db"),
 //				ProviderSettingsBackingProviderName: pulumi.String("AZURE"),
 //				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
 //				ProviderSettingsRegionName:          pulumi.String("US_EAST"),
@@ -98,7 +97,7 @@ import (
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: testServerlessInstance.Name,
 //			}, nil)
-//			testPrivatelinkEndpointServerless, err := mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "testPrivatelinkEndpointServerless", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
+//			testPrivatelinkEndpointServerless, err := mongodbatlas.NewPrivatelinkEndpointServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServerlessArgs{
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: testServerlessInstance.Name,
 //				ProviderName: pulumi.String("AZURE"),
@@ -106,7 +105,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "testPrivatelinkEndpointServiceServerless", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
+//			_, err = mongodbatlas.NewPrivatelinkEndpointServiceServerless(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceServerlessArgs{
 //				ProjectId:    pulumi.String("<PROJECT_ID>"),
 //				InstanceName: pulumi.String("test-db"),
 //				EndpointId:   testPrivatelinkEndpointServerless.EndpointId,
@@ -121,7 +120,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupPrivatelinkEndpointsServiceServerless(ctx *pulumi.Context, args *LookupPrivatelinkEndpointsServiceServerlessArgs, opts ...pulumi.InvokeOption) (*LookupPrivatelinkEndpointsServiceServerlessResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivatelinkEndpointsServiceServerlessResult
@@ -136,9 +134,9 @@ func LookupPrivatelinkEndpointsServiceServerless(ctx *pulumi.Context, args *Look
 type LookupPrivatelinkEndpointsServiceServerlessArgs struct {
 	// Human-readable label that identifies the serverless instance
 	InstanceName string `pulumi:"instanceName"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+	// Deprecated: This parameter is deprecated and will be removed in version 1.17.0.
 	ItemsPerPage *int `pulumi:"itemsPerPage"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+	// Deprecated: This parameter is deprecated and will be removed in version 1.17.0.
 	PageNum *int `pulumi:"pageNum"`
 	// Unique 24-digit hexadecimal string that identifies the project.
 	ProjectId string `pulumi:"projectId"`
@@ -149,9 +147,9 @@ type LookupPrivatelinkEndpointsServiceServerlessResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id           string `pulumi:"id"`
 	InstanceName string `pulumi:"instanceName"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+	// Deprecated: This parameter is deprecated and will be removed in version 1.17.0.
 	ItemsPerPage *int `pulumi:"itemsPerPage"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+	// Deprecated: This parameter is deprecated and will be removed in version 1.17.0.
 	PageNum   *int   `pulumi:"pageNum"`
 	ProjectId string `pulumi:"projectId"`
 	// Each element in the `result` array is one private serverless endpoint.
@@ -175,9 +173,9 @@ func LookupPrivatelinkEndpointsServiceServerlessOutput(ctx *pulumi.Context, args
 type LookupPrivatelinkEndpointsServiceServerlessOutputArgs struct {
 	// Human-readable label that identifies the serverless instance
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+	// Deprecated: This parameter is deprecated and will be removed in version 1.17.0.
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
-	// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+	// Deprecated: This parameter is deprecated and will be removed in version 1.17.0.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
 	// Unique 24-digit hexadecimal string that identifies the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -211,12 +209,12 @@ func (o LookupPrivatelinkEndpointsServiceServerlessResultOutput) InstanceName() 
 	return o.ApplyT(func(v LookupPrivatelinkEndpointsServiceServerlessResult) string { return v.InstanceName }).(pulumi.StringOutput)
 }
 
-// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+// Deprecated: This parameter is deprecated and will be removed in version 1.17.0.
 func (o LookupPrivatelinkEndpointsServiceServerlessResultOutput) ItemsPerPage() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupPrivatelinkEndpointsServiceServerlessResult) *int { return v.ItemsPerPage }).(pulumi.IntPtrOutput)
 }
 
-// Deprecated: this parameter is deprecated and will be removed in version 1.17.0
+// Deprecated: This parameter is deprecated and will be removed in version 1.17.0.
 func (o LookupPrivatelinkEndpointsServiceServerlessResultOutput) PageNum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupPrivatelinkEndpointsServiceServerlessResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
 }

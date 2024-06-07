@@ -19,7 +19,6 @@ import (
 //
 // ### Basic Example.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -32,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "testNetworkContainer", &mongodbatlas.NetworkContainerArgs{
+//			testNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
 //				ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
 //				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
 //				ProviderName:   pulumi.String("AWS"),
@@ -54,7 +53,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupNetworkContainers(ctx *pulumi.Context, args *LookupNetworkContainersArgs, opts ...pulumi.InvokeOption) (*LookupNetworkContainersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNetworkContainersResult

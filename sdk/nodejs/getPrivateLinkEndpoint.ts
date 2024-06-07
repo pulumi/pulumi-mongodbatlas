@@ -8,6 +8,27 @@ import * as utilities from "./utilities";
  * `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     providerName: "AWS",
+ *     region: "US_EAST_1",
+ * });
+ * const test = mongodbatlas.getPrivateLinkEndpointOutput({
+ *     projectId: testPrivateLinkEndpoint.projectId,
+ *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
+ *     providerName: "AWS",
+ * });
+ * ```
+ *
+ * ### Available complete examples
+ * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
  */
 export function getPrivateLinkEndpoint(args: GetPrivateLinkEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateLinkEndpointResult> {
 
@@ -87,6 +108,11 @@ export interface GetPrivateLinkEndpointResult {
     /**
      * Status of the AWS PrivateLink connection.
      * Returns one of the following values:
+     * * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
+     * * `INITIATING` 	Atlas is creating the network load balancer and VPC endpoint service.
+     * * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+     * * `FAILED` 	A system failure has occurred.
+     * * `DELETING` 	The Private Link service is being deleted.
      */
     readonly status: string;
 }
@@ -94,6 +120,27 @@ export interface GetPrivateLinkEndpointResult {
  * `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("test", {
+ *     projectId: "<PROJECT-ID>",
+ *     providerName: "AWS",
+ *     region: "US_EAST_1",
+ * });
+ * const test = mongodbatlas.getPrivateLinkEndpointOutput({
+ *     projectId: testPrivateLinkEndpoint.projectId,
+ *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
+ *     providerName: "AWS",
+ * });
+ * ```
+ *
+ * ### Available complete examples
+ * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
  */
 export function getPrivateLinkEndpointOutput(args: GetPrivateLinkEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateLinkEndpointResult> {
     return pulumi.output(args).apply((a: any) => getPrivateLinkEndpoint(a, opts))

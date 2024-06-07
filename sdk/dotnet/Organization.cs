@@ -20,7 +20,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,8 +30,9 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     var test = new Mongodbatlas.Organization("test", new()
     ///     {
-    ///         Description = "test API key from Org Creation Test",
     ///         OrgOwnerId = "6205e5fffff79cde6f",
+    ///         Name = "testCreateORG",
+    ///         Description = "test API key from Org Creation Test",
     ///         RoleNames = new[]
     ///         {
     ///             "ORG_OWNER",
@@ -41,7 +41,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/organization:Organization")]
     public partial class Organization : global::Pulumi.CustomResource

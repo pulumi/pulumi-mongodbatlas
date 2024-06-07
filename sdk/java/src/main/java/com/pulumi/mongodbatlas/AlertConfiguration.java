@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -36,9 +37,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.AlertConfiguration;
  * import com.pulumi.mongodbatlas.AlertConfigurationArgs;
+ * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMatcherArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMetricThresholdConfigArgs;
- * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -52,43 +53,45 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AlertConfiguration(&#34;test&#34;, AlertConfigurationArgs.builder()        
+ *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()
+ *             .projectId("<PROJECT-ID>")
+ *             .eventType("OUTSIDE_METRIC_THRESHOLD")
  *             .enabled(true)
- *             .eventType(&#34;OUTSIDE_METRIC_THRESHOLD&#34;)
+ *             .notifications(AlertConfigurationNotificationArgs.builder()
+ *                 .typeName("GROUP")
+ *                 .intervalMin(5)
+ *                 .delayMin(0)
+ *                 .smsEnabled(false)
+ *                 .emailEnabled(true)
+ *                 .roles(                
+ *                     "GROUP_CHARTS_ADMIN",
+ *                     "GROUP_CLUSTER_MANAGER")
+ *                 .build())
  *             .matchers(AlertConfigurationMatcherArgs.builder()
- *                 .fieldName(&#34;HOSTNAME_AND_PORT&#34;)
- *                 .operator(&#34;EQUALS&#34;)
- *                 .value(&#34;SECONDARY&#34;)
+ *                 .fieldName("HOSTNAME_AND_PORT")
+ *                 .operator("EQUALS")
+ *                 .value("SECONDARY")
  *                 .build())
  *             .metricThresholdConfig(AlertConfigurationMetricThresholdConfigArgs.builder()
- *                 .metricName(&#34;ASSERT_REGULAR&#34;)
- *                 .mode(&#34;AVERAGE&#34;)
- *                 .operator(&#34;LESS_THAN&#34;)
+ *                 .metricName("ASSERT_REGULAR")
+ *                 .operator("LESS_THAN")
  *                 .threshold(99)
- *                 .units(&#34;RAW&#34;)
+ *                 .units("RAW")
+ *                 .mode("AVERAGE")
  *                 .build())
- *             .notifications(AlertConfigurationNotificationArgs.builder()
- *                 .delayMin(0)
- *                 .emailEnabled(true)
- *                 .intervalMin(5)
- *                 .roles(                
- *                     &#34;GROUP_CHARTS_ADMIN&#34;,
- *                     &#34;GROUP_CLUSTER_MANAGER&#34;)
- *                 .smsEnabled(false)
- *                 .typeName(&#34;GROUP&#34;)
- *                 .build())
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -96,8 +99,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.AlertConfiguration;
  * import com.pulumi.mongodbatlas.AlertConfigurationArgs;
- * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMatcherArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
+ * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMatcherArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationThresholdConfigArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -112,41 +115,43 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AlertConfiguration(&#34;test&#34;, AlertConfigurationArgs.builder()        
+ *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()
+ *             .projectId("<PROJECT-ID>")
+ *             .eventType("REPLICATION_OPLOG_WINDOW_RUNNING_OUT")
  *             .enabled(true)
- *             .eventType(&#34;REPLICATION_OPLOG_WINDOW_RUNNING_OUT&#34;)
- *             .matchers(AlertConfigurationMatcherArgs.builder()
- *                 .fieldName(&#34;HOSTNAME_AND_PORT&#34;)
- *                 .operator(&#34;EQUALS&#34;)
- *                 .value(&#34;SECONDARY&#34;)
- *                 .build())
  *             .notifications(AlertConfigurationNotificationArgs.builder()
- *                 .delayMin(0)
- *                 .emailEnabled(true)
+ *                 .typeName("GROUP")
  *                 .intervalMin(5)
- *                 .roles(                
- *                     &#34;GROUP_CHARTS_ADMIN&#34;,
- *                     &#34;GROUP_CLUSTER_MANAGER&#34;)
+ *                 .delayMin(0)
  *                 .smsEnabled(false)
- *                 .typeName(&#34;GROUP&#34;)
+ *                 .emailEnabled(true)
+ *                 .roles(                
+ *                     "GROUP_CHARTS_ADMIN",
+ *                     "GROUP_CLUSTER_MANAGER")
  *                 .build())
- *             .projectId(&#34;&lt;PROJECT-ID&gt;&#34;)
+ *             .matchers(AlertConfigurationMatcherArgs.builder()
+ *                 .fieldName("HOSTNAME_AND_PORT")
+ *                 .operator("EQUALS")
+ *                 .value("SECONDARY")
+ *                 .build())
  *             .thresholdConfig(AlertConfigurationThresholdConfigArgs.builder()
- *                 .operator(&#34;LESS_THAN&#34;)
+ *                 .operator("LESS_THAN")
  *                 .threshold(1)
- *                 .units(&#34;HOURS&#34;)
+ *                 .units("HOURS")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Create an alert with two notifications using Email and SMS
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -154,8 +159,79 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.AlertConfiguration;
  * import com.pulumi.mongodbatlas.AlertConfigurationArgs;
+ * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMatcherArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMetricThresholdConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .eventType("OUTSIDE_METRIC_THRESHOLD")
+ *             .enabled(true)
+ *             .notifications(            
+ *                 AlertConfigurationNotificationArgs.builder()
+ *                     .typeName("GROUP")
+ *                     .intervalMin(5)
+ *                     .delayMin(0)
+ *                     .smsEnabled(false)
+ *                     .emailEnabled(true)
+ *                     .roles(                    
+ *                         "GROUP_DATA_ACCESS_READ_ONLY",
+ *                         "GROUP_CLUSTER_MANAGER",
+ *                         "GROUP_DATA_ACCESS_ADMIN")
+ *                     .build(),
+ *                 AlertConfigurationNotificationArgs.builder()
+ *                     .typeName("ORG")
+ *                     .intervalMin(5)
+ *                     .delayMin(0)
+ *                     .smsEnabled(true)
+ *                     .emailEnabled(false)
+ *                     .build())
+ *             .matchers(AlertConfigurationMatcherArgs.builder()
+ *                 .fieldName("HOSTNAME_AND_PORT")
+ *                 .operator("EQUALS")
+ *                 .value("SECONDARY")
+ *                 .build())
+ *             .metricThresholdConfig(AlertConfigurationMetricThresholdConfigArgs.builder()
+ *                 .metricName("ASSERT_REGULAR")
+ *                 .operator("LESS_THAN")
+ *                 .threshold(99)
+ *                 .units("RAW")
+ *                 .mode("AVERAGE")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Create third party notification using credentials from existing third party integration
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationArgs;
+ * import com.pulumi.mongodbatlas.AlertConfiguration;
+ * import com.pulumi.mongodbatlas.AlertConfigurationArgs;
  * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -170,46 +246,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AlertConfiguration(&#34;test&#34;, AlertConfigurationArgs.builder()        
+ *         final var test = MongodbatlasFunctions.getThirdPartyIntegration(GetThirdPartyIntegrationArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .type("PAGER_DUTY")
+ *             .build());
+ * 
+ *         var testAlertConfiguration = new AlertConfiguration("testAlertConfiguration", AlertConfigurationArgs.builder()
+ *             .projectId("PROJECT ID")
  *             .enabled(true)
- *             .eventType(&#34;OUTSIDE_METRIC_THRESHOLD&#34;)
- *             .matchers(AlertConfigurationMatcherArgs.builder()
- *                 .fieldName(&#34;HOSTNAME_AND_PORT&#34;)
- *                 .operator(&#34;EQUALS&#34;)
- *                 .value(&#34;SECONDARY&#34;)
+ *             .eventType("USERS_WITHOUT_MULTI_FACTOR_AUTH")
+ *             .notifications(AlertConfigurationNotificationArgs.builder()
+ *                 .typeName("PAGER_DUTY")
+ *                 .integrationId(test.applyValue(getThirdPartyIntegrationResult -> getThirdPartyIntegrationResult.id()))
  *                 .build())
- *             .metricThresholdConfig(AlertConfigurationMetricThresholdConfigArgs.builder()
- *                 .metricName(&#34;ASSERT_REGULAR&#34;)
- *                 .mode(&#34;AVERAGE&#34;)
- *                 .operator(&#34;LESS_THAN&#34;)
- *                 .threshold(99)
- *                 .units(&#34;RAW&#34;)
- *                 .build())
- *             .notifications(            
- *                 AlertConfigurationNotificationArgs.builder()
- *                     .delayMin(0)
- *                     .emailEnabled(true)
- *                     .intervalMin(5)
- *                     .roles(                    
- *                         &#34;GROUP_DATA_ACCESS_READ_ONLY&#34;,
- *                         &#34;GROUP_CLUSTER_MANAGER&#34;,
- *                         &#34;GROUP_DATA_ACCESS_ADMIN&#34;)
- *                     .smsEnabled(false)
- *                     .typeName(&#34;GROUP&#34;)
- *                     .build(),
- *                 AlertConfigurationNotificationArgs.builder()
- *                     .delayMin(0)
- *                     .emailEnabled(false)
- *                     .intervalMin(5)
- *                     .smsEnabled(true)
- *                     .typeName(&#34;ORG&#34;)
- *                     .build())
- *             .projectId(&#34;PROJECT ID&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

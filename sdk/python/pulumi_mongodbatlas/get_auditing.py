@@ -108,6 +108,20 @@ def get_auditing(project_id: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_auditing = mongodbatlas.Auditing("test",
+        project_id="<project-id>",
+        audit_filter="{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
+        audit_authorization_success=False,
+        enabled=True)
+    test = mongodbatlas.get_auditing_output(project_id=test_auditing.id)
+    ```
+
 
     :param str project_id: The unique ID for the project to create the database user.
     """
@@ -132,6 +146,20 @@ def get_auditing_output(project_id: Optional[pulumi.Input[str]] = None,
     `Auditing` describes a Auditing.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_auditing = mongodbatlas.Auditing("test",
+        project_id="<project-id>",
+        audit_filter="{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
+        audit_authorization_success=False,
+        enabled=True)
+    test = mongodbatlas.get_auditing_output(project_id=test_auditing.id)
+    ```
 
 
     :param str project_id: The unique ID for the project to create the database user.

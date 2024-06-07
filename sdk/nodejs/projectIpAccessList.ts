@@ -17,63 +17,57 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Using CIDR Block
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.ProjectIpAccessList("test", {
+ *     projectId: "<PROJECT-ID>",
  *     cidrBlock: "1.2.3.4/32",
  *     comment: "cidr block for tf acc testing",
- *     projectId: "<PROJECT-ID>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using IP Address
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.ProjectIpAccessList("test", {
- *     comment: "ip address for tf acc testing",
- *     ipAddress: "2.3.4.5",
  *     projectId: "<PROJECT-ID>",
+ *     ipAddress: "2.3.4.5",
+ *     comment: "ip address for tf acc testing",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Using an AWS Security Group
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testNetworkContainer = new mongodbatlas.NetworkContainer("testNetworkContainer", {
+ * const test = new mongodbatlas.NetworkContainer("test", {
  *     projectId: "<PROJECT-ID>",
  *     atlasCidrBlock: "192.168.208.0/21",
  *     providerName: "AWS",
  *     regionName: "US_EAST_1",
  * });
- * const testNetworkPeering = new mongodbatlas.NetworkPeering("testNetworkPeering", {
+ * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
  *     projectId: "<PROJECT-ID>",
- *     containerId: testNetworkContainer.containerId,
+ *     containerId: test.containerId,
  *     accepterRegionName: "us-east-1",
  *     providerName: "AWS",
  *     routeTableCidrBlock: "172.31.0.0/16",
  *     vpcId: "vpc-0d93d6f69f1578bd8",
  *     awsAccountId: "232589400519",
  * });
- * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("testProjectIpAccessList", {
+ * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
  *     projectId: "<PROJECT-ID>",
  *     awsSecurityGroup: "sg-0026348ec11780bd1",
  *     comment: "TestAcc for awsSecurityGroup",
  * }, {
- *     dependsOn: ["mongodbatlas_network_peering.test"],
+ *     dependsOn: [testNetworkPeering],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
  *

@@ -94,16 +94,14 @@ def get_project_api_keys(items_per_page: Optional[int] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_project_api_keys(items_per_page=5,
-        page_num=1,
+    test = mongodbatlas.get_project_api_keys(page_num=1,
+        items_per_page=5,
         project_id="32b6e34b3d91647abb20e7b8")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -133,16 +131,14 @@ def get_project_api_keys_output(items_per_page: Optional[pulumi.Input[Optional[i
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test = mongodbatlas.get_project_api_keys(items_per_page=5,
-        page_num=1,
+    test = mongodbatlas.get_project_api_keys(page_num=1,
+        items_per_page=5,
         project_id="32b6e34b3d91647abb20e7b8")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.

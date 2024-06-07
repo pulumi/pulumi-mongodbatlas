@@ -17,19 +17,17 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testDatadog = new mongodbatlas.ThirdPartyIntegration("testDatadog", {
- *     apiKey: "<API-KEY>",
+ * const testDatadog = new mongodbatlas.ThirdPartyIntegration("test_datadog", {
  *     projectId: "<PROJECT-ID>",
- *     region: "<REGION>",
  *     type: "DATADOG",
+ *     apiKey: "<API-KEY>",
+ *     region: "<REGION>",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -68,50 +66,23 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
         return obj['__pulumiType'] === ThirdPartyIntegration.__pulumiType;
     }
 
-    /**
-     * Your API Key.
-     */
     public readonly apiKey!: pulumi.Output<string>;
     public readonly channelName!: pulumi.Output<string>;
-    /**
-     * Whether your cluster has Prometheus enabled.
-     */
     public readonly enabled!: pulumi.Output<boolean>;
-    /**
-     * Your Microsoft Teams incoming webhook URL.
-     */
     public readonly microsoftTeamsWebhookUrl!: pulumi.Output<string>;
-    /**
-     * Your Prometheus password.
-     */
     public readonly password!: pulumi.Output<string>;
     /**
      * The unique ID for the project to get all Third-Party service integrations
      */
     public readonly projectId!: pulumi.Output<string>;
-    /**
-     * Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-     */
     public readonly region!: pulumi.Output<string>;
-    /**
-     * An optional field for your Routing Key.
-     */
     public readonly routingKey!: pulumi.Output<string>;
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     public readonly scheme!: pulumi.Output<string>;
-    /**
-     * An optional field for your webhook secret.
-     */
     public readonly secret!: pulumi.Output<string | undefined>;
-    /**
-     * Indicates which service discovery method is used, either file or http.
-     */
     public readonly serviceDiscovery!: pulumi.Output<string>;
-    /**
-     * Your Service Key.
-     */
     public readonly serviceKey!: pulumi.Output<string>;
     public readonly teamName!: pulumi.Output<string>;
     /**
@@ -123,15 +94,12 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     *
+     * * `PAGER_DUTY`
      */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Your webhook URL.
-     */
     public readonly url!: pulumi.Output<string>;
-    /**
-     * Your Prometheus username.
-     */
     public readonly userName!: pulumi.Output<string>;
 
     /**
@@ -199,50 +167,23 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ThirdPartyIntegration resources.
  */
 export interface ThirdPartyIntegrationState {
-    /**
-     * Your API Key.
-     */
     apiKey?: pulumi.Input<string>;
     channelName?: pulumi.Input<string>;
-    /**
-     * Whether your cluster has Prometheus enabled.
-     */
     enabled?: pulumi.Input<boolean>;
-    /**
-     * Your Microsoft Teams incoming webhook URL.
-     */
     microsoftTeamsWebhookUrl?: pulumi.Input<string>;
-    /**
-     * Your Prometheus password.
-     */
     password?: pulumi.Input<string>;
     /**
      * The unique ID for the project to get all Third-Party service integrations
      */
     projectId?: pulumi.Input<string>;
-    /**
-     * Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-     */
     region?: pulumi.Input<string>;
-    /**
-     * An optional field for your Routing Key.
-     */
     routingKey?: pulumi.Input<string>;
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     scheme?: pulumi.Input<string>;
-    /**
-     * An optional field for your webhook secret.
-     */
     secret?: pulumi.Input<string>;
-    /**
-     * Indicates which service discovery method is used, either file or http.
-     */
     serviceDiscovery?: pulumi.Input<string>;
-    /**
-     * Your Service Key.
-     */
     serviceKey?: pulumi.Input<string>;
     teamName?: pulumi.Input<string>;
     /**
@@ -254,15 +195,12 @@ export interface ThirdPartyIntegrationState {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     *
+     * * `PAGER_DUTY`
      */
     type?: pulumi.Input<string>;
-    /**
-     * Your webhook URL.
-     */
     url?: pulumi.Input<string>;
-    /**
-     * Your Prometheus username.
-     */
     userName?: pulumi.Input<string>;
 }
 
@@ -270,50 +208,23 @@ export interface ThirdPartyIntegrationState {
  * The set of arguments for constructing a ThirdPartyIntegration resource.
  */
 export interface ThirdPartyIntegrationArgs {
-    /**
-     * Your API Key.
-     */
     apiKey?: pulumi.Input<string>;
     channelName?: pulumi.Input<string>;
-    /**
-     * Whether your cluster has Prometheus enabled.
-     */
     enabled?: pulumi.Input<boolean>;
-    /**
-     * Your Microsoft Teams incoming webhook URL.
-     */
     microsoftTeamsWebhookUrl?: pulumi.Input<string>;
-    /**
-     * Your Prometheus password.
-     */
     password?: pulumi.Input<string>;
     /**
      * The unique ID for the project to get all Third-Party service integrations
      */
     projectId: pulumi.Input<string>;
-    /**
-     * Two-letter code that indicates which API URL to use. See the `region` request parameter of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) for more details. OpsGenie will use "US" by default.
-     */
     region?: pulumi.Input<string>;
-    /**
-     * An optional field for your Routing Key.
-     */
     routingKey?: pulumi.Input<string>;
     /**
-     * Your Prometheus protocol scheme configured for requests.
+     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     scheme?: pulumi.Input<string>;
-    /**
-     * An optional field for your webhook secret.
-     */
     secret?: pulumi.Input<string>;
-    /**
-     * Indicates which service discovery method is used, either file or http.
-     */
     serviceDiscovery?: pulumi.Input<string>;
-    /**
-     * Your Service Key.
-     */
     serviceKey?: pulumi.Input<string>;
     teamName?: pulumi.Input<string>;
     /**
@@ -325,14 +236,11 @@ export interface ThirdPartyIntegrationArgs {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
+     *
+     *
+     * * `PAGER_DUTY`
      */
     type: pulumi.Input<string>;
-    /**
-     * Your webhook URL.
-     */
     url?: pulumi.Input<string>;
-    /**
-     * Your Prometheus username.
-     */
     userName?: pulumi.Input<string>;
 }

@@ -381,32 +381,30 @@ class CloudBackupSnapshot(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        my_cluster = mongodbatlas.Cluster("myCluster",
+        my_cluster = mongodbatlas.Cluster("my_cluster",
             project_id="5cf5a45a9ccf6400e60981b6",
+            name="MyCluster",
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
             cloud_backup=True)
-        # enable cloud backup snapshots
-        test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
+        test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
             description="myDescription",
             retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-            project_id=test_cloud_backup_snapshot.project_id,
-            cluster_name=test_cloud_backup_snapshot.cluster_name,
-            snapshot_id=test_cloud_backup_snapshot.snapshot_id,
+        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
+            project_id=test.project_id,
+            cluster_name=test.cluster_name,
+            snapshot_id=test.snapshot_id,
             delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
                 download=True,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -440,32 +438,30 @@ class CloudBackupSnapshot(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        my_cluster = mongodbatlas.Cluster("myCluster",
+        my_cluster = mongodbatlas.Cluster("my_cluster",
             project_id="5cf5a45a9ccf6400e60981b6",
+            name="MyCluster",
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
             cloud_backup=True)
-        # enable cloud backup snapshots
-        test_cloud_backup_snapshot = mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot",
+        test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
             description="myDescription",
             retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-            project_id=test_cloud_backup_snapshot.project_id,
-            cluster_name=test_cloud_backup_snapshot.cluster_name,
-            snapshot_id=test_cloud_backup_snapshot.snapshot_id,
+        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
+            project_id=test.project_id,
+            cluster_name=test.cluster_name,
+            snapshot_id=test.snapshot_id,
             delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
                 download=True,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
