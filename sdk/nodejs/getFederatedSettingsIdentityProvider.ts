@@ -76,15 +76,23 @@ export interface GetFederatedSettingsIdentityProviderResult {
     /**
      * Identifier of the intended recipient of the token.
      */
-    readonly audienceClaims: string[];
+    readonly audience: string;
     /**
      * Identifier for the intended audience of the SAML Assertion.
      */
     readonly audienceUri: string;
     /**
+     * Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+     */
+    readonly authorizationType: string;
+    /**
      * Client identifier that is assigned to an application by the Identity Provider.
      */
     readonly clientId: string;
+    /**
+     * The description of the identity provider.
+     */
+    readonly description: string;
     /**
      * Human-readable label that identifies the IdP.
      */
@@ -107,6 +115,10 @@ export interface GetFederatedSettingsIdentityProviderResult {
      */
     readonly idpId: string;
     /**
+     * Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
+     */
+    readonly idpType: string;
+    /**
      * Identifier for the issuer of the SAML Assertion.
      */
     readonly issuerUri: string;
@@ -116,7 +128,7 @@ export interface GetFederatedSettingsIdentityProviderResult {
     readonly oktaIdpId: string;
     readonly pemFileInfos: outputs.GetFederatedSettingsIdentityProviderPemFileInfo[];
     /**
-     * The protocol of the identity provider. Either SAML or OIDC.
+     * The protocol of the identity provider. Valid values are `SAML` or `OIDC`.
      */
     readonly protocol: string;
     /**

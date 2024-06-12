@@ -28,6 +28,10 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
     ///         OrgId = "627a9683ea7ff7f74de306f14",
+    ///         DataAccessIdentityProviderIds = new[]
+    ///         {
+    ///             "64d613677e1ad50839cce4db",
+    ///         },
     ///         DomainRestrictionEnabled = false,
     ///         DomainAllowLists = new[]
     ///         {
@@ -37,7 +41,7 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             "ORG_MEMBER",
     ///         },
-    ///         IdentityProviderId = "0oad4fas87jL7f75Xnk1297",
+    ///         IdentityProviderId = "0oaqyt9fc2ySTWnA0357",
     ///     });
     /// 
     ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()
@@ -61,6 +65,12 @@ namespace Pulumi.Mongodbatlas
     public partial class FederatedSettingsOrgConfig : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The collection of unique ids representing the identity providers that can be used for data access in this organization.
+        /// </summary>
+        [Output("dataAccessIdentityProviderIds")]
+        public Output<ImmutableArray<string>> DataAccessIdentityProviderIds { get; private set; } = null!;
+
+        /// <summary>
         /// List that contains the approved domains from which organization users can log in.
         /// </summary>
         [Output("domainAllowLists")]
@@ -79,10 +89,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string> FederationSettingsId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        /// Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `""` will detach/remove the SAML identity provider. This id can be found in two ways:
+        /// 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+        /// 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
         /// </summary>
         [Output("identityProviderId")]
-        public Output<string> IdentityProviderId { get; private set; } = null!;
+        public Output<string?> IdentityProviderId { get; private set; } = null!;
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
@@ -95,6 +107,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("postAuthRoleGrants")]
         public Output<ImmutableArray<string>> PostAuthRoleGrants { get; private set; } = null!;
+
+        /// <summary>
+        /// List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+        /// </summary>
+        [Output("userConflicts")]
+        public Output<ImmutableArray<Outputs.FederatedSettingsOrgConfigUserConflict>> UserConflicts { get; private set; } = null!;
 
 
         /// <summary>
@@ -142,6 +160,18 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class FederatedSettingsOrgConfigArgs : global::Pulumi.ResourceArgs
     {
+        [Input("dataAccessIdentityProviderIds")]
+        private InputList<string>? _dataAccessIdentityProviderIds;
+
+        /// <summary>
+        /// The collection of unique ids representing the identity providers that can be used for data access in this organization.
+        /// </summary>
+        public InputList<string> DataAccessIdentityProviderIds
+        {
+            get => _dataAccessIdentityProviderIds ?? (_dataAccessIdentityProviderIds = new InputList<string>());
+            set => _dataAccessIdentityProviderIds = value;
+        }
+
         [Input("domainAllowLists")]
         private InputList<string>? _domainAllowLists;
 
@@ -167,10 +197,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string> FederationSettingsId { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        /// Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `""` will detach/remove the SAML identity provider. This id can be found in two ways:
+        /// 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+        /// 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
         /// </summary>
-        [Input("identityProviderId", required: true)]
-        public Input<string> IdentityProviderId { get; set; } = null!;
+        [Input("identityProviderId")]
+        public Input<string>? IdentityProviderId { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
@@ -198,6 +230,18 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class FederatedSettingsOrgConfigState : global::Pulumi.ResourceArgs
     {
+        [Input("dataAccessIdentityProviderIds")]
+        private InputList<string>? _dataAccessIdentityProviderIds;
+
+        /// <summary>
+        /// The collection of unique ids representing the identity providers that can be used for data access in this organization.
+        /// </summary>
+        public InputList<string> DataAccessIdentityProviderIds
+        {
+            get => _dataAccessIdentityProviderIds ?? (_dataAccessIdentityProviderIds = new InputList<string>());
+            set => _dataAccessIdentityProviderIds = value;
+        }
+
         [Input("domainAllowLists")]
         private InputList<string>? _domainAllowLists;
 
@@ -223,7 +267,9 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? FederationSettingsId { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        /// Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `""` will detach/remove the SAML identity provider. This id can be found in two ways:
+        /// 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+        /// 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
         /// </summary>
         [Input("identityProviderId")]
         public Input<string>? IdentityProviderId { get; set; }
@@ -244,6 +290,18 @@ namespace Pulumi.Mongodbatlas
         {
             get => _postAuthRoleGrants ?? (_postAuthRoleGrants = new InputList<string>());
             set => _postAuthRoleGrants = value;
+        }
+
+        [Input("userConflicts")]
+        private InputList<Inputs.FederatedSettingsOrgConfigUserConflictGetArgs>? _userConflicts;
+
+        /// <summary>
+        /// List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+        /// </summary>
+        public InputList<Inputs.FederatedSettingsOrgConfigUserConflictGetArgs> UserConflicts
+        {
+            get => _userConflicts ?? (_userConflicts = new InputList<Inputs.FederatedSettingsOrgConfigUserConflictGetArgs>());
+            set => _userConflicts = value;
         }
 
         public FederatedSettingsOrgConfigState()

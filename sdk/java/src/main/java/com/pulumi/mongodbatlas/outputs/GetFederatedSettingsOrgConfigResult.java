@@ -15,6 +15,11 @@ import java.util.Objects;
 @CustomType
 public final class GetFederatedSettingsOrgConfigResult {
     /**
+     * @return The collection of unique ids representing the identity providers that can be used for data access in this organization.
+     * 
+     */
+    private List<String> dataAccessIdentityProviderIds;
+    /**
      * @return List that contains the approved domains from which organization users can log in.  Note: If the organization uses an identity provider,  `domain_allow_list` includes: any SSO domains associated with organization&#39;s identity provider and any custom domains associated with the specific organization.
      * 
      */
@@ -35,7 +40,9 @@ public final class GetFederatedSettingsOrgConfigResult {
      */
     private String id;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * @return Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
+     * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+     * 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      * 
      */
     private String identityProviderId;
@@ -45,10 +52,25 @@ public final class GetFederatedSettingsOrgConfigResult {
      * 
      */
     private List<String> postAuthRoleGrants;
+    /**
+     * @return Role mappings that are configured in this organization. See below
+     * 
+     */
     private List<GetFederatedSettingsOrgConfigRoleMapping> roleMappings;
+    /**
+     * @return List that contains the users who have an email address that doesn&#39;t match any domain on the allowed list. See below
+     * 
+     */
     private List<GetFederatedSettingsOrgConfigUserConflict> userConflicts;
 
     private GetFederatedSettingsOrgConfigResult() {}
+    /**
+     * @return The collection of unique ids representing the identity providers that can be used for data access in this organization.
+     * 
+     */
+    public List<String> dataAccessIdentityProviderIds() {
+        return this.dataAccessIdentityProviderIds;
+    }
     /**
      * @return List that contains the approved domains from which organization users can log in.  Note: If the organization uses an identity provider,  `domain_allow_list` includes: any SSO domains associated with organization&#39;s identity provider and any custom domains associated with the specific organization.
      * 
@@ -78,7 +100,9 @@ public final class GetFederatedSettingsOrgConfigResult {
         return this.id;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * @return Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
+     * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+     * 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      * 
      */
     public String identityProviderId() {
@@ -94,9 +118,17 @@ public final class GetFederatedSettingsOrgConfigResult {
     public List<String> postAuthRoleGrants() {
         return this.postAuthRoleGrants;
     }
+    /**
+     * @return Role mappings that are configured in this organization. See below
+     * 
+     */
     public List<GetFederatedSettingsOrgConfigRoleMapping> roleMappings() {
         return this.roleMappings;
     }
+    /**
+     * @return List that contains the users who have an email address that doesn&#39;t match any domain on the allowed list. See below
+     * 
+     */
     public List<GetFederatedSettingsOrgConfigUserConflict> userConflicts() {
         return this.userConflicts;
     }
@@ -110,6 +142,7 @@ public final class GetFederatedSettingsOrgConfigResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private List<String> dataAccessIdentityProviderIds;
         private List<String> domainAllowLists;
         private Boolean domainRestrictionEnabled;
         private String federationSettingsId;
@@ -122,6 +155,7 @@ public final class GetFederatedSettingsOrgConfigResult {
         public Builder() {}
         public Builder(GetFederatedSettingsOrgConfigResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.dataAccessIdentityProviderIds = defaults.dataAccessIdentityProviderIds;
     	      this.domainAllowLists = defaults.domainAllowLists;
     	      this.domainRestrictionEnabled = defaults.domainRestrictionEnabled;
     	      this.federationSettingsId = defaults.federationSettingsId;
@@ -133,6 +167,17 @@ public final class GetFederatedSettingsOrgConfigResult {
     	      this.userConflicts = defaults.userConflicts;
         }
 
+        @CustomType.Setter
+        public Builder dataAccessIdentityProviderIds(List<String> dataAccessIdentityProviderIds) {
+            if (dataAccessIdentityProviderIds == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsOrgConfigResult", "dataAccessIdentityProviderIds");
+            }
+            this.dataAccessIdentityProviderIds = dataAccessIdentityProviderIds;
+            return this;
+        }
+        public Builder dataAccessIdentityProviderIds(String... dataAccessIdentityProviderIds) {
+            return dataAccessIdentityProviderIds(List.of(dataAccessIdentityProviderIds));
+        }
         @CustomType.Setter
         public Builder domainAllowLists(List<String> domainAllowLists) {
             if (domainAllowLists == null) {
@@ -219,6 +264,7 @@ public final class GetFederatedSettingsOrgConfigResult {
         }
         public GetFederatedSettingsOrgConfigResult build() {
             final var _resultValue = new GetFederatedSettingsOrgConfigResult();
+            _resultValue.dataAccessIdentityProviderIds = dataAccessIdentityProviderIds;
             _resultValue.domainAllowLists = domainAllowLists;
             _resultValue.domainRestrictionEnabled = domainRestrictionEnabled;
             _resultValue.federationSettingsId = federationSettingsId;

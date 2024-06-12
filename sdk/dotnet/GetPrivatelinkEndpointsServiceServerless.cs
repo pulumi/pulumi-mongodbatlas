@@ -217,12 +217,6 @@ namespace Pulumi.Mongodbatlas
         [Input("instanceName", required: true)]
         public string InstanceName { get; set; } = null!;
 
-        [Input("itemsPerPage")]
-        public int? ItemsPerPage { get; set; }
-
-        [Input("pageNum")]
-        public int? PageNum { get; set; }
-
         /// <summary>
         /// Unique 24-digit hexadecimal string that identifies the project.
         /// </summary>
@@ -242,12 +236,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("instanceName", required: true)]
         public Input<string> InstanceName { get; set; } = null!;
-
-        [Input("itemsPerPage")]
-        public Input<int>? ItemsPerPage { get; set; }
-
-        [Input("pageNum")]
-        public Input<int>? PageNum { get; set; }
 
         /// <summary>
         /// Unique 24-digit hexadecimal string that identifies the project.
@@ -270,8 +258,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         public readonly string InstanceName;
-        public readonly int? ItemsPerPage;
-        public readonly int? PageNum;
         public readonly string ProjectId;
         /// <summary>
         /// Each element in the `result` array is one private serverless endpoint.
@@ -284,18 +270,12 @@ namespace Pulumi.Mongodbatlas
 
             string instanceName,
 
-            int? itemsPerPage,
-
-            int? pageNum,
-
             string projectId,
 
             ImmutableArray<Outputs.GetPrivatelinkEndpointsServiceServerlessResultResult> results)
         {
             Id = id;
             InstanceName = instanceName;
-            ItemsPerPage = itemsPerPage;
-            PageNum = pageNum;
             ProjectId = projectId;
             Results = results;
         }

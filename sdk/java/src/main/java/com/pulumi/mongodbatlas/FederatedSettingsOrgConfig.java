@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.FederatedSettingsOrgConfigState;
+import com.pulumi.mongodbatlas.outputs.FederatedSettingsOrgConfigUserConflict;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -51,10 +52,11 @@ import javax.annotation.Nullable;
  *         var orgConnection = new FederatedSettingsOrgConfig("orgConnection", FederatedSettingsOrgConfigArgs.builder()
  *             .federationSettingsId("627a9687f7f7f7f774de306f14")
  *             .orgId("627a9683ea7ff7f74de306f14")
+ *             .dataAccessIdentityProviderIds("64d613677e1ad50839cce4db")
  *             .domainRestrictionEnabled(false)
  *             .domainAllowLists("mydomain.com")
  *             .postAuthRoleGrants("ORG_MEMBER")
- *             .identityProviderId("0oad4fas87jL7f75Xnk1297")
+ *             .identityProviderId("0oaqyt9fc2ySTWnA0357")
  *             .build());
  * 
  *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
@@ -79,6 +81,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig")
 public class FederatedSettingsOrgConfig extends com.pulumi.resources.CustomResource {
+    /**
+     * The collection of unique ids representing the identity providers that can be used for data access in this organization.
+     * 
+     */
+    @Export(name="dataAccessIdentityProviderIds", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> dataAccessIdentityProviderIds;
+
+    /**
+     * @return The collection of unique ids representing the identity providers that can be used for data access in this organization.
+     * 
+     */
+    public Output<Optional<List<String>>> dataAccessIdentityProviderIds() {
+        return Codegen.optional(this.dataAccessIdentityProviderIds);
+    }
     /**
      * List that contains the approved domains from which organization users can log in.
      * 
@@ -122,18 +138,22 @@ public class FederatedSettingsOrgConfig extends com.pulumi.resources.CustomResou
         return this.federationSettingsId;
     }
     /**
-     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `&#34;&#34;` will detach/remove the SAML identity provider. This id can be found in two ways:
+     * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+     * 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      * 
      */
     @Export(name="identityProviderId", refs={String.class}, tree="[0]")
-    private Output<String> identityProviderId;
+    private Output</* @Nullable */ String> identityProviderId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * @return Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `&#34;&#34;` will detach/remove the SAML identity provider. This id can be found in two ways:
+     * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+     * 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      * 
      */
-    public Output<String> identityProviderId() {
-        return this.identityProviderId;
+    public Output<Optional<String>> identityProviderId() {
+        return Codegen.optional(this.identityProviderId);
     }
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
@@ -162,6 +182,20 @@ public class FederatedSettingsOrgConfig extends com.pulumi.resources.CustomResou
      */
     public Output<Optional<List<String>>> postAuthRoleGrants() {
         return Codegen.optional(this.postAuthRoleGrants);
+    }
+    /**
+     * List that contains the users who have an email address that doesn&#39;t match any domain on the allowed list. See below
+     * 
+     */
+    @Export(name="userConflicts", refs={List.class,FederatedSettingsOrgConfigUserConflict.class}, tree="[0,1]")
+    private Output<List<FederatedSettingsOrgConfigUserConflict>> userConflicts;
+
+    /**
+     * @return List that contains the users who have an email address that doesn&#39;t match any domain on the allowed list. See below
+     * 
+     */
+    public Output<List<FederatedSettingsOrgConfigUserConflict>> userConflicts() {
+        return this.userConflicts;
     }
 
     /**

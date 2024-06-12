@@ -15,15 +15,17 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("org_connections", {
+ * const orgConnection = new mongodbatlas.FederatedSettingsOrgConfig("org_connection", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
  *     orgId: "627a9683ea7ff7f74de306f14",
+ *     dataAccessIdentityProviderIds: ["64d613677e1ad50839cce4db"],
  *     domainRestrictionEnabled: false,
  *     domainAllowLists: ["mydomain.com"],
  *     postAuthRoleGrants: ["ORG_MEMBER"],
+ *     identityProviderId: "0oaqyt9fc2ySTWnA0357",
  * });
  * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfig({
- *     federationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id,
+ *     federationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.id,
  *     orgId: "627a9683ea7ff7f74de306f14",
  * });
  * ```
@@ -56,6 +58,10 @@ export interface GetFederatedSettingsOrgConfigArgs {
  */
 export interface GetFederatedSettingsOrgConfigResult {
     /**
+     * The collection of unique ids representing the identity providers that can be used for data access in this organization.
+     */
+    readonly dataAccessIdentityProviderIds: string[];
+    /**
      * List that contains the approved domains from which organization users can log in.  Note: If the organization uses an identity provider,  `domainAllowList` includes: any SSO domains associated with organization's identity provider and any custom domains associated with the specific organization.
      */
     readonly domainAllowLists: string[];
@@ -72,7 +78,9 @@ export interface GetFederatedSettingsOrgConfigResult {
      */
     readonly id: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
+     * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+     * 2. `oktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      */
     readonly identityProviderId: string;
     readonly orgId: string;
@@ -80,7 +88,13 @@ export interface GetFederatedSettingsOrgConfigResult {
      * List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
      */
     readonly postAuthRoleGrants: string[];
+    /**
+     * Role mappings that are configured in this organization. See below
+     */
     readonly roleMappings: outputs.GetFederatedSettingsOrgConfigRoleMapping[];
+    /**
+     * List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+     */
     readonly userConflicts: outputs.GetFederatedSettingsOrgConfigUserConflict[];
 }
 /**
@@ -92,15 +106,17 @@ export interface GetFederatedSettingsOrgConfigResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("org_connections", {
+ * const orgConnection = new mongodbatlas.FederatedSettingsOrgConfig("org_connection", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
  *     orgId: "627a9683ea7ff7f74de306f14",
+ *     dataAccessIdentityProviderIds: ["64d613677e1ad50839cce4db"],
  *     domainRestrictionEnabled: false,
  *     domainAllowLists: ["mydomain.com"],
  *     postAuthRoleGrants: ["ORG_MEMBER"],
+ *     identityProviderId: "0oaqyt9fc2ySTWnA0357",
  * });
  * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfig({
- *     federationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id,
+ *     federationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.id,
  *     orgId: "627a9683ea7ff7f74de306f14",
  * });
  * ```

@@ -6,11 +6,8 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class GetPrivatelinkEndpointsServiceServerlessArgs extends com.pulumi.resources.InvokeArgs {
@@ -33,44 +30,6 @@ public final class GetPrivatelinkEndpointsServiceServerlessArgs extends com.pulu
     }
 
     /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.17.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-    @Import(name="itemsPerPage")
-    private @Nullable Output<Integer> itemsPerPage;
-
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.17.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-    public Optional<Output<Integer>> itemsPerPage() {
-        return Optional.ofNullable(this.itemsPerPage);
-    }
-
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.17.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-    @Import(name="pageNum")
-    private @Nullable Output<Integer> pageNum;
-
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.17.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-    public Optional<Output<Integer>> pageNum() {
-        return Optional.ofNullable(this.pageNum);
-    }
-
-    /**
      * Unique 24-digit hexadecimal string that identifies the project.
      * 
      */
@@ -89,8 +48,6 @@ public final class GetPrivatelinkEndpointsServiceServerlessArgs extends com.pulu
 
     private GetPrivatelinkEndpointsServiceServerlessArgs(GetPrivatelinkEndpointsServiceServerlessArgs $) {
         this.instanceName = $.instanceName;
-        this.itemsPerPage = $.itemsPerPage;
-        this.pageNum = $.pageNum;
         this.projectId = $.projectId;
     }
 
@@ -131,56 +88,6 @@ public final class GetPrivatelinkEndpointsServiceServerlessArgs extends com.pulu
          */
         public Builder instanceName(String instanceName) {
             return instanceName(Output.of(instanceName));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.17.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-        public Builder itemsPerPage(@Nullable Output<Integer> itemsPerPage) {
-            $.itemsPerPage = itemsPerPage;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.17.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-        public Builder itemsPerPage(Integer itemsPerPage) {
-            return itemsPerPage(Output.of(itemsPerPage));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.17.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-        public Builder pageNum(@Nullable Output<Integer> pageNum) {
-            $.pageNum = pageNum;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.17.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-        public Builder pageNum(Integer pageNum) {
-            return pageNum(Output.of(pageNum));
         }
 
         /**

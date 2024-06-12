@@ -28,15 +28,23 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Identifier of the intended recipient of the token.
         /// </summary>
-        public readonly ImmutableArray<string> AudienceClaims;
+        public readonly string Audience;
         /// <summary>
         /// Identifier for the intended audience of the SAML Assertion.
         /// </summary>
         public readonly string AudienceUri;
         /// <summary>
+        /// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+        /// </summary>
+        public readonly string AuthorizationType;
+        /// <summary>
         /// Client identifier that is assigned to an application by the Identity Provider.
         /// </summary>
         public readonly string ClientId;
+        /// <summary>
+        /// The description of the identity provider.
+        /// </summary>
+        public readonly string Description;
         /// <summary>
         /// Human-readable label that identifies the IdP.
         /// </summary>
@@ -49,6 +57,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Unique 24-hexadecimal digit string that identifies the IdP.
         /// </summary>
         public readonly string IdpId;
+        /// <summary>
+        /// Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
+        /// </summary>
+        public readonly string IdpType;
         /// <summary>
         /// Identifier for the issuer of the SAML Assertion.
         /// </summary>
@@ -100,17 +112,23 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<Outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult> associatedOrgs,
 
-            ImmutableArray<string> audienceClaims,
+            string audience,
 
             string audienceUri,
 
+            string authorizationType,
+
             string clientId,
+
+            string description,
 
             string displayName,
 
             string groupsClaim,
 
             string idpId,
+
+            string idpType,
 
             string issuerUri,
 
@@ -137,12 +155,15 @@ namespace Pulumi.Mongodbatlas.Outputs
             AcsUrl = acsUrl;
             AssociatedDomains = associatedDomains;
             AssociatedOrgs = associatedOrgs;
-            AudienceClaims = audienceClaims;
+            Audience = audience;
             AudienceUri = audienceUri;
+            AuthorizationType = authorizationType;
             ClientId = clientId;
+            Description = description;
             DisplayName = displayName;
             GroupsClaim = groupsClaim;
             IdpId = idpId;
+            IdpType = idpType;
             IssuerUri = issuerUri;
             OktaIdpId = oktaIdpId;
             PemFileInfos = pemFileInfos;

@@ -1217,6 +1217,29 @@ export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
     value?: pulumi.Input<string>;
 }
 
+export interface FederatedSettingsOrgConfigUserConflict {
+    /**
+     * Email address of the the user that conflicts with selected domains.
+     */
+    emailAddress?: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     */
+    federationSettingsId?: pulumi.Input<string>;
+    /**
+     * First name of the the user that conflicts with selected domains.
+     */
+    firstName?: pulumi.Input<string>;
+    /**
+     * Last name of the the user that conflicts with selected domains.
+     */
+    lastName?: pulumi.Input<string>;
+    /**
+     * Name of the Atlas user that conflicts with selected domains.
+     */
+    userId?: pulumi.Input<string>;
+}
+
 export interface FederatedSettingsOrgRoleMappingRoleAssignment {
     /**
      * Unique identifier of the project to which you want the role mapping to apply.

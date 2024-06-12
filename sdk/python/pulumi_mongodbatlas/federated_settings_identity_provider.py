@@ -17,9 +17,12 @@ class FederatedSettingsIdentityProviderArgs:
                  federation_settings_id: pulumi.Input[str],
                  issuer_uri: pulumi.Input[str],
                  associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 audience_claims: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audience: Optional[pulumi.Input[str]] = None,
+                 authorization_type: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  groups_claim: Optional[pulumi.Input[str]] = None,
+                 idp_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  request_binding: Optional[pulumi.Input[str]] = None,
@@ -34,8 +37,10 @@ class FederatedSettingsIdentityProviderArgs:
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[str] issuer_uri: Unique string that identifies the issuer of the IdP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] associated_domains: List that contains the domains associated with the identity provider.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] audience_claims: Identifier of the intended recipient of the token used in OIDC IdP.
+        :param pulumi.Input[str] audience: Identifier of the intended recipient of the token used in OIDC IdP.
+        :param pulumi.Input[str] authorization_type: Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
         :param pulumi.Input[str] client_id: Client identifier that is assigned to an application by the OIDC Identity Provider.
+        :param pulumi.Input[str] description: The description of the identity provider.
         :param pulumi.Input[str] groups_claim: Identifier of the claim which contains OIDC IdP Group IDs in the token.
         :param pulumi.Input[str] name: Human-readable label that identifies the identity provider.
         :param pulumi.Input[str] protocol: The protocol of the identity provider. Either `SAML` or `OIDC`.
@@ -48,17 +53,24 @@ class FederatedSettingsIdentityProviderArgs:
         :param pulumi.Input[str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
         :param pulumi.Input[str] user_claim: Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+               userClaim is required for OIDC IdP with authorizationType GROUP and USER.
         """
         pulumi.set(__self__, "federation_settings_id", federation_settings_id)
         pulumi.set(__self__, "issuer_uri", issuer_uri)
         if associated_domains is not None:
             pulumi.set(__self__, "associated_domains", associated_domains)
-        if audience_claims is not None:
-            pulumi.set(__self__, "audience_claims", audience_claims)
+        if audience is not None:
+            pulumi.set(__self__, "audience", audience)
+        if authorization_type is not None:
+            pulumi.set(__self__, "authorization_type", authorization_type)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if groups_claim is not None:
             pulumi.set(__self__, "groups_claim", groups_claim)
+        if idp_type is not None:
+            pulumi.set(__self__, "idp_type", idp_type)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if protocol is not None:
@@ -115,16 +127,28 @@ class FederatedSettingsIdentityProviderArgs:
         pulumi.set(self, "associated_domains", value)
 
     @property
-    @pulumi.getter(name="audienceClaims")
-    def audience_claims(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+    @pulumi.getter
+    def audience(self) -> Optional[pulumi.Input[str]]:
         """
         Identifier of the intended recipient of the token used in OIDC IdP.
         """
-        return pulumi.get(self, "audience_claims")
+        return pulumi.get(self, "audience")
 
-    @audience_claims.setter
-    def audience_claims(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "audience_claims", value)
+    @audience.setter
+    def audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "audience", value)
+
+    @property
+    @pulumi.getter(name="authorizationType")
+    def authorization_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+        """
+        return pulumi.get(self, "authorization_type")
+
+    @authorization_type.setter
+    def authorization_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authorization_type", value)
 
     @property
     @pulumi.getter(name="clientId")
@@ -139,6 +163,18 @@ class FederatedSettingsIdentityProviderArgs:
         pulumi.set(self, "client_id", value)
 
     @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the identity provider.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
     @pulumi.getter(name="groupsClaim")
     def groups_claim(self) -> Optional[pulumi.Input[str]]:
         """
@@ -149,6 +185,15 @@ class FederatedSettingsIdentityProviderArgs:
     @groups_claim.setter
     def groups_claim(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "groups_claim", value)
+
+    @property
+    @pulumi.getter(name="idpType")
+    def idp_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "idp_type")
+
+    @idp_type.setter
+    def idp_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "idp_type", value)
 
     @property
     @pulumi.getter
@@ -253,6 +298,7 @@ class FederatedSettingsIdentityProviderArgs:
     def user_claim(self) -> Optional[pulumi.Input[str]]:
         """
         Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        userClaim is required for OIDC IdP with authorizationType GROUP and USER.
         """
         return pulumi.get(self, "user_claim")
 
@@ -265,11 +311,14 @@ class FederatedSettingsIdentityProviderArgs:
 class _FederatedSettingsIdentityProviderState:
     def __init__(__self__, *,
                  associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 audience_claims: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audience: Optional[pulumi.Input[str]] = None,
+                 authorization_type: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  federation_settings_id: Optional[pulumi.Input[str]] = None,
                  groups_claim: Optional[pulumi.Input[str]] = None,
                  idp_id: Optional[pulumi.Input[str]] = None,
+                 idp_type: Optional[pulumi.Input[str]] = None,
                  issuer_uri: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  okta_idp_id: Optional[pulumi.Input[str]] = None,
@@ -284,8 +333,10 @@ class _FederatedSettingsIdentityProviderState:
         """
         Input properties used for looking up and filtering FederatedSettingsIdentityProvider resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] associated_domains: List that contains the domains associated with the identity provider.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] audience_claims: Identifier of the intended recipient of the token used in OIDC IdP.
+        :param pulumi.Input[str] audience: Identifier of the intended recipient of the token used in OIDC IdP.
+        :param pulumi.Input[str] authorization_type: Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
         :param pulumi.Input[str] client_id: Client identifier that is assigned to an application by the OIDC Identity Provider.
+        :param pulumi.Input[str] description: The description of the identity provider.
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[str] groups_claim: Identifier of the claim which contains OIDC IdP Group IDs in the token.
         :param pulumi.Input[str] idp_id: Unique 24-hexadecimal digit string that identifies the IdP.
@@ -302,19 +353,26 @@ class _FederatedSettingsIdentityProviderState:
         :param pulumi.Input[str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
         :param pulumi.Input[str] user_claim: Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+               userClaim is required for OIDC IdP with authorizationType GROUP and USER.
         """
         if associated_domains is not None:
             pulumi.set(__self__, "associated_domains", associated_domains)
-        if audience_claims is not None:
-            pulumi.set(__self__, "audience_claims", audience_claims)
+        if audience is not None:
+            pulumi.set(__self__, "audience", audience)
+        if authorization_type is not None:
+            pulumi.set(__self__, "authorization_type", authorization_type)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if federation_settings_id is not None:
             pulumi.set(__self__, "federation_settings_id", federation_settings_id)
         if groups_claim is not None:
             pulumi.set(__self__, "groups_claim", groups_claim)
         if idp_id is not None:
             pulumi.set(__self__, "idp_id", idp_id)
+        if idp_type is not None:
+            pulumi.set(__self__, "idp_type", idp_type)
         if issuer_uri is not None:
             pulumi.set(__self__, "issuer_uri", issuer_uri)
         if name is not None:
@@ -351,16 +409,28 @@ class _FederatedSettingsIdentityProviderState:
         pulumi.set(self, "associated_domains", value)
 
     @property
-    @pulumi.getter(name="audienceClaims")
-    def audience_claims(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+    @pulumi.getter
+    def audience(self) -> Optional[pulumi.Input[str]]:
         """
         Identifier of the intended recipient of the token used in OIDC IdP.
         """
-        return pulumi.get(self, "audience_claims")
+        return pulumi.get(self, "audience")
 
-    @audience_claims.setter
-    def audience_claims(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "audience_claims", value)
+    @audience.setter
+    def audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "audience", value)
+
+    @property
+    @pulumi.getter(name="authorizationType")
+    def authorization_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+        """
+        return pulumi.get(self, "authorization_type")
+
+    @authorization_type.setter
+    def authorization_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authorization_type", value)
 
     @property
     @pulumi.getter(name="clientId")
@@ -373,6 +443,18 @@ class _FederatedSettingsIdentityProviderState:
     @client_id.setter
     def client_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_id", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the identity provider.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter(name="federationSettingsId")
@@ -409,6 +491,15 @@ class _FederatedSettingsIdentityProviderState:
     @idp_id.setter
     def idp_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "idp_id", value)
+
+    @property
+    @pulumi.getter(name="idpType")
+    def idp_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "idp_type")
+
+    @idp_type.setter
+    def idp_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "idp_type", value)
 
     @property
     @pulumi.getter(name="issuerUri")
@@ -537,6 +628,7 @@ class _FederatedSettingsIdentityProviderState:
     def user_claim(self) -> Optional[pulumi.Input[str]]:
         """
         Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        userClaim is required for OIDC IdP with authorizationType GROUP and USER.
         """
         return pulumi.get(self, "user_claim")
 
@@ -551,10 +643,13 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 audience_claims: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audience: Optional[pulumi.Input[str]] = None,
+                 authorization_type: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  federation_settings_id: Optional[pulumi.Input[str]] = None,
                  groups_claim: Optional[pulumi.Input[str]] = None,
+                 idp_type: Optional[pulumi.Input[str]] = None,
                  issuer_uri: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
@@ -602,8 +697,10 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] associated_domains: List that contains the domains associated with the identity provider.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] audience_claims: Identifier of the intended recipient of the token used in OIDC IdP.
+        :param pulumi.Input[str] audience: Identifier of the intended recipient of the token used in OIDC IdP.
+        :param pulumi.Input[str] authorization_type: Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
         :param pulumi.Input[str] client_id: Client identifier that is assigned to an application by the OIDC Identity Provider.
+        :param pulumi.Input[str] description: The description of the identity provider.
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[str] groups_claim: Identifier of the claim which contains OIDC IdP Group IDs in the token.
         :param pulumi.Input[str] issuer_uri: Unique string that identifies the issuer of the IdP.
@@ -618,6 +715,7 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
         :param pulumi.Input[str] user_claim: Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+               userClaim is required for OIDC IdP with authorizationType GROUP and USER.
         """
         ...
     @overload
@@ -674,10 +772,13 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 audience_claims: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 audience: Optional[pulumi.Input[str]] = None,
+                 authorization_type: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  federation_settings_id: Optional[pulumi.Input[str]] = None,
                  groups_claim: Optional[pulumi.Input[str]] = None,
+                 idp_type: Optional[pulumi.Input[str]] = None,
                  issuer_uri: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
@@ -698,12 +799,15 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             __props__ = FederatedSettingsIdentityProviderArgs.__new__(FederatedSettingsIdentityProviderArgs)
 
             __props__.__dict__["associated_domains"] = associated_domains
-            __props__.__dict__["audience_claims"] = audience_claims
+            __props__.__dict__["audience"] = audience
+            __props__.__dict__["authorization_type"] = authorization_type
             __props__.__dict__["client_id"] = client_id
+            __props__.__dict__["description"] = description
             if federation_settings_id is None and not opts.urn:
                 raise TypeError("Missing required property 'federation_settings_id'")
             __props__.__dict__["federation_settings_id"] = federation_settings_id
             __props__.__dict__["groups_claim"] = groups_claim
+            __props__.__dict__["idp_type"] = idp_type
             if issuer_uri is None and not opts.urn:
                 raise TypeError("Missing required property 'issuer_uri'")
             __props__.__dict__["issuer_uri"] = issuer_uri
@@ -729,11 +833,14 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            audience_claims: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            audience: Optional[pulumi.Input[str]] = None,
+            authorization_type: Optional[pulumi.Input[str]] = None,
             client_id: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
             federation_settings_id: Optional[pulumi.Input[str]] = None,
             groups_claim: Optional[pulumi.Input[str]] = None,
             idp_id: Optional[pulumi.Input[str]] = None,
+            idp_type: Optional[pulumi.Input[str]] = None,
             issuer_uri: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             okta_idp_id: Optional[pulumi.Input[str]] = None,
@@ -753,8 +860,10 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] associated_domains: List that contains the domains associated with the identity provider.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] audience_claims: Identifier of the intended recipient of the token used in OIDC IdP.
+        :param pulumi.Input[str] audience: Identifier of the intended recipient of the token used in OIDC IdP.
+        :param pulumi.Input[str] authorization_type: Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
         :param pulumi.Input[str] client_id: Client identifier that is assigned to an application by the OIDC Identity Provider.
+        :param pulumi.Input[str] description: The description of the identity provider.
         :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[str] groups_claim: Identifier of the claim which contains OIDC IdP Group IDs in the token.
         :param pulumi.Input[str] idp_id: Unique 24-hexadecimal digit string that identifies the IdP.
@@ -771,17 +880,21 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
         :param pulumi.Input[str] user_claim: Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+               userClaim is required for OIDC IdP with authorizationType GROUP and USER.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _FederatedSettingsIdentityProviderState.__new__(_FederatedSettingsIdentityProviderState)
 
         __props__.__dict__["associated_domains"] = associated_domains
-        __props__.__dict__["audience_claims"] = audience_claims
+        __props__.__dict__["audience"] = audience
+        __props__.__dict__["authorization_type"] = authorization_type
         __props__.__dict__["client_id"] = client_id
+        __props__.__dict__["description"] = description
         __props__.__dict__["federation_settings_id"] = federation_settings_id
         __props__.__dict__["groups_claim"] = groups_claim
         __props__.__dict__["idp_id"] = idp_id
+        __props__.__dict__["idp_type"] = idp_type
         __props__.__dict__["issuer_uri"] = issuer_uri
         __props__.__dict__["name"] = name
         __props__.__dict__["okta_idp_id"] = okta_idp_id
@@ -804,12 +917,20 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         return pulumi.get(self, "associated_domains")
 
     @property
-    @pulumi.getter(name="audienceClaims")
-    def audience_claims(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    @pulumi.getter
+    def audience(self) -> pulumi.Output[Optional[str]]:
         """
         Identifier of the intended recipient of the token used in OIDC IdP.
         """
-        return pulumi.get(self, "audience_claims")
+        return pulumi.get(self, "audience")
+
+    @property
+    @pulumi.getter(name="authorizationType")
+    def authorization_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+        """
+        return pulumi.get(self, "authorization_type")
 
     @property
     @pulumi.getter(name="clientId")
@@ -818,6 +939,14 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         Client identifier that is assigned to an application by the OIDC Identity Provider.
         """
         return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        The description of the identity provider.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="federationSettingsId")
@@ -842,6 +971,11 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         Unique 24-hexadecimal digit string that identifies the IdP.
         """
         return pulumi.get(self, "idp_id")
+
+    @property
+    @pulumi.getter(name="idpType")
+    def idp_type(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "idp_type")
 
     @property
     @pulumi.getter(name="issuerUri")
@@ -930,6 +1064,7 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
     def user_claim(self) -> pulumi.Output[Optional[str]]:
         """
         Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        userClaim is required for OIDC IdP with authorizationType GROUP and USER.
         """
         return pulumi.get(self, "user_claim")
 

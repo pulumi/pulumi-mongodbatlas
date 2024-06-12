@@ -73,11 +73,19 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
     /**
      * Identifier of the intended recipient of the token used in OIDC IdP.
      */
-    public readonly audienceClaims!: pulumi.Output<string[] | undefined>;
+    public readonly audience!: pulumi.Output<string | undefined>;
+    /**
+     * Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+     */
+    public readonly authorizationType!: pulumi.Output<string | undefined>;
     /**
      * Client identifier that is assigned to an application by the OIDC Identity Provider.
      */
     public readonly clientId!: pulumi.Output<string | undefined>;
+    /**
+     * The description of the identity provider.
+     */
+    public readonly description!: pulumi.Output<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
@@ -90,6 +98,7 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
      * Unique 24-hexadecimal digit string that identifies the IdP.
      */
     public /*out*/ readonly idpId!: pulumi.Output<string>;
+    public readonly idpType!: pulumi.Output<string>;
     /**
      * Unique string that identifies the issuer of the IdP.
      */
@@ -134,6 +143,7 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
     public readonly status!: pulumi.Output<string | undefined>;
     /**
      * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     * userClaim is required for OIDC IdP with authorizationType GROUP and USER.
      */
     public readonly userClaim!: pulumi.Output<string | undefined>;
 
@@ -151,11 +161,14 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as FederatedSettingsIdentityProviderState | undefined;
             resourceInputs["associatedDomains"] = state ? state.associatedDomains : undefined;
-            resourceInputs["audienceClaims"] = state ? state.audienceClaims : undefined;
+            resourceInputs["audience"] = state ? state.audience : undefined;
+            resourceInputs["authorizationType"] = state ? state.authorizationType : undefined;
             resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["federationSettingsId"] = state ? state.federationSettingsId : undefined;
             resourceInputs["groupsClaim"] = state ? state.groupsClaim : undefined;
             resourceInputs["idpId"] = state ? state.idpId : undefined;
+            resourceInputs["idpType"] = state ? state.idpType : undefined;
             resourceInputs["issuerUri"] = state ? state.issuerUri : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["oktaIdpId"] = state ? state.oktaIdpId : undefined;
@@ -176,10 +189,13 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
                 throw new Error("Missing required property 'issuerUri'");
             }
             resourceInputs["associatedDomains"] = args ? args.associatedDomains : undefined;
-            resourceInputs["audienceClaims"] = args ? args.audienceClaims : undefined;
+            resourceInputs["audience"] = args ? args.audience : undefined;
+            resourceInputs["authorizationType"] = args ? args.authorizationType : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["federationSettingsId"] = args ? args.federationSettingsId : undefined;
             resourceInputs["groupsClaim"] = args ? args.groupsClaim : undefined;
+            resourceInputs["idpType"] = args ? args.idpType : undefined;
             resourceInputs["issuerUri"] = args ? args.issuerUri : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
@@ -209,11 +225,19 @@ export interface FederatedSettingsIdentityProviderState {
     /**
      * Identifier of the intended recipient of the token used in OIDC IdP.
      */
-    audienceClaims?: pulumi.Input<pulumi.Input<string>[]>;
+    audience?: pulumi.Input<string>;
+    /**
+     * Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+     */
+    authorizationType?: pulumi.Input<string>;
     /**
      * Client identifier that is assigned to an application by the OIDC Identity Provider.
      */
     clientId?: pulumi.Input<string>;
+    /**
+     * The description of the identity provider.
+     */
+    description?: pulumi.Input<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
@@ -226,6 +250,7 @@ export interface FederatedSettingsIdentityProviderState {
      * Unique 24-hexadecimal digit string that identifies the IdP.
      */
     idpId?: pulumi.Input<string>;
+    idpType?: pulumi.Input<string>;
     /**
      * Unique string that identifies the issuer of the IdP.
      */
@@ -270,6 +295,7 @@ export interface FederatedSettingsIdentityProviderState {
     status?: pulumi.Input<string>;
     /**
      * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     * userClaim is required for OIDC IdP with authorizationType GROUP and USER.
      */
     userClaim?: pulumi.Input<string>;
 }
@@ -285,11 +311,19 @@ export interface FederatedSettingsIdentityProviderArgs {
     /**
      * Identifier of the intended recipient of the token used in OIDC IdP.
      */
-    audienceClaims?: pulumi.Input<pulumi.Input<string>[]>;
+    audience?: pulumi.Input<string>;
+    /**
+     * Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+     */
+    authorizationType?: pulumi.Input<string>;
     /**
      * Client identifier that is assigned to an application by the OIDC Identity Provider.
      */
     clientId?: pulumi.Input<string>;
+    /**
+     * The description of the identity provider.
+     */
+    description?: pulumi.Input<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
@@ -298,6 +332,7 @@ export interface FederatedSettingsIdentityProviderArgs {
      * Identifier of the claim which contains OIDC IdP Group IDs in the token.
      */
     groupsClaim?: pulumi.Input<string>;
+    idpType?: pulumi.Input<string>;
     /**
      * Unique string that identifies the issuer of the IdP.
      */
@@ -338,6 +373,7 @@ export interface FederatedSettingsIdentityProviderArgs {
     status?: pulumi.Input<string>;
     /**
      * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     * userClaim is required for OIDC IdP with authorizationType GROUP and USER.
      */
     userClaim?: pulumi.Input<string>;
 }

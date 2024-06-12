@@ -22,19 +22,13 @@ class GetPrivatelinkEndpointsServiceServerlessResult:
     """
     A collection of values returned by getPrivatelinkEndpointsServiceServerless.
     """
-    def __init__(__self__, id=None, instance_name=None, items_per_page=None, page_num=None, project_id=None, results=None):
+    def __init__(__self__, id=None, instance_name=None, project_id=None, results=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if instance_name and not isinstance(instance_name, str):
             raise TypeError("Expected argument 'instance_name' to be a str")
         pulumi.set(__self__, "instance_name", instance_name)
-        if items_per_page and not isinstance(items_per_page, int):
-            raise TypeError("Expected argument 'items_per_page' to be a int")
-        pulumi.set(__self__, "items_per_page", items_per_page)
-        if page_num and not isinstance(page_num, int):
-            raise TypeError("Expected argument 'page_num' to be a int")
-        pulumi.set(__self__, "page_num", page_num)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -54,22 +48,6 @@ class GetPrivatelinkEndpointsServiceServerlessResult:
     @pulumi.getter(name="instanceName")
     def instance_name(self) -> str:
         return pulumi.get(self, "instance_name")
-
-    @property
-    @pulumi.getter(name="itemsPerPage")
-    def items_per_page(self) -> Optional[int]:
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.17.0.""", DeprecationWarning)
-        pulumi.log.warn("""items_per_page is deprecated: This parameter is deprecated and will be removed in version 1.17.0.""")
-
-        return pulumi.get(self, "items_per_page")
-
-    @property
-    @pulumi.getter(name="pageNum")
-    def page_num(self) -> Optional[int]:
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.17.0.""", DeprecationWarning)
-        pulumi.log.warn("""page_num is deprecated: This parameter is deprecated and will be removed in version 1.17.0.""")
-
-        return pulumi.get(self, "page_num")
 
     @property
     @pulumi.getter(name="projectId")
@@ -93,15 +71,11 @@ class AwaitableGetPrivatelinkEndpointsServiceServerlessResult(GetPrivatelinkEndp
         return GetPrivatelinkEndpointsServiceServerlessResult(
             id=self.id,
             instance_name=self.instance_name,
-            items_per_page=self.items_per_page,
-            page_num=self.page_num,
             project_id=self.project_id,
             results=self.results)
 
 
 def get_privatelink_endpoints_service_serverless(instance_name: Optional[str] = None,
-                                                 items_per_page: Optional[int] = None,
-                                                 page_num: Optional[int] = None,
                                                  project_id: Optional[str] = None,
                                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivatelinkEndpointsServiceServerlessResult:
     """
@@ -169,8 +143,6 @@ def get_privatelink_endpoints_service_serverless(instance_name: Optional[str] = 
     """
     __args__ = dict()
     __args__['instanceName'] = instance_name
-    __args__['itemsPerPage'] = items_per_page
-    __args__['pageNum'] = page_num
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless', __args__, opts=opts, typ=GetPrivatelinkEndpointsServiceServerlessResult).value
@@ -178,16 +150,12 @@ def get_privatelink_endpoints_service_serverless(instance_name: Optional[str] = 
     return AwaitableGetPrivatelinkEndpointsServiceServerlessResult(
         id=pulumi.get(__ret__, 'id'),
         instance_name=pulumi.get(__ret__, 'instance_name'),
-        items_per_page=pulumi.get(__ret__, 'items_per_page'),
-        page_num=pulumi.get(__ret__, 'page_num'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_privatelink_endpoints_service_serverless)
 def get_privatelink_endpoints_service_serverless_output(instance_name: Optional[pulumi.Input[str]] = None,
-                                                        items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
-                                                        page_num: Optional[pulumi.Input[Optional[int]]] = None,
                                                         project_id: Optional[pulumi.Input[str]] = None,
                                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivatelinkEndpointsServiceServerlessResult]:
     """

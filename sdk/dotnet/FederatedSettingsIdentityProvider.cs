@@ -65,14 +65,26 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Identifier of the intended recipient of the token used in OIDC IdP.
         /// </summary>
-        [Output("audienceClaims")]
-        public Output<ImmutableArray<string>> AudienceClaims { get; private set; } = null!;
+        [Output("audience")]
+        public Output<string?> Audience { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+        /// </summary>
+        [Output("authorizationType")]
+        public Output<string?> AuthorizationType { get; private set; } = null!;
 
         /// <summary>
         /// Client identifier that is assigned to an application by the OIDC Identity Provider.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
+
+        /// <summary>
+        /// The description of the identity provider.
+        /// </summary>
+        [Output("description")]
+        public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -91,6 +103,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("idpId")]
         public Output<string> IdpId { get; private set; } = null!;
+
+        [Output("idpType")]
+        public Output<string> IdpType { get; private set; } = null!;
 
         /// <summary>
         /// Unique string that identifies the issuer of the IdP.
@@ -156,6 +171,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        /// userClaim is required for OIDC IdP with authorizationType GROUP and USER.
         /// </summary>
         [Output("userClaim")]
         public Output<string?> UserClaim { get; private set; } = null!;
@@ -218,23 +234,29 @@ namespace Pulumi.Mongodbatlas
             set => _associatedDomains = value;
         }
 
-        [Input("audienceClaims")]
-        private InputList<string>? _audienceClaims;
-
         /// <summary>
         /// Identifier of the intended recipient of the token used in OIDC IdP.
         /// </summary>
-        public InputList<string> AudienceClaims
-        {
-            get => _audienceClaims ?? (_audienceClaims = new InputList<string>());
-            set => _audienceClaims = value;
-        }
+        [Input("audience")]
+        public Input<string>? Audience { get; set; }
+
+        /// <summary>
+        /// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+        /// </summary>
+        [Input("authorizationType")]
+        public Input<string>? AuthorizationType { get; set; }
 
         /// <summary>
         /// Client identifier that is assigned to an application by the OIDC Identity Provider.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
+
+        /// <summary>
+        /// The description of the identity provider.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -247,6 +269,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("groupsClaim")]
         public Input<string>? GroupsClaim { get; set; }
+
+        [Input("idpType")]
+        public Input<string>? IdpType { get; set; }
 
         /// <summary>
         /// Unique string that identifies the issuer of the IdP.
@@ -312,6 +337,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        /// userClaim is required for OIDC IdP with authorizationType GROUP and USER.
         /// </summary>
         [Input("userClaim")]
         public Input<string>? UserClaim { get; set; }
@@ -336,23 +362,29 @@ namespace Pulumi.Mongodbatlas
             set => _associatedDomains = value;
         }
 
-        [Input("audienceClaims")]
-        private InputList<string>? _audienceClaims;
-
         /// <summary>
         /// Identifier of the intended recipient of the token used in OIDC IdP.
         /// </summary>
-        public InputList<string> AudienceClaims
-        {
-            get => _audienceClaims ?? (_audienceClaims = new InputList<string>());
-            set => _audienceClaims = value;
-        }
+        [Input("audience")]
+        public Input<string>? Audience { get; set; }
+
+        /// <summary>
+        /// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+        /// </summary>
+        [Input("authorizationType")]
+        public Input<string>? AuthorizationType { get; set; }
 
         /// <summary>
         /// Client identifier that is assigned to an application by the OIDC Identity Provider.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
+
+        /// <summary>
+        /// The description of the identity provider.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -371,6 +403,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("idpId")]
         public Input<string>? IdpId { get; set; }
+
+        [Input("idpType")]
+        public Input<string>? IdpType { get; set; }
 
         /// <summary>
         /// Unique string that identifies the issuer of the IdP.
@@ -442,6 +477,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+        /// userClaim is required for OIDC IdP with authorizationType GROUP and USER.
         /// </summary>
         [Input("userClaim")]
         public Input<string>? UserClaim { get; set; }

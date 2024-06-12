@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -29,6 +30,21 @@ public final class GetFederatedSettingsIdentityProvidersPlainArgs extends com.pu
      */
     public String federationSettingsId() {
         return this.federationSettingsId;
+    }
+
+    /**
+     * The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+     * 
+     */
+    @Import(name="idpTypes")
+    private @Nullable List<String> idpTypes;
+
+    /**
+     * @return The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+     * 
+     */
+    public Optional<List<String>> idpTypes() {
+        return Optional.ofNullable(this.idpTypes);
     }
 
     /**
@@ -77,12 +93,29 @@ public final class GetFederatedSettingsIdentityProvidersPlainArgs extends com.pu
         return Optional.ofNullable(this.pageNum);
     }
 
+    /**
+     * The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+     * 
+     */
+    @Import(name="protocols")
+    private @Nullable List<String> protocols;
+
+    /**
+     * @return The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+     * 
+     */
+    public Optional<List<String>> protocols() {
+        return Optional.ofNullable(this.protocols);
+    }
+
     private GetFederatedSettingsIdentityProvidersPlainArgs() {}
 
     private GetFederatedSettingsIdentityProvidersPlainArgs(GetFederatedSettingsIdentityProvidersPlainArgs $) {
         this.federationSettingsId = $.federationSettingsId;
+        this.idpTypes = $.idpTypes;
         this.itemsPerPage = $.itemsPerPage;
         this.pageNum = $.pageNum;
+        this.protocols = $.protocols;
     }
 
     public static Builder builder() {
@@ -115,6 +148,27 @@ public final class GetFederatedSettingsIdentityProvidersPlainArgs extends com.pu
         }
 
         /**
+         * @param idpTypes The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder idpTypes(@Nullable List<String> idpTypes) {
+            $.idpTypes = idpTypes;
+            return this;
+        }
+
+        /**
+         * @param idpTypes The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder idpTypes(String... idpTypes) {
+            return idpTypes(List.of(idpTypes));
+        }
+
+        /**
          * @param itemsPerPage Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
          * 
          * @return builder
@@ -142,6 +196,27 @@ public final class GetFederatedSettingsIdentityProvidersPlainArgs extends com.pu
         public Builder pageNum(@Nullable Integer pageNum) {
             $.pageNum = pageNum;
             return this;
+        }
+
+        /**
+         * @param protocols The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder protocols(@Nullable List<String> protocols) {
+            $.protocols = protocols;
+            return this;
+        }
+
+        /**
+         * @param protocols The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder protocols(String... protocols) {
+            return protocols(List.of(protocols));
         }
 
         public GetFederatedSettingsIdentityProvidersPlainArgs build() {

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -18,10 +20,11 @@ import * as utilities from "./utilities";
  * const orgConnection = new mongodbatlas.FederatedSettingsOrgConfig("org_connection", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
  *     orgId: "627a9683ea7ff7f74de306f14",
+ *     dataAccessIdentityProviderIds: ["64d613677e1ad50839cce4db"],
  *     domainRestrictionEnabled: false,
  *     domainAllowLists: ["mydomain.com"],
  *     postAuthRoleGrants: ["ORG_MEMBER"],
- *     identityProviderId: "0oad4fas87jL7f75Xnk1297",
+ *     identityProviderId: "0oaqyt9fc2ySTWnA0357",
  * });
  * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigs({
  *     federationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.id,
@@ -66,6 +69,10 @@ export class FederatedSettingsOrgConfig extends pulumi.CustomResource {
     }
 
     /**
+     * The collection of unique ids representing the identity providers that can be used for data access in this organization.
+     */
+    public readonly dataAccessIdentityProviderIds!: pulumi.Output<string[] | undefined>;
+    /**
      * List that contains the approved domains from which organization users can log in.
      */
     public readonly domainAllowLists!: pulumi.Output<string[] | undefined>;
@@ -78,9 +85,11 @@ export class FederatedSettingsOrgConfig extends pulumi.CustomResource {
      */
     public readonly federationSettingsId!: pulumi.Output<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `""` will detach/remove the SAML identity provider. This id can be found in two ways:
+     * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+     * 2. `oktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      */
-    public readonly identityProviderId!: pulumi.Output<string>;
+    public readonly identityProviderId!: pulumi.Output<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
@@ -89,6 +98,10 @@ export class FederatedSettingsOrgConfig extends pulumi.CustomResource {
      * List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
      */
     public readonly postAuthRoleGrants!: pulumi.Output<string[] | undefined>;
+    /**
+     * List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+     */
+    public /*out*/ readonly userConflicts!: pulumi.Output<outputs.FederatedSettingsOrgConfigUserConflict[]>;
 
     /**
      * Create a FederatedSettingsOrgConfig resource with the given unique name, arguments, and options.
@@ -103,12 +116,14 @@ export class FederatedSettingsOrgConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FederatedSettingsOrgConfigState | undefined;
+            resourceInputs["dataAccessIdentityProviderIds"] = state ? state.dataAccessIdentityProviderIds : undefined;
             resourceInputs["domainAllowLists"] = state ? state.domainAllowLists : undefined;
             resourceInputs["domainRestrictionEnabled"] = state ? state.domainRestrictionEnabled : undefined;
             resourceInputs["federationSettingsId"] = state ? state.federationSettingsId : undefined;
             resourceInputs["identityProviderId"] = state ? state.identityProviderId : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["postAuthRoleGrants"] = state ? state.postAuthRoleGrants : undefined;
+            resourceInputs["userConflicts"] = state ? state.userConflicts : undefined;
         } else {
             const args = argsOrState as FederatedSettingsOrgConfigArgs | undefined;
             if ((!args || args.domainRestrictionEnabled === undefined) && !opts.urn) {
@@ -117,18 +132,17 @@ export class FederatedSettingsOrgConfig extends pulumi.CustomResource {
             if ((!args || args.federationSettingsId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'federationSettingsId'");
             }
-            if ((!args || args.identityProviderId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'identityProviderId'");
-            }
             if ((!args || args.orgId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
+            resourceInputs["dataAccessIdentityProviderIds"] = args ? args.dataAccessIdentityProviderIds : undefined;
             resourceInputs["domainAllowLists"] = args ? args.domainAllowLists : undefined;
             resourceInputs["domainRestrictionEnabled"] = args ? args.domainRestrictionEnabled : undefined;
             resourceInputs["federationSettingsId"] = args ? args.federationSettingsId : undefined;
             resourceInputs["identityProviderId"] = args ? args.identityProviderId : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["postAuthRoleGrants"] = args ? args.postAuthRoleGrants : undefined;
+            resourceInputs["userConflicts"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(FederatedSettingsOrgConfig.__pulumiType, name, resourceInputs, opts);
@@ -139,6 +153,10 @@ export class FederatedSettingsOrgConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FederatedSettingsOrgConfig resources.
  */
 export interface FederatedSettingsOrgConfigState {
+    /**
+     * The collection of unique ids representing the identity providers that can be used for data access in this organization.
+     */
+    dataAccessIdentityProviderIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List that contains the approved domains from which organization users can log in.
      */
@@ -152,7 +170,9 @@ export interface FederatedSettingsOrgConfigState {
      */
     federationSettingsId?: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `""` will detach/remove the SAML identity provider. This id can be found in two ways:
+     * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+     * 2. `oktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      */
     identityProviderId?: pulumi.Input<string>;
     /**
@@ -163,12 +183,20 @@ export interface FederatedSettingsOrgConfigState {
      * List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
      */
     postAuthRoleGrants?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+     */
+    userConflicts?: pulumi.Input<pulumi.Input<inputs.FederatedSettingsOrgConfigUserConflict>[]>;
 }
 
 /**
  * The set of arguments for constructing a FederatedSettingsOrgConfig resource.
  */
 export interface FederatedSettingsOrgConfigArgs {
+    /**
+     * The collection of unique ids representing the identity providers that can be used for data access in this organization.
+     */
+    dataAccessIdentityProviderIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List that contains the approved domains from which organization users can log in.
      */
@@ -182,9 +210,11 @@ export interface FederatedSettingsOrgConfigArgs {
      */
     federationSettingsId: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `""` will detach/remove the SAML identity provider. This id can be found in two ways:
+     * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+     * 2. `oktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      */
-    identityProviderId: pulumi.Input<string>;
+    identityProviderId?: pulumi.Input<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */

@@ -12401,6 +12401,139 @@ func (o FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput)
 	}).(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput)
 }
 
+type FederatedSettingsOrgConfigUserConflict struct {
+	// Email address of the the user that conflicts with selected domains.
+	EmailAddress *string `pulumi:"emailAddress"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId *string `pulumi:"federationSettingsId"`
+	// First name of the the user that conflicts with selected domains.
+	FirstName *string `pulumi:"firstName"`
+	// Last name of the the user that conflicts with selected domains.
+	LastName *string `pulumi:"lastName"`
+	// Name of the Atlas user that conflicts with selected domains.
+	UserId *string `pulumi:"userId"`
+}
+
+// FederatedSettingsOrgConfigUserConflictInput is an input type that accepts FederatedSettingsOrgConfigUserConflictArgs and FederatedSettingsOrgConfigUserConflictOutput values.
+// You can construct a concrete instance of `FederatedSettingsOrgConfigUserConflictInput` via:
+//
+//	FederatedSettingsOrgConfigUserConflictArgs{...}
+type FederatedSettingsOrgConfigUserConflictInput interface {
+	pulumi.Input
+
+	ToFederatedSettingsOrgConfigUserConflictOutput() FederatedSettingsOrgConfigUserConflictOutput
+	ToFederatedSettingsOrgConfigUserConflictOutputWithContext(context.Context) FederatedSettingsOrgConfigUserConflictOutput
+}
+
+type FederatedSettingsOrgConfigUserConflictArgs struct {
+	// Email address of the the user that conflicts with selected domains.
+	EmailAddress pulumi.StringPtrInput `pulumi:"emailAddress"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId pulumi.StringPtrInput `pulumi:"federationSettingsId"`
+	// First name of the the user that conflicts with selected domains.
+	FirstName pulumi.StringPtrInput `pulumi:"firstName"`
+	// Last name of the the user that conflicts with selected domains.
+	LastName pulumi.StringPtrInput `pulumi:"lastName"`
+	// Name of the Atlas user that conflicts with selected domains.
+	UserId pulumi.StringPtrInput `pulumi:"userId"`
+}
+
+func (FederatedSettingsOrgConfigUserConflictArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedSettingsOrgConfigUserConflict)(nil)).Elem()
+}
+
+func (i FederatedSettingsOrgConfigUserConflictArgs) ToFederatedSettingsOrgConfigUserConflictOutput() FederatedSettingsOrgConfigUserConflictOutput {
+	return i.ToFederatedSettingsOrgConfigUserConflictOutputWithContext(context.Background())
+}
+
+func (i FederatedSettingsOrgConfigUserConflictArgs) ToFederatedSettingsOrgConfigUserConflictOutputWithContext(ctx context.Context) FederatedSettingsOrgConfigUserConflictOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsOrgConfigUserConflictOutput)
+}
+
+// FederatedSettingsOrgConfigUserConflictArrayInput is an input type that accepts FederatedSettingsOrgConfigUserConflictArray and FederatedSettingsOrgConfigUserConflictArrayOutput values.
+// You can construct a concrete instance of `FederatedSettingsOrgConfigUserConflictArrayInput` via:
+//
+//	FederatedSettingsOrgConfigUserConflictArray{ FederatedSettingsOrgConfigUserConflictArgs{...} }
+type FederatedSettingsOrgConfigUserConflictArrayInput interface {
+	pulumi.Input
+
+	ToFederatedSettingsOrgConfigUserConflictArrayOutput() FederatedSettingsOrgConfigUserConflictArrayOutput
+	ToFederatedSettingsOrgConfigUserConflictArrayOutputWithContext(context.Context) FederatedSettingsOrgConfigUserConflictArrayOutput
+}
+
+type FederatedSettingsOrgConfigUserConflictArray []FederatedSettingsOrgConfigUserConflictInput
+
+func (FederatedSettingsOrgConfigUserConflictArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederatedSettingsOrgConfigUserConflict)(nil)).Elem()
+}
+
+func (i FederatedSettingsOrgConfigUserConflictArray) ToFederatedSettingsOrgConfigUserConflictArrayOutput() FederatedSettingsOrgConfigUserConflictArrayOutput {
+	return i.ToFederatedSettingsOrgConfigUserConflictArrayOutputWithContext(context.Background())
+}
+
+func (i FederatedSettingsOrgConfigUserConflictArray) ToFederatedSettingsOrgConfigUserConflictArrayOutputWithContext(ctx context.Context) FederatedSettingsOrgConfigUserConflictArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsOrgConfigUserConflictArrayOutput)
+}
+
+type FederatedSettingsOrgConfigUserConflictOutput struct{ *pulumi.OutputState }
+
+func (FederatedSettingsOrgConfigUserConflictOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedSettingsOrgConfigUserConflict)(nil)).Elem()
+}
+
+func (o FederatedSettingsOrgConfigUserConflictOutput) ToFederatedSettingsOrgConfigUserConflictOutput() FederatedSettingsOrgConfigUserConflictOutput {
+	return o
+}
+
+func (o FederatedSettingsOrgConfigUserConflictOutput) ToFederatedSettingsOrgConfigUserConflictOutputWithContext(ctx context.Context) FederatedSettingsOrgConfigUserConflictOutput {
+	return o
+}
+
+// Email address of the the user that conflicts with selected domains.
+func (o FederatedSettingsOrgConfigUserConflictOutput) EmailAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedSettingsOrgConfigUserConflict) *string { return v.EmailAddress }).(pulumi.StringPtrOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+func (o FederatedSettingsOrgConfigUserConflictOutput) FederationSettingsId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedSettingsOrgConfigUserConflict) *string { return v.FederationSettingsId }).(pulumi.StringPtrOutput)
+}
+
+// First name of the the user that conflicts with selected domains.
+func (o FederatedSettingsOrgConfigUserConflictOutput) FirstName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedSettingsOrgConfigUserConflict) *string { return v.FirstName }).(pulumi.StringPtrOutput)
+}
+
+// Last name of the the user that conflicts with selected domains.
+func (o FederatedSettingsOrgConfigUserConflictOutput) LastName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedSettingsOrgConfigUserConflict) *string { return v.LastName }).(pulumi.StringPtrOutput)
+}
+
+// Name of the Atlas user that conflicts with selected domains.
+func (o FederatedSettingsOrgConfigUserConflictOutput) UserId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedSettingsOrgConfigUserConflict) *string { return v.UserId }).(pulumi.StringPtrOutput)
+}
+
+type FederatedSettingsOrgConfigUserConflictArrayOutput struct{ *pulumi.OutputState }
+
+func (FederatedSettingsOrgConfigUserConflictArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederatedSettingsOrgConfigUserConflict)(nil)).Elem()
+}
+
+func (o FederatedSettingsOrgConfigUserConflictArrayOutput) ToFederatedSettingsOrgConfigUserConflictArrayOutput() FederatedSettingsOrgConfigUserConflictArrayOutput {
+	return o
+}
+
+func (o FederatedSettingsOrgConfigUserConflictArrayOutput) ToFederatedSettingsOrgConfigUserConflictArrayOutputWithContext(ctx context.Context) FederatedSettingsOrgConfigUserConflictArrayOutput {
+	return o
+}
+
+func (o FederatedSettingsOrgConfigUserConflictArrayOutput) Index(i pulumi.IntInput) FederatedSettingsOrgConfigUserConflictOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FederatedSettingsOrgConfigUserConflict {
+		return vs[0].([]FederatedSettingsOrgConfigUserConflict)[vs[1].(int)]
+	}).(FederatedSettingsOrgConfigUserConflictOutput)
+}
+
 type FederatedSettingsOrgRoleMappingRoleAssignment struct {
 	// Unique identifier of the project to which you want the role mapping to apply.
 	GroupId *string `pulumi:"groupId"`
@@ -31297,6 +31430,146 @@ func (o GetClustersResultTagArrayOutput) Index(i pulumi.IntInput) GetClustersRes
 	}).(GetClustersResultTagOutput)
 }
 
+type GetControlPlaneIpAddressesInbound struct {
+	// Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.
+	Aws map[string][]string `pulumi:"aws"`
+	// Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.
+	Azure map[string][]string `pulumi:"azure"`
+	// Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.
+	Gcp map[string][]string `pulumi:"gcp"`
+}
+
+// GetControlPlaneIpAddressesInboundInput is an input type that accepts GetControlPlaneIpAddressesInboundArgs and GetControlPlaneIpAddressesInboundOutput values.
+// You can construct a concrete instance of `GetControlPlaneIpAddressesInboundInput` via:
+//
+//	GetControlPlaneIpAddressesInboundArgs{...}
+type GetControlPlaneIpAddressesInboundInput interface {
+	pulumi.Input
+
+	ToGetControlPlaneIpAddressesInboundOutput() GetControlPlaneIpAddressesInboundOutput
+	ToGetControlPlaneIpAddressesInboundOutputWithContext(context.Context) GetControlPlaneIpAddressesInboundOutput
+}
+
+type GetControlPlaneIpAddressesInboundArgs struct {
+	// Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.
+	Aws pulumi.StringArrayMapInput `pulumi:"aws"`
+	// Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.
+	Azure pulumi.StringArrayMapInput `pulumi:"azure"`
+	// Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.
+	Gcp pulumi.StringArrayMapInput `pulumi:"gcp"`
+}
+
+func (GetControlPlaneIpAddressesInboundArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetControlPlaneIpAddressesInbound)(nil)).Elem()
+}
+
+func (i GetControlPlaneIpAddressesInboundArgs) ToGetControlPlaneIpAddressesInboundOutput() GetControlPlaneIpAddressesInboundOutput {
+	return i.ToGetControlPlaneIpAddressesInboundOutputWithContext(context.Background())
+}
+
+func (i GetControlPlaneIpAddressesInboundArgs) ToGetControlPlaneIpAddressesInboundOutputWithContext(ctx context.Context) GetControlPlaneIpAddressesInboundOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetControlPlaneIpAddressesInboundOutput)
+}
+
+type GetControlPlaneIpAddressesInboundOutput struct{ *pulumi.OutputState }
+
+func (GetControlPlaneIpAddressesInboundOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetControlPlaneIpAddressesInbound)(nil)).Elem()
+}
+
+func (o GetControlPlaneIpAddressesInboundOutput) ToGetControlPlaneIpAddressesInboundOutput() GetControlPlaneIpAddressesInboundOutput {
+	return o
+}
+
+func (o GetControlPlaneIpAddressesInboundOutput) ToGetControlPlaneIpAddressesInboundOutputWithContext(ctx context.Context) GetControlPlaneIpAddressesInboundOutput {
+	return o
+}
+
+// Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.
+func (o GetControlPlaneIpAddressesInboundOutput) Aws() pulumi.StringArrayMapOutput {
+	return o.ApplyT(func(v GetControlPlaneIpAddressesInbound) map[string][]string { return v.Aws }).(pulumi.StringArrayMapOutput)
+}
+
+// Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.
+func (o GetControlPlaneIpAddressesInboundOutput) Azure() pulumi.StringArrayMapOutput {
+	return o.ApplyT(func(v GetControlPlaneIpAddressesInbound) map[string][]string { return v.Azure }).(pulumi.StringArrayMapOutput)
+}
+
+// Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.
+func (o GetControlPlaneIpAddressesInboundOutput) Gcp() pulumi.StringArrayMapOutput {
+	return o.ApplyT(func(v GetControlPlaneIpAddressesInbound) map[string][]string { return v.Gcp }).(pulumi.StringArrayMapOutput)
+}
+
+type GetControlPlaneIpAddressesOutbound struct {
+	// Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.
+	Aws map[string][]string `pulumi:"aws"`
+	// Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.
+	Azure map[string][]string `pulumi:"azure"`
+	// Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.
+	Gcp map[string][]string `pulumi:"gcp"`
+}
+
+// GetControlPlaneIpAddressesOutboundInput is an input type that accepts GetControlPlaneIpAddressesOutboundArgs and GetControlPlaneIpAddressesOutboundOutput values.
+// You can construct a concrete instance of `GetControlPlaneIpAddressesOutboundInput` via:
+//
+//	GetControlPlaneIpAddressesOutboundArgs{...}
+type GetControlPlaneIpAddressesOutboundInput interface {
+	pulumi.Input
+
+	ToGetControlPlaneIpAddressesOutboundOutput() GetControlPlaneIpAddressesOutboundOutput
+	ToGetControlPlaneIpAddressesOutboundOutputWithContext(context.Context) GetControlPlaneIpAddressesOutboundOutput
+}
+
+type GetControlPlaneIpAddressesOutboundArgs struct {
+	// Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.
+	Aws pulumi.StringArrayMapInput `pulumi:"aws"`
+	// Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.
+	Azure pulumi.StringArrayMapInput `pulumi:"azure"`
+	// Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.
+	Gcp pulumi.StringArrayMapInput `pulumi:"gcp"`
+}
+
+func (GetControlPlaneIpAddressesOutboundArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetControlPlaneIpAddressesOutbound)(nil)).Elem()
+}
+
+func (i GetControlPlaneIpAddressesOutboundArgs) ToGetControlPlaneIpAddressesOutboundOutput() GetControlPlaneIpAddressesOutboundOutput {
+	return i.ToGetControlPlaneIpAddressesOutboundOutputWithContext(context.Background())
+}
+
+func (i GetControlPlaneIpAddressesOutboundArgs) ToGetControlPlaneIpAddressesOutboundOutputWithContext(ctx context.Context) GetControlPlaneIpAddressesOutboundOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetControlPlaneIpAddressesOutboundOutput)
+}
+
+type GetControlPlaneIpAddressesOutboundOutput struct{ *pulumi.OutputState }
+
+func (GetControlPlaneIpAddressesOutboundOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetControlPlaneIpAddressesOutbound)(nil)).Elem()
+}
+
+func (o GetControlPlaneIpAddressesOutboundOutput) ToGetControlPlaneIpAddressesOutboundOutput() GetControlPlaneIpAddressesOutboundOutput {
+	return o
+}
+
+func (o GetControlPlaneIpAddressesOutboundOutput) ToGetControlPlaneIpAddressesOutboundOutputWithContext(ctx context.Context) GetControlPlaneIpAddressesOutboundOutput {
+	return o
+}
+
+// Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.
+func (o GetControlPlaneIpAddressesOutboundOutput) Aws() pulumi.StringArrayMapOutput {
+	return o.ApplyT(func(v GetControlPlaneIpAddressesOutbound) map[string][]string { return v.Aws }).(pulumi.StringArrayMapOutput)
+}
+
+// Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.
+func (o GetControlPlaneIpAddressesOutboundOutput) Azure() pulumi.StringArrayMapOutput {
+	return o.ApplyT(func(v GetControlPlaneIpAddressesOutbound) map[string][]string { return v.Azure }).(pulumi.StringArrayMapOutput)
+}
+
+// Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.
+func (o GetControlPlaneIpAddressesOutboundOutput) Gcp() pulumi.StringArrayMapOutput {
+	return o.ApplyT(func(v GetControlPlaneIpAddressesOutbound) map[string][]string { return v.Gcp }).(pulumi.StringArrayMapOutput)
+}
+
 type GetCustomDbRoleAction struct {
 	// (Required) Name of the privilege action. For a complete list of actions available in the Atlas API, see Custom Role Actions.
 	Action string `pulumi:"action"`
@@ -34173,7 +34446,8 @@ type GetDatabaseUsersResult struct {
 	LdapAuthType string `pulumi:"ldapAuthType"`
 	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 	// * `NONE` -	The user does not use OIDC federated authentication.
-	// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType string `pulumi:"oidcAuthType"`
 	// The unique ID for the project to get all database users.
 	ProjectId string `pulumi:"projectId"`
@@ -34211,7 +34485,8 @@ type GetDatabaseUsersResultArgs struct {
 	LdapAuthType pulumi.StringInput `pulumi:"ldapAuthType"`
 	// (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 	// * `NONE` -	The user does not use OIDC federated authentication.
-	// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType pulumi.StringInput `pulumi:"oidcAuthType"`
 	// The unique ID for the project to get all database users.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -34303,7 +34578,8 @@ func (o GetDatabaseUsersResultOutput) LdapAuthType() pulumi.StringOutput {
 
 // (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 // * `NONE` -	The user does not use OIDC federated authentication.
-// * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 func (o GetDatabaseUsersResultOutput) OidcAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.OidcAuthType }).(pulumi.StringOutput)
 }
@@ -39237,17 +39513,23 @@ type GetFederatedSettingsIdentityProvidersResult struct {
 	// List that contains the configured domains from which users can log in for this IdP.
 	AssociatedOrgs []GetFederatedSettingsIdentityProvidersResultAssociatedOrg `pulumi:"associatedOrgs"`
 	// Identifier of the intended recipient of the token.
-	AudienceClaims []string `pulumi:"audienceClaims"`
+	Audience string `pulumi:"audience"`
 	// Identifier for the intended audience of the SAML Assertion.
 	AudienceUri string `pulumi:"audienceUri"`
+	// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+	AuthorizationType string `pulumi:"authorizationType"`
 	// Client identifier that is assigned to an application by the Identity Provider.
 	ClientId string `pulumi:"clientId"`
+	// The description of the identity provider.
+	Description string `pulumi:"description"`
 	// Human-readable label that identifies the IdP.
 	DisplayName string `pulumi:"displayName"`
 	// Identifier of the claim which contains IdP Group IDs in the token.
 	GroupsClaim string `pulumi:"groupsClaim"`
 	// Unique 24-hexadecimal digit string that identifies the IdP.
 	IdpId string `pulumi:"idpId"`
+	// Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
+	IdpType string `pulumi:"idpType"`
 	// Identifier for the issuer of the SAML Assertion.
 	IssuerUri    string                                                   `pulumi:"issuerUri"`
 	OktaIdpId    string                                                   `pulumi:"oktaIdpId"`
@@ -39293,17 +39575,23 @@ type GetFederatedSettingsIdentityProvidersResultArgs struct {
 	// List that contains the configured domains from which users can log in for this IdP.
 	AssociatedOrgs GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayInput `pulumi:"associatedOrgs"`
 	// Identifier of the intended recipient of the token.
-	AudienceClaims pulumi.StringArrayInput `pulumi:"audienceClaims"`
+	Audience pulumi.StringInput `pulumi:"audience"`
 	// Identifier for the intended audience of the SAML Assertion.
 	AudienceUri pulumi.StringInput `pulumi:"audienceUri"`
+	// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+	AuthorizationType pulumi.StringInput `pulumi:"authorizationType"`
 	// Client identifier that is assigned to an application by the Identity Provider.
 	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The description of the identity provider.
+	Description pulumi.StringInput `pulumi:"description"`
 	// Human-readable label that identifies the IdP.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// Identifier of the claim which contains IdP Group IDs in the token.
 	GroupsClaim pulumi.StringInput `pulumi:"groupsClaim"`
 	// Unique 24-hexadecimal digit string that identifies the IdP.
 	IdpId pulumi.StringInput `pulumi:"idpId"`
+	// Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
+	IdpType pulumi.StringInput `pulumi:"idpType"`
 	// Identifier for the issuer of the SAML Assertion.
 	IssuerUri    pulumi.StringInput                                               `pulumi:"issuerUri"`
 	OktaIdpId    pulumi.StringInput                                               `pulumi:"oktaIdpId"`
@@ -39399,8 +39687,8 @@ func (o GetFederatedSettingsIdentityProvidersResultOutput) AssociatedOrgs() GetF
 }
 
 // Identifier of the intended recipient of the token.
-func (o GetFederatedSettingsIdentityProvidersResultOutput) AudienceClaims() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) []string { return v.AudienceClaims }).(pulumi.StringArrayOutput)
+func (o GetFederatedSettingsIdentityProvidersResultOutput) Audience() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.Audience }).(pulumi.StringOutput)
 }
 
 // Identifier for the intended audience of the SAML Assertion.
@@ -39408,9 +39696,19 @@ func (o GetFederatedSettingsIdentityProvidersResultOutput) AudienceUri() pulumi.
 	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.AudienceUri }).(pulumi.StringOutput)
 }
 
+// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+func (o GetFederatedSettingsIdentityProvidersResultOutput) AuthorizationType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.AuthorizationType }).(pulumi.StringOutput)
+}
+
 // Client identifier that is assigned to an application by the Identity Provider.
 func (o GetFederatedSettingsIdentityProvidersResultOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The description of the identity provider.
+func (o GetFederatedSettingsIdentityProvidersResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
 // Human-readable label that identifies the IdP.
@@ -39426,6 +39724,11 @@ func (o GetFederatedSettingsIdentityProvidersResultOutput) GroupsClaim() pulumi.
 // Unique 24-hexadecimal digit string that identifies the IdP.
 func (o GetFederatedSettingsIdentityProvidersResultOutput) IdpId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.IdpId }).(pulumi.StringOutput)
+}
+
+// Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
+func (o GetFederatedSettingsIdentityProvidersResultOutput) IdpType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.IdpType }).(pulumi.StringOutput)
 }
 
 // Identifier for the issuer of the SAML Assertion.
@@ -40614,18 +40917,24 @@ func (o GetFederatedSettingsOrgConfigUserConflictArrayOutput) Index(i pulumi.Int
 }
 
 type GetFederatedSettingsOrgConfigsResult struct {
+	// The collection of unique ids representing the identity providers that can be used for data access in this organization.
+	DataAccessIdentityProviderIds []string `pulumi:"dataAccessIdentityProviderIds"`
 	// List that contains the approved domains from which organization users can log in.
 	DomainAllowLists []string `pulumi:"domainAllowLists"`
 	// Flag that indicates whether domain restriction is enabled for the connected organization.
 	DomainRestrictionEnabled bool `pulumi:"domainRestrictionEnabled"`
-	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	// Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
+	// 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+	// 2. `oktaIdpId` on the `FederatedSettingsIdentityProvider` resource
 	IdentityProviderId string `pulumi:"identityProviderId"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId string `pulumi:"orgId"`
 	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
-	PostAuthRoleGrants []string                                           `pulumi:"postAuthRoleGrants"`
-	RoleMappings       []GetFederatedSettingsOrgConfigsResultRoleMapping  `pulumi:"roleMappings"`
-	UserConflicts      []GetFederatedSettingsOrgConfigsResultUserConflict `pulumi:"userConflicts"`
+	PostAuthRoleGrants []string `pulumi:"postAuthRoleGrants"`
+	// Role mappings that are configured in this organization. See below
+	RoleMappings []GetFederatedSettingsOrgConfigsResultRoleMapping `pulumi:"roleMappings"`
+	// List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+	UserConflicts []GetFederatedSettingsOrgConfigsResultUserConflict `pulumi:"userConflicts"`
 }
 
 // GetFederatedSettingsOrgConfigsResultInput is an input type that accepts GetFederatedSettingsOrgConfigsResultArgs and GetFederatedSettingsOrgConfigsResultOutput values.
@@ -40640,18 +40949,24 @@ type GetFederatedSettingsOrgConfigsResultInput interface {
 }
 
 type GetFederatedSettingsOrgConfigsResultArgs struct {
+	// The collection of unique ids representing the identity providers that can be used for data access in this organization.
+	DataAccessIdentityProviderIds pulumi.StringArrayInput `pulumi:"dataAccessIdentityProviderIds"`
 	// List that contains the approved domains from which organization users can log in.
 	DomainAllowLists pulumi.StringArrayInput `pulumi:"domainAllowLists"`
 	// Flag that indicates whether domain restriction is enabled for the connected organization.
 	DomainRestrictionEnabled pulumi.BoolInput `pulumi:"domainRestrictionEnabled"`
-	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	// Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
+	// 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+	// 2. `oktaIdpId` on the `FederatedSettingsIdentityProvider` resource
 	IdentityProviderId pulumi.StringInput `pulumi:"identityProviderId"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
 	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
-	PostAuthRoleGrants pulumi.StringArrayInput                                    `pulumi:"postAuthRoleGrants"`
-	RoleMappings       GetFederatedSettingsOrgConfigsResultRoleMappingArrayInput  `pulumi:"roleMappings"`
-	UserConflicts      GetFederatedSettingsOrgConfigsResultUserConflictArrayInput `pulumi:"userConflicts"`
+	PostAuthRoleGrants pulumi.StringArrayInput `pulumi:"postAuthRoleGrants"`
+	// Role mappings that are configured in this organization. See below
+	RoleMappings GetFederatedSettingsOrgConfigsResultRoleMappingArrayInput `pulumi:"roleMappings"`
+	// List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+	UserConflicts GetFederatedSettingsOrgConfigsResultUserConflictArrayInput `pulumi:"userConflicts"`
 }
 
 func (GetFederatedSettingsOrgConfigsResultArgs) ElementType() reflect.Type {
@@ -40705,6 +41020,11 @@ func (o GetFederatedSettingsOrgConfigsResultOutput) ToGetFederatedSettingsOrgCon
 	return o
 }
 
+// The collection of unique ids representing the identity providers that can be used for data access in this organization.
+func (o GetFederatedSettingsOrgConfigsResultOutput) DataAccessIdentityProviderIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) []string { return v.DataAccessIdentityProviderIds }).(pulumi.StringArrayOutput)
+}
+
 // List that contains the approved domains from which organization users can log in.
 func (o GetFederatedSettingsOrgConfigsResultOutput) DomainAllowLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) []string { return v.DomainAllowLists }).(pulumi.StringArrayOutput)
@@ -40715,7 +41035,9 @@ func (o GetFederatedSettingsOrgConfigsResultOutput) DomainRestrictionEnabled() p
 	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) bool { return v.DomainRestrictionEnabled }).(pulumi.BoolOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+// Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
+// 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+// 2. `oktaIdpId` on the `FederatedSettingsIdentityProvider` resource
 func (o GetFederatedSettingsOrgConfigsResultOutput) IdentityProviderId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) string { return v.IdentityProviderId }).(pulumi.StringOutput)
 }
@@ -40730,12 +41052,14 @@ func (o GetFederatedSettingsOrgConfigsResultOutput) PostAuthRoleGrants() pulumi.
 	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) []string { return v.PostAuthRoleGrants }).(pulumi.StringArrayOutput)
 }
 
+// Role mappings that are configured in this organization. See below
 func (o GetFederatedSettingsOrgConfigsResultOutput) RoleMappings() GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput {
 	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) []GetFederatedSettingsOrgConfigsResultRoleMapping {
 		return v.RoleMappings
 	}).(GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput)
 }
 
+// List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
 func (o GetFederatedSettingsOrgConfigsResultOutput) UserConflicts() GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput {
 	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) []GetFederatedSettingsOrgConfigsResultUserConflict {
 		return v.UserConflicts
@@ -48795,6 +49119,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayInput)(nil)).Elem(), FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagInput)(nil)).Elem(), FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayInput)(nil)).Elem(), FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgConfigUserConflictInput)(nil)).Elem(), FederatedSettingsOrgConfigUserConflictArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgConfigUserConflictArrayInput)(nil)).Elem(), FederatedSettingsOrgConfigUserConflictArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgRoleMappingRoleAssignmentInput)(nil)).Elem(), FederatedSettingsOrgRoleMappingRoleAssignmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgRoleMappingRoleAssignmentArrayInput)(nil)).Elem(), FederatedSettingsOrgRoleMappingRoleAssignmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigCustomZoneMappingInput)(nil)).Elem(), GlobalClusterConfigCustomZoneMappingArgs{})
@@ -49056,6 +49382,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArrayInput)(nil)).Elem(), GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultTagInput)(nil)).Elem(), GetClustersResultTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultTagArrayInput)(nil)).Elem(), GetClustersResultTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetControlPlaneIpAddressesInboundInput)(nil)).Elem(), GetControlPlaneIpAddressesInboundArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetControlPlaneIpAddressesOutboundInput)(nil)).Elem(), GetControlPlaneIpAddressesOutboundArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomDbRoleActionInput)(nil)).Elem(), GetCustomDbRoleActionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomDbRoleActionArrayInput)(nil)).Elem(), GetCustomDbRoleActionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomDbRoleActionResourceInput)(nil)).Elem(), GetCustomDbRoleActionResourceArgs{})
@@ -49486,6 +49814,8 @@ func init() {
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArrayOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArrayOutput{})
+	pulumi.RegisterOutputType(FederatedSettingsOrgConfigUserConflictOutput{})
+	pulumi.RegisterOutputType(FederatedSettingsOrgConfigUserConflictArrayOutput{})
 	pulumi.RegisterOutputType(FederatedSettingsOrgRoleMappingRoleAssignmentOutput{})
 	pulumi.RegisterOutputType(FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigCustomZoneMappingOutput{})
@@ -49747,6 +50077,8 @@ func init() {
 	pulumi.RegisterOutputType(GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultTagOutput{})
 	pulumi.RegisterOutputType(GetClustersResultTagArrayOutput{})
+	pulumi.RegisterOutputType(GetControlPlaneIpAddressesInboundOutput{})
+	pulumi.RegisterOutputType(GetControlPlaneIpAddressesOutboundOutput{})
 	pulumi.RegisterOutputType(GetCustomDbRoleActionOutput{})
 	pulumi.RegisterOutputType(GetCustomDbRoleActionArrayOutput{})
 	pulumi.RegisterOutputType(GetCustomDbRoleActionResourceOutput{})

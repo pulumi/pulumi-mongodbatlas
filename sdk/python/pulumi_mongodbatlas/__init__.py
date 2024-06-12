@@ -57,6 +57,7 @@ from .get_cloud_provider_access_setup import *
 from .get_cluster import *
 from .get_cluster_outage_simulation import *
 from .get_clusters import *
+from .get_control_plane_ip_addresses import *
 from .get_custom_db_role import *
 from .get_custom_db_roles import *
 from .get_custom_dns_configuration_cluster_aws import *

@@ -36,8 +36,10 @@ export function getFederatedSettingsIdentityProviders(args: GetFederatedSettings
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", {
         "federationSettingsId": args.federationSettingsId,
+        "idpTypes": args.idpTypes,
         "itemsPerPage": args.itemsPerPage,
         "pageNum": args.pageNum,
+        "protocols": args.protocols,
     }, opts);
 }
 
@@ -50,6 +52,10 @@ export interface GetFederatedSettingsIdentityProvidersArgs {
      */
     federationSettingsId: string;
     /**
+     * The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+     */
+    idpTypes?: string[];
+    /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
      *
      * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
@@ -61,6 +67,10 @@ export interface GetFederatedSettingsIdentityProvidersArgs {
      * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     pageNum?: number;
+    /**
+     * The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+     */
+    protocols?: string[];
 }
 
 /**
@@ -75,6 +85,7 @@ export interface GetFederatedSettingsIdentityProvidersResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly idpTypes?: string[];
     /**
      * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
@@ -83,6 +94,7 @@ export interface GetFederatedSettingsIdentityProvidersResult {
      * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     readonly pageNum?: number;
+    readonly protocols?: string[];
     /**
      * Includes cloudProviderSnapshot object for each item detailed in the results array section.
      * * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
@@ -127,6 +139,10 @@ export interface GetFederatedSettingsIdentityProvidersOutputArgs {
      */
     federationSettingsId: pulumi.Input<string>;
     /**
+     * The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+     */
+    idpTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
      *
      * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
@@ -138,4 +154,8 @@ export interface GetFederatedSettingsIdentityProvidersOutputArgs {
      * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
      */
     pageNum?: pulumi.Input<number>;
+    /**
+     * The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+     */
+    protocols?: pulumi.Input<pulumi.Input<string>[]>;
 }

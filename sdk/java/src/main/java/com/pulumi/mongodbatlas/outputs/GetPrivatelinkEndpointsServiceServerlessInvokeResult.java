@@ -6,12 +6,9 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointsServiceServerlessResult;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetPrivatelinkEndpointsServiceServerlessInvokeResult {
@@ -21,20 +18,6 @@ public final class GetPrivatelinkEndpointsServiceServerlessInvokeResult {
      */
     private String id;
     private String instanceName;
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.17.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-    private @Nullable Integer itemsPerPage;
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.17.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-    private @Nullable Integer pageNum;
     private String projectId;
     /**
      * @return Each element in the `result` array is one private serverless endpoint.
@@ -52,24 +35,6 @@ public final class GetPrivatelinkEndpointsServiceServerlessInvokeResult {
     }
     public String instanceName() {
         return this.instanceName;
-    }
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.17.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-    public Optional<Integer> itemsPerPage() {
-        return Optional.ofNullable(this.itemsPerPage);
-    }
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.17.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-    public Optional<Integer> pageNum() {
-        return Optional.ofNullable(this.pageNum);
     }
     public String projectId() {
         return this.projectId;
@@ -93,8 +58,6 @@ public final class GetPrivatelinkEndpointsServiceServerlessInvokeResult {
     public static final class Builder {
         private String id;
         private String instanceName;
-        private @Nullable Integer itemsPerPage;
-        private @Nullable Integer pageNum;
         private String projectId;
         private List<GetPrivatelinkEndpointsServiceServerlessResult> results;
         public Builder() {}
@@ -102,8 +65,6 @@ public final class GetPrivatelinkEndpointsServiceServerlessInvokeResult {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
     	      this.instanceName = defaults.instanceName;
-    	      this.itemsPerPage = defaults.itemsPerPage;
-    	      this.pageNum = defaults.pageNum;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
         }
@@ -122,18 +83,6 @@ public final class GetPrivatelinkEndpointsServiceServerlessInvokeResult {
               throw new MissingRequiredPropertyException("GetPrivatelinkEndpointsServiceServerlessInvokeResult", "instanceName");
             }
             this.instanceName = instanceName;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
-
-            this.itemsPerPage = itemsPerPage;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder pageNum(@Nullable Integer pageNum) {
-
-            this.pageNum = pageNum;
             return this;
         }
         @CustomType.Setter
@@ -159,8 +108,6 @@ public final class GetPrivatelinkEndpointsServiceServerlessInvokeResult {
             final var _resultValue = new GetPrivatelinkEndpointsServiceServerlessInvokeResult();
             _resultValue.id = id;
             _resultValue.instanceName = instanceName;
-            _resultValue.itemsPerPage = itemsPerPage;
-            _resultValue.pageNum = pageNum;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
             return _resultValue;

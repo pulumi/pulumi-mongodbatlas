@@ -22,7 +22,7 @@ class GetFederatedSettingsIdentityProviderResult:
     """
     A collection of values returned by getFederatedSettingsIdentityProvider.
     """
-    def __init__(__self__, acs_url=None, associated_domains=None, associated_orgs=None, audience_claims=None, audience_uri=None, client_id=None, display_name=None, federation_settings_id=None, groups_claim=None, id=None, identity_provider_id=None, idp_id=None, issuer_uri=None, okta_idp_id=None, pem_file_infos=None, protocol=None, request_binding=None, requested_scopes=None, response_signature_algorithm=None, sso_debug_enabled=None, sso_url=None, status=None, user_claim=None):
+    def __init__(__self__, acs_url=None, associated_domains=None, associated_orgs=None, audience=None, audience_uri=None, authorization_type=None, client_id=None, description=None, display_name=None, federation_settings_id=None, groups_claim=None, id=None, identity_provider_id=None, idp_id=None, idp_type=None, issuer_uri=None, okta_idp_id=None, pem_file_infos=None, protocol=None, request_binding=None, requested_scopes=None, response_signature_algorithm=None, sso_debug_enabled=None, sso_url=None, status=None, user_claim=None):
         if acs_url and not isinstance(acs_url, str):
             raise TypeError("Expected argument 'acs_url' to be a str")
         pulumi.set(__self__, "acs_url", acs_url)
@@ -32,15 +32,21 @@ class GetFederatedSettingsIdentityProviderResult:
         if associated_orgs and not isinstance(associated_orgs, list):
             raise TypeError("Expected argument 'associated_orgs' to be a list")
         pulumi.set(__self__, "associated_orgs", associated_orgs)
-        if audience_claims and not isinstance(audience_claims, list):
-            raise TypeError("Expected argument 'audience_claims' to be a list")
-        pulumi.set(__self__, "audience_claims", audience_claims)
+        if audience and not isinstance(audience, str):
+            raise TypeError("Expected argument 'audience' to be a str")
+        pulumi.set(__self__, "audience", audience)
         if audience_uri and not isinstance(audience_uri, str):
             raise TypeError("Expected argument 'audience_uri' to be a str")
         pulumi.set(__self__, "audience_uri", audience_uri)
+        if authorization_type and not isinstance(authorization_type, str):
+            raise TypeError("Expected argument 'authorization_type' to be a str")
+        pulumi.set(__self__, "authorization_type", authorization_type)
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if display_name and not isinstance(display_name, str):
             raise TypeError("Expected argument 'display_name' to be a str")
         pulumi.set(__self__, "display_name", display_name)
@@ -59,6 +65,9 @@ class GetFederatedSettingsIdentityProviderResult:
         if idp_id and not isinstance(idp_id, str):
             raise TypeError("Expected argument 'idp_id' to be a str")
         pulumi.set(__self__, "idp_id", idp_id)
+        if idp_type and not isinstance(idp_type, str):
+            raise TypeError("Expected argument 'idp_type' to be a str")
+        pulumi.set(__self__, "idp_type", idp_type)
         if issuer_uri and not isinstance(issuer_uri, str):
             raise TypeError("Expected argument 'issuer_uri' to be a str")
         pulumi.set(__self__, "issuer_uri", issuer_uri)
@@ -118,12 +127,12 @@ class GetFederatedSettingsIdentityProviderResult:
         return pulumi.get(self, "associated_orgs")
 
     @property
-    @pulumi.getter(name="audienceClaims")
-    def audience_claims(self) -> Sequence[str]:
+    @pulumi.getter
+    def audience(self) -> str:
         """
         Identifier of the intended recipient of the token.
         """
-        return pulumi.get(self, "audience_claims")
+        return pulumi.get(self, "audience")
 
     @property
     @pulumi.getter(name="audienceUri")
@@ -134,12 +143,28 @@ class GetFederatedSettingsIdentityProviderResult:
         return pulumi.get(self, "audience_uri")
 
     @property
+    @pulumi.getter(name="authorizationType")
+    def authorization_type(self) -> str:
+        """
+        Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+        """
+        return pulumi.get(self, "authorization_type")
+
+    @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> str:
         """
         Client identifier that is assigned to an application by the Identity Provider.
         """
         return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the identity provider.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="displayName")
@@ -187,6 +212,14 @@ class GetFederatedSettingsIdentityProviderResult:
         return pulumi.get(self, "idp_id")
 
     @property
+    @pulumi.getter(name="idpType")
+    def idp_type(self) -> str:
+        """
+        Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
+        """
+        return pulumi.get(self, "idp_type")
+
+    @property
     @pulumi.getter(name="issuerUri")
     def issuer_uri(self) -> str:
         """
@@ -211,7 +244,7 @@ class GetFederatedSettingsIdentityProviderResult:
     @pulumi.getter
     def protocol(self) -> str:
         """
-        The protocol of the identity provider. Either SAML or OIDC.
+        The protocol of the identity provider. Valid values are `SAML` or `OIDC`.
         """
         return pulumi.get(self, "protocol")
 
@@ -285,15 +318,18 @@ class AwaitableGetFederatedSettingsIdentityProviderResult(GetFederatedSettingsId
             acs_url=self.acs_url,
             associated_domains=self.associated_domains,
             associated_orgs=self.associated_orgs,
-            audience_claims=self.audience_claims,
+            audience=self.audience,
             audience_uri=self.audience_uri,
+            authorization_type=self.authorization_type,
             client_id=self.client_id,
+            description=self.description,
             display_name=self.display_name,
             federation_settings_id=self.federation_settings_id,
             groups_claim=self.groups_claim,
             id=self.id,
             identity_provider_id=self.identity_provider_id,
             idp_id=self.idp_id,
+            idp_type=self.idp_type,
             issuer_uri=self.issuer_uri,
             okta_idp_id=self.okta_idp_id,
             pem_file_infos=self.pem_file_infos,
@@ -349,15 +385,18 @@ def get_federated_settings_identity_provider(federation_settings_id: Optional[st
         acs_url=pulumi.get(__ret__, 'acs_url'),
         associated_domains=pulumi.get(__ret__, 'associated_domains'),
         associated_orgs=pulumi.get(__ret__, 'associated_orgs'),
-        audience_claims=pulumi.get(__ret__, 'audience_claims'),
+        audience=pulumi.get(__ret__, 'audience'),
         audience_uri=pulumi.get(__ret__, 'audience_uri'),
+        authorization_type=pulumi.get(__ret__, 'authorization_type'),
         client_id=pulumi.get(__ret__, 'client_id'),
+        description=pulumi.get(__ret__, 'description'),
         display_name=pulumi.get(__ret__, 'display_name'),
         federation_settings_id=pulumi.get(__ret__, 'federation_settings_id'),
         groups_claim=pulumi.get(__ret__, 'groups_claim'),
         id=pulumi.get(__ret__, 'id'),
         identity_provider_id=pulumi.get(__ret__, 'identity_provider_id'),
         idp_id=pulumi.get(__ret__, 'idp_id'),
+        idp_type=pulumi.get(__ret__, 'idp_type'),
         issuer_uri=pulumi.get(__ret__, 'issuer_uri'),
         okta_idp_id=pulumi.get(__ret__, 'okta_idp_id'),
         pem_file_infos=pulumi.get(__ret__, 'pem_file_infos'),

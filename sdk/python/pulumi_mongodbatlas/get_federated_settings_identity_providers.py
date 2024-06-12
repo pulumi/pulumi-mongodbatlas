@@ -22,19 +22,25 @@ class GetFederatedSettingsIdentityProvidersResult:
     """
     A collection of values returned by getFederatedSettingsIdentityProviders.
     """
-    def __init__(__self__, federation_settings_id=None, id=None, items_per_page=None, page_num=None, results=None):
+    def __init__(__self__, federation_settings_id=None, id=None, idp_types=None, items_per_page=None, page_num=None, protocols=None, results=None):
         if federation_settings_id and not isinstance(federation_settings_id, str):
             raise TypeError("Expected argument 'federation_settings_id' to be a str")
         pulumi.set(__self__, "federation_settings_id", federation_settings_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if idp_types and not isinstance(idp_types, list):
+            raise TypeError("Expected argument 'idp_types' to be a list")
+        pulumi.set(__self__, "idp_types", idp_types)
         if items_per_page and not isinstance(items_per_page, int):
             raise TypeError("Expected argument 'items_per_page' to be a int")
         pulumi.set(__self__, "items_per_page", items_per_page)
         if page_num and not isinstance(page_num, int):
             raise TypeError("Expected argument 'page_num' to be a int")
         pulumi.set(__self__, "page_num", page_num)
+        if protocols and not isinstance(protocols, list):
+            raise TypeError("Expected argument 'protocols' to be a list")
+        pulumi.set(__self__, "protocols", protocols)
         if results and not isinstance(results, list):
             raise TypeError("Expected argument 'results' to be a list")
         pulumi.set(__self__, "results", results)
@@ -56,6 +62,11 @@ class GetFederatedSettingsIdentityProvidersResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="idpTypes")
+    def idp_types(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "idp_types")
+
+    @property
     @pulumi.getter(name="itemsPerPage")
     def items_per_page(self) -> Optional[int]:
         warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
@@ -70,6 +81,11 @@ class GetFederatedSettingsIdentityProvidersResult:
         pulumi.log.warn("""page_num is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
 
         return pulumi.get(self, "page_num")
+
+    @property
+    @pulumi.getter
+    def protocols(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "protocols")
 
     @property
     @pulumi.getter
@@ -89,14 +105,18 @@ class AwaitableGetFederatedSettingsIdentityProvidersResult(GetFederatedSettingsI
         return GetFederatedSettingsIdentityProvidersResult(
             federation_settings_id=self.federation_settings_id,
             id=self.id,
+            idp_types=self.idp_types,
             items_per_page=self.items_per_page,
             page_num=self.page_num,
+            protocols=self.protocols,
             results=self.results)
 
 
 def get_federated_settings_identity_providers(federation_settings_id: Optional[str] = None,
+                                              idp_types: Optional[Sequence[str]] = None,
                                               items_per_page: Optional[int] = None,
                                               page_num: Optional[int] = None,
+                                              protocols: Optional[Sequence[str]] = None,
                                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedSettingsIdentityProvidersResult:
     """
     `get_federated_settings_identity_providers` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
@@ -122,28 +142,36 @@ def get_federated_settings_identity_providers(federation_settings_id: Optional[s
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+    :param Sequence[str] idp_types: The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
     :param int page_num: The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
+    :param Sequence[str] protocols: The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
     """
     __args__ = dict()
     __args__['federationSettingsId'] = federation_settings_id
+    __args__['idpTypes'] = idp_types
     __args__['itemsPerPage'] = items_per_page
     __args__['pageNum'] = page_num
+    __args__['protocols'] = protocols
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders', __args__, opts=opts, typ=GetFederatedSettingsIdentityProvidersResult).value
 
     return AwaitableGetFederatedSettingsIdentityProvidersResult(
         federation_settings_id=pulumi.get(__ret__, 'federation_settings_id'),
         id=pulumi.get(__ret__, 'id'),
+        idp_types=pulumi.get(__ret__, 'idp_types'),
         items_per_page=pulumi.get(__ret__, 'items_per_page'),
         page_num=pulumi.get(__ret__, 'page_num'),
+        protocols=pulumi.get(__ret__, 'protocols'),
         results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_federated_settings_identity_providers)
 def get_federated_settings_identity_providers_output(federation_settings_id: Optional[pulumi.Input[str]] = None,
+                                                     idp_types: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                                      items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
                                                      page_num: Optional[pulumi.Input[Optional[int]]] = None,
+                                                     protocols: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsIdentityProvidersResult]:
     """
     `get_federated_settings_identity_providers` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
@@ -169,7 +197,9 @@ def get_federated_settings_identity_providers_output(federation_settings_id: Opt
 
 
     :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+    :param Sequence[str] idp_types: The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
     :param int page_num: The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
+    :param Sequence[str] protocols: The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
     """
     ...

@@ -37,15 +37,30 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
      * Identifier of the intended recipient of the token used in OIDC IdP.
      * 
      */
-    @Import(name="audienceClaims")
-    private @Nullable Output<List<String>> audienceClaims;
+    @Import(name="audience")
+    private @Nullable Output<String> audience;
 
     /**
      * @return Identifier of the intended recipient of the token used in OIDC IdP.
      * 
      */
-    public Optional<Output<List<String>>> audienceClaims() {
-        return Optional.ofNullable(this.audienceClaims);
+    public Optional<Output<String>> audience() {
+        return Optional.ofNullable(this.audience);
+    }
+
+    /**
+     * Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+     * 
+     */
+    @Import(name="authorizationType")
+    private @Nullable Output<String> authorizationType;
+
+    /**
+     * @return Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+     * 
+     */
+    public Optional<Output<String>> authorizationType() {
+        return Optional.ofNullable(this.authorizationType);
     }
 
     /**
@@ -61,6 +76,21 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
      */
     public Optional<Output<String>> clientId() {
         return Optional.ofNullable(this.clientId);
+    }
+
+    /**
+     * The description of the identity provider.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return The description of the identity provider.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
     }
 
     /**
@@ -91,6 +121,13 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
      */
     public Optional<Output<String>> groupsClaim() {
         return Optional.ofNullable(this.groupsClaim);
+    }
+
+    @Import(name="idpType")
+    private @Nullable Output<String> idpType;
+
+    public Optional<Output<String>> idpType() {
+        return Optional.ofNullable(this.idpType);
     }
 
     /**
@@ -234,6 +271,7 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
 
     /**
      * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     * userClaim is required for OIDC IdP with authorizationType GROUP and USER.
      * 
      */
     @Import(name="userClaim")
@@ -241,6 +279,7 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
 
     /**
      * @return Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     * userClaim is required for OIDC IdP with authorizationType GROUP and USER.
      * 
      */
     public Optional<Output<String>> userClaim() {
@@ -251,10 +290,13 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
 
     private FederatedSettingsIdentityProviderArgs(FederatedSettingsIdentityProviderArgs $) {
         this.associatedDomains = $.associatedDomains;
-        this.audienceClaims = $.audienceClaims;
+        this.audience = $.audience;
+        this.authorizationType = $.authorizationType;
         this.clientId = $.clientId;
+        this.description = $.description;
         this.federationSettingsId = $.federationSettingsId;
         this.groupsClaim = $.groupsClaim;
+        this.idpType = $.idpType;
         this.issuerUri = $.issuerUri;
         this.name = $.name;
         this.protocol = $.protocol;
@@ -317,34 +359,45 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
         }
 
         /**
-         * @param audienceClaims Identifier of the intended recipient of the token used in OIDC IdP.
+         * @param audience Identifier of the intended recipient of the token used in OIDC IdP.
          * 
          * @return builder
          * 
          */
-        public Builder audienceClaims(@Nullable Output<List<String>> audienceClaims) {
-            $.audienceClaims = audienceClaims;
+        public Builder audience(@Nullable Output<String> audience) {
+            $.audience = audience;
             return this;
         }
 
         /**
-         * @param audienceClaims Identifier of the intended recipient of the token used in OIDC IdP.
+         * @param audience Identifier of the intended recipient of the token used in OIDC IdP.
          * 
          * @return builder
          * 
          */
-        public Builder audienceClaims(List<String> audienceClaims) {
-            return audienceClaims(Output.of(audienceClaims));
+        public Builder audience(String audience) {
+            return audience(Output.of(audience));
         }
 
         /**
-         * @param audienceClaims Identifier of the intended recipient of the token used in OIDC IdP.
+         * @param authorizationType Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
          * 
          * @return builder
          * 
          */
-        public Builder audienceClaims(String... audienceClaims) {
-            return audienceClaims(List.of(audienceClaims));
+        public Builder authorizationType(@Nullable Output<String> authorizationType) {
+            $.authorizationType = authorizationType;
+            return this;
+        }
+
+        /**
+         * @param authorizationType Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authorizationType(String authorizationType) {
+            return authorizationType(Output.of(authorizationType));
         }
 
         /**
@@ -366,6 +419,27 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
          */
         public Builder clientId(String clientId) {
             return clientId(Output.of(clientId));
+        }
+
+        /**
+         * @param description The description of the identity provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description The description of the identity provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**
@@ -408,6 +482,15 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
          */
         public Builder groupsClaim(String groupsClaim) {
             return groupsClaim(Output.of(groupsClaim));
+        }
+
+        public Builder idpType(@Nullable Output<String> idpType) {
+            $.idpType = idpType;
+            return this;
+        }
+
+        public Builder idpType(String idpType) {
+            return idpType(Output.of(idpType));
         }
 
         /**
@@ -615,6 +698,7 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
 
         /**
          * @param userClaim Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+         * userClaim is required for OIDC IdP with authorizationType GROUP and USER.
          * 
          * @return builder
          * 
@@ -626,6 +710,7 @@ public final class FederatedSettingsIdentityProviderArgs extends com.pulumi.reso
 
         /**
          * @param userClaim Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+         * userClaim is required for OIDC IdP with authorizationType GROUP and USER.
          * 
          * @return builder
          * 
