@@ -67,6 +67,7 @@
         "getCluster.ts",
         "getClusterOutageSimulation.ts",
         "getClusters.ts",
+        "getControlPlaneIpAddresses.ts",
         "getCustomDbRole.ts",
         "getCustomDbRoles.ts",
         "getCustomDnsConfigurationClusterAws.ts",

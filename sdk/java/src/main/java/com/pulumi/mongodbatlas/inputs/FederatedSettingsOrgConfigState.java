@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.FederatedSettingsOrgConfigUserConflictArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -16,6 +17,21 @@ import javax.annotation.Nullable;
 public final class FederatedSettingsOrgConfigState extends com.pulumi.resources.ResourceArgs {
 
     public static final FederatedSettingsOrgConfigState Empty = new FederatedSettingsOrgConfigState();
+
+    /**
+     * The collection of unique ids representing the identity providers that can be used for data access in this organization.
+     * 
+     */
+    @Import(name="dataAccessIdentityProviderIds")
+    private @Nullable Output<List<String>> dataAccessIdentityProviderIds;
+
+    /**
+     * @return The collection of unique ids representing the identity providers that can be used for data access in this organization.
+     * 
+     */
+    public Optional<Output<List<String>>> dataAccessIdentityProviderIds() {
+        return Optional.ofNullable(this.dataAccessIdentityProviderIds);
+    }
 
     /**
      * List that contains the approved domains from which organization users can log in.
@@ -63,14 +79,18 @@ public final class FederatedSettingsOrgConfigState extends com.pulumi.resources.
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `&#34;&#34;` will detach/remove the SAML identity provider. This id can be found in two ways:
+     * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+     * 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      * 
      */
     @Import(name="identityProviderId")
     private @Nullable Output<String> identityProviderId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * @return Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `&#34;&#34;` will detach/remove the SAML identity provider. This id can be found in two ways:
+     * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+     * 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      * 
      */
     public Optional<Output<String>> identityProviderId() {
@@ -107,15 +127,32 @@ public final class FederatedSettingsOrgConfigState extends com.pulumi.resources.
         return Optional.ofNullable(this.postAuthRoleGrants);
     }
 
+    /**
+     * List that contains the users who have an email address that doesn&#39;t match any domain on the allowed list. See below
+     * 
+     */
+    @Import(name="userConflicts")
+    private @Nullable Output<List<FederatedSettingsOrgConfigUserConflictArgs>> userConflicts;
+
+    /**
+     * @return List that contains the users who have an email address that doesn&#39;t match any domain on the allowed list. See below
+     * 
+     */
+    public Optional<Output<List<FederatedSettingsOrgConfigUserConflictArgs>>> userConflicts() {
+        return Optional.ofNullable(this.userConflicts);
+    }
+
     private FederatedSettingsOrgConfigState() {}
 
     private FederatedSettingsOrgConfigState(FederatedSettingsOrgConfigState $) {
+        this.dataAccessIdentityProviderIds = $.dataAccessIdentityProviderIds;
         this.domainAllowLists = $.domainAllowLists;
         this.domainRestrictionEnabled = $.domainRestrictionEnabled;
         this.federationSettingsId = $.federationSettingsId;
         this.identityProviderId = $.identityProviderId;
         this.orgId = $.orgId;
         this.postAuthRoleGrants = $.postAuthRoleGrants;
+        this.userConflicts = $.userConflicts;
     }
 
     public static Builder builder() {
@@ -134,6 +171,37 @@ public final class FederatedSettingsOrgConfigState extends com.pulumi.resources.
 
         public Builder(FederatedSettingsOrgConfigState defaults) {
             $ = new FederatedSettingsOrgConfigState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param dataAccessIdentityProviderIds The collection of unique ids representing the identity providers that can be used for data access in this organization.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dataAccessIdentityProviderIds(@Nullable Output<List<String>> dataAccessIdentityProviderIds) {
+            $.dataAccessIdentityProviderIds = dataAccessIdentityProviderIds;
+            return this;
+        }
+
+        /**
+         * @param dataAccessIdentityProviderIds The collection of unique ids representing the identity providers that can be used for data access in this organization.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dataAccessIdentityProviderIds(List<String> dataAccessIdentityProviderIds) {
+            return dataAccessIdentityProviderIds(Output.of(dataAccessIdentityProviderIds));
+        }
+
+        /**
+         * @param dataAccessIdentityProviderIds The collection of unique ids representing the identity providers that can be used for data access in this organization.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dataAccessIdentityProviderIds(String... dataAccessIdentityProviderIds) {
+            return dataAccessIdentityProviderIds(List.of(dataAccessIdentityProviderIds));
         }
 
         /**
@@ -210,7 +278,9 @@ public final class FederatedSettingsOrgConfigState extends com.pulumi.resources.
         }
 
         /**
-         * @param identityProviderId Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+         * @param identityProviderId Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `&#34;&#34;` will detach/remove the SAML identity provider. This id can be found in two ways:
+         * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+         * 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
          * 
          * @return builder
          * 
@@ -221,7 +291,9 @@ public final class FederatedSettingsOrgConfigState extends com.pulumi.resources.
         }
 
         /**
-         * @param identityProviderId Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+         * @param identityProviderId Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `&#34;&#34;` will detach/remove the SAML identity provider. This id can be found in two ways:
+         * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+         * 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
          * 
          * @return builder
          * 
@@ -280,6 +352,37 @@ public final class FederatedSettingsOrgConfigState extends com.pulumi.resources.
          */
         public Builder postAuthRoleGrants(String... postAuthRoleGrants) {
             return postAuthRoleGrants(List.of(postAuthRoleGrants));
+        }
+
+        /**
+         * @param userConflicts List that contains the users who have an email address that doesn&#39;t match any domain on the allowed list. See below
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userConflicts(@Nullable Output<List<FederatedSettingsOrgConfigUserConflictArgs>> userConflicts) {
+            $.userConflicts = userConflicts;
+            return this;
+        }
+
+        /**
+         * @param userConflicts List that contains the users who have an email address that doesn&#39;t match any domain on the allowed list. See below
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userConflicts(List<FederatedSettingsOrgConfigUserConflictArgs> userConflicts) {
+            return userConflicts(Output.of(userConflicts));
+        }
+
+        /**
+         * @param userConflicts List that contains the users who have an email address that doesn&#39;t match any domain on the allowed list. See below
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userConflicts(FederatedSettingsOrgConfigUserConflictArgs... userConflicts) {
+            return userConflicts(List.of(userConflicts));
         }
 
         public FederatedSettingsOrgConfigState build() {

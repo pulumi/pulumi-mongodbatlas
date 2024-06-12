@@ -14,6 +14,10 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetFederatedSettingsOrgConfigsResultResult
     {
         /// <summary>
+        /// The collection of unique ids representing the identity providers that can be used for data access in this organization.
+        /// </summary>
+        public readonly ImmutableArray<string> DataAccessIdentityProviderIds;
+        /// <summary>
         /// List that contains the approved domains from which organization users can log in.
         /// </summary>
         public readonly ImmutableArray<string> DomainAllowLists;
@@ -22,7 +26,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool DomainRestrictionEnabled;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        /// Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
+        /// 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+        /// 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
         /// </summary>
         public readonly string IdentityProviderId;
         /// <summary>
@@ -33,11 +39,19 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
         /// </summary>
         public readonly ImmutableArray<string> PostAuthRoleGrants;
+        /// <summary>
+        /// Role mappings that are configured in this organization. See below
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetFederatedSettingsOrgConfigsResultRoleMappingResult> RoleMappings;
+        /// <summary>
+        /// List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetFederatedSettingsOrgConfigsResultUserConflictResult> UserConflicts;
 
         [OutputConstructor]
         private GetFederatedSettingsOrgConfigsResultResult(
+            ImmutableArray<string> dataAccessIdentityProviderIds,
+
             ImmutableArray<string> domainAllowLists,
 
             bool domainRestrictionEnabled,
@@ -52,6 +66,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<Outputs.GetFederatedSettingsOrgConfigsResultUserConflictResult> userConflicts)
         {
+            DataAccessIdentityProviderIds = dataAccessIdentityProviderIds;
             DomainAllowLists = domainAllowLists;
             DomainRestrictionEnabled = domainRestrictionEnabled;
             IdentityProviderId = identityProviderId;

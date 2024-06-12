@@ -2679,6 +2679,42 @@
                 }
             }
         },
+        "mongodbatlas:index/FederatedSettingsOrgConfigUserConflict:FederatedSettingsOrgConfigUserConflict": {
+            "properties": {
+                "emailAddress": {
+                    "type": "string",
+                    "description": "Email address of the the user that conflicts with selected domains.\n"
+                },
+                "federationSettingsId": {
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n"
+                },
+                "firstName": {
+                    "type": "string",
+                    "description": "First name of the the user that conflicts with selected domains.\n"
+                },
+                "lastName": {
+                    "type": "string",
+                    "description": "Last name of the the user that conflicts with selected domains.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "Name of the Atlas user that conflicts with selected domains.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "emailAddress",
+                        "federationSettingsId",
+                        "firstName",
+                        "lastName",
+                        "userId"
+                    ]
+                }
+            }
+        },
         "mongodbatlas:index/FederatedSettingsOrgRoleMappingRoleAssignment:FederatedSettingsOrgRoleMappingRoleAssignment": {
             "properties": {
                 "groupId": {
@@ -7473,6 +7509,96 @@
                 }
             }
         },
+        "mongodbatlas:index/getControlPlaneIpAddressesInbound:getControlPlaneIpAddressesInbound": {
+            "properties": {
+                "aws": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "description": "Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.\n"
+                },
+                "azure": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "description": "Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.\n"
+                },
+                "gcp": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "description": "Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "aws",
+                "azure",
+                "gcp"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getControlPlaneIpAddressesOutbound:getControlPlaneIpAddressesOutbound": {
+            "properties": {
+                "aws": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "description": "Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.\n"
+                },
+                "azure": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "description": "Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.\n"
+                },
+                "gcp": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "description": "Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "aws",
+                "azure",
+                "gcp"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "mongodbatlas:index/getCustomDbRoleAction:getCustomDbRoleAction": {
             "properties": {
                 "action": {
@@ -8245,7 +8371,7 @@
                 },
                 "oidcAuthType": {
                     "type": "string",
-                    "description": "(Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n"
+                    "description": "(Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n* `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -9635,20 +9761,25 @@
                     },
                     "description": "List that contains the configured domains from which users can log in for this IdP.\n"
                 },
-                "audienceClaims": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
+                "audience": {
+                    "type": "string",
                     "description": "Identifier of the intended recipient of the token.\n"
                 },
                 "audienceUri": {
                     "type": "string",
                     "description": "Identifier for the intended audience of the SAML Assertion.\n"
                 },
+                "authorizationType": {
+                    "type": "string",
+                    "description": "Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.\n"
+                },
                 "clientId": {
                     "type": "string",
                     "description": "Client identifier that is assigned to an application by the Identity Provider.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the identity provider.\n"
                 },
                 "displayName": {
                     "type": "string",
@@ -9661,6 +9792,10 @@
                 "idpId": {
                     "type": "string",
                     "description": "Unique 24-hexadecimal digit string that identifies the IdP.\n"
+                },
+                "idpType": {
+                    "type": "string",
+                    "description": "Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.\n"
                 },
                 "issuerUri": {
                     "type": "string",
@@ -9716,12 +9851,15 @@
                 "acsUrl",
                 "associatedDomains",
                 "associatedOrgs",
-                "audienceClaims",
+                "audience",
                 "audienceUri",
+                "authorizationType",
                 "clientId",
+                "description",
                 "displayName",
                 "groupsClaim",
                 "idpId",
+                "idpType",
                 "issuerUri",
                 "oktaIdpId",
                 "pemFileInfos",
@@ -10033,6 +10171,13 @@
         },
         "mongodbatlas:index/getFederatedSettingsOrgConfigsResult:getFederatedSettingsOrgConfigsResult": {
             "properties": {
+                "dataAccessIdentityProviderIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The collection of unique ids representing the identity providers that can be used for data access in this organization.\n"
+                },
                 "domainAllowLists": {
                     "type": "array",
                     "items": {
@@ -10046,7 +10191,7 @@
                 },
                 "identityProviderId": {
                     "type": "string",
-                    "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n"
+                    "description": "Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:\n1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider\n2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource\n"
                 },
                 "orgId": {
                     "type": "string",
@@ -10063,17 +10208,20 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/getFederatedSettingsOrgConfigsResultRoleMapping:getFederatedSettingsOrgConfigsResultRoleMapping"
-                    }
+                    },
+                    "description": "Role mappings that are configured in this organization. See below\n"
                 },
                 "userConflicts": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/getFederatedSettingsOrgConfigsResultUserConflict:getFederatedSettingsOrgConfigsResultUserConflict"
-                    }
+                    },
+                    "description": "List that contains the users who have an email address that doesn't match any domain on the allowed list. See below\n"
                 }
             },
             "type": "object",
             "required": [
+                "dataAccessIdentityProviderIds",
                 "domainAllowLists",
                 "domainRestrictionEnabled",
                 "identityProviderId",
@@ -15559,7 +15707,7 @@
                 },
                 "oidcAuthType": {
                     "type": "string",
-                    "description": "Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n"
+                    "description": "Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n* `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n"
                 },
                 "password": {
                     "type": "string",
@@ -15621,7 +15769,7 @@
                 },
                 "oidcAuthType": {
                     "type": "string",
-                    "description": "Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n"
+                    "description": "Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n* `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n"
                 },
                 "password": {
                     "type": "string",
@@ -15681,7 +15829,7 @@
                     },
                     "oidcAuthType": {
                         "type": "string",
-                        "description": "Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n"
+                        "description": "Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n* `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n"
                     },
                     "password": {
                         "type": "string",
@@ -16355,16 +16503,21 @@
                     },
                     "description": "List that contains the domains associated with the identity provider.\n"
                 },
-                "audienceClaims": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
+                "audience": {
+                    "type": "string",
                     "description": "Identifier of the intended recipient of the token used in OIDC IdP.\n"
+                },
+                "authorizationType": {
+                    "type": "string",
+                    "description": "Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.\n"
                 },
                 "clientId": {
                     "type": "string",
                     "description": "Client identifier that is assigned to an application by the OIDC Identity Provider.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the identity provider.\n"
                 },
                 "federationSettingsId": {
                     "type": "string",
@@ -16377,6 +16530,9 @@
                 "idpId": {
                     "type": "string",
                     "description": "Unique 24-hexadecimal digit string that identifies the IdP.\n"
+                },
+                "idpType": {
+                    "type": "string"
                 },
                 "issuerUri": {
                     "type": "string",
@@ -16423,12 +16579,13 @@
                 },
                 "userClaim": {
                     "type": "string",
-                    "description": "Identifier of the claim which contains the user ID in the token used for OIDC IdPs.\n"
+                    "description": "Identifier of the claim which contains the user ID in the token used for OIDC IdPs.\nuserClaim is required for OIDC IdP with authorizationType GROUP and USER.\n"
                 }
             },
             "required": [
                 "federationSettingsId",
                 "idpId",
+                "idpType",
                 "issuerUri",
                 "name",
                 "oktaIdpId",
@@ -16442,16 +16599,21 @@
                     },
                     "description": "List that contains the domains associated with the identity provider.\n"
                 },
-                "audienceClaims": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
+                "audience": {
+                    "type": "string",
                     "description": "Identifier of the intended recipient of the token used in OIDC IdP.\n"
+                },
+                "authorizationType": {
+                    "type": "string",
+                    "description": "Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.\n"
                 },
                 "clientId": {
                     "type": "string",
                     "description": "Client identifier that is assigned to an application by the OIDC Identity Provider.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the identity provider.\n"
                 },
                 "federationSettingsId": {
                     "type": "string",
@@ -16460,6 +16622,9 @@
                 "groupsClaim": {
                     "type": "string",
                     "description": "Identifier of the claim which contains OIDC IdP Group IDs in the token.\n"
+                },
+                "idpType": {
+                    "type": "string"
                 },
                 "issuerUri": {
                     "type": "string",
@@ -16502,7 +16667,7 @@
                 },
                 "userClaim": {
                     "type": "string",
-                    "description": "Identifier of the claim which contains the user ID in the token used for OIDC IdPs.\n"
+                    "description": "Identifier of the claim which contains the user ID in the token used for OIDC IdPs.\nuserClaim is required for OIDC IdP with authorizationType GROUP and USER.\n"
                 }
             },
             "requiredInputs": [
@@ -16519,16 +16684,21 @@
                         },
                         "description": "List that contains the domains associated with the identity provider.\n"
                     },
-                    "audienceClaims": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
+                    "audience": {
+                        "type": "string",
                         "description": "Identifier of the intended recipient of the token used in OIDC IdP.\n"
+                    },
+                    "authorizationType": {
+                        "type": "string",
+                        "description": "Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.\n"
                     },
                     "clientId": {
                         "type": "string",
                         "description": "Client identifier that is assigned to an application by the OIDC Identity Provider.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the identity provider.\n"
                     },
                     "federationSettingsId": {
                         "type": "string",
@@ -16541,6 +16711,9 @@
                     "idpId": {
                         "type": "string",
                         "description": "Unique 24-hexadecimal digit string that identifies the IdP.\n"
+                    },
+                    "idpType": {
+                        "type": "string"
                     },
                     "issuerUri": {
                         "type": "string",
@@ -16587,15 +16760,22 @@
                     },
                     "userClaim": {
                         "type": "string",
-                        "description": "Identifier of the claim which contains the user ID in the token used for OIDC IdPs.\n"
+                        "description": "Identifier of the claim which contains the user ID in the token used for OIDC IdPs.\nuserClaim is required for OIDC IdP with authorizationType GROUP and USER.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig": {
-            "description": "`mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.\n\n\n## Example Usage\n\n\u003e **IMPORTANT** You **MUST** import this resource before you can manage it with this provider. \n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst orgConnection = new mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\", {\n    federationSettingsId: \"627a9687f7f7f7f774de306f14\",\n    orgId: \"627a9683ea7ff7f74de306f14\",\n    domainRestrictionEnabled: false,\n    domainAllowLists: [\"mydomain.com\"],\n    postAuthRoleGrants: [\"ORG_MEMBER\"],\n    identityProviderId: \"0oad4fas87jL7f75Xnk1297\",\n});\nconst orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigs({\n    federationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\norg_connection = mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\",\n    federation_settings_id=\"627a9687f7f7f7f774de306f14\",\n    org_id=\"627a9683ea7ff7f74de306f14\",\n    domain_restriction_enabled=False,\n    domain_allow_lists=[\"mydomain.com\"],\n    post_auth_role_grants=[\"ORG_MEMBER\"],\n    identity_provider_id=\"0oad4fas87jL7f75Xnk1297\")\norg_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config[\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var orgConnection = new Mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\", new()\n    {\n        FederationSettingsId = \"627a9687f7f7f7f774de306f14\",\n        OrgId = \"627a9683ea7ff7f74de306f14\",\n        DomainRestrictionEnabled = false,\n        DomainAllowLists = new[]\n        {\n            \"mydomain.com\",\n        },\n        PostAuthRoleGrants = new[]\n        {\n            \"ORG_MEMBER\",\n        },\n        IdentityProviderId = \"0oad4fas87jL7f75Xnk1297\",\n    });\n\n    var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()\n    {\n        FederationSettingsId = orgConnectionMongodbatlasFederatedSettingsOrgConfig.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, \"org_connection\", \u0026mongodbatlas.FederatedSettingsOrgConfigArgs{\n\t\t\tFederationSettingsId:     pulumi.String(\"627a9687f7f7f7f774de306f14\"),\n\t\t\tOrgId:                    pulumi.String(\"627a9683ea7ff7f74de306f14\"),\n\t\t\tDomainRestrictionEnabled: pulumi.Bool(false),\n\t\t\tDomainAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"mydomain.com\"),\n\t\t\t},\n\t\t\tPostAuthRoleGrants: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ORG_MEMBER\"),\n\t\t\t},\n\t\t\tIdentityProviderId: pulumi.String(\"0oad4fas87jL7f75Xnk1297\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.LookupFederatedSettingsOrgConfigs(ctx, \u0026mongodbatlas.LookupFederatedSettingsOrgConfigsArgs{\n\t\t\tFederationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfig;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var orgConnection = new FederatedSettingsOrgConfig(\"orgConnection\", FederatedSettingsOrgConfigArgs.builder()\n            .federationSettingsId(\"627a9687f7f7f7f774de306f14\")\n            .orgId(\"627a9683ea7ff7f74de306f14\")\n            .domainRestrictionEnabled(false)\n            .domainAllowLists(\"mydomain.com\")\n            .postAuthRoleGrants(\"ORG_MEMBER\")\n            .identityProviderId(\"0oad4fas87jL7f75Xnk1297\")\n            .build());\n\n        final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()\n            .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  orgConnection:\n    type: mongodbatlas:FederatedSettingsOrgConfig\n    name: org_connection\n    properties:\n      federationSettingsId: 627a9687f7f7f7f774de306f14\n      orgId: 627a9683ea7ff7f74de306f14\n      domainRestrictionEnabled: false\n      domainAllowLists:\n        - mydomain.com\n      postAuthRoleGrants:\n        - ORG_MEMBER\n      identityProviderId: 0oad4fas87jL7f75Xnk1297\nvariables:\n  orgConfigsDs:\n    fn::invoke:\n      Function: mongodbatlas:getFederatedSettingsOrgConfigs\n      Arguments:\n        federationSettingsId: ${orgConnectionMongodbatlasFederatedSettingsOrgConfig.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nFederatedSettingsOrgConfig must be imported using federation_settings_id-org_id, e.g.\n\n```sh\n$ pulumi import mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig org_connection 627a9687f7f7f7f774de306f14-627a9683ea7ff7f74de306f14\n```\nFor more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)\n\n",
+            "description": "`mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.\n\n\n## Example Usage\n\n\u003e **IMPORTANT** You **MUST** import this resource before you can manage it with this provider. \n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst orgConnection = new mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\", {\n    federationSettingsId: \"627a9687f7f7f7f774de306f14\",\n    orgId: \"627a9683ea7ff7f74de306f14\",\n    dataAccessIdentityProviderIds: [\"64d613677e1ad50839cce4db\"],\n    domainRestrictionEnabled: false,\n    domainAllowLists: [\"mydomain.com\"],\n    postAuthRoleGrants: [\"ORG_MEMBER\"],\n    identityProviderId: \"0oaqyt9fc2ySTWnA0357\",\n});\nconst orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigs({\n    federationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\norg_connection = mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\",\n    federation_settings_id=\"627a9687f7f7f7f774de306f14\",\n    org_id=\"627a9683ea7ff7f74de306f14\",\n    data_access_identity_provider_ids=[\"64d613677e1ad50839cce4db\"],\n    domain_restriction_enabled=False,\n    domain_allow_lists=[\"mydomain.com\"],\n    post_auth_role_grants=[\"ORG_MEMBER\"],\n    identity_provider_id=\"0oaqyt9fc2ySTWnA0357\")\norg_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config[\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var orgConnection = new Mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\", new()\n    {\n        FederationSettingsId = \"627a9687f7f7f7f774de306f14\",\n        OrgId = \"627a9683ea7ff7f74de306f14\",\n        DataAccessIdentityProviderIds = new[]\n        {\n            \"64d613677e1ad50839cce4db\",\n        },\n        DomainRestrictionEnabled = false,\n        DomainAllowLists = new[]\n        {\n            \"mydomain.com\",\n        },\n        PostAuthRoleGrants = new[]\n        {\n            \"ORG_MEMBER\",\n        },\n        IdentityProviderId = \"0oaqyt9fc2ySTWnA0357\",\n    });\n\n    var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()\n    {\n        FederationSettingsId = orgConnectionMongodbatlasFederatedSettingsOrgConfig.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, \"org_connection\", \u0026mongodbatlas.FederatedSettingsOrgConfigArgs{\n\t\t\tFederationSettingsId: pulumi.String(\"627a9687f7f7f7f774de306f14\"),\n\t\t\tOrgId:                pulumi.String(\"627a9683ea7ff7f74de306f14\"),\n\t\t\tDataAccessIdentityProviderIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"64d613677e1ad50839cce4db\"),\n\t\t\t},\n\t\t\tDomainRestrictionEnabled: pulumi.Bool(false),\n\t\t\tDomainAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"mydomain.com\"),\n\t\t\t},\n\t\t\tPostAuthRoleGrants: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ORG_MEMBER\"),\n\t\t\t},\n\t\t\tIdentityProviderId: pulumi.String(\"0oaqyt9fc2ySTWnA0357\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.LookupFederatedSettingsOrgConfigs(ctx, \u0026mongodbatlas.LookupFederatedSettingsOrgConfigsArgs{\n\t\t\tFederationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfig;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var orgConnection = new FederatedSettingsOrgConfig(\"orgConnection\", FederatedSettingsOrgConfigArgs.builder()\n            .federationSettingsId(\"627a9687f7f7f7f774de306f14\")\n            .orgId(\"627a9683ea7ff7f74de306f14\")\n            .dataAccessIdentityProviderIds(\"64d613677e1ad50839cce4db\")\n            .domainRestrictionEnabled(false)\n            .domainAllowLists(\"mydomain.com\")\n            .postAuthRoleGrants(\"ORG_MEMBER\")\n            .identityProviderId(\"0oaqyt9fc2ySTWnA0357\")\n            .build());\n\n        final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()\n            .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  orgConnection:\n    type: mongodbatlas:FederatedSettingsOrgConfig\n    name: org_connection\n    properties:\n      federationSettingsId: 627a9687f7f7f7f774de306f14\n      orgId: 627a9683ea7ff7f74de306f14\n      dataAccessIdentityProviderIds:\n        - 64d613677e1ad50839cce4db\n      domainRestrictionEnabled: false\n      domainAllowLists:\n        - mydomain.com\n      postAuthRoleGrants:\n        - ORG_MEMBER\n      identityProviderId: 0oaqyt9fc2ySTWnA0357\nvariables:\n  orgConfigsDs:\n    fn::invoke:\n      Function: mongodbatlas:getFederatedSettingsOrgConfigs\n      Arguments:\n        federationSettingsId: ${orgConnectionMongodbatlasFederatedSettingsOrgConfig.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nFederatedSettingsOrgConfig must be imported using federation_settings_id-org_id, e.g.\n\n```sh\n$ pulumi import mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig org_connection 627a9687f7f7f7f774de306f14-627a9683ea7ff7f74de306f14\n```\nFor more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)\n\n",
             "properties": {
+                "dataAccessIdentityProviderIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The collection of unique ids representing the identity providers that can be used for data access in this organization.\n"
+                },
                 "domainAllowLists": {
                     "type": "array",
                     "items": {
@@ -16613,7 +16793,7 @@
                 },
                 "identityProviderId": {
                     "type": "string",
-                    "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n"
+                    "description": "Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `\"\"` will detach/remove the SAML identity provider. This id can be found in two ways:\n1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider\n2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource\n"
                 },
                 "orgId": {
                     "type": "string",
@@ -16625,15 +16805,29 @@
                         "type": "string"
                     },
                     "description": "List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.\n"
+                },
+                "userConflicts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/FederatedSettingsOrgConfigUserConflict:FederatedSettingsOrgConfigUserConflict"
+                    },
+                    "description": "List that contains the users who have an email address that doesn't match any domain on the allowed list. See below\n"
                 }
             },
             "required": [
                 "domainRestrictionEnabled",
                 "federationSettingsId",
-                "identityProviderId",
-                "orgId"
+                "orgId",
+                "userConflicts"
             ],
             "inputProperties": {
+                "dataAccessIdentityProviderIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The collection of unique ids representing the identity providers that can be used for data access in this organization.\n"
+                },
                 "domainAllowLists": {
                     "type": "array",
                     "items": {
@@ -16651,7 +16845,7 @@
                 },
                 "identityProviderId": {
                     "type": "string",
-                    "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n"
+                    "description": "Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `\"\"` will detach/remove the SAML identity provider. This id can be found in two ways:\n1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider\n2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource\n"
                 },
                 "orgId": {
                     "type": "string",
@@ -16668,12 +16862,18 @@
             "requiredInputs": [
                 "domainRestrictionEnabled",
                 "federationSettingsId",
-                "identityProviderId",
                 "orgId"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering FederatedSettingsOrgConfig resources.\n",
                 "properties": {
+                    "dataAccessIdentityProviderIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The collection of unique ids representing the identity providers that can be used for data access in this organization.\n"
+                    },
                     "domainAllowLists": {
                         "type": "array",
                         "items": {
@@ -16691,7 +16891,7 @@
                     },
                     "identityProviderId": {
                         "type": "string",
-                        "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n"
+                        "description": "Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `\"\"` will detach/remove the SAML identity provider. This id can be found in two ways:\n1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider\n2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource\n"
                     },
                     "orgId": {
                         "type": "string",
@@ -16703,6 +16903,13 @@
                             "type": "string"
                         },
                         "description": "List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.\n"
+                    },
+                    "userConflicts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/FederatedSettingsOrgConfigUserConflict:FederatedSettingsOrgConfigUserConflict"
+                        },
+                        "description": "List that contains the users who have an email address that doesn't match any domain on the allowed list. See below\n"
                     }
                 },
                 "type": "object"
@@ -23268,6 +23475,32 @@
                 "type": "object"
             }
         },
+        "mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses": {
+            "description": "Provides a data source that returns all control plane IP addresses.\n\n## Example Usage\n\n### S\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nexport = async () =\u003e {\n    const test = await mongodbatlas.getControlPlaneIpAddresses({});\n    return {\n        \"outbound-aws-ip-addresses\": test.outbound?.aws,\n    };\n}\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.get_control_plane_ip_addresses()\npulumi.export(\"outbound-aws-ip-addresses\", test.outbound.aws)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = Mongodbatlas.GetControlPlaneIpAddresses.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"outbound-aws-ip-addresses\"] = test.Apply(getControlPlaneIpAddressesResult =\u003e getControlPlaneIpAddressesResult.Outbound?.Aws),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := mongodbatlas.GetControlPlaneIpAddresses(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"outbound-aws-ip-addresses\", test.Outbound.Aws)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = MongodbatlasFunctions.getControlPlaneIpAddresses();\n\n        ctx.export(\"outbound-aws-ip-addresses\", test.applyValue(getControlPlaneIpAddressesResult -\u003e getControlPlaneIpAddressesResult.outbound().aws()));\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    fn::invoke:\n      Function: mongodbatlas:getControlPlaneIpAddresses\n      Arguments: {}\noutputs:\n  outbound-aws-ip-addresses: ${test.outbound.aws}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "outputs": {
+                "description": "A collection of values returned by getControlPlaneIpAddresses.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "inbound": {
+                        "$ref": "#/types/mongodbatlas:index/getControlPlaneIpAddressesInbound:getControlPlaneIpAddressesInbound",
+                        "description": "List of inbound IP addresses to the Atlas control plane, categorized by cloud provider. If your application allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your API requests can reach the Atlas control plane.\n"
+                    },
+                    "outbound": {
+                        "$ref": "#/types/mongodbatlas:index/getControlPlaneIpAddressesOutbound:getControlPlaneIpAddressesOutbound",
+                        "description": "List of outbound IP addresses from the Atlas control plane, categorized by cloud provider. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that Atlas can communicate with your webhooks and KMS.\n"
+                    }
+                },
+                "required": [
+                    "inbound",
+                    "outbound",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "mongodbatlas:index/getCustomDbRole:getCustomDbRole": {
             "description": "`mongodbatlas.CustomDbRole` describe a Custom DB Role. This represents a custom db role.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testRole = new mongodbatlas.CustomDbRole(\"test_role\", {\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    roleName: \"myCustomRole\",\n    actions: [\n        {\n            action: \"UPDATE\",\n            resources: [{\n                collectionName: \"\",\n                databaseName: \"anyDatabase\",\n            }],\n        },\n        {\n            action: \"INSERT\",\n            resources: [{\n                collectionName: \"\",\n                databaseName: \"anyDatabase\",\n            }],\n        },\n    ],\n});\nconst test = mongodbatlas.getCustomDbRoleOutput({\n    projectId: testRole.projectId,\n    roleName: testRole.roleName,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_role = mongodbatlas.CustomDbRole(\"test_role\",\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    role_name=\"myCustomRole\",\n    actions=[\n        mongodbatlas.CustomDbRoleActionArgs(\n            action=\"UPDATE\",\n            resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n                collection_name=\"\",\n                database_name=\"anyDatabase\",\n            )],\n        ),\n        mongodbatlas.CustomDbRoleActionArgs(\n            action=\"INSERT\",\n            resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n                collection_name=\"\",\n                database_name=\"anyDatabase\",\n            )],\n        ),\n    ])\ntest = mongodbatlas.get_custom_db_role_output(project_id=test_role.project_id,\n    role_name=test_role.role_name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testRole = new Mongodbatlas.CustomDbRole(\"test_role\", new()\n    {\n        ProjectId = \"\u003cPROJECT-ID\u003e\",\n        RoleName = \"myCustomRole\",\n        Actions = new[]\n        {\n            new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n            {\n                Action = \"UPDATE\",\n                Resources = new[]\n                {\n                    new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                    {\n                        CollectionName = \"\",\n                        DatabaseName = \"anyDatabase\",\n                    },\n                },\n            },\n            new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n            {\n                Action = \"INSERT\",\n                Resources = new[]\n                {\n                    new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                    {\n                        CollectionName = \"\",\n                        DatabaseName = \"anyDatabase\",\n                    },\n                },\n            },\n        },\n    });\n\n    var test = Mongodbatlas.GetCustomDbRole.Invoke(new()\n    {\n        ProjectId = testRole.ProjectId,\n        RoleName = testRole.RoleName,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestRole, err := mongodbatlas.NewCustomDbRole(ctx, \"test_role\", \u0026mongodbatlas.CustomDbRoleArgs{\n\t\t\tProjectId: pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tRoleName:  pulumi.String(\"myCustomRole\"),\n\t\t\tActions: mongodbatlas.CustomDbRoleActionArray{\n\t\t\t\t\u0026mongodbatlas.CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"UPDATE\"),\n\t\t\t\t\tResources: mongodbatlas.CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026mongodbatlas.CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026mongodbatlas.CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"INSERT\"),\n\t\t\t\t\tResources: mongodbatlas.CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026mongodbatlas.CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = mongodbatlas.LookupCustomDbRoleOutput(ctx, mongodbatlas.GetCustomDbRoleOutputArgs{\n\t\t\tProjectId: testRole.ProjectId,\n\t\t\tRoleName:  testRole.RoleName,\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.CustomDbRole;\nimport com.pulumi.mongodbatlas.CustomDbRoleArgs;\nimport com.pulumi.mongodbatlas.inputs.CustomDbRoleActionArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetCustomDbRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testRole = new CustomDbRole(\"testRole\", CustomDbRoleArgs.builder()\n            .projectId(\"\u003cPROJECT-ID\u003e\")\n            .roleName(\"myCustomRole\")\n            .actions(            \n                CustomDbRoleActionArgs.builder()\n                    .action(\"UPDATE\")\n                    .resources(CustomDbRoleActionResourceArgs.builder()\n                        .collectionName(\"\")\n                        .databaseName(\"anyDatabase\")\n                        .build())\n                    .build(),\n                CustomDbRoleActionArgs.builder()\n                    .action(\"INSERT\")\n                    .resources(CustomDbRoleActionResourceArgs.builder()\n                        .collectionName(\"\")\n                        .databaseName(\"anyDatabase\")\n                        .build())\n                    .build())\n            .build());\n\n        final var test = MongodbatlasFunctions.getCustomDbRole(GetCustomDbRoleArgs.builder()\n            .projectId(testRole.projectId())\n            .roleName(testRole.roleName())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testRole:\n    type: mongodbatlas:CustomDbRole\n    name: test_role\n    properties:\n      projectId: \u003cPROJECT-ID\u003e\n      roleName: myCustomRole\n      actions:\n        - action: UPDATE\n          resources:\n            - collectionName:\n              databaseName: anyDatabase\n        - action: INSERT\n          resources:\n            - collectionName:\n              databaseName: anyDatabase\nvariables:\n  test:\n    fn::invoke:\n      Function: mongodbatlas:getCustomDbRole\n      Arguments:\n        projectId: ${testRole.projectId}\n        roleName: ${testRole.roleName}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
@@ -23746,7 +23979,7 @@
                         "type": "string"
                     },
                     "oidcAuthType": {
-                        "description": "(Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n",
+                        "description": "(Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:\n* `NONE` -\tThe user does not use OIDC federated authentication.\n* `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n* `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).\n",
                         "type": "string"
                     },
                     "projectId": {
@@ -24385,19 +24618,24 @@
                         },
                         "type": "array"
                     },
-                    "audienceClaims": {
+                    "audience": {
                         "description": "Identifier of the intended recipient of the token.\n",
-                        "items": {
-                            "type": "string"
-                        },
-                        "type": "array"
+                        "type": "string"
                     },
                     "audienceUri": {
                         "description": "Identifier for the intended audience of the SAML Assertion.\n",
                         "type": "string"
                     },
+                    "authorizationType": {
+                        "description": "Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.\n",
+                        "type": "string"
+                    },
                     "clientId": {
                         "description": "Client identifier that is assigned to an application by the Identity Provider.\n",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "The description of the identity provider.\n",
                         "type": "string"
                     },
                     "displayName": {
@@ -24423,6 +24661,10 @@
                         "description": "Unique 24-hexadecimal digit string that identifies the IdP\n",
                         "type": "string"
                     },
+                    "idpType": {
+                        "description": "Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.\n",
+                        "type": "string"
+                    },
                     "issuerUri": {
                         "description": "Identifier for the issuer of the SAML Assertion.\n",
                         "type": "string"
@@ -24438,7 +24680,7 @@
                         "type": "array"
                     },
                     "protocol": {
-                        "description": "The protocol of the identity provider. Either SAML or OIDC.\n",
+                        "description": "The protocol of the identity provider. Valid values are `SAML` or `OIDC`.\n",
                         "type": "string"
                     },
                     "requestBinding": {
@@ -24477,14 +24719,17 @@
                     "acsUrl",
                     "associatedDomains",
                     "associatedOrgs",
-                    "audienceClaims",
+                    "audience",
                     "audienceUri",
+                    "authorizationType",
                     "clientId",
+                    "description",
                     "displayName",
                     "federationSettingsId",
                     "groupsClaim",
                     "identityProviderId",
                     "idpId",
+                    "idpType",
                     "issuerUri",
                     "oktaIdpId",
                     "pemFileInfos",
@@ -24510,6 +24755,13 @@
                         "type": "string",
                         "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n"
                     },
+                    "idpTypes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.\n"
+                    },
                     "itemsPerPage": {
                         "type": "integer",
                         "description": "Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.\n",
@@ -24519,6 +24771,13 @@
                         "type": "integer",
                         "description": "The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.\n",
                         "deprecationMessage": "This parameter is deprecated and will be removed in version 1.18.0."
+                    },
+                    "protocols": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.\n"
                     }
                 },
                 "type": "object",
@@ -24537,6 +24796,12 @@
                         "description": "The provider-assigned unique ID for this managed resource.\n",
                         "type": "string"
                     },
+                    "idpTypes": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
                     "itemsPerPage": {
                         "deprecationMessage": "This parameter is deprecated and will be removed in version 1.18.0.",
                         "type": "integer"
@@ -24544,6 +24809,12 @@
                     "pageNum": {
                         "deprecationMessage": "This parameter is deprecated and will be removed in version 1.18.0.",
                         "type": "integer"
+                    },
+                    "protocols": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
                     },
                     "results": {
                         "description": "Includes cloudProviderSnapshot object for each item detailed in the results array section.\n* `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.\n",
@@ -24562,7 +24833,7 @@
             }
         },
         "mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig": {
-            "description": "`mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst orgConnections = new mongodbatlas.FederatedSettingsOrgConfig(\"org_connections\", {\n    federationSettingsId: \"627a9687f7f7f7f774de306f14\",\n    orgId: \"627a9683ea7ff7f74de306f14\",\n    domainRestrictionEnabled: false,\n    domainAllowLists: [\"mydomain.com\"],\n    postAuthRoleGrants: [\"ORG_MEMBER\"],\n});\nconst orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfig({\n    federationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id,\n    orgId: \"627a9683ea7ff7f74de306f14\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\norg_connections = mongodbatlas.FederatedSettingsOrgConfig(\"org_connections\",\n    federation_settings_id=\"627a9687f7f7f7f774de306f14\",\n    org_id=\"627a9683ea7ff7f74de306f14\",\n    domain_restriction_enabled=False,\n    domain_allow_lists=[\"mydomain.com\"],\n    post_auth_role_grants=[\"ORG_MEMBER\"])\norg_configs_ds = mongodbatlas.get_federated_settings_org_config(federation_settings_id=org_connections_mongodbatlas_federated_settings_org_config[\"id\"],\n    org_id=\"627a9683ea7ff7f74de306f14\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig(\"org_connections\", new()\n    {\n        FederationSettingsId = \"627a9687f7f7f7f774de306f14\",\n        OrgId = \"627a9683ea7ff7f74de306f14\",\n        DomainRestrictionEnabled = false,\n        DomainAllowLists = new[]\n        {\n            \"mydomain.com\",\n        },\n        PostAuthRoleGrants = new[]\n        {\n            \"ORG_MEMBER\",\n        },\n    });\n\n    var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfig.Invoke(new()\n    {\n        FederationSettingsId = orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,\n        OrgId = \"627a9683ea7ff7f74de306f14\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, \"org_connections\", \u0026mongodbatlas.FederatedSettingsOrgConfigArgs{\n\t\t\tFederationSettingsId:     pulumi.String(\"627a9687f7f7f7f774de306f14\"),\n\t\t\tOrgId:                    pulumi.String(\"627a9683ea7ff7f74de306f14\"),\n\t\t\tDomainRestrictionEnabled: pulumi.Bool(false),\n\t\t\tDomainAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"mydomain.com\"),\n\t\t\t},\n\t\t\tPostAuthRoleGrants: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ORG_MEMBER\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.LookupFederatedSettingsOrgConfig(ctx, \u0026mongodbatlas.LookupFederatedSettingsOrgConfigArgs{\n\t\t\tFederationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,\n\t\t\tOrgId:                \"627a9683ea7ff7f74de306f14\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfig;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var orgConnections = new FederatedSettingsOrgConfig(\"orgConnections\", FederatedSettingsOrgConfigArgs.builder()\n            .federationSettingsId(\"627a9687f7f7f7f774de306f14\")\n            .orgId(\"627a9683ea7ff7f74de306f14\")\n            .domainRestrictionEnabled(false)\n            .domainAllowLists(\"mydomain.com\")\n            .postAuthRoleGrants(\"ORG_MEMBER\")\n            .build());\n\n        final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()\n            .federationSettingsId(orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id())\n            .orgId(\"627a9683ea7ff7f74de306f14\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  orgConnections:\n    type: mongodbatlas:FederatedSettingsOrgConfig\n    name: org_connections\n    properties:\n      federationSettingsId: 627a9687f7f7f7f774de306f14\n      orgId: 627a9683ea7ff7f74de306f14\n      domainRestrictionEnabled: false\n      domainAllowLists:\n        - mydomain.com\n      postAuthRoleGrants:\n        - ORG_MEMBER\nvariables:\n  orgConfigsDs:\n    fn::invoke:\n      Function: mongodbatlas:getFederatedSettingsOrgConfig\n      Arguments:\n        federationSettingsId: ${orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id}\n        orgId: 627a9683ea7ff7f74de306f14\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "`mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst orgConnection = new mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\", {\n    federationSettingsId: \"627a9687f7f7f7f774de306f14\",\n    orgId: \"627a9683ea7ff7f74de306f14\",\n    dataAccessIdentityProviderIds: [\"64d613677e1ad50839cce4db\"],\n    domainRestrictionEnabled: false,\n    domainAllowLists: [\"mydomain.com\"],\n    postAuthRoleGrants: [\"ORG_MEMBER\"],\n    identityProviderId: \"0oaqyt9fc2ySTWnA0357\",\n});\nconst orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfig({\n    federationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.id,\n    orgId: \"627a9683ea7ff7f74de306f14\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\norg_connection = mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\",\n    federation_settings_id=\"627a9687f7f7f7f774de306f14\",\n    org_id=\"627a9683ea7ff7f74de306f14\",\n    data_access_identity_provider_ids=[\"64d613677e1ad50839cce4db\"],\n    domain_restriction_enabled=False,\n    domain_allow_lists=[\"mydomain.com\"],\n    post_auth_role_grants=[\"ORG_MEMBER\"],\n    identity_provider_id=\"0oaqyt9fc2ySTWnA0357\")\norg_configs_ds = mongodbatlas.get_federated_settings_org_config(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config[\"id\"],\n    org_id=\"627a9683ea7ff7f74de306f14\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var orgConnection = new Mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\", new()\n    {\n        FederationSettingsId = \"627a9687f7f7f7f774de306f14\",\n        OrgId = \"627a9683ea7ff7f74de306f14\",\n        DataAccessIdentityProviderIds = new[]\n        {\n            \"64d613677e1ad50839cce4db\",\n        },\n        DomainRestrictionEnabled = false,\n        DomainAllowLists = new[]\n        {\n            \"mydomain.com\",\n        },\n        PostAuthRoleGrants = new[]\n        {\n            \"ORG_MEMBER\",\n        },\n        IdentityProviderId = \"0oaqyt9fc2ySTWnA0357\",\n    });\n\n    var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfig.Invoke(new()\n    {\n        FederationSettingsId = orgConnectionMongodbatlasFederatedSettingsOrgConfig.Id,\n        OrgId = \"627a9683ea7ff7f74de306f14\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, \"org_connection\", \u0026mongodbatlas.FederatedSettingsOrgConfigArgs{\n\t\t\tFederationSettingsId: pulumi.String(\"627a9687f7f7f7f774de306f14\"),\n\t\t\tOrgId:                pulumi.String(\"627a9683ea7ff7f74de306f14\"),\n\t\t\tDataAccessIdentityProviderIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"64d613677e1ad50839cce4db\"),\n\t\t\t},\n\t\t\tDomainRestrictionEnabled: pulumi.Bool(false),\n\t\t\tDomainAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"mydomain.com\"),\n\t\t\t},\n\t\t\tPostAuthRoleGrants: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ORG_MEMBER\"),\n\t\t\t},\n\t\t\tIdentityProviderId: pulumi.String(\"0oaqyt9fc2ySTWnA0357\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.LookupFederatedSettingsOrgConfig(ctx, \u0026mongodbatlas.LookupFederatedSettingsOrgConfigArgs{\n\t\t\tFederationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.Id,\n\t\t\tOrgId:                \"627a9683ea7ff7f74de306f14\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfig;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var orgConnection = new FederatedSettingsOrgConfig(\"orgConnection\", FederatedSettingsOrgConfigArgs.builder()\n            .federationSettingsId(\"627a9687f7f7f7f774de306f14\")\n            .orgId(\"627a9683ea7ff7f74de306f14\")\n            .dataAccessIdentityProviderIds(\"64d613677e1ad50839cce4db\")\n            .domainRestrictionEnabled(false)\n            .domainAllowLists(\"mydomain.com\")\n            .postAuthRoleGrants(\"ORG_MEMBER\")\n            .identityProviderId(\"0oaqyt9fc2ySTWnA0357\")\n            .build());\n\n        final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()\n            .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())\n            .orgId(\"627a9683ea7ff7f74de306f14\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  orgConnection:\n    type: mongodbatlas:FederatedSettingsOrgConfig\n    name: org_connection\n    properties:\n      federationSettingsId: 627a9687f7f7f7f774de306f14\n      orgId: 627a9683ea7ff7f74de306f14\n      dataAccessIdentityProviderIds:\n        - 64d613677e1ad50839cce4db\n      domainRestrictionEnabled: false\n      domainAllowLists:\n        - mydomain.com\n      postAuthRoleGrants:\n        - ORG_MEMBER\n      identityProviderId: 0oaqyt9fc2ySTWnA0357\nvariables:\n  orgConfigsDs:\n    fn::invoke:\n      Function: mongodbatlas:getFederatedSettingsOrgConfig\n      Arguments:\n        federationSettingsId: ${orgConnectionMongodbatlasFederatedSettingsOrgConfig.id}\n        orgId: 627a9683ea7ff7f74de306f14\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getFederatedSettingsOrgConfig.\n",
                 "properties": {
@@ -24584,6 +24855,13 @@
             "outputs": {
                 "description": "A collection of values returned by getFederatedSettingsOrgConfig.\n",
                 "properties": {
+                    "dataAccessIdentityProviderIds": {
+                        "description": "The collection of unique ids representing the identity providers that can be used for data access in this organization.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
                     "domainAllowLists": {
                         "description": "List that contains the approved domains from which organization users can log in.  Note: If the organization uses an identity provider,  `domain_allow_list` includes: any SSO domains associated with organization's identity provider and any custom domains associated with the specific organization.\n",
                         "items": {
@@ -24604,7 +24882,7 @@
                         "type": "string"
                     },
                     "identityProviderId": {
-                        "description": "Unique 24-hexadecimal digit string that identifies the federated authentication configuration.\n",
+                        "description": "Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:\n1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider\n2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource\n",
                         "type": "string"
                     },
                     "orgId": {
@@ -24618,12 +24896,14 @@
                         "type": "array"
                     },
                     "roleMappings": {
+                        "description": "Role mappings that are configured in this organization. See below\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getFederatedSettingsOrgConfigRoleMapping:getFederatedSettingsOrgConfigRoleMapping"
                         },
                         "type": "array"
                     },
                     "userConflicts": {
+                        "description": "List that contains the users who have an email address that doesn't match any domain on the allowed list. See below\n",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/getFederatedSettingsOrgConfigUserConflict:getFederatedSettingsOrgConfigUserConflict"
                         },
@@ -24631,6 +24911,7 @@
                     }
                 },
                 "required": [
+                    "dataAccessIdentityProviderIds",
                     "domainAllowLists",
                     "domainRestrictionEnabled",
                     "federationSettingsId",
@@ -24645,7 +24926,7 @@
             }
         },
         "mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs": {
-            "description": "`mongodbatlas.getFederatedSettingsOrgConfigs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst orgConnections = new mongodbatlas.FederatedSettingsOrgConfig(\"org_connections\", {\n    federationSettingsId: \"627a9687f7f7f7f774de306f14\",\n    orgId: \"627a9683ea7ff7f74de306f14\",\n    domainRestrictionEnabled: false,\n    domainAllowLists: [\"mydomain.com\"],\n    postAuthRoleGrants: [\"ORG_MEMBER\"],\n});\nconst orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigs({\n    federationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\norg_connections = mongodbatlas.FederatedSettingsOrgConfig(\"org_connections\",\n    federation_settings_id=\"627a9687f7f7f7f774de306f14\",\n    org_id=\"627a9683ea7ff7f74de306f14\",\n    domain_restriction_enabled=False,\n    domain_allow_lists=[\"mydomain.com\"],\n    post_auth_role_grants=[\"ORG_MEMBER\"])\norg_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connections_mongodbatlas_federated_settings_org_config[\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig(\"org_connections\", new()\n    {\n        FederationSettingsId = \"627a9687f7f7f7f774de306f14\",\n        OrgId = \"627a9683ea7ff7f74de306f14\",\n        DomainRestrictionEnabled = false,\n        DomainAllowLists = new[]\n        {\n            \"mydomain.com\",\n        },\n        PostAuthRoleGrants = new[]\n        {\n            \"ORG_MEMBER\",\n        },\n    });\n\n    var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()\n    {\n        FederationSettingsId = orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, \"org_connections\", \u0026mongodbatlas.FederatedSettingsOrgConfigArgs{\n\t\t\tFederationSettingsId:     pulumi.String(\"627a9687f7f7f7f774de306f14\"),\n\t\t\tOrgId:                    pulumi.String(\"627a9683ea7ff7f74de306f14\"),\n\t\t\tDomainRestrictionEnabled: pulumi.Bool(false),\n\t\t\tDomainAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"mydomain.com\"),\n\t\t\t},\n\t\t\tPostAuthRoleGrants: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ORG_MEMBER\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.LookupFederatedSettingsOrgConfigs(ctx, \u0026mongodbatlas.LookupFederatedSettingsOrgConfigsArgs{\n\t\t\tFederationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfig;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var orgConnections = new FederatedSettingsOrgConfig(\"orgConnections\", FederatedSettingsOrgConfigArgs.builder()\n            .federationSettingsId(\"627a9687f7f7f7f774de306f14\")\n            .orgId(\"627a9683ea7ff7f74de306f14\")\n            .domainRestrictionEnabled(false)\n            .domainAllowLists(\"mydomain.com\")\n            .postAuthRoleGrants(\"ORG_MEMBER\")\n            .build());\n\n        final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()\n            .federationSettingsId(orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  orgConnections:\n    type: mongodbatlas:FederatedSettingsOrgConfig\n    name: org_connections\n    properties:\n      federationSettingsId: 627a9687f7f7f7f774de306f14\n      orgId: 627a9683ea7ff7f74de306f14\n      domainRestrictionEnabled: false\n      domainAllowLists:\n        - mydomain.com\n      postAuthRoleGrants:\n        - ORG_MEMBER\nvariables:\n  orgConfigsDs:\n    fn::invoke:\n      Function: mongodbatlas:getFederatedSettingsOrgConfigs\n      Arguments:\n        federationSettingsId: ${orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "`mongodbatlas.getFederatedSettingsOrgConfigs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst orgConnection = new mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\", {\n    federationSettingsId: \"627a9687f7f7f7f774de306f14\",\n    orgId: \"627a9683ea7ff7f74de306f14\",\n    dataAccessIdentityProviderIds: [\"64d613677e1ad50839cce4db\"],\n    domainRestrictionEnabled: false,\n    domainAllowLists: [\"mydomain.com\"],\n    postAuthRoleGrants: [\"ORG_MEMBER\"],\n    identityProviderId: \"0oaqyt9fc2ySTWnA0357\",\n});\nconst orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigs({\n    federationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\norg_connection = mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\",\n    federation_settings_id=\"627a9687f7f7f7f774de306f14\",\n    org_id=\"627a9683ea7ff7f74de306f14\",\n    data_access_identity_provider_ids=[\"64d613677e1ad50839cce4db\"],\n    domain_restriction_enabled=False,\n    domain_allow_lists=[\"mydomain.com\"],\n    post_auth_role_grants=[\"ORG_MEMBER\"],\n    identity_provider_id=\"0oaqyt9fc2ySTWnA0357\")\norg_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config[\"federationSettingsId\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var orgConnection = new Mongodbatlas.FederatedSettingsOrgConfig(\"org_connection\", new()\n    {\n        FederationSettingsId = \"627a9687f7f7f7f774de306f14\",\n        OrgId = \"627a9683ea7ff7f74de306f14\",\n        DataAccessIdentityProviderIds = new[]\n        {\n            \"64d613677e1ad50839cce4db\",\n        },\n        DomainRestrictionEnabled = false,\n        DomainAllowLists = new[]\n        {\n            \"mydomain.com\",\n        },\n        PostAuthRoleGrants = new[]\n        {\n            \"ORG_MEMBER\",\n        },\n        IdentityProviderId = \"0oaqyt9fc2ySTWnA0357\",\n    });\n\n    var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfigs.Invoke(new()\n    {\n        FederationSettingsId = orgConnectionMongodbatlasFederatedSettingsOrgConfig.FederationSettingsId,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, \"org_connection\", \u0026mongodbatlas.FederatedSettingsOrgConfigArgs{\n\t\t\tFederationSettingsId: pulumi.String(\"627a9687f7f7f7f774de306f14\"),\n\t\t\tOrgId:                pulumi.String(\"627a9683ea7ff7f74de306f14\"),\n\t\t\tDataAccessIdentityProviderIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"64d613677e1ad50839cce4db\"),\n\t\t\t},\n\t\t\tDomainRestrictionEnabled: pulumi.Bool(false),\n\t\t\tDomainAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"mydomain.com\"),\n\t\t\t},\n\t\t\tPostAuthRoleGrants: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ORG_MEMBER\"),\n\t\t\t},\n\t\t\tIdentityProviderId: pulumi.String(\"0oaqyt9fc2ySTWnA0357\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.LookupFederatedSettingsOrgConfigs(ctx, \u0026mongodbatlas.LookupFederatedSettingsOrgConfigsArgs{\n\t\t\tFederationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.FederationSettingsId,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfig;\nimport com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;\nimport com.pulumi.mongodbatlas.MongodbatlasFunctions;\nimport com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var orgConnection = new FederatedSettingsOrgConfig(\"orgConnection\", FederatedSettingsOrgConfigArgs.builder()\n            .federationSettingsId(\"627a9687f7f7f7f774de306f14\")\n            .orgId(\"627a9683ea7ff7f74de306f14\")\n            .dataAccessIdentityProviderIds(\"64d613677e1ad50839cce4db\")\n            .domainRestrictionEnabled(false)\n            .domainAllowLists(\"mydomain.com\")\n            .postAuthRoleGrants(\"ORG_MEMBER\")\n            .identityProviderId(\"0oaqyt9fc2ySTWnA0357\")\n            .build());\n\n        final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()\n            .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  orgConnection:\n    type: mongodbatlas:FederatedSettingsOrgConfig\n    name: org_connection\n    properties:\n      federationSettingsId: 627a9687f7f7f7f774de306f14\n      orgId: 627a9683ea7ff7f74de306f14\n      dataAccessIdentityProviderIds:\n        - 64d613677e1ad50839cce4db\n      domainRestrictionEnabled: false\n      domainAllowLists:\n        - mydomain.com\n      postAuthRoleGrants:\n        - ORG_MEMBER\n      identityProviderId: 0oaqyt9fc2ySTWnA0357\nvariables:\n  orgConfigsDs:\n    fn::invoke:\n      Function: mongodbatlas:getFederatedSettingsOrgConfigs\n      Arguments:\n        federationSettingsId: ${orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getFederatedSettingsOrgConfigs.\n",
                 "properties": {
@@ -26276,14 +26557,6 @@
                         "description": "Human-readable label that identifies the serverless instance\n",
                         "willReplaceOnChanges": true
                     },
-                    "itemsPerPage": {
-                        "type": "integer",
-                        "deprecationMessage": "This parameter is deprecated and will be removed in version 1.17.0."
-                    },
-                    "pageNum": {
-                        "type": "integer",
-                        "deprecationMessage": "This parameter is deprecated and will be removed in version 1.17.0."
-                    },
                     "projectId": {
                         "type": "string",
                         "description": "Unique 24-digit hexadecimal string that identifies the project.\n"
@@ -26304,14 +26577,6 @@
                     },
                     "instanceName": {
                         "type": "string"
-                    },
-                    "itemsPerPage": {
-                        "deprecationMessage": "This parameter is deprecated and will be removed in version 1.17.0.",
-                        "type": "integer"
-                    },
-                    "pageNum": {
-                        "deprecationMessage": "This parameter is deprecated and will be removed in version 1.17.0.",
-                        "type": "integer"
                     },
                     "projectId": {
                         "type": "string"

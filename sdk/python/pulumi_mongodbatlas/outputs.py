@@ -92,6 +92,7 @@ __all__ = [
     'FederatedDatabaseInstanceStorageStoreReadPreference',
     'FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet',
     'FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag',
+    'FederatedSettingsOrgConfigUserConflict',
     'FederatedSettingsOrgRoleMappingRoleAssignment',
     'GlobalClusterConfigCustomZoneMapping',
     'GlobalClusterConfigManagedNamespace',
@@ -223,6 +224,8 @@ __all__ = [
     'GetClustersResultSnapshotBackupPolicyPolicyResult',
     'GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult',
     'GetClustersResultTagResult',
+    'GetControlPlaneIpAddressesInboundResult',
+    'GetControlPlaneIpAddressesOutboundResult',
     'GetCustomDbRoleActionResult',
     'GetCustomDbRoleActionResourceResult',
     'GetCustomDbRoleInheritedRoleResult',
@@ -6100,6 +6103,98 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag(dict):
     @pulumi.getter
     def value(self) -> Optional[str]:
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class FederatedSettingsOrgConfigUserConflict(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "emailAddress":
+            suggest = "email_address"
+        elif key == "federationSettingsId":
+            suggest = "federation_settings_id"
+        elif key == "firstName":
+            suggest = "first_name"
+        elif key == "lastName":
+            suggest = "last_name"
+        elif key == "userId":
+            suggest = "user_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FederatedSettingsOrgConfigUserConflict. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FederatedSettingsOrgConfigUserConflict.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FederatedSettingsOrgConfigUserConflict.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 email_address: Optional[str] = None,
+                 federation_settings_id: Optional[str] = None,
+                 first_name: Optional[str] = None,
+                 last_name: Optional[str] = None,
+                 user_id: Optional[str] = None):
+        """
+        :param str email_address: Email address of the the user that conflicts with selected domains.
+        :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param str first_name: First name of the the user that conflicts with selected domains.
+        :param str last_name: Last name of the the user that conflicts with selected domains.
+        :param str user_id: Name of the Atlas user that conflicts with selected domains.
+        """
+        if email_address is not None:
+            pulumi.set(__self__, "email_address", email_address)
+        if federation_settings_id is not None:
+            pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        if first_name is not None:
+            pulumi.set(__self__, "first_name", first_name)
+        if last_name is not None:
+            pulumi.set(__self__, "last_name", last_name)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+
+    @property
+    @pulumi.getter(name="emailAddress")
+    def email_address(self) -> Optional[str]:
+        """
+        Email address of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "email_address")
+
+    @property
+    @pulumi.getter(name="federationSettingsId")
+    def federation_settings_id(self) -> Optional[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
+        return pulumi.get(self, "federation_settings_id")
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> Optional[str]:
+        """
+        First name of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "first_name")
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> Optional[str]:
+        """
+        Last name of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "last_name")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[str]:
+        """
+        Name of the Atlas user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "user_id")
 
 
 @pulumi.output_type
@@ -14308,6 +14403,86 @@ class GetClustersResultTagResult(dict):
 
 
 @pulumi.output_type
+class GetControlPlaneIpAddressesInboundResult(dict):
+    def __init__(__self__, *,
+                 aws: Mapping[str, Sequence[str]],
+                 azure: Mapping[str, Sequence[str]],
+                 gcp: Mapping[str, Sequence[str]]):
+        """
+        :param Mapping[str, Sequence[str]] aws: Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.
+        :param Mapping[str, Sequence[str]] azure: Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.
+        :param Mapping[str, Sequence[str]] gcp: Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.
+        """
+        pulumi.set(__self__, "aws", aws)
+        pulumi.set(__self__, "azure", azure)
+        pulumi.set(__self__, "gcp", gcp)
+
+    @property
+    @pulumi.getter
+    def aws(self) -> Mapping[str, Sequence[str]]:
+        """
+        Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.
+        """
+        return pulumi.get(self, "aws")
+
+    @property
+    @pulumi.getter
+    def azure(self) -> Mapping[str, Sequence[str]]:
+        """
+        Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.
+        """
+        return pulumi.get(self, "azure")
+
+    @property
+    @pulumi.getter
+    def gcp(self) -> Mapping[str, Sequence[str]]:
+        """
+        Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.
+        """
+        return pulumi.get(self, "gcp")
+
+
+@pulumi.output_type
+class GetControlPlaneIpAddressesOutboundResult(dict):
+    def __init__(__self__, *,
+                 aws: Mapping[str, Sequence[str]],
+                 azure: Mapping[str, Sequence[str]],
+                 gcp: Mapping[str, Sequence[str]]):
+        """
+        :param Mapping[str, Sequence[str]] aws: Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.
+        :param Mapping[str, Sequence[str]] azure: Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.
+        :param Mapping[str, Sequence[str]] gcp: Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.
+        """
+        pulumi.set(__self__, "aws", aws)
+        pulumi.set(__self__, "azure", azure)
+        pulumi.set(__self__, "gcp", gcp)
+
+    @property
+    @pulumi.getter
+    def aws(self) -> Mapping[str, Sequence[str]]:
+        """
+        Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.
+        """
+        return pulumi.get(self, "aws")
+
+    @property
+    @pulumi.getter
+    def azure(self) -> Mapping[str, Sequence[str]]:
+        """
+        Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.
+        """
+        return pulumi.get(self, "azure")
+
+    @property
+    @pulumi.getter
+    def gcp(self) -> Mapping[str, Sequence[str]]:
+        """
+        Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.
+        """
+        return pulumi.get(self, "gcp")
+
+
+@pulumi.output_type
 class GetCustomDbRoleActionResult(dict):
     def __init__(__self__, *,
                  action: str,
@@ -15386,7 +15561,8 @@ class GetDatabaseUsersResultResult(dict):
         :param str ldap_auth_type: Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
         :param str oidc_auth_type: (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
                * `NONE` -	The user does not use OIDC federated authentication.
-               * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+               * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+               * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         :param str project_id: The unique ID for the project to get all database users.
         :param Sequence['GetDatabaseUsersResultRoleArgs'] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param Sequence['GetDatabaseUsersResultScopeArgs'] scopes: Array of clusters and Atlas Data Lakes that this user has access to.
@@ -15449,7 +15625,8 @@ class GetDatabaseUsersResultResult(dict):
         """
         (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         * `NONE` -	The user does not use OIDC federated authentication.
-        * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+        * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+        * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         """
         return pulumi.get(self, "oidc_auth_type")
 
@@ -17354,12 +17531,15 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
                  acs_url: str,
                  associated_domains: Sequence[str],
                  associated_orgs: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult'],
-                 audience_claims: Sequence[str],
+                 audience: str,
                  audience_uri: str,
+                 authorization_type: str,
                  client_id: str,
+                 description: str,
                  display_name: str,
                  groups_claim: str,
                  idp_id: str,
+                 idp_type: str,
                  issuer_uri: str,
                  okta_idp_id: str,
                  pem_file_infos: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoResult'],
@@ -17375,12 +17555,15 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
         :param str acs_url: Assertion consumer service URL to which the IdP sends the SAML response.
         :param Sequence[str] associated_domains: List that contains the configured domains from which users can log in for this IdP.
         :param Sequence['GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs'] associated_orgs: List that contains the configured domains from which users can log in for this IdP.
-        :param Sequence[str] audience_claims: Identifier of the intended recipient of the token.
+        :param str audience: Identifier of the intended recipient of the token.
         :param str audience_uri: Identifier for the intended audience of the SAML Assertion.
+        :param str authorization_type: Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
         :param str client_id: Client identifier that is assigned to an application by the Identity Provider.
+        :param str description: The description of the identity provider.
         :param str display_name: Human-readable label that identifies the IdP.
         :param str groups_claim: Identifier of the claim which contains IdP Group IDs in the token.
         :param str idp_id: Unique 24-hexadecimal digit string that identifies the IdP.
+        :param str idp_type: Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
         :param str issuer_uri: Identifier for the issuer of the SAML Assertion.
         :param str protocol: The protocol of the identity provider
         :param str request_binding: SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
@@ -17398,12 +17581,15 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
         pulumi.set(__self__, "acs_url", acs_url)
         pulumi.set(__self__, "associated_domains", associated_domains)
         pulumi.set(__self__, "associated_orgs", associated_orgs)
-        pulumi.set(__self__, "audience_claims", audience_claims)
+        pulumi.set(__self__, "audience", audience)
         pulumi.set(__self__, "audience_uri", audience_uri)
+        pulumi.set(__self__, "authorization_type", authorization_type)
         pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "display_name", display_name)
         pulumi.set(__self__, "groups_claim", groups_claim)
         pulumi.set(__self__, "idp_id", idp_id)
+        pulumi.set(__self__, "idp_type", idp_type)
         pulumi.set(__self__, "issuer_uri", issuer_uri)
         pulumi.set(__self__, "okta_idp_id", okta_idp_id)
         pulumi.set(__self__, "pem_file_infos", pem_file_infos)
@@ -17441,12 +17627,12 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
         return pulumi.get(self, "associated_orgs")
 
     @property
-    @pulumi.getter(name="audienceClaims")
-    def audience_claims(self) -> Sequence[str]:
+    @pulumi.getter
+    def audience(self) -> str:
         """
         Identifier of the intended recipient of the token.
         """
-        return pulumi.get(self, "audience_claims")
+        return pulumi.get(self, "audience")
 
     @property
     @pulumi.getter(name="audienceUri")
@@ -17457,12 +17643,28 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
         return pulumi.get(self, "audience_uri")
 
     @property
+    @pulumi.getter(name="authorizationType")
+    def authorization_type(self) -> str:
+        """
+        Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+        """
+        return pulumi.get(self, "authorization_type")
+
+    @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> str:
         """
         Client identifier that is assigned to an application by the Identity Provider.
         """
         return pulumi.get(self, "client_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the identity provider.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="displayName")
@@ -17487,6 +17689,14 @@ class GetFederatedSettingsIdentityProvidersResultResult(dict):
         Unique 24-hexadecimal digit string that identifies the IdP.
         """
         return pulumi.get(self, "idp_id")
+
+    @property
+    @pulumi.getter(name="idpType")
+    def idp_type(self) -> str:
+        """
+        Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
+        """
+        return pulumi.get(self, "idp_type")
 
     @property
     @pulumi.getter(name="issuerUri")
@@ -17992,6 +18202,7 @@ class GetFederatedSettingsOrgConfigUserConflictResult(dict):
 @pulumi.output_type
 class GetFederatedSettingsOrgConfigsResultResult(dict):
     def __init__(__self__, *,
+                 data_access_identity_provider_ids: Sequence[str],
                  domain_allow_lists: Sequence[str],
                  domain_restriction_enabled: bool,
                  identity_provider_id: str,
@@ -18000,12 +18211,18 @@ class GetFederatedSettingsOrgConfigsResultResult(dict):
                  role_mappings: Sequence['outputs.GetFederatedSettingsOrgConfigsResultRoleMappingResult'],
                  user_conflicts: Sequence['outputs.GetFederatedSettingsOrgConfigsResultUserConflictResult']):
         """
+        :param Sequence[str] data_access_identity_provider_ids: The collection of unique ids representing the identity providers that can be used for data access in this organization.
         :param Sequence[str] domain_allow_lists: List that contains the approved domains from which organization users can log in.
         :param bool domain_restriction_enabled: Flag that indicates whether domain restriction is enabled for the connected organization.
-        :param str identity_provider_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param str identity_provider_id: Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
+               1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+               2. `okta_idp_id` on the `FederatedSettingsIdentityProvider` resource
         :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param Sequence[str] post_auth_role_grants: List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
+        :param Sequence['GetFederatedSettingsOrgConfigsResultRoleMappingArgs'] role_mappings: Role mappings that are configured in this organization. See below
+        :param Sequence['GetFederatedSettingsOrgConfigsResultUserConflictArgs'] user_conflicts: List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
         """
+        pulumi.set(__self__, "data_access_identity_provider_ids", data_access_identity_provider_ids)
         pulumi.set(__self__, "domain_allow_lists", domain_allow_lists)
         pulumi.set(__self__, "domain_restriction_enabled", domain_restriction_enabled)
         pulumi.set(__self__, "identity_provider_id", identity_provider_id)
@@ -18013,6 +18230,14 @@ class GetFederatedSettingsOrgConfigsResultResult(dict):
         pulumi.set(__self__, "post_auth_role_grants", post_auth_role_grants)
         pulumi.set(__self__, "role_mappings", role_mappings)
         pulumi.set(__self__, "user_conflicts", user_conflicts)
+
+    @property
+    @pulumi.getter(name="dataAccessIdentityProviderIds")
+    def data_access_identity_provider_ids(self) -> Sequence[str]:
+        """
+        The collection of unique ids representing the identity providers that can be used for data access in this organization.
+        """
+        return pulumi.get(self, "data_access_identity_provider_ids")
 
     @property
     @pulumi.getter(name="domainAllowLists")
@@ -18034,7 +18259,9 @@ class GetFederatedSettingsOrgConfigsResultResult(dict):
     @pulumi.getter(name="identityProviderId")
     def identity_provider_id(self) -> str:
         """
-        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
+        1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+        2. `okta_idp_id` on the `FederatedSettingsIdentityProvider` resource
         """
         return pulumi.get(self, "identity_provider_id")
 
@@ -18057,11 +18284,17 @@ class GetFederatedSettingsOrgConfigsResultResult(dict):
     @property
     @pulumi.getter(name="roleMappings")
     def role_mappings(self) -> Sequence['outputs.GetFederatedSettingsOrgConfigsResultRoleMappingResult']:
+        """
+        Role mappings that are configured in this organization. See below
+        """
         return pulumi.get(self, "role_mappings")
 
     @property
     @pulumi.getter(name="userConflicts")
     def user_conflicts(self) -> Sequence['outputs.GetFederatedSettingsOrgConfigsResultUserConflictResult']:
+        """
+        List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+        """
         return pulumi.get(self, "user_conflicts")
 
 

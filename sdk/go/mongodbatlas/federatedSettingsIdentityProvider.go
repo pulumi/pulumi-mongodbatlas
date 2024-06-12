@@ -67,15 +67,20 @@ type FederatedSettingsIdentityProvider struct {
 	// List that contains the domains associated with the identity provider.
 	AssociatedDomains pulumi.StringArrayOutput `pulumi:"associatedDomains"`
 	// Identifier of the intended recipient of the token used in OIDC IdP.
-	AudienceClaims pulumi.StringArrayOutput `pulumi:"audienceClaims"`
+	Audience pulumi.StringPtrOutput `pulumi:"audience"`
+	// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+	AuthorizationType pulumi.StringPtrOutput `pulumi:"authorizationType"`
 	// Client identifier that is assigned to an application by the OIDC Identity Provider.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
+	// The description of the identity provider.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId pulumi.StringOutput `pulumi:"federationSettingsId"`
 	// Identifier of the claim which contains OIDC IdP Group IDs in the token.
 	GroupsClaim pulumi.StringPtrOutput `pulumi:"groupsClaim"`
 	// Unique 24-hexadecimal digit string that identifies the IdP.
-	IdpId pulumi.StringOutput `pulumi:"idpId"`
+	IdpId   pulumi.StringOutput `pulumi:"idpId"`
+	IdpType pulumi.StringOutput `pulumi:"idpType"`
 	// Unique string that identifies the issuer of the IdP.
 	IssuerUri pulumi.StringOutput `pulumi:"issuerUri"`
 	// Human-readable label that identifies the identity provider.
@@ -99,6 +104,7 @@ type FederatedSettingsIdentityProvider struct {
 	// String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
 	Status pulumi.StringPtrOutput `pulumi:"status"`
 	// Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+	// userClaim is required for OIDC IdP with authorizationType GROUP and USER.
 	UserClaim pulumi.StringPtrOutput `pulumi:"userClaim"`
 }
 
@@ -141,15 +147,20 @@ type federatedSettingsIdentityProviderState struct {
 	// List that contains the domains associated with the identity provider.
 	AssociatedDomains []string `pulumi:"associatedDomains"`
 	// Identifier of the intended recipient of the token used in OIDC IdP.
-	AudienceClaims []string `pulumi:"audienceClaims"`
+	Audience *string `pulumi:"audience"`
+	// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+	AuthorizationType *string `pulumi:"authorizationType"`
 	// Client identifier that is assigned to an application by the OIDC Identity Provider.
 	ClientId *string `pulumi:"clientId"`
+	// The description of the identity provider.
+	Description *string `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId *string `pulumi:"federationSettingsId"`
 	// Identifier of the claim which contains OIDC IdP Group IDs in the token.
 	GroupsClaim *string `pulumi:"groupsClaim"`
 	// Unique 24-hexadecimal digit string that identifies the IdP.
-	IdpId *string `pulumi:"idpId"`
+	IdpId   *string `pulumi:"idpId"`
+	IdpType *string `pulumi:"idpType"`
 	// Unique string that identifies the issuer of the IdP.
 	IssuerUri *string `pulumi:"issuerUri"`
 	// Human-readable label that identifies the identity provider.
@@ -173,6 +184,7 @@ type federatedSettingsIdentityProviderState struct {
 	// String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
 	Status *string `pulumi:"status"`
 	// Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+	// userClaim is required for OIDC IdP with authorizationType GROUP and USER.
 	UserClaim *string `pulumi:"userClaim"`
 }
 
@@ -180,15 +192,20 @@ type FederatedSettingsIdentityProviderState struct {
 	// List that contains the domains associated with the identity provider.
 	AssociatedDomains pulumi.StringArrayInput
 	// Identifier of the intended recipient of the token used in OIDC IdP.
-	AudienceClaims pulumi.StringArrayInput
+	Audience pulumi.StringPtrInput
+	// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+	AuthorizationType pulumi.StringPtrInput
 	// Client identifier that is assigned to an application by the OIDC Identity Provider.
 	ClientId pulumi.StringPtrInput
+	// The description of the identity provider.
+	Description pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId pulumi.StringPtrInput
 	// Identifier of the claim which contains OIDC IdP Group IDs in the token.
 	GroupsClaim pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the IdP.
-	IdpId pulumi.StringPtrInput
+	IdpId   pulumi.StringPtrInput
+	IdpType pulumi.StringPtrInput
 	// Unique string that identifies the issuer of the IdP.
 	IssuerUri pulumi.StringPtrInput
 	// Human-readable label that identifies the identity provider.
@@ -212,6 +229,7 @@ type FederatedSettingsIdentityProviderState struct {
 	// String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
 	Status pulumi.StringPtrInput
 	// Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+	// userClaim is required for OIDC IdP with authorizationType GROUP and USER.
 	UserClaim pulumi.StringPtrInput
 }
 
@@ -223,13 +241,18 @@ type federatedSettingsIdentityProviderArgs struct {
 	// List that contains the domains associated with the identity provider.
 	AssociatedDomains []string `pulumi:"associatedDomains"`
 	// Identifier of the intended recipient of the token used in OIDC IdP.
-	AudienceClaims []string `pulumi:"audienceClaims"`
+	Audience *string `pulumi:"audience"`
+	// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+	AuthorizationType *string `pulumi:"authorizationType"`
 	// Client identifier that is assigned to an application by the OIDC Identity Provider.
 	ClientId *string `pulumi:"clientId"`
+	// The description of the identity provider.
+	Description *string `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId string `pulumi:"federationSettingsId"`
 	// Identifier of the claim which contains OIDC IdP Group IDs in the token.
 	GroupsClaim *string `pulumi:"groupsClaim"`
+	IdpType     *string `pulumi:"idpType"`
 	// Unique string that identifies the issuer of the IdP.
 	IssuerUri string `pulumi:"issuerUri"`
 	// Human-readable label that identifies the identity provider.
@@ -251,6 +274,7 @@ type federatedSettingsIdentityProviderArgs struct {
 	// String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
 	Status *string `pulumi:"status"`
 	// Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+	// userClaim is required for OIDC IdP with authorizationType GROUP and USER.
 	UserClaim *string `pulumi:"userClaim"`
 }
 
@@ -259,13 +283,18 @@ type FederatedSettingsIdentityProviderArgs struct {
 	// List that contains the domains associated with the identity provider.
 	AssociatedDomains pulumi.StringArrayInput
 	// Identifier of the intended recipient of the token used in OIDC IdP.
-	AudienceClaims pulumi.StringArrayInput
+	Audience pulumi.StringPtrInput
+	// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+	AuthorizationType pulumi.StringPtrInput
 	// Client identifier that is assigned to an application by the OIDC Identity Provider.
 	ClientId pulumi.StringPtrInput
+	// The description of the identity provider.
+	Description pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId pulumi.StringInput
 	// Identifier of the claim which contains OIDC IdP Group IDs in the token.
 	GroupsClaim pulumi.StringPtrInput
+	IdpType     pulumi.StringPtrInput
 	// Unique string that identifies the issuer of the IdP.
 	IssuerUri pulumi.StringInput
 	// Human-readable label that identifies the identity provider.
@@ -287,6 +316,7 @@ type FederatedSettingsIdentityProviderArgs struct {
 	// String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
 	Status pulumi.StringPtrInput
 	// Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+	// userClaim is required for OIDC IdP with authorizationType GROUP and USER.
 	UserClaim pulumi.StringPtrInput
 }
 
@@ -383,13 +413,23 @@ func (o FederatedSettingsIdentityProviderOutput) AssociatedDomains() pulumi.Stri
 }
 
 // Identifier of the intended recipient of the token used in OIDC IdP.
-func (o FederatedSettingsIdentityProviderOutput) AudienceClaims() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringArrayOutput { return v.AudienceClaims }).(pulumi.StringArrayOutput)
+func (o FederatedSettingsIdentityProviderOutput) Audience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringPtrOutput { return v.Audience }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+func (o FederatedSettingsIdentityProviderOutput) AuthorizationType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringPtrOutput { return v.AuthorizationType }).(pulumi.StringPtrOutput)
 }
 
 // Client identifier that is assigned to an application by the OIDC Identity Provider.
 func (o FederatedSettingsIdentityProviderOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The description of the identity provider.
+func (o FederatedSettingsIdentityProviderOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -405,6 +445,10 @@ func (o FederatedSettingsIdentityProviderOutput) GroupsClaim() pulumi.StringPtrO
 // Unique 24-hexadecimal digit string that identifies the IdP.
 func (o FederatedSettingsIdentityProviderOutput) IdpId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringOutput { return v.IdpId }).(pulumi.StringOutput)
+}
+
+func (o FederatedSettingsIdentityProviderOutput) IdpType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringOutput { return v.IdpType }).(pulumi.StringOutput)
 }
 
 // Unique string that identifies the issuer of the IdP.
@@ -460,6 +504,7 @@ func (o FederatedSettingsIdentityProviderOutput) Status() pulumi.StringPtrOutput
 }
 
 // Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+// userClaim is required for OIDC IdP with authorizationType GROUP and USER.
 func (o FederatedSettingsIdentityProviderOutput) UserClaim() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringPtrOutput { return v.UserClaim }).(pulumi.StringPtrOutput)
 }

@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -30,6 +31,21 @@ public final class GetFederatedSettingsIdentityProvidersArgs extends com.pulumi.
      */
     public Output<String> federationSettingsId() {
         return this.federationSettingsId;
+    }
+
+    /**
+     * The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+     * 
+     */
+    @Import(name="idpTypes")
+    private @Nullable Output<List<String>> idpTypes;
+
+    /**
+     * @return The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+     * 
+     */
+    public Optional<Output<List<String>>> idpTypes() {
+        return Optional.ofNullable(this.idpTypes);
     }
 
     /**
@@ -78,12 +94,29 @@ public final class GetFederatedSettingsIdentityProvidersArgs extends com.pulumi.
         return Optional.ofNullable(this.pageNum);
     }
 
+    /**
+     * The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+     * 
+     */
+    @Import(name="protocols")
+    private @Nullable Output<List<String>> protocols;
+
+    /**
+     * @return The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+     * 
+     */
+    public Optional<Output<List<String>>> protocols() {
+        return Optional.ofNullable(this.protocols);
+    }
+
     private GetFederatedSettingsIdentityProvidersArgs() {}
 
     private GetFederatedSettingsIdentityProvidersArgs(GetFederatedSettingsIdentityProvidersArgs $) {
         this.federationSettingsId = $.federationSettingsId;
+        this.idpTypes = $.idpTypes;
         this.itemsPerPage = $.itemsPerPage;
         this.pageNum = $.pageNum;
+        this.protocols = $.protocols;
     }
 
     public static Builder builder() {
@@ -123,6 +156,37 @@ public final class GetFederatedSettingsIdentityProvidersArgs extends com.pulumi.
          */
         public Builder federationSettingsId(String federationSettingsId) {
             return federationSettingsId(Output.of(federationSettingsId));
+        }
+
+        /**
+         * @param idpTypes The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder idpTypes(@Nullable Output<List<String>> idpTypes) {
+            $.idpTypes = idpTypes;
+            return this;
+        }
+
+        /**
+         * @param idpTypes The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder idpTypes(List<String> idpTypes) {
+            return idpTypes(Output.of(idpTypes));
+        }
+
+        /**
+         * @param idpTypes The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder idpTypes(String... idpTypes) {
+            return idpTypes(List.of(idpTypes));
         }
 
         /**
@@ -181,6 +245,37 @@ public final class GetFederatedSettingsIdentityProvidersArgs extends com.pulumi.
         @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
         public Builder pageNum(Integer pageNum) {
             return pageNum(Output.of(pageNum));
+        }
+
+        /**
+         * @param protocols The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder protocols(@Nullable Output<List<String>> protocols) {
+            $.protocols = protocols;
+            return this;
+        }
+
+        /**
+         * @param protocols The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder protocols(List<String> protocols) {
+            return protocols(Output.of(protocols));
+        }
+
+        /**
+         * @param protocols The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder protocols(String... protocols) {
+            return protocols(List.of(protocols));
         }
 
         public GetFederatedSettingsIdentityProvidersArgs build() {

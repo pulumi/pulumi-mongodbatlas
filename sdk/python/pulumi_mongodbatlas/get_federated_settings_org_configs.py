@@ -101,13 +101,15 @@ def get_federated_settings_org_configs(federation_settings_id: Optional[str] = N
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    org_connections = mongodbatlas.FederatedSettingsOrgConfig("org_connections",
+    org_connection = mongodbatlas.FederatedSettingsOrgConfig("org_connection",
         federation_settings_id="627a9687f7f7f7f774de306f14",
         org_id="627a9683ea7ff7f74de306f14",
+        data_access_identity_provider_ids=["64d613677e1ad50839cce4db"],
         domain_restriction_enabled=False,
         domain_allow_lists=["mydomain.com"],
-        post_auth_role_grants=["ORG_MEMBER"])
-    org_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connections_mongodbatlas_federated_settings_org_config["id"])
+        post_auth_role_grants=["ORG_MEMBER"],
+        identity_provider_id="0oaqyt9fc2ySTWnA0357")
+    org_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config["federationSettingsId"])
     ```
 
 
@@ -144,13 +146,15 @@ def get_federated_settings_org_configs_output(federation_settings_id: Optional[p
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    org_connections = mongodbatlas.FederatedSettingsOrgConfig("org_connections",
+    org_connection = mongodbatlas.FederatedSettingsOrgConfig("org_connection",
         federation_settings_id="627a9687f7f7f7f774de306f14",
         org_id="627a9683ea7ff7f74de306f14",
+        data_access_identity_provider_ids=["64d613677e1ad50839cce4db"],
         domain_restriction_enabled=False,
         domain_allow_lists=["mydomain.com"],
-        post_auth_role_grants=["ORG_MEMBER"])
-    org_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connections_mongodbatlas_federated_settings_org_config["id"])
+        post_auth_role_grants=["ORG_MEMBER"],
+        identity_provider_id="0oaqyt9fc2ySTWnA0357")
+    org_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config["federationSettingsId"])
     ```
 
 

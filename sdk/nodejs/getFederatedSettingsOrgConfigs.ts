@@ -15,15 +15,17 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("org_connections", {
+ * const orgConnection = new mongodbatlas.FederatedSettingsOrgConfig("org_connection", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
  *     orgId: "627a9683ea7ff7f74de306f14",
+ *     dataAccessIdentityProviderIds: ["64d613677e1ad50839cce4db"],
  *     domainRestrictionEnabled: false,
  *     domainAllowLists: ["mydomain.com"],
  *     postAuthRoleGrants: ["ORG_MEMBER"],
+ *     identityProviderId: "0oaqyt9fc2ySTWnA0357",
  * });
  * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigs({
- *     federationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id,
+ *     federationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId,
  * });
  * ```
  */
@@ -84,15 +86,17 @@ export interface GetFederatedSettingsOrgConfigsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("org_connections", {
+ * const orgConnection = new mongodbatlas.FederatedSettingsOrgConfig("org_connection", {
  *     federationSettingsId: "627a9687f7f7f7f774de306f14",
  *     orgId: "627a9683ea7ff7f74de306f14",
+ *     dataAccessIdentityProviderIds: ["64d613677e1ad50839cce4db"],
  *     domainRestrictionEnabled: false,
  *     domainAllowLists: ["mydomain.com"],
  *     postAuthRoleGrants: ["ORG_MEMBER"],
+ *     identityProviderId: "0oaqyt9fc2ySTWnA0357",
  * });
  * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigs({
- *     federationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id,
+ *     federationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId,
  * });
  * ```
  */

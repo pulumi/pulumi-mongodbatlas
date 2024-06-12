@@ -265,6 +265,11 @@ export const getClusters: typeof import("./getClusters").getClusters = null as a
 export const getClustersOutput: typeof import("./getClusters").getClustersOutput = null as any;
 utilities.lazyLoad(exports, ["getClusters","getClustersOutput"], () => require("./getClusters"));
 
+export { GetControlPlaneIpAddressesResult } from "./getControlPlaneIpAddresses";
+export const getControlPlaneIpAddresses: typeof import("./getControlPlaneIpAddresses").getControlPlaneIpAddresses = null as any;
+export const getControlPlaneIpAddressesOutput: typeof import("./getControlPlaneIpAddresses").getControlPlaneIpAddressesOutput = null as any;
+utilities.lazyLoad(exports, ["getControlPlaneIpAddresses","getControlPlaneIpAddressesOutput"], () => require("./getControlPlaneIpAddresses"));
+
 export { GetCustomDbRoleArgs, GetCustomDbRoleResult, GetCustomDbRoleOutputArgs } from "./getCustomDbRole";
 export const getCustomDbRole: typeof import("./getCustomDbRole").getCustomDbRole = null as any;
 export const getCustomDbRoleOutput: typeof import("./getCustomDbRole").getCustomDbRoleOutput = null as any;

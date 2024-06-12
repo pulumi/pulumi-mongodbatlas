@@ -81,11 +81,15 @@ type LookupFederatedSettingsIdentityProviderResult struct {
 	// List that contains the organizations from which users can log in for this IdP.
 	AssociatedOrgs []GetFederatedSettingsIdentityProviderAssociatedOrg `pulumi:"associatedOrgs"`
 	// Identifier of the intended recipient of the token.
-	AudienceClaims []string `pulumi:"audienceClaims"`
+	Audience string `pulumi:"audience"`
 	// Identifier for the intended audience of the SAML Assertion.
 	AudienceUri string `pulumi:"audienceUri"`
+	// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+	AuthorizationType string `pulumi:"authorizationType"`
 	// Client identifier that is assigned to an application by the Identity Provider.
 	ClientId string `pulumi:"clientId"`
+	// The description of the identity provider.
+	Description string `pulumi:"description"`
 	// Human-readable label that identifies the IdP.
 	DisplayName string `pulumi:"displayName"`
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -97,12 +101,14 @@ type LookupFederatedSettingsIdentityProviderResult struct {
 	IdentityProviderId string `pulumi:"identityProviderId"`
 	// Unique 24-hexadecimal digit string that identifies the IdP
 	IdpId string `pulumi:"idpId"`
+	// Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
+	IdpType string `pulumi:"idpType"`
 	// Identifier for the issuer of the SAML Assertion.
 	IssuerUri string `pulumi:"issuerUri"`
 	// Unique 20-hexadecimal digit string that identifies the IdP.
 	OktaIdpId    string                                            `pulumi:"oktaIdpId"`
 	PemFileInfos []GetFederatedSettingsIdentityProviderPemFileInfo `pulumi:"pemFileInfos"`
-	// The protocol of the identity provider. Either SAML or OIDC.
+	// The protocol of the identity provider. Valid values are `SAML` or `OIDC`.
 	Protocol string `pulumi:"protocol"`
 	// SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
 	// - HTTP POST
@@ -182,8 +188,8 @@ func (o LookupFederatedSettingsIdentityProviderResultOutput) AssociatedOrgs() Ge
 }
 
 // Identifier of the intended recipient of the token.
-func (o LookupFederatedSettingsIdentityProviderResultOutput) AudienceClaims() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) []string { return v.AudienceClaims }).(pulumi.StringArrayOutput)
+func (o LookupFederatedSettingsIdentityProviderResultOutput) Audience() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.Audience }).(pulumi.StringOutput)
 }
 
 // Identifier for the intended audience of the SAML Assertion.
@@ -191,9 +197,19 @@ func (o LookupFederatedSettingsIdentityProviderResultOutput) AudienceUri() pulum
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.AudienceUri }).(pulumi.StringOutput)
 }
 
+// Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+func (o LookupFederatedSettingsIdentityProviderResultOutput) AuthorizationType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.AuthorizationType }).(pulumi.StringOutput)
+}
+
 // Client identifier that is assigned to an application by the Identity Provider.
 func (o LookupFederatedSettingsIdentityProviderResultOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The description of the identity provider.
+func (o LookupFederatedSettingsIdentityProviderResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
 // Human-readable label that identifies the IdP.
@@ -225,6 +241,11 @@ func (o LookupFederatedSettingsIdentityProviderResultOutput) IdpId() pulumi.Stri
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.IdpId }).(pulumi.StringOutput)
 }
 
+// Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
+func (o LookupFederatedSettingsIdentityProviderResultOutput) IdpType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.IdpType }).(pulumi.StringOutput)
+}
+
 // Identifier for the issuer of the SAML Assertion.
 func (o LookupFederatedSettingsIdentityProviderResultOutput) IssuerUri() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.IssuerUri }).(pulumi.StringOutput)
@@ -241,7 +262,7 @@ func (o LookupFederatedSettingsIdentityProviderResultOutput) PemFileInfos() GetF
 	}).(GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput)
 }
 
-// The protocol of the identity provider. Either SAML or OIDC.
+// The protocol of the identity provider. Valid values are `SAML` or `OIDC`.
 func (o LookupFederatedSettingsIdentityProviderResultOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProviderResult) string { return v.Protocol }).(pulumi.StringOutput)
 }

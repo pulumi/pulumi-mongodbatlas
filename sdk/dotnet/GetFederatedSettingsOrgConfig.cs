@@ -25,10 +25,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("org_connections", new()
+        ///     var orgConnection = new Mongodbatlas.FederatedSettingsOrgConfig("org_connection", new()
         ///     {
         ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
         ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///         DataAccessIdentityProviderIds = new[]
+        ///         {
+        ///             "64d613677e1ad50839cce4db",
+        ///         },
         ///         DomainRestrictionEnabled = false,
         ///         DomainAllowLists = new[]
         ///         {
@@ -38,11 +42,12 @@ namespace Pulumi.Mongodbatlas
         ///         {
         ///             "ORG_MEMBER",
         ///         },
+        ///         IdentityProviderId = "0oaqyt9fc2ySTWnA0357",
         ///     });
         /// 
         ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfig.Invoke(new()
         ///     {
-        ///         FederationSettingsId = orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,
+        ///         FederationSettingsId = orgConnectionMongodbatlasFederatedSettingsOrgConfig.Id,
         ///         OrgId = "627a9683ea7ff7f74de306f14",
         ///     });
         /// 
@@ -66,10 +71,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("org_connections", new()
+        ///     var orgConnection = new Mongodbatlas.FederatedSettingsOrgConfig("org_connection", new()
         ///     {
         ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
         ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///         DataAccessIdentityProviderIds = new[]
+        ///         {
+        ///             "64d613677e1ad50839cce4db",
+        ///         },
         ///         DomainRestrictionEnabled = false,
         ///         DomainAllowLists = new[]
         ///         {
@@ -79,11 +88,12 @@ namespace Pulumi.Mongodbatlas
         ///         {
         ///             "ORG_MEMBER",
         ///         },
+        ///         IdentityProviderId = "0oaqyt9fc2ySTWnA0357",
         ///     });
         /// 
         ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfig.Invoke(new()
         ///     {
-        ///         FederationSettingsId = orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,
+        ///         FederationSettingsId = orgConnectionMongodbatlasFederatedSettingsOrgConfig.Id,
         ///         OrgId = "627a9683ea7ff7f74de306f14",
         ///     });
         /// 
@@ -140,6 +150,10 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetFederatedSettingsOrgConfigResult
     {
         /// <summary>
+        /// The collection of unique ids representing the identity providers that can be used for data access in this organization.
+        /// </summary>
+        public readonly ImmutableArray<string> DataAccessIdentityProviderIds;
+        /// <summary>
         /// List that contains the approved domains from which organization users can log in.  Note: If the organization uses an identity provider,  `domain_allow_list` includes: any SSO domains associated with organization's identity provider and any custom domains associated with the specific organization.
         /// </summary>
         public readonly ImmutableArray<string> DomainAllowLists;
@@ -156,7 +170,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        /// Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
+        /// 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+        /// 2. `okta_idp_id` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
         /// </summary>
         public readonly string IdentityProviderId;
         public readonly string OrgId;
@@ -164,11 +180,19 @@ namespace Pulumi.Mongodbatlas
         /// List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
         /// </summary>
         public readonly ImmutableArray<string> PostAuthRoleGrants;
+        /// <summary>
+        /// Role mappings that are configured in this organization. See below
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetFederatedSettingsOrgConfigRoleMappingResult> RoleMappings;
+        /// <summary>
+        /// List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetFederatedSettingsOrgConfigUserConflictResult> UserConflicts;
 
         [OutputConstructor]
         private GetFederatedSettingsOrgConfigResult(
+            ImmutableArray<string> dataAccessIdentityProviderIds,
+
             ImmutableArray<string> domainAllowLists,
 
             bool domainRestrictionEnabled,
@@ -187,6 +211,7 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetFederatedSettingsOrgConfigUserConflictResult> userConflicts)
         {
+            DataAccessIdentityProviderIds = dataAccessIdentityProviderIds;
             DomainAllowLists = domainAllowLists;
             DomainRestrictionEnabled = domainRestrictionEnabled;
             FederationSettingsId = federationSettingsId;

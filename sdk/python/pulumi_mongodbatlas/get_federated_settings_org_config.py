@@ -22,7 +22,10 @@ class GetFederatedSettingsOrgConfigResult:
     """
     A collection of values returned by getFederatedSettingsOrgConfig.
     """
-    def __init__(__self__, domain_allow_lists=None, domain_restriction_enabled=None, federation_settings_id=None, id=None, identity_provider_id=None, org_id=None, post_auth_role_grants=None, role_mappings=None, user_conflicts=None):
+    def __init__(__self__, data_access_identity_provider_ids=None, domain_allow_lists=None, domain_restriction_enabled=None, federation_settings_id=None, id=None, identity_provider_id=None, org_id=None, post_auth_role_grants=None, role_mappings=None, user_conflicts=None):
+        if data_access_identity_provider_ids and not isinstance(data_access_identity_provider_ids, list):
+            raise TypeError("Expected argument 'data_access_identity_provider_ids' to be a list")
+        pulumi.set(__self__, "data_access_identity_provider_ids", data_access_identity_provider_ids)
         if domain_allow_lists and not isinstance(domain_allow_lists, list):
             raise TypeError("Expected argument 'domain_allow_lists' to be a list")
         pulumi.set(__self__, "domain_allow_lists", domain_allow_lists)
@@ -50,6 +53,14 @@ class GetFederatedSettingsOrgConfigResult:
         if user_conflicts and not isinstance(user_conflicts, list):
             raise TypeError("Expected argument 'user_conflicts' to be a list")
         pulumi.set(__self__, "user_conflicts", user_conflicts)
+
+    @property
+    @pulumi.getter(name="dataAccessIdentityProviderIds")
+    def data_access_identity_provider_ids(self) -> Sequence[str]:
+        """
+        The collection of unique ids representing the identity providers that can be used for data access in this organization.
+        """
+        return pulumi.get(self, "data_access_identity_provider_ids")
 
     @property
     @pulumi.getter(name="domainAllowLists")
@@ -87,7 +98,9 @@ class GetFederatedSettingsOrgConfigResult:
     @pulumi.getter(name="identityProviderId")
     def identity_provider_id(self) -> str:
         """
-        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
+        1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+        2. `okta_idp_id` on the `FederatedSettingsIdentityProvider` resource
         """
         return pulumi.get(self, "identity_provider_id")
 
@@ -107,11 +120,17 @@ class GetFederatedSettingsOrgConfigResult:
     @property
     @pulumi.getter(name="roleMappings")
     def role_mappings(self) -> Sequence['outputs.GetFederatedSettingsOrgConfigRoleMappingResult']:
+        """
+        Role mappings that are configured in this organization. See below
+        """
         return pulumi.get(self, "role_mappings")
 
     @property
     @pulumi.getter(name="userConflicts")
     def user_conflicts(self) -> Sequence['outputs.GetFederatedSettingsOrgConfigUserConflictResult']:
+        """
+        List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+        """
         return pulumi.get(self, "user_conflicts")
 
 
@@ -121,6 +140,7 @@ class AwaitableGetFederatedSettingsOrgConfigResult(GetFederatedSettingsOrgConfig
         if False:
             yield self
         return GetFederatedSettingsOrgConfigResult(
+            data_access_identity_provider_ids=self.data_access_identity_provider_ids,
             domain_allow_lists=self.domain_allow_lists,
             domain_restriction_enabled=self.domain_restriction_enabled,
             federation_settings_id=self.federation_settings_id,
@@ -144,13 +164,15 @@ def get_federated_settings_org_config(federation_settings_id: Optional[str] = No
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    org_connections = mongodbatlas.FederatedSettingsOrgConfig("org_connections",
+    org_connection = mongodbatlas.FederatedSettingsOrgConfig("org_connection",
         federation_settings_id="627a9687f7f7f7f774de306f14",
         org_id="627a9683ea7ff7f74de306f14",
+        data_access_identity_provider_ids=["64d613677e1ad50839cce4db"],
         domain_restriction_enabled=False,
         domain_allow_lists=["mydomain.com"],
-        post_auth_role_grants=["ORG_MEMBER"])
-    org_configs_ds = mongodbatlas.get_federated_settings_org_config(federation_settings_id=org_connections_mongodbatlas_federated_settings_org_config["id"],
+        post_auth_role_grants=["ORG_MEMBER"],
+        identity_provider_id="0oaqyt9fc2ySTWnA0357")
+    org_configs_ds = mongodbatlas.get_federated_settings_org_config(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config["id"],
         org_id="627a9683ea7ff7f74de306f14")
     ```
 
@@ -165,6 +187,7 @@ def get_federated_settings_org_config(federation_settings_id: Optional[str] = No
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig', __args__, opts=opts, typ=GetFederatedSettingsOrgConfigResult).value
 
     return AwaitableGetFederatedSettingsOrgConfigResult(
+        data_access_identity_provider_ids=pulumi.get(__ret__, 'data_access_identity_provider_ids'),
         domain_allow_lists=pulumi.get(__ret__, 'domain_allow_lists'),
         domain_restriction_enabled=pulumi.get(__ret__, 'domain_restriction_enabled'),
         federation_settings_id=pulumi.get(__ret__, 'federation_settings_id'),
@@ -189,13 +212,15 @@ def get_federated_settings_org_config_output(federation_settings_id: Optional[pu
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    org_connections = mongodbatlas.FederatedSettingsOrgConfig("org_connections",
+    org_connection = mongodbatlas.FederatedSettingsOrgConfig("org_connection",
         federation_settings_id="627a9687f7f7f7f774de306f14",
         org_id="627a9683ea7ff7f74de306f14",
+        data_access_identity_provider_ids=["64d613677e1ad50839cce4db"],
         domain_restriction_enabled=False,
         domain_allow_lists=["mydomain.com"],
-        post_auth_role_grants=["ORG_MEMBER"])
-    org_configs_ds = mongodbatlas.get_federated_settings_org_config(federation_settings_id=org_connections_mongodbatlas_federated_settings_org_config["id"],
+        post_auth_role_grants=["ORG_MEMBER"],
+        identity_provider_id="0oaqyt9fc2ySTWnA0357")
+    org_configs_ds = mongodbatlas.get_federated_settings_org_config(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config["id"],
         org_id="627a9683ea7ff7f74de306f14")
     ```
 

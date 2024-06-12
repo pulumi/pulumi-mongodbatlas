@@ -5,11 +5,8 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class GetPrivatelinkEndpointsServiceServerlessPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -32,44 +29,6 @@ public final class GetPrivatelinkEndpointsServiceServerlessPlainArgs extends com
     }
 
     /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.17.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-    @Import(name="itemsPerPage")
-    private @Nullable Integer itemsPerPage;
-
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.17.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-    public Optional<Integer> itemsPerPage() {
-        return Optional.ofNullable(this.itemsPerPage);
-    }
-
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.17.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-    @Import(name="pageNum")
-    private @Nullable Integer pageNum;
-
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.17.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-    public Optional<Integer> pageNum() {
-        return Optional.ofNullable(this.pageNum);
-    }
-
-    /**
      * Unique 24-digit hexadecimal string that identifies the project.
      * 
      */
@@ -88,8 +47,6 @@ public final class GetPrivatelinkEndpointsServiceServerlessPlainArgs extends com
 
     private GetPrivatelinkEndpointsServiceServerlessPlainArgs(GetPrivatelinkEndpointsServiceServerlessPlainArgs $) {
         this.instanceName = $.instanceName;
-        this.itemsPerPage = $.itemsPerPage;
-        this.pageNum = $.pageNum;
         this.projectId = $.projectId;
     }
 
@@ -119,32 +76,6 @@ public final class GetPrivatelinkEndpointsServiceServerlessPlainArgs extends com
          */
         public Builder instanceName(String instanceName) {
             $.instanceName = instanceName;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.17.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-        public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
-            $.itemsPerPage = itemsPerPage;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.17.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.17.0. */
-        public Builder pageNum(@Nullable Integer pageNum) {
-            $.pageNum = pageNum;
             return this;
         }
 

@@ -101,6 +101,18 @@ namespace Pulumi.Mongodbatlas
         [Input("federationSettingsId", required: true)]
         public string FederationSettingsId { get; set; } = null!;
 
+        [Input("idpTypes")]
+        private List<string>? _idpTypes;
+
+        /// <summary>
+        /// The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+        /// </summary>
+        public List<string> IdpTypes
+        {
+            get => _idpTypes ?? (_idpTypes = new List<string>());
+            set => _idpTypes = value;
+        }
+
         /// <summary>
         /// Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
         /// </summary>
@@ -112,6 +124,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("pageNum")]
         public int? PageNum { get; set; }
+
+        [Input("protocols")]
+        private List<string>? _protocols;
+
+        /// <summary>
+        /// The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+        /// </summary>
+        public List<string> Protocols
+        {
+            get => _protocols ?? (_protocols = new List<string>());
+            set => _protocols = value;
+        }
 
         public GetFederatedSettingsIdentityProvidersArgs()
         {
@@ -127,6 +151,18 @@ namespace Pulumi.Mongodbatlas
         [Input("federationSettingsId", required: true)]
         public Input<string> FederationSettingsId { get; set; } = null!;
 
+        [Input("idpTypes")]
+        private InputList<string>? _idpTypes;
+
+        /// <summary>
+        /// The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+        /// </summary>
+        public InputList<string> IdpTypes
+        {
+            get => _idpTypes ?? (_idpTypes = new InputList<string>());
+            set => _idpTypes = value;
+        }
+
         /// <summary>
         /// Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
         /// </summary>
@@ -138,6 +174,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("pageNum")]
         public Input<int>? PageNum { get; set; }
+
+        [Input("protocols")]
+        private InputList<string>? _protocols;
+
+        /// <summary>
+        /// The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+        /// </summary>
+        public InputList<string> Protocols
+        {
+            get => _protocols ?? (_protocols = new InputList<string>());
+            set => _protocols = value;
+        }
 
         public GetFederatedSettingsIdentityProvidersInvokeArgs()
         {
@@ -157,8 +205,10 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly ImmutableArray<string> IdpTypes;
         public readonly int? ItemsPerPage;
         public readonly int? PageNum;
+        public readonly ImmutableArray<string> Protocols;
         /// <summary>
         /// Includes cloudProviderSnapshot object for each item detailed in the results array section.
         /// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
@@ -171,16 +221,22 @@ namespace Pulumi.Mongodbatlas
 
             string id,
 
+            ImmutableArray<string> idpTypes,
+
             int? itemsPerPage,
 
             int? pageNum,
+
+            ImmutableArray<string> protocols,
 
             ImmutableArray<Outputs.GetFederatedSettingsIdentityProvidersResultResult> results)
         {
             FederationSettingsId = federationSettingsId;
             Id = id;
+            IdpTypes = idpTypes;
             ItemsPerPage = itemsPerPage;
             PageNum = pageNum;
+            Protocols = protocols;
             Results = results;
         }
     }

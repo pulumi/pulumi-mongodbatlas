@@ -1217,6 +1217,29 @@ export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
     value: string;
 }
 
+export interface FederatedSettingsOrgConfigUserConflict {
+    /**
+     * Email address of the the user that conflicts with selected domains.
+     */
+    emailAddress: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     */
+    federationSettingsId: string;
+    /**
+     * First name of the the user that conflicts with selected domains.
+     */
+    firstName: string;
+    /**
+     * Last name of the the user that conflicts with selected domains.
+     */
+    lastName: string;
+    /**
+     * Name of the Atlas user that conflicts with selected domains.
+     */
+    userId: string;
+}
+
 export interface FederatedSettingsOrgRoleMappingRoleAssignment {
     /**
      * Unique identifier of the project to which you want the role mapping to apply.
@@ -3608,6 +3631,36 @@ export interface GetClustersResultTag {
     value: string;
 }
 
+export interface GetControlPlaneIpAddressesInbound {
+    /**
+     * Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.
+     */
+    aws: {[key: string]: string[]};
+    /**
+     * Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.
+     */
+    azure: {[key: string]: string[]};
+    /**
+     * Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.
+     */
+    gcp: {[key: string]: string[]};
+}
+
+export interface GetControlPlaneIpAddressesOutbound {
+    /**
+     * Control plane IP addresses in AWS. Each key identifies an Amazon Web Services (AWS) region. Each value identifies control plane IP addresses in the AWS region.
+     */
+    aws: {[key: string]: string[]};
+    /**
+     * Control plane IP addresses in Azure. Each key identifies an Azure region. Each value identifies control plane IP addresses in the Azure region.
+     */
+    azure: {[key: string]: string[]};
+    /**
+     * Control plane IP addresses in GCP. Each key identifies a Google Cloud (GCP) region. Each value identifies control plane IP addresses in the GCP region.
+     */
+    gcp: {[key: string]: string[]};
+}
+
 export interface GetCustomDbRoleAction {
     /**
      * (Required) Name of the privilege action. For a complete list of actions available in the Atlas API, see Custom Role Actions.
@@ -3982,7 +4035,8 @@ export interface GetDatabaseUsersResult {
     /**
      * (Optional) Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      * * `NONE` -	The user does not use OIDC federated authentication.
-     * * `IDP_GROUP` - Create a OIDC federated authentication user. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      */
     oidcAuthType: string;
     /**
@@ -4594,15 +4648,23 @@ export interface GetFederatedSettingsIdentityProvidersResult {
     /**
      * Identifier of the intended recipient of the token.
      */
-    audienceClaims: string[];
+    audience: string;
     /**
      * Identifier for the intended audience of the SAML Assertion.
      */
     audienceUri: string;
     /**
+     * Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+     */
+    authorizationType: string;
+    /**
      * Client identifier that is assigned to an application by the Identity Provider.
      */
     clientId: string;
+    /**
+     * The description of the identity provider.
+     */
+    description: string;
     /**
      * Human-readable label that identifies the IdP.
      */
@@ -4615,6 +4677,10 @@ export interface GetFederatedSettingsIdentityProvidersResult {
      * Unique 24-hexadecimal digit string that identifies the IdP.
      */
     idpId: string;
+    /**
+     * Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
+     */
+    idpType: string;
     /**
      * Identifier for the issuer of the SAML Assertion.
      */
@@ -4811,6 +4877,10 @@ export interface GetFederatedSettingsOrgConfigUserConflict {
 
 export interface GetFederatedSettingsOrgConfigsResult {
     /**
+     * The collection of unique ids representing the identity providers that can be used for data access in this organization.
+     */
+    dataAccessIdentityProviderIds: string[];
+    /**
      * List that contains the approved domains from which organization users can log in.
      */
     domainAllowLists: string[];
@@ -4819,7 +4889,9 @@ export interface GetFederatedSettingsOrgConfigsResult {
      */
     domainRestrictionEnabled: boolean;
     /**
-     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     * Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. This id can be found in two ways:
+     * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
+     * 2. `oktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      */
     identityProviderId: string;
     /**
@@ -4830,7 +4902,13 @@ export interface GetFederatedSettingsOrgConfigsResult {
      * List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
      */
     postAuthRoleGrants: string[];
+    /**
+     * Role mappings that are configured in this organization. See below
+     */
     roleMappings: outputs.GetFederatedSettingsOrgConfigsResultRoleMapping[];
+    /**
+     * List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+     */
     userConflicts: outputs.GetFederatedSettingsOrgConfigsResultUserConflict[];
 }
 

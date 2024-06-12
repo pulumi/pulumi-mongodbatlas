@@ -27,9 +27,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, "org_connections", &mongodbatlas.FederatedSettingsOrgConfigArgs{
-//				FederationSettingsId:     pulumi.String("627a9687f7f7f7f774de306f14"),
-//				OrgId:                    pulumi.String("627a9683ea7ff7f74de306f14"),
+//			_, err := mongodbatlas.NewFederatedSettingsOrgConfig(ctx, "org_connection", &mongodbatlas.FederatedSettingsOrgConfigArgs{
+//				FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f14"),
+//				OrgId:                pulumi.String("627a9683ea7ff7f74de306f14"),
+//				DataAccessIdentityProviderIds: pulumi.StringArray{
+//					pulumi.String("64d613677e1ad50839cce4db"),
+//				},
 //				DomainRestrictionEnabled: pulumi.Bool(false),
 //				DomainAllowLists: pulumi.StringArray{
 //					pulumi.String("mydomain.com"),
@@ -37,12 +40,13 @@ import (
 //				PostAuthRoleGrants: pulumi.StringArray{
 //					pulumi.String("ORG_MEMBER"),
 //				},
+//				IdentityProviderId: pulumi.String("0oaqyt9fc2ySTWnA0357"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = mongodbatlas.LookupFederatedSettingsOrgConfigs(ctx, &mongodbatlas.LookupFederatedSettingsOrgConfigsArgs{
-//				FederationSettingsId: orgConnectionsMongodbatlasFederatedSettingsOrgConfig.Id,
+//				FederationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.FederationSettingsId,
 //			}, nil)
 //			if err != nil {
 //				return err

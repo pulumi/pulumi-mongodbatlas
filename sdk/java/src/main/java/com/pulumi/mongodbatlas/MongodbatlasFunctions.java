@@ -220,6 +220,7 @@ import com.pulumi.mongodbatlas.outputs.GetCloudProviderAccessSetupResult;
 import com.pulumi.mongodbatlas.outputs.GetClusterOutageSimulationResult;
 import com.pulumi.mongodbatlas.outputs.GetClusterResult;
 import com.pulumi.mongodbatlas.outputs.GetClustersInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetControlPlaneIpAddressesResult;
 import com.pulumi.mongodbatlas.outputs.GetCustomDbRoleResult;
 import com.pulumi.mongodbatlas.outputs.GetCustomDbRolesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetCustomDnsConfigurationClusterAwsResult;
@@ -7245,6 +7246,252 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getClusters:getClusters", TypeShape.of(GetClustersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Provides a data source that returns all control plane IP addresses.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getControlPlaneIpAddresses();
+     * 
+     *         ctx.export("outbound-aws-ip-addresses", test.applyValue(getControlPlaneIpAddressesResult -> getControlPlaneIpAddressesResult.outbound().aws()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetControlPlaneIpAddressesResult> getControlPlaneIpAddresses() {
+        return getControlPlaneIpAddresses(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Provides a data source that returns all control plane IP addresses.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getControlPlaneIpAddresses();
+     * 
+     *         ctx.export("outbound-aws-ip-addresses", test.applyValue(getControlPlaneIpAddressesResult -> getControlPlaneIpAddressesResult.outbound().aws()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetControlPlaneIpAddressesResult> getControlPlaneIpAddressesPlain() {
+        return getControlPlaneIpAddressesPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Provides a data source that returns all control plane IP addresses.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getControlPlaneIpAddresses();
+     * 
+     *         ctx.export("outbound-aws-ip-addresses", test.applyValue(getControlPlaneIpAddressesResult -> getControlPlaneIpAddressesResult.outbound().aws()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetControlPlaneIpAddressesResult> getControlPlaneIpAddresses(InvokeArgs args) {
+        return getControlPlaneIpAddresses(args, InvokeOptions.Empty);
+    }
+    /**
+     * Provides a data source that returns all control plane IP addresses.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getControlPlaneIpAddresses();
+     * 
+     *         ctx.export("outbound-aws-ip-addresses", test.applyValue(getControlPlaneIpAddressesResult -> getControlPlaneIpAddressesResult.outbound().aws()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetControlPlaneIpAddressesResult> getControlPlaneIpAddressesPlain(InvokeArgs args) {
+        return getControlPlaneIpAddressesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Provides a data source that returns all control plane IP addresses.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getControlPlaneIpAddresses();
+     * 
+     *         ctx.export("outbound-aws-ip-addresses", test.applyValue(getControlPlaneIpAddressesResult -> getControlPlaneIpAddressesResult.outbound().aws()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetControlPlaneIpAddressesResult> getControlPlaneIpAddresses(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses", TypeShape.of(GetControlPlaneIpAddressesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Provides a data source that returns all control plane IP addresses.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getControlPlaneIpAddresses();
+     * 
+     *         ctx.export("outbound-aws-ip-addresses", test.applyValue(getControlPlaneIpAddressesResult -> getControlPlaneIpAddressesResult.outbound().aws()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetControlPlaneIpAddressesResult> getControlPlaneIpAddressesPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses", TypeShape.of(GetControlPlaneIpAddressesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `mongodbatlas.CustomDbRole` describe a Custom DB Role. This represents a custom db role.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -11194,16 +11441,18 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
+     *         var orgConnection = new FederatedSettingsOrgConfig("orgConnection", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
+     *             .dataAccessIdentityProviderIds("64d613677e1ad50839cce4db")
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists("mydomain.com")
      *             .postAuthRoleGrants("ORG_MEMBER")
+     *             .identityProviderId("0oaqyt9fc2ySTWnA0357")
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
-     *             .federationSettingsId(orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .build());
      * 
@@ -11247,16 +11496,18 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
+     *         var orgConnection = new FederatedSettingsOrgConfig("orgConnection", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
+     *             .dataAccessIdentityProviderIds("64d613677e1ad50839cce4db")
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists("mydomain.com")
      *             .postAuthRoleGrants("ORG_MEMBER")
+     *             .identityProviderId("0oaqyt9fc2ySTWnA0357")
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
-     *             .federationSettingsId(orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .build());
      * 
@@ -11300,16 +11551,18 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
+     *         var orgConnection = new FederatedSettingsOrgConfig("orgConnection", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
+     *             .dataAccessIdentityProviderIds("64d613677e1ad50839cce4db")
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists("mydomain.com")
      *             .postAuthRoleGrants("ORG_MEMBER")
+     *             .identityProviderId("0oaqyt9fc2ySTWnA0357")
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
-     *             .federationSettingsId(orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .build());
      * 
@@ -11353,16 +11606,18 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
+     *         var orgConnection = new FederatedSettingsOrgConfig("orgConnection", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
+     *             .dataAccessIdentityProviderIds("64d613677e1ad50839cce4db")
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists("mydomain.com")
      *             .postAuthRoleGrants("ORG_MEMBER")
+     *             .identityProviderId("0oaqyt9fc2ySTWnA0357")
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
-     *             .federationSettingsId(orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .build());
      * 
@@ -11406,16 +11661,18 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
+     *         var orgConnection = new FederatedSettingsOrgConfig("orgConnection", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
+     *             .dataAccessIdentityProviderIds("64d613677e1ad50839cce4db")
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists("mydomain.com")
      *             .postAuthRoleGrants("ORG_MEMBER")
+     *             .identityProviderId("0oaqyt9fc2ySTWnA0357")
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
-     *             .federationSettingsId(orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId())
      *             .build());
      * 
      *     }
@@ -11458,16 +11715,18 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
+     *         var orgConnection = new FederatedSettingsOrgConfig("orgConnection", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
+     *             .dataAccessIdentityProviderIds("64d613677e1ad50839cce4db")
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists("mydomain.com")
      *             .postAuthRoleGrants("ORG_MEMBER")
+     *             .identityProviderId("0oaqyt9fc2ySTWnA0357")
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
-     *             .federationSettingsId(orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId())
      *             .build());
      * 
      *     }
@@ -11510,16 +11769,18 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
+     *         var orgConnection = new FederatedSettingsOrgConfig("orgConnection", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
+     *             .dataAccessIdentityProviderIds("64d613677e1ad50839cce4db")
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists("mydomain.com")
      *             .postAuthRoleGrants("ORG_MEMBER")
+     *             .identityProviderId("0oaqyt9fc2ySTWnA0357")
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
-     *             .federationSettingsId(orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId())
      *             .build());
      * 
      *     }
@@ -11562,16 +11823,18 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var orgConnections = new FederatedSettingsOrgConfig("orgConnections", FederatedSettingsOrgConfigArgs.builder()
+     *         var orgConnection = new FederatedSettingsOrgConfig("orgConnection", FederatedSettingsOrgConfigArgs.builder()
      *             .federationSettingsId("627a9687f7f7f7f774de306f14")
      *             .orgId("627a9683ea7ff7f74de306f14")
+     *             .dataAccessIdentityProviderIds("64d613677e1ad50839cce4db")
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists("mydomain.com")
      *             .postAuthRoleGrants("ORG_MEMBER")
+     *             .identityProviderId("0oaqyt9fc2ySTWnA0357")
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
-     *             .federationSettingsId(orgConnectionsMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId())
      *             .build());
      * 
      *     }

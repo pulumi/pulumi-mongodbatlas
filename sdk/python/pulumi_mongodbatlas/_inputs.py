@@ -91,6 +91,7 @@ __all__ = [
     'FederatedDatabaseInstanceStorageStoreReadPreferenceArgs',
     'FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs',
     'FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs',
+    'FederatedSettingsOrgConfigUserConflictArgs',
     'FederatedSettingsOrgRoleMappingRoleAssignmentArgs',
     'GlobalClusterConfigCustomZoneMappingArgs',
     'GlobalClusterConfigManagedNamespaceArgs',
@@ -5808,6 +5809,93 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs:
     @value.setter
     def value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class FederatedSettingsOrgConfigUserConflictArgs:
+    def __init__(__self__, *,
+                 email_address: Optional[pulumi.Input[str]] = None,
+                 federation_settings_id: Optional[pulumi.Input[str]] = None,
+                 first_name: Optional[pulumi.Input[str]] = None,
+                 last_name: Optional[pulumi.Input[str]] = None,
+                 user_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] email_address: Email address of the the user that conflicts with selected domains.
+        :param pulumi.Input[str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param pulumi.Input[str] first_name: First name of the the user that conflicts with selected domains.
+        :param pulumi.Input[str] last_name: Last name of the the user that conflicts with selected domains.
+        :param pulumi.Input[str] user_id: Name of the Atlas user that conflicts with selected domains.
+        """
+        if email_address is not None:
+            pulumi.set(__self__, "email_address", email_address)
+        if federation_settings_id is not None:
+            pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        if first_name is not None:
+            pulumi.set(__self__, "first_name", first_name)
+        if last_name is not None:
+            pulumi.set(__self__, "last_name", last_name)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
+
+    @property
+    @pulumi.getter(name="emailAddress")
+    def email_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Email address of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "email_address")
+
+    @email_address.setter
+    def email_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "email_address", value)
+
+    @property
+    @pulumi.getter(name="federationSettingsId")
+    def federation_settings_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
+        return pulumi.get(self, "federation_settings_id")
+
+    @federation_settings_id.setter
+    def federation_settings_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "federation_settings_id", value)
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        First name of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "first_name")
+
+    @first_name.setter
+    def first_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "first_name", value)
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Last name of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "last_name")
+
+    @last_name.setter
+    def last_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "last_name", value)
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Atlas user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_id", value)
 
 
 @pulumi.input_type

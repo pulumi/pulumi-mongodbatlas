@@ -33,17 +33,27 @@ public final class GetFederatedSettingsIdentityProvidersResult {
      * @return Identifier of the intended recipient of the token.
      * 
      */
-    private List<String> audienceClaims;
+    private String audience;
     /**
      * @return Identifier for the intended audience of the SAML Assertion.
      * 
      */
     private String audienceUri;
     /**
+     * @return Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+     * 
+     */
+    private String authorizationType;
+    /**
      * @return Client identifier that is assigned to an application by the Identity Provider.
      * 
      */
     private String clientId;
+    /**
+     * @return The description of the identity provider.
+     * 
+     */
+    private String description;
     /**
      * @return Human-readable label that identifies the IdP.
      * 
@@ -59,6 +69,11 @@ public final class GetFederatedSettingsIdentityProvidersResult {
      * 
      */
     private String idpId;
+    /**
+     * @return Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
+     * 
+     */
+    private String idpType;
     /**
      * @return Identifier for the issuer of the SAML Assertion.
      * 
@@ -137,8 +152,8 @@ public final class GetFederatedSettingsIdentityProvidersResult {
      * @return Identifier of the intended recipient of the token.
      * 
      */
-    public List<String> audienceClaims() {
-        return this.audienceClaims;
+    public String audience() {
+        return this.audience;
     }
     /**
      * @return Identifier for the intended audience of the SAML Assertion.
@@ -148,11 +163,25 @@ public final class GetFederatedSettingsIdentityProvidersResult {
         return this.audienceUri;
     }
     /**
+     * @return Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+     * 
+     */
+    public String authorizationType() {
+        return this.authorizationType;
+    }
+    /**
      * @return Client identifier that is assigned to an application by the Identity Provider.
      * 
      */
     public String clientId() {
         return this.clientId;
+    }
+    /**
+     * @return The description of the identity provider.
+     * 
+     */
+    public String description() {
+        return this.description;
     }
     /**
      * @return Human-readable label that identifies the IdP.
@@ -174,6 +203,13 @@ public final class GetFederatedSettingsIdentityProvidersResult {
      */
     public String idpId() {
         return this.idpId;
+    }
+    /**
+     * @return Type of the identity provider. Valid values are `WORKFORCE` or `WORKLOAD`.
+     * 
+     */
+    public String idpType() {
+        return this.idpType;
     }
     /**
      * @return Identifier for the issuer of the SAML Assertion.
@@ -261,12 +297,15 @@ public final class GetFederatedSettingsIdentityProvidersResult {
         private String acsUrl;
         private List<String> associatedDomains;
         private List<GetFederatedSettingsIdentityProvidersResultAssociatedOrg> associatedOrgs;
-        private List<String> audienceClaims;
+        private String audience;
         private String audienceUri;
+        private String authorizationType;
         private String clientId;
+        private String description;
         private String displayName;
         private String groupsClaim;
         private String idpId;
+        private String idpType;
         private String issuerUri;
         private String oktaIdpId;
         private List<GetFederatedSettingsIdentityProvidersResultPemFileInfo> pemFileInfos;
@@ -284,12 +323,15 @@ public final class GetFederatedSettingsIdentityProvidersResult {
     	      this.acsUrl = defaults.acsUrl;
     	      this.associatedDomains = defaults.associatedDomains;
     	      this.associatedOrgs = defaults.associatedOrgs;
-    	      this.audienceClaims = defaults.audienceClaims;
+    	      this.audience = defaults.audience;
     	      this.audienceUri = defaults.audienceUri;
+    	      this.authorizationType = defaults.authorizationType;
     	      this.clientId = defaults.clientId;
+    	      this.description = defaults.description;
     	      this.displayName = defaults.displayName;
     	      this.groupsClaim = defaults.groupsClaim;
     	      this.idpId = defaults.idpId;
+    	      this.idpType = defaults.idpType;
     	      this.issuerUri = defaults.issuerUri;
     	      this.oktaIdpId = defaults.oktaIdpId;
     	      this.pemFileInfos = defaults.pemFileInfos;
@@ -334,15 +376,12 @@ public final class GetFederatedSettingsIdentityProvidersResult {
             return associatedOrgs(List.of(associatedOrgs));
         }
         @CustomType.Setter
-        public Builder audienceClaims(List<String> audienceClaims) {
-            if (audienceClaims == null) {
-              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "audienceClaims");
+        public Builder audience(String audience) {
+            if (audience == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "audience");
             }
-            this.audienceClaims = audienceClaims;
+            this.audience = audience;
             return this;
-        }
-        public Builder audienceClaims(String... audienceClaims) {
-            return audienceClaims(List.of(audienceClaims));
         }
         @CustomType.Setter
         public Builder audienceUri(String audienceUri) {
@@ -353,11 +392,27 @@ public final class GetFederatedSettingsIdentityProvidersResult {
             return this;
         }
         @CustomType.Setter
+        public Builder authorizationType(String authorizationType) {
+            if (authorizationType == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "authorizationType");
+            }
+            this.authorizationType = authorizationType;
+            return this;
+        }
+        @CustomType.Setter
         public Builder clientId(String clientId) {
             if (clientId == null) {
               throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "clientId");
             }
             this.clientId = clientId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder description(String description) {
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
@@ -382,6 +437,14 @@ public final class GetFederatedSettingsIdentityProvidersResult {
               throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "idpId");
             }
             this.idpId = idpId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder idpType(String idpType) {
+            if (idpType == null) {
+              throw new MissingRequiredPropertyException("GetFederatedSettingsIdentityProvidersResult", "idpType");
+            }
+            this.idpType = idpType;
             return this;
         }
         @CustomType.Setter
@@ -483,12 +546,15 @@ public final class GetFederatedSettingsIdentityProvidersResult {
             _resultValue.acsUrl = acsUrl;
             _resultValue.associatedDomains = associatedDomains;
             _resultValue.associatedOrgs = associatedOrgs;
-            _resultValue.audienceClaims = audienceClaims;
+            _resultValue.audience = audience;
             _resultValue.audienceUri = audienceUri;
+            _resultValue.authorizationType = authorizationType;
             _resultValue.clientId = clientId;
+            _resultValue.description = description;
             _resultValue.displayName = displayName;
             _resultValue.groupsClaim = groupsClaim;
             _resultValue.idpId = idpId;
+            _resultValue.idpType = idpType;
             _resultValue.issuerUri = issuerUri;
             _resultValue.oktaIdpId = oktaIdpId;
             _resultValue.pemFileInfos = pemFileInfos;

@@ -25,6 +25,7 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
      * 
      */
     private String id;
+    private @Nullable List<String> idpTypes;
     /**
      * @deprecated
      * This parameter is deprecated and will be removed in version 1.18.0.
@@ -39,6 +40,7 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
      */
     @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     private @Nullable Integer pageNum;
+    private @Nullable List<String> protocols;
     /**
      * @return Includes cloudProviderSnapshot object for each item detailed in the results array section.
      * * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
@@ -61,6 +63,9 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
     public String id() {
         return this.id;
     }
+    public List<String> idpTypes() {
+        return this.idpTypes == null ? List.of() : this.idpTypes;
+    }
     /**
      * @deprecated
      * This parameter is deprecated and will be removed in version 1.18.0.
@@ -78,6 +83,9 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
     @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
     public Optional<Integer> pageNum() {
         return Optional.ofNullable(this.pageNum);
+    }
+    public List<String> protocols() {
+        return this.protocols == null ? List.of() : this.protocols;
     }
     /**
      * @return Includes cloudProviderSnapshot object for each item detailed in the results array section.
@@ -99,16 +107,20 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
     public static final class Builder {
         private String federationSettingsId;
         private String id;
+        private @Nullable List<String> idpTypes;
         private @Nullable Integer itemsPerPage;
         private @Nullable Integer pageNum;
+        private @Nullable List<String> protocols;
         private List<GetFederatedSettingsIdentityProvidersResult> results;
         public Builder() {}
         public Builder(GetFederatedSettingsIdentityProvidersInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.federationSettingsId = defaults.federationSettingsId;
     	      this.id = defaults.id;
+    	      this.idpTypes = defaults.idpTypes;
     	      this.itemsPerPage = defaults.itemsPerPage;
     	      this.pageNum = defaults.pageNum;
+    	      this.protocols = defaults.protocols;
     	      this.results = defaults.results;
         }
 
@@ -129,6 +141,15 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
             return this;
         }
         @CustomType.Setter
+        public Builder idpTypes(@Nullable List<String> idpTypes) {
+
+            this.idpTypes = idpTypes;
+            return this;
+        }
+        public Builder idpTypes(String... idpTypes) {
+            return idpTypes(List.of(idpTypes));
+        }
+        @CustomType.Setter
         public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
 
             this.itemsPerPage = itemsPerPage;
@@ -139,6 +160,15 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
 
             this.pageNum = pageNum;
             return this;
+        }
+        @CustomType.Setter
+        public Builder protocols(@Nullable List<String> protocols) {
+
+            this.protocols = protocols;
+            return this;
+        }
+        public Builder protocols(String... protocols) {
+            return protocols(List.of(protocols));
         }
         @CustomType.Setter
         public Builder results(List<GetFederatedSettingsIdentityProvidersResult> results) {
@@ -155,8 +185,10 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
             final var _resultValue = new GetFederatedSettingsIdentityProvidersInvokeResult();
             _resultValue.federationSettingsId = federationSettingsId;
             _resultValue.id = id;
+            _resultValue.idpTypes = idpTypes;
             _resultValue.itemsPerPage = itemsPerPage;
             _resultValue.pageNum = pageNum;
+            _resultValue.protocols = protocols;
             _resultValue.results = results;
             return _resultValue;
         }

@@ -67,6 +67,8 @@ func LookupFederatedSettingsIdentityProviders(ctx *pulumi.Context, args *LookupF
 type LookupFederatedSettingsIdentityProvidersArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId string `pulumi:"federationSettingsId"`
+	// The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+	IdpTypes []string `pulumi:"idpTypes"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
 	//
 	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
@@ -75,6 +77,8 @@ type LookupFederatedSettingsIdentityProvidersArgs struct {
 	//
 	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	PageNum *int `pulumi:"pageNum"`
+	// The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+	Protocols []string `pulumi:"protocols"`
 }
 
 // A collection of values returned by getFederatedSettingsIdentityProviders.
@@ -82,11 +86,13 @@ type LookupFederatedSettingsIdentityProvidersResult struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId string `pulumi:"federationSettingsId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id       string   `pulumi:"id"`
+	IdpTypes []string `pulumi:"idpTypes"`
 	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	ItemsPerPage *int `pulumi:"itemsPerPage"`
 	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	PageNum *int `pulumi:"pageNum"`
+	PageNum   *int     `pulumi:"pageNum"`
+	Protocols []string `pulumi:"protocols"`
 	// Includes cloudProviderSnapshot object for each item detailed in the results array section.
 	// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 	Results []GetFederatedSettingsIdentityProvidersResult `pulumi:"results"`
@@ -109,6 +115,8 @@ func LookupFederatedSettingsIdentityProvidersOutput(ctx *pulumi.Context, args Lo
 type LookupFederatedSettingsIdentityProvidersOutputArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId pulumi.StringInput `pulumi:"federationSettingsId"`
+	// The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
+	IdpTypes pulumi.StringArrayInput `pulumi:"idpTypes"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
 	//
 	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
@@ -117,6 +125,8 @@ type LookupFederatedSettingsIdentityProvidersOutputArgs struct {
 	//
 	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
+	// The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
+	Protocols pulumi.StringArrayInput `pulumi:"protocols"`
 }
 
 func (LookupFederatedSettingsIdentityProvidersOutputArgs) ElementType() reflect.Type {
@@ -148,6 +158,10 @@ func (o LookupFederatedSettingsIdentityProvidersResultOutput) Id() pulumi.String
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProvidersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+func (o LookupFederatedSettingsIdentityProvidersResultOutput) IdpTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProvidersResult) []string { return v.IdpTypes }).(pulumi.StringArrayOutput)
+}
+
 // Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 func (o LookupFederatedSettingsIdentityProvidersResultOutput) ItemsPerPage() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProvidersResult) *int { return v.ItemsPerPage }).(pulumi.IntPtrOutput)
@@ -156,6 +170,10 @@ func (o LookupFederatedSettingsIdentityProvidersResultOutput) ItemsPerPage() pul
 // Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
 func (o LookupFederatedSettingsIdentityProvidersResultOutput) PageNum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProvidersResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
+}
+
+func (o LookupFederatedSettingsIdentityProvidersResultOutput) Protocols() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupFederatedSettingsIdentityProvidersResult) []string { return v.Protocols }).(pulumi.StringArrayOutput)
 }
 
 // Includes cloudProviderSnapshot object for each item detailed in the results array section.

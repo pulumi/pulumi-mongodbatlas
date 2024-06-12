@@ -95,15 +95,29 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * Identifier of the intended recipient of the token used in OIDC IdP.
      * 
      */
-    @Export(name="audienceClaims", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> audienceClaims;
+    @Export(name="audience", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> audience;
 
     /**
      * @return Identifier of the intended recipient of the token used in OIDC IdP.
      * 
      */
-    public Output<Optional<List<String>>> audienceClaims() {
-        return Codegen.optional(this.audienceClaims);
+    public Output<Optional<String>> audience() {
+        return Codegen.optional(this.audience);
+    }
+    /**
+     * Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+     * 
+     */
+    @Export(name="authorizationType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> authorizationType;
+
+    /**
+     * @return Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
+     * 
+     */
+    public Output<Optional<String>> authorizationType() {
+        return Codegen.optional(this.authorizationType);
     }
     /**
      * Client identifier that is assigned to an application by the OIDC Identity Provider.
@@ -118,6 +132,20 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
+    }
+    /**
+     * The description of the identity provider.
+     * 
+     */
+    @Export(name="description", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> description;
+
+    /**
+     * @return The description of the identity provider.
+     * 
+     */
+    public Output<Optional<String>> description() {
+        return Codegen.optional(this.description);
     }
     /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -160,6 +188,12 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      */
     public Output<String> idpId() {
         return this.idpId;
+    }
+    @Export(name="idpType", refs={String.class}, tree="[0]")
+    private Output<String> idpType;
+
+    public Output<String> idpType() {
+        return this.idpType;
     }
     /**
      * Unique string that identifies the issuer of the IdP.
@@ -307,6 +341,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
     }
     /**
      * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     * userClaim is required for OIDC IdP with authorizationType GROUP and USER.
      * 
      */
     @Export(name="userClaim", refs={String.class}, tree="[0]")
@@ -314,6 +349,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
 
     /**
      * @return Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
+     * userClaim is required for OIDC IdP with authorizationType GROUP and USER.
      * 
      */
     public Output<Optional<String>> userClaim() {
