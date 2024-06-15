@@ -12,10 +12,11 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
     /// 
-    /// &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
     /// ## Example Usage
     /// 
-    /// &gt; **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+    /// &gt; **IMPORTANT** If you want to use a SAML Identity Provider, you **MUST** import this resource before you can manage it with this provider.
+    /// 
+    /// SAML IdP:
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -39,6 +40,32 @@ namespace Pulumi.Mongodbatlas
     ///         IssuerUri = "http://www.okta.com/exk17q7f7f7f7fp50h8",
     ///         RequestBinding = "HTTP-POST",
     ///         ResponseSignatureAlgorithm = "SHA-256",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// OIDC IdP:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var oidc = new Mongodbatlas.FederatedSettingsIdentityProvider("oidc", new()
+    ///     {
+    ///         FederationSettingsId = @this.Id,
+    ///         Audience = tokenAudience,
+    ///         AuthorizationType = "USER",
+    ///         Description = "oidc",
+    ///         IssuerUri = $"https://sts.windows.net/{thisAzurermUserAssignedIdentity.TenantId}/",
+    ///         IdpType = "WORKLOAD",
+    ///         Name = "OIDC-for-azure",
+    ///         Protocol = "OIDC",
+    ///         UserClaim = "sub",
     ///     });
     /// 
     /// });

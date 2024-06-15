@@ -7,10 +7,11 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
  *
- * > **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  * ## Example Usage
  *
- * > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+ * > **IMPORTANT** If you want to use a SAML Identity Provider, you **MUST** import this resource before you can manage it with this provider.
+ *
+ * SAML IdP:
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -26,6 +27,25 @@ import * as utilities from "./utilities";
  *     issuerUri: "http://www.okta.com/exk17q7f7f7f7fp50h8",
  *     requestBinding: "HTTP-POST",
  *     responseSignatureAlgorithm: "SHA-256",
+ * });
+ * ```
+ *
+ * OIDC IdP:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const oidc = new mongodbatlas.FederatedSettingsIdentityProvider("oidc", {
+ *     federationSettingsId: _this.id,
+ *     audience: tokenAudience,
+ *     authorizationType: "USER",
+ *     description: "oidc",
+ *     issuerUri: `https://sts.windows.net/${thisAzurermUserAssignedIdentity.tenantId}/`,
+ *     idpType: "WORKLOAD",
+ *     name: "OIDC-for-azure",
+ *     protocol: "OIDC",
+ *     userClaim: "sub",
  * });
  * ```
  *

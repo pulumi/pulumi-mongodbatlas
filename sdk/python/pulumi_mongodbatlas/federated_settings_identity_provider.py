@@ -664,10 +664,11 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         """
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
 
-        > **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         ## Example Usage
 
-        > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+        > **IMPORTANT** If you want to use a SAML Identity Provider, you **MUST** import this resource before you can manage it with this provider.
+
+        SAML IdP:
 
         ```python
         import pulumi
@@ -683,6 +684,24 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             issuer_uri="http://www.okta.com/exk17q7f7f7f7fp50h8",
             request_binding="HTTP-POST",
             response_signature_algorithm="SHA-256")
+        ```
+
+        OIDC IdP:
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        oidc = mongodbatlas.FederatedSettingsIdentityProvider("oidc",
+            federation_settings_id=this["id"],
+            audience=token_audience,
+            authorization_type="USER",
+            description="oidc",
+            issuer_uri=f"https://sts.windows.net/{this_azurerm_user_assigned_identity['tenantId']}/",
+            idp_type="WORKLOAD",
+            name="OIDC-for-azure",
+            protocol="OIDC",
+            user_claim="sub")
         ```
 
         ## Import
@@ -726,10 +745,11 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         """
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
 
-        > **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         ## Example Usage
 
-        > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+        > **IMPORTANT** If you want to use a SAML Identity Provider, you **MUST** import this resource before you can manage it with this provider.
+
+        SAML IdP:
 
         ```python
         import pulumi
@@ -745,6 +765,24 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             issuer_uri="http://www.okta.com/exk17q7f7f7f7fp50h8",
             request_binding="HTTP-POST",
             response_signature_algorithm="SHA-256")
+        ```
+
+        OIDC IdP:
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        oidc = mongodbatlas.FederatedSettingsIdentityProvider("oidc",
+            federation_settings_id=this["id"],
+            audience=token_audience,
+            authorization_type="USER",
+            description="oidc",
+            issuer_uri=f"https://sts.windows.net/{this_azurerm_user_assigned_identity['tenantId']}/",
+            idp_type="WORKLOAD",
+            name="OIDC-for-azure",
+            protocol="OIDC",
+            user_claim="sub")
         ```
 
         ## Import

@@ -14,10 +14,11 @@ import (
 
 // `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
 //
-// > **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 // ## Example Usage
 //
-// > **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+// > **IMPORTANT** If you want to use a SAML Identity Provider, you **MUST** import this resource before you can manage it with this provider.
+//
+// SAML IdP:
 //
 // ```go
 // package main
@@ -43,6 +44,42 @@ import (
 //				IssuerUri:                  pulumi.String("http://www.okta.com/exk17q7f7f7f7fp50h8"),
 //				RequestBinding:             pulumi.String("HTTP-POST"),
 //				ResponseSignatureAlgorithm: pulumi.String("SHA-256"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// OIDC IdP:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "oidc", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
+//				FederationSettingsId: pulumi.Any(this.Id),
+//				Audience:             pulumi.Any(tokenAudience),
+//				AuthorizationType:    pulumi.String("USER"),
+//				Description:          pulumi.String("oidc"),
+//				IssuerUri:            pulumi.String(fmt.Sprintf("https://sts.windows.net/%v/", thisAzurermUserAssignedIdentity.TenantId)),
+//				IdpType:              pulumi.String("WORKLOAD"),
+//				Name:                 pulumi.String("OIDC-for-azure"),
+//				Protocol:             pulumi.String("OIDC"),
+//				UserClaim:            pulumi.String("sub"),
 //			})
 //			if err != nil {
 //				return err
