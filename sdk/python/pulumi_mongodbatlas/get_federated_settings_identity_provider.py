@@ -349,8 +349,6 @@ def get_federated_settings_identity_provider(federation_settings_id: Optional[st
     """
     `FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
 
-    > **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
-
     ## Example Usage
 
     ```python
@@ -416,8 +414,6 @@ def get_federated_settings_identity_provider_output(federation_settings_id: Opti
                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsIdentityProviderResult]:
     """
     `FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
-
-    > **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/)
 
     ## Example Usage
 

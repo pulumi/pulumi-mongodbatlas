@@ -19,10 +19,11 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
  * 
- * &gt; **NOTE:** OIDC Workforce IdP is currently in preview. To learn more about OIDC and existing limitations see the [OIDC Authentication Documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  * ## Example Usage
  * 
- * &gt; **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
+ * &gt; **IMPORTANT** If you want to use a SAML Identity Provider, you **MUST** import this resource before you can manage it with this provider.
+ * 
+ * SAML IdP:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -57,6 +58,49 @@ import javax.annotation.Nullable;
  *             .issuerUri("http://www.okta.com/exk17q7f7f7f7fp50h8")
  *             .requestBinding("HTTP-POST")
  *             .responseSignatureAlgorithm("SHA-256")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * OIDC IdP:
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProvider;
+ * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var oidc = new FederatedSettingsIdentityProvider("oidc", FederatedSettingsIdentityProviderArgs.builder()
+ *             .federationSettingsId(this_.id())
+ *             .audience(tokenAudience)
+ *             .authorizationType("USER")
+ *             .description("oidc")
+ *             .issuerUri(String.format("https://sts.windows.net/%s/", thisAzurermUserAssignedIdentity.tenantId()))
+ *             .idpType("WORKLOAD")
+ *             .name("OIDC-for-azure")
+ *             .protocol("OIDC")
+ *             .userClaim("sub")
  *             .build());
  * 
  *     }
