@@ -183,6 +183,21 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you&#39;re an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+     * 
+     */
+    @Import(name="globalClusterSelfManagedSharding")
+    private @Nullable Output<Boolean> globalClusterSelfManagedSharding;
+
+    /**
+     * @return Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you&#39;re an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+     * 
+     */
+    public Optional<Output<Boolean>> globalClusterSelfManagedSharding() {
+        return Optional.ofNullable(this.globalClusterSelfManagedSharding);
+    }
+
+    /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated
@@ -421,6 +436,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         this.createDate = $.createDate;
         this.diskSizeGb = $.diskSizeGb;
         this.encryptionAtRestProvider = $.encryptionAtRestProvider;
+        this.globalClusterSelfManagedSharding = $.globalClusterSelfManagedSharding;
         this.labels = $.labels;
         this.mongoDbMajorVersion = $.mongoDbMajorVersion;
         this.mongoDbVersion = $.mongoDbVersion;
@@ -673,6 +689,27 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
          */
         public Builder encryptionAtRestProvider(String encryptionAtRestProvider) {
             return encryptionAtRestProvider(Output.of(encryptionAtRestProvider));
+        }
+
+        /**
+         * @param globalClusterSelfManagedSharding Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you&#39;re an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder globalClusterSelfManagedSharding(@Nullable Output<Boolean> globalClusterSelfManagedSharding) {
+            $.globalClusterSelfManagedSharding = globalClusterSelfManagedSharding;
+            return this;
+        }
+
+        /**
+         * @param globalClusterSelfManagedSharding Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you&#39;re an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder globalClusterSelfManagedSharding(Boolean globalClusterSelfManagedSharding) {
+            return globalClusterSelfManagedSharding(Output.of(globalClusterSelfManagedSharding));
         }
 
         /**

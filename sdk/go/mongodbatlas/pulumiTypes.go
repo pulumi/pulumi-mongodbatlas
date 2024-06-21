@@ -19387,6 +19387,8 @@ type GetAdvancedClustersResult struct {
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
+	// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
+	GlobalClusterSelfManagedSharding bool `pulumi:"globalClusterSelfManagedSharding"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 	//
 	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
@@ -19440,6 +19442,8 @@ type GetAdvancedClustersResultArgs struct {
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.
 	EncryptionAtRestProvider pulumi.StringInput `pulumi:"encryptionAtRestProvider"`
+	// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
+	GlobalClusterSelfManagedSharding pulumi.BoolInput `pulumi:"globalClusterSelfManagedSharding"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 	//
 	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
@@ -19560,6 +19564,11 @@ func (o GetAdvancedClustersResultOutput) DiskSizeGb() pulumi.Float64Output {
 // Possible values are AWS, GCP, AZURE or NONE.
 func (o GetAdvancedClustersResultOutput) EncryptionAtRestProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.EncryptionAtRestProvider }).(pulumi.StringOutput)
+}
+
+// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
+func (o GetAdvancedClustersResultOutput) GlobalClusterSelfManagedSharding() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.GlobalClusterSelfManagedSharding }).(pulumi.BoolOutput)
 }
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.

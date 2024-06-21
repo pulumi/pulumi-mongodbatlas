@@ -102,6 +102,10 @@ export interface GetAdvancedClusterResult {
      */
     readonly encryptionAtRestProvider: string;
     /**
+     * Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
+     */
+    readonly globalClusterSelfManagedSharding: boolean;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;

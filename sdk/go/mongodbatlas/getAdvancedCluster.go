@@ -101,6 +101,8 @@ type LookupAdvancedClusterResult struct {
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
+	// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
+	GlobalClusterSelfManagedSharding bool `pulumi:"globalClusterSelfManagedSharding"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
@@ -211,6 +213,11 @@ func (o LookupAdvancedClusterResultOutput) DiskSizeGb() pulumi.Float64Output {
 // Possible values are AWS, GCP, AZURE or NONE.
 func (o LookupAdvancedClusterResultOutput) EncryptionAtRestProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.EncryptionAtRestProvider }).(pulumi.StringOutput)
+}
+
+// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
+func (o LookupAdvancedClusterResultOutput) GlobalClusterSelfManagedSharding() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.GlobalClusterSelfManagedSharding }).(pulumi.BoolOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

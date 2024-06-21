@@ -696,6 +696,20 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.encryptionAtRestProvider;
     }
     /**
+     * Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you&#39;re an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+     * 
+     */
+    @Export(name="globalClusterSelfManagedSharding", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> globalClusterSelfManagedSharding;
+
+    /**
+     * @return Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you&#39;re an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+     * 
+     */
+    public Output<Boolean> globalClusterSelfManagedSharding() {
+        return this.globalClusterSelfManagedSharding;
+    }
+    /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      * @deprecated

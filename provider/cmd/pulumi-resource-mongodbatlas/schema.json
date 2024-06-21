@@ -4044,6 +4044,10 @@
                     "type": "string",
                     "description": "Possible values are AWS, GCP, AZURE or NONE.\n"
                 },
+                "globalClusterSelfManagedSharding": {
+                    "type": "boolean",
+                    "description": "Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).\n"
+                },
                 "labels": {
                     "type": "array",
                     "items": {
@@ -4112,6 +4116,7 @@
                 "createDate",
                 "diskSizeGb",
                 "encryptionAtRestProvider",
+                "globalClusterSelfManagedSharding",
                 "labels",
                 "mongoDbMajorVersion",
                 "mongoDbVersion",
@@ -12810,6 +12815,10 @@
                     "type": "string",
                     "description": "Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.\u003ctype\u003eSpecs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.\n"
                 },
+                "globalClusterSelfManagedSharding": {
+                    "type": "boolean",
+                    "description": "Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).\n"
+                },
                 "labels": {
                     "type": "array",
                     "items": {
@@ -12886,6 +12895,7 @@
                 "createDate",
                 "diskSizeGb",
                 "encryptionAtRestProvider",
+                "globalClusterSelfManagedSharding",
                 "mongoDbMajorVersion",
                 "mongoDbVersion",
                 "name",
@@ -12925,6 +12935,10 @@
                 "encryptionAtRestProvider": {
                     "type": "string",
                     "description": "Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.\u003ctype\u003eSpecs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.\n"
+                },
+                "globalClusterSelfManagedSharding": {
+                    "type": "boolean",
+                    "description": "Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).\n"
                 },
                 "labels": {
                     "type": "array",
@@ -13034,6 +13048,10 @@
                     "encryptionAtRestProvider": {
                         "type": "string",
                         "description": "Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.\u003ctype\u003eSpecs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.\n"
+                    },
+                    "globalClusterSelfManagedSharding": {
+                        "type": "boolean",
+                        "description": "Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).\n"
                     },
                     "labels": {
                         "type": "array",
@@ -21430,6 +21448,10 @@
                         "description": "Possible values are AWS, GCP, AZURE or NONE.\n",
                         "type": "string"
                     },
+                    "globalClusterSelfManagedSharding": {
+                        "description": "Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).\n",
+                        "type": "boolean"
+                    },
                     "id": {
                         "description": "The provider-assigned unique ID for this managed resource.\n",
                         "type": "string"
@@ -21504,6 +21526,7 @@
                     "createDate",
                     "diskSizeGb",
                     "encryptionAtRestProvider",
+                    "globalClusterSelfManagedSharding",
                     "labels",
                     "mongoDbMajorVersion",
                     "mongoDbVersion",

@@ -411,6 +411,10 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public readonly encryptionAtRestProvider!: pulumi.Output<string>;
     /**
+     * Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+     */
+    public readonly globalClusterSelfManagedSharding!: pulumi.Output<boolean>;
+    /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      *
      * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
@@ -497,6 +501,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["createDate"] = state ? state.createDate : undefined;
             resourceInputs["diskSizeGb"] = state ? state.diskSizeGb : undefined;
             resourceInputs["encryptionAtRestProvider"] = state ? state.encryptionAtRestProvider : undefined;
+            resourceInputs["globalClusterSelfManagedSharding"] = state ? state.globalClusterSelfManagedSharding : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["mongoDbMajorVersion"] = state ? state.mongoDbMajorVersion : undefined;
             resourceInputs["mongoDbVersion"] = state ? state.mongoDbVersion : undefined;
@@ -529,6 +534,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["clusterType"] = args ? args.clusterType : undefined;
             resourceInputs["diskSizeGb"] = args ? args.diskSizeGb : undefined;
             resourceInputs["encryptionAtRestProvider"] = args ? args.encryptionAtRestProvider : undefined;
+            resourceInputs["globalClusterSelfManagedSharding"] = args ? args.globalClusterSelfManagedSharding : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["mongoDbMajorVersion"] = args ? args.mongoDbMajorVersion : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -602,6 +608,10 @@ export interface AdvancedClusterState {
      * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
      */
     encryptionAtRestProvider?: pulumi.Input<string>;
+    /**
+     * Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+     */
+    globalClusterSelfManagedSharding?: pulumi.Input<boolean>;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      *
@@ -708,6 +718,10 @@ export interface AdvancedClusterArgs {
      * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
      */
     encryptionAtRestProvider?: pulumi.Input<string>;
+    /**
+     * Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+     */
+    globalClusterSelfManagedSharding?: pulumi.Input<boolean>;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      *

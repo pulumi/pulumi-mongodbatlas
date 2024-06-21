@@ -25,6 +25,7 @@ class AdvancedClusterArgs:
                  bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+                 global_cluster_self_managed_sharding: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -57,6 +58,7 @@ class AdvancedClusterArgs:
         :param pulumi.Input['AdvancedClusterBiConnectorConfigArgs'] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        :param pulumi.Input[bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
@@ -84,6 +86,8 @@ class AdvancedClusterArgs:
             pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
             pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+        if global_cluster_self_managed_sharding is not None:
+            pulumi.set(__self__, "global_cluster_self_managed_sharding", global_cluster_self_managed_sharding)
         if labels is not None:
             warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
             pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
@@ -226,6 +230,18 @@ class AdvancedClusterArgs:
         pulumi.set(self, "encryption_at_rest_provider", value)
 
     @property
+    @pulumi.getter(name="globalClusterSelfManagedSharding")
+    def global_cluster_self_managed_sharding(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+        """
+        return pulumi.get(self, "global_cluster_self_managed_sharding")
+
+    @global_cluster_self_managed_sharding.setter
+    def global_cluster_self_managed_sharding(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "global_cluster_self_managed_sharding", value)
+
+    @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]:
         """
@@ -361,6 +377,7 @@ class _AdvancedClusterState:
                  create_date: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+                 global_cluster_self_managed_sharding: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  mongo_db_version: Optional[pulumi.Input[str]] = None,
@@ -397,6 +414,7 @@ class _AdvancedClusterState:
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringArgs']]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        :param pulumi.Input[bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
@@ -439,6 +457,8 @@ class _AdvancedClusterState:
             pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
             pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+        if global_cluster_self_managed_sharding is not None:
+            pulumi.set(__self__, "global_cluster_self_managed_sharding", global_cluster_self_managed_sharding)
         if labels is not None:
             warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
             pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
@@ -596,6 +616,18 @@ class _AdvancedClusterState:
     @encryption_at_rest_provider.setter
     def encryption_at_rest_provider(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "encryption_at_rest_provider", value)
+
+    @property
+    @pulumi.getter(name="globalClusterSelfManagedSharding")
+    def global_cluster_self_managed_sharding(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+        """
+        return pulumi.get(self, "global_cluster_self_managed_sharding")
+
+    @global_cluster_self_managed_sharding.setter
+    def global_cluster_self_managed_sharding(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "global_cluster_self_managed_sharding", value)
 
     @property
     @pulumi.getter
@@ -786,6 +818,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+                 global_cluster_self_managed_sharding: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -1143,6 +1176,7 @@ class AdvancedCluster(pulumi.CustomResource):
                - `GEOSHARDED` Global Cluster
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        :param pulumi.Input[bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
@@ -1509,6 +1543,7 @@ class AdvancedCluster(pulumi.CustomResource):
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+                 global_cluster_self_managed_sharding: Optional[pulumi.Input[bool]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -1539,6 +1574,7 @@ class AdvancedCluster(pulumi.CustomResource):
             __props__.__dict__["cluster_type"] = cluster_type
             __props__.__dict__["disk_size_gb"] = disk_size_gb
             __props__.__dict__["encryption_at_rest_provider"] = encryption_at_rest_provider
+            __props__.__dict__["global_cluster_self_managed_sharding"] = global_cluster_self_managed_sharding
             __props__.__dict__["labels"] = labels
             __props__.__dict__["mongo_db_major_version"] = mongo_db_major_version
             __props__.__dict__["name"] = name
@@ -1580,6 +1616,7 @@ class AdvancedCluster(pulumi.CustomResource):
             create_date: Optional[pulumi.Input[str]] = None,
             disk_size_gb: Optional[pulumi.Input[float]] = None,
             encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+            global_cluster_self_managed_sharding: Optional[pulumi.Input[bool]] = None,
             labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]]] = None,
             mongo_db_major_version: Optional[pulumi.Input[str]] = None,
             mongo_db_version: Optional[pulumi.Input[str]] = None,
@@ -1621,6 +1658,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterConnectionStringArgs']]]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        :param pulumi.Input[bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
@@ -1657,6 +1695,7 @@ class AdvancedCluster(pulumi.CustomResource):
         __props__.__dict__["create_date"] = create_date
         __props__.__dict__["disk_size_gb"] = disk_size_gb
         __props__.__dict__["encryption_at_rest_provider"] = encryption_at_rest_provider
+        __props__.__dict__["global_cluster_self_managed_sharding"] = global_cluster_self_managed_sharding
         __props__.__dict__["labels"] = labels
         __props__.__dict__["mongo_db_major_version"] = mongo_db_major_version
         __props__.__dict__["mongo_db_version"] = mongo_db_version
@@ -1758,6 +1797,14 @@ class AdvancedCluster(pulumi.CustomResource):
         Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         """
         return pulumi.get(self, "encryption_at_rest_provider")
+
+    @property
+    @pulumi.getter(name="globalClusterSelfManagedSharding")
+    def global_cluster_self_managed_sharding(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+        """
+        return pulumi.get(self, "global_cluster_self_managed_sharding")
 
     @property
     @pulumi.getter

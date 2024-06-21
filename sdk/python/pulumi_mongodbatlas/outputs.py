@@ -8578,6 +8578,7 @@ class GetAdvancedClustersResultResult(dict):
                  create_date: str,
                  disk_size_gb: float,
                  encryption_at_rest_provider: str,
+                 global_cluster_self_managed_sharding: bool,
                  labels: Sequence['outputs.GetAdvancedClustersResultLabelResult'],
                  mongo_db_major_version: str,
                  mongo_db_version: str,
@@ -8597,6 +8598,7 @@ class GetAdvancedClustersResultResult(dict):
         :param Sequence['GetAdvancedClustersResultConnectionStringArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param float disk_size_gb: Capacity, in gigabytes, of the host's root volume.
         :param str encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.
+        :param bool global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
         :param Sequence['GetAdvancedClustersResultLabelArgs'] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param str mongo_db_major_version: Version of the cluster to deploy.
         :param str mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
@@ -8617,6 +8619,7 @@ class GetAdvancedClustersResultResult(dict):
         pulumi.set(__self__, "create_date", create_date)
         pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+        pulumi.set(__self__, "global_cluster_self_managed_sharding", global_cluster_self_managed_sharding)
         pulumi.set(__self__, "labels", labels)
         pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
         pulumi.set(__self__, "mongo_db_version", mongo_db_version)
@@ -8687,6 +8690,14 @@ class GetAdvancedClustersResultResult(dict):
         Possible values are AWS, GCP, AZURE or NONE.
         """
         return pulumi.get(self, "encryption_at_rest_provider")
+
+    @property
+    @pulumi.getter(name="globalClusterSelfManagedSharding")
+    def global_cluster_self_managed_sharding(self) -> bool:
+        """
+        Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
+        """
+        return pulumi.get(self, "global_cluster_self_managed_sharding")
 
     @property
     @pulumi.getter
