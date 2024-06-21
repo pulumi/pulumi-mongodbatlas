@@ -544,6 +544,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string> EncryptionAtRestProvider { get; private set; } = null!;
 
         /// <summary>
+        /// Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+        /// </summary>
+        [Output("globalClusterSelfManagedSharding")]
+        public Output<bool> GlobalClusterSelfManagedSharding { get; private set; } = null!;
+
+        /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         /// </summary>
         [Output("labels")]
@@ -729,6 +735,12 @@ namespace Pulumi.Mongodbatlas
         [Input("encryptionAtRestProvider")]
         public Input<string>? EncryptionAtRestProvider { get; set; }
 
+        /// <summary>
+        /// Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+        /// </summary>
+        [Input("globalClusterSelfManagedSharding")]
+        public Input<bool>? GlobalClusterSelfManagedSharding { get; set; }
+
         [Input("labels")]
         private InputList<Inputs.AdvancedClusterLabelArgs>? _labels;
 
@@ -898,6 +910,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("encryptionAtRestProvider")]
         public Input<string>? EncryptionAtRestProvider { get; set; }
+
+        /// <summary>
+        /// Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
+        /// </summary>
+        [Input("globalClusterSelfManagedSharding")]
+        public Input<bool>? GlobalClusterSelfManagedSharding { get; set; }
 
         [Input("labels")]
         private InputList<Inputs.AdvancedClusterLabelGetArgs>? _labels;

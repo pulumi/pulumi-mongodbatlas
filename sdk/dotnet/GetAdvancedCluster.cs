@@ -212,6 +212,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string EncryptionAtRestProvider;
         /// <summary>
+        /// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
+        /// </summary>
+        public readonly bool GlobalClusterSelfManagedSharding;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -280,6 +284,8 @@ namespace Pulumi.Mongodbatlas
 
             string encryptionAtRestProvider,
 
+            bool globalClusterSelfManagedSharding,
+
             string id,
 
             ImmutableArray<Outputs.GetAdvancedClusterLabelResult> labels,
@@ -316,6 +322,7 @@ namespace Pulumi.Mongodbatlas
             CreateDate = createDate;
             DiskSizeGb = diskSizeGb;
             EncryptionAtRestProvider = encryptionAtRestProvider;
+            GlobalClusterSelfManagedSharding = globalClusterSelfManagedSharding;
             Id = id;
             Labels = labels;
             MongoDbMajorVersion = mongoDbMajorVersion;

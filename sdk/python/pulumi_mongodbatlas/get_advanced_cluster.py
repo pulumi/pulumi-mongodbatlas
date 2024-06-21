@@ -22,7 +22,7 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
@@ -47,6 +47,9 @@ class GetAdvancedClusterResult:
         if encryption_at_rest_provider and not isinstance(encryption_at_rest_provider, str):
             raise TypeError("Expected argument 'encryption_at_rest_provider' to be a str")
         pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+        if global_cluster_self_managed_sharding and not isinstance(global_cluster_self_managed_sharding, bool):
+            raise TypeError("Expected argument 'global_cluster_self_managed_sharding' to be a bool")
+        pulumi.set(__self__, "global_cluster_self_managed_sharding", global_cluster_self_managed_sharding)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -147,6 +150,14 @@ class GetAdvancedClusterResult:
         Possible values are AWS, GCP, AZURE or NONE.
         """
         return pulumi.get(self, "encryption_at_rest_provider")
+
+    @property
+    @pulumi.getter(name="globalClusterSelfManagedSharding")
+    def global_cluster_self_managed_sharding(self) -> bool:
+        """
+        Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
+        """
+        return pulumi.get(self, "global_cluster_self_managed_sharding")
 
     @property
     @pulumi.getter
@@ -272,6 +283,7 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             create_date=self.create_date,
             disk_size_gb=self.disk_size_gb,
             encryption_at_rest_provider=self.encryption_at_rest_provider,
+            global_cluster_self_managed_sharding=self.global_cluster_self_managed_sharding,
             id=self.id,
             labels=self.labels,
             mongo_db_major_version=self.mongo_db_major_version,
@@ -347,6 +359,7 @@ def get_advanced_cluster(name: Optional[str] = None,
         create_date=pulumi.get(__ret__, 'create_date'),
         disk_size_gb=pulumi.get(__ret__, 'disk_size_gb'),
         encryption_at_rest_provider=pulumi.get(__ret__, 'encryption_at_rest_provider'),
+        global_cluster_self_managed_sharding=pulumi.get(__ret__, 'global_cluster_self_managed_sharding'),
         id=pulumi.get(__ret__, 'id'),
         labels=pulumi.get(__ret__, 'labels'),
         mongo_db_major_version=pulumi.get(__ret__, 'mongo_db_major_version'),

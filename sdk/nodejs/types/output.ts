@@ -1599,6 +1599,10 @@ export interface GetAdvancedClustersResult {
      */
     encryptionAtRestProvider: string;
     /**
+     * Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
+     */
+    globalClusterSelfManagedSharding: boolean;
+    /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      *
      * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
