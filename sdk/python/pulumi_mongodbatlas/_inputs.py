@@ -5594,10 +5594,8 @@ class FederatedDatabaseInstanceStorageStoreArgs:
 
     @property
     @pulumi.getter(name="clusterId")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024.""")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
-        warnings.warn("""This parameter is deprecated and will be removed by September 2024.""", DeprecationWarning)
-        pulumi.log.warn("""cluster_id is deprecated: This parameter is deprecated and will be removed by September 2024.""")
-
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -6518,13 +6516,11 @@ class PrivateLinkEndpointServiceEndpointArgs:
 
     @property
     @pulumi.getter(name="serviceAttachmentName")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
     def service_attachment_name(self) -> Optional[pulumi.Input[str]]:
         """
         Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
         """
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-        pulumi.log.warn("""service_attachment_name is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-
         return pulumi.get(self, "service_attachment_name")
 
     @service_attachment_name.setter

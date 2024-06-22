@@ -68,18 +68,14 @@ class GetFederatedSettingsIdentityProvidersResult:
 
     @property
     @pulumi.getter(name="itemsPerPage")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
     def items_per_page(self) -> Optional[int]:
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-        pulumi.log.warn("""items_per_page is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-
         return pulumi.get(self, "items_per_page")
 
     @property
     @pulumi.getter(name="pageNum")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
     def page_num(self) -> Optional[int]:
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-        pulumi.log.warn("""page_num is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-
         return pulumi.get(self, "page_num")
 
     @property

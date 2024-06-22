@@ -178,10 +178,8 @@ class ThirdPartyIntegrationArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
     def scheme(self) -> Optional[pulumi.Input[str]]:
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-        pulumi.log.warn("""scheme is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-
         return pulumi.get(self, "scheme")
 
     @scheme.setter
@@ -390,10 +388,8 @@ class _ThirdPartyIntegrationState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
     def scheme(self) -> Optional[pulumi.Input[str]]:
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-        pulumi.log.warn("""scheme is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-
         return pulumi.get(self, "scheme")
 
     @scheme.setter
@@ -761,10 +757,8 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
     def scheme(self) -> pulumi.Output[str]:
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-        pulumi.log.warn("""scheme is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-
         return pulumi.get(self, "scheme")
 
     @property

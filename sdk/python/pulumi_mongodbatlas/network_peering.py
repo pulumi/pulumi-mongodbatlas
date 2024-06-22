@@ -793,7 +793,7 @@ class NetworkPeering(pulumi.CustomResource):
             provider_name="AZURE",
             provider_disk_type_name="P4",
             provider_instance_size_name="M10",
-            opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
+            opts = pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
 
         ### Peering Connection Only, Container Exists
@@ -1020,7 +1020,7 @@ class NetworkPeering(pulumi.CustomResource):
             provider_name="AZURE",
             provider_disk_type_name="P4",
             provider_instance_size_name="M10",
-            opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
+            opts = pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
 
         ### Peering Connection Only, Container Exists

@@ -168,7 +168,7 @@ def get_ldap_verify(project_id: Optional[str] = None,
         port=636,
         bind_username="USERNAME",
         bind_password="PASSWORD",
-        opts=pulumi.ResourceOptions(depends_on=[test_cluster]))
+        opts = pulumi.ResourceOptions(depends_on=[test_cluster]))
     test = mongodbatlas.get_ldap_verify_output(project_id=test_ldap_verify.project_id,
         request_id=test_ldap_verify.request_id)
     ```
@@ -226,7 +226,7 @@ def get_ldap_verify_output(project_id: Optional[pulumi.Input[str]] = None,
         port=636,
         bind_username="USERNAME",
         bind_password="PASSWORD",
-        opts=pulumi.ResourceOptions(depends_on=[test_cluster]))
+        opts = pulumi.ResourceOptions(depends_on=[test_cluster]))
     test = mongodbatlas.get_ldap_verify_output(project_id=test_ldap_verify.project_id,
         request_id=test_ldap_verify.request_id)
     ```

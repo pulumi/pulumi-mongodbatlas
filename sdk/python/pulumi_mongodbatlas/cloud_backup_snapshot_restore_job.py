@@ -205,13 +205,11 @@ class _CloudBackupSnapshotRestoreJobState:
 
     @property
     @pulumi.getter(name="createdAt")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
         UTC ISO 8601 formatted point in time when Atlas created the restore job.
         """
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-        pulumi.log.warn("""created_at is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -732,13 +730,11 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="createdAt")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
     def created_at(self) -> pulumi.Output[str]:
         """
         UTC ISO 8601 formatted point in time when Atlas created the restore job.
         """
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-        pulumi.log.warn("""created_at is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-
         return pulumi.get(self, "created_at")
 
     @property
