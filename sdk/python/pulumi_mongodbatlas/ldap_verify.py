@@ -350,7 +350,7 @@ class LdapVerify(pulumi.CustomResource):
             port=636,
             bind_username="USERNAME",
             bind_password="PASSWORD",
-            opts=pulumi.ResourceOptions(depends_on=[test_cluster]))
+            opts = pulumi.ResourceOptions(depends_on=[test_cluster]))
         ```
 
         ## Import
@@ -403,7 +403,7 @@ class LdapVerify(pulumi.CustomResource):
             port=636,
             bind_username="USERNAME",
             bind_password="PASSWORD",
-            opts=pulumi.ResourceOptions(depends_on=[test_cluster]))
+            opts = pulumi.ResourceOptions(depends_on=[test_cluster]))
         ```
 
         ## Import

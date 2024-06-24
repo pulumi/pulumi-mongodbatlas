@@ -243,13 +243,11 @@ class AdvancedClusterArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
-        warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
-        pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
-
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -631,13 +629,11 @@ class _AdvancedClusterState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
-        warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
-        pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
-
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -1808,13 +1804,11 @@ class AdvancedCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
     def labels(self) -> pulumi.Output[Optional[Sequence['outputs.AdvancedClusterLabel']]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
-        warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
-        pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
-
         return pulumi.get(self, "labels")
 
     @property

@@ -143,10 +143,8 @@ class GetCloudBackupSnapshotExportJobResult:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.""")
     def id(self) -> str:
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.""", DeprecationWarning)
-        pulumi.log.warn("""id is deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.""")
-
         return pulumi.get(self, "id")
 
     @property

@@ -152,7 +152,7 @@ def get_project_ip_access_list(aws_security_group: Optional[str] = None,
         project_id="<PROJECT-ID>",
         aws_security_group="sg-0026348ec11780bd1",
         comment="TestAcc for awsSecurityGroup",
-        opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
+        opts = pulumi.ResourceOptions(depends_on=[test_network_peering]))
     test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
         aws_security_group=test_project_ip_access_list.aws_security_group)
     ```
@@ -248,7 +248,7 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
         project_id="<PROJECT-ID>",
         aws_security_group="sg-0026348ec11780bd1",
         comment="TestAcc for awsSecurityGroup",
-        opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
+        opts = pulumi.ResourceOptions(depends_on=[test_network_peering]))
     test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
         aws_security_group=test_project_ip_access_list.aws_security_group)
     ```

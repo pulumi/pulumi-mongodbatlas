@@ -5945,10 +5945,8 @@ class FederatedDatabaseInstanceStorageStore(dict):
 
     @property
     @pulumi.getter(name="clusterId")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024.""")
     def cluster_id(self) -> Optional[str]:
-        warnings.warn("""This parameter is deprecated and will be removed by September 2024.""", DeprecationWarning)
-        pulumi.log.warn("""cluster_id is deprecated: This parameter is deprecated and will be removed by September 2024.""")
-
         return pulumi.get(self, "cluster_id")
 
     @property
@@ -6862,13 +6860,11 @@ class PrivateLinkEndpointServiceEndpoint(dict):
 
     @property
     @pulumi.getter(name="serviceAttachmentName")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
     def service_attachment_name(self) -> Optional[str]:
         """
         Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
         """
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-        pulumi.log.warn("""service_attachment_name is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-
         return pulumi.get(self, "service_attachment_name")
 
     @property
@@ -8701,13 +8697,11 @@ class GetAdvancedClustersResultResult(dict):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
     def labels(self) -> Sequence['outputs.GetAdvancedClustersResultLabelResult']:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         """
-        warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
-        pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
-
         return pulumi.get(self, "labels")
 
     @property
@@ -12287,13 +12281,11 @@ class GetCloudBackupSnapshotRestoreJobsResultResult(dict):
 
     @property
     @pulumi.getter(name="createdAt")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
     def created_at(self) -> str:
         """
         UTC ISO 8601 formatted point in time when Atlas created the restore job.
         """
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-        pulumi.log.warn("""created_at is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-
         return pulumi.get(self, "created_at")
 
     @property
@@ -13564,13 +13556,11 @@ class GetClustersResultResult(dict):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
     def labels(self) -> Sequence['outputs.GetClustersResultLabelResult']:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
-        warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
-        pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
-
         return pulumi.get(self, "labels")
 
     @property
@@ -16414,10 +16404,8 @@ class GetFederatedDatabaseInstanceStorageStoreResult(dict):
 
     @property
     @pulumi.getter(name="clusterId")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024.""")
     def cluster_id(self) -> str:
-        warnings.warn("""This parameter is deprecated and will be removed by September 2024.""", DeprecationWarning)
-        pulumi.log.warn("""cluster_id is deprecated: This parameter is deprecated and will be removed by September 2024.""")
-
         return pulumi.get(self, "cluster_id")
 
     @property
@@ -17044,10 +17032,8 @@ class GetFederatedDatabaseInstancesResultStorageStoreResult(dict):
 
     @property
     @pulumi.getter(name="clusterId")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024.""")
     def cluster_id(self) -> str:
-        warnings.warn("""This parameter is deprecated and will be removed by September 2024.""", DeprecationWarning)
-        pulumi.log.warn("""cluster_id is deprecated: This parameter is deprecated and will be removed by September 2024.""")
-
         return pulumi.get(self, "cluster_id")
 
     @property
@@ -21676,13 +21662,11 @@ class GetThirdPartyIntegrationsResultResult(dict):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
     def scheme(self) -> Optional[str]:
         """
         Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         """
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-        pulumi.log.warn("""scheme is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-
         return pulumi.get(self, "scheme")
 
     @property

@@ -142,13 +142,11 @@ class GetThirdPartyIntegrationResult:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
     def scheme(self) -> Optional[str]:
         """
         Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         """
-        warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-        pulumi.log.warn("""scheme is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-
         return pulumi.get(self, "scheme")
 
     @property
