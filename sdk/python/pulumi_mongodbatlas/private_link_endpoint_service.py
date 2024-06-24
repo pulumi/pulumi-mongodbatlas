@@ -537,7 +537,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                 address_type=INTERNAL,
                 address=f10.0.42.{range.value},
                 region=gcp_region,
-                opts=pulumi.ResourceOptions(depends_on=[test])))
+                opts = pulumi.ResourceOptions(depends_on=[test])))
         # Create 50 Forwarding rules
         default_compute_forwarding_rule = []
         for range in [{"value": i} for i in range(0, 50)]:
@@ -559,7 +559,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             provider_name="GCP",
             endpoint_service_id=default["name"],
             gcp_project_id=gcp_project,
-            opts=pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
+            opts = pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
         ```
 
         ### Available complete examples
@@ -687,7 +687,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                 address_type=INTERNAL,
                 address=f10.0.42.{range.value},
                 region=gcp_region,
-                opts=pulumi.ResourceOptions(depends_on=[test])))
+                opts = pulumi.ResourceOptions(depends_on=[test])))
         # Create 50 Forwarding rules
         default_compute_forwarding_rule = []
         for range in [{"value": i} for i in range(0, 50)]:
@@ -709,7 +709,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             provider_name="GCP",
             endpoint_service_id=default["name"],
             gcp_project_id=gcp_project,
-            opts=pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
+            opts = pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
         ```
 
         ### Available complete examples

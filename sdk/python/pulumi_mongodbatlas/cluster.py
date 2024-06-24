@@ -401,13 +401,11 @@ class ClusterArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
-        warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
-        pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
-
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -522,13 +520,11 @@ class ClusterArgs:
 
     @property
     @pulumi.getter(name="providerEncryptEbsVolume")
+    @_utilities.deprecated("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
     def provider_encrypt_ebs_volume(self) -> Optional[pulumi.Input[bool]]:
         """
         **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         """
-        warnings.warn("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""", DeprecationWarning)
-        pulumi.log.warn("""provider_encrypt_ebs_volume is deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
-
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 
     @provider_encrypt_ebs_volume.setter
@@ -1069,13 +1065,11 @@ class _ClusterState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
     def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
-        warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
-        pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
-
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -1250,13 +1244,11 @@ class _ClusterState:
 
     @property
     @pulumi.getter(name="providerEncryptEbsVolume")
+    @_utilities.deprecated("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
     def provider_encrypt_ebs_volume(self) -> Optional[pulumi.Input[bool]]:
         """
         **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         """
-        warnings.warn("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""", DeprecationWarning)
-        pulumi.log.warn("""provider_encrypt_ebs_volume is deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
-
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 
     @provider_encrypt_ebs_volume.setter
@@ -2427,13 +2419,11 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
     def labels(self) -> pulumi.Output[Optional[Sequence['outputs.ClusterLabel']]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
-        warnings.warn("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""", DeprecationWarning)
-        pulumi.log.warn("""labels is deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
-
         return pulumi.get(self, "labels")
 
     @property
@@ -2548,13 +2538,11 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerEncryptEbsVolume")
+    @_utilities.deprecated("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
     def provider_encrypt_ebs_volume(self) -> pulumi.Output[bool]:
         """
         **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         """
-        warnings.warn("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""", DeprecationWarning)
-        pulumi.log.warn("""provider_encrypt_ebs_volume is deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
-
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 
     @property

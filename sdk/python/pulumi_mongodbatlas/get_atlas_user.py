@@ -97,10 +97,8 @@ class GetAtlasUserResult:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Please use user_id id attribute instead""")
     def id(self) -> str:
-        warnings.warn("""Please use user_id id attribute instead""", DeprecationWarning)
-        pulumi.log.warn("""id is deprecated: Please use user_id id attribute instead""")
-
         return pulumi.get(self, "id")
 
     @property
