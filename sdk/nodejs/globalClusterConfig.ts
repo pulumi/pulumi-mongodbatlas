@@ -11,6 +11,8 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
+ * > **NOTE:** This resource can only be used with Atlas-managed clusters. See doc for `globalClusterSelfManagedSharding` attribute in `mongodbatlas.AdvancedCluster` resource for more info.
+ *
  * > **IMPORTANT:** A Global Cluster Configuration, once created, can only be deleted. You can recreate the Global Cluster with the same data only in the Atlas UI. This is because the configuration and its related collection with shard key and indexes are managed separately and they would end up in an inconsistent state. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/)
  *
  * ## Examples Usage
@@ -60,46 +62,6 @@ import * as utilities from "./utilities";
  *         customShardKey: "city",
  *         isCustomShardKeyHashed: false,
  *         isShardKeyUnique: false,
- *     }],
- *     customZoneMappings: [{
- *         location: "CA",
- *         zone: "Zone 1",
- *     }],
- * });
- * ```
- *
- * ### Example Global cluster config
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     projectId: "<YOUR-PROJECT-ID>",
- *     name: "cluster-test",
- *     clusterType: "REPLICASET",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [{
- *             regionName: "US_EAST_1",
- *             electableNodes: 3,
- *             priority: 7,
- *             readOnlyNodes: 0,
- *         }],
- *     }],
- *     backupEnabled: true,
- *     autoScalingDiskGbEnabled: true,
- *     mongoDbMajorVersion: "7.0",
- *     providerName: "AWS",
- *     providerInstanceSizeName: "M40",
- * });
- * const config = new mongodbatlas.GlobalClusterConfig("config", {
- *     projectId: test.projectId,
- *     clusterName: test.name,
- *     managedNamespaces: [{
- *         db: "mydata",
- *         collection: "publishers",
- *         customShardKey: "city",
  *     }],
  *     customZoneMappings: [{
  *         location: "CA",

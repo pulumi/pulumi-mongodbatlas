@@ -14,6 +14,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
+    /// &gt; **NOTE:** This resource can only be used with Atlas-managed clusters. See doc for `global_cluster_self_managed_sharding` attribute in `mongodbatlas.AdvancedCluster` resource for more info.
+    /// 
     /// &gt; **IMPORTANT:** A Global Cluster Configuration, once created, can only be deleted. You can recreate the Global Cluster with the same data only in the Atlas UI. This is because the configuration and its related collection with shard key and indexes are managed separately and they would end up in an inconsistent state. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/)
     /// 
     /// ## Examples Usage
@@ -84,71 +86,6 @@ namespace Pulumi.Mongodbatlas
     ///                 CustomShardKey = "city",
     ///                 IsCustomShardKeyHashed = false,
     ///                 IsShardKeyUnique = false,
-    ///             },
-    ///         },
-    ///         CustomZoneMappings = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.GlobalClusterConfigCustomZoneMappingArgs
-    ///             {
-    ///                 Location = "CA",
-    ///                 Zone = "Zone 1",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Example Global cluster config
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
-    ///     {
-    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-    ///         Name = "cluster-test",
-    ///         ClusterType = "REPLICASET",
-    ///         ReplicationSpecs = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
-    ///             {
-    ///                 NumShards = 1,
-    ///                 RegionsConfigs = new[]
-    ///                 {
-    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
-    ///                     {
-    ///                         RegionName = "US_EAST_1",
-    ///                         ElectableNodes = 3,
-    ///                         Priority = 7,
-    ///                         ReadOnlyNodes = 0,
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///         BackupEnabled = true,
-    ///         AutoScalingDiskGbEnabled = true,
-    ///         MongoDbMajorVersion = "7.0",
-    ///         ProviderName = "AWS",
-    ///         ProviderInstanceSizeName = "M40",
-    ///     });
-    /// 
-    ///     var config = new Mongodbatlas.GlobalClusterConfig("config", new()
-    ///     {
-    ///         ProjectId = test.ProjectId,
-    ///         ClusterName = test.Name,
-    ///         ManagedNamespaces = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs
-    ///             {
-    ///                 Db = "mydata",
-    ///                 Collection = "publishers",
-    ///                 CustomShardKey = "city",
     ///             },
     ///         },
     ///         CustomZoneMappings = new[]

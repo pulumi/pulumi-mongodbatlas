@@ -24,6 +24,8 @@ import javax.annotation.Nullable;
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
  * 
+ * &gt; **NOTE:** This resource can only be used with Atlas-managed clusters. See doc for `global_cluster_self_managed_sharding` attribute in `mongodbatlas.AdvancedCluster` resource for more info.
+ * 
  * &gt; **IMPORTANT:** A Global Cluster Configuration, once created, can only be deleted. You can recreate the Global Cluster with the same data only in the Atlas UI. This is because the configuration and its related collection with shard key and indexes are managed separately and they would end up in an inconsistent state. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/)
  * 
  * ## Examples Usage
@@ -97,76 +99,6 @@ import javax.annotation.Nullable;
  *                 .customShardKey("city")
  *                 .isCustomShardKeyHashed(false)
  *                 .isShardKeyUnique(false)
- *                 .build())
- *             .customZoneMappings(GlobalClusterConfigCustomZoneMappingArgs.builder()
- *                 .location("CA")
- *                 .zone("Zone 1")
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * ### Example Global cluster config
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
- * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
- * import com.pulumi.mongodbatlas.GlobalClusterConfig;
- * import com.pulumi.mongodbatlas.GlobalClusterConfigArgs;
- * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigManagedNamespaceArgs;
- * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigCustomZoneMappingArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster("cluster-test", ClusterArgs.builder()
- *             .projectId("<YOUR-PROJECT-ID>")
- *             .name("cluster-test")
- *             .clusterType("REPLICASET")
- *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
- *                 .numShards(1)
- *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .regionName("US_EAST_1")
- *                     .electableNodes(3)
- *                     .priority(7)
- *                     .readOnlyNodes(0)
- *                     .build())
- *                 .build())
- *             .backupEnabled(true)
- *             .autoScalingDiskGbEnabled(true)
- *             .mongoDbMajorVersion("7.0")
- *             .providerName("AWS")
- *             .providerInstanceSizeName("M40")
- *             .build());
- * 
- *         var config = new GlobalClusterConfig("config", GlobalClusterConfigArgs.builder()
- *             .projectId(test.projectId())
- *             .clusterName(test.name())
- *             .managedNamespaces(GlobalClusterConfigManagedNamespaceArgs.builder()
- *                 .db("mydata")
- *                 .collection("publishers")
- *                 .customShardKey("city")
  *                 .build())
  *             .customZoneMappings(GlobalClusterConfigCustomZoneMappingArgs.builder()
  *                 .location("CA")
