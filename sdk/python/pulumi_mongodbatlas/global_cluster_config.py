@@ -186,6 +186,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+        > **NOTE:** This resource can only be used with Atlas-managed clusters. See doc for `global_cluster_self_managed_sharding` attribute in `AdvancedCluster` resource for more info.
+
         > **IMPORTANT:** A Global Cluster Configuration, once created, can only be deleted. You can recreate the Global Cluster with the same data only in the Atlas UI. This is because the configuration and its related collection with shard key and indexes are managed separately and they would end up in an inconsistent state. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/)
 
         ## Examples Usage
@@ -234,44 +236,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 custom_shard_key="city",
                 is_custom_shard_key_hashed=False,
                 is_shard_key_unique=False,
-            )],
-            custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
-                location="CA",
-                zone="Zone 1",
-            )])
-        ```
-
-        ### Example Global cluster config
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            project_id="<YOUR-PROJECT-ID>",
-            name="cluster-test",
-            cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_1",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
-            backup_enabled=True,
-            auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="7.0",
-            provider_name="AWS",
-            provider_instance_size_name="M40")
-        config = mongodbatlas.GlobalClusterConfig("config",
-            project_id=test["projectId"],
-            cluster_name=test["name"],
-            managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
-                db="mydata",
-                collection="publishers",
-                custom_shard_key="city",
             )],
             custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
                 location="CA",
@@ -306,6 +270,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+        > **NOTE:** This resource can only be used with Atlas-managed clusters. See doc for `global_cluster_self_managed_sharding` attribute in `AdvancedCluster` resource for more info.
+
         > **IMPORTANT:** A Global Cluster Configuration, once created, can only be deleted. You can recreate the Global Cluster with the same data only in the Atlas UI. This is because the configuration and its related collection with shard key and indexes are managed separately and they would end up in an inconsistent state. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/)
 
         ## Examples Usage
@@ -354,44 +320,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 custom_shard_key="city",
                 is_custom_shard_key_hashed=False,
                 is_shard_key_unique=False,
-            )],
-            custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
-                location="CA",
-                zone="Zone 1",
-            )])
-        ```
-
-        ### Example Global cluster config
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            project_id="<YOUR-PROJECT-ID>",
-            name="cluster-test",
-            cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_1",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
-            backup_enabled=True,
-            auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="7.0",
-            provider_name="AWS",
-            provider_instance_size_name="M40")
-        config = mongodbatlas.GlobalClusterConfig("config",
-            project_id=test["projectId"],
-            cluster_name=test["name"],
-            managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
-                db="mydata",
-                collection="publishers",
-                custom_shard_key="city",
             )],
             custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
                 location="CA",

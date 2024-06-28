@@ -16,6 +16,8 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
+// > **NOTE:** This resource can only be used with Atlas-managed clusters. See doc for `globalClusterSelfManagedSharding` attribute in `AdvancedCluster` resource for more info.
+//
 // > **IMPORTANT:** A Global Cluster Configuration, once created, can only be deleted. You can recreate the Global Cluster with the same data only in the Atlas UI. This is because the configuration and its related collection with shard key and indexes are managed separately and they would end up in an inconsistent state. [Read more about Global Cluster Configuration](https://www.mongodb.com/docs/atlas/global-clusters/)
 //
 // ## Examples Usage
@@ -81,72 +83,6 @@ import (
 //						CustomShardKey:         pulumi.String("city"),
 //						IsCustomShardKeyHashed: pulumi.Bool(false),
 //						IsShardKeyUnique:       pulumi.Bool(false),
-//					},
-//				},
-//				CustomZoneMappings: mongodbatlas.GlobalClusterConfigCustomZoneMappingArray{
-//					&mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs{
-//						Location: pulumi.String("CA"),
-//						Zone:     pulumi.String("Zone 1"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Example Global cluster config
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewCluster(ctx, "cluster-test", &mongodbatlas.ClusterArgs{
-//				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
-//				Name:        pulumi.String("cluster-test"),
-//				ClusterType: pulumi.String("REPLICASET"),
-//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-//					&mongodbatlas.ClusterReplicationSpecArgs{
-//						NumShards: pulumi.Int(1),
-//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-//								RegionName:     pulumi.String("US_EAST_1"),
-//								ElectableNodes: pulumi.Int(3),
-//								Priority:       pulumi.Int(7),
-//								ReadOnlyNodes:  pulumi.Int(0),
-//							},
-//						},
-//					},
-//				},
-//				BackupEnabled:            pulumi.Bool(true),
-//				AutoScalingDiskGbEnabled: pulumi.Bool(true),
-//				MongoDbMajorVersion:      pulumi.String("7.0"),
-//				ProviderName:             pulumi.String("AWS"),
-//				ProviderInstanceSizeName: pulumi.String("M40"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = mongodbatlas.NewGlobalClusterConfig(ctx, "config", &mongodbatlas.GlobalClusterConfigArgs{
-//				ProjectId:   pulumi.Any(test.ProjectId),
-//				ClusterName: pulumi.Any(test.Name),
-//				ManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{
-//					&mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{
-//						Db:             pulumi.String("mydata"),
-//						Collection:     pulumi.String("publishers"),
-//						CustomShardKey: pulumi.String("city"),
 //					},
 //				},
 //				CustomZoneMappings: mongodbatlas.GlobalClusterConfigCustomZoneMappingArray{
