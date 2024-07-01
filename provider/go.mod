@@ -10,8 +10,8 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 
 require (
 	github.com/mongodb/terraform-provider-mongodbatlas/shim v0.0.0
-	github.com/pulumi/pulumi-terraform-bridge/pf v0.38.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.85.0
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.38.1-0.20240701123742-f317dc4a503d
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.85.1-0.20240701123742-f317dc4a503d
 	github.com/pulumi/pulumi/sdk/v3 v3.121.0
 )
 
@@ -26,7 +26,7 @@ require (
 	cloud.google.com/go/storage v1.39.1 // indirect
 	dario.cat/mergo v1.0.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.11.1 // indirect
-	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.6.0 // indirect
+	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.7.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/internal v1.8.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/keyvault/azkeys v0.10.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/keyvault/internal v0.7.1 // indirect
