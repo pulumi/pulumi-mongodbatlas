@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GlobalClusterConfigCustomZoneMapping {
+    /**
+     * @return The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
+     * 
+     */
     private @Nullable String location;
+    /**
+     * @return The name of the zone in your Global Cluster that you want to map to location.
+     * 
+     */
     private @Nullable String zone;
 
     private GlobalClusterConfigCustomZoneMapping() {}
+    /**
+     * @return The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
+     * 
+     */
     public Optional<String> location() {
         return Optional.ofNullable(this.location);
     }
+    /**
+     * @return The name of the zone in your Global Cluster that you want to map to location.
+     * 
+     */
     public Optional<String> zone() {
         return Optional.ofNullable(this.zone);
     }

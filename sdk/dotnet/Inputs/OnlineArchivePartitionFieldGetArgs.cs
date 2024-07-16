@@ -12,12 +12,21 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class OnlineArchivePartitionFieldGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
+        /// </summary>
         [Input("fieldName", required: true)]
         public Input<string> FieldName { get; set; } = null!;
 
+        /// <summary>
+        /// Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
+        /// </summary>
         [Input("fieldType")]
         public Input<string>? FieldType { get; set; }
 
+        /// <summary>
+        /// Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
+        /// </summary>
         [Input("order", required: true)]
         public Input<int> Order { get; set; } = null!;
 

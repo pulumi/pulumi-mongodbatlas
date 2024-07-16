@@ -13,16 +13,32 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AlertConfigurationMetricThresholdConfig {
+    /**
+     * @return Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+     * 
+     */
     private String metricName;
+    /**
+     * @return This must be set to AVERAGE. Atlas computes the current metric value as an average.
+     * 
+     */
     private @Nullable String mode;
     private @Nullable String operator;
     private @Nullable Double threshold;
     private @Nullable String units;
 
     private AlertConfigurationMetricThresholdConfig() {}
+    /**
+     * @return Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+     * 
+     */
     public String metricName() {
         return this.metricName;
     }
+    /**
+     * @return This must be set to AVERAGE. Atlas computes the current metric value as an average.
+     * 
+     */
     public Optional<String> mode() {
         return Optional.ofNullable(this.mode);
     }

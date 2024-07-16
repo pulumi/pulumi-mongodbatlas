@@ -12,12 +12,35 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class AlertConfigurationMatcherGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of the field in the target object to match on.
+        /// 
+        /// | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+        /// |:----------           |:-------------       |:------                 |
+        /// | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+        /// | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+        /// | `PORT`              | `CLUSTER_NAME`      |                         |
+        /// | `HOSTNAME_AND_PORT` |                     |                         |
+        /// | `REPLICA_SET_NAME`  |                     |                         |
+        /// 
+        /// 
+        /// 
+        /// All other types of alerts do not support matchers.
+        /// </summary>
         [Input("fieldName", required: true)]
         public Input<string> FieldName { get; set; } = null!;
 
         [Input("operator", required: true)]
         public Input<string> Operator { get; set; } = null!;
 
+        /// <summary>
+        /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+        /// - `PRIMARY`
+        /// - `SECONDARY`
+        /// - `STANDALONE`
+        /// - `CONFIG`
+        /// - `MONGOS`
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 

@@ -12,9 +12,15 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class GlobalClusterConfigCustomZoneMappingGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
+        /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
+        /// <summary>
+        /// The name of the zone in your Global Cluster that you want to map to location.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 

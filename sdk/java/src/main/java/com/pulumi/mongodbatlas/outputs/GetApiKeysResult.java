@@ -11,21 +11,63 @@ import java.util.Objects;
 
 @CustomType
 public final class GetApiKeysResult {
+    /**
+     * @return Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
+     * 
+     */
     private String apiKeyId;
+    /**
+     * @return Description of this Organization API key.
+     * 
+     */
     private String description;
     private String publicKey;
+    /**
+     * @return Name of the role. This resource returns all the roles the user has in Atlas.
+     * 
+     * The following are valid roles:
+     * * `ORG_OWNER`
+     * * `ORG_GROUP_CREATOR`
+     * * `ORG_BILLING_ADMIN`
+     * * `ORG_READ_ONLY`
+     * * `ORG_MEMBER`
+     * 
+     * See [MongoDB Atlas API - Return All Organization API Keys](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/listApiKeys) - Documentation for more information.
+     * 
+     */
     private List<String> roleNames;
 
     private GetApiKeysResult() {}
+    /**
+     * @return Unique identifier for the API key you want to update. Use the /orgs/{ORG-ID}/apiKeys endpoint to retrieve all API keys to which the authenticated user has access for the specified organization.
+     * 
+     */
     public String apiKeyId() {
         return this.apiKeyId;
     }
+    /**
+     * @return Description of this Organization API key.
+     * 
+     */
     public String description() {
         return this.description;
     }
     public String publicKey() {
         return this.publicKey;
     }
+    /**
+     * @return Name of the role. This resource returns all the roles the user has in Atlas.
+     * 
+     * The following are valid roles:
+     * * `ORG_OWNER`
+     * * `ORG_GROUP_CREATOR`
+     * * `ORG_BILLING_ADMIN`
+     * * `ORG_READ_ONLY`
+     * * `ORG_MEMBER`
+     * 
+     * See [MongoDB Atlas API - Return All Organization API Keys](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/listApiKeys) - Documentation for more information.
+     * 
+     */
     public List<String> roleNames() {
         return this.roleNames;
     }

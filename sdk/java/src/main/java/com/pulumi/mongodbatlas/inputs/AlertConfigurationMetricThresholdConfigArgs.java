@@ -17,16 +17,32 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
 
     public static final AlertConfigurationMetricThresholdConfigArgs Empty = new AlertConfigurationMetricThresholdConfigArgs();
 
+    /**
+     * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+     * 
+     */
     @Import(name="metricName", required=true)
     private Output<String> metricName;
 
+    /**
+     * @return Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+     * 
+     */
     public Output<String> metricName() {
         return this.metricName;
     }
 
+    /**
+     * This must be set to AVERAGE. Atlas computes the current metric value as an average.
+     * 
+     */
     @Import(name="mode")
     private @Nullable Output<String> mode;
 
+    /**
+     * @return This must be set to AVERAGE. Atlas computes the current metric value as an average.
+     * 
+     */
     public Optional<Output<String>> mode() {
         return Optional.ofNullable(this.mode);
     }
@@ -80,20 +96,44 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
             $ = new AlertConfigurationMetricThresholdConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param metricName Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricName(Output<String> metricName) {
             $.metricName = metricName;
             return this;
         }
 
+        /**
+         * @param metricName Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+         * 
+         * @return builder
+         * 
+         */
         public Builder metricName(String metricName) {
             return metricName(Output.of(metricName));
         }
 
+        /**
+         * @param mode This must be set to AVERAGE. Atlas computes the current metric value as an average.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(@Nullable Output<String> mode) {
             $.mode = mode;
             return this;
         }
 
+        /**
+         * @param mode This must be set to AVERAGE. Atlas computes the current metric value as an average.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mode(String mode) {
             return mode(Output.of(mode));
         }

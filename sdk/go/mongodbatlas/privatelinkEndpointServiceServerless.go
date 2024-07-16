@@ -90,7 +90,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-azurerm/sdk/v1/go/azurerm"
+//	"github.com/pulumi/pulumi-azurerm/sdk/go/azurerm"
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -105,7 +105,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testPrivateEndpoint, err := index.NewPrivateEndpoint(ctx, "test", &index.PrivateEndpointArgs{
+//			testPrivateEndpoint, err := azurerm.NewPrivateEndpoint(ctx, "test", &azurerm.PrivateEndpointArgs{
 //				Name:              "endpoint-test",
 //				Location:          testAzurermResourceGroup.Location,
 //				ResourceGroupName: resourceGroupName,

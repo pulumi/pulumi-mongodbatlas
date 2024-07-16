@@ -14,6 +14,12 @@ import javax.annotation.Nullable;
 public final class CustomDbRoleActionResource {
     private @Nullable Boolean cluster;
     private @Nullable String collectionName;
+    /**
+     * @return Database on which the inherited role is granted.
+     * 
+     * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
+     * 
+     */
     private @Nullable String databaseName;
 
     private CustomDbRoleActionResource() {}
@@ -23,6 +29,12 @@ public final class CustomDbRoleActionResource {
     public Optional<String> collectionName() {
         return Optional.ofNullable(this.collectionName);
     }
+    /**
+     * @return Database on which the inherited role is granted.
+     * 
+     * &gt; **NOTE** This value should be admin for all roles except read and readWrite.
+     * 
+     */
     public Optional<String> databaseName() {
         return Optional.ofNullable(this.databaseName);
     }

@@ -13,7 +13,13 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class AlertConfigurationMetricThresholdConfig
     {
+        /// <summary>
+        /// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+        /// </summary>
         public readonly string MetricName;
+        /// <summary>
+        /// This must be set to AVERAGE. Atlas computes the current metric value as an average.
+        /// </summary>
         public readonly string? Mode;
         public readonly string? Operator;
         public readonly double? Threshold;

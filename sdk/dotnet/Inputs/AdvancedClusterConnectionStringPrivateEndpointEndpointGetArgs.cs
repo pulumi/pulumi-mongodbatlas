@@ -15,6 +15,15 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("endpointId")]
         public Input<string>? EndpointId { get; set; }
 
+        /// <summary>
+        /// Cloud service provider on which the servers are provisioned.
+        /// The possible values are:
+        /// 
+        /// - `AWS` - Amazon AWS
+        /// - `GCP` - Google Cloud Platform
+        /// - `AZURE` - Microsoft Azure
+        /// - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }
 

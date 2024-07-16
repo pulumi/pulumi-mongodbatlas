@@ -12,6 +12,9 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class ClusterReplicationSpecGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Unique identifer of the replication document for a zone in a Global Cluster.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
@@ -23,12 +26,22 @@ namespace Pulumi.Mongodbatlas.Inputs
 
         [Input("regionsConfigs")]
         private InputList<Inputs.ClusterReplicationSpecRegionsConfigGetArgs>? _regionsConfigs;
+
+        /// <summary>
+        /// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+        /// </summary>
         public InputList<Inputs.ClusterReplicationSpecRegionsConfigGetArgs> RegionsConfigs
         {
             get => _regionsConfigs ?? (_regionsConfigs = new InputList<Inputs.ClusterReplicationSpecRegionsConfigGetArgs>());
             set => _regionsConfigs = value;
         }
 
+        /// <summary>
+        /// Name for the zone in a Global Cluster.
+        /// 
+        /// 
+        /// **Region Config**
+        /// </summary>
         [Input("zoneName")]
         public Input<string>? ZoneName { get; set; }
 
