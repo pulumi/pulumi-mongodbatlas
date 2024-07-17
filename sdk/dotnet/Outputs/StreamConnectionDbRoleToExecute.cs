@@ -13,6 +13,9 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class StreamConnectionDbRoleToExecute
     {
+        /// <summary>
+        /// The name of the role to use. Can be a built in role or a custom role.
+        /// </summary>
         public readonly string Role;
         /// <summary>
         /// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.

@@ -14,9 +14,37 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
 
     public static final AlertConfigurationMatcherArgs Empty = new AlertConfigurationMatcherArgs();
 
+    /**
+     * Name of the field in the target object to match on.
+     * 
+     * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+     * |:----------           |:-------------       |:------                 |
+     * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+     * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+     * | `PORT`              | `CLUSTER_NAME`      |                         |
+     * | `HOSTNAME_AND_PORT` |                     |                         |
+     * | `REPLICA_SET_NAME`  |                     |                         |
+     * 
+     * All other types of alerts do not support matchers.
+     * 
+     */
     @Import(name="fieldName", required=true)
     private Output<String> fieldName;
 
+    /**
+     * @return Name of the field in the target object to match on.
+     * 
+     * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+     * |:----------           |:-------------       |:------                 |
+     * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+     * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+     * | `PORT`              | `CLUSTER_NAME`      |                         |
+     * | `HOSTNAME_AND_PORT` |                     |                         |
+     * | `REPLICA_SET_NAME`  |                     |                         |
+     * 
+     * All other types of alerts do not support matchers.
+     * 
+     */
     public Output<String> fieldName() {
         return this.fieldName;
     }
@@ -28,9 +56,27 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         return this.operator;
     }
 
+    /**
+     * Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
+     * 
+     */
     @Import(name="value", required=true)
     private Output<String> value;
 
+    /**
+     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
+     * 
+     */
     public Output<String> value() {
         return this.value;
     }
@@ -61,11 +107,43 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
             $ = new AlertConfigurationMatcherArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param fieldName Name of the field in the target object to match on.
+         * 
+         * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+         * |:----------           |:-------------       |:------                 |
+         * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+         * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+         * | `PORT`              | `CLUSTER_NAME`      |                         |
+         * | `HOSTNAME_AND_PORT` |                     |                         |
+         * | `REPLICA_SET_NAME`  |                     |                         |
+         * 
+         * All other types of alerts do not support matchers.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fieldName(Output<String> fieldName) {
             $.fieldName = fieldName;
             return this;
         }
 
+        /**
+         * @param fieldName Name of the field in the target object to match on.
+         * 
+         * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+         * |:----------           |:-------------       |:------                 |
+         * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+         * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+         * | `PORT`              | `CLUSTER_NAME`      |                         |
+         * | `HOSTNAME_AND_PORT` |                     |                         |
+         * | `REPLICA_SET_NAME`  |                     |                         |
+         * 
+         * All other types of alerts do not support matchers.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fieldName(String fieldName) {
             return fieldName(Output.of(fieldName));
         }
@@ -79,11 +157,33 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
             return operator(Output.of(operator));
         }
 
+        /**
+         * @param value Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+         * - `PRIMARY`
+         * - `SECONDARY`
+         * - `STANDALONE`
+         * - `CONFIG`
+         * - `MONGOS`
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Output<String> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+         * - `PRIMARY`
+         * - `SECONDARY`
+         * - `STANDALONE`
+         * - `CONFIG`
+         * - `MONGOS`
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(String value) {
             return value(Output.of(value));
         }

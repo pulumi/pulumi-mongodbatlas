@@ -12,6 +12,9 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class ClusterSnapshotBackupPolicyPolicyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Unique identifer of the replication document for a zone in a Global Cluster.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 

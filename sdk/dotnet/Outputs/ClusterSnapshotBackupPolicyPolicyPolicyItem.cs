@@ -15,6 +15,9 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         public readonly int? FrequencyInterval;
         public readonly string? FrequencyType;
+        /// <summary>
+        /// Unique identifer of the replication document for a zone in a Global Cluster.
+        /// </summary>
         public readonly string? Id;
         public readonly string? RetentionUnit;
         public readonly int? RetentionValue;

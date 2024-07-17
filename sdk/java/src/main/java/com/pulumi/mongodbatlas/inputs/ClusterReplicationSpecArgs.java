@@ -19,9 +19,17 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
 
     public static final ClusterReplicationSpecArgs Empty = new ClusterReplicationSpecArgs();
 
+    /**
+     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
     @Import(name="id")
     private @Nullable Output<String> id;
 
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
     }
@@ -41,16 +49,36 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
         return this.numShards;
     }
 
+    /**
+     * Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+     * 
+     */
     @Import(name="regionsConfigs")
     private @Nullable Output<List<ClusterReplicationSpecRegionsConfigArgs>> regionsConfigs;
 
+    /**
+     * @return Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+     * 
+     */
     public Optional<Output<List<ClusterReplicationSpecRegionsConfigArgs>>> regionsConfigs() {
         return Optional.ofNullable(this.regionsConfigs);
     }
 
+    /**
+     * Name for the zone in a Global Cluster.
+     * 
+     * **Region Config**
+     * 
+     */
     @Import(name="zoneName")
     private @Nullable Output<String> zoneName;
 
+    /**
+     * @return Name for the zone in a Global Cluster.
+     * 
+     * **Region Config**
+     * 
+     */
     public Optional<Output<String>> zoneName() {
         return Optional.ofNullable(this.zoneName);
     }
@@ -82,11 +110,23 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
             $ = new ClusterReplicationSpecArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param id Unique identifer of the replication document for a zone in a Global Cluster.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(@Nullable Output<String> id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param id Unique identifer of the replication document for a zone in a Global Cluster.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(String id) {
             return id(Output.of(id));
         }
@@ -112,24 +152,58 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
             return numShards(Output.of(numShards));
         }
 
+        /**
+         * @param regionsConfigs Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+         * 
+         * @return builder
+         * 
+         */
         public Builder regionsConfigs(@Nullable Output<List<ClusterReplicationSpecRegionsConfigArgs>> regionsConfigs) {
             $.regionsConfigs = regionsConfigs;
             return this;
         }
 
+        /**
+         * @param regionsConfigs Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+         * 
+         * @return builder
+         * 
+         */
         public Builder regionsConfigs(List<ClusterReplicationSpecRegionsConfigArgs> regionsConfigs) {
             return regionsConfigs(Output.of(regionsConfigs));
         }
 
+        /**
+         * @param regionsConfigs Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+         * 
+         * @return builder
+         * 
+         */
         public Builder regionsConfigs(ClusterReplicationSpecRegionsConfigArgs... regionsConfigs) {
             return regionsConfigs(List.of(regionsConfigs));
         }
 
+        /**
+         * @param zoneName Name for the zone in a Global Cluster.
+         * 
+         * **Region Config**
+         * 
+         * @return builder
+         * 
+         */
         public Builder zoneName(@Nullable Output<String> zoneName) {
             $.zoneName = zoneName;
             return this;
         }
 
+        /**
+         * @param zoneName Name for the zone in a Global Cluster.
+         * 
+         * **Region Config**
+         * 
+         * @return builder
+         * 
+         */
         public Builder zoneName(String zoneName) {
             return zoneName(Output.of(zoneName));
         }

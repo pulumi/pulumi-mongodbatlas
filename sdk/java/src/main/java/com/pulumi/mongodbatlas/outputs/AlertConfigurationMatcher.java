@@ -10,17 +10,63 @@ import java.util.Objects;
 
 @CustomType
 public final class AlertConfigurationMatcher {
+    /**
+     * @return Name of the field in the target object to match on.
+     * 
+     * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+     * |:----------           |:-------------       |:------                 |
+     * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+     * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+     * | `PORT`              | `CLUSTER_NAME`      |                         |
+     * | `HOSTNAME_AND_PORT` |                     |                         |
+     * | `REPLICA_SET_NAME`  |                     |                         |
+     * 
+     * All other types of alerts do not support matchers.
+     * 
+     */
     private String fieldName;
     private String operator;
+    /**
+     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
+     * 
+     */
     private String value;
 
     private AlertConfigurationMatcher() {}
+    /**
+     * @return Name of the field in the target object to match on.
+     * 
+     * | Host alerts         | Replica set alerts  |  Sharded cluster alerts |
+     * |:----------           |:-------------       |:------                 |
+     * | `TYPE_NAME`         | `REPLICA_SET_NAME`  | `CLUSTER_NAME`          |
+     * | `HOSTNAME`          | `SHARD_NAME`        | `SHARD_NAME`            |
+     * | `PORT`              | `CLUSTER_NAME`      |                         |
+     * | `HOSTNAME_AND_PORT` |                     |                         |
+     * | `REPLICA_SET_NAME`  |                     |                         |
+     * 
+     * All other types of alerts do not support matchers.
+     * 
+     */
     public String fieldName() {
         return this.fieldName;
     }
     public String operator() {
         return this.operator;
     }
+    /**
+     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
+     * - `PRIMARY`
+     * - `SECONDARY`
+     * - `STANDALONE`
+     * - `CONFIG`
+     * - `MONGOS`
+     * 
+     */
     public String value() {
         return this.value;
     }

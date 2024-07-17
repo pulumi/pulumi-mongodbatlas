@@ -12,6 +12,9 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class StreamConnectionDbRoleToExecuteArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the role to use. Can be a built in role or a custom role.
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 

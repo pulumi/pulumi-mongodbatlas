@@ -22,9 +22,29 @@ public final class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs ex
         return Optional.ofNullable(this.endpointId);
     }
 
+    /**
+     * Cloud service provider on which the servers are provisioned.
+     * The possible values are:
+     * 
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * 
+     */
     @Import(name="providerName")
     private @Nullable Output<String> providerName;
 
+    /**
+     * @return Cloud service provider on which the servers are provisioned.
+     * The possible values are:
+     * 
+     * - `AWS` - Amazon AWS
+     * - `GCP` - Google Cloud Platform
+     * - `AZURE` - Microsoft Azure
+     * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * 
+     */
     public Optional<Output<String>> providerName() {
         return Optional.ofNullable(this.providerName);
     }
@@ -71,11 +91,35 @@ public final class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs ex
             return endpointId(Output.of(endpointId));
         }
 
+        /**
+         * @param providerName Cloud service provider on which the servers are provisioned.
+         * The possible values are:
+         * 
+         * - `AWS` - Amazon AWS
+         * - `GCP` - Google Cloud Platform
+         * - `AZURE` - Microsoft Azure
+         * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+         * 
+         * @return builder
+         * 
+         */
         public Builder providerName(@Nullable Output<String> providerName) {
             $.providerName = providerName;
             return this;
         }
 
+        /**
+         * @param providerName Cloud service provider on which the servers are provisioned.
+         * The possible values are:
+         * 
+         * - `AWS` - Amazon AWS
+         * - `GCP` - Google Cloud Platform
+         * - `AZURE` - Microsoft Azure
+         * - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+         * 
+         * @return builder
+         * 
+         */
         public Builder providerName(String providerName) {
             return providerName(Output.of(providerName));
         }

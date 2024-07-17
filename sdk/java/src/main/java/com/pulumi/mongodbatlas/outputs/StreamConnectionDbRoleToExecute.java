@@ -10,6 +10,10 @@ import java.util.Objects;
 
 @CustomType
 public final class StreamConnectionDbRoleToExecute {
+    /**
+     * @return The name of the role to use. Can be a built in role or a custom role.
+     * 
+     */
     private String role;
     /**
      * @return Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
@@ -18,6 +22,10 @@ public final class StreamConnectionDbRoleToExecute {
     private String type;
 
     private StreamConnectionDbRoleToExecute() {}
+    /**
+     * @return The name of the role to use. Can be a built in role or a custom role.
+     * 
+     */
     public String role() {
         return this.role;
     }
