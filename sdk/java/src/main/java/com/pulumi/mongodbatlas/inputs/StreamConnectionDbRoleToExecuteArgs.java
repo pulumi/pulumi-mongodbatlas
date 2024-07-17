@@ -14,9 +14,17 @@ public final class StreamConnectionDbRoleToExecuteArgs extends com.pulumi.resour
 
     public static final StreamConnectionDbRoleToExecuteArgs Empty = new StreamConnectionDbRoleToExecuteArgs();
 
+    /**
+     * The name of the role to use. Can be a built in role or a custom role.
+     * 
+     */
     @Import(name="role", required=true)
     private Output<String> role;
 
+    /**
+     * @return The name of the role to use. Can be a built in role or a custom role.
+     * 
+     */
     public Output<String> role() {
         return this.role;
     }
@@ -61,11 +69,23 @@ public final class StreamConnectionDbRoleToExecuteArgs extends com.pulumi.resour
             $ = new StreamConnectionDbRoleToExecuteArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param role The name of the role to use. Can be a built in role or a custom role.
+         * 
+         * @return builder
+         * 
+         */
         public Builder role(Output<String> role) {
             $.role = role;
             return this;
         }
 
+        /**
+         * @param role The name of the role to use. Can be a built in role or a custom role.
+         * 
+         * @return builder
+         * 
+         */
         public Builder role(String role) {
             return role(Output.of(role));
         }

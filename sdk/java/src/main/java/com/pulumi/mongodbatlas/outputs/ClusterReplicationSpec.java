@@ -15,16 +15,34 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ClusterReplicationSpec {
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
     private @Nullable String id;
     /**
      * @return Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      * 
      */
     private Integer numShards;
+    /**
+     * @return Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+     * 
+     */
     private @Nullable List<ClusterReplicationSpecRegionsConfig> regionsConfigs;
+    /**
+     * @return Name for the zone in a Global Cluster.
+     * 
+     * **Region Config**
+     * 
+     */
     private @Nullable String zoneName;
 
     private ClusterReplicationSpec() {}
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
@@ -35,9 +53,19 @@ public final class ClusterReplicationSpec {
     public Integer numShards() {
         return this.numShards;
     }
+    /**
+     * @return Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+     * 
+     */
     public List<ClusterReplicationSpecRegionsConfig> regionsConfigs() {
         return this.regionsConfigs == null ? List.of() : this.regionsConfigs;
     }
+    /**
+     * @return Name for the zone in a Global Cluster.
+     * 
+     * **Region Config**
+     * 
+     */
     public Optional<String> zoneName() {
         return Optional.ofNullable(this.zoneName);
     }
