@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Resource: mongodbatlas.NetworkPeering
+ *
  * `mongodbatlas.NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
  *
  * Ensure you have first created a network container if it is required for your configuration.  See the networkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
@@ -86,24 +88,22 @@ import * as utilities from "./utilities";
  *     vnetName: AZURE_VNET_NAME,
  * });
  * // Create the cluster once the peering connection is completed
- * const testCluster = new mongodbatlas.Cluster("test", {
+ * const testAdvancedCluster = new mongodbatlas.AdvancedCluster("test", {
  *     projectId: projectId,
  *     name: "terraform-manually-test",
  *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
  *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [{
- *             regionName: "US_EAST_2",
- *             electableNodes: 3,
+ *         regionConfigs: [{
  *             priority: 7,
- *             readOnlyNodes: 0,
+ *             providerName: "AZURE",
+ *             regionName: "US_EAST_2",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
  *         }],
  *     }],
- *     autoScalingDiskGbEnabled: true,
- *     mongoDbMajorVersion: "7.0",
- *     providerName: "AZURE",
- *     providerDiskTypeName: "P4",
- *     providerInstanceSizeName: "M10",
  * }, {
  *     dependsOn: [testNetworkPeering],
  * });
@@ -111,96 +111,6 @@ import * as utilities from "./utilities";
  *
  * ### Peering Connection Only, Container Exists
  * You can create a peering connection if an appropriate container for your cloud provider already exists in your project (see the networkContainer resource for more information).  A container may already exist if you have already created a cluster in your project, if so you may obtain the `containerId` from the cluster resource as shown in the examples below.
- *
- * ### Example with AWS
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * // Create an Atlas cluster, this creates a container if one
- * // does not yet exist for this AWS region
- * const test = new mongodbatlas.Cluster("test", {
- *     projectId: projectId,
- *     name: "terraform-test",
- *     clusterType: "REPLICASET",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [{
- *             regionName: "US_EAST_2",
- *             electableNodes: 3,
- *             priority: 7,
- *             readOnlyNodes: 0,
- *         }],
- *     }],
- *     autoScalingDiskGbEnabled: false,
- *     mongoDbMajorVersion: "7.0",
- *     providerName: "AWS",
- *     providerInstanceSizeName: "M10",
- * });
- * // the following assumes an AWS provider is configured
- * const _default = new aws.index.DefaultVpc("default", {tags: {
- *     name: "Default VPC",
- * }});
- * // Create the peering connection request
- * const mongoPeer = new mongodbatlas.NetworkPeering("mongo_peer", {
- *     accepterRegionName: "us-east-2",
- *     projectId: projectId,
- *     containerId: test.containerId,
- *     providerName: "AWS",
- *     routeTableCidrBlock: "172.31.0.0/16",
- *     vpcId: _default.id,
- *     awsAccountId: AWS_ACCOUNT_ID,
- * });
- * // Accept the connection 
- * const awsPeer = new aws.index.VpcPeeringConnectionAccepter("aws_peer", {
- *     vpcPeeringConnectionId: mongoPeer.connectionId,
- *     autoAccept: true,
- *     tags: {
- *         side: "Accepter",
- *     },
- * });
- * ```
- *
- * ### Example with Azure
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * // Ensure you have created the required Azure service principal first, see
- * // see https://docs.atlas.mongodb.com/security-vpc-peering/
- * // Create an Atlas cluster, this creates a container if one
- * // does not yet exist for this AZURE region
- * const test = new mongodbatlas.Cluster("test", {
- *     projectId: projectId,
- *     name: "cluster-azure",
- *     clusterType: "REPLICASET",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [{
- *             regionName: "US_EAST_2",
- *             electableNodes: 3,
- *             priority: 7,
- *             readOnlyNodes: 0,
- *         }],
- *     }],
- *     autoScalingDiskGbEnabled: false,
- *     mongoDbMajorVersion: "7.0",
- *     providerName: "AZURE",
- *     providerInstanceSizeName: "M10",
- * });
- * // Create the peering connection request
- * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
- *     projectId: projectId,
- *     containerId: test.containerId,
- *     providerName: "AZURE",
- *     azureDirectoryId: AZURE_DIRECTORY_ID,
- *     azureSubscriptionId: AZURE_SUBSCRIPTION_ID,
- *     resourceGroupName: AZURE_RESOURCE_GROUP_NAME,
- *     vnetName: AZURE_VNET_NAME,
- * });
- * ```
  *
  * ## Import
  *

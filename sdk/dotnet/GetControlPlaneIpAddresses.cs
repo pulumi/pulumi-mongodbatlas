@@ -12,7 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetControlPlaneIpAddresses
     {
         /// <summary>
-        /// Provides a data source that returns all control plane IP addresses.
+        /// ## # Data Source: mongodbatlas.getControlPlaneIpAddresses
+        /// 
+        /// `mongodbatlas.getControlPlaneIpAddresses` returns all control plane IP addresses.
         /// 
         /// ## Example Usage
         /// 
@@ -38,7 +40,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetControlPlaneIpAddressesResult>("mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// Provides a data source that returns all control plane IP addresses.
+        /// ## # Data Source: mongodbatlas.getControlPlaneIpAddresses
+        /// 
+        /// `mongodbatlas.getControlPlaneIpAddresses` returns all control plane IP addresses.
         /// 
         /// ## Example Usage
         /// 

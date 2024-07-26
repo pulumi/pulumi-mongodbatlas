@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: FederatedDatabaseInstance
+//
 // `FederatedDatabaseInstance` provides a Federated Database Instance resource.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.

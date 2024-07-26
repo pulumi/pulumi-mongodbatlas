@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetPushBasedLogExport
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.PushBasedLogExport
+        /// 
         /// `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
         /// 
         /// ## Example Usage
@@ -62,6 +64,10 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = testPushBasedLogExport.ProjectId,
         ///     });
         /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["test"] = test.Apply(getPushBasedLogExportResult =&gt; getPushBasedLogExportResult.PrefixPath),
+        ///     };
         /// });
         /// ```
         /// </summary>
@@ -69,6 +75,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPushBasedLogExportResult>("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", args ?? new GetPushBasedLogExportArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.PushBasedLogExport
+        /// 
         /// `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
         /// 
         /// ## Example Usage
@@ -119,6 +127,10 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = testPushBasedLogExport.ProjectId,
         ///     });
         /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["test"] = test.Apply(getPushBasedLogExportResult =&gt; getPushBasedLogExportResult.PrefixPath),
+        ///     };
         /// });
         /// ```
         /// </summary>

@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: AlertConfiguration
+//
 // `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -42,7 +44,6 @@ import (
 //						SmsEnabled:   pulumi.Bool(false),
 //						EmailEnabled: pulumi.Bool(true),
 //						Roles: pulumi.StringArray{
-//							pulumi.String("GROUP_CHARTS_ADMIN"),
 //							pulumi.String("GROUP_CLUSTER_MANAGER"),
 //						},
 //					},
@@ -97,16 +98,15 @@ import (
 //						SmsEnabled:   pulumi.Bool(false),
 //						EmailEnabled: pulumi.Bool(true),
 //						Roles: pulumi.StringArray{
-//							pulumi.String("GROUP_CHARTS_ADMIN"),
 //							pulumi.String("GROUP_CLUSTER_MANAGER"),
 //						},
 //					},
 //				},
 //				Matchers: mongodbatlas.AlertConfigurationMatcherArray{
 //					&mongodbatlas.AlertConfigurationMatcherArgs{
-//						FieldName: pulumi.String("HOSTNAME_AND_PORT"),
+//						FieldName: pulumi.String("CLUSTER_NAME"),
 //						Operator:  pulumi.String("EQUALS"),
-//						Value:     pulumi.String("SECONDARY"),
+//						Value:     pulumi.String("my-cluster"),
 //					},
 //				},
 //				ThresholdConfig: &mongodbatlas.AlertConfigurationThresholdConfigArgs{
@@ -235,7 +235,8 @@ import (
 // ```sh
 // $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
 // ```
-// __NOTE__: Third-party notifications will not contain their respective credentials as these are sensitive attributes. If you wish to perform updates on these notifications without providing the original credentials, the corresponding `notifier_id` attribute must be provided instead.
+//
+// **NOTE**: Third-party notifications will not contain their respective credentials as these are sensitive attributes. If you wish to perform updates on these notifications without providing the original credentials, the corresponding `notifier_id` attribute must be provided instead.
 //
 // For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
 type AlertConfiguration struct {

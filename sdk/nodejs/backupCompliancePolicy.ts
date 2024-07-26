@@ -13,13 +13,22 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const myCluster = new mongodbatlas.Cluster("my_cluster", {
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
  *     projectId: "<PROJECT-ID>",
  *     name: "clusterTest",
- *     providerName: "AWS",
- *     providerRegionName: "EU_CENTRAL_1",
- *     providerInstanceSizeName: "M10",
- *     cloudBackup: true,
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: region,
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
  * });
  * const testCloudBackupSchedule = new mongodbatlas.CloudBackupSchedule("test", {
  *     projectId: myCluster.projectId,

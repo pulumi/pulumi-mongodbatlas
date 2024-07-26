@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetStreamConnection
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.StreamConnection
+        /// 
         /// `mongodbatlas.StreamConnection` describes a stream connection.
         /// 
         /// ## Example Usage
@@ -38,6 +40,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamConnectionResult>("mongodbatlas:index/getStreamConnection:getStreamConnection", args ?? new GetStreamConnectionArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.StreamConnection
+        /// 
         /// `mongodbatlas.StreamConnection` describes a stream connection.
         /// 
         /// ## Example Usage

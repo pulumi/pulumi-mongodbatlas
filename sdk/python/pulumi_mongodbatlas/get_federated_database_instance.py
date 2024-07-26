@@ -177,6 +177,8 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
                                     project_id: Optional[str] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedDatabaseInstanceResult:
     """
+    ## # Data Source: FederatedDatabaseInstance
+
     `FederatedDatabaseInstance` provides a Federated Database Instance data source.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -239,6 +241,8 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
                                            project_id: Optional[pulumi.Input[str]] = None,
                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedDatabaseInstanceResult]:
     """
+    ## # Data Source: FederatedDatabaseInstance
+
     `FederatedDatabaseInstance` provides a Federated Database Instance data source.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

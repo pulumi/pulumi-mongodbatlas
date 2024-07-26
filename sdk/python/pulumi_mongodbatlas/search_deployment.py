@@ -173,6 +173,8 @@ class SearchDeployment(pulumi.CustomResource):
                  timeouts: Optional[pulumi.Input[pulumi.InputType['SearchDeploymentTimeoutsArgs']]] = None,
                  __props__=None):
         """
+        ## # Resource: SearchDeployment
+
         `SearchDeployment` provides a Search Deployment resource. The resource lets you create, edit and delete dedicated search nodes in a cluster.
 
         > **NOTE:** For details on supported cloud providers and existing limitations you can visit the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-nodes-for-workload-isolation).
@@ -194,6 +196,8 @@ class SearchDeployment(pulumi.CustomResource):
                  args: SearchDeploymentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: SearchDeployment
+
         `SearchDeployment` provides a Search Deployment resource. The resource lets you create, edit and delete dedicated search nodes in a cluster.
 
         > **NOTE:** For details on supported cloud providers and existing limitations you can visit the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-nodes-for-workload-isolation).

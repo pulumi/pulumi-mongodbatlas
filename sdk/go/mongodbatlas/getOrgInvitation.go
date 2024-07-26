@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: OrgInvitation
+//
 // `OrgInvitation` describes an invitation for a user to join an Atlas organization.
 func LookupOrgInvitation(ctx *pulumi.Context, args *LookupOrgInvitationArgs, opts ...pulumi.InvokeOption) (*LookupOrgInvitationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

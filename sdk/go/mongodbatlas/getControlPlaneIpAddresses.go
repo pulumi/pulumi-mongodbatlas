@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a data source that returns all control plane IP addresses.
+// ## # Data Source: getControlPlaneIpAddresses
+//
+// `getControlPlaneIpAddresses` returns all control plane IP addresses.
 //
 // ## Example Usage
 //

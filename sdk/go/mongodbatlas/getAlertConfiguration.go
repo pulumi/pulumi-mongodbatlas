@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: AlertConfiguration
+//
 // `AlertConfiguration` describes an Alert Configuration.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -96,7 +98,6 @@ import (
 //						SmsEnabled:   pulumi.Bool(false),
 //						EmailEnabled: pulumi.Bool(true),
 //						Roles: pulumi.StringArray{
-//							pulumi.String("GROUP_CHARTS_ADMIN"),
 //							pulumi.String("GROUP_CLUSTER_MANAGER"),
 //						},
 //					},

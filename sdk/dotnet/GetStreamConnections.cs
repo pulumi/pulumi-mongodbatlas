@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetStreamConnections
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getStreamConnections
+        /// 
         /// `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
         /// 
         /// ## Example Usage
@@ -37,6 +39,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamConnectionsResult>("mongodbatlas:index/getStreamConnections:getStreamConnections", args ?? new GetStreamConnectionsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getStreamConnections
+        /// 
         /// `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
         /// 
         /// ## Example Usage

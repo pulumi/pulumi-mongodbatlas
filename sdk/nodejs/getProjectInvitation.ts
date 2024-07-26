@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.ProjectInvitation
+ *
  * `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
@@ -85,6 +87,8 @@ export interface GetProjectInvitationResult {
     readonly username: string;
 }
 /**
+ * ## # Data Source: mongodbatlas.ProjectInvitation
+ *
  * `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.

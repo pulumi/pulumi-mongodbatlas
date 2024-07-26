@@ -303,6 +303,8 @@ def get_advanced_cluster(name: Optional[str] = None,
                          project_id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAdvancedClusterResult:
     """
+    ## # Data Source: AdvancedCluster
+
     `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -380,6 +382,8 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
                                 project_id: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAdvancedClusterResult]:
     """
+    ## # Data Source: AdvancedCluster
+
     `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

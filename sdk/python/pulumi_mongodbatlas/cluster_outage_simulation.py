@@ -192,6 +192,8 @@ class ClusterOutageSimulation(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # Resource: ClusterOutageSimulation
+
         `ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
 
         Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes.
@@ -247,6 +249,8 @@ class ClusterOutageSimulation(pulumi.CustomResource):
                  args: ClusterOutageSimulationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: ClusterOutageSimulation
+
         `ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
 
         Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes.

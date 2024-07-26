@@ -12,7 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetProjects
     {
         /// <summary>
-        /// `mongodbatlas.getProjects` describe all Projects. This represents projects that have been created.
+        /// ## # Data Source: mongodbatlas.getProjects
+        /// 
+        /// `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -75,7 +77,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectsResult>("mongodbatlas:index/getProjects:getProjects", args ?? new GetProjectsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.getProjects` describe all Projects. This represents projects that have been created.
+        /// ## # Data Source: mongodbatlas.getProjects
+        /// 
+        /// `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 

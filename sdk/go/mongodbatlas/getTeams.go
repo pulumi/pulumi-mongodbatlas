@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// **WARNING:** This datasource is deprecated, use `Team`
+//
 // This data source is deprecated. Please transition to using `Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
 //
 // In the future this data source will define a new implementation capable of fetching all teams in one organization.

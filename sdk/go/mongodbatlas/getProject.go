@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: Project
+//
 // `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.

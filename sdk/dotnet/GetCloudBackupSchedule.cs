@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudBackupSchedule
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.CloudBackupSchedule
+        /// 
         /// `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster. 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -26,14 +28,32 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myCluster = new Mongodbatlas.Cluster("my_cluster", new()
+        ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Name = "clusterTest",
-        ///         ProviderName = "AWS",
-        ///         ProviderRegionName = "EU_CENTRAL_1",
-        ///         ProviderInstanceSizeName = "M10",
-        ///         CloudBackup = true,
+        ///         ClusterType = "REPLICASET",
+        ///         BackupEnabled = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "AWS",
+        ///                         RegionName = "EU_CENTRAL_1",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
         ///     });
         /// 
         ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()
@@ -58,6 +78,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupScheduleResult>("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args ?? new GetCloudBackupScheduleArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.CloudBackupSchedule
+        /// 
         /// `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster. 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -72,14 +94,32 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myCluster = new Mongodbatlas.Cluster("my_cluster", new()
+        ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Name = "clusterTest",
-        ///         ProviderName = "AWS",
-        ///         ProviderRegionName = "EU_CENTRAL_1",
-        ///         ProviderInstanceSizeName = "M10",
-        ///         CloudBackup = true,
+        ///         ClusterType = "REPLICASET",
+        ///         BackupEnabled = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "AWS",
+        ///                         RegionName = "EU_CENTRAL_1",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
         ///     });
         /// 
         ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()

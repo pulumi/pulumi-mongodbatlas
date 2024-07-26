@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `getProjects` describe all Projects. This represents projects that have been created.
+// ## # Data Source: getProjects
+//
+// `getProjects` describes all Projects. This represents projects that have been created.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //

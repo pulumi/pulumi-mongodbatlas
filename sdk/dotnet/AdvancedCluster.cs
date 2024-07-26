@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## # Resource: mongodbatlas.AdvancedCluster
+    /// 
     /// `mongodbatlas.AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
     /// 
     /// More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
@@ -446,7 +448,7 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     return new Dictionary&lt;string, object?&gt;
     ///     {
-    ///         ["standard"] = cluster_test.ConnectionStrings[0].Standard,
+    ///         ["standard"] = cluster.ConnectionStrings[0].Standard,
     ///     };
     /// });
     /// ```
@@ -460,7 +462,7 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     return new Dictionary&lt;string, object?&gt;
     ///     {
-    ///         ["standardSrv"] = cluster_test.ConnectionStrings[0].StandardSrv,
+    ///         ["standardSrv"] = cluster.ConnectionStrings[0].StandardSrv,
     ///     };
     /// });
     /// ```

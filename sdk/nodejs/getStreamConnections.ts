@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.getStreamConnections
+ *
  * `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
  *
  * ## Example Usage
@@ -79,6 +81,8 @@ export interface GetStreamConnectionsResult {
     readonly totalCount: number;
 }
 /**
+ * ## # Data Source: mongodbatlas.getStreamConnections
+ *
  * `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
  *
  * ## Example Usage

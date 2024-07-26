@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.OrgInvitation
+ *
  * `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
  */
 export function getOrgInvitation(args: GetOrgInvitationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrgInvitationResult> {
@@ -68,6 +70,8 @@ export interface GetOrgInvitationResult {
     readonly username: string;
 }
 /**
+ * ## # Data Source: mongodbatlas.OrgInvitation
+ *
  * `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
  */
 export function getOrgInvitationOutput(args: GetOrgInvitationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrgInvitationResult> {

@@ -451,6 +451,8 @@ class ServerlessInstance(pulumi.CustomResource):
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
+        ## # Resource: ServerlessInstance
+
         `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
 
         > **NOTE:**  Serverless instances do not support some Atlas features at this time.
@@ -510,6 +512,8 @@ class ServerlessInstance(pulumi.CustomResource):
                  args: ServerlessInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: ServerlessInstance
+
         `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
 
         > **NOTE:**  Serverless instances do not support some Atlas features at this time.

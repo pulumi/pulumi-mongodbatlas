@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: Auditing
+//
 // `Auditing` provides an Auditing resource. This allows auditing to be created.
 //
 // ## Example Usage

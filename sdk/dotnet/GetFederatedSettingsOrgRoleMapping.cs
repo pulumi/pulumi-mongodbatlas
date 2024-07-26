@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetFederatedSettingsOrgRoleMapping
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.FederatedSettingsOrgRoleMapping
+        /// 
         /// `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
         /// 
         /// 
@@ -82,6 +84,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsOrgRoleMappingResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", args ?? new GetFederatedSettingsOrgRoleMappingArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.FederatedSettingsOrgRoleMapping
+        /// 
         /// `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
         /// 
         /// 

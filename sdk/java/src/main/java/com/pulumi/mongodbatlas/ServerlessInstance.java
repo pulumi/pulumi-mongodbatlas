@@ -19,6 +19,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # Resource: mongodbatlas.ServerlessInstance
+ * 
  * `mongodbatlas.ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
  * 
  * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.

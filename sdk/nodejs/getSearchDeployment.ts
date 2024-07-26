@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.SearchDeployment
+ *
  * `mongodbatlas.SearchDeployment` describes a search node deployment.
  *
  * ## Example Usage
@@ -60,6 +62,8 @@ export interface GetSearchDeploymentResult {
     readonly stateName: string;
 }
 /**
+ * ## # Data Source: mongodbatlas.SearchDeployment
+ *
  * `mongodbatlas.SearchDeployment` describes a search node deployment.
  *
  * ## Example Usage

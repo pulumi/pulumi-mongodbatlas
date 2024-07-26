@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `privatelinkEndpointServiceServerless` Provides a Serverless PrivateLink Endpoint Service resource.
+// ## # Data Source: privatelinkEndpointServiceServerless
+//
+// `privatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //

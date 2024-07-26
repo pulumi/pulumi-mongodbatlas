@@ -326,6 +326,8 @@ class LdapVerify(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # Resource: LdapVerify
+
         `LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
 
         ## Example Usage
@@ -337,20 +339,29 @@ class LdapVerify(pulumi.CustomResource):
         test = mongodbatlas.Project("test",
             name="NAME OF THE PROJECT",
             org_id="ORG ID")
-        test_cluster = mongodbatlas.Cluster("test",
+        test_advanced_cluster = mongodbatlas.AdvancedCluster("test",
             project_id=test.id,
             name="NAME OF THE CLUSTER",
-            provider_name="AWS",
-            provider_region_name="US_EAST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="US_EAST_1",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                )],
+            )])
         test_ldap_verify = mongodbatlas.LdapVerify("test",
             project_id=test.id,
             hostname="HOSTNAME",
             port=636,
             bind_username="USERNAME",
             bind_password="PASSWORD",
-            opts = pulumi.ResourceOptions(depends_on=[test_cluster]))
+            opts = pulumi.ResourceOptions(depends_on=[test_advanced_cluster]))
         ```
 
         ## Import
@@ -379,6 +390,8 @@ class LdapVerify(pulumi.CustomResource):
                  args: LdapVerifyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: LdapVerify
+
         `LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
 
         ## Example Usage
@@ -390,20 +403,29 @@ class LdapVerify(pulumi.CustomResource):
         test = mongodbatlas.Project("test",
             name="NAME OF THE PROJECT",
             org_id="ORG ID")
-        test_cluster = mongodbatlas.Cluster("test",
+        test_advanced_cluster = mongodbatlas.AdvancedCluster("test",
             project_id=test.id,
             name="NAME OF THE CLUSTER",
-            provider_name="AWS",
-            provider_region_name="US_EAST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="US_EAST_1",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                )],
+            )])
         test_ldap_verify = mongodbatlas.LdapVerify("test",
             project_id=test.id,
             hostname="HOSTNAME",
             port=636,
             bind_username="USERNAME",
             bind_password="PASSWORD",
-            opts = pulumi.ResourceOptions(depends_on=[test_cluster]))
+            opts = pulumi.ResourceOptions(depends_on=[test_advanced_cluster]))
         ```
 
         ## Import

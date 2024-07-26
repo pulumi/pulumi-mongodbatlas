@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: getStreamInstances
+//
 // `getStreamInstances` describes the stream instances defined in a project.
 //
 // ## Example Usage

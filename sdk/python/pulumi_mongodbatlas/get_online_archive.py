@@ -167,6 +167,8 @@ def get_online_archive(archive_id: Optional[str] = None,
                        project_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOnlineArchiveResult:
     """
+    ## # Data Source: OnlineArchive
+
     `OnlineArchive` describes an Online Archive
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -252,6 +254,8 @@ def get_online_archive_output(archive_id: Optional[pulumi.Input[str]] = None,
                               project_id: Optional[pulumi.Input[str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOnlineArchiveResult]:
     """
+    ## # Data Source: OnlineArchive
+
     `OnlineArchive` describes an Online Archive
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

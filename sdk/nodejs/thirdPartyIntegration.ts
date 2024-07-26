@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Resource: mongodbatlas.ThirdPartyIntegration
+ *
  * `mongodbatlas.ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

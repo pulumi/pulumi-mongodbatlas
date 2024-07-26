@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `getDataLakePipelineRun` describe a Data Lake Pipeline Run.
+// ## # Data Source: getDataLakePipelineRun
+//
+// `getDataLakePipelineRun` describes a Data Lake Pipeline Run.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 func GetDataLakePipelineRun(ctx *pulumi.Context, args *GetDataLakePipelineRunArgs, opts ...pulumi.InvokeOption) (*GetDataLakePipelineRunResult, error) {

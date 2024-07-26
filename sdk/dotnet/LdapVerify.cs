@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## # Resource: mongodbatlas.LdapVerify
+    /// 
     /// `mongodbatlas.LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
     /// 
     /// ## Example Usage
@@ -28,14 +30,32 @@ namespace Pulumi.Mongodbatlas
     ///         OrgId = "ORG ID",
     ///     });
     /// 
-    ///     var testCluster = new Mongodbatlas.Cluster("test", new()
+    ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
     ///     {
     ///         ProjectId = test.Id,
     ///         Name = "NAME OF THE CLUSTER",
-    ///         ProviderName = "AWS",
-    ///         ProviderRegionName = "US_EAST_2",
-    ///         ProviderInstanceSizeName = "M10",
-    ///         CloudBackup = true,
+    ///         ClusterType = "REPLICASET",
+    ///         BackupEnabled = true,
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "AWS",
+    ///                         RegionName = "US_EAST_1",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
     ///     });
     /// 
     ///     var testLdapVerify = new Mongodbatlas.LdapVerify("test", new()
@@ -49,7 +69,7 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         DependsOn =
     ///         {
-    ///             testCluster,
+    ///             testAdvancedCluster,
     ///         },
     ///     });
     /// 

@@ -19,6 +19,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
+ * ## # Resource: mongodbatlas.FederatedDatabaseInstance
+ * 
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance resource.
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

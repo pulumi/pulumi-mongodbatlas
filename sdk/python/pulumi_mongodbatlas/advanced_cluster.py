@@ -829,6 +829,8 @@ class AdvancedCluster(pulumi.CustomResource):
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # Resource: AdvancedCluster
+
         `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
 
         More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
@@ -1134,13 +1136,13 @@ class AdvancedCluster(pulumi.CustomResource):
         ```python
         import pulumi
 
-        pulumi.export("standard", cluster_test["connectionStrings"][0]["standard"])
+        pulumi.export("standard", cluster["connectionStrings"][0]["standard"])
         ```
         Standard srv
         ```python
         import pulumi
 
-        pulumi.export("standardSrv", cluster_test["connectionStrings"][0]["standardSrv"])
+        pulumi.export("standardSrv", cluster["connectionStrings"][0]["standardSrv"])
         ```
         Private with Network peering and Custom DNS AWS enabled
         ## Import
@@ -1194,6 +1196,8 @@ class AdvancedCluster(pulumi.CustomResource):
                  args: AdvancedClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: AdvancedCluster
+
         `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
 
         More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
@@ -1499,13 +1503,13 @@ class AdvancedCluster(pulumi.CustomResource):
         ```python
         import pulumi
 
-        pulumi.export("standard", cluster_test["connectionStrings"][0]["standard"])
+        pulumi.export("standard", cluster["connectionStrings"][0]["standard"])
         ```
         Standard srv
         ```python
         import pulumi
 
-        pulumi.export("standardSrv", cluster_test["connectionStrings"][0]["standardSrv"])
+        pulumi.export("standardSrv", cluster["connectionStrings"][0]["standardSrv"])
         ```
         Private with Network peering and Custom DNS AWS enabled
         ## Import

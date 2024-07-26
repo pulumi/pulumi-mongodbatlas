@@ -114,6 +114,8 @@ def get_stream_connections(instance_name: Optional[str] = None,
                            project_id: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamConnectionsResult:
     """
+    ## # Data Source: get_stream_connections
+
     `get_stream_connections` describes all connections of a stream instance for the specified project.
 
     ## Example Usage
@@ -157,6 +159,8 @@ def get_stream_connections_output(instance_name: Optional[pulumi.Input[str]] = N
                                   project_id: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStreamConnectionsResult]:
     """
+    ## # Data Source: get_stream_connections
+
     `get_stream_connections` describes all connections of a stream instance for the specified project.
 
     ## Example Usage

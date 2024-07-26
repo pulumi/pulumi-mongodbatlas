@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.getDataLakePipelineRun` describe a Data Lake Pipeline Run.
+ * ## # Data Source: mongodbatlas.getDataLakePipelineRun
+ *
+ * `mongodbatlas.getDataLakePipelineRun` describes a Data Lake Pipeline Run.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
@@ -88,7 +90,9 @@ export interface GetDataLakePipelineRunResult {
     readonly stats: outputs.GetDataLakePipelineRunStat[];
 }
 /**
- * `mongodbatlas.getDataLakePipelineRun` describe a Data Lake Pipeline Run.
+ * ## # Data Source: mongodbatlas.getDataLakePipelineRun
+ *
+ * `mongodbatlas.getDataLakePipelineRun` describes a Data Lake Pipeline Run.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */

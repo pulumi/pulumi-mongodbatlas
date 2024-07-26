@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: ServerlessInstance
+//
 // `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
 //
 // > **NOTE:**  Serverless instances do not support some Atlas features at this time.

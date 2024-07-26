@@ -73,6 +73,8 @@ class AwaitableGetDataLakePipelinesResult(GetDataLakePipelinesResult):
 def get_data_lake_pipelines(project_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataLakePipelinesResult:
     """
+    ## # Data Source: get_data_lake_pipelines
+
     `get_data_lake_pipelines` describes Data Lake Pipelines.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
@@ -97,6 +99,8 @@ def get_data_lake_pipelines(project_id: Optional[str] = None,
 def get_data_lake_pipelines_output(project_id: Optional[pulumi.Input[str]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataLakePipelinesResult]:
     """
+    ## # Data Source: get_data_lake_pipelines
+
     `get_data_lake_pipelines` describes Data Lake Pipelines.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.

@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudBackupSnapshot
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.CloudBackupSnapshot
+        /// 
         /// `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -48,6 +50,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotResult>("mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot", args ?? new GetCloudBackupSnapshotArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.CloudBackupSnapshot
+        /// 
         /// `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

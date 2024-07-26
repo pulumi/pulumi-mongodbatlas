@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: PushBasedLogExport
+//
 // `PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable & disable the project level settings for the push-based log export feature. Using this resource you
 // can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.
 //
@@ -57,7 +59,7 @@ import (
 //				return err
 //			}
 //			// Set up push-based log export with authorized IAM role
-//			_, err = mongodbatlas.NewPushBasedLogExport(ctx, "test", &mongodbatlas.PushBasedLogExportArgs{
+//			testPushBasedLogExport, err := mongodbatlas.NewPushBasedLogExport(ctx, "test", &mongodbatlas.PushBasedLogExportArgs{
 //				ProjectId:  project_tf.ID(),
 //				BucketName: pulumi.Any(logBucket.Bucket),
 //				IamRoleId:  authRole.RoleId,
@@ -66,6 +68,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			test := mongodbatlas.LookupPushBasedLogExportOutput(ctx, mongodbatlas.GetPushBasedLogExportOutputArgs{
+//				ProjectId: testPushBasedLogExport.ProjectId,
+//			}, nil)
+//			ctx.Export("test", test.ApplyT(func(test mongodbatlas.GetPushBasedLogExportResult) (*string, error) {
+//				return &test.PrefixPath, nil
+//			}).(pulumi.StringPtrOutput))
 //			return nil
 //		})
 //	}

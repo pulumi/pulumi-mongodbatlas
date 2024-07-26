@@ -15,13 +15,22 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const myCluster = new mongodbatlas.Cluster("my_cluster", {
- *     projectId: "5cf5a45a9ccf6400e60981b6",
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
  *     name: "MyCluster",
- *     providerName: "AWS",
- *     providerRegionName: "EU_WEST_2",
- *     providerInstanceSizeName: "M10",
- *     cloudBackup: true,
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "EU_WEST_2",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
  * });
  * const test = new mongodbatlas.index.CloudProviderSnapshot("test", {
  *     projectId: myCluster.projectId,
@@ -47,13 +56,22 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const myCluster = new mongodbatlas.Cluster("my_cluster", {
- *     projectId: "5cf5a45a9ccf6400e60981b6",
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
  *     name: "MyCluster",
- *     providerName: "AWS",
- *     providerRegionName: "EU_WEST_2",
- *     providerInstanceSizeName: "M10",
- *     cloudBackup: true,
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "EU_WEST_2",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
  * });
  * const test = new mongodbatlas.index.CloudProviderSnapshot("test", {
  *     projectId: myCluster.projectId,
@@ -76,14 +94,22 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const clusterTest = new mongodbatlas.Cluster("cluster_test", {
- *     projectId: projectTest.id,
- *     name: clusterName,
- *     providerName: "AWS",
- *     providerRegionName: "US_EAST_1",
- *     providerInstanceSizeName: "M10",
- *     cloudBackup: true,
- *     pitEnabled: true,
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "MyCluster",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "EU_WEST_2",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
  * });
  * const test = new mongodbatlas.CloudBackupSnapshot("test", {
  *     projectId: clusterTest.projectId,

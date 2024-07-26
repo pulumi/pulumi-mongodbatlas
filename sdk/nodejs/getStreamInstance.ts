@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.StreamInstance
+ *
  * `mongodbatlas.StreamInstance` describes a stream instance.
  *
  * ## Example Usage
@@ -65,6 +67,8 @@ export interface GetStreamInstanceResult {
     readonly streamConfig: outputs.GetStreamInstanceStreamConfig;
 }
 /**
+ * ## # Data Source: mongodbatlas.StreamInstance
+ *
  * `mongodbatlas.StreamInstance` describes a stream instance.
  *
  * ## Example Usage

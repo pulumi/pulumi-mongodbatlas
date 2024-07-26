@@ -7,13 +7,42 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.Cluster` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+ * ## # Data Source: mongodbatlas.getAdvancedClusters
+ *
+ * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * > **IMPORTANT:**
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const exampleAdvancedCluster = new mongodbatlas.AdvancedCluster("example", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             electableSpecs: {
+ *                 instanceSize: "M5",
+ *             },
+ *             providerName: "TENANT",
+ *             backingProviderName: "AWS",
+ *             regionName: "US_EAST_1",
+ *             priority: 7,
+ *         }],
+ *     }],
+ * });
+ * const example = mongodbatlas.getAdvancedClustersOutput({
+ *     projectId: exampleAdvancedCluster.projectId,
+ * });
+ * ```
  */
 export function getAdvancedClusters(args: GetAdvancedClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetAdvancedClustersResult> {
 
@@ -48,13 +77,42 @@ export interface GetAdvancedClustersResult {
     readonly results: outputs.GetAdvancedClustersResult[];
 }
 /**
- * `mongodbatlas.Cluster` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+ * ## # Data Source: mongodbatlas.getAdvancedClusters
+ *
+ * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * > **IMPORTANT:**
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const exampleAdvancedCluster = new mongodbatlas.AdvancedCluster("example", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             electableSpecs: {
+ *                 instanceSize: "M5",
+ *             },
+ *             providerName: "TENANT",
+ *             backingProviderName: "AWS",
+ *             regionName: "US_EAST_1",
+ *             priority: 7,
+ *         }],
+ *     }],
+ * });
+ * const example = mongodbatlas.getAdvancedClustersOutput({
+ *     projectId: exampleAdvancedCluster.projectId,
+ * });
+ * ```
  */
 export function getAdvancedClustersOutput(args: GetAdvancedClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAdvancedClustersResult> {
     return pulumi.output(args).apply((a: any) => getAdvancedClusters(a, opts))

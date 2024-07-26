@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.getServerlessInstances` describe all serverless instances. This represents serverless instances that have been created for the specified group id.
+ * ## # Data Source: mongodbatlas.getServerlessInstances
+ *
+ * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
  *
  * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
  * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
@@ -58,7 +60,9 @@ export interface GetServerlessInstancesResult {
     readonly results: outputs.GetServerlessInstancesResult[];
 }
 /**
- * `mongodbatlas.getServerlessInstances` describe all serverless instances. This represents serverless instances that have been created for the specified group id.
+ * ## # Data Source: mongodbatlas.getServerlessInstances
+ *
+ * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
  *
  * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
  * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).

@@ -1865,12 +1865,11 @@ class AlertConfigurationNotification(dict):
                
                | Project roles                   | Organization roles  |
                |:----------                      |:-----------         |
-               | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-               | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-               | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-               | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-               | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-               | `GROUP_OWNER`                   |                     |
+               | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
+               | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
+               | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
+               | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
+               | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
                | `GROUP_READ_ONLY`               |                     |
         :param str service_key: PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param bool sms_enabled: Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
@@ -2075,12 +2074,11 @@ class AlertConfigurationNotification(dict):
 
         | Project roles                   | Organization roles  |
         |:----------                      |:-----------         |
-        | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-        | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-        | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-        | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-        | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-        | `GROUP_OWNER`                   |                     |
+        | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
+        | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
+        | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
+        | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
+        | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
         | `GROUP_READ_ONLY`               |                     |
         """
         return pulumi.get(self, "roles")
@@ -21019,64 +21017,73 @@ class GetSearchIndexSynonymResult(dict):
 @pulumi.output_type
 class GetSearchIndexesResultResult(dict):
     def __init__(__self__, *,
+                 analyzer: str,
+                 analyzers: str,
                  cluster_name: str,
                  collection_name: str,
                  database: str,
+                 fields: str,
                  index_id: str,
+                 mappings_dynamic: bool,
+                 mappings_fields: str,
                  name: str,
                  project_id: str,
+                 search_analyzer: str,
                  status: str,
-                 analyzer: Optional[str] = None,
-                 analyzers: Optional[str] = None,
-                 fields: Optional[str] = None,
-                 mappings_dynamic: Optional[bool] = None,
-                 mappings_fields: Optional[str] = None,
-                 search_analyzer: Optional[str] = None,
-                 synonyms: Optional[Sequence['outputs.GetSearchIndexesResultSynonymResult']] = None,
-                 type: Optional[str] = None,
-                 wait_for_index_build_completion: Optional[bool] = None):
+                 stored_source: str,
+                 synonyms: Sequence['outputs.GetSearchIndexesResultSynonymResult'],
+                 type: str):
         """
+        :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+        :param str analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
         :param str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
         :param str collection_name: Name of the collection with one or more Atlas Search indexes.
         :param str database: (Required) Name of the database the collection is in.
-        :param str name: Name of the index.
-        :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
-        :param str status: Current status of the index.
-        :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
-        :param str analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+        :param str index_id: The unique identifier of the Atlas Search index.
         :param bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings.
         :param str mappings_fields: Object containing one or more field specifications.
+        :param str name: Name of the index.
+        :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
         :param str search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+        :param str status: Current status of the index.
+        :param str stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param Sequence['GetSearchIndexesResultSynonymArgs'] synonyms: Synonyms mapping definition to use in this index.
                * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
                * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
                * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
         """
+        pulumi.set(__self__, "analyzer", analyzer)
+        pulumi.set(__self__, "analyzers", analyzers)
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "collection_name", collection_name)
         pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "fields", fields)
         pulumi.set(__self__, "index_id", index_id)
+        pulumi.set(__self__, "mappings_dynamic", mappings_dynamic)
+        pulumi.set(__self__, "mappings_fields", mappings_fields)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "search_analyzer", search_analyzer)
         pulumi.set(__self__, "status", status)
-        if analyzer is not None:
-            pulumi.set(__self__, "analyzer", analyzer)
-        if analyzers is not None:
-            pulumi.set(__self__, "analyzers", analyzers)
-        if fields is not None:
-            pulumi.set(__self__, "fields", fields)
-        if mappings_dynamic is not None:
-            pulumi.set(__self__, "mappings_dynamic", mappings_dynamic)
-        if mappings_fields is not None:
-            pulumi.set(__self__, "mappings_fields", mappings_fields)
-        if search_analyzer is not None:
-            pulumi.set(__self__, "search_analyzer", search_analyzer)
-        if synonyms is not None:
-            pulumi.set(__self__, "synonyms", synonyms)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if wait_for_index_build_completion is not None:
-            pulumi.set(__self__, "wait_for_index_build_completion", wait_for_index_build_completion)
+        pulumi.set(__self__, "stored_source", stored_source)
+        pulumi.set(__self__, "synonyms", synonyms)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def analyzer(self) -> str:
+        """
+        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+        """
+        return pulumi.get(self, "analyzer")
+
+    @property
+    @pulumi.getter
+    def analyzers(self) -> str:
+        """
+        [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+        """
+        return pulumi.get(self, "analyzers")
 
     @property
     @pulumi.getter(name="clusterName")
@@ -21103,9 +21110,33 @@ class GetSearchIndexesResultResult(dict):
         return pulumi.get(self, "database")
 
     @property
+    @pulumi.getter
+    def fields(self) -> str:
+        return pulumi.get(self, "fields")
+
+    @property
     @pulumi.getter(name="indexId")
     def index_id(self) -> str:
+        """
+        The unique identifier of the Atlas Search index.
+        """
         return pulumi.get(self, "index_id")
+
+    @property
+    @pulumi.getter(name="mappingsDynamic")
+    def mappings_dynamic(self) -> bool:
+        """
+        Flag indicating whether the index uses dynamic or static mappings.
+        """
+        return pulumi.get(self, "mappings_dynamic")
+
+    @property
+    @pulumi.getter(name="mappingsFields")
+    def mappings_fields(self) -> str:
+        """
+        Object containing one or more field specifications.
+        """
+        return pulumi.get(self, "mappings_fields")
 
     @property
     @pulumi.getter
@@ -21124,6 +21155,14 @@ class GetSearchIndexesResultResult(dict):
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="searchAnalyzer")
+    def search_analyzer(self) -> str:
+        """
+        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+        """
+        return pulumi.get(self, "search_analyzer")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
@@ -21132,53 +21171,16 @@ class GetSearchIndexesResultResult(dict):
         return pulumi.get(self, "status")
 
     @property
-    @pulumi.getter
-    def analyzer(self) -> Optional[str]:
+    @pulumi.getter(name="storedSource")
+    def stored_source(self) -> str:
         """
-        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+        String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         """
-        return pulumi.get(self, "analyzer")
+        return pulumi.get(self, "stored_source")
 
     @property
     @pulumi.getter
-    def analyzers(self) -> Optional[str]:
-        """
-        [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
-        """
-        return pulumi.get(self, "analyzers")
-
-    @property
-    @pulumi.getter
-    def fields(self) -> Optional[str]:
-        return pulumi.get(self, "fields")
-
-    @property
-    @pulumi.getter(name="mappingsDynamic")
-    def mappings_dynamic(self) -> Optional[bool]:
-        """
-        Flag indicating whether the index uses dynamic or static mappings.
-        """
-        return pulumi.get(self, "mappings_dynamic")
-
-    @property
-    @pulumi.getter(name="mappingsFields")
-    def mappings_fields(self) -> Optional[str]:
-        """
-        Object containing one or more field specifications.
-        """
-        return pulumi.get(self, "mappings_fields")
-
-    @property
-    @pulumi.getter(name="searchAnalyzer")
-    def search_analyzer(self) -> Optional[str]:
-        """
-        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
-        """
-        return pulumi.get(self, "search_analyzer")
-
-    @property
-    @pulumi.getter
-    def synonyms(self) -> Optional[Sequence['outputs.GetSearchIndexesResultSynonymResult']]:
+    def synonyms(self) -> Sequence['outputs.GetSearchIndexesResultSynonymResult']:
         """
         Synonyms mapping definition to use in this index.
         * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
@@ -21189,13 +21191,8 @@ class GetSearchIndexesResultResult(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> Optional[str]:
+    def type(self) -> str:
         return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter(name="waitForIndexBuildCompletion")
-    def wait_for_index_build_completion(self) -> Optional[bool]:
-        return pulumi.get(self, "wait_for_index_build_completion")
 
 
 @pulumi.output_type

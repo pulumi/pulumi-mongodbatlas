@@ -28,13 +28,26 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myCluster, err := mongodbatlas.NewCluster(ctx, "my_cluster", &mongodbatlas.ClusterArgs{
-//				ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
-//				Name:                     pulumi.String("MyCluster"),
-//				ProviderName:             pulumi.String("AWS"),
-//				ProviderRegionName:       pulumi.String("EU_WEST_2"),
-//				ProviderInstanceSizeName: pulumi.String("M10"),
-//				CloudBackup:              pulumi.Bool(true),
+//			myCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "my_cluster", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.String("<PROJECT-ID>"),
+//				Name:          pulumi.String("MyCluster"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("EU_WEST_2"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -81,13 +94,26 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myCluster, err := mongodbatlas.NewCluster(ctx, "my_cluster", &mongodbatlas.ClusterArgs{
-//				ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
-//				Name:                     pulumi.String("MyCluster"),
-//				ProviderName:             pulumi.String("AWS"),
-//				ProviderRegionName:       pulumi.String("EU_WEST_2"),
-//				ProviderInstanceSizeName: pulumi.String("M10"),
-//				CloudBackup:              pulumi.Bool(true),
+//			myCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "my_cluster", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.String("<PROJECT-ID>"),
+//				Name:          pulumi.String("MyCluster"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("EU_WEST_2"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -131,21 +157,33 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			clusterTest, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
-//				ProjectId:                pulumi.Any(projectTest.Id),
-//				Name:                     pulumi.Any(clusterName),
-//				ProviderName:             pulumi.String("AWS"),
-//				ProviderRegionName:       pulumi.String("US_EAST_1"),
-//				ProviderInstanceSizeName: pulumi.String("M10"),
-//				CloudBackup:              pulumi.Bool(true),
-//				PitEnabled:               pulumi.Bool(true),
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "my_cluster", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.String("<PROJECT-ID>"),
+//				Name:          pulumi.String("MyCluster"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("EU_WEST_2"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			test, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "test", &mongodbatlas.CloudBackupSnapshotArgs{
-//				ProjectId:       clusterTest.ProjectId,
-//				ClusterName:     clusterTest.Name,
+//				ProjectId:       pulumi.Any(clusterTest.ProjectId),
+//				ClusterName:     pulumi.Any(clusterTest.Name),
 //				Description:     pulumi.String("My description"),
 //				RetentionInDays: pulumi.Int(1),
 //			})
@@ -168,8 +206,8 @@ import (
 //					SnapshotId:  test.ID(),
 //					DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
 //						PointInTime:           pulumi.Bool(true),
-//						TargetClusterName:     clusterTest.Name,
-//						TargetProjectId:       clusterTest.ProjectId,
+//						TargetClusterName:     pulumi.Any(clusterTest.Name),
+//						TargetProjectId:       pulumi.Any(clusterTest.ProjectId),
 //						PointInTimeUtcSeconds: pulumi.Any(pointInTimeUtcSeconds),
 //					},
 //				})

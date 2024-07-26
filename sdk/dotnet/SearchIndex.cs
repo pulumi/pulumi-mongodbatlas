@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## # Resource: mongodbatlas.SearchIndex
+    /// 
     /// `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
     /// 
     /// ## Example Usage
@@ -208,6 +210,9 @@ namespace Pulumi.Mongodbatlas
         [Output("fields")]
         public Output<string?> Fields { get; private set; } = null!;
 
+        /// <summary>
+        /// The unique identifier of the Atlas Search index.
+        /// </summary>
         [Output("indexId")]
         public Output<string> IndexId { get; private set; } = null!;
 
@@ -246,6 +251,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+        /// </summary>
+        [Output("storedSource")]
+        public Output<string?> StoredSource { get; private set; } = null!;
 
         /// <summary>
         /// Synonyms mapping definition to use in this index.
@@ -395,6 +406,12 @@ namespace Pulumi.Mongodbatlas
         [Input("searchAnalyzer")]
         public Input<string>? SearchAnalyzer { get; set; }
 
+        /// <summary>
+        /// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+        /// </summary>
+        [Input("storedSource")]
+        public Input<string>? StoredSource { get; set; }
+
         [Input("synonyms")]
         private InputList<Inputs.SearchIndexSynonymArgs>? _synonyms;
 
@@ -481,6 +498,9 @@ namespace Pulumi.Mongodbatlas
         [Input("fields")]
         public Input<string>? Fields { get; set; }
 
+        /// <summary>
+        /// The unique identifier of the Atlas Search index.
+        /// </summary>
         [Input("indexId")]
         public Input<string>? IndexId { get; set; }
 
@@ -519,6 +539,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+        /// </summary>
+        [Input("storedSource")]
+        public Input<string>? StoredSource { get; set; }
 
         [Input("synonyms")]
         private InputList<Inputs.SearchIndexSynonymGetArgs>? _synonyms;

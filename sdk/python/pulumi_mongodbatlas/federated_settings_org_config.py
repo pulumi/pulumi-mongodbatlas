@@ -288,6 +288,8 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
                  post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        ## # Resource: FederatedSettingsOrgConfig
+
         `FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
 
         ## Example Usage
@@ -337,6 +339,8 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
                  args: FederatedSettingsOrgConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: FederatedSettingsOrgConfig
+
         `FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
 
         ## Example Usage

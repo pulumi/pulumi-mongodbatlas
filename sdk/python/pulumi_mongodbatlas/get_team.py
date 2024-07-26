@@ -94,6 +94,8 @@ def get_team(name: Optional[str] = None,
              team_id: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTeamResult:
     """
+    ## # Data Source: Team
+
     `Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
@@ -160,6 +162,8 @@ def get_team_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                     team_id: Optional[pulumi.Input[Optional[str]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTeamResult]:
     """
+    ## # Data Source: Team
+
     `Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.

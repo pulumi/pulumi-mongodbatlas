@@ -12,13 +12,17 @@ namespace Pulumi.Mongodbatlas
     public static class GetEventTriggers
     {
         /// <summary>
-        /// `mongodbatlas.getEventTriggers` describe all Event Triggers.
+        /// ## # Data Source: mongodbatlas.getEventTriggers
+        /// 
+        /// `mongodbatlas.getEventTriggers` describes all Event Triggers.
         /// </summary>
         public static Task<GetEventTriggersResult> InvokeAsync(GetEventTriggersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetEventTriggersResult>("mongodbatlas:index/getEventTriggers:getEventTriggers", args ?? new GetEventTriggersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.getEventTriggers` describe all Event Triggers.
+        /// ## # Data Source: mongodbatlas.getEventTriggers
+        /// 
+        /// `mongodbatlas.getEventTriggers` describes all Event Triggers.
         /// </summary>
         public static Output<GetEventTriggersResult> Invoke(GetEventTriggersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEventTriggersResult>("mongodbatlas:index/getEventTriggers:getEventTriggers", args ?? new GetEventTriggersInvokeArgs(), options.WithDefaults());

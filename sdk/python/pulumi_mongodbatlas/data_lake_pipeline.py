@@ -310,6 +310,8 @@ class DataLakePipeline(pulumi.CustomResource):
                  transformations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataLakePipelineTransformationArgs']]]]] = None,
                  __props__=None):
         """
+        ## # Resource: DataLakePipeline
+
         `DataLakePipeline` provides a Data Lake Pipeline resource.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
@@ -340,6 +342,8 @@ class DataLakePipeline(pulumi.CustomResource):
                  args: DataLakePipelineArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: DataLakePipeline
+
         `DataLakePipeline` provides a Data Lake Pipeline resource.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.

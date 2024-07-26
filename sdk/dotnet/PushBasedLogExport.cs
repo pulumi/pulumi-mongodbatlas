@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## # Resource: mongodbatlas.PushBasedLogExport
+    /// 
     /// `mongodbatlas.PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable &amp; disable the project level settings for the push-based log export feature. Using this resource you
     /// can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.
     /// 
@@ -49,7 +51,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Set up push-based log export with authorized IAM role
-    ///     var test = new Mongodbatlas.PushBasedLogExport("test", new()
+    ///     var testPushBasedLogExport = new Mongodbatlas.PushBasedLogExport("test", new()
     ///     {
     ///         ProjectId = project_tf.Id,
     ///         BucketName = logBucket.Bucket,
@@ -57,6 +59,15 @@ namespace Pulumi.Mongodbatlas
     ///         PrefixPath = "push-based-log-test",
     ///     });
     /// 
+    ///     var test = Mongodbatlas.GetPushBasedLogExport.Invoke(new()
+    ///     {
+    ///         ProjectId = testPushBasedLogExport.ProjectId,
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["test"] = test.Apply(getPushBasedLogExportResult =&gt; getPushBasedLogExportResult.PrefixPath),
+    ///     };
     /// });
     /// ```
     /// </summary>

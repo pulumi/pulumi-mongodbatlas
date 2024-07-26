@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.CloudBackupSnapshotExportBucket` resource allows you to create an export snapshot bucket for the specified project.
+ * ## # Resource: mongodbatlas.CloudBackupSnapshotExportBucket
+ *
+ * `mongodbatlas.CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *

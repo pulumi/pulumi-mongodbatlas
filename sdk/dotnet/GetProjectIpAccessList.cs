@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetProjectIpAccessList
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.ProjectIpAccessList
+        /// 
         /// `mongodbatlas.ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -128,6 +130,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectIpAccessListResult>("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", args ?? new GetProjectIpAccessListArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.ProjectIpAccessList
+        /// 
         /// `mongodbatlas.ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

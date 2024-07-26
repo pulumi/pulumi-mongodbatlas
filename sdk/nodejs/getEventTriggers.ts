@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.getEventTriggers` describe all Event Triggers.
+ * ## # Data Source: mongodbatlas.getEventTriggers
+ *
+ * `mongodbatlas.getEventTriggers` describes all Event Triggers.
  */
 export function getEventTriggers(args: GetEventTriggersArgs, opts?: pulumi.InvokeOptions): Promise<GetEventTriggersResult> {
 
@@ -49,7 +51,9 @@ export interface GetEventTriggersResult {
     readonly results: outputs.GetEventTriggersResult[];
 }
 /**
- * `mongodbatlas.getEventTriggers` describe all Event Triggers.
+ * ## # Data Source: mongodbatlas.getEventTriggers
+ *
+ * `mongodbatlas.getEventTriggers` describes all Event Triggers.
  */
 export function getEventTriggersOutput(args: GetEventTriggersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEventTriggersResult> {
     return pulumi.output(args).apply((a: any) => getEventTriggers(a, opts))

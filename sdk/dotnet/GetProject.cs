@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetProject
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.Project
+        /// 
         /// `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -126,6 +128,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("mongodbatlas:index/getProject:getProject", args ?? new GetProjectArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.Project
+        /// 
         /// `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

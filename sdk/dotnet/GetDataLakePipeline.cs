@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetDataLakePipeline
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.DataLakePipeline
+        /// 
         /// `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
@@ -22,6 +24,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDataLakePipelineResult>("mongodbatlas:index/getDataLakePipeline:getDataLakePipeline", args ?? new GetDataLakePipelineArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.DataLakePipeline
+        /// 
         /// `mongodbatlas.DataLakePipeline` describes a Data Lake Pipeline.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.

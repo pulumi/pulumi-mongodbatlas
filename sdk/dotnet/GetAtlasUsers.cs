@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetAtlasUsers
     {
         /// <summary>
+        /// ## # Data Source: atlas_users
+        /// 
         /// `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -77,6 +79,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAtlasUsersResult>("mongodbatlas:index/getAtlasUsers:getAtlasUsers", args ?? new GetAtlasUsersArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: atlas_users
+        /// 
         /// `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

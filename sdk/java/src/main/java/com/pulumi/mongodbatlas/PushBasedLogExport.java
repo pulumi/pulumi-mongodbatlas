@@ -16,6 +16,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # Resource: mongodbatlas.PushBasedLogExport
+ * 
  * `mongodbatlas.PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable &amp; disable the project level settings for the push-based log export feature. Using this resource you
  * can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.
  * 
@@ -40,6 +42,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
  * import com.pulumi.mongodbatlas.PushBasedLogExport;
  * import com.pulumi.mongodbatlas.PushBasedLogExportArgs;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -73,13 +77,18 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Set up push-based log export with authorized IAM role
- *         var test = new PushBasedLogExport("test", PushBasedLogExportArgs.builder()
+ *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()
  *             .projectId(project_tf.id())
  *             .bucketName(logBucket.bucket())
  *             .iamRoleId(authRole.roleId())
  *             .prefixPath("push-based-log-test")
  *             .build());
  * 
+ *         final var test = MongodbatlasFunctions.getPushBasedLogExport(GetPushBasedLogExportArgs.builder()
+ *             .projectId(testPushBasedLogExport.projectId())
+ *             .build());
+ * 
+ *         ctx.export("test", test.applyValue(getPushBasedLogExportResult -> getPushBasedLogExportResult).applyValue(test -> test.applyValue(getPushBasedLogExportResult -> getPushBasedLogExportResult.prefixPath())));
  *     }
  * }
  * }

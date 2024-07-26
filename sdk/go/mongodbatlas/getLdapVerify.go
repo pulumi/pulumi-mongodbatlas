@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: LdapVerify
+//
 // `LdapVerify` describes a LDAP Verify.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -36,13 +38,26 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testCluster, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
-//				ProjectId:                testProject.ID(),
-//				Name:                     pulumi.String("NAME OF THE CLUSTER"),
-//				ProviderName:             pulumi.String("AWS"),
-//				ProviderRegionName:       pulumi.String("US_EAST_2"),
-//				ProviderInstanceSizeName: pulumi.String("M10"),
-//				CloudBackup:              pulumi.Bool(true),
+//			testAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "test", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     testProject.ID(),
+//				Name:          pulumi.String("ClusterName"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -54,7 +69,7 @@ import (
 //				BindUsername: pulumi.String("USERNAME"),
 //				BindPassword: pulumi.String("PASSWORD"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				testCluster,
+//				testAdvancedCluster,
 //			}))
 //			if err != nil {
 //				return err

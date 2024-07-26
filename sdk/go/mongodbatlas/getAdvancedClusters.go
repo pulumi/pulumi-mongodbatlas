@@ -11,13 +11,61 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `Cluster` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+// ## # Data Source: getAdvancedClusters
+//
+// `getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // > **IMPORTANT:**
 // <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
 // <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "example", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
+//				Name:        pulumi.String("cluster-test"),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M5"),
+//								},
+//								ProviderName:        pulumi.String("TENANT"),
+//								BackingProviderName: pulumi.String("AWS"),
+//								RegionName:          pulumi.String("US_EAST_1"),
+//								Priority:            pulumi.Int(7),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupAdvancedClustersOutput(ctx, mongodbatlas.GetAdvancedClustersOutputArgs{
+//				ProjectId: exampleAdvancedCluster.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupAdvancedClusters(ctx *pulumi.Context, args *LookupAdvancedClustersArgs, opts ...pulumi.InvokeOption) (*LookupAdvancedClustersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAdvancedClustersResult

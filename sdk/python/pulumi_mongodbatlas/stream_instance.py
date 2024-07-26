@@ -181,6 +181,8 @@ class StreamInstance(pulumi.CustomResource):
                  stream_config: Optional[pulumi.Input[pulumi.InputType['StreamInstanceStreamConfigArgs']]] = None,
                  __props__=None):
         """
+        ## # Resource: StreamInstance
+
         `StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
 
         ## Import
@@ -207,6 +209,8 @@ class StreamInstance(pulumi.CustomResource):
                  args: StreamInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: StreamInstance
+
         `StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
 
         ## Import

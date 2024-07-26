@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.getOrganizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
+ * ## # Data Source: mongodbatlas.getOrganizations
+ *
+ * `mongodbatlas.getOrganizations` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
  *
  * ## Example Usage
  *
@@ -62,7 +64,9 @@ export interface GetOrganizationsResult {
     readonly totalCount: number;
 }
 /**
- * `mongodbatlas.getOrganizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
+ * ## # Data Source: mongodbatlas.getOrganizations
+ *
+ * `mongodbatlas.getOrganizations` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
  *
  * ## Example Usage
  *

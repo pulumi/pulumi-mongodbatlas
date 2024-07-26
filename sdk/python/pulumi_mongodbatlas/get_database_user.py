@@ -161,7 +161,9 @@ def get_database_user(auth_database_name: Optional[str] = None,
                       username: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseUserResult:
     """
-    `DatabaseUser` describe a Database User. This represents a database user which will be applied to all clusters within the project.
+    ## # Data Source: DatabaseUser
+
+    `DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
 
     Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 
@@ -255,7 +257,9 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[str]] = N
                              username: Optional[pulumi.Input[str]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseUserResult]:
     """
-    `DatabaseUser` describe a Database User. This represents a database user which will be applied to all clusters within the project.
+    ## # Data Source: DatabaseUser
+
+    `DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
 
     Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 

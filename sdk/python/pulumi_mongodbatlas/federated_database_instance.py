@@ -449,6 +449,8 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                  storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FederatedDatabaseInstanceStorageStoreArgs']]]]] = None,
                  __props__=None):
         """
+        ## # Resource: FederatedDatabaseInstance
+
         `FederatedDatabaseInstance` provides a Federated Database Instance resource.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -631,6 +633,8 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                  args: FederatedDatabaseInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: FederatedDatabaseInstance
+
         `FederatedDatabaseInstance` provides a Federated Database Instance resource.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetFederatedDatabaseInstance
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.FederatedDatabaseInstance
+        /// 
         /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -70,6 +72,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedDatabaseInstanceResult>("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", args ?? new GetFederatedDatabaseInstanceArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.FederatedDatabaseInstance
+        /// 
         /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

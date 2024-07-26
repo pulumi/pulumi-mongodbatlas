@@ -22,7 +22,7 @@ class GetSearchIndexResult:
     """
     A collection of values returned by getSearchIndex.
     """
-    def __init__(__self__, analyzer=None, analyzers=None, cluster_name=None, collection_name=None, database=None, fields=None, id=None, index_id=None, mappings_dynamic=None, mappings_fields=None, name=None, project_id=None, search_analyzer=None, status=None, synonyms=None, type=None):
+    def __init__(__self__, analyzer=None, analyzers=None, cluster_name=None, collection_name=None, database=None, fields=None, id=None, index_id=None, mappings_dynamic=None, mappings_fields=None, name=None, project_id=None, search_analyzer=None, status=None, stored_source=None, synonyms=None, type=None):
         if analyzer and not isinstance(analyzer, str):
             raise TypeError("Expected argument 'analyzer' to be a str")
         pulumi.set(__self__, "analyzer", analyzer)
@@ -65,6 +65,9 @@ class GetSearchIndexResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if stored_source and not isinstance(stored_source, str):
+            raise TypeError("Expected argument 'stored_source' to be a str")
+        pulumi.set(__self__, "stored_source", stored_source)
         if synonyms and not isinstance(synonyms, list):
             raise TypeError("Expected argument 'synonyms' to be a list")
         pulumi.set(__self__, "synonyms", synonyms)
@@ -74,7 +77,7 @@ class GetSearchIndexResult:
 
     @property
     @pulumi.getter
-    def analyzer(self) -> Optional[str]:
+    def analyzer(self) -> str:
         """
         [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
         """
@@ -82,7 +85,7 @@ class GetSearchIndexResult:
 
     @property
     @pulumi.getter
-    def analyzers(self) -> Optional[str]:
+    def analyzers(self) -> str:
         """
         [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
         """
@@ -95,7 +98,7 @@ class GetSearchIndexResult:
 
     @property
     @pulumi.getter(name="collectionName")
-    def collection_name(self) -> Optional[str]:
+    def collection_name(self) -> str:
         """
         Name of the collection the index is on.
         """
@@ -103,7 +106,7 @@ class GetSearchIndexResult:
 
     @property
     @pulumi.getter
-    def database(self) -> Optional[str]:
+    def database(self) -> str:
         """
         Name of the database the collection is in.
         """
@@ -111,7 +114,7 @@ class GetSearchIndexResult:
 
     @property
     @pulumi.getter
-    def fields(self) -> Optional[str]:
+    def fields(self) -> str:
         return pulumi.get(self, "fields")
 
     @property
@@ -129,7 +132,7 @@ class GetSearchIndexResult:
 
     @property
     @pulumi.getter(name="mappingsDynamic")
-    def mappings_dynamic(self) -> Optional[bool]:
+    def mappings_dynamic(self) -> bool:
         """
         Flag indicating whether the index uses dynamic or static mappings.
         """
@@ -137,7 +140,7 @@ class GetSearchIndexResult:
 
     @property
     @pulumi.getter(name="mappingsFields")
-    def mappings_fields(self) -> Optional[str]:
+    def mappings_fields(self) -> str:
         """
         Object containing one or more field specifications.
         """
@@ -145,7 +148,7 @@ class GetSearchIndexResult:
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def name(self) -> str:
         """
         Name of the index.
         """
@@ -158,7 +161,7 @@ class GetSearchIndexResult:
 
     @property
     @pulumi.getter(name="searchAnalyzer")
-    def search_analyzer(self) -> Optional[str]:
+    def search_analyzer(self) -> str:
         """
         [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
         """
@@ -173,6 +176,14 @@ class GetSearchIndexResult:
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter(name="storedSource")
+    def stored_source(self) -> str:
+        """
+        String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+        """
+        return pulumi.get(self, "stored_source")
+
+    @property
     @pulumi.getter
     def synonyms(self) -> Sequence['outputs.GetSearchIndexSynonymResult']:
         """
@@ -185,7 +196,7 @@ class GetSearchIndexResult:
 
     @property
     @pulumi.getter
-    def type(self) -> Optional[str]:
+    def type(self) -> str:
         return pulumi.get(self, "type")
 
 
@@ -209,26 +220,19 @@ class AwaitableGetSearchIndexResult(GetSearchIndexResult):
             project_id=self.project_id,
             search_analyzer=self.search_analyzer,
             status=self.status,
+            stored_source=self.stored_source,
             synonyms=self.synonyms,
             type=self.type)
 
 
-def get_search_index(analyzer: Optional[str] = None,
-                     analyzers: Optional[str] = None,
-                     cluster_name: Optional[str] = None,
-                     collection_name: Optional[str] = None,
-                     database: Optional[str] = None,
-                     fields: Optional[str] = None,
+def get_search_index(cluster_name: Optional[str] = None,
                      index_id: Optional[str] = None,
-                     mappings_dynamic: Optional[bool] = None,
-                     mappings_fields: Optional[str] = None,
-                     name: Optional[str] = None,
                      project_id: Optional[str] = None,
-                     search_analyzer: Optional[str] = None,
-                     type: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSearchIndexResult:
     """
-    `SearchIndex` describe a single search indexes. This represents a single search index that have been created.
+    ## # Data Source: SearchIndex
+
+    `SearchIndex` describes a single search indexes. This represents a single search index that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -244,32 +248,14 @@ def get_search_index(analyzer: Optional[str] = None,
     ```
 
 
-    :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
-    :param str analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
     :param str cluster_name: The name of the cluster containing the collection with one or more Atlas Search indexes.
-    :param str collection_name: Name of the collection the index is on.
-    :param str database: Name of the database the collection is in.
     :param str index_id: The unique identifier of the Atlas Search index. Use the `get_search_indexes`datasource to find the IDs of all Atlas Search indexes.
-    :param bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings.
-    :param str mappings_fields: Object containing one or more field specifications.
-    :param str name: Name of the index.
     :param str project_id: The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
-    :param str search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
     """
     __args__ = dict()
-    __args__['analyzer'] = analyzer
-    __args__['analyzers'] = analyzers
     __args__['clusterName'] = cluster_name
-    __args__['collectionName'] = collection_name
-    __args__['database'] = database
-    __args__['fields'] = fields
     __args__['indexId'] = index_id
-    __args__['mappingsDynamic'] = mappings_dynamic
-    __args__['mappingsFields'] = mappings_fields
-    __args__['name'] = name
     __args__['projectId'] = project_id
-    __args__['searchAnalyzer'] = search_analyzer
-    __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getSearchIndex:getSearchIndex', __args__, opts=opts, typ=GetSearchIndexResult).value
 
@@ -288,27 +274,20 @@ def get_search_index(analyzer: Optional[str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         search_analyzer=pulumi.get(__ret__, 'search_analyzer'),
         status=pulumi.get(__ret__, 'status'),
+        stored_source=pulumi.get(__ret__, 'stored_source'),
         synonyms=pulumi.get(__ret__, 'synonyms'),
         type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_search_index)
-def get_search_index_output(analyzer: Optional[pulumi.Input[Optional[str]]] = None,
-                            analyzers: Optional[pulumi.Input[Optional[str]]] = None,
-                            cluster_name: Optional[pulumi.Input[str]] = None,
-                            collection_name: Optional[pulumi.Input[Optional[str]]] = None,
-                            database: Optional[pulumi.Input[Optional[str]]] = None,
-                            fields: Optional[pulumi.Input[Optional[str]]] = None,
+def get_search_index_output(cluster_name: Optional[pulumi.Input[str]] = None,
                             index_id: Optional[pulumi.Input[str]] = None,
-                            mappings_dynamic: Optional[pulumi.Input[Optional[bool]]] = None,
-                            mappings_fields: Optional[pulumi.Input[Optional[str]]] = None,
-                            name: Optional[pulumi.Input[Optional[str]]] = None,
                             project_id: Optional[pulumi.Input[str]] = None,
-                            search_analyzer: Optional[pulumi.Input[Optional[str]]] = None,
-                            type: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSearchIndexResult]:
     """
-    `SearchIndex` describe a single search indexes. This represents a single search index that have been created.
+    ## # Data Source: SearchIndex
+
+    `SearchIndex` describes a single search indexes. This represents a single search index that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -324,16 +303,8 @@ def get_search_index_output(analyzer: Optional[pulumi.Input[Optional[str]]] = No
     ```
 
 
-    :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
-    :param str analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
     :param str cluster_name: The name of the cluster containing the collection with one or more Atlas Search indexes.
-    :param str collection_name: Name of the collection the index is on.
-    :param str database: Name of the database the collection is in.
     :param str index_id: The unique identifier of the Atlas Search index. Use the `get_search_indexes`datasource to find the IDs of all Atlas Search indexes.
-    :param bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings.
-    :param str mappings_fields: Object containing one or more field specifications.
-    :param str name: Name of the index.
     :param str project_id: The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
-    :param str search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
     """
     ...

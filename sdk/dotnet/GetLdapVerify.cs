@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetLdapVerify
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.LdapVerify
+        /// 
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -33,14 +35,32 @@ namespace Pulumi.Mongodbatlas
         ///         OrgId = "ORG ID",
         ///     });
         /// 
-        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
+        ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
         ///     {
         ///         ProjectId = testProject.Id,
-        ///         Name = "NAME OF THE CLUSTER",
-        ///         ProviderName = "AWS",
-        ///         ProviderRegionName = "US_EAST_2",
-        ///         ProviderInstanceSizeName = "M10",
-        ///         CloudBackup = true,
+        ///         Name = "ClusterName",
+        ///         ClusterType = "REPLICASET",
+        ///         BackupEnabled = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "AWS",
+        ///                         RegionName = "US_EAST_1",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
         ///     });
         /// 
         ///     var testLdapVerify = new Mongodbatlas.LdapVerify("test", new()
@@ -54,7 +74,7 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         DependsOn =
         ///         {
-        ///             testCluster,
+        ///             testAdvancedCluster,
         ///         },
         ///     });
         /// 
@@ -71,6 +91,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLdapVerifyResult>("mongodbatlas:index/getLdapVerify:getLdapVerify", args ?? new GetLdapVerifyArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.LdapVerify
+        /// 
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -92,14 +114,32 @@ namespace Pulumi.Mongodbatlas
         ///         OrgId = "ORG ID",
         ///     });
         /// 
-        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
+        ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
         ///     {
         ///         ProjectId = testProject.Id,
-        ///         Name = "NAME OF THE CLUSTER",
-        ///         ProviderName = "AWS",
-        ///         ProviderRegionName = "US_EAST_2",
-        ///         ProviderInstanceSizeName = "M10",
-        ///         CloudBackup = true,
+        ///         Name = "ClusterName",
+        ///         ClusterType = "REPLICASET",
+        ///         BackupEnabled = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "AWS",
+        ///                         RegionName = "US_EAST_1",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
         ///     });
         /// 
         ///     var testLdapVerify = new Mongodbatlas.LdapVerify("test", new()
@@ -113,7 +153,7 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         DependsOn =
         ///         {
-        ///             testCluster,
+        ///             testAdvancedCluster,
         ///         },
         ///     });
         /// 

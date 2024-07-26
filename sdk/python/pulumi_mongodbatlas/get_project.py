@@ -235,6 +235,8 @@ def get_project(name: Optional[str] = None,
                 project_id: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectResult:
     """
+    ## # Data Source: Project
+
     `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -335,6 +337,8 @@ def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                        project_id: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectResult]:
     """
+    ## # Data Source: Project
+
     `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

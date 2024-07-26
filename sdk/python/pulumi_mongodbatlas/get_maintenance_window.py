@@ -117,6 +117,8 @@ class AwaitableGetMaintenanceWindowResult(GetMaintenanceWindowResult):
 def get_maintenance_window(project_id: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMaintenanceWindowResult:
     """
+    ## # Data Source: MaintenanceWindow
+
     `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -167,6 +169,8 @@ def get_maintenance_window(project_id: Optional[str] = None,
 def get_maintenance_window_output(project_id: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMaintenanceWindowResult]:
     """
+    ## # Data Source: MaintenanceWindow
+
     `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

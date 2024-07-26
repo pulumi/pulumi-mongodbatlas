@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## # Resource: mongodbatlas.DataLakePipeline
+    /// 
     /// `mongodbatlas.DataLakePipeline` provides a Data Lake Pipeline resource.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.

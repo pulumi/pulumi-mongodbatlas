@@ -185,6 +185,21 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * String that can be &#34;true&#34; (store all fields), &#34;false&#34; (default, don&#39;t store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+     * 
+     */
+    @Import(name="storedSource")
+    private @Nullable Output<String> storedSource;
+
+    /**
+     * @return String that can be &#34;true&#34; (store all fields), &#34;false&#34; (default, don&#39;t store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+     * 
+     */
+    public Optional<Output<String>> storedSource() {
+        return Optional.ofNullable(this.storedSource);
+    }
+
+    /**
      * Synonyms mapping definition to use in this index.
      * 
      */
@@ -235,6 +250,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         this.name = $.name;
         this.projectId = $.projectId;
         this.searchAnalyzer = $.searchAnalyzer;
+        this.storedSource = $.storedSource;
         this.synonyms = $.synonyms;
         this.type = $.type;
         this.waitForIndexBuildCompletion = $.waitForIndexBuildCompletion;
@@ -487,6 +503,27 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder searchAnalyzer(String searchAnalyzer) {
             return searchAnalyzer(Output.of(searchAnalyzer));
+        }
+
+        /**
+         * @param storedSource String that can be &#34;true&#34; (store all fields), &#34;false&#34; (default, don&#39;t store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder storedSource(@Nullable Output<String> storedSource) {
+            $.storedSource = storedSource;
+            return this;
+        }
+
+        /**
+         * @param storedSource String that can be &#34;true&#34; (store all fields), &#34;false&#34; (default, don&#39;t store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder storedSource(String storedSource) {
+            return storedSource(Output.of(storedSource));
         }
 
         /**

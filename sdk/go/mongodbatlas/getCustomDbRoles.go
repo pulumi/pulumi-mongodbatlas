@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `getCustomDbRoles` describe all Custom DB Roles. This represents a custom db roles.
+// ## # Data Source: getCustomDbRoles
+//
+// `getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 func LookupCustomDbRoles(ctx *pulumi.Context, args *LookupCustomDbRolesArgs, opts ...pulumi.InvokeOption) (*LookupCustomDbRolesResult, error) {

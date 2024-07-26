@@ -12,7 +12,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `CloudBackupSnapshotExportJob` resource allows you to create a cloud backup snapshot export job for the specified project.
+// ## # Resource: CloudBackupSnapshotExportJob
+//
+// `CloudBackupSnapshotExportJob` allows you to create a cloud backup snapshot export job for the specified project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //

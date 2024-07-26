@@ -451,6 +451,8 @@ class OnlineArchive(pulumi.CustomResource):
                  sync_creation: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
+        ## # Resource: OnlineArchive
+
         `OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -576,6 +578,8 @@ class OnlineArchive(pulumi.CustomResource):
                  args: OnlineArchiveArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: OnlineArchive
+
         `OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

@@ -34,8 +34,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
  * import com.pulumi.mongodbatlas.CloudBackupSchedule;
  * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
  * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
@@ -67,13 +68,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myCluster = new Cluster("myCluster", ClusterArgs.builder()
+ *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .name("clusterTest")
- *             .providerName("AWS")
- *             .providerRegionName("EU_CENTRAL_1")
- *             .providerInstanceSizeName("M10")
- *             .cloudBackup(true)
+ *             .clusterType("REPLICASET")
+ *             .backupEnabled(true)
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .priority(7)
+ *                     .providerName("AWS")
+ *                     .regionName(region)
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .build())
+ *                 .build())
  *             .build());
  * 
  *         var testCloudBackupSchedule = new CloudBackupSchedule("testCloudBackupSchedule", CloudBackupScheduleArgs.builder()

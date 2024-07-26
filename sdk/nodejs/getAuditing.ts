@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.Auditing
+ *
  * `mongodbatlas.Auditing` describes a Auditing.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -71,6 +73,8 @@ export interface GetAuditingResult {
     readonly projectId: string;
 }
 /**
+ * ## # Data Source: mongodbatlas.Auditing
+ *
  * `mongodbatlas.Auditing` describes a Auditing.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

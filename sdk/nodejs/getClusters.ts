@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.getClusters
+ *
  * `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -78,6 +80,8 @@ export interface GetClustersResult {
     readonly results: outputs.GetClustersResult[];
 }
 /**
+ * ## # Data Source: mongodbatlas.getClusters
+ *
  * `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.

@@ -428,12 +428,11 @@ export interface AlertConfigurationNotification {
      *
      * | Project roles                   | Organization roles  |
      * |:----------                      |:-----------         |
-     * | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-     * | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-     * | `GROUP_OWNER`                   |                     |
+     * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
+     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
+     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
+     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
+     * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
      * | `GROUP_READ_ONLY`               |                     |
      */
     roles?: string[];
@@ -5941,11 +5940,11 @@ export interface GetSearchIndexesResult {
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      */
-    analyzer?: string;
+    analyzer: string;
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
      */
-    analyzers?: string;
+    analyzers: string;
     /**
      * Name of the cluster containing the collection with one or more Atlas Search indexes.
      */
@@ -5958,16 +5957,19 @@ export interface GetSearchIndexesResult {
      * (Required) Name of the database the collection is in.
      */
     database: string;
-    fields?: string;
+    fields: string;
+    /**
+     * The unique identifier of the Atlas Search index.
+     */
     indexId: string;
     /**
      * Flag indicating whether the index uses dynamic or static mappings.
      */
-    mappingsDynamic?: boolean;
+    mappingsDynamic: boolean;
     /**
      * Object containing one or more field specifications.
      */
-    mappingsFields?: string;
+    mappingsFields: string;
     /**
      * Name of the index.
      */
@@ -5979,20 +5981,23 @@ export interface GetSearchIndexesResult {
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      */
-    searchAnalyzer?: string;
+    searchAnalyzer: string;
     /**
      * Current status of the index.
      */
     status: string;
+    /**
+     * String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+     */
+    storedSource: string;
     /**
      * Synonyms mapping definition to use in this index.
      * * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
      * * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
      * * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
      */
-    synonyms?: outputs.GetSearchIndexesResultSynonym[];
-    type?: string;
-    waitForIndexBuildCompletion?: boolean;
+    synonyms: outputs.GetSearchIndexesResultSynonym[];
+    type: string;
 }
 
 export interface GetSearchIndexesResultSynonym {

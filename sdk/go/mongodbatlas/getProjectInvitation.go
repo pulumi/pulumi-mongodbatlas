@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: ProjectInvitation
+//
 // `ProjectInvitation` describes an invitation to a user to join an Atlas project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.

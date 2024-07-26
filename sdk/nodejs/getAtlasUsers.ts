@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: atlasUsers
+ *
  * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -111,6 +113,8 @@ export interface GetAtlasUsersResult {
     readonly totalCount: number;
 }
 /**
+ * ## # Data Source: atlasUsers
+ *
  * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

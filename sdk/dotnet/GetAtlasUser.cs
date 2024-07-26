@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetAtlasUser
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getAtlasUser
+        /// 
         /// `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
         /// 
         /// &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
@@ -56,6 +58,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAtlasUserResult>("mongodbatlas:index/getAtlasUser:getAtlasUser", args ?? new GetAtlasUserArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getAtlasUser
+        /// 
         /// `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
         /// 
         /// &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.

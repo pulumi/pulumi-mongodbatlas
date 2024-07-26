@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetNetworkPeerings
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getNetworkPeerings
+        /// 
         /// `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -52,6 +54,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworkPeeringsResult>("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args ?? new GetNetworkPeeringsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getNetworkPeerings
+        /// 
         /// `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

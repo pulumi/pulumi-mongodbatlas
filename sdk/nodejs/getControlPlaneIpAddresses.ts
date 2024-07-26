@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Provides a data source that returns all control plane IP addresses.
+ * ## # Data Source: mongodbatlas.getControlPlaneIpAddresses
+ *
+ * `mongodbatlas.getControlPlaneIpAddresses` returns all control plane IP addresses.
  *
  * ## Example Usage
  *
@@ -49,7 +51,9 @@ export interface GetControlPlaneIpAddressesResult {
     readonly outbound: outputs.GetControlPlaneIpAddressesOutbound;
 }
 /**
- * Provides a data source that returns all control plane IP addresses.
+ * ## # Data Source: mongodbatlas.getControlPlaneIpAddresses
+ *
+ * `mongodbatlas.getControlPlaneIpAddresses` returns all control plane IP addresses.
  *
  * ## Example Usage
  *

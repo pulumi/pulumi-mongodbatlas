@@ -85,6 +85,8 @@ def get_online_archives(cluster_name: Optional[str] = None,
                         project_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOnlineArchivesResult:
     """
+    ## # Data Source: OnlineArchive
+
     `OnlineArchive` Describes the list of all the online archives for a cluster
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -160,6 +162,8 @@ def get_online_archives_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                project_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOnlineArchivesResult]:
     """
+    ## # Data Source: OnlineArchive
+
     `OnlineArchive` Describes the list of all the online archives for a cluster
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

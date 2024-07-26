@@ -499,13 +499,22 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        my_cluster = mongodbatlas.Cluster("my_cluster",
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
             project_id="<PROJECT-ID>",
             name="clusterTest",
-            provider_name="AWS",
-            provider_region_name="EU_CENTRAL_1",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    priority=7,
+                    provider_name="AWS",
+                    region_name=region,
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                )],
+            )])
         test_cloud_backup_schedule = mongodbatlas.CloudBackupSchedule("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -614,13 +623,22 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        my_cluster = mongodbatlas.Cluster("my_cluster",
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
             project_id="<PROJECT-ID>",
             name="clusterTest",
-            provider_name="AWS",
-            provider_region_name="EU_CENTRAL_1",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    priority=7,
+                    provider_name="AWS",
+                    region_name=region,
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                )],
+            )])
         test_cloud_backup_schedule = mongodbatlas.CloudBackupSchedule("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,

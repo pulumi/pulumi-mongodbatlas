@@ -202,7 +202,9 @@ def get_private_link_endpoint(private_link_id: Optional[str] = None,
                               provider_name: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivateLinkEndpointResult:
     """
-    `PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
+    ## # Data Source: PrivateLinkEndpoint
+
+    `PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
@@ -259,7 +261,9 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[str]
                                      provider_name: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivateLinkEndpointResult]:
     """
-    `PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
+    ## # Data Source: PrivateLinkEndpoint
+
+    `PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 

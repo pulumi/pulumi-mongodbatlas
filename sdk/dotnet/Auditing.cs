@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## # Resource: mongodbatlas.Auditing
+    /// 
     /// `mongodbatlas.Auditing` provides an Auditing resource. This allows auditing to be created.
     /// 
     /// ## Example Usage

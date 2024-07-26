@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.getStreamInstances
+ *
  * `mongodbatlas.getStreamInstances` describes the stream instances defined in a project.
  *
  * ## Example Usage
@@ -69,6 +71,8 @@ export interface GetStreamInstancesResult {
     readonly totalCount: number;
 }
 /**
+ * ## # Data Source: mongodbatlas.getStreamInstances
+ *
  * `mongodbatlas.getStreamInstances` describes the stream instances defined in a project.
  *
  * ## Example Usage

@@ -104,6 +104,8 @@ class AwaitableGetPushBasedLogExportResult(GetPushBasedLogExportResult):
 def get_push_based_log_export(project_id: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPushBasedLogExportResult:
     """
+    ## # Data Source: PushBasedLogExport
+
     `PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
 
     ## Example Usage
@@ -133,6 +135,7 @@ def get_push_based_log_export(project_id: Optional[str] = None,
         iam_role_id=auth_role.role_id,
         prefix_path="push-based-log-test")
     test = mongodbatlas.get_push_based_log_export_output(project_id=test_push_based_log_export.project_id)
+    pulumi.export("test", test.prefix_path)
     ```
 
 
@@ -157,6 +160,8 @@ def get_push_based_log_export(project_id: Optional[str] = None,
 def get_push_based_log_export_output(project_id: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPushBasedLogExportResult]:
     """
+    ## # Data Source: PushBasedLogExport
+
     `PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
 
     ## Example Usage
@@ -186,6 +191,7 @@ def get_push_based_log_export_output(project_id: Optional[pulumi.Input[str]] = N
         iam_role_id=auth_role.role_id,
         prefix_path="push-based-log-test")
     test = mongodbatlas.get_push_based_log_export_output(project_id=test_push_based_log_export.project_id)
+    pulumi.export("test", test.prefix_path)
     ```
 
 

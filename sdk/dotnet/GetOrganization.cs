@@ -12,7 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetOrganization
     {
         /// <summary>
-        /// `mongodbatlas.Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
+        /// ## # Data Source: mongodbatlas.Organization
+        /// 
+        /// `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
         /// 
         /// ## Example Usage
         /// 
@@ -37,7 +39,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("mongodbatlas:index/getOrganization:getOrganization", args ?? new GetOrganizationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
+        /// ## # Data Source: mongodbatlas.Organization
+        /// 
+        /// `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
         /// 
         /// ## Example Usage
         /// 

@@ -104,6 +104,8 @@ class AwaitableGetAuditingResult(GetAuditingResult):
 def get_auditing(project_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuditingResult:
     """
+    ## # Data Source: Auditing
+
     `Auditing` describes a Auditing.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -143,6 +145,8 @@ def get_auditing(project_id: Optional[str] = None,
 def get_auditing_output(project_id: Optional[pulumi.Input[str]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuditingResult]:
     """
+    ## # Data Source: Auditing
+
     `Auditing` describes a Auditing.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

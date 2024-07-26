@@ -301,6 +301,8 @@ class AlertConfiguration(pulumi.CustomResource):
                  threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdConfigArgs']]] = None,
                  __props__=None):
         """
+        ## # Resource: AlertConfiguration
+
         `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -321,10 +323,7 @@ class AlertConfiguration(pulumi.CustomResource):
                 delay_min=0,
                 sms_enabled=False,
                 email_enabled=True,
-                roles=[
-                    "GROUP_CHARTS_ADMIN",
-                    "GROUP_CLUSTER_MANAGER",
-                ],
+                roles=["GROUP_CLUSTER_MANAGER"],
             )],
             matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
                 field_name="HOSTNAME_AND_PORT",
@@ -356,15 +355,12 @@ class AlertConfiguration(pulumi.CustomResource):
                 delay_min=0,
                 sms_enabled=False,
                 email_enabled=True,
-                roles=[
-                    "GROUP_CHARTS_ADMIN",
-                    "GROUP_CLUSTER_MANAGER",
-                ],
+                roles=["GROUP_CLUSTER_MANAGER"],
             )],
             matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
-                field_name="HOSTNAME_AND_PORT",
+                field_name="CLUSTER_NAME",
                 operator="EQUALS",
-                value="SECONDARY",
+                value="my-cluster",
             )],
             threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
                 operator="LESS_THAN",
@@ -443,7 +439,8 @@ class AlertConfiguration(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
         ```
-        __NOTE__: Third-party notifications will not contain their respective credentials as these are sensitive attributes. If you wish to perform updates on these notifications without providing the original credentials, the corresponding `notifier_id` attribute must be provided instead.
+
+        **NOTE**: Third-party notifications will not contain their respective credentials as these are sensitive attributes. If you wish to perform updates on these notifications without providing the original credentials, the corresponding `notifier_id` attribute must be provided instead.
 
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
 
@@ -465,6 +462,8 @@ class AlertConfiguration(pulumi.CustomResource):
                  args: AlertConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: AlertConfiguration
+
         `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -485,10 +484,7 @@ class AlertConfiguration(pulumi.CustomResource):
                 delay_min=0,
                 sms_enabled=False,
                 email_enabled=True,
-                roles=[
-                    "GROUP_CHARTS_ADMIN",
-                    "GROUP_CLUSTER_MANAGER",
-                ],
+                roles=["GROUP_CLUSTER_MANAGER"],
             )],
             matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
                 field_name="HOSTNAME_AND_PORT",
@@ -520,15 +516,12 @@ class AlertConfiguration(pulumi.CustomResource):
                 delay_min=0,
                 sms_enabled=False,
                 email_enabled=True,
-                roles=[
-                    "GROUP_CHARTS_ADMIN",
-                    "GROUP_CLUSTER_MANAGER",
-                ],
+                roles=["GROUP_CLUSTER_MANAGER"],
             )],
             matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
-                field_name="HOSTNAME_AND_PORT",
+                field_name="CLUSTER_NAME",
                 operator="EQUALS",
-                value="SECONDARY",
+                value="my-cluster",
             )],
             threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
                 operator="LESS_THAN",
@@ -607,7 +600,8 @@ class AlertConfiguration(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
         ```
-        __NOTE__: Third-party notifications will not contain their respective credentials as these are sensitive attributes. If you wish to perform updates on these notifications without providing the original credentials, the corresponding `notifier_id` attribute must be provided instead.
+
+        **NOTE**: Third-party notifications will not contain their respective credentials as these are sensitive attributes. If you wish to perform updates on these notifications without providing the original credentials, the corresponding `notifier_id` attribute must be provided instead.
 
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
 

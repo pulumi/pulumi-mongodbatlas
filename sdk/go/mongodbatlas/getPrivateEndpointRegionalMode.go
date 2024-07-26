@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `privateEndpointRegionalMode` describe a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
+// ## # Data Source: privateEndpointRegionalMode
+//
+// `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 func LookupPrivateEndpointRegionalMode(ctx *pulumi.Context, args *LookupPrivateEndpointRegionalModeArgs, opts ...pulumi.InvokeOption) (*LookupPrivateEndpointRegionalModeResult, error) {

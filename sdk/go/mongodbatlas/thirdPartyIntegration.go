@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: ThirdPartyIntegration
+//
 // `ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

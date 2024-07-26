@@ -71,7 +71,9 @@ class AwaitableGetControlPlaneIpAddressesResult(GetControlPlaneIpAddressesResult
 
 def get_control_plane_ip_addresses(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetControlPlaneIpAddressesResult:
     """
-    Provides a data source that returns all control plane IP addresses.
+    ## # Data Source: get_control_plane_ip_addresses
+
+    `get_control_plane_ip_addresses` returns all control plane IP addresses.
 
     ## Example Usage
 
@@ -97,7 +99,9 @@ def get_control_plane_ip_addresses(opts: Optional[pulumi.InvokeOptions] = None) 
 @_utilities.lift_output_func(get_control_plane_ip_addresses)
 def get_control_plane_ip_addresses_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetControlPlaneIpAddressesResult]:
     """
-    Provides a data source that returns all control plane IP addresses.
+    ## # Data Source: get_control_plane_ip_addresses
+
+    `get_control_plane_ip_addresses` returns all control plane IP addresses.
 
     ## Example Usage
 

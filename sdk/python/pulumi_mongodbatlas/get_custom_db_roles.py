@@ -69,7 +69,9 @@ class AwaitableGetCustomDbRolesResult(GetCustomDbRolesResult):
 def get_custom_db_roles(project_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomDbRolesResult:
     """
-    `get_custom_db_roles` describe all Custom DB Roles. This represents a custom db roles.
+    ## # Data Source: get_custom_db_roles
+
+    `get_custom_db_roles` describes all Custom DB Roles. This represents a custom db roles.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -91,7 +93,9 @@ def get_custom_db_roles(project_id: Optional[str] = None,
 def get_custom_db_roles_output(project_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCustomDbRolesResult]:
     """
-    `get_custom_db_roles` describe all Custom DB Roles. This represents a custom db roles.
+    ## # Data Source: get_custom_db_roles
+
+    `get_custom_db_roles` describes all Custom DB Roles. This represents a custom db roles.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 

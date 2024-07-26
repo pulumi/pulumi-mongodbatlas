@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `privatelinkEndpointServiceServerless` Provides a Serverless PrivateLink Endpoint Service resource.
+ * ## # Data Source: privatelinkEndpointServiceServerless
+ *
+ * `privatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
@@ -138,7 +140,9 @@ export interface GetPrivatelinkEndpointServiceServerlessResult {
     readonly status: string;
 }
 /**
- * `privatelinkEndpointServiceServerless` Provides a Serverless PrivateLink Endpoint Service resource.
+ * ## # Data Source: privatelinkEndpointServiceServerless
+ *
+ * `privatelinkEndpointServiceServerless` provides a Serverless PrivateLink Endpoint Service resource.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *

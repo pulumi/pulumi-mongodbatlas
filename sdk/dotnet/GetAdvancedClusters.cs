@@ -12,25 +12,119 @@ namespace Pulumi.Mongodbatlas
     public static class GetAdvancedClusters
     {
         /// <summary>
-        /// `mongodbatlas.Cluster` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+        /// ## # Data Source: mongodbatlas.getAdvancedClusters
+        /// 
+        /// `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleAdvancedCluster = new Mongodbatlas.AdvancedCluster("example", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "cluster-test",
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M5",
+        ///                         },
+        ///                         ProviderName = "TENANT",
+        ///                         BackingProviderName = "AWS",
+        ///                         RegionName = "US_EAST_1",
+        ///                         Priority = 7,
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var example = Mongodbatlas.GetAdvancedClusters.Invoke(new()
+        ///     {
+        ///         ProjectId = exampleAdvancedCluster.ProjectId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetAdvancedClustersResult> InvokeAsync(GetAdvancedClustersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.Cluster` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+        /// ## # Data Source: mongodbatlas.getAdvancedClusters
+        /// 
+        /// `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleAdvancedCluster = new Mongodbatlas.AdvancedCluster("example", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "cluster-test",
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M5",
+        ///                         },
+        ///                         ProviderName = "TENANT",
+        ///                         BackingProviderName = "AWS",
+        ///                         RegionName = "US_EAST_1",
+        ///                         Priority = 7,
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var example = Mongodbatlas.GetAdvancedClusters.Invoke(new()
+        ///     {
+        ///         ProjectId = exampleAdvancedCluster.ProjectId,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAdvancedClustersResult> Invoke(GetAdvancedClustersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersInvokeArgs(), options.WithDefaults());

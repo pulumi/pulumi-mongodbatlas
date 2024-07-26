@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## # Resource: mongodbatlas.NetworkPeering
+    /// 
     /// `mongodbatlas.NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
     /// 
     /// Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
@@ -110,33 +112,32 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create the cluster once the peering connection is completed
-    ///     var testCluster = new Mongodbatlas.Cluster("test", new()
+    ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         Name = "terraform-manually-test",
     ///         ClusterType = "REPLICASET",
+    ///         BackupEnabled = true,
     ///         ReplicationSpecs = new[]
     ///         {
-    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
     ///             {
-    ///                 NumShards = 1,
-    ///                 RegionsConfigs = new[]
+    ///                 RegionConfigs = new[]
     ///                 {
-    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
     ///                     {
-    ///                         RegionName = "US_EAST_2",
-    ///                         ElectableNodes = 3,
     ///                         Priority = 7,
-    ///                         ReadOnlyNodes = 0,
+    ///                         ProviderName = "AZURE",
+    ///                         RegionName = "US_EAST_2",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
     ///                     },
     ///                 },
     ///             },
     ///         },
-    ///         AutoScalingDiskGbEnabled = true,
-    ///         MongoDbMajorVersion = "7.0",
-    ///         ProviderName = "AZURE",
-    ///         ProviderDiskTypeName = "P4",
-    ///         ProviderInstanceSizeName = "M10",
     ///     }, new CustomResourceOptions
     ///     {
     ///         DependsOn =
@@ -150,138 +151,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ### Peering Connection Only, Container Exists
     /// You can create a peering connection if an appropriate container for your cloud provider already exists in your project (see the network_container resource for more information).  A container may already exist if you have already created a cluster in your project, if so you may obtain the `container_id` from the cluster resource as shown in the examples below.
-    /// 
-    /// ### Example with AWS
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Aws = Pulumi.Aws;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Create an Atlas cluster, this creates a container if one
-    ///     // does not yet exist for this AWS region
-    ///     var test = new Mongodbatlas.Cluster("test", new()
-    ///     {
-    ///         ProjectId = projectId,
-    ///         Name = "terraform-test",
-    ///         ClusterType = "REPLICASET",
-    ///         ReplicationSpecs = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
-    ///             {
-    ///                 NumShards = 1,
-    ///                 RegionsConfigs = new[]
-    ///                 {
-    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
-    ///                     {
-    ///                         RegionName = "US_EAST_2",
-    ///                         ElectableNodes = 3,
-    ///                         Priority = 7,
-    ///                         ReadOnlyNodes = 0,
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///         AutoScalingDiskGbEnabled = false,
-    ///         MongoDbMajorVersion = "7.0",
-    ///         ProviderName = "AWS",
-    ///         ProviderInstanceSizeName = "M10",
-    ///     });
-    /// 
-    ///     // the following assumes an AWS provider is configured
-    ///     var @default = new Aws.Index.DefaultVpc("default", new()
-    ///     {
-    ///         Tags = 
-    ///         {
-    ///             { "name", "Default VPC" },
-    ///         },
-    ///     });
-    /// 
-    ///     // Create the peering connection request
-    ///     var mongoPeer = new Mongodbatlas.NetworkPeering("mongo_peer", new()
-    ///     {
-    ///         AccepterRegionName = "us-east-2",
-    ///         ProjectId = projectId,
-    ///         ContainerId = test.ContainerId,
-    ///         ProviderName = "AWS",
-    ///         RouteTableCidrBlock = "172.31.0.0/16",
-    ///         VpcId = @default.Id,
-    ///         AwsAccountId = AWS_ACCOUNT_ID,
-    ///     });
-    /// 
-    ///     // Accept the connection 
-    ///     var awsPeer = new Aws.Index.VpcPeeringConnectionAccepter("aws_peer", new()
-    ///     {
-    ///         VpcPeeringConnectionId = mongoPeer.ConnectionId,
-    ///         AutoAccept = true,
-    ///         Tags = 
-    ///         {
-    ///             { "side", "Accepter" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Example with Azure
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Ensure you have created the required Azure service principal first, see
-    ///     // see https://docs.atlas.mongodb.com/security-vpc-peering/
-    ///     // Create an Atlas cluster, this creates a container if one
-    ///     // does not yet exist for this AZURE region
-    ///     var test = new Mongodbatlas.Cluster("test", new()
-    ///     {
-    ///         ProjectId = projectId,
-    ///         Name = "cluster-azure",
-    ///         ClusterType = "REPLICASET",
-    ///         ReplicationSpecs = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
-    ///             {
-    ///                 NumShards = 1,
-    ///                 RegionsConfigs = new[]
-    ///                 {
-    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
-    ///                     {
-    ///                         RegionName = "US_EAST_2",
-    ///                         ElectableNodes = 3,
-    ///                         Priority = 7,
-    ///                         ReadOnlyNodes = 0,
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///         AutoScalingDiskGbEnabled = false,
-    ///         MongoDbMajorVersion = "7.0",
-    ///         ProviderName = "AZURE",
-    ///         ProviderInstanceSizeName = "M10",
-    ///     });
-    /// 
-    ///     // Create the peering connection request
-    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
-    ///     {
-    ///         ProjectId = projectId,
-    ///         ContainerId = test.ContainerId,
-    ///         ProviderName = "AZURE",
-    ///         AzureDirectoryId = AZURE_DIRECTORY_ID,
-    ///         AzureSubscriptionId = AZURE_SUBSCRIPTION_ID,
-    ///         ResourceGroupName = AZURE_RESOURCE_GROUP_NAME,
-    ///         VnetName = AZURE_VNET_NAME,
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// 
     /// ## Import
     /// 

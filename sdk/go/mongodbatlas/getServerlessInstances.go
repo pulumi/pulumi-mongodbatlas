@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `getServerlessInstances` describe all serverless instances. This represents serverless instances that have been created for the specified group id.
+// ## # Data Source: getServerlessInstances
+//
+// `getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
 //
 // > **NOTE:**  Serverless instances do not support some Atlas features at this time.
 // For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).

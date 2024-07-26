@@ -182,6 +182,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # Resource: GlobalClusterConfig
+
         `GlobalClusterConfig` provides a Global Cluster Configuration resource.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -266,6 +268,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
                  args: GlobalClusterConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: GlobalClusterConfig
+
         `GlobalClusterConfig` provides a Global Cluster Configuration resource.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

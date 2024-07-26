@@ -95,7 +95,9 @@ def get_organizations(items_per_page: Optional[int] = None,
                       page_num: Optional[int] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationsResult:
     """
-    `get_organizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
+    ## # Data Source: get_organizations
+
+    `get_organizations` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 
     ## Example Usage
 
@@ -133,7 +135,9 @@ def get_organizations_output(items_per_page: Optional[pulumi.Input[Optional[int]
                              page_num: Optional[pulumi.Input[Optional[int]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationsResult]:
     """
-    `get_organizations` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
+    ## # Data Source: get_organizations
+
+    `get_organizations` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 
     ## Example Usage
 

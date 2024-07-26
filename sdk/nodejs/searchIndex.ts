@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Resource: mongodbatlas.SearchIndex
+ *
  * `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
  *
  * ## Example Usage
@@ -193,6 +195,9 @@ export class SearchIndex extends pulumi.CustomResource {
      * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
      */
     public readonly fields!: pulumi.Output<string | undefined>;
+    /**
+     * The unique identifier of the Atlas Search index.
+     */
     public /*out*/ readonly indexId!: pulumi.Output<string>;
     /**
      * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
@@ -218,6 +223,10 @@ export class SearchIndex extends pulumi.CustomResource {
      * Current status of the index.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+     */
+    public readonly storedSource!: pulumi.Output<string | undefined>;
     /**
      * Synonyms mapping definition to use in this index.
      */
@@ -254,6 +263,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["searchAnalyzer"] = state ? state.searchAnalyzer : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["storedSource"] = state ? state.storedSource : undefined;
             resourceInputs["synonyms"] = state ? state.synonyms : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["waitForIndexBuildCompletion"] = state ? state.waitForIndexBuildCompletion : undefined;
@@ -282,6 +292,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["searchAnalyzer"] = args ? args.searchAnalyzer : undefined;
+            resourceInputs["storedSource"] = args ? args.storedSource : undefined;
             resourceInputs["synonyms"] = args ? args.synonyms : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["waitForIndexBuildCompletion"] = args ? args.waitForIndexBuildCompletion : undefined;
@@ -342,6 +353,9 @@ export interface SearchIndexState {
      * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
      */
     fields?: pulumi.Input<string>;
+    /**
+     * The unique identifier of the Atlas Search index.
+     */
     indexId?: pulumi.Input<string>;
     /**
      * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
@@ -367,6 +381,10 @@ export interface SearchIndexState {
      * Current status of the index.
      */
     status?: pulumi.Input<string>;
+    /**
+     * String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+     */
+    storedSource?: pulumi.Input<string>;
     /**
      * Synonyms mapping definition to use in this index.
      */
@@ -447,6 +465,10 @@ export interface SearchIndexArgs {
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
     searchAnalyzer?: pulumi.Input<string>;
+    /**
+     * String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+     */
+    storedSource?: pulumi.Input<string>;
     /**
      * Synonyms mapping definition to use in this index.
      */

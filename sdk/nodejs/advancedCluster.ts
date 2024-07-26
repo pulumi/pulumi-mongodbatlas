@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Resource: mongodbatlas.AdvancedCluster
+ *
  * `mongodbatlas.AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
  *
  * More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
@@ -318,13 +320,13 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  *
- * export const standard = cluster_test.connectionStrings[0].standard;
+ * export const standard = cluster.connectionStrings[0].standard;
  * ```
  * Standard srv
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  *
- * export const standardSrv = cluster_test.connectionStrings[0].standardSrv;
+ * export const standardSrv = cluster.connectionStrings[0].standardSrv;
  * ```
  * Private with Network peering and Custom DNS AWS enabled
  * ## Import

@@ -12,7 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetServerlessInstance
     {
         /// <summary>
-        /// `mongodbatlas.ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+        /// ## # Data Source: mongodbatlas.ServerlessInstance
+        /// 
+        /// `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
         ///  
@@ -52,7 +54,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServerlessInstanceResult>("mongodbatlas:index/getServerlessInstance:getServerlessInstance", args ?? new GetServerlessInstanceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+        /// ## # Data Source: mongodbatlas.ServerlessInstance
+        /// 
+        /// `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
         ///  

@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `SearchIndex` describe a single search indexes. This represents a single search index that have been created.
+// ## # Data Source: SearchIndex
+//
+// `SearchIndex` describes a single search indexes. This represents a single search index that have been created.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
@@ -54,64 +56,48 @@ func LookupSearchIndex(ctx *pulumi.Context, args *LookupSearchIndexArgs, opts ..
 
 // A collection of arguments for invoking getSearchIndex.
 type LookupSearchIndexArgs struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
-	Analyzer *string `pulumi:"analyzer"`
-	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
-	Analyzers *string `pulumi:"analyzers"`
 	// The name of the cluster containing the collection with one or more Atlas Search indexes.
 	ClusterName string `pulumi:"clusterName"`
-	// Name of the collection the index is on.
-	CollectionName *string `pulumi:"collectionName"`
-	// Name of the database the collection is in.
-	Database *string `pulumi:"database"`
-	Fields   *string `pulumi:"fields"`
 	// The unique identifier of the Atlas Search index. Use the `getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
 	IndexId string `pulumi:"indexId"`
-	// Flag indicating whether the index uses dynamic or static mappings.
-	MappingsDynamic *bool `pulumi:"mappingsDynamic"`
-	// Object containing one or more field specifications.
-	MappingsFields *string `pulumi:"mappingsFields"`
-	// Name of the index.
-	Name *string `pulumi:"name"`
 	// The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
 	ProjectId string `pulumi:"projectId"`
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
-	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
-	Type           *string `pulumi:"type"`
 }
 
 // A collection of values returned by getSearchIndex.
 type LookupSearchIndexResult struct {
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
-	Analyzer *string `pulumi:"analyzer"`
+	Analyzer string `pulumi:"analyzer"`
 	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
-	Analyzers   *string `pulumi:"analyzers"`
-	ClusterName string  `pulumi:"clusterName"`
+	Analyzers   string `pulumi:"analyzers"`
+	ClusterName string `pulumi:"clusterName"`
 	// Name of the collection the index is on.
-	CollectionName *string `pulumi:"collectionName"`
+	CollectionName string `pulumi:"collectionName"`
 	// Name of the database the collection is in.
-	Database *string `pulumi:"database"`
-	Fields   *string `pulumi:"fields"`
+	Database string `pulumi:"database"`
+	Fields   string `pulumi:"fields"`
 	// The provider-assigned unique ID for this managed resource.
 	Id      string `pulumi:"id"`
 	IndexId string `pulumi:"indexId"`
 	// Flag indicating whether the index uses dynamic or static mappings.
-	MappingsDynamic *bool `pulumi:"mappingsDynamic"`
+	MappingsDynamic bool `pulumi:"mappingsDynamic"`
 	// Object containing one or more field specifications.
-	MappingsFields *string `pulumi:"mappingsFields"`
+	MappingsFields string `pulumi:"mappingsFields"`
 	// Name of the index.
-	Name      *string `pulumi:"name"`
-	ProjectId string  `pulumi:"projectId"`
+	Name      string `pulumi:"name"`
+	ProjectId string `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
-	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
+	SearchAnalyzer string `pulumi:"searchAnalyzer"`
 	// Current status of the index.
 	Status string `pulumi:"status"`
+	// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+	StoredSource string `pulumi:"storedSource"`
 	// Synonyms mapping definition to use in this index.
 	// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
 	// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
 	// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
 	Synonyms []GetSearchIndexSynonym `pulumi:"synonyms"`
-	Type     *string                 `pulumi:"type"`
+	Type     string                  `pulumi:"type"`
 }
 
 func LookupSearchIndexOutput(ctx *pulumi.Context, args LookupSearchIndexOutputArgs, opts ...pulumi.InvokeOption) LookupSearchIndexResultOutput {
@@ -129,30 +115,12 @@ func LookupSearchIndexOutput(ctx *pulumi.Context, args LookupSearchIndexOutputAr
 
 // A collection of arguments for invoking getSearchIndex.
 type LookupSearchIndexOutputArgs struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
-	Analyzer pulumi.StringPtrInput `pulumi:"analyzer"`
-	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
-	Analyzers pulumi.StringPtrInput `pulumi:"analyzers"`
 	// The name of the cluster containing the collection with one or more Atlas Search indexes.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// Name of the collection the index is on.
-	CollectionName pulumi.StringPtrInput `pulumi:"collectionName"`
-	// Name of the database the collection is in.
-	Database pulumi.StringPtrInput `pulumi:"database"`
-	Fields   pulumi.StringPtrInput `pulumi:"fields"`
 	// The unique identifier of the Atlas Search index. Use the `getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
 	IndexId pulumi.StringInput `pulumi:"indexId"`
-	// Flag indicating whether the index uses dynamic or static mappings.
-	MappingsDynamic pulumi.BoolPtrInput `pulumi:"mappingsDynamic"`
-	// Object containing one or more field specifications.
-	MappingsFields pulumi.StringPtrInput `pulumi:"mappingsFields"`
-	// Name of the index.
-	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
-	SearchAnalyzer pulumi.StringPtrInput `pulumi:"searchAnalyzer"`
-	Type           pulumi.StringPtrInput `pulumi:"type"`
 }
 
 func (LookupSearchIndexOutputArgs) ElementType() reflect.Type {
@@ -175,13 +143,13 @@ func (o LookupSearchIndexResultOutput) ToLookupSearchIndexResultOutputWithContex
 }
 
 // [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
-func (o LookupSearchIndexResultOutput) Analyzer() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.Analyzer }).(pulumi.StringPtrOutput)
+func (o LookupSearchIndexResultOutput) Analyzer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Analyzer }).(pulumi.StringOutput)
 }
 
 // [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
-func (o LookupSearchIndexResultOutput) Analyzers() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.Analyzers }).(pulumi.StringPtrOutput)
+func (o LookupSearchIndexResultOutput) Analyzers() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Analyzers }).(pulumi.StringOutput)
 }
 
 func (o LookupSearchIndexResultOutput) ClusterName() pulumi.StringOutput {
@@ -189,17 +157,17 @@ func (o LookupSearchIndexResultOutput) ClusterName() pulumi.StringOutput {
 }
 
 // Name of the collection the index is on.
-func (o LookupSearchIndexResultOutput) CollectionName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.CollectionName }).(pulumi.StringPtrOutput)
+func (o LookupSearchIndexResultOutput) CollectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.CollectionName }).(pulumi.StringOutput)
 }
 
 // Name of the database the collection is in.
-func (o LookupSearchIndexResultOutput) Database() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.Database }).(pulumi.StringPtrOutput)
+func (o LookupSearchIndexResultOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Database }).(pulumi.StringOutput)
 }
 
-func (o LookupSearchIndexResultOutput) Fields() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.Fields }).(pulumi.StringPtrOutput)
+func (o LookupSearchIndexResultOutput) Fields() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Fields }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
@@ -212,18 +180,18 @@ func (o LookupSearchIndexResultOutput) IndexId() pulumi.StringOutput {
 }
 
 // Flag indicating whether the index uses dynamic or static mappings.
-func (o LookupSearchIndexResultOutput) MappingsDynamic() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupSearchIndexResult) *bool { return v.MappingsDynamic }).(pulumi.BoolPtrOutput)
+func (o LookupSearchIndexResultOutput) MappingsDynamic() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) bool { return v.MappingsDynamic }).(pulumi.BoolOutput)
 }
 
 // Object containing one or more field specifications.
-func (o LookupSearchIndexResultOutput) MappingsFields() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.MappingsFields }).(pulumi.StringPtrOutput)
+func (o LookupSearchIndexResultOutput) MappingsFields() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.MappingsFields }).(pulumi.StringOutput)
 }
 
 // Name of the index.
-func (o LookupSearchIndexResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupSearchIndexResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func (o LookupSearchIndexResultOutput) ProjectId() pulumi.StringOutput {
@@ -231,13 +199,18 @@ func (o LookupSearchIndexResultOutput) ProjectId() pulumi.StringOutput {
 }
 
 // [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
-func (o LookupSearchIndexResultOutput) SearchAnalyzer() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.SearchAnalyzer }).(pulumi.StringPtrOutput)
+func (o LookupSearchIndexResultOutput) SearchAnalyzer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.SearchAnalyzer }).(pulumi.StringOutput)
 }
 
 // Current status of the index.
 func (o LookupSearchIndexResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+func (o LookupSearchIndexResultOutput) StoredSource() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.StoredSource }).(pulumi.StringOutput)
 }
 
 // Synonyms mapping definition to use in this index.
@@ -248,8 +221,8 @@ func (o LookupSearchIndexResultOutput) Synonyms() GetSearchIndexSynonymArrayOutp
 	return o.ApplyT(func(v LookupSearchIndexResult) []GetSearchIndexSynonym { return v.Synonyms }).(GetSearchIndexSynonymArrayOutput)
 }
 
-func (o LookupSearchIndexResultOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.Type }).(pulumi.StringPtrOutput)
+func (o LookupSearchIndexResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
 func init() {

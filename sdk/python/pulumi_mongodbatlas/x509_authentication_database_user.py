@@ -199,6 +199,8 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # Resource: X509AuthenticationDatabaseUser
+
         `X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
 
         | Management  | Description  |
@@ -244,6 +246,8 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
                  args: X509AuthenticationDatabaseUserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: X509AuthenticationDatabaseUser
+
         `X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
 
         | Management  | Description  |
