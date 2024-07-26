@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: CloudBackupSnapshot
+//
 // `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
 // On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 //
@@ -33,13 +35,26 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myCluster, err := mongodbatlas.NewCluster(ctx, "my_cluster", &mongodbatlas.ClusterArgs{
-//				ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
-//				Name:                     pulumi.String("MyCluster"),
-//				ProviderName:             pulumi.String("AWS"),
-//				ProviderRegionName:       pulumi.String("EU_WEST_2"),
-//				ProviderInstanceSizeName: pulumi.String("M10"),
-//				CloudBackup:              pulumi.Bool(true),
+//			myCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "my_cluster", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.String("<PROJECT-ID>"),
+//				Name:          pulumi.String("MyCluster"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("EU_WEST_2"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err

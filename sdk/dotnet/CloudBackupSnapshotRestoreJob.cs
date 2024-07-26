@@ -22,14 +22,32 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myCluster = new Mongodbatlas.Cluster("my_cluster", new()
+    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
     ///     {
-    ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Name = "MyCluster",
-    ///         ProviderName = "AWS",
-    ///         ProviderRegionName = "EU_WEST_2",
-    ///         ProviderInstanceSizeName = "M10",
-    ///         CloudBackup = true,
+    ///         ClusterType = "REPLICASET",
+    ///         BackupEnabled = true,
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "AWS",
+    ///                         RegionName = "EU_WEST_2",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
     ///     });
     /// 
     ///     var test = new Mongodbatlas.Index.CloudProviderSnapshot("test", new()
@@ -66,14 +84,32 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myCluster = new Mongodbatlas.Cluster("my_cluster", new()
+    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
     ///     {
-    ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Name = "MyCluster",
-    ///         ProviderName = "AWS",
-    ///         ProviderRegionName = "EU_WEST_2",
-    ///         ProviderInstanceSizeName = "M10",
-    ///         CloudBackup = true,
+    ///         ClusterType = "REPLICASET",
+    ///         BackupEnabled = true,
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "AWS",
+    ///                         RegionName = "EU_WEST_2",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
     ///     });
     /// 
     ///     var test = new Mongodbatlas.Index.CloudProviderSnapshot("test", new()
@@ -107,15 +143,32 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var clusterTest = new Mongodbatlas.Cluster("cluster_test", new()
+    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
     ///     {
-    ///         ProjectId = projectTest.Id,
-    ///         Name = clusterName,
-    ///         ProviderName = "AWS",
-    ///         ProviderRegionName = "US_EAST_1",
-    ///         ProviderInstanceSizeName = "M10",
-    ///         CloudBackup = true,
-    ///         PitEnabled = true,
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Name = "MyCluster",
+    ///         ClusterType = "REPLICASET",
+    ///         BackupEnabled = true,
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "AWS",
+    ///                         RegionName = "EU_WEST_2",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
     ///     });
     /// 
     ///     var test = new Mongodbatlas.CloudBackupSnapshot("test", new()

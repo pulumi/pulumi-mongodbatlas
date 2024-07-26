@@ -12,7 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetDatabaseUser
     {
         /// <summary>
-        /// `mongodbatlas.DatabaseUser` describe a Database User. This represents a database user which will be applied to all clusters within the project.
+        /// ## # Data Source: mongodbatlas.DatabaseUser
+        /// 
+        /// `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
         /// 
         /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
         /// 
@@ -112,7 +114,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseUserResult>("mongodbatlas:index/getDatabaseUser:getDatabaseUser", args ?? new GetDatabaseUserArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.DatabaseUser` describe a Database User. This represents a database user which will be applied to all clusters within the project.
+        /// ## # Data Source: mongodbatlas.DatabaseUser
+        /// 
+        /// `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
         /// 
         /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
         /// 

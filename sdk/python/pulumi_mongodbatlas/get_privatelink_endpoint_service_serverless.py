@@ -151,7 +151,9 @@ def get_privatelink_endpoint_service_serverless(endpoint_id: Optional[str] = Non
                                                 project_id: Optional[str] = None,
                                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivatelinkEndpointServiceServerlessResult:
     """
-    `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+    ## # Data Source: privatelink_endpoint_service_serverless
+
+    `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
@@ -246,7 +248,9 @@ def get_privatelink_endpoint_service_serverless_output(endpoint_id: Optional[pul
                                                        project_id: Optional[pulumi.Input[str]] = None,
                                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivatelinkEndpointServiceServerlessResult]:
     """
-    `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+    ## # Data Source: privatelink_endpoint_service_serverless
+
+    `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 

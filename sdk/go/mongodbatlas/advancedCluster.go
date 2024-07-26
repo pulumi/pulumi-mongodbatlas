@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: AdvancedCluster
+//
 // `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
 //
 // More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
@@ -437,7 +439,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ctx.Export("standard", cluster_test.ConnectionStrings[0].Standard)
+//			ctx.Export("standard", cluster.ConnectionStrings[0].Standard)
 //			return nil
 //		})
 //	}
@@ -455,7 +457,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ctx.Export("standardSrv", cluster_test.ConnectionStrings[0].StandardSrv)
+//			ctx.Export("standardSrv", cluster.ConnectionStrings[0].StandardSrv)
 //			return nil
 //		})
 //	}

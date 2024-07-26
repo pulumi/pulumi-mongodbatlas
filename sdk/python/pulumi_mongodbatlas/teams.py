@@ -119,6 +119,8 @@ class Teams(pulumi.CustomResource):
                  usernames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        **WARNING:** This resource is deprecated, use `Team`
+
         This resource is deprecated. Please transition to using `Team` which defines the same underlying implementation, aligning the name of the resource with the implementation which manages a single team.
 
         :param str resource_name: The name of the resource.
@@ -131,6 +133,8 @@ class Teams(pulumi.CustomResource):
                  args: TeamsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        **WARNING:** This resource is deprecated, use `Team`
+
         This resource is deprecated. Please transition to using `Team` which defines the same underlying implementation, aligning the name of the resource with the implementation which manages a single team.
 
         :param str resource_name: The name of the resource.

@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetAlertConfiguration
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.AlertConfiguration
+        /// 
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -97,7 +99,6 @@ namespace Pulumi.Mongodbatlas
         ///                 EmailEnabled = true,
         ///                 Roles = new[]
         ///                 {
-        ///                     "GROUP_CHARTS_ADMIN",
         ///                     "GROUP_CLUSTER_MANAGER",
         ///                 },
         ///             },
@@ -163,6 +164,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlertConfigurationResult>("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args ?? new GetAlertConfigurationArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.AlertConfiguration
+        /// 
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -248,7 +251,6 @@ namespace Pulumi.Mongodbatlas
         ///                 EmailEnabled = true,
         ///                 Roles = new[]
         ///                 {
-        ///                     "GROUP_CHARTS_ADMIN",
         ///                     "GROUP_CLUSTER_MANAGER",
         ///                 },
         ///             },

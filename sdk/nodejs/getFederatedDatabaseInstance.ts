@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.FederatedDatabaseInstance
+ *
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -141,6 +143,8 @@ export interface GetFederatedDatabaseInstanceResult {
     readonly storageStores: outputs.GetFederatedDatabaseInstanceStorageStore[];
 }
 /**
+ * ## # Data Source: mongodbatlas.FederatedDatabaseInstance
+ *
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.

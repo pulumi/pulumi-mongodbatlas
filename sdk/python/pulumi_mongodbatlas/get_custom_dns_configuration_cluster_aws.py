@@ -68,6 +68,8 @@ class AwaitableGetCustomDnsConfigurationClusterAwsResult(GetCustomDnsConfigurati
 def get_custom_dns_configuration_cluster_aws(project_id: Optional[str] = None,
                                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomDnsConfigurationClusterAwsResult:
     """
+    ## # Data Source: CustomDnsConfigurationClusterAws
+
     `CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -102,6 +104,8 @@ def get_custom_dns_configuration_cluster_aws(project_id: Optional[str] = None,
 def get_custom_dns_configuration_cluster_aws_output(project_id: Optional[pulumi.Input[str]] = None,
                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCustomDnsConfigurationClusterAwsResult]:
     """
+    ## # Data Source: CustomDnsConfigurationClusterAws
+
     `CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

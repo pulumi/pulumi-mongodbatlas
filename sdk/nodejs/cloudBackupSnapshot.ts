@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Resource: mongodbatlas.CloudBackupSnapshot
+ *
  * `mongodbatlas.CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
  * On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
  *
@@ -20,13 +22,22 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const myCluster = new mongodbatlas.Cluster("my_cluster", {
- *     projectId: "5cf5a45a9ccf6400e60981b6",
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
  *     name: "MyCluster",
- *     providerName: "AWS",
- *     providerRegionName: "EU_WEST_2",
- *     providerInstanceSizeName: "M10",
- *     cloudBackup: true,
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "EU_WEST_2",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
  * });
  * const test = new mongodbatlas.CloudBackupSnapshot("test", {
  *     projectId: myCluster.projectId,

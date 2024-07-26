@@ -158,6 +158,8 @@ def get_stream_connection(connection_name: Optional[str] = None,
                           project_id: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamConnectionResult:
     """
+    ## # Data Source: StreamConnection
+
     `StreamConnection` describes a stream connection.
 
     ## Example Usage
@@ -203,6 +205,8 @@ def get_stream_connection_output(connection_name: Optional[pulumi.Input[str]] = 
                                  project_id: Optional[pulumi.Input[str]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStreamConnectionResult]:
     """
+    ## # Data Source: StreamConnection
+
     `StreamConnection` describes a stream connection.
 
     ## Example Usage

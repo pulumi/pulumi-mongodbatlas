@@ -331,6 +331,8 @@ class Organization(pulumi.CustomResource):
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        ## # Resource: Organization
+
         `Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
 
         > **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization. To use this resource, `role_names` for new API Key must have the ORG_OWNER role specified.
@@ -369,6 +371,8 @@ class Organization(pulumi.CustomResource):
                  args: OrganizationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: Organization
+
         `Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
 
         > **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization. To use this resource, `role_names` for new API Key must have the ORG_OWNER role specified.

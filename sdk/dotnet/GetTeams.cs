@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetTeams
     {
         /// <summary>
+        /// **WARNING:** This datasource is deprecated, use `mongodbatlas.Team`
+        /// 
         /// This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
         /// 
         /// In the future this data source will define a new implementation capable of fetching all teams in one organization.
@@ -20,6 +22,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// **WARNING:** This datasource is deprecated, use `mongodbatlas.Team`
+        /// 
         /// This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
         /// 
         /// In the future this data source will define a new implementation capable of fetching all teams in one organization.

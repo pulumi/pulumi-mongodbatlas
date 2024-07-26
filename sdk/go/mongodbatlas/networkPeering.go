@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: NetworkPeering
+//
 // `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
 //
 // Ensure you have first created a network container if it is required for your configuration.  See the networkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
@@ -130,28 +132,26 @@ import (
 //				return err
 //			}
 //			// Create the cluster once the peering connection is completed
-//			_, err = mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
-//				ProjectId:   pulumi.Any(projectId),
-//				Name:        pulumi.String("terraform-manually-test"),
-//				ClusterType: pulumi.String("REPLICASET"),
-//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-//					&mongodbatlas.ClusterReplicationSpecArgs{
-//						NumShards: pulumi.Int(1),
-//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-//								RegionName:     pulumi.String("US_EAST_2"),
-//								ElectableNodes: pulumi.Int(3),
-//								Priority:       pulumi.Int(7),
-//								ReadOnlyNodes:  pulumi.Int(0),
+//			_, err = mongodbatlas.NewAdvancedCluster(ctx, "test", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.Any(projectId),
+//				Name:          pulumi.String("terraform-manually-test"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AZURE"),
+//								RegionName:   pulumi.String("US_EAST_2"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
 //							},
 //						},
 //					},
 //				},
-//				AutoScalingDiskGbEnabled: pulumi.Bool(true),
-//				MongoDbMajorVersion:      pulumi.String("7.0"),
-//				ProviderName:             pulumi.String("AZURE"),
-//				ProviderDiskTypeName:     pulumi.String("P4"),
-//				ProviderInstanceSizeName: pulumi.String("M10"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				testNetworkPeering,
 //			}))
@@ -166,148 +166,6 @@ import (
 //
 // ### Peering Connection Only, Container Exists
 // You can create a peering connection if an appropriate container for your cloud provider already exists in your project (see the networkContainer resource for more information).  A container may already exist if you have already created a cluster in your project, if so you may obtain the `containerId` from the cluster resource as shown in the examples below.
-//
-// ### Example with AWS
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws"
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Create an Atlas cluster, this creates a container if one
-//			// does not yet exist for this AWS region
-//			test, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
-//				ProjectId:   pulumi.Any(projectId),
-//				Name:        pulumi.String("terraform-test"),
-//				ClusterType: pulumi.String("REPLICASET"),
-//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-//					&mongodbatlas.ClusterReplicationSpecArgs{
-//						NumShards: pulumi.Int(1),
-//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-//								RegionName:     pulumi.String("US_EAST_2"),
-//								ElectableNodes: pulumi.Int(3),
-//								Priority:       pulumi.Int(7),
-//								ReadOnlyNodes:  pulumi.Int(0),
-//							},
-//						},
-//					},
-//				},
-//				AutoScalingDiskGbEnabled: pulumi.Bool(false),
-//				MongoDbMajorVersion:      pulumi.String("7.0"),
-//				ProviderName:             pulumi.String("AWS"),
-//				ProviderInstanceSizeName: pulumi.String("M10"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// the following assumes an AWS provider is configured
-//			_, err = aws.NewDefaultVpc(ctx, "default", &aws.DefaultVpcArgs{
-//				Tags: map[string]interface{}{
-//					"name": "Default VPC",
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Create the peering connection request
-//			mongoPeer, err := mongodbatlas.NewNetworkPeering(ctx, "mongo_peer", &mongodbatlas.NetworkPeeringArgs{
-//				AccepterRegionName:  pulumi.String("us-east-2"),
-//				ProjectId:           pulumi.Any(projectId),
-//				ContainerId:         test.ContainerId,
-//				ProviderName:        pulumi.String("AWS"),
-//				RouteTableCidrBlock: pulumi.String("172.31.0.0/16"),
-//				VpcId:               _default.Id,
-//				AwsAccountId:        pulumi.Any(AWS_ACCOUNT_ID),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Accept the connection
-//			_, err = aws.NewVpcPeeringConnectionAccepter(ctx, "aws_peer", &aws.VpcPeeringConnectionAccepterArgs{
-//				VpcPeeringConnectionId: mongoPeer.ConnectionId,
-//				AutoAccept:             true,
-//				Tags: map[string]interface{}{
-//					"side": "Accepter",
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Example with Azure
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Ensure you have created the required Azure service principal first, see
-//			// see https://docs.atlas.mongodb.com/security-vpc-peering/
-//			// Create an Atlas cluster, this creates a container if one
-//			// does not yet exist for this AZURE region
-//			test, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
-//				ProjectId:   pulumi.Any(projectId),
-//				Name:        pulumi.String("cluster-azure"),
-//				ClusterType: pulumi.String("REPLICASET"),
-//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-//					&mongodbatlas.ClusterReplicationSpecArgs{
-//						NumShards: pulumi.Int(1),
-//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-//								RegionName:     pulumi.String("US_EAST_2"),
-//								ElectableNodes: pulumi.Int(3),
-//								Priority:       pulumi.Int(7),
-//								ReadOnlyNodes:  pulumi.Int(0),
-//							},
-//						},
-//					},
-//				},
-//				AutoScalingDiskGbEnabled: pulumi.Bool(false),
-//				MongoDbMajorVersion:      pulumi.String("7.0"),
-//				ProviderName:             pulumi.String("AZURE"),
-//				ProviderInstanceSizeName: pulumi.String("M10"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Create the peering connection request
-//			_, err = mongodbatlas.NewNetworkPeering(ctx, "test", &mongodbatlas.NetworkPeeringArgs{
-//				ProjectId:           pulumi.Any(projectId),
-//				ContainerId:         test.ContainerId,
-//				ProviderName:        pulumi.String("AZURE"),
-//				AzureDirectoryId:    pulumi.Any(AZURE_DIRECTORY_ID),
-//				AzureSubscriptionId: pulumi.Any(AZURE_SUBSCRIPTION_ID),
-//				ResourceGroupName:   pulumi.Any(AZURE_RESOURCE_GROUP_NAME),
-//				VnetName:            pulumi.Any(AZURE_VNET_NAME),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 //
 // ## Import
 //

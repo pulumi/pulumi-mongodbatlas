@@ -24,6 +24,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # Resource: mongodbatlas.AdvancedCluster
+ * 
  * `mongodbatlas.AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
  * 
  * More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
@@ -500,7 +502,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export("standard", cluster_test.connectionStrings()[0].standard());
+ *         ctx.export("standard", cluster.connectionStrings()[0].standard());
  *     }
  * }
  * }
@@ -528,7 +530,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export("standardSrv", cluster_test.connectionStrings()[0].standardSrv());
+ *         ctx.export("standardSrv", cluster.connectionStrings()[0].standardSrv());
  *     }
  * }
  * }

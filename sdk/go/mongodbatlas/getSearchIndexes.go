@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
+// ## # Data Source: getSearchIndexes
+//
+// `getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 func LookupSearchIndexes(ctx *pulumi.Context, args *LookupSearchIndexesArgs, opts ...pulumi.InvokeOption) (*LookupSearchIndexesResult, error) {

@@ -372,6 +372,8 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                  retention_in_days: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
+        ## # Resource: CloudBackupSnapshot
+
         `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
         On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 
@@ -385,13 +387,22 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        my_cluster = mongodbatlas.Cluster("my_cluster",
-            project_id="5cf5a45a9ccf6400e60981b6",
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
             name="MyCluster",
-            provider_name="AWS",
-            provider_region_name="EU_WEST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="EU_WEST_2",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                )],
+            )])
         test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -429,6 +440,8 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                  args: CloudBackupSnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: CloudBackupSnapshot
+
         `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
         On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 
@@ -442,13 +455,22 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        my_cluster = mongodbatlas.Cluster("my_cluster",
-            project_id="5cf5a45a9ccf6400e60981b6",
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
             name="MyCluster",
-            provider_name="AWS",
-            provider_region_name="EU_WEST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="EU_WEST_2",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                )],
+            )])
         test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,

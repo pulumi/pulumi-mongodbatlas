@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## # Resource: mongodbatlas.StreamInstance
+    /// 
     /// `mongodbatlas.StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
     /// 
     /// ## Import

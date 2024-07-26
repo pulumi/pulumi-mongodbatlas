@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetStreamInstance
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.StreamInstance
+        /// 
         /// `mongodbatlas.StreamInstance` describes a stream instance.
         /// 
         /// ## Example Usage
@@ -37,6 +39,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamInstanceResult>("mongodbatlas:index/getStreamInstance:getStreamInstance", args ?? new GetStreamInstanceArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.StreamInstance
+        /// 
         /// `mongodbatlas.StreamInstance` describes a stream instance.
         /// 
         /// ## Example Usage

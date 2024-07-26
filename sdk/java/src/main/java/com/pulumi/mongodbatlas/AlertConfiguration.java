@@ -21,6 +21,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # Resource: mongodbatlas.AlertConfiguration
+ * 
  * `mongodbatlas.AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -63,9 +65,7 @@ import javax.annotation.Nullable;
  *                 .delayMin(0)
  *                 .smsEnabled(false)
  *                 .emailEnabled(true)
- *                 .roles(                
- *                     "GROUP_CHARTS_ADMIN",
- *                     "GROUP_CLUSTER_MANAGER")
+ *                 .roles("GROUP_CLUSTER_MANAGER")
  *                 .build())
  *             .matchers(AlertConfigurationMatcherArgs.builder()
  *                 .fieldName("HOSTNAME_AND_PORT")
@@ -125,14 +125,12 @@ import javax.annotation.Nullable;
  *                 .delayMin(0)
  *                 .smsEnabled(false)
  *                 .emailEnabled(true)
- *                 .roles(                
- *                     "GROUP_CHARTS_ADMIN",
- *                     "GROUP_CLUSTER_MANAGER")
+ *                 .roles("GROUP_CLUSTER_MANAGER")
  *                 .build())
  *             .matchers(AlertConfigurationMatcherArgs.builder()
- *                 .fieldName("HOSTNAME_AND_PORT")
+ *                 .fieldName("CLUSTER_NAME")
  *                 .operator("EQUALS")
- *                 .value("SECONDARY")
+ *                 .value("my-cluster")
  *                 .build())
  *             .thresholdConfig(AlertConfigurationThresholdConfigArgs.builder()
  *                 .operator("LESS_THAN")
@@ -274,7 +272,8 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
  * ```
- * __NOTE__: Third-party notifications will not contain their respective credentials as these are sensitive attributes. If you wish to perform updates on these notifications without providing the original credentials, the corresponding `notifier_id` attribute must be provided instead.
+ * 
+ * **NOTE**: Third-party notifications will not contain their respective credentials as these are sensitive attributes. If you wish to perform updates on these notifications without providing the original credentials, the corresponding `notifier_id` attribute must be provided instead.
  * 
  * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
  * 

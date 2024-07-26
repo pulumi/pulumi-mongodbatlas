@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: SearchIndex
+//
 // `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 //
 // ## Example Usage
@@ -195,8 +197,9 @@ type SearchIndex struct {
 	// Name of the database the collection is in.
 	Database pulumi.StringOutput `pulumi:"database"`
 	// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
-	Fields  pulumi.StringPtrOutput `pulumi:"fields"`
-	IndexId pulumi.StringOutput    `pulumi:"indexId"`
+	Fields pulumi.StringPtrOutput `pulumi:"fields"`
+	// The unique identifier of the Atlas Search index.
+	IndexId pulumi.StringOutput `pulumi:"indexId"`
 	// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic pulumi.BoolPtrOutput `pulumi:"mappingsDynamic"`
 	// attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
@@ -209,6 +212,8 @@ type SearchIndex struct {
 	SearchAnalyzer pulumi.StringPtrOutput `pulumi:"searchAnalyzer"`
 	// Current status of the index.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+	StoredSource pulumi.StringPtrOutput `pulumi:"storedSource"`
 	// Synonyms mapping definition to use in this index.
 	Synonyms SearchIndexSynonymArrayOutput `pulumi:"synonyms"`
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
@@ -269,7 +274,8 @@ type searchIndexState struct {
 	// Name of the database the collection is in.
 	Database *string `pulumi:"database"`
 	// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
-	Fields  *string `pulumi:"fields"`
+	Fields *string `pulumi:"fields"`
+	// The unique identifier of the Atlas Search index.
 	IndexId *string `pulumi:"indexId"`
 	// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic *bool `pulumi:"mappingsDynamic"`
@@ -283,6 +289,8 @@ type searchIndexState struct {
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
 	// Current status of the index.
 	Status *string `pulumi:"status"`
+	// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+	StoredSource *string `pulumi:"storedSource"`
 	// Synonyms mapping definition to use in this index.
 	Synonyms []SearchIndexSynonym `pulumi:"synonyms"`
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
@@ -302,7 +310,8 @@ type SearchIndexState struct {
 	// Name of the database the collection is in.
 	Database pulumi.StringPtrInput
 	// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
-	Fields  pulumi.StringPtrInput
+	Fields pulumi.StringPtrInput
+	// The unique identifier of the Atlas Search index.
 	IndexId pulumi.StringPtrInput
 	// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
 	MappingsDynamic pulumi.BoolPtrInput
@@ -316,6 +325,8 @@ type SearchIndexState struct {
 	SearchAnalyzer pulumi.StringPtrInput
 	// Current status of the index.
 	Status pulumi.StringPtrInput
+	// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+	StoredSource pulumi.StringPtrInput
 	// Synonyms mapping definition to use in this index.
 	Synonyms SearchIndexSynonymArrayInput
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
@@ -350,6 +361,8 @@ type searchIndexArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
+	// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+	StoredSource *string `pulumi:"storedSource"`
 	// Synonyms mapping definition to use in this index.
 	Synonyms []SearchIndexSynonym `pulumi:"synonyms"`
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
@@ -381,6 +394,8 @@ type SearchIndexArgs struct {
 	ProjectId pulumi.StringInput
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	SearchAnalyzer pulumi.StringPtrInput
+	// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+	StoredSource pulumi.StringPtrInput
 	// Synonyms mapping definition to use in this index.
 	Synonyms SearchIndexSynonymArrayInput
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
@@ -505,6 +520,7 @@ func (o SearchIndexOutput) Fields() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.Fields }).(pulumi.StringPtrOutput)
 }
 
+// The unique identifier of the Atlas Search index.
 func (o SearchIndexOutput) IndexId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.IndexId }).(pulumi.StringOutput)
 }
@@ -537,6 +553,11 @@ func (o SearchIndexOutput) SearchAnalyzer() pulumi.StringPtrOutput {
 // Current status of the index.
 func (o SearchIndexOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+func (o SearchIndexOutput) StoredSource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.StoredSource }).(pulumi.StringPtrOutput)
 }
 
 // Synonyms mapping definition to use in this index.

@@ -1542,12 +1542,11 @@ class AlertConfigurationNotificationArgs:
                
                | Project roles                   | Organization roles  |
                |:----------                      |:-----------         |
-               | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-               | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-               | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-               | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-               | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-               | `GROUP_OWNER`                   |                     |
+               | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
+               | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
+               | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
+               | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
+               | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
                | `GROUP_READ_ONLY`               |                     |
         :param pulumi.Input[str] service_key: PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param pulumi.Input[bool] sms_enabled: Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
@@ -1812,12 +1811,11 @@ class AlertConfigurationNotificationArgs:
 
         | Project roles                   | Organization roles  |
         |:----------                      |:-----------         |
-        | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-        | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-        | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-        | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-        | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-        | `GROUP_OWNER`                   |                     |
+        | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
+        | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
+        | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
+        | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
+        | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
         | `GROUP_READ_ONLY`               |                     |
         """
         return pulumi.get(self, "roles")

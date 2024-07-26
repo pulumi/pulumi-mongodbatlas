@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: Auditing
+//
 // `Auditing` describes a Auditing.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.CloudBackupSchedule
+ *
  * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -17,13 +19,22 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const myCluster = new mongodbatlas.Cluster("my_cluster", {
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
  *     projectId: "<PROJECT-ID>",
  *     name: "clusterTest",
- *     providerName: "AWS",
- *     providerRegionName: "EU_CENTRAL_1",
- *     providerInstanceSizeName: "M10",
- *     cloudBackup: true,
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "EU_CENTRAL_1",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
  * });
  * const testCloudBackupSchedule = new mongodbatlas.CloudBackupSchedule("test", {
  *     projectId: myCluster.projectId,
@@ -129,6 +140,8 @@ export interface GetCloudBackupScheduleResult {
     readonly useOrgAndGroupNamesInExportPrefix: boolean;
 }
 /**
+ * ## # Data Source: mongodbatlas.CloudBackupSchedule
+ *
  * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -139,13 +152,22 @@ export interface GetCloudBackupScheduleResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const myCluster = new mongodbatlas.Cluster("my_cluster", {
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
  *     projectId: "<PROJECT-ID>",
  *     name: "clusterTest",
- *     providerName: "AWS",
- *     providerRegionName: "EU_CENTRAL_1",
- *     providerInstanceSizeName: "M10",
- *     cloudBackup: true,
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "EU_CENTRAL_1",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
  * });
  * const testCloudBackupSchedule = new mongodbatlas.CloudBackupSchedule("test", {
  *     projectId: myCluster.projectId,

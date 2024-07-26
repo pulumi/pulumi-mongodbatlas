@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudBackupSnapshotExportJob
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
+        /// 
         /// `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
         /// 
         /// 
@@ -65,6 +67,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportJobResult>("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", args ?? new GetCloudBackupSnapshotExportJobArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
+        /// 
         /// `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
         /// 
         /// 

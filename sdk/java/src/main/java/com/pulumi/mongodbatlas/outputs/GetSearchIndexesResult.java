@@ -10,8 +10,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetSearchIndexesResult {
@@ -19,12 +17,12 @@ public final class GetSearchIndexesResult {
      * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      * 
      */
-    private @Nullable String analyzer;
+    private String analyzer;
     /**
      * @return [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
      * 
      */
-    private @Nullable String analyzers;
+    private String analyzers;
     /**
      * @return Name of the cluster containing the collection with one or more Atlas Search indexes.
      * 
@@ -40,18 +38,22 @@ public final class GetSearchIndexesResult {
      * 
      */
     private String database;
-    private @Nullable String fields;
+    private String fields;
+    /**
+     * @return The unique identifier of the Atlas Search index.
+     * 
+     */
     private String indexId;
     /**
      * @return Flag indicating whether the index uses dynamic or static mappings.
      * 
      */
-    private @Nullable Boolean mappingsDynamic;
+    private Boolean mappingsDynamic;
     /**
      * @return Object containing one or more field specifications.
      * 
      */
-    private @Nullable String mappingsFields;
+    private String mappingsFields;
     /**
      * @return Name of the index.
      * 
@@ -66,12 +68,17 @@ public final class GetSearchIndexesResult {
      * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      * 
      */
-    private @Nullable String searchAnalyzer;
+    private String searchAnalyzer;
     /**
      * @return Current status of the index.
      * 
      */
     private String status;
+    /**
+     * @return String that can be &#34;true&#34; (store all fields), &#34;false&#34; (default, don&#39;t store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+     * 
+     */
+    private String storedSource;
     /**
      * @return Synonyms mapping definition to use in this index.
      * * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
@@ -79,24 +86,23 @@ public final class GetSearchIndexesResult {
      * * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
      * 
      */
-    private @Nullable List<GetSearchIndexesResultSynonym> synonyms;
-    private @Nullable String type;
-    private @Nullable Boolean waitForIndexBuildCompletion;
+    private List<GetSearchIndexesResultSynonym> synonyms;
+    private String type;
 
     private GetSearchIndexesResult() {}
     /**
      * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      * 
      */
-    public Optional<String> analyzer() {
-        return Optional.ofNullable(this.analyzer);
+    public String analyzer() {
+        return this.analyzer;
     }
     /**
      * @return [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
      * 
      */
-    public Optional<String> analyzers() {
-        return Optional.ofNullable(this.analyzers);
+    public String analyzers() {
+        return this.analyzers;
     }
     /**
      * @return Name of the cluster containing the collection with one or more Atlas Search indexes.
@@ -119,9 +125,13 @@ public final class GetSearchIndexesResult {
     public String database() {
         return this.database;
     }
-    public Optional<String> fields() {
-        return Optional.ofNullable(this.fields);
+    public String fields() {
+        return this.fields;
     }
+    /**
+     * @return The unique identifier of the Atlas Search index.
+     * 
+     */
     public String indexId() {
         return this.indexId;
     }
@@ -129,15 +139,15 @@ public final class GetSearchIndexesResult {
      * @return Flag indicating whether the index uses dynamic or static mappings.
      * 
      */
-    public Optional<Boolean> mappingsDynamic() {
-        return Optional.ofNullable(this.mappingsDynamic);
+    public Boolean mappingsDynamic() {
+        return this.mappingsDynamic;
     }
     /**
      * @return Object containing one or more field specifications.
      * 
      */
-    public Optional<String> mappingsFields() {
-        return Optional.ofNullable(this.mappingsFields);
+    public String mappingsFields() {
+        return this.mappingsFields;
     }
     /**
      * @return Name of the index.
@@ -157,8 +167,8 @@ public final class GetSearchIndexesResult {
      * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      * 
      */
-    public Optional<String> searchAnalyzer() {
-        return Optional.ofNullable(this.searchAnalyzer);
+    public String searchAnalyzer() {
+        return this.searchAnalyzer;
     }
     /**
      * @return Current status of the index.
@@ -168,6 +178,13 @@ public final class GetSearchIndexesResult {
         return this.status;
     }
     /**
+     * @return String that can be &#34;true&#34; (store all fields), &#34;false&#34; (default, don&#39;t store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+     * 
+     */
+    public String storedSource() {
+        return this.storedSource;
+    }
+    /**
      * @return Synonyms mapping definition to use in this index.
      * * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
      * * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
@@ -175,13 +192,10 @@ public final class GetSearchIndexesResult {
      * 
      */
     public List<GetSearchIndexesResultSynonym> synonyms() {
-        return this.synonyms == null ? List.of() : this.synonyms;
+        return this.synonyms;
     }
-    public Optional<String> type() {
-        return Optional.ofNullable(this.type);
-    }
-    public Optional<Boolean> waitForIndexBuildCompletion() {
-        return Optional.ofNullable(this.waitForIndexBuildCompletion);
+    public String type() {
+        return this.type;
     }
 
     public static Builder builder() {
@@ -193,22 +207,22 @@ public final class GetSearchIndexesResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable String analyzer;
-        private @Nullable String analyzers;
+        private String analyzer;
+        private String analyzers;
         private String clusterName;
         private String collectionName;
         private String database;
-        private @Nullable String fields;
+        private String fields;
         private String indexId;
-        private @Nullable Boolean mappingsDynamic;
-        private @Nullable String mappingsFields;
+        private Boolean mappingsDynamic;
+        private String mappingsFields;
         private String name;
         private String projectId;
-        private @Nullable String searchAnalyzer;
+        private String searchAnalyzer;
         private String status;
-        private @Nullable List<GetSearchIndexesResultSynonym> synonyms;
-        private @Nullable String type;
-        private @Nullable Boolean waitForIndexBuildCompletion;
+        private String storedSource;
+        private List<GetSearchIndexesResultSynonym> synonyms;
+        private String type;
         public Builder() {}
         public Builder(GetSearchIndexesResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -225,20 +239,24 @@ public final class GetSearchIndexesResult {
     	      this.projectId = defaults.projectId;
     	      this.searchAnalyzer = defaults.searchAnalyzer;
     	      this.status = defaults.status;
+    	      this.storedSource = defaults.storedSource;
     	      this.synonyms = defaults.synonyms;
     	      this.type = defaults.type;
-    	      this.waitForIndexBuildCompletion = defaults.waitForIndexBuildCompletion;
         }
 
         @CustomType.Setter
-        public Builder analyzer(@Nullable String analyzer) {
-
+        public Builder analyzer(String analyzer) {
+            if (analyzer == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "analyzer");
+            }
             this.analyzer = analyzer;
             return this;
         }
         @CustomType.Setter
-        public Builder analyzers(@Nullable String analyzers) {
-
+        public Builder analyzers(String analyzers) {
+            if (analyzers == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "analyzers");
+            }
             this.analyzers = analyzers;
             return this;
         }
@@ -267,8 +285,10 @@ public final class GetSearchIndexesResult {
             return this;
         }
         @CustomType.Setter
-        public Builder fields(@Nullable String fields) {
-
+        public Builder fields(String fields) {
+            if (fields == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "fields");
+            }
             this.fields = fields;
             return this;
         }
@@ -281,14 +301,18 @@ public final class GetSearchIndexesResult {
             return this;
         }
         @CustomType.Setter
-        public Builder mappingsDynamic(@Nullable Boolean mappingsDynamic) {
-
+        public Builder mappingsDynamic(Boolean mappingsDynamic) {
+            if (mappingsDynamic == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "mappingsDynamic");
+            }
             this.mappingsDynamic = mappingsDynamic;
             return this;
         }
         @CustomType.Setter
-        public Builder mappingsFields(@Nullable String mappingsFields) {
-
+        public Builder mappingsFields(String mappingsFields) {
+            if (mappingsFields == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "mappingsFields");
+            }
             this.mappingsFields = mappingsFields;
             return this;
         }
@@ -309,8 +333,10 @@ public final class GetSearchIndexesResult {
             return this;
         }
         @CustomType.Setter
-        public Builder searchAnalyzer(@Nullable String searchAnalyzer) {
-
+        public Builder searchAnalyzer(String searchAnalyzer) {
+            if (searchAnalyzer == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "searchAnalyzer");
+            }
             this.searchAnalyzer = searchAnalyzer;
             return this;
         }
@@ -323,8 +349,18 @@ public final class GetSearchIndexesResult {
             return this;
         }
         @CustomType.Setter
-        public Builder synonyms(@Nullable List<GetSearchIndexesResultSynonym> synonyms) {
-
+        public Builder storedSource(String storedSource) {
+            if (storedSource == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "storedSource");
+            }
+            this.storedSource = storedSource;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder synonyms(List<GetSearchIndexesResultSynonym> synonyms) {
+            if (synonyms == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "synonyms");
+            }
             this.synonyms = synonyms;
             return this;
         }
@@ -332,15 +368,11 @@ public final class GetSearchIndexesResult {
             return synonyms(List.of(synonyms));
         }
         @CustomType.Setter
-        public Builder type(@Nullable String type) {
-
+        public Builder type(String type) {
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "type");
+            }
             this.type = type;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder waitForIndexBuildCompletion(@Nullable Boolean waitForIndexBuildCompletion) {
-
-            this.waitForIndexBuildCompletion = waitForIndexBuildCompletion;
             return this;
         }
         public GetSearchIndexesResult build() {
@@ -358,9 +390,9 @@ public final class GetSearchIndexesResult {
             _resultValue.projectId = projectId;
             _resultValue.searchAnalyzer = searchAnalyzer;
             _resultValue.status = status;
+            _resultValue.storedSource = storedSource;
             _resultValue.synonyms = synonyms;
             _resultValue.type = type;
-            _resultValue.waitForIndexBuildCompletion = waitForIndexBuildCompletion;
             return _resultValue;
         }
     }

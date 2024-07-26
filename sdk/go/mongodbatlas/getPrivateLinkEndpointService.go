@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+// ## # Data Source: PrivateLinkEndpointService
+//
+// `PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 func LookupPrivateLinkEndpointService(ctx *pulumi.Context, args *LookupPrivateLinkEndpointServiceArgs, opts ...pulumi.InvokeOption) (*LookupPrivateLinkEndpointServiceResult, error) {

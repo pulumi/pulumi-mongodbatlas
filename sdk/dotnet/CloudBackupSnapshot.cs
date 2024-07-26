@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## # Resource: mongodbatlas.CloudBackupSnapshot
+    /// 
     /// `mongodbatlas.CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
     /// On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
     /// 
@@ -27,14 +29,32 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myCluster = new Mongodbatlas.Cluster("my_cluster", new()
+    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
     ///     {
-    ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Name = "MyCluster",
-    ///         ProviderName = "AWS",
-    ///         ProviderRegionName = "EU_WEST_2",
-    ///         ProviderInstanceSizeName = "M10",
-    ///         CloudBackup = true,
+    ///         ClusterType = "REPLICASET",
+    ///         BackupEnabled = true,
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "AWS",
+    ///                         RegionName = "EU_WEST_2",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
     ///     });
     /// 
     ///     var test = new Mongodbatlas.CloudBackupSnapshot("test", new()

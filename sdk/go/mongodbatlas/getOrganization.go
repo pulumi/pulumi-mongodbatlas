@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
+// ## # Data Source: Organization
+//
+// `Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 //
 // ## Example Usage
 //

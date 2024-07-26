@@ -245,6 +245,8 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # Resource: PrivatelinkEndpointServiceDataFederationOnlineArchive
+
         `PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -294,6 +296,8 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
                  args: PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: PrivatelinkEndpointServiceDataFederationOnlineArchive
+
         `PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

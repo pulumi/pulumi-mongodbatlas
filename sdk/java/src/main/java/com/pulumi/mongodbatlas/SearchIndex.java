@@ -18,6 +18,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # Resource: mongodbatlas.SearchIndex
+ * 
  * `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
  * 
  * ## Example Usage
@@ -294,9 +296,17 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> fields() {
         return Codegen.optional(this.fields);
     }
+    /**
+     * The unique identifier of the Atlas Search index.
+     * 
+     */
     @Export(name="indexId", refs={String.class}, tree="[0]")
     private Output<String> indexId;
 
+    /**
+     * @return The unique identifier of the Atlas Search index.
+     * 
+     */
     public Output<String> indexId() {
         return this.indexId;
     }
@@ -383,6 +393,20 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      */
     public Output<String> status() {
         return this.status;
+    }
+    /**
+     * String that can be &#34;true&#34; (store all fields), &#34;false&#34; (default, don&#39;t store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+     * 
+     */
+    @Export(name="storedSource", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> storedSource;
+
+    /**
+     * @return String that can be &#34;true&#34; (store all fields), &#34;false&#34; (default, don&#39;t store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+     * 
+     */
+    public Output<Optional<String>> storedSource() {
+        return Codegen.optional(this.storedSource);
     }
     /**
      * Synonyms mapping definition to use in this index.

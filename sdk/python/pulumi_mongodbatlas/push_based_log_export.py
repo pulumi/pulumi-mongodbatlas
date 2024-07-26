@@ -222,6 +222,8 @@ class PushBasedLogExport(pulumi.CustomResource):
                  timeouts: Optional[pulumi.Input[pulumi.InputType['PushBasedLogExportTimeoutsArgs']]] = None,
                  __props__=None):
         """
+        ## # Resource: PushBasedLogExport
+
         `PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable & disable the project level settings for the push-based log export feature. Using this resource you
         can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.
 
@@ -247,11 +249,13 @@ class PushBasedLogExport(pulumi.CustomResource):
                 iam_assumed_role_arn=test_role["arn"],
             ))
         # Set up push-based log export with authorized IAM role
-        test = mongodbatlas.PushBasedLogExport("test",
+        test_push_based_log_export = mongodbatlas.PushBasedLogExport("test",
             project_id=project_tf.id,
             bucket_name=log_bucket["bucket"],
             iam_role_id=auth_role.role_id,
             prefix_path="push-based-log-test")
+        test = mongodbatlas.get_push_based_log_export_output(project_id=test_push_based_log_export.project_id)
+        pulumi.export("test", test.prefix_path)
         ```
 
         :param str resource_name: The name of the resource.
@@ -268,6 +272,8 @@ class PushBasedLogExport(pulumi.CustomResource):
                  args: PushBasedLogExportArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: PushBasedLogExport
+
         `PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable & disable the project level settings for the push-based log export feature. Using this resource you
         can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.
 
@@ -293,11 +299,13 @@ class PushBasedLogExport(pulumi.CustomResource):
                 iam_assumed_role_arn=test_role["arn"],
             ))
         # Set up push-based log export with authorized IAM role
-        test = mongodbatlas.PushBasedLogExport("test",
+        test_push_based_log_export = mongodbatlas.PushBasedLogExport("test",
             project_id=project_tf.id,
             bucket_name=log_bucket["bucket"],
             iam_role_id=auth_role.role_id,
             prefix_path="push-based-log-test")
+        test = mongodbatlas.get_push_based_log_export_output(project_id=test_push_based_log_export.project_id)
+        pulumi.export("test", test.prefix_path)
         ```
 
         :param str resource_name: The name of the resource.

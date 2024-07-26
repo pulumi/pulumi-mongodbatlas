@@ -138,7 +138,7 @@ def get_federated_query_limit(limit_name: Optional[str] = None,
                               tenant_name: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedQueryLimitResult:
     """
-    ## Data Source: FederatedQueryLimit
+    ## # Data Source: FederatedQueryLimit
 
     `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
 
@@ -190,7 +190,7 @@ def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[str]] = N
                                      tenant_name: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedQueryLimitResult]:
     """
-    ## Data Source: FederatedQueryLimit
+    ## # Data Source: FederatedQueryLimit
 
     `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
 

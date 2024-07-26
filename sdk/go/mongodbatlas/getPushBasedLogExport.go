@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: PushBasedLogExport
+//
 // `PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
 //
 // ## Example Usage
@@ -63,9 +65,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupPushBasedLogExportOutput(ctx, mongodbatlas.GetPushBasedLogExportOutputArgs{
+//			test := mongodbatlas.LookupPushBasedLogExportOutput(ctx, mongodbatlas.GetPushBasedLogExportOutputArgs{
 //				ProjectId: testPushBasedLogExport.ProjectId,
 //			}, nil)
+//			ctx.Export("test", test.ApplyT(func(test mongodbatlas.GetPushBasedLogExportResult) (*string, error) {
+//				return &test.PrefixPath, nil
+//			}).(pulumi.StringPtrOutput))
 //			return nil
 //		})
 //	}

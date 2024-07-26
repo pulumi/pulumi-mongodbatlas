@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Resource: mongodbatlas.FederatedSettingsOrgRoleMapping
+ *
  * `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
  *
  * ## Example Usage

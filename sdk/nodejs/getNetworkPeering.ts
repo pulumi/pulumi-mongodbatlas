@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.NetworkPeering
+ *
  * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -140,6 +142,8 @@ export interface GetNetworkPeeringResult {
     readonly vpcId: string;
 }
 /**
+ * ## # Data Source: mongodbatlas.NetworkPeering
+ *
  * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

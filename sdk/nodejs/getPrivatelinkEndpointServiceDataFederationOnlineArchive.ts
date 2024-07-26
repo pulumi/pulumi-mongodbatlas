@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive
+ *
  * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -88,6 +90,8 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult 
     readonly type: string;
 }
 /**
+ * ## # Data Source: mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive
+ *
  * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

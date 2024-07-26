@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `CustomDbRole` describe a Custom DB Role. This represents a custom db role.
+// ## # Data Source: CustomDbRole
+//
+// `CustomDbRole` describes a Custom DB Role. This represents a custom db role.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //

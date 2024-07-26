@@ -100,6 +100,8 @@ def get_federated_settings_org_role_mappings(federation_settings_id: Optional[st
                                              page_num: Optional[int] = None,
                                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedSettingsOrgRoleMappingsResult:
     """
+    ## # Data Source: get_federated_settings_org_role_mappings
+
     `get_federated_settings_org_role_mappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
 
 
@@ -132,6 +134,8 @@ def get_federated_settings_org_role_mappings_output(federation_settings_id: Opti
                                                     page_num: Optional[pulumi.Input[Optional[int]]] = None,
                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedSettingsOrgRoleMappingsResult]:
     """
+    ## # Data Source: get_federated_settings_org_role_mappings
+
     `get_federated_settings_org_role_mappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
 
 

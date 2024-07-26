@@ -12,7 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetPrivatelinkEndpointServiceServerless
     {
         /// <summary>
-        /// `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+        /// ## # Data Source: privatelink_endpoint_service_serverless
+        /// 
+        /// `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
@@ -115,7 +117,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivatelinkEndpointServiceServerlessResult>("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", args ?? new GetPrivatelinkEndpointServiceServerlessArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+        /// ## # Data Source: privatelink_endpoint_service_serverless
+        /// 
+        /// `privatelink_endpoint_service_serverless` provides a Serverless PrivateLink Endpoint Service resource.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 

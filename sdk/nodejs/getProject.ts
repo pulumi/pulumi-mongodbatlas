@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.Project
+ *
  * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -170,6 +172,8 @@ export interface GetProjectResult {
     readonly teams: outputs.GetProjectTeam[];
 }
 /**
+ * ## # Data Source: mongodbatlas.Project
+ *
  * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.

@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetClusters
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getClusters
+        /// 
         /// `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -71,6 +73,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClustersResult>("mongodbatlas:index/getClusters:getClusters", args ?? new GetClustersArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getClusters
+        /// 
         /// `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

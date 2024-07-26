@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.CloudBackupSnapshotExportJob` resource allows you to create a cloud backup snapshot export job for the specified project.
+ * ## # Resource: mongodbatlas.CloudBackupSnapshotExportJob
+ *
+ * `mongodbatlas.CloudBackupSnapshotExportJob` allows you to create a cloud backup snapshot export job for the specified project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *

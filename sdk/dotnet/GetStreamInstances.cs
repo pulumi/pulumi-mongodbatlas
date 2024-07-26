@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetStreamInstances
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getStreamInstances
+        /// 
         /// `mongodbatlas.getStreamInstances` describes the stream instances defined in a project.
         /// 
         /// ## Example Usage
@@ -36,6 +38,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamInstancesResult>("mongodbatlas:index/getStreamInstances:getStreamInstances", args ?? new GetStreamInstancesArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.getStreamInstances
+        /// 
         /// `mongodbatlas.getStreamInstances` describes the stream instances defined in a project.
         /// 
         /// ## Example Usage

@@ -142,6 +142,8 @@ def get_ldap_verify(project_id: Optional[str] = None,
                     request_id: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLdapVerifyResult:
     """
+    ## # Data Source: LdapVerify
+
     `LdapVerify` describes a LDAP Verify.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -155,20 +157,29 @@ def get_ldap_verify(project_id: Optional[str] = None,
     test_project = mongodbatlas.Project("test",
         name="NAME OF THE PROJECT",
         org_id="ORG ID")
-    test_cluster = mongodbatlas.Cluster("test",
+    test_advanced_cluster = mongodbatlas.AdvancedCluster("test",
         project_id=test_project.id,
-        name="NAME OF THE CLUSTER",
-        provider_name="AWS",
-        provider_region_name="US_EAST_2",
-        provider_instance_size_name="M10",
-        cloud_backup=True)
+        name="ClusterName",
+        cluster_type="REPLICASET",
+        backup_enabled=True,
+        replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+            region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                priority=7,
+                provider_name="AWS",
+                region_name="US_EAST_1",
+                electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                    instance_size="M10",
+                    node_count=3,
+                ),
+            )],
+        )])
     test_ldap_verify = mongodbatlas.LdapVerify("test",
         project_id=test_project.id,
         hostname="HOSTNAME",
         port=636,
         bind_username="USERNAME",
         bind_password="PASSWORD",
-        opts = pulumi.ResourceOptions(depends_on=[test_cluster]))
+        opts = pulumi.ResourceOptions(depends_on=[test_advanced_cluster]))
     test = mongodbatlas.get_ldap_verify_output(project_id=test_ldap_verify.project_id,
         request_id=test_ldap_verify.request_id)
     ```
@@ -200,6 +211,8 @@ def get_ldap_verify_output(project_id: Optional[pulumi.Input[str]] = None,
                            request_id: Optional[pulumi.Input[str]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLdapVerifyResult]:
     """
+    ## # Data Source: LdapVerify
+
     `LdapVerify` describes a LDAP Verify.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -213,20 +226,29 @@ def get_ldap_verify_output(project_id: Optional[pulumi.Input[str]] = None,
     test_project = mongodbatlas.Project("test",
         name="NAME OF THE PROJECT",
         org_id="ORG ID")
-    test_cluster = mongodbatlas.Cluster("test",
+    test_advanced_cluster = mongodbatlas.AdvancedCluster("test",
         project_id=test_project.id,
-        name="NAME OF THE CLUSTER",
-        provider_name="AWS",
-        provider_region_name="US_EAST_2",
-        provider_instance_size_name="M10",
-        cloud_backup=True)
+        name="ClusterName",
+        cluster_type="REPLICASET",
+        backup_enabled=True,
+        replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+            region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                priority=7,
+                provider_name="AWS",
+                region_name="US_EAST_1",
+                electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                    instance_size="M10",
+                    node_count=3,
+                ),
+            )],
+        )])
     test_ldap_verify = mongodbatlas.LdapVerify("test",
         project_id=test_project.id,
         hostname="HOSTNAME",
         port=636,
         bind_username="USERNAME",
         bind_password="PASSWORD",
-        opts = pulumi.ResourceOptions(depends_on=[test_cluster]))
+        opts = pulumi.ResourceOptions(depends_on=[test_advanced_cluster]))
     test = mongodbatlas.get_ldap_verify_output(project_id=test_ldap_verify.project_id,
         request_id=test_ldap_verify.request_id)
     ```

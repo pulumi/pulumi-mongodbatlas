@@ -299,7 +299,9 @@ def get_event_trigger(app_id: Optional[str] = None,
                       trigger_id: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEventTriggerResult:
     """
-    `EventTrigger` describe an Event Trigger.
+    ## # Data Source: EventTrigger
+
+    `EventTrigger` describes an Event Trigger.
 
 
     :param str app_id: The ObjectID of your application.
@@ -346,7 +348,9 @@ def get_event_trigger_output(app_id: Optional[pulumi.Input[str]] = None,
                              trigger_id: Optional[pulumi.Input[str]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEventTriggerResult]:
     """
-    `EventTrigger` describe an Event Trigger.
+    ## # Data Source: EventTrigger
+
+    `EventTrigger` describes an Event Trigger.
 
 
     :param str app_id: The ObjectID of your application.

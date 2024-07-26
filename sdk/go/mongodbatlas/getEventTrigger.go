@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `EventTrigger` describe an Event Trigger.
+// ## # Data Source: EventTrigger
+//
+// `EventTrigger` describes an Event Trigger.
 func LookupEventTrigger(ctx *pulumi.Context, args *LookupEventTriggerArgs, opts ...pulumi.InvokeOption) (*LookupEventTriggerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupEventTriggerResult

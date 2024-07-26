@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.getProjects` describe all Projects. This represents projects that have been created.
+ * ## # Data Source: mongodbatlas.getProjects
+ *
+ * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
@@ -83,7 +85,9 @@ export interface GetProjectsResult {
     readonly totalCount: number;
 }
 /**
- * `mongodbatlas.getProjects` describe all Projects. This represents projects that have been created.
+ * ## # Data Source: mongodbatlas.getProjects
+ *
+ * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *

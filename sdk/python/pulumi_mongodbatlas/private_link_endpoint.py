@@ -342,6 +342,8 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # Resource: PrivateLinkEndpoint
+
         `PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a [Private Endpoint Service](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) that can be created in an Atlas project.
 
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
@@ -390,6 +392,8 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                  args: PrivateLinkEndpointArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: PrivateLinkEndpoint
+
         `PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a [Private Endpoint Service](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) that can be created in an Atlas project.
 
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:

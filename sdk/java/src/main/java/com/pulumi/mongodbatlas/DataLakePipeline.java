@@ -21,6 +21,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # Resource: mongodbatlas.DataLakePipeline
+ * 
  * `mongodbatlas.DataLakePipeline` provides a Data Lake Pipeline resource.
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
@@ -30,6 +32,90 @@ import javax.annotation.Nullable;
  * ### S
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.Project;
+ * import com.pulumi.mongodbatlas.ProjectArgs;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.DataLakePipeline;
+ * import com.pulumi.mongodbatlas.DataLakePipelineArgs;
+ * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSinkArgs;
+ * import com.pulumi.mongodbatlas.inputs.DataLakePipelineSourceArgs;
+ * import com.pulumi.mongodbatlas.inputs.DataLakePipelineTransformationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var projectTest = new Project("projectTest", ProjectArgs.builder()
+ *             .name("NAME OF THE PROJECT")
+ *             .orgId("ORGANIZATION ID")
+ *             .build());
+ * 
+ *         var automatedBackupTest = new AdvancedCluster("automatedBackupTest", AdvancedClusterArgs.builder()
+ *             .projectId(projectId)
+ *             .name("automated-backup-test")
+ *             .clusterType("REPLICASET")
+ *             .backupEnabled(true)
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .priority(7)
+ *                     .providerName("GCP")
+ *                     .regionName("US_EAST_4")
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         var pipeline = new DataLakePipeline("pipeline", DataLakePipelineArgs.builder()
+ *             .projectId(projectTest.projectId())
+ *             .name("DataLakePipelineName")
+ *             .sink(DataLakePipelineSinkArgs.builder()
+ *                 .type("DLS")
+ *                 .partitionFields(DataLakePipelineSinkPartitionFieldArgs.builder()
+ *                     .name("access")
+ *                     .order(0)
+ *                     .build())
+ *                 .build())
+ *             .source(DataLakePipelineSourceArgs.builder()
+ *                 .type("ON_DEMAND_CPS")
+ *                 .clusterName(automatedBackupTest.name())
+ *                 .databaseName("sample_airbnb")
+ *                 .collectionName("listingsAndReviews")
+ *                 .build())
+ *             .transformations(            
+ *                 DataLakePipelineTransformationArgs.builder()
+ *                     .field("test")
+ *                     .type("EXCLUDE")
+ *                     .build(),
+ *                 DataLakePipelineTransformationArgs.builder()
+ *                     .field("test22")
+ *                     .type("EXCLUDE")
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

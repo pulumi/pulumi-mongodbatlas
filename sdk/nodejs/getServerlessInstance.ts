@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+ * ## # Data Source: mongodbatlas.ServerlessInstance
+ *
+ * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
  * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
  * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
  *
@@ -133,7 +135,9 @@ export interface GetServerlessInstanceResult {
     readonly terminationProtectionEnabled: boolean;
 }
 /**
- * `mongodbatlas.ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+ * ## # Data Source: mongodbatlas.ServerlessInstance
+ *
+ * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
  * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
  * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
  *

@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: StreamConnection
+//
 // `StreamConnection` describes a stream connection.
 //
 // ## Example Usage

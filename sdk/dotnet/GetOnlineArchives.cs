@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetOnlineArchives
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.OnlineArchive
+        /// 
         /// `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -72,6 +74,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOnlineArchivesResult>("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args ?? new GetOnlineArchivesArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.OnlineArchive
+        /// 
         /// `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

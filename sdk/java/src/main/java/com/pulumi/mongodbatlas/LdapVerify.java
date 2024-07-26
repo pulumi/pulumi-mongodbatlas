@@ -18,6 +18,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
+ * ## # Resource: mongodbatlas.LdapVerify
+ * 
  * `mongodbatlas.LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
  * 
  * ## Example Usage
@@ -32,8 +34,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.mongodbatlas.Project;
  * import com.pulumi.mongodbatlas.ProjectArgs;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
  * import com.pulumi.mongodbatlas.LdapVerify;
  * import com.pulumi.mongodbatlas.LdapVerifyArgs;
  * import com.pulumi.resources.CustomResourceOptions;
@@ -55,13 +58,22 @@ import javax.annotation.Nullable;
  *             .orgId("ORG ID")
  *             .build());
  * 
- *         var testCluster = new Cluster("testCluster", ClusterArgs.builder()
+ *         var testAdvancedCluster = new AdvancedCluster("testAdvancedCluster", AdvancedClusterArgs.builder()
  *             .projectId(test.id())
  *             .name("NAME OF THE CLUSTER")
- *             .providerName("AWS")
- *             .providerRegionName("US_EAST_2")
- *             .providerInstanceSizeName("M10")
- *             .cloudBackup(true)
+ *             .clusterType("REPLICASET")
+ *             .backupEnabled(true)
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .priority(7)
+ *                     .providerName("AWS")
+ *                     .regionName("US_EAST_1")
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .build())
+ *                 .build())
  *             .build());
  * 
  *         var testLdapVerify = new LdapVerify("testLdapVerify", LdapVerifyArgs.builder()
@@ -71,7 +83,7 @@ import javax.annotation.Nullable;
  *             .bindUsername("USERNAME")
  *             .bindPassword("PASSWORD")
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(testCluster)
+ *                 .dependsOn(testAdvancedCluster)
  *                 .build());
  * 
  *     }

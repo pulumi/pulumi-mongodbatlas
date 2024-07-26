@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: getRolesOrgId
+//
 // `getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
 //
 // ## Example Usage

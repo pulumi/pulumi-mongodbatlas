@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `privatelinkEndpointsServiceServerless` Describes the list of all Serverless PrivateLink Endpoint Service resource.
+ * ## # Data Source: privatelinkEndpointsServiceServerless
+ *
+ * `privatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
@@ -114,7 +116,9 @@ export interface GetPrivatelinkEndpointsServiceServerlessResult {
     readonly results: outputs.GetPrivatelinkEndpointsServiceServerlessResult[];
 }
 /**
- * `privatelinkEndpointsServiceServerless` Describes the list of all Serverless PrivateLink Endpoint Service resource.
+ * ## # Data Source: privatelinkEndpointsServiceServerless
+ *
+ * `privatelinkEndpointsServiceServerless` describes the list of all Serverless PrivateLink Endpoint Service resource.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *

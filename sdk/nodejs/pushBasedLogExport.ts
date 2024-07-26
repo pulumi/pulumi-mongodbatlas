@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Resource: mongodbatlas.PushBasedLogExport
+ *
  * `mongodbatlas.PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable & disable the project level settings for the push-based log export feature. Using this resource you
  * can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.
  *
@@ -18,29 +20,37 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const project_tf = new mongodbatlas.Project("project-tf", {
- *     name: atlasProjectName,
- *     orgId: atlasOrgId,
- * });
- * // Set up cloud provider access in Atlas using the created IAM role
- * const setupOnly = new mongodbatlas.CloudProviderAccessSetup("setup_only", {
- *     projectId: project_tf.id,
- *     providerName: "AWS",
- * });
- * const authRole = new mongodbatlas.CloudProviderAccessAuthorization("auth_role", {
- *     projectId: project_tf.id,
- *     roleId: setupOnly.roleId,
- *     aws: {
- *         iamAssumedRoleArn: testRole.arn,
- *     },
- * });
- * // Set up push-based log export with authorized IAM role
- * const test = new mongodbatlas.PushBasedLogExport("test", {
- *     projectId: project_tf.id,
- *     bucketName: logBucket.bucket,
- *     iamRoleId: authRole.roleId,
- *     prefixPath: "push-based-log-test",
- * });
+ * export = async () => {
+ *     const project_tf = new mongodbatlas.Project("project-tf", {
+ *         name: atlasProjectName,
+ *         orgId: atlasOrgId,
+ *     });
+ *     // Set up cloud provider access in Atlas using the created IAM role
+ *     const setupOnly = new mongodbatlas.CloudProviderAccessSetup("setup_only", {
+ *         projectId: project_tf.id,
+ *         providerName: "AWS",
+ *     });
+ *     const authRole = new mongodbatlas.CloudProviderAccessAuthorization("auth_role", {
+ *         projectId: project_tf.id,
+ *         roleId: setupOnly.roleId,
+ *         aws: {
+ *             iamAssumedRoleArn: testRole.arn,
+ *         },
+ *     });
+ *     // Set up push-based log export with authorized IAM role
+ *     const testPushBasedLogExport = new mongodbatlas.PushBasedLogExport("test", {
+ *         projectId: project_tf.id,
+ *         bucketName: logBucket.bucket,
+ *         iamRoleId: authRole.roleId,
+ *         prefixPath: "push-based-log-test",
+ *     });
+ *     const test = mongodbatlas.getPushBasedLogExportOutput({
+ *         projectId: testPushBasedLogExport.projectId,
+ *     });
+ *     return {
+ *         test: test.apply(test => test.prefixPath),
+ *     };
+ * }
  * ```
  */
 export class PushBasedLogExport extends pulumi.CustomResource {

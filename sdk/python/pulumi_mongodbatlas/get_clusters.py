@@ -69,6 +69,8 @@ class AwaitableGetClustersResult(GetClustersResult):
 def get_clusters(project_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClustersResult:
     """
+    ## # Data Source: get_clusters
+
     `Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -122,6 +124,8 @@ def get_clusters(project_id: Optional[str] = None,
 def get_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClustersResult]:
     """
+    ## # Data Source: get_clusters
+
     `Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

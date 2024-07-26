@@ -83,7 +83,9 @@ def get_projects(items_per_page: Optional[int] = None,
                  page_num: Optional[int] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectsResult:
     """
-    `get_projects` describe all Projects. This represents projects that have been created.
+    ## # Data Source: get_projects
+
+    `get_projects` describes all Projects. This represents projects that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -141,7 +143,9 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
                         page_num: Optional[pulumi.Input[Optional[int]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectsResult]:
     """
-    `get_projects` describe all Projects. This represents projects that have been created.
+    ## # Data Source: get_projects
+
+    `get_projects` describes all Projects. This represents projects that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 

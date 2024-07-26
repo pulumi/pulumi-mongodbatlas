@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Resource: privateEndpointRegionalMode
+ *
  * `mongodbatlas.PrivateEndpointRegionalMode` provides a Private Endpoint Regional Mode resource. This represents a regionalized private endpoint setting for a Project. Enable it to allow region specific private endpoints.
  *
  * > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:

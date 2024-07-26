@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Resource: mongodbatlas.ServerlessInstance
+ *
  * `mongodbatlas.ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
  *
  * > **NOTE:**  Serverless instances do not support some Atlas features at this time.

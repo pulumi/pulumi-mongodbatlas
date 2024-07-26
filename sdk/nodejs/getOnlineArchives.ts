@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.OnlineArchive
+ *
  * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -96,6 +98,8 @@ export interface GetOnlineArchivesResult {
     readonly totalCount: number;
 }
 /**
+ * ## # Data Source: mongodbatlas.OnlineArchive
+ *
  * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.

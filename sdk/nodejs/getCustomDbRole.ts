@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.CustomDbRole` describe a Custom DB Role. This represents a custom db role.
+ * ## # Data Source: mongodbatlas.CustomDbRole
+ *
+ * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
@@ -85,7 +87,9 @@ export interface GetCustomDbRoleResult {
     readonly roleName: string;
 }
 /**
- * `mongodbatlas.CustomDbRole` describe a Custom DB Role. This represents a custom db role.
+ * ## # Data Source: mongodbatlas.CustomDbRole
+ *
+ * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *

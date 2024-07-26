@@ -126,7 +126,9 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
 def get_organization(org_id: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
-    `Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
+    ## # Data Source: Organization
+
+    `Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 
     ## Example Usage
 
@@ -161,7 +163,9 @@ def get_organization(org_id: Optional[str] = None,
 def get_organization_output(org_id: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationResult]:
     """
-    `Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
+    ## # Data Source: Organization
+
+    `Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 
     ## Example Usage
 

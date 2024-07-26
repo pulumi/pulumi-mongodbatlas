@@ -699,6 +699,8 @@ class NetworkPeering(pulumi.CustomResource):
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # Resource: NetworkPeering
+
         `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
 
         Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
@@ -775,114 +777,27 @@ class NetworkPeering(pulumi.CustomResource):
             resource_group_name=azur_e__resource_s__grou_p__name,
             vnet_name=azur_e__vne_t__name)
         # Create the cluster once the peering connection is completed
-        test_cluster = mongodbatlas.Cluster("test",
+        test_advanced_cluster = mongodbatlas.AdvancedCluster("test",
             project_id=project_id,
             name="terraform-manually-test",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_2",
-                    electable_nodes=3,
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
                     priority=7,
-                    read_only_nodes=0,
+                    provider_name="AZURE",
+                    region_name="US_EAST_2",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
                 )],
             )],
-            auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="7.0",
-            provider_name="AZURE",
-            provider_disk_type_name="P4",
-            provider_instance_size_name="M10",
             opts = pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
 
         ### Peering Connection Only, Container Exists
         You can create a peering connection if an appropriate container for your cloud provider already exists in your project (see the network_container resource for more information).  A container may already exist if you have already created a cluster in your project, if so you may obtain the `container_id` from the cluster resource as shown in the examples below.
-
-        ### Example with AWS
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_mongodbatlas as mongodbatlas
-
-        # Create an Atlas cluster, this creates a container if one
-        # does not yet exist for this AWS region
-        test = mongodbatlas.Cluster("test",
-            project_id=project_id,
-            name="terraform-test",
-            cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_2",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
-            auto_scaling_disk_gb_enabled=False,
-            mongo_db_major_version="7.0",
-            provider_name="AWS",
-            provider_instance_size_name="M10")
-        # the following assumes an AWS provider is configured
-        default = aws.index.DefaultVpc("default", tags={
-            name: Default VPC,
-        })
-        # Create the peering connection request
-        mongo_peer = mongodbatlas.NetworkPeering("mongo_peer",
-            accepter_region_name="us-east-2",
-            project_id=project_id,
-            container_id=test.container_id,
-            provider_name="AWS",
-            route_table_cidr_block="172.31.0.0/16",
-            vpc_id=default["id"],
-            aws_account_id=aw_s__accoun_t__id)
-        # Accept the connection 
-        aws_peer = aws.index.VpcPeeringConnectionAccepter("aws_peer",
-            vpc_peering_connection_id=mongo_peer.connection_id,
-            auto_accept=True,
-            tags={
-                side: Accepter,
-            })
-        ```
-
-        ### Example with Azure
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        # Ensure you have created the required Azure service principal first, see
-        # see https://docs.atlas.mongodb.com/security-vpc-peering/
-        # Create an Atlas cluster, this creates a container if one
-        # does not yet exist for this AZURE region
-        test = mongodbatlas.Cluster("test",
-            project_id=project_id,
-            name="cluster-azure",
-            cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_2",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
-            auto_scaling_disk_gb_enabled=False,
-            mongo_db_major_version="7.0",
-            provider_name="AZURE",
-            provider_instance_size_name="M10")
-        # Create the peering connection request
-        test_network_peering = mongodbatlas.NetworkPeering("test",
-            project_id=project_id,
-            container_id=test.container_id,
-            provider_name="AZURE",
-            azure_directory_id=azur_e__director_y__id,
-            azure_subscription_id=azur_e__subscriptio_n__id,
-            resource_group_name=azur_e__resourc_e__grou_p__name,
-            vnet_name=azur_e__vne_t__name)
-        ```
 
         ## Import
 
@@ -926,6 +841,8 @@ class NetworkPeering(pulumi.CustomResource):
                  args: NetworkPeeringArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: NetworkPeering
+
         `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
 
         Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
@@ -1002,114 +919,27 @@ class NetworkPeering(pulumi.CustomResource):
             resource_group_name=azur_e__resource_s__grou_p__name,
             vnet_name=azur_e__vne_t__name)
         # Create the cluster once the peering connection is completed
-        test_cluster = mongodbatlas.Cluster("test",
+        test_advanced_cluster = mongodbatlas.AdvancedCluster("test",
             project_id=project_id,
             name="terraform-manually-test",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_2",
-                    electable_nodes=3,
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
                     priority=7,
-                    read_only_nodes=0,
+                    provider_name="AZURE",
+                    region_name="US_EAST_2",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
                 )],
             )],
-            auto_scaling_disk_gb_enabled=True,
-            mongo_db_major_version="7.0",
-            provider_name="AZURE",
-            provider_disk_type_name="P4",
-            provider_instance_size_name="M10",
             opts = pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
 
         ### Peering Connection Only, Container Exists
         You can create a peering connection if an appropriate container for your cloud provider already exists in your project (see the network_container resource for more information).  A container may already exist if you have already created a cluster in your project, if so you may obtain the `container_id` from the cluster resource as shown in the examples below.
-
-        ### Example with AWS
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_mongodbatlas as mongodbatlas
-
-        # Create an Atlas cluster, this creates a container if one
-        # does not yet exist for this AWS region
-        test = mongodbatlas.Cluster("test",
-            project_id=project_id,
-            name="terraform-test",
-            cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_2",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
-            auto_scaling_disk_gb_enabled=False,
-            mongo_db_major_version="7.0",
-            provider_name="AWS",
-            provider_instance_size_name="M10")
-        # the following assumes an AWS provider is configured
-        default = aws.index.DefaultVpc("default", tags={
-            name: Default VPC,
-        })
-        # Create the peering connection request
-        mongo_peer = mongodbatlas.NetworkPeering("mongo_peer",
-            accepter_region_name="us-east-2",
-            project_id=project_id,
-            container_id=test.container_id,
-            provider_name="AWS",
-            route_table_cidr_block="172.31.0.0/16",
-            vpc_id=default["id"],
-            aws_account_id=aw_s__accoun_t__id)
-        # Accept the connection 
-        aws_peer = aws.index.VpcPeeringConnectionAccepter("aws_peer",
-            vpc_peering_connection_id=mongo_peer.connection_id,
-            auto_accept=True,
-            tags={
-                side: Accepter,
-            })
-        ```
-
-        ### Example with Azure
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        # Ensure you have created the required Azure service principal first, see
-        # see https://docs.atlas.mongodb.com/security-vpc-peering/
-        # Create an Atlas cluster, this creates a container if one
-        # does not yet exist for this AZURE region
-        test = mongodbatlas.Cluster("test",
-            project_id=project_id,
-            name="cluster-azure",
-            cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_2",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
-            auto_scaling_disk_gb_enabled=False,
-            mongo_db_major_version="7.0",
-            provider_name="AZURE",
-            provider_instance_size_name="M10")
-        # Create the peering connection request
-        test_network_peering = mongodbatlas.NetworkPeering("test",
-            project_id=project_id,
-            container_id=test.container_id,
-            provider_name="AZURE",
-            azure_directory_id=azur_e__director_y__id,
-            azure_subscription_id=azur_e__subscriptio_n__id,
-            resource_group_name=azur_e__resourc_e__grou_p__name,
-            vnet_name=azur_e__vne_t__name)
-        ```
 
         ## Import
 

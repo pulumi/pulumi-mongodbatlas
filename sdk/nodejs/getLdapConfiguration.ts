@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.LdapConfiguration
+ *
  * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -99,6 +101,8 @@ export interface GetLdapConfigurationResult {
     readonly userToDnMappings: outputs.GetLdapConfigurationUserToDnMapping[];
 }
 /**
+ * ## # Data Source: mongodbatlas.LdapConfiguration
+ *
  * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

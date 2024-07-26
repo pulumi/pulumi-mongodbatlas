@@ -119,6 +119,8 @@ def get_atlas_users(items_per_page: Optional[int] = None,
                     team_id: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAtlasUsersResult:
     """
+    ## # Data Source: atlas_users
+
     `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -190,6 +192,8 @@ def get_atlas_users_output(items_per_page: Optional[pulumi.Input[Optional[int]]]
                            team_id: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAtlasUsersResult]:
     """
+    ## # Data Source: atlas_users
+
     `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

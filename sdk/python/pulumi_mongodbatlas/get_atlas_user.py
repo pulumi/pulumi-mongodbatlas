@@ -184,6 +184,8 @@ def get_atlas_user(user_id: Optional[str] = None,
                    username: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAtlasUserResult:
     """
+    ## # Data Source: get_atlas_user
+
     `get_atlas_user` Provides a MongoDB Atlas User.
 
     > **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
@@ -239,6 +241,8 @@ def get_atlas_user_output(user_id: Optional[pulumi.Input[Optional[str]]] = None,
                           username: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAtlasUserResult]:
     """
+    ## # Data Source: get_atlas_user
+
     `get_atlas_user` Provides a MongoDB Atlas User.
 
     > **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.

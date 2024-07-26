@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.getAtlasUser
+ *
  * `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
  *
  * > **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
@@ -110,6 +112,8 @@ export interface GetAtlasUserResult {
     readonly username?: string;
 }
 /**
+ * ## # Data Source: mongodbatlas.getAtlasUser
+ *
  * `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
  *
  * > **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.

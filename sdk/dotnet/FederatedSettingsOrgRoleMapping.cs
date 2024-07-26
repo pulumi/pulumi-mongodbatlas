@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## # Resource: mongodbatlas.FederatedSettingsOrgRoleMapping
+    /// 
     /// `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
     /// 
     /// ## Example Usage

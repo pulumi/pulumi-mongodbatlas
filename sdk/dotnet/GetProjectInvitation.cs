@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetProjectInvitation
     {
         /// <summary>
+        /// ## # Data Source: mongodbatlas.ProjectInvitation
+        /// 
         /// `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
@@ -51,6 +53,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # Data Source: mongodbatlas.ProjectInvitation
+        /// 
         /// `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.

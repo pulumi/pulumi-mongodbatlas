@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: GlobalClusterConfig
+//
 // `GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.

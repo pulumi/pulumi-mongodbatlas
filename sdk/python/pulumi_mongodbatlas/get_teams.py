@@ -85,6 +85,8 @@ def get_teams(name: Optional[str] = None,
               team_id: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTeamsResult:
     """
+    **WARNING:** This datasource is deprecated, use `Team`
+
     This data source is deprecated. Please transition to using `Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
 
     In the future this data source will define a new implementation capable of fetching all teams in one organization.
@@ -110,6 +112,8 @@ def get_teams_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                      team_id: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTeamsResult]:
     """
+    **WARNING:** This datasource is deprecated, use `Team`
+
     This data source is deprecated. Please transition to using `Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
 
     In the future this data source will define a new implementation capable of fetching all teams in one organization.

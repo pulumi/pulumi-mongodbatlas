@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * **WARNING:** This datasource is deprecated, use `mongodbatlas.Team`
+ *
  * This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
  *
  * In the future this data source will define a new implementation capable of fetching all teams in one organization.
@@ -42,6 +44,8 @@ export interface GetTeamsResult {
     readonly usernames: string[];
 }
 /**
+ * **WARNING:** This datasource is deprecated, use `mongodbatlas.Team`
+ *
  * This data source is deprecated. Please transition to using `mongodbatlas.Team` which defines the same underlying implementation, aligning the name of the data source with the implementation which fetches a single team.
  *
  * In the future this data source will define a new implementation capable of fetching all teams in one organization.

@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: GlobalClusterConfig
+//
 // `GlobalClusterConfig` provides a Global Cluster Configuration resource.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.

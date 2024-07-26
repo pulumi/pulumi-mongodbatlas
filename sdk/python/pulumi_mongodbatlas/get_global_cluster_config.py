@@ -93,6 +93,8 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
                               project_id: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGlobalClusterConfigResult:
     """
+    ## # Data Source: GlobalClusterConfig
+
     `GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -174,6 +176,8 @@ def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[str]] =
                                      project_id: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGlobalClusterConfigResult]:
     """
+    ## # Data Source: GlobalClusterConfig
+
     `GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

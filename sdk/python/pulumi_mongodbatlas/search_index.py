@@ -27,6 +27,7 @@ class SearchIndexArgs:
                  mappings_fields: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  search_analyzer: Optional[pulumi.Input[str]] = None,
+                 stored_source: Optional[pulumi.Input[str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None):
@@ -64,6 +65,7 @@ class SearchIndexArgs:
         :param pulumi.Input[str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[str] name: The name of the search index you want to create.
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
         """
@@ -85,6 +87,8 @@ class SearchIndexArgs:
             pulumi.set(__self__, "name", name)
         if search_analyzer is not None:
             pulumi.set(__self__, "search_analyzer", search_analyzer)
+        if stored_source is not None:
+            pulumi.set(__self__, "stored_source", stored_source)
         if synonyms is not None:
             pulumi.set(__self__, "synonyms", synonyms)
         if type is not None:
@@ -246,6 +250,18 @@ class SearchIndexArgs:
         pulumi.set(self, "search_analyzer", value)
 
     @property
+    @pulumi.getter(name="storedSource")
+    def stored_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+        """
+        return pulumi.get(self, "stored_source")
+
+    @stored_source.setter
+    def stored_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "stored_source", value)
+
+    @property
     @pulumi.getter
     def synonyms(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]:
         """
@@ -295,6 +311,7 @@ class _SearchIndexState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  search_analyzer: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 stored_source: Optional[pulumi.Input[str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None):
@@ -327,12 +344,14 @@ class _SearchIndexState:
         :param pulumi.Input[str] collection_name: Name of the collection the index is on.
         :param pulumi.Input[str] database: Name of the database the collection is in.
         :param pulumi.Input[str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        :param pulumi.Input[str] index_id: The unique identifier of the Atlas Search index.
         :param pulumi.Input[bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
         :param pulumi.Input[str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[str] name: The name of the search index you want to create.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[str] status: Current status of the index.
+        :param pulumi.Input[str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
         """
@@ -362,6 +381,8 @@ class _SearchIndexState:
             pulumi.set(__self__, "search_analyzer", search_analyzer)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if stored_source is not None:
+            pulumi.set(__self__, "stored_source", stored_source)
         if synonyms is not None:
             pulumi.set(__self__, "synonyms", synonyms)
         if type is not None:
@@ -465,6 +486,9 @@ class _SearchIndexState:
     @property
     @pulumi.getter(name="indexId")
     def index_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique identifier of the Atlas Search index.
+        """
         return pulumi.get(self, "index_id")
 
     @index_id.setter
@@ -544,6 +568,18 @@ class _SearchIndexState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter(name="storedSource")
+    def stored_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+        """
+        return pulumi.get(self, "stored_source")
+
+    @stored_source.setter
+    def stored_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "stored_source", value)
+
+    @property
     @pulumi.getter
     def synonyms(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]:
         """
@@ -593,11 +629,14 @@ class SearchIndex(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  search_analyzer: Optional[pulumi.Input[str]] = None,
+                 stored_source: Optional[pulumi.Input[str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
+        ## # Resource: SearchIndex
+
         `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 
         ## Example Usage
@@ -742,6 +781,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the search index you want to create.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
         """
@@ -752,6 +792,8 @@ class SearchIndex(pulumi.CustomResource):
                  args: SearchIndexArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # Resource: SearchIndex
+
         `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 
         ## Example Usage
@@ -888,6 +930,7 @@ class SearchIndex(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  search_analyzer: Optional[pulumi.Input[str]] = None,
+                 stored_source: Optional[pulumi.Input[str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
@@ -919,6 +962,7 @@ class SearchIndex(pulumi.CustomResource):
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["search_analyzer"] = search_analyzer
+            __props__.__dict__["stored_source"] = stored_source
             __props__.__dict__["synonyms"] = synonyms
             __props__.__dict__["type"] = type
             __props__.__dict__["wait_for_index_build_completion"] = wait_for_index_build_completion
@@ -947,6 +991,7 @@ class SearchIndex(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             search_analyzer: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            stored_source: Optional[pulumi.Input[str]] = None,
             synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None) -> 'SearchIndex':
@@ -984,12 +1029,14 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[str] collection_name: Name of the collection the index is on.
         :param pulumi.Input[str] database: Name of the database the collection is in.
         :param pulumi.Input[str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        :param pulumi.Input[str] index_id: The unique identifier of the Atlas Search index.
         :param pulumi.Input[bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
         :param pulumi.Input[str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[str] name: The name of the search index you want to create.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[str] status: Current status of the index.
+        :param pulumi.Input[str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
         """
@@ -1010,6 +1057,7 @@ class SearchIndex(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["search_analyzer"] = search_analyzer
         __props__.__dict__["status"] = status
+        __props__.__dict__["stored_source"] = stored_source
         __props__.__dict__["synonyms"] = synonyms
         __props__.__dict__["type"] = type
         __props__.__dict__["wait_for_index_build_completion"] = wait_for_index_build_completion
@@ -1087,6 +1135,9 @@ class SearchIndex(pulumi.CustomResource):
     @property
     @pulumi.getter(name="indexId")
     def index_id(self) -> pulumi.Output[str]:
+        """
+        The unique identifier of the Atlas Search index.
+        """
         return pulumi.get(self, "index_id")
 
     @property
@@ -1136,6 +1187,14 @@ class SearchIndex(pulumi.CustomResource):
         Current status of the index.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="storedSource")
+    def stored_source(self) -> pulumi.Output[Optional[str]]:
+        """
+        String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+        """
+        return pulumi.get(self, "stored_source")
 
     @property
     @pulumi.getter

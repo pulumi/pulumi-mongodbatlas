@@ -12,7 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetSearchIndexes
     {
         /// <summary>
-        /// `mongodbatlas.getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
+        /// ## # Data Source: mongodbatlas.getSearchIndexes
+        /// 
+        /// `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// </summary>
@@ -20,7 +22,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
+        /// ## # Data Source: mongodbatlas.getSearchIndexes
+        /// 
+        /// `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// </summary>

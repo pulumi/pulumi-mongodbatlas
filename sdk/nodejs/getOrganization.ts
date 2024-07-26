@@ -7,7 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
+ * ## # Data Source: mongodbatlas.Organization
+ *
+ * `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
  *
  * ## Example Usage
  *
@@ -71,7 +73,9 @@ export interface GetOrganizationResult {
     readonly restrictEmployeeAccess: boolean;
 }
 /**
- * `mongodbatlas.Organization` describe all MongoDB Atlas Organizations. This represents organizations that have been created.
+ * ## # Data Source: mongodbatlas.Organization
+ *
+ * `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
  *
  * ## Example Usage
  *

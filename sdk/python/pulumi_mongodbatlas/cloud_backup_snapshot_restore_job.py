@@ -366,13 +366,22 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        my_cluster = mongodbatlas.Cluster("my_cluster",
-            project_id="5cf5a45a9ccf6400e60981b6",
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
             name="MyCluster",
-            provider_name="AWS",
-            provider_region_name="EU_WEST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="EU_WEST_2",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                )],
+            )])
         test = mongodbatlas.index.CloudProviderSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -395,13 +404,22 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        my_cluster = mongodbatlas.Cluster("my_cluster",
-            project_id="5cf5a45a9ccf6400e60981b6",
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
             name="MyCluster",
-            provider_name="AWS",
-            provider_region_name="EU_WEST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="EU_WEST_2",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                )],
+            )])
         test = mongodbatlas.index.CloudProviderSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -421,17 +439,25 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        cluster_test = mongodbatlas.Cluster("cluster_test",
-            project_id=project_test["id"],
-            name=cluster_name,
-            provider_name="AWS",
-            provider_region_name="US_EAST_1",
-            provider_instance_size_name="M10",
-            cloud_backup=True,
-            pit_enabled=True)
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
+            name="MyCluster",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="EU_WEST_2",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                )],
+            )])
         test = mongodbatlas.CloudBackupSnapshot("test",
-            project_id=cluster_test.project_id,
-            cluster_name=cluster_test.name,
+            project_id=cluster_test["projectId"],
+            cluster_name=cluster_test["name"],
             description="My description",
             retention_in_days=1)
         test_cloud_backup_snapshot_restore_job = []
@@ -442,8 +468,8 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                 snapshot_id=test.id,
                 delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
                     point_in_time=True,
-                    target_cluster_name=cluster_test.name,
-                    target_project_id=cluster_test.project_id,
+                    target_cluster_name=cluster_test["name"],
+                    target_project_id=cluster_test["projectId"],
                     point_in_time_utc_seconds=point_in_time_utc_seconds,
                 )))
         ```
@@ -491,13 +517,22 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        my_cluster = mongodbatlas.Cluster("my_cluster",
-            project_id="5cf5a45a9ccf6400e60981b6",
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
             name="MyCluster",
-            provider_name="AWS",
-            provider_region_name="EU_WEST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="EU_WEST_2",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                )],
+            )])
         test = mongodbatlas.index.CloudProviderSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -520,13 +555,22 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        my_cluster = mongodbatlas.Cluster("my_cluster",
-            project_id="5cf5a45a9ccf6400e60981b6",
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
             name="MyCluster",
-            provider_name="AWS",
-            provider_region_name="EU_WEST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="EU_WEST_2",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                )],
+            )])
         test = mongodbatlas.index.CloudProviderSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -546,17 +590,25 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        cluster_test = mongodbatlas.Cluster("cluster_test",
-            project_id=project_test["id"],
-            name=cluster_name,
-            provider_name="AWS",
-            provider_region_name="US_EAST_1",
-            provider_instance_size_name="M10",
-            cloud_backup=True,
-            pit_enabled=True)
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
+            name="MyCluster",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
+                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
+                    priority=7,
+                    provider_name="AWS",
+                    region_name="EU_WEST_2",
+                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
+                        instance_size="M10",
+                        node_count=3,
+                    ),
+                )],
+            )])
         test = mongodbatlas.CloudBackupSnapshot("test",
-            project_id=cluster_test.project_id,
-            cluster_name=cluster_test.name,
+            project_id=cluster_test["projectId"],
+            cluster_name=cluster_test["name"],
             description="My description",
             retention_in_days=1)
         test_cloud_backup_snapshot_restore_job = []
@@ -567,8 +619,8 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                 snapshot_id=test.id,
                 delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
                     point_in_time=True,
-                    target_cluster_name=cluster_test.name,
-                    target_project_id=cluster_test.project_id,
+                    target_cluster_name=cluster_test["name"],
+                    target_project_id=cluster_test["projectId"],
                     point_in_time_utc_seconds=point_in_time_utc_seconds,
                 )))
         ```

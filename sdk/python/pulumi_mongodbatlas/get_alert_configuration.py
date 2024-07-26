@@ -168,6 +168,8 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
                             project_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlertConfigurationResult:
     """
+    ## # Data Source: AlertConfiguration
+
     `AlertConfiguration` describes an Alert Configuration.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -221,10 +223,7 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
             delay_min=0,
             sms_enabled=False,
             email_enabled=True,
-            roles=[
-                "GROUP_CHARTS_ADMIN",
-                "GROUP_CLUSTER_MANAGER",
-            ],
+            roles=["GROUP_CLUSTER_MANAGER"],
         )],
         matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
             field_name="HOSTNAME_AND_PORT",
@@ -293,6 +292,8 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
                                    project_id: Optional[pulumi.Input[str]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAlertConfigurationResult]:
     """
+    ## # Data Source: AlertConfiguration
+
     `AlertConfiguration` describes an Alert Configuration.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -346,10 +347,7 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
             delay_min=0,
             sms_enabled=False,
             email_enabled=True,
-            roles=[
-                "GROUP_CHARTS_ADMIN",
-                "GROUP_CLUSTER_MANAGER",
-            ],
+            roles=["GROUP_CLUSTER_MANAGER"],
         )],
         matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
             field_name="HOSTNAME_AND_PORT",

@@ -16,11 +16,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
         /// </summary>
-        public readonly string? Analyzer;
+        public readonly string Analyzer;
         /// <summary>
         /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
         /// </summary>
-        public readonly string? Analyzers;
+        public readonly string Analyzers;
         /// <summary>
         /// Name of the cluster containing the collection with one or more Atlas Search indexes.
         /// </summary>
@@ -33,16 +33,19 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// (Required) Name of the database the collection is in.
         /// </summary>
         public readonly string Database;
-        public readonly string? Fields;
+        public readonly string Fields;
+        /// <summary>
+        /// The unique identifier of the Atlas Search index.
+        /// </summary>
         public readonly string IndexId;
         /// <summary>
         /// Flag indicating whether the index uses dynamic or static mappings.
         /// </summary>
-        public readonly bool? MappingsDynamic;
+        public readonly bool MappingsDynamic;
         /// <summary>
         /// Object containing one or more field specifications.
         /// </summary>
-        public readonly string? MappingsFields;
+        public readonly string MappingsFields;
         /// <summary>
         /// Name of the index.
         /// </summary>
@@ -54,11 +57,15 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
         /// </summary>
-        public readonly string? SearchAnalyzer;
+        public readonly string SearchAnalyzer;
         /// <summary>
         /// Current status of the index.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+        /// </summary>
+        public readonly string StoredSource;
         /// <summary>
         /// Synonyms mapping definition to use in this index.
         /// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
@@ -66,14 +73,13 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSearchIndexesResultSynonymResult> Synonyms;
-        public readonly string? Type;
-        public readonly bool? WaitForIndexBuildCompletion;
+        public readonly string Type;
 
         [OutputConstructor]
         private GetSearchIndexesResultResult(
-            string? analyzer,
+            string analyzer,
 
-            string? analyzers,
+            string analyzers,
 
             string clusterName,
 
@@ -81,27 +87,27 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string database,
 
-            string? fields,
+            string fields,
 
             string indexId,
 
-            bool? mappingsDynamic,
+            bool mappingsDynamic,
 
-            string? mappingsFields,
+            string mappingsFields,
 
             string name,
 
             string projectId,
 
-            string? searchAnalyzer,
+            string searchAnalyzer,
 
             string status,
 
+            string storedSource,
+
             ImmutableArray<Outputs.GetSearchIndexesResultSynonymResult> synonyms,
 
-            string? type,
-
-            bool? waitForIndexBuildCompletion)
+            string type)
         {
             Analyzer = analyzer;
             Analyzers = analyzers;
@@ -116,9 +122,9 @@ namespace Pulumi.Mongodbatlas.Outputs
             ProjectId = projectId;
             SearchAnalyzer = searchAnalyzer;
             Status = status;
+            StoredSource = storedSource;
             Synonyms = synonyms;
             Type = type;
-            WaitForIndexBuildCompletion = waitForIndexBuildCompletion;
         }
     }
 }

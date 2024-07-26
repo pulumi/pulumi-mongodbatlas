@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Resource: mongodbatlas.FederatedDatabaseInstance
+ *
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance resource.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.

@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.getDataLakePipelines
+ *
  * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -50,6 +52,8 @@ export interface GetDataLakePipelinesResult {
     readonly results: outputs.GetDataLakePipelinesResult[];
 }
 /**
+ * ## # Data Source: mongodbatlas.getDataLakePipelines
+ *
  * `mongodbatlas.getDataLakePipelines` describes Data Lake Pipelines.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

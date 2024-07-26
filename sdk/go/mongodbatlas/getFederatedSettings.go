@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Data Source: getFederatedSettings
+//
 // `getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
 //
 // ## Example Usage

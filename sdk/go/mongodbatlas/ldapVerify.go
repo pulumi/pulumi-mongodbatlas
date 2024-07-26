@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # Resource: LdapVerify
+//
 // `LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
 //
 // ## Example Usage
@@ -35,13 +37,26 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testCluster, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
-//				ProjectId:                test.ID(),
-//				Name:                     pulumi.String("NAME OF THE CLUSTER"),
-//				ProviderName:             pulumi.String("AWS"),
-//				ProviderRegionName:       pulumi.String("US_EAST_2"),
-//				ProviderInstanceSizeName: pulumi.String("M10"),
-//				CloudBackup:              pulumi.Bool(true),
+//			testAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "test", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     test.ID(),
+//				Name:          pulumi.String("NAME OF THE CLUSTER"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -53,7 +68,7 @@ import (
 //				BindUsername: pulumi.String("USERNAME"),
 //				BindPassword: pulumi.String("PASSWORD"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				testCluster,
+//				testAdvancedCluster,
 //			}))
 //			if err != nil {
 //				return err

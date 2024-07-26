@@ -15,6 +15,8 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
+ * ## # Resource: mongodbatlas.Auditing
+ * 
  * `mongodbatlas.Auditing` provides an Auditing resource. This allows auditing to be created.
  * 
  * ## Example Usage

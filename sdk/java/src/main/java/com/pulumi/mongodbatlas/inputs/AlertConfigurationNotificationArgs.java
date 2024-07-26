@@ -235,12 +235,11 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
      * 
      * | Project roles                   | Organization roles  |
      * |:----------                      |:-----------         |
-     * | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-     * | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-     * | `GROUP_OWNER`                   |                     |
+     * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
+     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
+     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
+     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
+     * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
      * | `GROUP_READ_ONLY`               |                     |
      * 
      */
@@ -253,12 +252,11 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
      * 
      * | Project roles                   | Organization roles  |
      * |:----------                      |:-----------         |
-     * | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-     * | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-     * | `GROUP_OWNER`                   |                     |
+     * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
+     * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
+     * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
+     * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
+     * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
      * | `GROUP_READ_ONLY`               |                     |
      * 
      */
@@ -792,12 +790,11 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
          * 
          * | Project roles                   | Organization roles  |
          * |:----------                      |:-----------         |
-         * | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-         * | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-         * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-         * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-         * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-         * | `GROUP_OWNER`                   |                     |
+         * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
+         * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
+         * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
+         * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
+         * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
          * | `GROUP_READ_ONLY`               |                     |
          * 
          * @return builder
@@ -814,12 +811,11 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
          * 
          * | Project roles                   | Organization roles  |
          * |:----------                      |:-----------         |
-         * | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-         * | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-         * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-         * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-         * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-         * | `GROUP_OWNER`                   |                     |
+         * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
+         * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
+         * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
+         * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
+         * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
          * | `GROUP_READ_ONLY`               |                     |
          * 
          * @return builder
@@ -835,12 +831,11 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
          * 
          * | Project roles                   | Organization roles  |
          * |:----------                      |:-----------         |
-         * | `GROUP_CHARTS_ADMIN`            | `ORG_OWNER`         |
-         * | `GROUP_CLUSTER_MANAGER`         | `ORG_MEMBER`        |
-         * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_GROUP_CREATOR` |
-         * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_BILLING_ADMIN` |
-         * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_READ_ONLY`     |
-         * | `GROUP_OWNER`                   |                     |
+         * | `GROUP_CLUSTER_MANAGER`         | `ORG_OWNER`         |
+         * | `GROUP_DATA_ACCESS_ADMIN`       | `ORG_MEMBER`        |
+         * | `GROUP_DATA_ACCESS_READ_ONLY`   | `ORG_GROUP_CREATOR` |
+         * | `GROUP_DATA_ACCESS_READ_WRITE`  | `ORG_BILLING_ADMIN` |
+         * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
          * | `GROUP_READ_ONLY`               |                     |
          * 
          * @return builder

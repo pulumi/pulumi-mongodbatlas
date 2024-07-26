@@ -102,6 +102,8 @@ def get_alert_configurations(list_options: Optional[Sequence[pulumi.InputType['G
                              project_id: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlertConfigurationsResult:
     """
+    ## # Data Source: get_alert_configurations
+
     `get_alert_configurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -136,6 +138,8 @@ def get_alert_configurations_output(list_options: Optional[pulumi.Input[Optional
                                     project_id: Optional[pulumi.Input[str]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAlertConfigurationsResult]:
     """
+    ## # Data Source: get_alert_configurations
+
     `get_alert_configurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

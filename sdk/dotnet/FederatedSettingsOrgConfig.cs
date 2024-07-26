@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## # Resource: mongodbatlas.FederatedSettingsOrgConfig
+    /// 
     /// `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
     /// 
     /// ## Example Usage

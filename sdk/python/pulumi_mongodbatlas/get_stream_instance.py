@@ -100,6 +100,8 @@ def get_stream_instance(instance_name: Optional[str] = None,
                         project_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamInstanceResult:
     """
+    ## # Data Source: StreamInstance
+
     `StreamInstance` describes a stream instance.
 
     ## Example Usage
@@ -136,6 +138,8 @@ def get_stream_instance_output(instance_name: Optional[pulumi.Input[str]] = None
                                project_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStreamInstanceResult]:
     """
+    ## # Data Source: StreamInstance
+
     `StreamInstance` describes a stream instance.
 
     ## Example Usage

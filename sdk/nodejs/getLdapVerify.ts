@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # Data Source: mongodbatlas.LdapVerify
+ *
  * `mongodbatlas.LdapVerify` describes a LDAP Verify.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -21,13 +23,22 @@ import * as utilities from "./utilities";
  *     name: "NAME OF THE PROJECT",
  *     orgId: "ORG ID",
  * });
- * const testCluster = new mongodbatlas.Cluster("test", {
+ * const testAdvancedCluster = new mongodbatlas.AdvancedCluster("test", {
  *     projectId: testProject.id,
- *     name: "NAME OF THE CLUSTER",
- *     providerName: "AWS",
- *     providerRegionName: "US_EAST_2",
- *     providerInstanceSizeName: "M10",
- *     cloudBackup: true,
+ *     name: "ClusterName",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "US_EAST_1",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
  * });
  * const testLdapVerify = new mongodbatlas.LdapVerify("test", {
  *     projectId: testProject.id,
@@ -36,7 +47,7 @@ import * as utilities from "./utilities";
  *     bindUsername: "USERNAME",
  *     bindPassword: "PASSWORD",
  * }, {
- *     dependsOn: [testCluster],
+ *     dependsOn: [testAdvancedCluster],
  * });
  * const test = mongodbatlas.getLdapVerifyOutput({
  *     projectId: testLdapVerify.projectId,
@@ -106,6 +117,8 @@ export interface GetLdapVerifyResult {
     readonly validations: outputs.GetLdapVerifyValidation[];
 }
 /**
+ * ## # Data Source: mongodbatlas.LdapVerify
+ *
  * `mongodbatlas.LdapVerify` describes a LDAP Verify.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -120,13 +133,22 @@ export interface GetLdapVerifyResult {
  *     name: "NAME OF THE PROJECT",
  *     orgId: "ORG ID",
  * });
- * const testCluster = new mongodbatlas.Cluster("test", {
+ * const testAdvancedCluster = new mongodbatlas.AdvancedCluster("test", {
  *     projectId: testProject.id,
- *     name: "NAME OF THE CLUSTER",
- *     providerName: "AWS",
- *     providerRegionName: "US_EAST_2",
- *     providerInstanceSizeName: "M10",
- *     cloudBackup: true,
+ *     name: "ClusterName",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "US_EAST_1",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
  * });
  * const testLdapVerify = new mongodbatlas.LdapVerify("test", {
  *     projectId: testProject.id,
@@ -135,7 +157,7 @@ export interface GetLdapVerifyResult {
  *     bindUsername: "USERNAME",
  *     bindPassword: "PASSWORD",
  * }, {
- *     dependsOn: [testCluster],
+ *     dependsOn: [testAdvancedCluster],
  * });
  * const test = mongodbatlas.getLdapVerifyOutput({
  *     projectId: testLdapVerify.projectId,

@@ -22,6 +22,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # Resource: mongodbatlas.OnlineArchive
+ * 
  * `mongodbatlas.OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

@@ -185,7 +185,9 @@ def get_data_lake_pipeline_run(pipeline_name: Optional[str] = None,
                                project_id: Optional[str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataLakePipelineRunResult:
     """
-    `get_data_lake_pipeline_run` describe a Data Lake Pipeline Run.
+    ## # Data Source: get_data_lake_pipeline_run
+
+    `get_data_lake_pipeline_run` describes a Data Lake Pipeline Run.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -223,7 +225,9 @@ def get_data_lake_pipeline_run_output(pipeline_name: Optional[pulumi.Input[str]]
                                       project_id: Optional[pulumi.Input[str]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataLakePipelineRunResult]:
     """
-    `get_data_lake_pipeline_run` describe a Data Lake Pipeline Run.
+    ## # Data Source: get_data_lake_pipeline_run
+
+    `get_data_lake_pipeline_run` describes a Data Lake Pipeline Run.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
