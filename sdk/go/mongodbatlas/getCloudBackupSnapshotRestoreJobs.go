@@ -56,12 +56,12 @@ import (
 //			_ = pulumi.All(testCloudBackupSnapshotRestoreJob.ProjectId, testCloudBackupSnapshotRestoreJob.ClusterName).ApplyT(func(_args []interface{}) (mongodbatlas.GetCloudBackupSnapshotRestoreJobsResult, error) {
 //				projectId := _args[0].(string)
 //				clusterName := _args[1].(string)
-//				return mongodbatlas.LookupCloudBackupSnapshotRestoreJobsOutput(ctx, mongodbatlas.GetCloudBackupSnapshotRestoreJobsOutputArgs{
+//				return mongodbatlas.GetCloudBackupSnapshotRestoreJobsResult(interface{}(mongodbatlas.LookupCloudBackupSnapshotRestoreJobsOutput(ctx, mongodbatlas.GetCloudBackupSnapshotRestoreJobsOutputArgs{
 //					ProjectId:    projectId,
 //					ClusterName:  clusterName,
 //					PageNum:      1,
 //					ItemsPerPage: 5,
-//				}, nil), nil
+//				}, nil))), nil
 //			}).(mongodbatlas.GetCloudBackupSnapshotRestoreJobsResultOutput)
 //			return nil
 //		})
