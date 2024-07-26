@@ -43,10 +43,10 @@ import (
 //			_ = pulumi.All(testNetworkContainer.ProjectId, testNetworkContainer.ProviderName).ApplyT(func(_args []interface{}) (mongodbatlas.GetNetworkContainersResult, error) {
 //				projectId := _args[0].(string)
 //				providerName := _args[1].(*string)
-//				return mongodbatlas.LookupNetworkContainersOutput(ctx, mongodbatlas.GetNetworkContainersOutputArgs{
+//				return mongodbatlas.GetNetworkContainersResult(interface{}(mongodbatlas.LookupNetworkContainersOutput(ctx, mongodbatlas.GetNetworkContainersOutputArgs{
 //					ProjectId:    projectId,
 //					ProviderName: providerName,
-//				}, nil), nil
+//				}, nil))), nil
 //			}).(mongodbatlas.GetNetworkContainersResultOutput)
 //			return nil
 //		})

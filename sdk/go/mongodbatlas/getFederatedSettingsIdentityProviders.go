@@ -40,11 +40,11 @@ import (
 //				return err
 //			}
 //			_ = identityProvider.ID().ApplyT(func(id string) (mongodbatlas.GetFederatedSettingsIdentityProvidersResult, error) {
-//				return mongodbatlas.LookupFederatedSettingsIdentityProvidersOutput(ctx, mongodbatlas.GetFederatedSettingsIdentityProvidersOutputArgs{
+//				return mongodbatlas.GetFederatedSettingsIdentityProvidersResult(interface{}(mongodbatlas.LookupFederatedSettingsIdentityProvidersOutput(ctx, mongodbatlas.GetFederatedSettingsIdentityProvidersOutputArgs{
 //					FederationSettingsId: id,
 //					PageNum:              1,
 //					ItemsPerPage:         5,
-//				}, nil), nil
+//				}, nil))), nil
 //			}).(mongodbatlas.GetFederatedSettingsIdentityProvidersResultOutput)
 //			return nil
 //		})
