@@ -119,7 +119,7 @@ class _CloudBackupSnapshotExportJobState:
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobComponentArgs']]] components: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param pulumi.Input[str] created_at: Timestamp in ISO 8601 date and time format in UTC when the export job was created.
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
-        :param pulumi.Input[str] err_msg: Error message, only if the export job failed.
+        :param pulumi.Input[str] err_msg: Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         :param pulumi.Input[str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
         :param pulumi.Input[str] export_job_id: Unique identifier of the export job.
                * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
@@ -140,6 +140,9 @@ class _CloudBackupSnapshotExportJobState:
             pulumi.set(__self__, "created_at", created_at)
         if custom_datas is not None:
             pulumi.set(__self__, "custom_datas", custom_datas)
+        if err_msg is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in version 1.20.0.""", DeprecationWarning)
+            pulumi.log.warn("""err_msg is deprecated: This parameter is deprecated and will be removed in version 1.20.0.""")
         if err_msg is not None:
             pulumi.set(__self__, "err_msg", err_msg)
         if export_bucket_id is not None:
@@ -211,9 +214,10 @@ class _CloudBackupSnapshotExportJobState:
 
     @property
     @pulumi.getter(name="errMsg")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.20.0.""")
     def err_msg(self) -> Optional[pulumi.Input[str]]:
         """
-        Error message, only if the export job failed.
+        Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         """
         return pulumi.get(self, "err_msg")
 
@@ -609,7 +613,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotExportJobComponentArgs']]]] components: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param pulumi.Input[str] created_at: Timestamp in ISO 8601 date and time format in UTC when the export job was created.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotExportJobCustomDataArgs']]]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
-        :param pulumi.Input[str] err_msg: Error message, only if the export job failed.
+        :param pulumi.Input[str] err_msg: Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         :param pulumi.Input[str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
         :param pulumi.Input[str] export_job_id: Unique identifier of the export job.
                * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
@@ -676,9 +680,10 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="errMsg")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.20.0.""")
     def err_msg(self) -> pulumi.Output[str]:
         """
-        Error message, only if the export job failed.
+        Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         """
         return pulumi.get(self, "err_msg")
 

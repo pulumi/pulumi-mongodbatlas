@@ -80,16 +80,24 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
     }
 
     /**
-     * Error message, only if the export job failed.
+     * Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.20.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
     @Import(name="errMsg")
     private @Nullable Output<String> errMsg;
 
     /**
-     * @return Error message, only if the export job failed.
+     * @return Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.20.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
     public Optional<Output<String>> errMsg() {
         return Optional.ofNullable(this.errMsg);
     }
@@ -357,22 +365,30 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
         }
 
         /**
-         * @param errMsg Error message, only if the export job failed.
+         * @param errMsg Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.20.0.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
         public Builder errMsg(@Nullable Output<String> errMsg) {
             $.errMsg = errMsg;
             return this;
         }
 
         /**
-         * @param errMsg Error message, only if the export job failed.
+         * @param errMsg Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in version 1.20.0.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
         public Builder errMsg(String errMsg) {
             return errMsg(Output.of(errMsg));
         }

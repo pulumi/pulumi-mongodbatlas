@@ -96,11 +96,18 @@ public class PrivateEndpointRegionalMode extends com.pulumi.resources.CustomReso
      * @param options A bag of options that control this resource's behavior.
      */
     public PrivateEndpointRegionalMode(String name, PrivateEndpointRegionalModeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode", name, args == null ? PrivateEndpointRegionalModeArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private PrivateEndpointRegionalMode(String name, Output<String> id, @Nullable PrivateEndpointRegionalModeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode", name, state, makeResourceOptions(options, id));
+    }
+
+    private static PrivateEndpointRegionalModeArgs makeArgs(PrivateEndpointRegionalModeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? PrivateEndpointRegionalModeArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

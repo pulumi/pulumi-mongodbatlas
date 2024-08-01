@@ -186,11 +186,18 @@ public class ProjectApiKey extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public ProjectApiKey(String name, ProjectApiKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/projectApiKey:ProjectApiKey", name, args == null ? ProjectApiKeyArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/projectApiKey:ProjectApiKey", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private ProjectApiKey(String name, Output<String> id, @Nullable ProjectApiKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/projectApiKey:ProjectApiKey", name, state, makeResourceOptions(options, id));
+    }
+
+    private static ProjectApiKeyArgs makeArgs(ProjectApiKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ProjectApiKeyArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

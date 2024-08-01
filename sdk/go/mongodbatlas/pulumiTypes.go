@@ -27040,7 +27040,9 @@ type GetCloudBackupSnapshotExportJobsResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas []GetCloudBackupSnapshotExportJobsResultCustomData `pulumi:"customDatas"`
-	// Error message, only if the export job failed.
+	// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
 	ErrMsg string `pulumi:"errMsg"`
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
 	ExportBucketId string `pulumi:"exportBucketId"`
@@ -27080,7 +27082,9 @@ type GetCloudBackupSnapshotExportJobsResultArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas GetCloudBackupSnapshotExportJobsResultCustomDataArrayInput `pulumi:"customDatas"`
-	// Error message, only if the export job failed.
+	// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
 	ErrMsg pulumi.StringInput `pulumi:"errMsg"`
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
 	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
@@ -27172,7 +27176,9 @@ func (o GetCloudBackupSnapshotExportJobsResultOutput) CustomDatas() GetCloudBack
 	}).(GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput)
 }
 
-// Error message, only if the export job failed.
+// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
 func (o GetCloudBackupSnapshotExportJobsResultOutput) ErrMsg() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.ErrMsg }).(pulumi.StringOutput)
 }

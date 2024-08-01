@@ -140,7 +140,9 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
      */
     public readonly customDatas!: pulumi.Output<outputs.CloudBackupSnapshotExportJobCustomData[]>;
     /**
-     * Error message, only if the export job failed.
+     * Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.20.0.
      */
     public /*out*/ readonly errMsg!: pulumi.Output<string>;
     /**
@@ -261,7 +263,9 @@ export interface CloudBackupSnapshotExportJobState {
      */
     customDatas?: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobCustomData>[]>;
     /**
-     * Error message, only if the export job failed.
+     * Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.20.0.
      */
     errMsg?: pulumi.Input<string>;
     /**

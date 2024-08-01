@@ -219,11 +219,18 @@ public class GlobalClusterConfig extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public GlobalClusterConfig(String name, GlobalClusterConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/globalClusterConfig:GlobalClusterConfig", name, args == null ? GlobalClusterConfigArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/globalClusterConfig:GlobalClusterConfig", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private GlobalClusterConfig(String name, Output<String> id, @Nullable GlobalClusterConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/globalClusterConfig:GlobalClusterConfig", name, state, makeResourceOptions(options, id));
+    }
+
+    private static GlobalClusterConfigArgs makeArgs(GlobalClusterConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? GlobalClusterConfigArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

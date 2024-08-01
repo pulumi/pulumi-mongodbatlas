@@ -380,11 +380,18 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public NetworkContainer(String name, NetworkContainerArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/networkContainer:NetworkContainer", name, args == null ? NetworkContainerArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/networkContainer:NetworkContainer", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private NetworkContainer(String name, Output<String> id, @Nullable NetworkContainerState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/networkContainer:NetworkContainer", name, state, makeResourceOptions(options, id));
+    }
+
+    private static NetworkContainerArgs makeArgs(NetworkContainerArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? NetworkContainerArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

@@ -419,11 +419,18 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public AlertConfiguration(String name, AlertConfigurationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/alertConfiguration:AlertConfiguration", name, args == null ? AlertConfigurationArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/alertConfiguration:AlertConfiguration", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private AlertConfiguration(String name, Output<String> id, @Nullable AlertConfigurationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/alertConfiguration:AlertConfiguration", name, state, makeResourceOptions(options, id));
+    }
+
+    private static AlertConfigurationArgs makeArgs(AlertConfigurationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AlertConfigurationArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

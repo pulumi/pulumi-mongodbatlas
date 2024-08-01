@@ -295,11 +295,18 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public StreamConnection(String name, StreamConnectionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/streamConnection:StreamConnection", name, args == null ? StreamConnectionArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/streamConnection:StreamConnection", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private StreamConnection(String name, Output<String> id, @Nullable StreamConnectionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/streamConnection:StreamConnection", name, state, makeResourceOptions(options, id));
+    }
+
+    private static StreamConnectionArgs makeArgs(StreamConnectionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? StreamConnectionArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

@@ -496,11 +496,18 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * @param options A bag of options that control this resource's behavior.
      */
     public CloudBackupSnapshotRestoreJob(String name, CloudBackupSnapshotRestoreJobArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob", name, args == null ? CloudBackupSnapshotRestoreJobArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private CloudBackupSnapshotRestoreJob(String name, Output<String> id, @Nullable CloudBackupSnapshotRestoreJobState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob", name, state, makeResourceOptions(options, id));
+    }
+
+    private static CloudBackupSnapshotRestoreJobArgs makeArgs(CloudBackupSnapshotRestoreJobArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? CloudBackupSnapshotRestoreJobArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

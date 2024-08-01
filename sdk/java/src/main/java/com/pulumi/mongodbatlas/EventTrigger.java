@@ -565,11 +565,18 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public EventTrigger(String name, EventTriggerArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/eventTrigger:EventTrigger", name, args == null ? EventTriggerArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/eventTrigger:EventTrigger", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private EventTrigger(String name, Output<String> id, @Nullable EventTriggerState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/eventTrigger:EventTrigger", name, state, makeResourceOptions(options, id));
+    }
+
+    private static EventTriggerArgs makeArgs(EventTriggerArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? EventTriggerArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

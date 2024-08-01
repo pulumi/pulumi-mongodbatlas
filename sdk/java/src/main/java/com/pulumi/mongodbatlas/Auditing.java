@@ -172,11 +172,18 @@ public class Auditing extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public Auditing(String name, AuditingArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/auditing:Auditing", name, args == null ? AuditingArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/auditing:Auditing", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private Auditing(String name, Output<String> id, @Nullable AuditingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/auditing:Auditing", name, state, makeResourceOptions(options, id));
+    }
+
+    private static AuditingArgs makeArgs(AuditingArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AuditingArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

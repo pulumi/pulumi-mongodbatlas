@@ -207,11 +207,18 @@ public class ClusterOutageSimulation extends com.pulumi.resources.CustomResource
      * @param options A bag of options that control this resource's behavior.
      */
     public ClusterOutageSimulation(String name, ClusterOutageSimulationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation", name, args == null ? ClusterOutageSimulationArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private ClusterOutageSimulation(String name, Output<String> id, @Nullable ClusterOutageSimulationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation", name, state, makeResourceOptions(options, id));
+    }
+
+    private static ClusterOutageSimulationArgs makeArgs(ClusterOutageSimulationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ClusterOutageSimulationArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

@@ -183,11 +183,18 @@ public class AccessListApiKey extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public AccessListApiKey(String name, AccessListApiKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/accessListApiKey:AccessListApiKey", name, args == null ? AccessListApiKeyArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/accessListApiKey:AccessListApiKey", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private AccessListApiKey(String name, Output<String> id, @Nullable AccessListApiKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/accessListApiKey:AccessListApiKey", name, state, makeResourceOptions(options, id));
+    }
+
+    private static AccessListApiKeyArgs makeArgs(AccessListApiKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AccessListApiKeyArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

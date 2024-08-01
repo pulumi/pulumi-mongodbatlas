@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSnapshotExportJobsResultCustomDataResult> CustomDatas;
         /// <summary>
-        /// Error message, only if the export job failed.
+        /// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         /// </summary>
         public readonly string ErrMsg;
         /// <summary>

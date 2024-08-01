@@ -169,11 +169,18 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * @param options A bag of options that control this resource's behavior.
      */
     public X509AuthenticationDatabaseUser(String name, X509AuthenticationDatabaseUserArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser", name, args == null ? X509AuthenticationDatabaseUserArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private X509AuthenticationDatabaseUser(String name, Output<String> id, @Nullable X509AuthenticationDatabaseUserState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser", name, state, makeResourceOptions(options, id));
+    }
+
+    private static X509AuthenticationDatabaseUserArgs makeArgs(X509AuthenticationDatabaseUserArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? X509AuthenticationDatabaseUserArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

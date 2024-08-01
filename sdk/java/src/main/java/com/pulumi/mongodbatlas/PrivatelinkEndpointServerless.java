@@ -203,11 +203,18 @@ public class PrivatelinkEndpointServerless extends com.pulumi.resources.CustomRe
      * @param options A bag of options that control this resource's behavior.
      */
     public PrivatelinkEndpointServerless(String name, PrivatelinkEndpointServerlessArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless", name, args == null ? PrivatelinkEndpointServerlessArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private PrivatelinkEndpointServerless(String name, Output<String> id, @Nullable PrivatelinkEndpointServerlessState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless", name, state, makeResourceOptions(options, id));
+    }
+
+    private static PrivatelinkEndpointServerlessArgs makeArgs(PrivatelinkEndpointServerlessArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? PrivatelinkEndpointServerlessArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

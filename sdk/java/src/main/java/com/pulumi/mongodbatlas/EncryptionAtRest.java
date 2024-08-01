@@ -85,11 +85,18 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public EncryptionAtRest(String name, EncryptionAtRestArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/encryptionAtRest:EncryptionAtRest", name, args == null ? EncryptionAtRestArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/encryptionAtRest:EncryptionAtRest", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private EncryptionAtRest(String name, Output<String> id, @Nullable EncryptionAtRestState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/encryptionAtRest:EncryptionAtRest", name, state, makeResourceOptions(options, id));
+    }
+
+    private static EncryptionAtRestArgs makeArgs(EncryptionAtRestArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? EncryptionAtRestArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
