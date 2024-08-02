@@ -100,9 +100,10 @@ class GetCloudBackupSnapshotExportJobResult:
 
     @property
     @pulumi.getter(name="errMsg")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.20.0.""")
     def err_msg(self) -> str:
         """
-        Error message, only if the export job failed.
+        Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         """
         return pulumi.get(self, "err_msg")
 

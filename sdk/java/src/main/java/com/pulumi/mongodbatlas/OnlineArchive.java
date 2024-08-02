@@ -423,11 +423,18 @@ public class OnlineArchive extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public OnlineArchive(String name, OnlineArchiveArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/onlineArchive:OnlineArchive", name, args == null ? OnlineArchiveArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/onlineArchive:OnlineArchive", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private OnlineArchive(String name, Output<String> id, @Nullable OnlineArchiveState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/onlineArchive:OnlineArchive", name, state, makeResourceOptions(options, id));
+    }
+
+    private static OnlineArchiveArgs makeArgs(OnlineArchiveArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? OnlineArchiveArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

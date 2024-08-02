@@ -79,11 +79,18 @@ public class CloudProviderAccessAuthorization extends com.pulumi.resources.Custo
      * @param options A bag of options that control this resource's behavior.
      */
     public CloudProviderAccessAuthorization(String name, CloudProviderAccessAuthorizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization", name, args == null ? CloudProviderAccessAuthorizationArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private CloudProviderAccessAuthorization(String name, Output<String> id, @Nullable CloudProviderAccessAuthorizationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization", name, state, makeResourceOptions(options, id));
+    }
+
+    private static CloudProviderAccessAuthorizationArgs makeArgs(CloudProviderAccessAuthorizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? CloudProviderAccessAuthorizationArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

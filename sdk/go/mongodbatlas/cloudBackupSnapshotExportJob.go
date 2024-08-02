@@ -152,7 +152,9 @@ type CloudBackupSnapshotExportJob struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas CloudBackupSnapshotExportJobCustomDataArrayOutput `pulumi:"customDatas"`
-	// Error message, only if the export job failed.
+	// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
 	ErrMsg pulumi.StringOutput `pulumi:"errMsg"`
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
 	ExportBucketId pulumi.StringOutput `pulumi:"exportBucketId"`
@@ -229,7 +231,9 @@ type cloudBackupSnapshotExportJobState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas []CloudBackupSnapshotExportJobCustomData `pulumi:"customDatas"`
-	// Error message, only if the export job failed.
+	// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
 	ErrMsg *string `pulumi:"errMsg"`
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
 	ExportBucketId *string `pulumi:"exportBucketId"`
@@ -262,7 +266,9 @@ type CloudBackupSnapshotExportJobState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
 	CustomDatas CloudBackupSnapshotExportJobCustomDataArrayInput
-	// Error message, only if the export job failed.
+	// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
 	ErrMsg pulumi.StringPtrInput
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
 	ExportBucketId pulumi.StringPtrInput
@@ -428,7 +434,9 @@ func (o CloudBackupSnapshotExportJobOutput) CustomDatas() CloudBackupSnapshotExp
 	}).(CloudBackupSnapshotExportJobCustomDataArrayOutput)
 }
 
-// Error message, only if the export job failed.
+// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+//
+// Deprecated: This parameter is deprecated and will be removed in version 1.20.0.
 func (o CloudBackupSnapshotExportJobOutput) ErrMsg() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.ErrMsg }).(pulumi.StringOutput)
 }

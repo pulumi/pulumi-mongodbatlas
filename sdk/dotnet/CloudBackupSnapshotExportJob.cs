@@ -159,7 +159,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.CloudBackupSnapshotExportJobCustomData>> CustomDatas { get; private set; } = null!;
 
         /// <summary>
-        /// Error message, only if the export job failed.
+        /// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         /// </summary>
         [Output("errMsg")]
         public Output<string> ErrMsg { get; private set; } = null!;
@@ -341,7 +341,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Error message, only if the export job failed.
+        /// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         /// </summary>
         [Input("errMsg")]
         public Input<string>? ErrMsg { get; set; }

@@ -168,11 +168,18 @@ public class StreamInstance extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public StreamInstance(String name, StreamInstanceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/streamInstance:StreamInstance", name, args == null ? StreamInstanceArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/streamInstance:StreamInstance", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private StreamInstance(String name, Output<String> id, @Nullable StreamInstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/streamInstance:StreamInstance", name, state, makeResourceOptions(options, id));
+    }
+
+    private static StreamInstanceArgs makeArgs(StreamInstanceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? StreamInstanceArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

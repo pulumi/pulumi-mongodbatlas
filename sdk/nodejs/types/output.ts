@@ -3131,7 +3131,9 @@ export interface GetCloudBackupSnapshotExportJobsResult {
      */
     customDatas: outputs.GetCloudBackupSnapshotExportJobsResultCustomData[];
     /**
-     * Error message, only if the export job failed.
+     * Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.20.0.
      */
     errMsg: string;
     /**

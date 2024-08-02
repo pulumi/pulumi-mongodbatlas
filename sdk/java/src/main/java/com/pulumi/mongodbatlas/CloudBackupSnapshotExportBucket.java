@@ -163,11 +163,18 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
      * @param options A bag of options that control this resource's behavior.
      */
     public CloudBackupSnapshotExportBucket(String name, CloudBackupSnapshotExportBucketArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket", name, args == null ? CloudBackupSnapshotExportBucketArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private CloudBackupSnapshotExportBucket(String name, Output<String> id, @Nullable CloudBackupSnapshotExportBucketState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket", name, state, makeResourceOptions(options, id));
+    }
+
+    private static CloudBackupSnapshotExportBucketArgs makeArgs(CloudBackupSnapshotExportBucketArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? CloudBackupSnapshotExportBucketArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

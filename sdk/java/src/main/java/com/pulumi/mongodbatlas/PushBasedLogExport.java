@@ -211,11 +211,18 @@ public class PushBasedLogExport extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public PushBasedLogExport(String name, PushBasedLogExportArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/pushBasedLogExport:PushBasedLogExport", name, args == null ? PushBasedLogExportArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/pushBasedLogExport:PushBasedLogExport", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private PushBasedLogExport(String name, Output<String> id, @Nullable PushBasedLogExportState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/pushBasedLogExport:PushBasedLogExport", name, state, makeResourceOptions(options, id));
+    }
+
+    private static PushBasedLogExportArgs makeArgs(PushBasedLogExportArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? PushBasedLogExportArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

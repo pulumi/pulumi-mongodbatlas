@@ -226,14 +226,18 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
         return this.customDatas;
     }
     /**
-     * Error message, only if the export job failed.
+     * Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.20.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
     @Export(name="errMsg", refs={String.class}, tree="[0]")
     private Output<String> errMsg;
 
     /**
-     * @return Error message, only if the export job failed.
+     * @return Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
      * 
      */
     public Output<String> errMsg() {
@@ -374,11 +378,18 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
      * @param options A bag of options that control this resource's behavior.
      */
     public CloudBackupSnapshotExportJob(String name, CloudBackupSnapshotExportJobArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob", name, args == null ? CloudBackupSnapshotExportJobArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private CloudBackupSnapshotExportJob(String name, Output<String> id, @Nullable CloudBackupSnapshotExportJobState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob", name, state, makeResourceOptions(options, id));
+    }
+
+    private static CloudBackupSnapshotExportJobArgs makeArgs(CloudBackupSnapshotExportJobArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? CloudBackupSnapshotExportJobArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

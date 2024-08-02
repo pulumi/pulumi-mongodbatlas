@@ -276,11 +276,18 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public ProjectIpAccessList(String name, ProjectIpAccessListArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList", name, args == null ? ProjectIpAccessListArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private ProjectIpAccessList(String name, Output<String> id, @Nullable ProjectIpAccessListState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList", name, state, makeResourceOptions(options, id));
+    }
+
+    private static ProjectIpAccessListArgs makeArgs(ProjectIpAccessListArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ProjectIpAccessListArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

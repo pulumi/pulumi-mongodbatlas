@@ -93,7 +93,9 @@ export interface GetCloudBackupSnapshotExportJobResult {
      */
     readonly customDatas: outputs.GetCloudBackupSnapshotExportJobCustomData[];
     /**
-     * Error message, only if the export job failed.
+     * Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+     *
+     * @deprecated This parameter is deprecated and will be removed in version 1.20.0.
      */
     readonly errMsg: string;
     /**

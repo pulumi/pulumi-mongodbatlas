@@ -199,7 +199,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSnapshotExportJobCustomDataResult> CustomDatas;
         /// <summary>
-        /// Error message, only if the export job failed.
+        /// Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         /// </summary>
         public readonly string ErrMsg;
         /// <summary>

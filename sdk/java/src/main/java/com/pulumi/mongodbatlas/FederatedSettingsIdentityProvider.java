@@ -424,11 +424,18 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * @param options A bag of options that control this resource's behavior.
      */
     public FederatedSettingsIdentityProvider(String name, FederatedSettingsIdentityProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider", name, args == null ? FederatedSettingsIdentityProviderArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private FederatedSettingsIdentityProvider(String name, Output<String> id, @Nullable FederatedSettingsIdentityProviderState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider", name, state, makeResourceOptions(options, id));
+    }
+
+    private static FederatedSettingsIdentityProviderArgs makeArgs(FederatedSettingsIdentityProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? FederatedSettingsIdentityProviderArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

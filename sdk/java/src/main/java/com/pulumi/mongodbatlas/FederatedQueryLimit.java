@@ -221,11 +221,18 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public FederatedQueryLimit(String name, FederatedQueryLimitArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit", name, args == null ? FederatedQueryLimitArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private FederatedQueryLimit(String name, Output<String> id, @Nullable FederatedQueryLimitState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit", name, state, makeResourceOptions(options, id));
+    }
+
+    private static FederatedQueryLimitArgs makeArgs(FederatedQueryLimitArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? FederatedQueryLimitArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

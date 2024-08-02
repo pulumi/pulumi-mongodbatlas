@@ -6120,7 +6120,8 @@
                 },
                 "errMsg": {
                     "type": "string",
-                    "description": "Error message, only if the export job failed.\n"
+                    "description": "Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.\n",
+                    "deprecationMessage": "This parameter is deprecated and will be removed in version 1.20.0."
                 },
                 "exportBucketId": {
                     "type": "string",
@@ -14376,7 +14377,8 @@
                 },
                 "errMsg": {
                     "type": "string",
-                    "description": "Error message, only if the export job failed.\n"
+                    "description": "Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.\n",
+                    "deprecationMessage": "This parameter is deprecated and will be removed in version 1.20.0."
                 },
                 "exportBucketId": {
                     "type": "string",
@@ -14494,7 +14496,8 @@
                     },
                     "errMsg": {
                         "type": "string",
-                        "description": "Error message, only if the export job failed.\n"
+                        "description": "Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.\n",
+                        "deprecationMessage": "This parameter is deprecated and will be removed in version 1.20.0."
                     },
                     "exportBucketId": {
                         "type": "string",
@@ -22772,7 +22775,8 @@
                         "type": "array"
                     },
                     "errMsg": {
-                        "description": "Error message, only if the export job failed.\n",
+                        "deprecationMessage": "This parameter is deprecated and will be removed in version 1.20.0.",
+                        "description": "Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.\n",
                         "type": "string"
                     },
                     "exportBucketId": {

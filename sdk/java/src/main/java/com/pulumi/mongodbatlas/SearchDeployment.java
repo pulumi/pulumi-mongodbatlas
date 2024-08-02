@@ -192,11 +192,18 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SearchDeployment(String name, SearchDeploymentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/searchDeployment:SearchDeployment", name, args == null ? SearchDeploymentArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/searchDeployment:SearchDeployment", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SearchDeployment(String name, Output<String> id, @Nullable SearchDeploymentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/searchDeployment:SearchDeployment", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SearchDeploymentArgs makeArgs(SearchDeploymentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SearchDeploymentArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

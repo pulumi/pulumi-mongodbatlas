@@ -281,11 +281,18 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public LdapVerify(String name, LdapVerifyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/ldapVerify:LdapVerify", name, args == null ? LdapVerifyArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("mongodbatlas:index/ldapVerify:LdapVerify", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private LdapVerify(String name, Output<String> id, @Nullable LdapVerifyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("mongodbatlas:index/ldapVerify:LdapVerify", name, state, makeResourceOptions(options, id));
+    }
+
+    private static LdapVerifyArgs makeArgs(LdapVerifyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? LdapVerifyArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

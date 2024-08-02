@@ -31,9 +31,13 @@ public final class GetCloudBackupSnapshotExportJobResult {
      */
     private List<GetCloudBackupSnapshotExportJobCustomData> customDatas;
     /**
-     * @return Error message, only if the export job failed.
+     * @return Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.20.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
     private String errMsg;
     /**
      * @return Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
@@ -103,9 +107,13 @@ public final class GetCloudBackupSnapshotExportJobResult {
         return this.customDatas;
     }
     /**
-     * @return Error message, only if the export job failed.
+     * @return Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in version 1.20.0.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in version 1.20.0. */
     public String errMsg() {
         return this.errMsg;
     }

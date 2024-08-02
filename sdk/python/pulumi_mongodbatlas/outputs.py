@@ -12554,7 +12554,7 @@ class GetCloudBackupSnapshotExportJobsResultResult(dict):
         :param Sequence['GetCloudBackupSnapshotExportJobsResultComponentArgs'] components: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param str created_at: Timestamp in ISO 8601 date and time format in UTC when the export job was created.
         :param Sequence['GetCloudBackupSnapshotExportJobsResultCustomDataArgs'] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
-        :param str err_msg: Error message, only if the export job failed.
+        :param str err_msg: Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         :param str export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
         :param str export_job_id: Unique identifier of the export job.
                * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
@@ -12605,9 +12605,10 @@ class GetCloudBackupSnapshotExportJobsResultResult(dict):
 
     @property
     @pulumi.getter(name="errMsg")
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.20.0.""")
     def err_msg(self) -> str:
         """
-        Error message, only if the export job failed.
+        Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         """
         return pulumi.get(self, "err_msg")
 
