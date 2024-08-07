@@ -148,6 +148,7 @@ func Provider() tfbridge.ProviderInfo {
 				"Pulumi": "3.*",
 			},
 		},
+		EnableZeroDefaultSchemaVersion: true,
 	}
 
 	prov.MustComputeTokens(tks.SingleModule("mongodbatlas_", mainMod,
