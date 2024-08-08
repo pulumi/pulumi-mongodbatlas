@@ -478,7 +478,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public CloudBackupSnapshotRestoreJob(String name) {
+    public CloudBackupSnapshotRestoreJob(java.lang.String name) {
         this(name, CloudBackupSnapshotRestoreJobArgs.Empty);
     }
     /**
@@ -486,7 +486,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public CloudBackupSnapshotRestoreJob(String name, CloudBackupSnapshotRestoreJobArgs args) {
+    public CloudBackupSnapshotRestoreJob(java.lang.String name, CloudBackupSnapshotRestoreJobArgs args) {
         this(name, args, null);
     }
     /**
@@ -495,12 +495,12 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public CloudBackupSnapshotRestoreJob(String name, CloudBackupSnapshotRestoreJobArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public CloudBackupSnapshotRestoreJob(java.lang.String name, CloudBackupSnapshotRestoreJobArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private CloudBackupSnapshotRestoreJob(String name, Output<String> id, @Nullable CloudBackupSnapshotRestoreJobState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob", name, state, makeResourceOptions(options, id));
+    private CloudBackupSnapshotRestoreJob(java.lang.String name, Output<java.lang.String> id, @Nullable CloudBackupSnapshotRestoreJobState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob", name, state, makeResourceOptions(options, id), false);
     }
 
     private static CloudBackupSnapshotRestoreJobArgs makeArgs(CloudBackupSnapshotRestoreJobArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -510,7 +510,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
         return args == null ? CloudBackupSnapshotRestoreJobArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -526,7 +526,7 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static CloudBackupSnapshotRestoreJob get(String name, Output<String> id, @Nullable CloudBackupSnapshotRestoreJobState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static CloudBackupSnapshotRestoreJob get(java.lang.String name, Output<java.lang.String> id, @Nullable CloudBackupSnapshotRestoreJobState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new CloudBackupSnapshotRestoreJob(name, id, state, options);
     }
 }

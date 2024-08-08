@@ -546,13 +546,13 @@ class CloudBackupSchedule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_export_enabled: Optional[pulumi.Input[bool]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupScheduleCopySettingArgs']]]]] = None,
-                 export: Optional[pulumi.Input[pulumi.InputType['CloudBackupScheduleExportArgs']]] = None,
-                 policy_item_daily: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemDailyArgs']]] = None,
-                 policy_item_hourly: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']]] = None,
-                 policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemMonthlyArgs']]]]] = None,
-                 policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemWeeklyArgs']]]]] = None,
-                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemYearlyArgs']]]]] = None,
+                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupScheduleCopySettingArgs', 'CloudBackupScheduleCopySettingArgsDict']]]]] = None,
+                 export: Optional[pulumi.Input[Union['CloudBackupScheduleExportArgs', 'CloudBackupScheduleExportArgsDict']]] = None,
+                 policy_item_daily: Optional[pulumi.Input[Union['CloudBackupSchedulePolicyItemDailyArgs', 'CloudBackupSchedulePolicyItemDailyArgsDict']]] = None,
+                 policy_item_hourly: Optional[pulumi.Input[Union['CloudBackupSchedulePolicyItemHourlyArgs', 'CloudBackupSchedulePolicyItemHourlyArgsDict']]] = None,
+                 policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemMonthlyArgs', 'CloudBackupSchedulePolicyItemMonthlyArgsDict']]]]] = None,
+                 policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemWeeklyArgs', 'CloudBackupSchedulePolicyItemWeeklyArgsDict']]]]] = None,
+                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemYearlyArgs', 'CloudBackupSchedulePolicyItemYearlyArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reference_hour_of_day: Optional[pulumi.Input[int]] = None,
                  reference_minute_of_hour: Optional[pulumi.Input[int]] = None,
@@ -576,11 +576,11 @@ class CloudBackupSchedule(pulumi.CustomResource):
                * true - enables automatic export of cloud backup snapshots to the AWS bucket
                * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-        :param pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemDailyArgs']] policy_item_daily: Daily policy item
-        :param pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']] policy_item_hourly: Hourly policy item
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemMonthlyArgs']]]] policy_item_monthlies: Monthly policy item
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemWeeklyArgs']]]] policy_item_weeklies: Weekly policy item
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemYearlyArgs']]]] policy_item_yearlies: Yearly policy item
+        :param pulumi.Input[Union['CloudBackupSchedulePolicyItemDailyArgs', 'CloudBackupSchedulePolicyItemDailyArgsDict']] policy_item_daily: Daily policy item
+        :param pulumi.Input[Union['CloudBackupSchedulePolicyItemHourlyArgs', 'CloudBackupSchedulePolicyItemHourlyArgsDict']] policy_item_hourly: Hourly policy item
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemMonthlyArgs', 'CloudBackupSchedulePolicyItemMonthlyArgsDict']]]] policy_item_monthlies: Monthly policy item
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemWeeklyArgs', 'CloudBackupSchedulePolicyItemWeeklyArgsDict']]]] policy_item_weeklies: Weekly policy item
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemYearlyArgs', 'CloudBackupSchedulePolicyItemYearlyArgsDict']]]] policy_item_yearlies: Yearly policy item
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
@@ -620,13 +620,13 @@ class CloudBackupSchedule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_export_enabled: Optional[pulumi.Input[bool]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupScheduleCopySettingArgs']]]]] = None,
-                 export: Optional[pulumi.Input[pulumi.InputType['CloudBackupScheduleExportArgs']]] = None,
-                 policy_item_daily: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemDailyArgs']]] = None,
-                 policy_item_hourly: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']]] = None,
-                 policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemMonthlyArgs']]]]] = None,
-                 policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemWeeklyArgs']]]]] = None,
-                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemYearlyArgs']]]]] = None,
+                 copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupScheduleCopySettingArgs', 'CloudBackupScheduleCopySettingArgsDict']]]]] = None,
+                 export: Optional[pulumi.Input[Union['CloudBackupScheduleExportArgs', 'CloudBackupScheduleExportArgsDict']]] = None,
+                 policy_item_daily: Optional[pulumi.Input[Union['CloudBackupSchedulePolicyItemDailyArgs', 'CloudBackupSchedulePolicyItemDailyArgsDict']]] = None,
+                 policy_item_hourly: Optional[pulumi.Input[Union['CloudBackupSchedulePolicyItemHourlyArgs', 'CloudBackupSchedulePolicyItemHourlyArgsDict']]] = None,
+                 policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemMonthlyArgs', 'CloudBackupSchedulePolicyItemMonthlyArgsDict']]]]] = None,
+                 policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemWeeklyArgs', 'CloudBackupSchedulePolicyItemWeeklyArgsDict']]]]] = None,
+                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemYearlyArgs', 'CloudBackupSchedulePolicyItemYearlyArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reference_hour_of_day: Optional[pulumi.Input[int]] = None,
                  reference_minute_of_hour: Optional[pulumi.Input[int]] = None,
@@ -677,15 +677,15 @@ class CloudBackupSchedule(pulumi.CustomResource):
             auto_export_enabled: Optional[pulumi.Input[bool]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
-            copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupScheduleCopySettingArgs']]]]] = None,
-            export: Optional[pulumi.Input[pulumi.InputType['CloudBackupScheduleExportArgs']]] = None,
+            copy_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupScheduleCopySettingArgs', 'CloudBackupScheduleCopySettingArgsDict']]]]] = None,
+            export: Optional[pulumi.Input[Union['CloudBackupScheduleExportArgs', 'CloudBackupScheduleExportArgsDict']]] = None,
             id_policy: Optional[pulumi.Input[str]] = None,
             next_snapshot: Optional[pulumi.Input[str]] = None,
-            policy_item_daily: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemDailyArgs']]] = None,
-            policy_item_hourly: Optional[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']]] = None,
-            policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemMonthlyArgs']]]]] = None,
-            policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemWeeklyArgs']]]]] = None,
-            policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemYearlyArgs']]]]] = None,
+            policy_item_daily: Optional[pulumi.Input[Union['CloudBackupSchedulePolicyItemDailyArgs', 'CloudBackupSchedulePolicyItemDailyArgsDict']]] = None,
+            policy_item_hourly: Optional[pulumi.Input[Union['CloudBackupSchedulePolicyItemHourlyArgs', 'CloudBackupSchedulePolicyItemHourlyArgsDict']]] = None,
+            policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemMonthlyArgs', 'CloudBackupSchedulePolicyItemMonthlyArgsDict']]]]] = None,
+            policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemWeeklyArgs', 'CloudBackupSchedulePolicyItemWeeklyArgsDict']]]]] = None,
+            policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemYearlyArgs', 'CloudBackupSchedulePolicyItemYearlyArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             reference_hour_of_day: Optional[pulumi.Input[int]] = None,
             reference_minute_of_hour: Optional[pulumi.Input[int]] = None,
@@ -706,11 +706,11 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] id_policy: Unique identifier of the backup policy.
         :param pulumi.Input[str] next_snapshot: Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
-        :param pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemDailyArgs']] policy_item_daily: Daily policy item
-        :param pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemHourlyArgs']] policy_item_hourly: Hourly policy item
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemMonthlyArgs']]]] policy_item_monthlies: Monthly policy item
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemWeeklyArgs']]]] policy_item_weeklies: Weekly policy item
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSchedulePolicyItemYearlyArgs']]]] policy_item_yearlies: Yearly policy item
+        :param pulumi.Input[Union['CloudBackupSchedulePolicyItemDailyArgs', 'CloudBackupSchedulePolicyItemDailyArgsDict']] policy_item_daily: Daily policy item
+        :param pulumi.Input[Union['CloudBackupSchedulePolicyItemHourlyArgs', 'CloudBackupSchedulePolicyItemHourlyArgsDict']] policy_item_hourly: Hourly policy item
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemMonthlyArgs', 'CloudBackupSchedulePolicyItemMonthlyArgsDict']]]] policy_item_monthlies: Monthly policy item
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemWeeklyArgs', 'CloudBackupSchedulePolicyItemWeeklyArgsDict']]]] policy_item_weeklies: Weekly policy item
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemYearlyArgs', 'CloudBackupSchedulePolicyItemYearlyArgsDict']]]] policy_item_yearlies: Yearly policy item
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.

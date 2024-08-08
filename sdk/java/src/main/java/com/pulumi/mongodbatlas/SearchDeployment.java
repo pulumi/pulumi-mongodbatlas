@@ -174,7 +174,7 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SearchDeployment(String name) {
+    public SearchDeployment(java.lang.String name) {
         this(name, SearchDeploymentArgs.Empty);
     }
     /**
@@ -182,7 +182,7 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SearchDeployment(String name, SearchDeploymentArgs args) {
+    public SearchDeployment(java.lang.String name, SearchDeploymentArgs args) {
         this(name, args, null);
     }
     /**
@@ -191,12 +191,12 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SearchDeployment(String name, SearchDeploymentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/searchDeployment:SearchDeployment", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SearchDeployment(java.lang.String name, SearchDeploymentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/searchDeployment:SearchDeployment", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SearchDeployment(String name, Output<String> id, @Nullable SearchDeploymentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/searchDeployment:SearchDeployment", name, state, makeResourceOptions(options, id));
+    private SearchDeployment(java.lang.String name, Output<java.lang.String> id, @Nullable SearchDeploymentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/searchDeployment:SearchDeployment", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SearchDeploymentArgs makeArgs(SearchDeploymentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -206,7 +206,7 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
         return args == null ? SearchDeploymentArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -222,7 +222,7 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SearchDeployment get(String name, Output<String> id, @Nullable SearchDeploymentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SearchDeployment get(java.lang.String name, Output<java.lang.String> id, @Nullable SearchDeploymentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SearchDeployment(name, id, state, options);
     }
 }

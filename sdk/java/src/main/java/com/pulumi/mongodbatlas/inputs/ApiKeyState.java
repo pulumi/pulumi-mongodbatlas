@@ -16,17 +16,9 @@ public final class ApiKeyState extends com.pulumi.resources.ResourceArgs {
 
     public static final ApiKeyState Empty = new ApiKeyState();
 
-    /**
-     * Unique identifier for this Organization API key.
-     * 
-     */
     @Import(name="apiKeyId")
     private @Nullable Output<String> apiKeyId;
 
-    /**
-     * @return Unique identifier for this Organization API key.
-     * 
-     */
     public Optional<Output<String>> apiKeyId() {
         return Optional.ofNullable(this.apiKeyId);
     }
@@ -84,10 +76,6 @@ public final class ApiKeyState extends com.pulumi.resources.ResourceArgs {
      * * `ORG_READ_ONLY`
      * * `ORG_MEMBER`
      * 
-     * ## Attributes Reference
-     * 
-     * In addition to all arguments above, the following attributes are exported:
-     * 
      */
     @Import(name="roleNames")
     private @Nullable Output<List<String>> roleNames;
@@ -100,10 +88,6 @@ public final class ApiKeyState extends com.pulumi.resources.ResourceArgs {
      * * `ORG_BILLING_ADMIN`
      * * `ORG_READ_ONLY`
      * * `ORG_MEMBER`
-     * 
-     * ## Attributes Reference
-     * 
-     * In addition to all arguments above, the following attributes are exported:
      * 
      */
     public Optional<Output<List<String>>> roleNames() {
@@ -139,23 +123,11 @@ public final class ApiKeyState extends com.pulumi.resources.ResourceArgs {
             $ = new ApiKeyState(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param apiKeyId Unique identifier for this Organization API key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder apiKeyId(@Nullable Output<String> apiKeyId) {
             $.apiKeyId = apiKeyId;
             return this;
         }
 
-        /**
-         * @param apiKeyId Unique identifier for this Organization API key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder apiKeyId(String apiKeyId) {
             return apiKeyId(Output.of(apiKeyId));
         }
@@ -229,10 +201,6 @@ public final class ApiKeyState extends com.pulumi.resources.ResourceArgs {
          * * `ORG_READ_ONLY`
          * * `ORG_MEMBER`
          * 
-         * ## Attributes Reference
-         * 
-         * In addition to all arguments above, the following attributes are exported:
-         * 
          * @return builder
          * 
          */
@@ -250,10 +218,6 @@ public final class ApiKeyState extends com.pulumi.resources.ResourceArgs {
          * * `ORG_READ_ONLY`
          * * `ORG_MEMBER`
          * 
-         * ## Attributes Reference
-         * 
-         * In addition to all arguments above, the following attributes are exported:
-         * 
          * @return builder
          * 
          */
@@ -269,10 +233,6 @@ public final class ApiKeyState extends com.pulumi.resources.ResourceArgs {
          * * `ORG_BILLING_ADMIN`
          * * `ORG_READ_ONLY`
          * * `ORG_MEMBER`
-         * 
-         * ## Attributes Reference
-         * 
-         * In addition to all arguments above, the following attributes are exported:
          * 
          * @return builder
          * 

@@ -28,10 +28,6 @@ class ApiKeyArgs:
                * `ORG_BILLING_ADMIN`
                * `ORG_READ_ONLY`
                * `ORG_MEMBER`
-               
-               ## Attributes Reference
-               
-               In addition to all arguments above, the following attributes are exported:
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "org_id", org_id)
@@ -72,10 +68,6 @@ class ApiKeyArgs:
         * `ORG_BILLING_ADMIN`
         * `ORG_READ_ONLY`
         * `ORG_MEMBER`
-
-        ## Attributes Reference
-
-        In addition to all arguments above, the following attributes are exported:
         """
         return pulumi.get(self, "role_names")
 
@@ -95,7 +87,6 @@ class _ApiKeyState:
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering ApiKey resources.
-        :param pulumi.Input[str] api_key_id: Unique identifier for this Organization API key.
         :param pulumi.Input[str] description: Description of this Organization API key.
         :param pulumi.Input[str] org_id: Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
@@ -105,10 +96,6 @@ class _ApiKeyState:
                * `ORG_BILLING_ADMIN`
                * `ORG_READ_ONLY`
                * `ORG_MEMBER`
-               
-               ## Attributes Reference
-               
-               In addition to all arguments above, the following attributes are exported:
         """
         if api_key_id is not None:
             pulumi.set(__self__, "api_key_id", api_key_id)
@@ -126,9 +113,6 @@ class _ApiKeyState:
     @property
     @pulumi.getter(name="apiKeyId")
     def api_key_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Unique identifier for this Organization API key.
-        """
         return pulumi.get(self, "api_key_id")
 
     @api_key_id.setter
@@ -188,10 +172,6 @@ class _ApiKeyState:
         * `ORG_BILLING_ADMIN`
         * `ORG_READ_ONLY`
         * `ORG_MEMBER`
-
-        ## Attributes Reference
-
-        In addition to all arguments above, the following attributes are exported:
         """
         return pulumi.get(self, "role_names")
 
@@ -222,6 +202,12 @@ class ApiKey(pulumi.CustomResource):
             role_names=["ORG_READ_ONLY"])
         ```
 
+        ## ## Attributes Reference
+
+        In addition to all arguments above, the following attributes are exported:
+
+        * `api_key_id` - Unique identifier for this Organization API key.
+
         ## Import
 
         API Keys must be imported using org ID, API Key ID e.g.
@@ -242,10 +228,6 @@ class ApiKey(pulumi.CustomResource):
                * `ORG_BILLING_ADMIN`
                * `ORG_READ_ONLY`
                * `ORG_MEMBER`
-               
-               ## Attributes Reference
-               
-               In addition to all arguments above, the following attributes are exported:
         """
         ...
     @overload
@@ -265,6 +247,12 @@ class ApiKey(pulumi.CustomResource):
             org_id="<ORG_ID>",
             role_names=["ORG_READ_ONLY"])
         ```
+
+        ## ## Attributes Reference
+
+        In addition to all arguments above, the following attributes are exported:
+
+        * `api_key_id` - Unique identifier for this Organization API key.
 
         ## Import
 
@@ -339,7 +327,6 @@ class ApiKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] api_key_id: Unique identifier for this Organization API key.
         :param pulumi.Input[str] description: Description of this Organization API key.
         :param pulumi.Input[str] org_id: Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
@@ -349,10 +336,6 @@ class ApiKey(pulumi.CustomResource):
                * `ORG_BILLING_ADMIN`
                * `ORG_READ_ONLY`
                * `ORG_MEMBER`
-               
-               ## Attributes Reference
-               
-               In addition to all arguments above, the following attributes are exported:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -369,9 +352,6 @@ class ApiKey(pulumi.CustomResource):
     @property
     @pulumi.getter(name="apiKeyId")
     def api_key_id(self) -> pulumi.Output[str]:
-        """
-        Unique identifier for this Organization API key.
-        """
         return pulumi.get(self, "api_key_id")
 
     @property
@@ -411,10 +391,6 @@ class ApiKey(pulumi.CustomResource):
         * `ORG_BILLING_ADMIN`
         * `ORG_READ_ONLY`
         * `ORG_MEMBER`
-
-        ## Attributes Reference
-
-        In addition to all arguments above, the following attributes are exported:
         """
         return pulumi.get(self, "role_names")
 

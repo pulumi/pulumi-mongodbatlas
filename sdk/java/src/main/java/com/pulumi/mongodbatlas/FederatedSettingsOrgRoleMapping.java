@@ -170,7 +170,7 @@ public class FederatedSettingsOrgRoleMapping extends com.pulumi.resources.Custom
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public FederatedSettingsOrgRoleMapping(String name) {
+    public FederatedSettingsOrgRoleMapping(java.lang.String name) {
         this(name, FederatedSettingsOrgRoleMappingArgs.Empty);
     }
     /**
@@ -178,7 +178,7 @@ public class FederatedSettingsOrgRoleMapping extends com.pulumi.resources.Custom
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public FederatedSettingsOrgRoleMapping(String name, FederatedSettingsOrgRoleMappingArgs args) {
+    public FederatedSettingsOrgRoleMapping(java.lang.String name, FederatedSettingsOrgRoleMappingArgs args) {
         this(name, args, null);
     }
     /**
@@ -187,12 +187,12 @@ public class FederatedSettingsOrgRoleMapping extends com.pulumi.resources.Custom
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public FederatedSettingsOrgRoleMapping(String name, FederatedSettingsOrgRoleMappingArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public FederatedSettingsOrgRoleMapping(java.lang.String name, FederatedSettingsOrgRoleMappingArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private FederatedSettingsOrgRoleMapping(String name, Output<String> id, @Nullable FederatedSettingsOrgRoleMappingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping", name, state, makeResourceOptions(options, id));
+    private FederatedSettingsOrgRoleMapping(java.lang.String name, Output<java.lang.String> id, @Nullable FederatedSettingsOrgRoleMappingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping", name, state, makeResourceOptions(options, id), false);
     }
 
     private static FederatedSettingsOrgRoleMappingArgs makeArgs(FederatedSettingsOrgRoleMappingArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -202,7 +202,7 @@ public class FederatedSettingsOrgRoleMapping extends com.pulumi.resources.Custom
         return args == null ? FederatedSettingsOrgRoleMappingArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -218,7 +218,7 @@ public class FederatedSettingsOrgRoleMapping extends com.pulumi.resources.Custom
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static FederatedSettingsOrgRoleMapping get(String name, Output<String> id, @Nullable FederatedSettingsOrgRoleMappingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static FederatedSettingsOrgRoleMapping get(java.lang.String name, Output<java.lang.String> id, @Nullable FederatedSettingsOrgRoleMappingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new FederatedSettingsOrgRoleMapping(name, id, state, options);
     }
 }

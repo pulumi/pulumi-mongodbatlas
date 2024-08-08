@@ -78,7 +78,7 @@ public class PrivateEndpointRegionalMode extends com.pulumi.resources.CustomReso
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public PrivateEndpointRegionalMode(String name) {
+    public PrivateEndpointRegionalMode(java.lang.String name) {
         this(name, PrivateEndpointRegionalModeArgs.Empty);
     }
     /**
@@ -86,7 +86,7 @@ public class PrivateEndpointRegionalMode extends com.pulumi.resources.CustomReso
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public PrivateEndpointRegionalMode(String name, PrivateEndpointRegionalModeArgs args) {
+    public PrivateEndpointRegionalMode(java.lang.String name, PrivateEndpointRegionalModeArgs args) {
         this(name, args, null);
     }
     /**
@@ -95,12 +95,12 @@ public class PrivateEndpointRegionalMode extends com.pulumi.resources.CustomReso
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public PrivateEndpointRegionalMode(String name, PrivateEndpointRegionalModeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public PrivateEndpointRegionalMode(java.lang.String name, PrivateEndpointRegionalModeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private PrivateEndpointRegionalMode(String name, Output<String> id, @Nullable PrivateEndpointRegionalModeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode", name, state, makeResourceOptions(options, id));
+    private PrivateEndpointRegionalMode(java.lang.String name, Output<java.lang.String> id, @Nullable PrivateEndpointRegionalModeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode", name, state, makeResourceOptions(options, id), false);
     }
 
     private static PrivateEndpointRegionalModeArgs makeArgs(PrivateEndpointRegionalModeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -110,7 +110,7 @@ public class PrivateEndpointRegionalMode extends com.pulumi.resources.CustomReso
         return args == null ? PrivateEndpointRegionalModeArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -126,7 +126,7 @@ public class PrivateEndpointRegionalMode extends com.pulumi.resources.CustomReso
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static PrivateEndpointRegionalMode get(String name, Output<String> id, @Nullable PrivateEndpointRegionalModeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static PrivateEndpointRegionalMode get(java.lang.String name, Output<java.lang.String> id, @Nullable PrivateEndpointRegionalModeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new PrivateEndpointRegionalMode(name, id, state, options);
     }
 }

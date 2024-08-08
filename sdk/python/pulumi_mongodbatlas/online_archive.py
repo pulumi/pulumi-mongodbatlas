@@ -440,14 +440,14 @@ class OnlineArchive(pulumi.CustomResource):
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  coll_name: Optional[pulumi.Input[str]] = None,
                  collection_type: Optional[pulumi.Input[str]] = None,
-                 criteria: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']]] = None,
-                 data_expiration_rule: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveDataExpirationRuleArgs']]] = None,
-                 data_process_region: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveDataProcessRegionArgs']]] = None,
+                 criteria: Optional[pulumi.Input[Union['OnlineArchiveCriteriaArgs', 'OnlineArchiveCriteriaArgsDict']]] = None,
+                 data_expiration_rule: Optional[pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']]] = None,
+                 data_process_region: Optional[pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
-                 partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]]] = None,
+                 partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 schedule: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveScheduleArgs']]] = None,
+                 schedule: Optional[pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']]] = None,
                  sync_creation: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -474,31 +474,31 @@ class OnlineArchive(pulumi.CustomResource):
             coll_name=collection_name,
             db_name=database_name,
             partition_fields=[
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="dateField",
-                    order=0,
-                ),
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="firstName",
-                    order=1,
-                ),
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="lastName",
-                    order=2,
-                ),
+                {
+                    "field_name": "dateField",
+                    "order": 0,
+                },
+                {
+                    "field_name": "firstName",
+                    "order": 1,
+                },
+                {
+                    "field_name": "lastName",
+                    "order": 2,
+                },
             ],
-            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
-                type="DATE",
-                date_field="dateField",
-                expire_after_days=5,
-            ),
-            schedule=mongodbatlas.OnlineArchiveScheduleArgs(
-                type="DAILY",
-                end_hour=1,
-                end_minute=1,
-                start_hour=1,
-                start_minute=1,
-            ))
+            criteria={
+                "type": "DATE",
+                "date_field": "dateField",
+                "expire_after_days": 5,
+            },
+            schedule={
+                "type": "DAILY",
+                "end_hour": 1,
+                "end_minute": 1,
+                "start_hour": 1,
+                "start_minute": 1,
+            })
         ```
 
         For custom criteria example
@@ -513,19 +513,19 @@ class OnlineArchive(pulumi.CustomResource):
             coll_name=collection_name,
             db_name=database_name,
             partition_fields=[
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="firstName",
-                    order=0,
-                ),
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="secondName",
-                    order=1,
-                ),
+                {
+                    "field_name": "firstName",
+                    "order": 0,
+                },
+                {
+                    "field_name": "secondName",
+                    "order": 1,
+                },
             ],
-            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
-                type="CUSTOM",
-                query="{ \\"department\\": \\"engineering\\" }",
-            ))
+            criteria={
+                "type": "CUSTOM",
+                "query": "{ \\"department\\": \\"engineering\\" }",
+            })
         ```
 
         Defining custom provider and region example
@@ -539,18 +539,18 @@ class OnlineArchive(pulumi.CustomResource):
             cluster_name=cluster_name,
             coll_name=collection_name,
             db_name=database_name,
-            data_process_region=mongodbatlas.OnlineArchiveDataProcessRegionArgs(
-                cloud_provider="AZURE",
-                region="US_EAST_2",
-            ),
-            partition_fields=[mongodbatlas.OnlineArchivePartitionFieldArgs(
-                field_name="firstName",
-                order=0,
-            )],
-            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
-                type="CUSTOM",
-                query="{ \\"department\\": \\"engineering\\" }",
-            ))
+            data_process_region={
+                "cloud_provider": "AZURE",
+                "region": "US_EAST_2",
+            },
+            partition_fields=[{
+                "field_name": "firstName",
+                "order": 0,
+            }],
+            criteria={
+                "type": "CUSTOM",
+                "query": "{ \\"department\\": \\"engineering\\" }",
+            })
         ```
 
         ## Import
@@ -562,14 +562,14 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_name: Name of the cluster that contains the collection.
         :param pulumi.Input[str] coll_name: Name of the collection.
         :param pulumi.Input[str] collection_type: Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
-        :param pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']] criteria: Criteria to use for archiving data. See criteria.
-        :param pulumi.Input[pulumi.InputType['OnlineArchiveDataExpirationRuleArgs']] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
-        :param pulumi.Input[pulumi.InputType['OnlineArchiveDataProcessRegionArgs']] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+        :param pulumi.Input[Union['OnlineArchiveCriteriaArgs', 'OnlineArchiveCriteriaArgsDict']] criteria: Criteria to use for archiving data. See criteria.
+        :param pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
+        :param pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input[str] project_id: The unique ID for the project
-        :param pulumi.Input[pulumi.InputType['OnlineArchiveScheduleArgs']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
+        :param pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         """
         ...
     @overload
@@ -601,31 +601,31 @@ class OnlineArchive(pulumi.CustomResource):
             coll_name=collection_name,
             db_name=database_name,
             partition_fields=[
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="dateField",
-                    order=0,
-                ),
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="firstName",
-                    order=1,
-                ),
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="lastName",
-                    order=2,
-                ),
+                {
+                    "field_name": "dateField",
+                    "order": 0,
+                },
+                {
+                    "field_name": "firstName",
+                    "order": 1,
+                },
+                {
+                    "field_name": "lastName",
+                    "order": 2,
+                },
             ],
-            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
-                type="DATE",
-                date_field="dateField",
-                expire_after_days=5,
-            ),
-            schedule=mongodbatlas.OnlineArchiveScheduleArgs(
-                type="DAILY",
-                end_hour=1,
-                end_minute=1,
-                start_hour=1,
-                start_minute=1,
-            ))
+            criteria={
+                "type": "DATE",
+                "date_field": "dateField",
+                "expire_after_days": 5,
+            },
+            schedule={
+                "type": "DAILY",
+                "end_hour": 1,
+                "end_minute": 1,
+                "start_hour": 1,
+                "start_minute": 1,
+            })
         ```
 
         For custom criteria example
@@ -640,19 +640,19 @@ class OnlineArchive(pulumi.CustomResource):
             coll_name=collection_name,
             db_name=database_name,
             partition_fields=[
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="firstName",
-                    order=0,
-                ),
-                mongodbatlas.OnlineArchivePartitionFieldArgs(
-                    field_name="secondName",
-                    order=1,
-                ),
+                {
+                    "field_name": "firstName",
+                    "order": 0,
+                },
+                {
+                    "field_name": "secondName",
+                    "order": 1,
+                },
             ],
-            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
-                type="CUSTOM",
-                query="{ \\"department\\": \\"engineering\\" }",
-            ))
+            criteria={
+                "type": "CUSTOM",
+                "query": "{ \\"department\\": \\"engineering\\" }",
+            })
         ```
 
         Defining custom provider and region example
@@ -666,18 +666,18 @@ class OnlineArchive(pulumi.CustomResource):
             cluster_name=cluster_name,
             coll_name=collection_name,
             db_name=database_name,
-            data_process_region=mongodbatlas.OnlineArchiveDataProcessRegionArgs(
-                cloud_provider="AZURE",
-                region="US_EAST_2",
-            ),
-            partition_fields=[mongodbatlas.OnlineArchivePartitionFieldArgs(
-                field_name="firstName",
-                order=0,
-            )],
-            criteria=mongodbatlas.OnlineArchiveCriteriaArgs(
-                type="CUSTOM",
-                query="{ \\"department\\": \\"engineering\\" }",
-            ))
+            data_process_region={
+                "cloud_provider": "AZURE",
+                "region": "US_EAST_2",
+            },
+            partition_fields=[{
+                "field_name": "firstName",
+                "order": 0,
+            }],
+            criteria={
+                "type": "CUSTOM",
+                "query": "{ \\"department\\": \\"engineering\\" }",
+            })
         ```
 
         ## Import
@@ -702,14 +702,14 @@ class OnlineArchive(pulumi.CustomResource):
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  coll_name: Optional[pulumi.Input[str]] = None,
                  collection_type: Optional[pulumi.Input[str]] = None,
-                 criteria: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']]] = None,
-                 data_expiration_rule: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveDataExpirationRuleArgs']]] = None,
-                 data_process_region: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveDataProcessRegionArgs']]] = None,
+                 criteria: Optional[pulumi.Input[Union['OnlineArchiveCriteriaArgs', 'OnlineArchiveCriteriaArgsDict']]] = None,
+                 data_expiration_rule: Optional[pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']]] = None,
+                 data_process_region: Optional[pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
-                 partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]]] = None,
+                 partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 schedule: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveScheduleArgs']]] = None,
+                 schedule: Optional[pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']]] = None,
                  sync_creation: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -758,14 +758,14 @@ class OnlineArchive(pulumi.CustomResource):
             cluster_name: Optional[pulumi.Input[str]] = None,
             coll_name: Optional[pulumi.Input[str]] = None,
             collection_type: Optional[pulumi.Input[str]] = None,
-            criteria: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']]] = None,
-            data_expiration_rule: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveDataExpirationRuleArgs']]] = None,
-            data_process_region: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveDataProcessRegionArgs']]] = None,
+            criteria: Optional[pulumi.Input[Union['OnlineArchiveCriteriaArgs', 'OnlineArchiveCriteriaArgsDict']]] = None,
+            data_expiration_rule: Optional[pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']]] = None,
+            data_process_region: Optional[pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']]] = None,
             db_name: Optional[pulumi.Input[str]] = None,
-            partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]]] = None,
+            partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]]] = None,
             paused: Optional[pulumi.Input[bool]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            schedule: Optional[pulumi.Input[pulumi.InputType['OnlineArchiveScheduleArgs']]] = None,
+            schedule: Optional[pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']]] = None,
             state: Optional[pulumi.Input[str]] = None,
             sync_creation: Optional[pulumi.Input[bool]] = None) -> 'OnlineArchive':
         """
@@ -779,14 +779,14 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_name: Name of the cluster that contains the collection.
         :param pulumi.Input[str] coll_name: Name of the collection.
         :param pulumi.Input[str] collection_type: Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
-        :param pulumi.Input[pulumi.InputType['OnlineArchiveCriteriaArgs']] criteria: Criteria to use for archiving data. See criteria.
-        :param pulumi.Input[pulumi.InputType['OnlineArchiveDataExpirationRuleArgs']] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
-        :param pulumi.Input[pulumi.InputType['OnlineArchiveDataProcessRegionArgs']] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
+        :param pulumi.Input[Union['OnlineArchiveCriteriaArgs', 'OnlineArchiveCriteriaArgsDict']] criteria: Criteria to use for archiving data. See criteria.
+        :param pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
+        :param pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
         :param pulumi.Input[str] db_name: Name of the database that contains the collection.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['OnlineArchivePartitionFieldArgs']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input[str] project_id: The unique ID for the project
-        :param pulumi.Input[pulumi.InputType['OnlineArchiveScheduleArgs']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
+        :param pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         :param pulumi.Input[str] state: Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

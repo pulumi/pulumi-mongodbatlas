@@ -181,24 +181,24 @@ def get_database_user(auth_database_name: Optional[str] = None,
         project_id="<PROJECT-ID>",
         auth_database_name="admin",
         roles=[
-            mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readWrite",
-                database_name="admin",
-            ),
-            mongodbatlas.DatabaseUserRoleArgs(
-                role_name="atlasAdmin",
-                database_name="admin",
-            ),
+            {
+                "role_name": "readWrite",
+                "database_name": "admin",
+            },
+            {
+                "role_name": "atlasAdmin",
+                "database_name": "admin",
+            },
         ],
         labels=[
-            mongodbatlas.DatabaseUserLabelArgs(
-                key="key 1",
-                value="value 1",
-            ),
-            mongodbatlas.DatabaseUserLabelArgs(
-                key="key 2",
-                value="value 2",
-            ),
+            {
+                "key": "key 1",
+                "value": "value 1",
+            },
+            {
+                "key": "key 2",
+                "value": "value 2",
+            },
         ])
     test = mongodbatlas.get_database_user_output(project_id=test_database_user.project_id,
         username=test_database_user.username)
@@ -215,10 +215,10 @@ def get_database_user(auth_database_name: Optional[str] = None,
         project_id="6414908c207f4d22f4d8f232",
         auth_database_name="admin",
         oidc_auth_type="IDP_GROUP",
-        roles=[mongodbatlas.DatabaseUserRoleArgs(
-            role_name="readWriteAnyDatabase",
-            database_name="admin",
-        )])
+        roles=[{
+            "role_name": "readWriteAnyDatabase",
+            "database_name": "admin",
+        }])
     test = mongodbatlas.get_database_user_output(username=test_database_user.username,
         project_id="6414908c207f4d22f4d8f232",
         auth_database_name="admin")
@@ -277,24 +277,24 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[str]] = N
         project_id="<PROJECT-ID>",
         auth_database_name="admin",
         roles=[
-            mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readWrite",
-                database_name="admin",
-            ),
-            mongodbatlas.DatabaseUserRoleArgs(
-                role_name="atlasAdmin",
-                database_name="admin",
-            ),
+            {
+                "role_name": "readWrite",
+                "database_name": "admin",
+            },
+            {
+                "role_name": "atlasAdmin",
+                "database_name": "admin",
+            },
         ],
         labels=[
-            mongodbatlas.DatabaseUserLabelArgs(
-                key="key 1",
-                value="value 1",
-            ),
-            mongodbatlas.DatabaseUserLabelArgs(
-                key="key 2",
-                value="value 2",
-            ),
+            {
+                "key": "key 1",
+                "value": "value 1",
+            },
+            {
+                "key": "key 2",
+                "value": "value 2",
+            },
         ])
     test = mongodbatlas.get_database_user_output(project_id=test_database_user.project_id,
         username=test_database_user.username)
@@ -311,10 +311,10 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[str]] = N
         project_id="6414908c207f4d22f4d8f232",
         auth_database_name="admin",
         oidc_auth_type="IDP_GROUP",
-        roles=[mongodbatlas.DatabaseUserRoleArgs(
-            role_name="readWriteAnyDatabase",
-            database_name="admin",
-        )])
+        roles=[{
+            "role_name": "readWriteAnyDatabase",
+            "database_name": "admin",
+        }])
     test = mongodbatlas.get_database_user_output(username=test_database_user.username,
         project_id="6414908c207f4d22f4d8f232",
         auth_database_name="admin")

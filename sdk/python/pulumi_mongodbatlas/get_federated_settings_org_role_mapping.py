@@ -116,33 +116,33 @@ def get_federated_settings_org_role_mapping(federation_settings_id: Optional[str
         org_id="627a9683e7f7f7ff7fe306f14",
         external_group_name="myGrouptest",
         role_assignments=[
-            mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
-                org_id="627a9683e7f7f7ff7fe306f14",
-                roles=[
+            {
+                "org_id": "627a9683e7f7f7ff7fe306f14",
+                "roles": [
                     "ORG_MEMBER",
                     "ORG_GROUP_CREATOR",
                     "ORG_BILLING_ADMIN",
                 ],
-            ),
-            mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
-                group_id="628aa20db7f7f7f98b81b8",
-                roles=[
+            },
+            {
+                "group_id": "628aa20db7f7f7f98b81b8",
+                "roles": [
                     "GROUP_OWNER",
                     "GROUP_DATA_ACCESS_ADMIN",
                     "GROUP_SEARCH_INDEX_EDITOR",
                     "GROUP_DATA_ACCESS_READ_ONLY",
                 ],
-            ),
-            mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
-                group_id="62b477f7f7f7f5e741489c",
-                roles=[
+            },
+            {
+                "group_id": "62b477f7f7f7f5e741489c",
+                "roles": [
                     "GROUP_OWNER",
                     "GROUP_DATA_ACCESS_ADMIN",
                     "GROUP_SEARCH_INDEX_EDITOR",
                     "GROUP_DATA_ACCESS_READ_ONLY",
                     "GROUP_DATA_ACCESS_READ_WRITE",
                 ],
-            ),
+            },
         ])
     role_mapping = mongodbatlas.get_federated_settings_org_role_mapping_output(federation_settings_id=org_group_role_mapping_import.id,
         org_id="627a9683e7f7f7ff7fe306f14",
@@ -190,33 +190,33 @@ def get_federated_settings_org_role_mapping_output(federation_settings_id: Optio
         org_id="627a9683e7f7f7ff7fe306f14",
         external_group_name="myGrouptest",
         role_assignments=[
-            mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
-                org_id="627a9683e7f7f7ff7fe306f14",
-                roles=[
+            {
+                "org_id": "627a9683e7f7f7ff7fe306f14",
+                "roles": [
                     "ORG_MEMBER",
                     "ORG_GROUP_CREATOR",
                     "ORG_BILLING_ADMIN",
                 ],
-            ),
-            mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
-                group_id="628aa20db7f7f7f98b81b8",
-                roles=[
+            },
+            {
+                "group_id": "628aa20db7f7f7f98b81b8",
+                "roles": [
                     "GROUP_OWNER",
                     "GROUP_DATA_ACCESS_ADMIN",
                     "GROUP_SEARCH_INDEX_EDITOR",
                     "GROUP_DATA_ACCESS_READ_ONLY",
                 ],
-            ),
-            mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs(
-                group_id="62b477f7f7f7f5e741489c",
-                roles=[
+            },
+            {
+                "group_id": "62b477f7f7f7f5e741489c",
+                "roles": [
                     "GROUP_OWNER",
                     "GROUP_DATA_ACCESS_ADMIN",
                     "GROUP_SEARCH_INDEX_EDITOR",
                     "GROUP_DATA_ACCESS_READ_ONLY",
                     "GROUP_DATA_ACCESS_READ_WRITE",
                 ],
-            ),
+            },
         ])
     role_mapping = mongodbatlas.get_federated_settings_org_role_mapping_output(federation_settings_id=org_group_role_mapping_import.id,
         org_id="627a9683e7f7f7ff7fe306f14",

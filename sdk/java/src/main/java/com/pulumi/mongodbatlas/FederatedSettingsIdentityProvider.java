@@ -406,7 +406,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public FederatedSettingsIdentityProvider(String name) {
+    public FederatedSettingsIdentityProvider(java.lang.String name) {
         this(name, FederatedSettingsIdentityProviderArgs.Empty);
     }
     /**
@@ -414,7 +414,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public FederatedSettingsIdentityProvider(String name, FederatedSettingsIdentityProviderArgs args) {
+    public FederatedSettingsIdentityProvider(java.lang.String name, FederatedSettingsIdentityProviderArgs args) {
         this(name, args, null);
     }
     /**
@@ -423,12 +423,12 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public FederatedSettingsIdentityProvider(String name, FederatedSettingsIdentityProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public FederatedSettingsIdentityProvider(java.lang.String name, FederatedSettingsIdentityProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private FederatedSettingsIdentityProvider(String name, Output<String> id, @Nullable FederatedSettingsIdentityProviderState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider", name, state, makeResourceOptions(options, id));
+    private FederatedSettingsIdentityProvider(java.lang.String name, Output<java.lang.String> id, @Nullable FederatedSettingsIdentityProviderState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider", name, state, makeResourceOptions(options, id), false);
     }
 
     private static FederatedSettingsIdentityProviderArgs makeArgs(FederatedSettingsIdentityProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -438,7 +438,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
         return args == null ? FederatedSettingsIdentityProviderArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -454,7 +454,7 @@ public class FederatedSettingsIdentityProvider extends com.pulumi.resources.Cust
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static FederatedSettingsIdentityProvider get(String name, Output<String> id, @Nullable FederatedSettingsIdentityProviderState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static FederatedSettingsIdentityProvider get(java.lang.String name, Output<java.lang.String> id, @Nullable FederatedSettingsIdentityProviderState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new FederatedSettingsIdentityProvider(name, id, state, options);
     }
 }
