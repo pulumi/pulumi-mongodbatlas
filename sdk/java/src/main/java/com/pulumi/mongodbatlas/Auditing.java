@@ -154,7 +154,7 @@ public class Auditing extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Auditing(String name) {
+    public Auditing(java.lang.String name) {
         this(name, AuditingArgs.Empty);
     }
     /**
@@ -162,7 +162,7 @@ public class Auditing extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Auditing(String name, AuditingArgs args) {
+    public Auditing(java.lang.String name, AuditingArgs args) {
         this(name, args, null);
     }
     /**
@@ -171,12 +171,12 @@ public class Auditing extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Auditing(String name, AuditingArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/auditing:Auditing", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public Auditing(java.lang.String name, AuditingArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/auditing:Auditing", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Auditing(String name, Output<String> id, @Nullable AuditingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/auditing:Auditing", name, state, makeResourceOptions(options, id));
+    private Auditing(java.lang.String name, Output<java.lang.String> id, @Nullable AuditingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/auditing:Auditing", name, state, makeResourceOptions(options, id), false);
     }
 
     private static AuditingArgs makeArgs(AuditingArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -186,7 +186,7 @@ public class Auditing extends com.pulumi.resources.CustomResource {
         return args == null ? AuditingArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -202,7 +202,7 @@ public class Auditing extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Auditing get(String name, Output<String> id, @Nullable AuditingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Auditing get(java.lang.String name, Output<java.lang.String> id, @Nullable AuditingState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Auditing(name, id, state, options);
     }
 }

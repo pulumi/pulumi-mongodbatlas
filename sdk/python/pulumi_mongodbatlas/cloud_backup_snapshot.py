@@ -392,17 +392,17 @@ class CloudBackupSnapshot(pulumi.CustomResource):
             name="MyCluster",
             cluster_type="REPLICASET",
             backup_enabled=True,
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    priority=7,
-                    provider_name="AWS",
-                    region_name="EU_WEST_2",
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                        node_count=3,
-                    ),
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_WEST_2",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
         test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -412,9 +412,9 @@ class CloudBackupSnapshot(pulumi.CustomResource):
             project_id=test.project_id,
             cluster_name=test.cluster_name,
             snapshot_id=test.snapshot_id,
-            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                download=True,
-            ))
+            delivery_type_config={
+                "download": True,
+            })
         ```
 
         ## Import
@@ -460,17 +460,17 @@ class CloudBackupSnapshot(pulumi.CustomResource):
             name="MyCluster",
             cluster_type="REPLICASET",
             backup_enabled=True,
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    priority=7,
-                    provider_name="AWS",
-                    region_name="EU_WEST_2",
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                        node_count=3,
-                    ),
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_WEST_2",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
         test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -480,9 +480,9 @@ class CloudBackupSnapshot(pulumi.CustomResource):
             project_id=test.project_id,
             cluster_name=test.cluster_name,
             snapshot_id=test.snapshot_id,
-            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                download=True,
-            ))
+            delivery_type_config={
+                "download": True,
+            })
         ```
 
         ## Import
@@ -563,7 +563,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             expires_at: Optional[pulumi.Input[str]] = None,
             master_key_uuid: Optional[pulumi.Input[str]] = None,
-            members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotMemberArgs']]]]] = None,
+            members: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotMemberArgs', 'CloudBackupSnapshotMemberArgsDict']]]]] = None,
             mongod_version: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             replica_set_name: Optional[pulumi.Input[str]] = None,
@@ -587,7 +587,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description of the on-demand snapshot.
         :param pulumi.Input[str] expires_at: UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
         :param pulumi.Input[str] master_key_uuid: Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotMemberArgs']]]] members: Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `type` is `shardedCluster`. See below
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotMemberArgs', 'CloudBackupSnapshotMemberArgsDict']]]] members: Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `type` is `shardedCluster`. See below
         :param pulumi.Input[str] mongod_version: Version of the MongoDB server.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[str] replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.

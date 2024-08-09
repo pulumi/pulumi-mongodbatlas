@@ -258,7 +258,7 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ProjectIpAccessList(String name) {
+    public ProjectIpAccessList(java.lang.String name) {
         this(name, ProjectIpAccessListArgs.Empty);
     }
     /**
@@ -266,7 +266,7 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ProjectIpAccessList(String name, ProjectIpAccessListArgs args) {
+    public ProjectIpAccessList(java.lang.String name, ProjectIpAccessListArgs args) {
         this(name, args, null);
     }
     /**
@@ -275,12 +275,12 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ProjectIpAccessList(String name, ProjectIpAccessListArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public ProjectIpAccessList(java.lang.String name, ProjectIpAccessListArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ProjectIpAccessList(String name, Output<String> id, @Nullable ProjectIpAccessListState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList", name, state, makeResourceOptions(options, id));
+    private ProjectIpAccessList(java.lang.String name, Output<java.lang.String> id, @Nullable ProjectIpAccessListState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList", name, state, makeResourceOptions(options, id), false);
     }
 
     private static ProjectIpAccessListArgs makeArgs(ProjectIpAccessListArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -290,7 +290,7 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
         return args == null ? ProjectIpAccessListArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -306,7 +306,7 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ProjectIpAccessList get(String name, Output<String> id, @Nullable ProjectIpAccessListState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ProjectIpAccessList get(java.lang.String name, Output<java.lang.String> id, @Nullable ProjectIpAccessListState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ProjectIpAccessList(name, id, state, options);
     }
 }

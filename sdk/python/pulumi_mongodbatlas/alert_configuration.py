@@ -294,11 +294,11 @@ class AlertConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  event_type: Optional[pulumi.Input[str]] = None,
-                 matchers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
-                 metric_threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdConfigArgs']]] = None,
-                 notifications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
+                 matchers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertConfigurationMatcherArgs', 'AlertConfigurationMatcherArgsDict']]]]] = None,
+                 metric_threshold_config: Optional[pulumi.Input[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict']]] = None,
+                 notifications: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdConfigArgs']]] = None,
+                 threshold_config: Optional[pulumi.Input[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict']]] = None,
                  __props__=None):
         """
         ## # Resource: AlertConfiguration
@@ -317,26 +317,26 @@ class AlertConfiguration(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             event_type="OUTSIDE_METRIC_THRESHOLD",
             enabled=True,
-            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-                type_name="GROUP",
-                interval_min=5,
-                delay_min=0,
-                sms_enabled=False,
-                email_enabled=True,
-                roles=["GROUP_CLUSTER_MANAGER"],
-            )],
-            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
-                field_name="HOSTNAME_AND_PORT",
-                operator="EQUALS",
-                value="SECONDARY",
-            )],
-            metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
-                metric_name="ASSERT_REGULAR",
-                operator="LESS_THAN",
-                threshold=99,
-                units="RAW",
-                mode="AVERAGE",
-            ))
+            notifications=[{
+                "type_name": "GROUP",
+                "interval_min": 5,
+                "delay_min": 0,
+                "sms_enabled": False,
+                "email_enabled": True,
+                "roles": ["GROUP_CLUSTER_MANAGER"],
+            }],
+            matchers=[{
+                "field_name": "HOSTNAME_AND_PORT",
+                "operator": "EQUALS",
+                "value": "SECONDARY",
+            }],
+            metric_threshold_config={
+                "metric_name": "ASSERT_REGULAR",
+                "operator": "LESS_THAN",
+                "threshold": 99,
+                "units": "RAW",
+                "mode": "AVERAGE",
+            })
         ```
 
         > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
@@ -349,24 +349,24 @@ class AlertConfiguration(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
             enabled=True,
-            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-                type_name="GROUP",
-                interval_min=5,
-                delay_min=0,
-                sms_enabled=False,
-                email_enabled=True,
-                roles=["GROUP_CLUSTER_MANAGER"],
-            )],
-            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
-                field_name="CLUSTER_NAME",
-                operator="EQUALS",
-                value="my-cluster",
-            )],
-            threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
-                operator="LESS_THAN",
-                threshold=1,
-                units="HOURS",
-            ))
+            notifications=[{
+                "type_name": "GROUP",
+                "interval_min": 5,
+                "delay_min": 0,
+                "sms_enabled": False,
+                "email_enabled": True,
+                "roles": ["GROUP_CLUSTER_MANAGER"],
+            }],
+            matchers=[{
+                "field_name": "CLUSTER_NAME",
+                "operator": "EQUALS",
+                "value": "my-cluster",
+            }],
+            threshold_config={
+                "operator": "LESS_THAN",
+                "threshold": 1,
+                "units": "HOURS",
+            })
         ```
 
         ### Create an alert with two notifications using Email and SMS
@@ -380,38 +380,38 @@ class AlertConfiguration(pulumi.CustomResource):
             event_type="OUTSIDE_METRIC_THRESHOLD",
             enabled=True,
             notifications=[
-                mongodbatlas.AlertConfigurationNotificationArgs(
-                    type_name="GROUP",
-                    interval_min=5,
-                    delay_min=0,
-                    sms_enabled=False,
-                    email_enabled=True,
-                    roles=[
+                {
+                    "type_name": "GROUP",
+                    "interval_min": 5,
+                    "delay_min": 0,
+                    "sms_enabled": False,
+                    "email_enabled": True,
+                    "roles": [
                         "GROUP_DATA_ACCESS_READ_ONLY",
                         "GROUP_CLUSTER_MANAGER",
                         "GROUP_DATA_ACCESS_ADMIN",
                     ],
-                ),
-                mongodbatlas.AlertConfigurationNotificationArgs(
-                    type_name="ORG",
-                    interval_min=5,
-                    delay_min=0,
-                    sms_enabled=True,
-                    email_enabled=False,
-                ),
+                },
+                {
+                    "type_name": "ORG",
+                    "interval_min": 5,
+                    "delay_min": 0,
+                    "sms_enabled": True,
+                    "email_enabled": False,
+                },
             ],
-            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
-                field_name="HOSTNAME_AND_PORT",
-                operator="EQUALS",
-                value="SECONDARY",
-            )],
-            metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
-                metric_name="ASSERT_REGULAR",
-                operator="LESS_THAN",
-                threshold=99,
-                units="RAW",
-                mode="AVERAGE",
-            ))
+            matchers=[{
+                "field_name": "HOSTNAME_AND_PORT",
+                "operator": "EQUALS",
+                "value": "SECONDARY",
+            }],
+            metric_threshold_config={
+                "metric_name": "ASSERT_REGULAR",
+                "operator": "LESS_THAN",
+                "threshold": 99,
+                "units": "RAW",
+                "mode": "AVERAGE",
+            })
         ```
 
         ### Create third party notification using credentials from existing third party integration
@@ -426,10 +426,10 @@ class AlertConfiguration(pulumi.CustomResource):
             project_id="PROJECT ID",
             enabled=True,
             event_type="USERS_WITHOUT_MULTI_FACTOR_AUTH",
-            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-                type_name="PAGER_DUTY",
-                integration_id=test.id,
-            )])
+            notifications=[{
+                "type_name": "PAGER_DUTY",
+                "integration_id": test.id,
+            }])
         ```
 
         ## Import
@@ -478,26 +478,26 @@ class AlertConfiguration(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             event_type="OUTSIDE_METRIC_THRESHOLD",
             enabled=True,
-            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-                type_name="GROUP",
-                interval_min=5,
-                delay_min=0,
-                sms_enabled=False,
-                email_enabled=True,
-                roles=["GROUP_CLUSTER_MANAGER"],
-            )],
-            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
-                field_name="HOSTNAME_AND_PORT",
-                operator="EQUALS",
-                value="SECONDARY",
-            )],
-            metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
-                metric_name="ASSERT_REGULAR",
-                operator="LESS_THAN",
-                threshold=99,
-                units="RAW",
-                mode="AVERAGE",
-            ))
+            notifications=[{
+                "type_name": "GROUP",
+                "interval_min": 5,
+                "delay_min": 0,
+                "sms_enabled": False,
+                "email_enabled": True,
+                "roles": ["GROUP_CLUSTER_MANAGER"],
+            }],
+            matchers=[{
+                "field_name": "HOSTNAME_AND_PORT",
+                "operator": "EQUALS",
+                "value": "SECONDARY",
+            }],
+            metric_threshold_config={
+                "metric_name": "ASSERT_REGULAR",
+                "operator": "LESS_THAN",
+                "threshold": 99,
+                "units": "RAW",
+                "mode": "AVERAGE",
+            })
         ```
 
         > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
@@ -510,24 +510,24 @@ class AlertConfiguration(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
             enabled=True,
-            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-                type_name="GROUP",
-                interval_min=5,
-                delay_min=0,
-                sms_enabled=False,
-                email_enabled=True,
-                roles=["GROUP_CLUSTER_MANAGER"],
-            )],
-            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
-                field_name="CLUSTER_NAME",
-                operator="EQUALS",
-                value="my-cluster",
-            )],
-            threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
-                operator="LESS_THAN",
-                threshold=1,
-                units="HOURS",
-            ))
+            notifications=[{
+                "type_name": "GROUP",
+                "interval_min": 5,
+                "delay_min": 0,
+                "sms_enabled": False,
+                "email_enabled": True,
+                "roles": ["GROUP_CLUSTER_MANAGER"],
+            }],
+            matchers=[{
+                "field_name": "CLUSTER_NAME",
+                "operator": "EQUALS",
+                "value": "my-cluster",
+            }],
+            threshold_config={
+                "operator": "LESS_THAN",
+                "threshold": 1,
+                "units": "HOURS",
+            })
         ```
 
         ### Create an alert with two notifications using Email and SMS
@@ -541,38 +541,38 @@ class AlertConfiguration(pulumi.CustomResource):
             event_type="OUTSIDE_METRIC_THRESHOLD",
             enabled=True,
             notifications=[
-                mongodbatlas.AlertConfigurationNotificationArgs(
-                    type_name="GROUP",
-                    interval_min=5,
-                    delay_min=0,
-                    sms_enabled=False,
-                    email_enabled=True,
-                    roles=[
+                {
+                    "type_name": "GROUP",
+                    "interval_min": 5,
+                    "delay_min": 0,
+                    "sms_enabled": False,
+                    "email_enabled": True,
+                    "roles": [
                         "GROUP_DATA_ACCESS_READ_ONLY",
                         "GROUP_CLUSTER_MANAGER",
                         "GROUP_DATA_ACCESS_ADMIN",
                     ],
-                ),
-                mongodbatlas.AlertConfigurationNotificationArgs(
-                    type_name="ORG",
-                    interval_min=5,
-                    delay_min=0,
-                    sms_enabled=True,
-                    email_enabled=False,
-                ),
+                },
+                {
+                    "type_name": "ORG",
+                    "interval_min": 5,
+                    "delay_min": 0,
+                    "sms_enabled": True,
+                    "email_enabled": False,
+                },
             ],
-            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
-                field_name="HOSTNAME_AND_PORT",
-                operator="EQUALS",
-                value="SECONDARY",
-            )],
-            metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
-                metric_name="ASSERT_REGULAR",
-                operator="LESS_THAN",
-                threshold=99,
-                units="RAW",
-                mode="AVERAGE",
-            ))
+            matchers=[{
+                "field_name": "HOSTNAME_AND_PORT",
+                "operator": "EQUALS",
+                "value": "SECONDARY",
+            }],
+            metric_threshold_config={
+                "metric_name": "ASSERT_REGULAR",
+                "operator": "LESS_THAN",
+                "threshold": 99,
+                "units": "RAW",
+                "mode": "AVERAGE",
+            })
         ```
 
         ### Create third party notification using credentials from existing third party integration
@@ -587,10 +587,10 @@ class AlertConfiguration(pulumi.CustomResource):
             project_id="PROJECT ID",
             enabled=True,
             event_type="USERS_WITHOUT_MULTI_FACTOR_AUTH",
-            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-                type_name="PAGER_DUTY",
-                integration_id=test.id,
-            )])
+            notifications=[{
+                "type_name": "PAGER_DUTY",
+                "integration_id": test.id,
+            }])
         ```
 
         ## Import
@@ -622,11 +622,11 @@ class AlertConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  event_type: Optional[pulumi.Input[str]] = None,
-                 matchers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
-                 metric_threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdConfigArgs']]] = None,
-                 notifications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
+                 matchers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertConfigurationMatcherArgs', 'AlertConfigurationMatcherArgsDict']]]]] = None,
+                 metric_threshold_config: Optional[pulumi.Input[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict']]] = None,
+                 notifications: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdConfigArgs']]] = None,
+                 threshold_config: Optional[pulumi.Input[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -664,11 +664,11 @@ class AlertConfiguration(pulumi.CustomResource):
             created: Optional[pulumi.Input[str]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
             event_type: Optional[pulumi.Input[str]] = None,
-            matchers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
-            metric_threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdConfigArgs']]] = None,
-            notifications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
+            matchers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertConfigurationMatcherArgs', 'AlertConfigurationMatcherArgsDict']]]]] = None,
+            metric_threshold_config: Optional[pulumi.Input[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict']]] = None,
+            notifications: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdConfigArgs']]] = None,
+            threshold_config: Optional[pulumi.Input[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict']]] = None,
             updated: Optional[pulumi.Input[str]] = None) -> 'AlertConfiguration':
         """
         Get an existing AlertConfiguration resource's state with the given name, id, and optional extra

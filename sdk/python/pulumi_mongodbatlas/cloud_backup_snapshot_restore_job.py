@@ -353,7 +353,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 delivery_type_config: Optional[pulumi.Input[pulumi.InputType['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]] = None,
+                 delivery_type_config: Optional[pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -371,17 +371,17 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             name="MyCluster",
             cluster_type="REPLICASET",
             backup_enabled=True,
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    priority=7,
-                    provider_name="AWS",
-                    region_name="EU_WEST_2",
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                        node_count=3,
-                    ),
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_WEST_2",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
         test = mongodbatlas.index.CloudProviderSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -391,11 +391,11 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             project_id=test["projectId"],
             cluster_name=test["clusterName"],
             snapshot_id=test["snapshotId"],
-            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                automated=True,
-                target_cluster_name="MyCluster",
-                target_project_id="5cf5a45a9ccf6400e60981b6",
-            ))
+            delivery_type_config={
+                "automated": True,
+                "target_cluster_name": "MyCluster",
+                "target_project_id": "5cf5a45a9ccf6400e60981b6",
+            })
         ```
 
         ### Example download delivery type
@@ -409,17 +409,17 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             name="MyCluster",
             cluster_type="REPLICASET",
             backup_enabled=True,
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    priority=7,
-                    provider_name="AWS",
-                    region_name="EU_WEST_2",
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                        node_count=3,
-                    ),
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_WEST_2",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
         test = mongodbatlas.index.CloudProviderSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -429,9 +429,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             project_id=test["projectId"],
             cluster_name=test["clusterName"],
             snapshot_id=test["snapshotId"],
-            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                download=True,
-            ))
+            delivery_type_config={
+                "download": True,
+            })
         ```
 
         ### Example of a point in time restore
@@ -444,17 +444,17 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             name="MyCluster",
             cluster_type="REPLICASET",
             backup_enabled=True,
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    priority=7,
-                    provider_name="AWS",
-                    region_name="EU_WEST_2",
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                        node_count=3,
-                    ),
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_WEST_2",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
         test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=cluster_test["projectId"],
             cluster_name=cluster_test["name"],
@@ -466,12 +466,12 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                 project_id=test.project_id,
                 cluster_name=test.cluster_name,
                 snapshot_id=test.id,
-                delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                    point_in_time=True,
-                    target_cluster_name=cluster_test["name"],
-                    target_project_id=cluster_test["projectId"],
-                    point_in_time_utc_seconds=point_in_time_utc_seconds,
-                )))
+                delivery_type_config={
+                    "point_in_time": True,
+                    "target_cluster_name": cluster_test["name"],
+                    "target_project_id": cluster_test["projectId"],
+                    "point_in_time_utc_seconds": point_in_time_utc_seconds,
+                }))
         ```
 
         ### Available complete examples
@@ -490,7 +490,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[pulumi.InputType['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        :param pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
                * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -522,17 +522,17 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             name="MyCluster",
             cluster_type="REPLICASET",
             backup_enabled=True,
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    priority=7,
-                    provider_name="AWS",
-                    region_name="EU_WEST_2",
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                        node_count=3,
-                    ),
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_WEST_2",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
         test = mongodbatlas.index.CloudProviderSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -542,11 +542,11 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             project_id=test["projectId"],
             cluster_name=test["clusterName"],
             snapshot_id=test["snapshotId"],
-            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                automated=True,
-                target_cluster_name="MyCluster",
-                target_project_id="5cf5a45a9ccf6400e60981b6",
-            ))
+            delivery_type_config={
+                "automated": True,
+                "target_cluster_name": "MyCluster",
+                "target_project_id": "5cf5a45a9ccf6400e60981b6",
+            })
         ```
 
         ### Example download delivery type
@@ -560,17 +560,17 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             name="MyCluster",
             cluster_type="REPLICASET",
             backup_enabled=True,
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    priority=7,
-                    provider_name="AWS",
-                    region_name="EU_WEST_2",
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                        node_count=3,
-                    ),
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_WEST_2",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
         test = mongodbatlas.index.CloudProviderSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -580,9 +580,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             project_id=test["projectId"],
             cluster_name=test["clusterName"],
             snapshot_id=test["snapshotId"],
-            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                download=True,
-            ))
+            delivery_type_config={
+                "download": True,
+            })
         ```
 
         ### Example of a point in time restore
@@ -595,17 +595,17 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             name="MyCluster",
             cluster_type="REPLICASET",
             backup_enabled=True,
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    priority=7,
-                    provider_name="AWS",
-                    region_name="EU_WEST_2",
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                        node_count=3,
-                    ),
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_WEST_2",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
         test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=cluster_test["projectId"],
             cluster_name=cluster_test["name"],
@@ -617,12 +617,12 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                 project_id=test.project_id,
                 cluster_name=test.cluster_name,
                 snapshot_id=test.id,
-                delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                    point_in_time=True,
-                    target_cluster_name=cluster_test["name"],
-                    target_project_id=cluster_test["projectId"],
-                    point_in_time_utc_seconds=point_in_time_utc_seconds,
-                )))
+                delivery_type_config={
+                    "point_in_time": True,
+                    "target_cluster_name": cluster_test["name"],
+                    "target_project_id": cluster_test["projectId"],
+                    "point_in_time_utc_seconds": point_in_time_utc_seconds,
+                }))
         ```
 
         ### Available complete examples
@@ -654,7 +654,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 delivery_type_config: Optional[pulumi.Input[pulumi.InputType['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]] = None,
+                 delivery_type_config: Optional[pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -695,7 +695,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             cancelled: Optional[pulumi.Input[bool]] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
-            delivery_type_config: Optional[pulumi.Input[pulumi.InputType['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]] = None,
+            delivery_type_config: Optional[pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
             delivery_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             expired: Optional[pulumi.Input[bool]] = None,
             expires_at: Optional[pulumi.Input[str]] = None,
@@ -714,7 +714,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.Input[bool] cancelled: Indicates whether the restore job was canceled.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input[str] created_at: UTC ISO 8601 formatted point in time when Atlas created the restore job.
-        :param pulumi.Input[pulumi.InputType['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        :param pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
                * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.

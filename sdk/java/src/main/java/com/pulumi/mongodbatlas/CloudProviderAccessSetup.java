@@ -66,7 +66,7 @@ public class CloudProviderAccessSetup extends com.pulumi.resources.CustomResourc
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public CloudProviderAccessSetup(String name) {
+    public CloudProviderAccessSetup(java.lang.String name) {
         this(name, CloudProviderAccessSetupArgs.Empty);
     }
     /**
@@ -74,7 +74,7 @@ public class CloudProviderAccessSetup extends com.pulumi.resources.CustomResourc
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public CloudProviderAccessSetup(String name, CloudProviderAccessSetupArgs args) {
+    public CloudProviderAccessSetup(java.lang.String name, CloudProviderAccessSetupArgs args) {
         this(name, args, null);
     }
     /**
@@ -83,12 +83,12 @@ public class CloudProviderAccessSetup extends com.pulumi.resources.CustomResourc
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public CloudProviderAccessSetup(String name, CloudProviderAccessSetupArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public CloudProviderAccessSetup(java.lang.String name, CloudProviderAccessSetupArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private CloudProviderAccessSetup(String name, Output<String> id, @Nullable CloudProviderAccessSetupState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup", name, state, makeResourceOptions(options, id));
+    private CloudProviderAccessSetup(java.lang.String name, Output<java.lang.String> id, @Nullable CloudProviderAccessSetupState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup", name, state, makeResourceOptions(options, id), false);
     }
 
     private static CloudProviderAccessSetupArgs makeArgs(CloudProviderAccessSetupArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -98,7 +98,7 @@ public class CloudProviderAccessSetup extends com.pulumi.resources.CustomResourc
         return args == null ? CloudProviderAccessSetupArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -114,7 +114,7 @@ public class CloudProviderAccessSetup extends com.pulumi.resources.CustomResourc
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static CloudProviderAccessSetup get(String name, Output<String> id, @Nullable CloudProviderAccessSetupState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static CloudProviderAccessSetup get(java.lang.String name, Output<java.lang.String> id, @Nullable CloudProviderAccessSetupState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new CloudProviderAccessSetup(name, id, state, options);
     }
 }

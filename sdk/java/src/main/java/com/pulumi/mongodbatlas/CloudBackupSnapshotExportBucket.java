@@ -145,7 +145,7 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public CloudBackupSnapshotExportBucket(String name) {
+    public CloudBackupSnapshotExportBucket(java.lang.String name) {
         this(name, CloudBackupSnapshotExportBucketArgs.Empty);
     }
     /**
@@ -153,7 +153,7 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public CloudBackupSnapshotExportBucket(String name, CloudBackupSnapshotExportBucketArgs args) {
+    public CloudBackupSnapshotExportBucket(java.lang.String name, CloudBackupSnapshotExportBucketArgs args) {
         this(name, args, null);
     }
     /**
@@ -162,12 +162,12 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public CloudBackupSnapshotExportBucket(String name, CloudBackupSnapshotExportBucketArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public CloudBackupSnapshotExportBucket(java.lang.String name, CloudBackupSnapshotExportBucketArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private CloudBackupSnapshotExportBucket(String name, Output<String> id, @Nullable CloudBackupSnapshotExportBucketState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket", name, state, makeResourceOptions(options, id));
+    private CloudBackupSnapshotExportBucket(java.lang.String name, Output<java.lang.String> id, @Nullable CloudBackupSnapshotExportBucketState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket", name, state, makeResourceOptions(options, id), false);
     }
 
     private static CloudBackupSnapshotExportBucketArgs makeArgs(CloudBackupSnapshotExportBucketArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -177,7 +177,7 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
         return args == null ? CloudBackupSnapshotExportBucketArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -193,7 +193,7 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static CloudBackupSnapshotExportBucket get(String name, Output<String> id, @Nullable CloudBackupSnapshotExportBucketState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static CloudBackupSnapshotExportBucket get(java.lang.String name, Output<java.lang.String> id, @Nullable CloudBackupSnapshotExportBucketState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new CloudBackupSnapshotExportBucket(name, id, state, options);
     }
 }
