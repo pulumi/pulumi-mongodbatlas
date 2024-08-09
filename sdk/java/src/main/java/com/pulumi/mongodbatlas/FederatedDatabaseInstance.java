@@ -438,7 +438,7 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public FederatedDatabaseInstance(String name) {
+    public FederatedDatabaseInstance(java.lang.String name) {
         this(name, FederatedDatabaseInstanceArgs.Empty);
     }
     /**
@@ -446,7 +446,7 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public FederatedDatabaseInstance(String name, FederatedDatabaseInstanceArgs args) {
+    public FederatedDatabaseInstance(java.lang.String name, FederatedDatabaseInstanceArgs args) {
         this(name, args, null);
     }
     /**
@@ -455,12 +455,12 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public FederatedDatabaseInstance(String name, FederatedDatabaseInstanceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public FederatedDatabaseInstance(java.lang.String name, FederatedDatabaseInstanceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private FederatedDatabaseInstance(String name, Output<String> id, @Nullable FederatedDatabaseInstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance", name, state, makeResourceOptions(options, id));
+    private FederatedDatabaseInstance(java.lang.String name, Output<java.lang.String> id, @Nullable FederatedDatabaseInstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance", name, state, makeResourceOptions(options, id), false);
     }
 
     private static FederatedDatabaseInstanceArgs makeArgs(FederatedDatabaseInstanceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -470,7 +470,7 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
         return args == null ? FederatedDatabaseInstanceArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -486,7 +486,7 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static FederatedDatabaseInstance get(String name, Output<String> id, @Nullable FederatedDatabaseInstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static FederatedDatabaseInstance get(java.lang.String name, Output<java.lang.String> id, @Nullable FederatedDatabaseInstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new FederatedDatabaseInstance(name, id, state, options);
     }
 }

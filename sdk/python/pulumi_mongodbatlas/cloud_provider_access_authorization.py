@@ -152,8 +152,8 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationAwsArgs']]] = None,
-                 azure: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationAzureArgs']]] = None,
+                 aws: Optional[pulumi.Input[Union['CloudProviderAccessAuthorizationAwsArgs', 'CloudProviderAccessAuthorizationAwsArgsDict']]] = None,
+                 azure: Optional[pulumi.Input[Union['CloudProviderAccessAuthorizationAzureArgs', 'CloudProviderAccessAuthorizationAzureArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -185,8 +185,8 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationAwsArgs']]] = None,
-                 azure: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationAzureArgs']]] = None,
+                 aws: Optional[pulumi.Input[Union['CloudProviderAccessAuthorizationAwsArgs', 'CloudProviderAccessAuthorizationAwsArgsDict']]] = None,
+                 azure: Optional[pulumi.Input[Union['CloudProviderAccessAuthorizationAzureArgs', 'CloudProviderAccessAuthorizationAzureArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  role_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -219,9 +219,9 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             authorized_date: Optional[pulumi.Input[str]] = None,
-            aws: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationAwsArgs']]] = None,
-            azure: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationAzureArgs']]] = None,
-            feature_usages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessAuthorizationFeatureUsageArgs']]]]] = None,
+            aws: Optional[pulumi.Input[Union['CloudProviderAccessAuthorizationAwsArgs', 'CloudProviderAccessAuthorizationAwsArgsDict']]] = None,
+            azure: Optional[pulumi.Input[Union['CloudProviderAccessAuthorizationAzureArgs', 'CloudProviderAccessAuthorizationAzureArgsDict']]] = None,
+            feature_usages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessAuthorizationFeatureUsageArgs', 'CloudProviderAccessAuthorizationFeatureUsageArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             role_id: Optional[pulumi.Input[str]] = None) -> 'CloudProviderAccessAuthorization':
         """

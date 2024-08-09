@@ -100,22 +100,22 @@ def get_projects(items_per_page: Optional[int] = None,
         name="project-name",
         org_id=test.org_id,
         teams=[
-            mongodbatlas.ProjectTeamArgs(
-                team_id="5e0fa8c99ccf641c722fe645",
-                role_names=["GROUP_OWNER"],
-            ),
-            mongodbatlas.ProjectTeamArgs(
-                team_id="5e1dd7b4f2a30ba80a70cd4rw",
-                role_names=[
+            {
+                "team_id": "5e0fa8c99ccf641c722fe645",
+                "role_names": ["GROUP_OWNER"],
+            },
+            {
+                "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
+                "role_names": [
                     "GROUP_READ_ONLY",
                     "GROUP_DATA_ACCESS_READ_WRITE",
                 ],
-            ),
+            },
         ],
-        limits=[mongodbatlas.ProjectLimitArgs(
-            name="atlas.project.deployment.clusters",
-            value=26,
-        )])
+        limits=[{
+            "name": "atlas.project.deployment.clusters",
+            "value": 26,
+        }])
     test_get_projects = mongodbatlas.get_projects(page_num=1,
         items_per_page=5)
     ```
@@ -160,22 +160,22 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
         name="project-name",
         org_id=test.org_id,
         teams=[
-            mongodbatlas.ProjectTeamArgs(
-                team_id="5e0fa8c99ccf641c722fe645",
-                role_names=["GROUP_OWNER"],
-            ),
-            mongodbatlas.ProjectTeamArgs(
-                team_id="5e1dd7b4f2a30ba80a70cd4rw",
-                role_names=[
+            {
+                "team_id": "5e0fa8c99ccf641c722fe645",
+                "role_names": ["GROUP_OWNER"],
+            },
+            {
+                "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
+                "role_names": [
                     "GROUP_READ_ONLY",
                     "GROUP_DATA_ACCESS_READ_WRITE",
                 ],
-            ),
+            },
         ],
-        limits=[mongodbatlas.ProjectLimitArgs(
-            name="atlas.project.deployment.clusters",
-            value=26,
-        )])
+        limits=[{
+            "name": "atlas.project.deployment.clusters",
+            "value": 26,
+        }])
     test_get_projects = mongodbatlas.get_projects(page_num=1,
         items_per_page=5)
     ```

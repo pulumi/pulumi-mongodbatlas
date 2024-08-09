@@ -208,7 +208,7 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ProjectInvitation(String name) {
+    public ProjectInvitation(java.lang.String name) {
         this(name, ProjectInvitationArgs.Empty);
     }
     /**
@@ -216,7 +216,7 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ProjectInvitation(String name, ProjectInvitationArgs args) {
+    public ProjectInvitation(java.lang.String name, ProjectInvitationArgs args) {
         this(name, args, null);
     }
     /**
@@ -225,12 +225,12 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ProjectInvitation(String name, ProjectInvitationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/projectInvitation:ProjectInvitation", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public ProjectInvitation(java.lang.String name, ProjectInvitationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/projectInvitation:ProjectInvitation", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ProjectInvitation(String name, Output<String> id, @Nullable ProjectInvitationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/projectInvitation:ProjectInvitation", name, state, makeResourceOptions(options, id));
+    private ProjectInvitation(java.lang.String name, Output<java.lang.String> id, @Nullable ProjectInvitationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/projectInvitation:ProjectInvitation", name, state, makeResourceOptions(options, id), false);
     }
 
     private static ProjectInvitationArgs makeArgs(ProjectInvitationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -240,7 +240,7 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
         return args == null ? ProjectInvitationArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -256,7 +256,7 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ProjectInvitation get(String name, Output<String> id, @Nullable ProjectInvitationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ProjectInvitation get(java.lang.String name, Output<java.lang.String> id, @Nullable ProjectInvitationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ProjectInvitation(name, id, state, options);
     }
 }

@@ -133,7 +133,7 @@ class AwaitableGetCloudProviderAccessSetupResult(GetCloudProviderAccessSetupResu
             role_id=self.role_id)
 
 
-def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[pulumi.InputType['GetCloudProviderAccessSetupAzureConfigArgs']]] = None,
+def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']]] = None,
                                     project_id: Optional[str] = None,
                                     provider_name: Optional[str] = None,
                                     role_id: Optional[str] = None,
@@ -168,18 +168,18 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[pulumi.Inpu
     test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
         project_id="64259ee860c43338194b0f8e",
         provider_name="AZURE",
-        azure_configs=[mongodbatlas.CloudProviderAccessSetupAzureConfigArgs(
-            atlas_azure_app_id="9f2deb0d-be22-4524-a403-df531868bac0",
-            service_principal_id="22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
-            tenant_id="91402384-d71e-22f5-22dd-759e272cdc1c",
-        )])
+        azure_configs=[{
+            "atlas_azure_app_id": "9f2deb0d-be22-4524-a403-df531868bac0",
+            "service_principal_id": "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+            "tenant_id": "91402384-d71e-22f5-22dd-759e272cdc1c",
+        }])
     single_setup = mongodbatlas.get_cloud_provider_access_setup_output(project_id=test_role.project_id,
         provider_name=test_role.provider_name,
         role_id=test_role.role_id)
     ```
 
 
-    :param Sequence[pulumi.InputType['GetCloudProviderAccessSetupAzureConfigArgs']] azure_configs: azure related configurations
+    :param Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']] azure_configs: azure related configurations
     :param str project_id: The unique ID for the project to get all Cloud Provider Access
     :param str provider_name: cloud provider name, currently only AWS is supported
     :param str role_id: unique role id among all the aws roles provided by mongodb atlas
@@ -205,7 +205,7 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[pulumi.Inpu
 
 
 @_utilities.lift_output_func(get_cloud_provider_access_setup)
-def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetCloudProviderAccessSetupAzureConfigArgs']]]]] = None,
+def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[Optional[Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
                                            project_id: Optional[pulumi.Input[str]] = None,
                                            provider_name: Optional[pulumi.Input[str]] = None,
                                            role_id: Optional[pulumi.Input[str]] = None,
@@ -240,18 +240,18 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
     test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
         project_id="64259ee860c43338194b0f8e",
         provider_name="AZURE",
-        azure_configs=[mongodbatlas.CloudProviderAccessSetupAzureConfigArgs(
-            atlas_azure_app_id="9f2deb0d-be22-4524-a403-df531868bac0",
-            service_principal_id="22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
-            tenant_id="91402384-d71e-22f5-22dd-759e272cdc1c",
-        )])
+        azure_configs=[{
+            "atlas_azure_app_id": "9f2deb0d-be22-4524-a403-df531868bac0",
+            "service_principal_id": "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+            "tenant_id": "91402384-d71e-22f5-22dd-759e272cdc1c",
+        }])
     single_setup = mongodbatlas.get_cloud_provider_access_setup_output(project_id=test_role.project_id,
         provider_name=test_role.provider_name,
         role_id=test_role.role_id)
     ```
 
 
-    :param Sequence[pulumi.InputType['GetCloudProviderAccessSetupAzureConfigArgs']] azure_configs: azure related configurations
+    :param Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']] azure_configs: azure related configurations
     :param str project_id: The unique ID for the project to get all Cloud Provider Access
     :param str provider_name: cloud provider name, currently only AWS is supported
     :param str role_id: unique role id among all the aws roles provided by mongodb atlas

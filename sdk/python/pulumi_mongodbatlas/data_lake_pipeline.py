@@ -305,9 +305,9 @@ class DataLakePipeline(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 sink: Optional[pulumi.Input[pulumi.InputType['DataLakePipelineSinkArgs']]] = None,
-                 source: Optional[pulumi.Input[pulumi.InputType['DataLakePipelineSourceArgs']]] = None,
-                 transformations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataLakePipelineTransformationArgs']]]]] = None,
+                 sink: Optional[pulumi.Input[Union['DataLakePipelineSinkArgs', 'DataLakePipelineSinkArgsDict']]] = None,
+                 source: Optional[pulumi.Input[Union['DataLakePipelineSourceArgs', 'DataLakePipelineSourceArgsDict']]] = None,
+                 transformations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataLakePipelineTransformationArgs', 'DataLakePipelineTransformationArgsDict']]]]] = None,
                  __props__=None):
         """
         ## # Resource: DataLakePipeline
@@ -331,7 +331,7 @@ class DataLakePipeline(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Name of the Atlas Data Lake Pipeline.
         :param pulumi.Input[str] project_id: The unique ID for the project to create a data lake pipeline.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataLakePipelineTransformationArgs']]]] transformations: Fields to be excluded for this Data Lake Pipeline.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DataLakePipelineTransformationArgs', 'DataLakePipelineTransformationArgsDict']]]] transformations: Fields to be excluded for this Data Lake Pipeline.
                * `transformations.#.field` - Key in the document.
                * `transformations.#.type` - Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
         """
@@ -376,9 +376,9 @@ class DataLakePipeline(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 sink: Optional[pulumi.Input[pulumi.InputType['DataLakePipelineSinkArgs']]] = None,
-                 source: Optional[pulumi.Input[pulumi.InputType['DataLakePipelineSourceArgs']]] = None,
-                 transformations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataLakePipelineTransformationArgs']]]]] = None,
+                 sink: Optional[pulumi.Input[Union['DataLakePipelineSinkArgs', 'DataLakePipelineSinkArgsDict']]] = None,
+                 source: Optional[pulumi.Input[Union['DataLakePipelineSourceArgs', 'DataLakePipelineSourceArgsDict']]] = None,
+                 transformations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataLakePipelineTransformationArgs', 'DataLakePipelineTransformationArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -411,15 +411,15 @@ class DataLakePipeline(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_date: Optional[pulumi.Input[str]] = None,
-            ingestion_schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataLakePipelineIngestionScheduleArgs']]]]] = None,
+            ingestion_schedules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataLakePipelineIngestionScheduleArgs', 'DataLakePipelineIngestionScheduleArgsDict']]]]] = None,
             last_updated_date: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            sink: Optional[pulumi.Input[pulumi.InputType['DataLakePipelineSinkArgs']]] = None,
-            snapshots: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataLakePipelineSnapshotArgs']]]]] = None,
-            source: Optional[pulumi.Input[pulumi.InputType['DataLakePipelineSourceArgs']]] = None,
+            sink: Optional[pulumi.Input[Union['DataLakePipelineSinkArgs', 'DataLakePipelineSinkArgsDict']]] = None,
+            snapshots: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataLakePipelineSnapshotArgs', 'DataLakePipelineSnapshotArgsDict']]]]] = None,
+            source: Optional[pulumi.Input[Union['DataLakePipelineSourceArgs', 'DataLakePipelineSourceArgsDict']]] = None,
             state: Optional[pulumi.Input[str]] = None,
-            transformations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataLakePipelineTransformationArgs']]]]] = None) -> 'DataLakePipeline':
+            transformations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DataLakePipelineTransformationArgs', 'DataLakePipelineTransformationArgsDict']]]]] = None) -> 'DataLakePipeline':
         """
         Get an existing DataLakePipeline resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -428,7 +428,7 @@ class DataLakePipeline(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_date: Timestamp that indicates when the Data Lake Pipeline was created.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataLakePipelineIngestionScheduleArgs']]]] ingestion_schedules: List of backup schedule policy items that you can use as a Data Lake Pipeline source.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DataLakePipelineIngestionScheduleArgs', 'DataLakePipelineIngestionScheduleArgsDict']]]] ingestion_schedules: List of backup schedule policy items that you can use as a Data Lake Pipeline source.
                * `ingestion_schedules.#.id` - Unique 24-hexadecimal digit string that identifies this backup policy item.
                * `ingestion_schedules.#.frequency_type` - Human-readable label that identifies the frequency type associated with the backup policy.
                * `ingestion_schedules.#.frequency_interval` - Number that indicates the frequency interval for a set of snapshots.
@@ -437,7 +437,7 @@ class DataLakePipeline(pulumi.CustomResource):
         :param pulumi.Input[str] last_updated_date: Timestamp that indicates the last time that the Data Lake Pipeline was updated.
         :param pulumi.Input[str] name: Name of the Atlas Data Lake Pipeline.
         :param pulumi.Input[str] project_id: The unique ID for the project to create a data lake pipeline.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataLakePipelineSnapshotArgs']]]] snapshots: List of backup snapshots that you can use to trigger an on demand pipeline run.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DataLakePipelineSnapshotArgs', 'DataLakePipelineSnapshotArgsDict']]]] snapshots: List of backup snapshots that you can use to trigger an on demand pipeline run.
                * `snapshots.#.id` - Unique 24-hexadecimal digit string that identifies the snapshot.
                * `snapshots.#.provider` - Human-readable label that identifies the cloud provider that stores this snapshot.
                * `snapshots.#.created_at` - Date and time when MongoDB Atlas took the snapshot.
@@ -453,7 +453,7 @@ class DataLakePipeline(pulumi.CustomResource):
                * `snapshots.#.copy_region` - List that identifies the regions to which MongoDB Atlas copies the snapshot.
                * `snapshots.#.policies` - List that contains unique identifiers for the policy items.
         :param pulumi.Input[str] state: State of this Data Lake Pipeline.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataLakePipelineTransformationArgs']]]] transformations: Fields to be excluded for this Data Lake Pipeline.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DataLakePipelineTransformationArgs', 'DataLakePipelineTransformationArgsDict']]]] transformations: Fields to be excluded for this Data Lake Pipeline.
                * `transformations.#.field` - Key in the document.
                * `transformations.#.type` - Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
         """

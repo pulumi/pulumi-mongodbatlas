@@ -188,7 +188,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 outage_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterOutageSimulationOutageFilterArgs']]]]] = None,
+                 outage_filters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -219,14 +219,14 @@ class ClusterOutageSimulation(pulumi.CustomResource):
             project_id="64707f06c519c20c3a2b1b03",
             cluster_name="Cluster0",
             outage_filters=[
-                mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
-                    cloud_provider="AWS",
-                    region_name="US_EAST_1",
-                ),
-                mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
-                    cloud_provider="AWS",
-                    region_name="US_EAST_2",
-                ),
+                {
+                    "cloud_provider": "AWS",
+                    "region_name": "US_EAST_1",
+                },
+                {
+                    "cloud_provider": "AWS",
+                    "region_name": "US_EAST_2",
+                },
             ])
         ```
 
@@ -239,7 +239,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Name of the Atlas Cluster that is/will undergoing outage simulation.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterOutageSimulationOutageFilterArgs']]]] outage_filters: List of settings that specify the type of cluster outage simulation.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict']]]] outage_filters: List of settings that specify the type of cluster outage simulation.
         :param pulumi.Input[str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
         """
         ...
@@ -276,14 +276,14 @@ class ClusterOutageSimulation(pulumi.CustomResource):
             project_id="64707f06c519c20c3a2b1b03",
             cluster_name="Cluster0",
             outage_filters=[
-                mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
-                    cloud_provider="AWS",
-                    region_name="US_EAST_1",
-                ),
-                mongodbatlas.ClusterOutageSimulationOutageFilterArgs(
-                    cloud_provider="AWS",
-                    region_name="US_EAST_2",
-                ),
+                {
+                    "cloud_provider": "AWS",
+                    "region_name": "US_EAST_1",
+                },
+                {
+                    "cloud_provider": "AWS",
+                    "region_name": "US_EAST_2",
+                },
             ])
         ```
 
@@ -309,7 +309,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 outage_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterOutageSimulationOutageFilterArgs']]]]] = None,
+                 outage_filters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -343,7 +343,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
-            outage_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterOutageSimulationOutageFilterArgs']]]]] = None,
+            outage_filters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             simulation_id: Optional[pulumi.Input[str]] = None,
             start_request_date: Optional[pulumi.Input[str]] = None,
@@ -356,7 +356,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Name of the Atlas Cluster that is/will undergoing outage simulation.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterOutageSimulationOutageFilterArgs']]]] outage_filters: List of settings that specify the type of cluster outage simulation.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict']]]] outage_filters: List of settings that specify the type of cluster outage simulation.
         :param pulumi.Input[str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
         :param pulumi.Input[str] simulation_id: Unique 24-hexadecimal character string that identifies the outage simulation.
         :param pulumi.Input[str] start_request_date: Date and time when MongoDB Cloud started the regional outage simulation.

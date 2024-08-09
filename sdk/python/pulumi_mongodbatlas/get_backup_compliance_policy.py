@@ -242,48 +242,48 @@ def get_backup_compliance_policy(project_id: Optional[str] = None,
         name="clusterTest",
         cluster_type="REPLICASET",
         backup_enabled=True,
-        replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-            region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                priority=7,
-                provider_name="AWS",
-                region_name="EU_CENTRAL_1",
-                electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                    instance_size="M10",
-                    node_count=3,
-                ),
-            )],
-        )])
+        replication_specs=[{
+            "region_configs": [{
+                "priority": 7,
+                "provider_name": "AWS",
+                "region_name": "EU_CENTRAL_1",
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+            }],
+        }])
     test_cloud_backup_schedule = mongodbatlas.CloudBackupSchedule("test",
         project_id=my_cluster.project_id,
         cluster_name=my_cluster.name,
         reference_hour_of_day=3,
         reference_minute_of_hour=45,
         restore_window_days=4,
-        policy_item_hourly=mongodbatlas.CloudBackupSchedulePolicyItemHourlyArgs(
-            frequency_interval=1,
-            retention_unit="days",
-            retention_value=1,
-        ),
-        policy_item_daily=mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs(
-            frequency_interval=1,
-            retention_unit="days",
-            retention_value=2,
-        ),
-        policy_item_weeklies=[mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArgs(
-            frequency_interval=4,
-            retention_unit="weeks",
-            retention_value=3,
-        )],
-        policy_item_monthlies=[mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArgs(
-            frequency_interval=5,
-            retention_unit="months",
-            retention_value=4,
-        )],
-        policy_item_yearlies=[mongodbatlas.CloudBackupSchedulePolicyItemYearlyArgs(
-            frequency_interval=1,
-            retention_unit="years",
-            retention_value=1,
-        )])
+        policy_item_hourly={
+            "frequency_interval": 1,
+            "retention_unit": "days",
+            "retention_value": 1,
+        },
+        policy_item_daily={
+            "frequency_interval": 1,
+            "retention_unit": "days",
+            "retention_value": 2,
+        },
+        policy_item_weeklies=[{
+            "frequency_interval": 4,
+            "retention_unit": "weeks",
+            "retention_value": 3,
+        }],
+        policy_item_monthlies=[{
+            "frequency_interval": 5,
+            "retention_unit": "months",
+            "retention_value": 4,
+        }],
+        policy_item_yearlies=[{
+            "frequency_interval": 1,
+            "retention_unit": "years",
+            "retention_value": 1,
+        }])
     test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
         cluster_name=test_cloud_backup_schedule.cluster_name)
     backup_policy = mongodbatlas.get_backup_compliance_policy_output(project_id=test_cloud_backup_schedule.id)
@@ -296,36 +296,36 @@ def get_backup_compliance_policy(project_id: Optional[str] = None,
         pit_enabled=False,
         encryption_at_rest_enabled=False,
         restore_window_days=7,
-        on_demand_policy_item=mongodbatlas.BackupCompliancePolicyOnDemandPolicyItemArgs(
-            frequency_interval=0,
-            retention_unit="days",
-            retention_value=3,
-        ),
-        policy_item_hourly=mongodbatlas.BackupCompliancePolicyPolicyItemHourlyArgs(
-            frequency_interval=6,
-            retention_unit="days",
-            retention_value=7,
-        ),
-        policy_item_daily=mongodbatlas.BackupCompliancePolicyPolicyItemDailyArgs(
-            frequency_interval=0,
-            retention_unit="days",
-            retention_value=7,
-        ),
-        policy_item_weeklies=[mongodbatlas.BackupCompliancePolicyPolicyItemWeeklyArgs(
-            frequency_interval=0,
-            retention_unit="weeks",
-            retention_value=4,
-        )],
-        policy_item_monthlies=[mongodbatlas.BackupCompliancePolicyPolicyItemMonthlyArgs(
-            frequency_interval=0,
-            retention_unit="months",
-            retention_value=12,
-        )],
-        policy_item_yearlies=[mongodbatlas.BackupCompliancePolicyPolicyItemYearlyArgs(
-            frequency_interval=1,
-            retention_unit="years",
-            retention_value=1,
-        )])
+        on_demand_policy_item={
+            "frequency_interval": 0,
+            "retention_unit": "days",
+            "retention_value": 3,
+        },
+        policy_item_hourly={
+            "frequency_interval": 6,
+            "retention_unit": "days",
+            "retention_value": 7,
+        },
+        policy_item_daily={
+            "frequency_interval": 0,
+            "retention_unit": "days",
+            "retention_value": 7,
+        },
+        policy_item_weeklies=[{
+            "frequency_interval": 0,
+            "retention_unit": "weeks",
+            "retention_value": 4,
+        }],
+        policy_item_monthlies=[{
+            "frequency_interval": 0,
+            "retention_unit": "months",
+            "retention_value": 12,
+        }],
+        policy_item_yearlies=[{
+            "frequency_interval": 1,
+            "retention_unit": "years",
+            "retention_value": 1,
+        }])
     ```
 
 
@@ -372,48 +372,48 @@ def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[str]] 
         name="clusterTest",
         cluster_type="REPLICASET",
         backup_enabled=True,
-        replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-            region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                priority=7,
-                provider_name="AWS",
-                region_name="EU_CENTRAL_1",
-                electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                    instance_size="M10",
-                    node_count=3,
-                ),
-            )],
-        )])
+        replication_specs=[{
+            "region_configs": [{
+                "priority": 7,
+                "provider_name": "AWS",
+                "region_name": "EU_CENTRAL_1",
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+            }],
+        }])
     test_cloud_backup_schedule = mongodbatlas.CloudBackupSchedule("test",
         project_id=my_cluster.project_id,
         cluster_name=my_cluster.name,
         reference_hour_of_day=3,
         reference_minute_of_hour=45,
         restore_window_days=4,
-        policy_item_hourly=mongodbatlas.CloudBackupSchedulePolicyItemHourlyArgs(
-            frequency_interval=1,
-            retention_unit="days",
-            retention_value=1,
-        ),
-        policy_item_daily=mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs(
-            frequency_interval=1,
-            retention_unit="days",
-            retention_value=2,
-        ),
-        policy_item_weeklies=[mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArgs(
-            frequency_interval=4,
-            retention_unit="weeks",
-            retention_value=3,
-        )],
-        policy_item_monthlies=[mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArgs(
-            frequency_interval=5,
-            retention_unit="months",
-            retention_value=4,
-        )],
-        policy_item_yearlies=[mongodbatlas.CloudBackupSchedulePolicyItemYearlyArgs(
-            frequency_interval=1,
-            retention_unit="years",
-            retention_value=1,
-        )])
+        policy_item_hourly={
+            "frequency_interval": 1,
+            "retention_unit": "days",
+            "retention_value": 1,
+        },
+        policy_item_daily={
+            "frequency_interval": 1,
+            "retention_unit": "days",
+            "retention_value": 2,
+        },
+        policy_item_weeklies=[{
+            "frequency_interval": 4,
+            "retention_unit": "weeks",
+            "retention_value": 3,
+        }],
+        policy_item_monthlies=[{
+            "frequency_interval": 5,
+            "retention_unit": "months",
+            "retention_value": 4,
+        }],
+        policy_item_yearlies=[{
+            "frequency_interval": 1,
+            "retention_unit": "years",
+            "retention_value": 1,
+        }])
     test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
         cluster_name=test_cloud_backup_schedule.cluster_name)
     backup_policy = mongodbatlas.get_backup_compliance_policy_output(project_id=test_cloud_backup_schedule.id)
@@ -426,36 +426,36 @@ def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[str]] 
         pit_enabled=False,
         encryption_at_rest_enabled=False,
         restore_window_days=7,
-        on_demand_policy_item=mongodbatlas.BackupCompliancePolicyOnDemandPolicyItemArgs(
-            frequency_interval=0,
-            retention_unit="days",
-            retention_value=3,
-        ),
-        policy_item_hourly=mongodbatlas.BackupCompliancePolicyPolicyItemHourlyArgs(
-            frequency_interval=6,
-            retention_unit="days",
-            retention_value=7,
-        ),
-        policy_item_daily=mongodbatlas.BackupCompliancePolicyPolicyItemDailyArgs(
-            frequency_interval=0,
-            retention_unit="days",
-            retention_value=7,
-        ),
-        policy_item_weeklies=[mongodbatlas.BackupCompliancePolicyPolicyItemWeeklyArgs(
-            frequency_interval=0,
-            retention_unit="weeks",
-            retention_value=4,
-        )],
-        policy_item_monthlies=[mongodbatlas.BackupCompliancePolicyPolicyItemMonthlyArgs(
-            frequency_interval=0,
-            retention_unit="months",
-            retention_value=12,
-        )],
-        policy_item_yearlies=[mongodbatlas.BackupCompliancePolicyPolicyItemYearlyArgs(
-            frequency_interval=1,
-            retention_unit="years",
-            retention_value=1,
-        )])
+        on_demand_policy_item={
+            "frequency_interval": 0,
+            "retention_unit": "days",
+            "retention_value": 3,
+        },
+        policy_item_hourly={
+            "frequency_interval": 6,
+            "retention_unit": "days",
+            "retention_value": 7,
+        },
+        policy_item_daily={
+            "frequency_interval": 0,
+            "retention_unit": "days",
+            "retention_value": 7,
+        },
+        policy_item_weeklies=[{
+            "frequency_interval": 0,
+            "retention_unit": "weeks",
+            "retention_value": 4,
+        }],
+        policy_item_monthlies=[{
+            "frequency_interval": 0,
+            "retention_unit": "months",
+            "retention_value": 12,
+        }],
+        policy_item_yearlies=[{
+            "frequency_interval": 1,
+            "retention_unit": "years",
+            "retention_value": 1,
+        }])
     ```
 
 

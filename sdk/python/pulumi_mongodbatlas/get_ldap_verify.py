@@ -162,17 +162,17 @@ def get_ldap_verify(project_id: Optional[str] = None,
         name="ClusterName",
         cluster_type="REPLICASET",
         backup_enabled=True,
-        replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-            region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                priority=7,
-                provider_name="AWS",
-                region_name="US_EAST_1",
-                electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                    instance_size="M10",
-                    node_count=3,
-                ),
-            )],
-        )])
+        replication_specs=[{
+            "region_configs": [{
+                "priority": 7,
+                "provider_name": "AWS",
+                "region_name": "US_EAST_1",
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+            }],
+        }])
     test_ldap_verify = mongodbatlas.LdapVerify("test",
         project_id=test_project.id,
         hostname="HOSTNAME",
@@ -231,17 +231,17 @@ def get_ldap_verify_output(project_id: Optional[pulumi.Input[str]] = None,
         name="ClusterName",
         cluster_type="REPLICASET",
         backup_enabled=True,
-        replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-            region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                priority=7,
-                provider_name="AWS",
-                region_name="US_EAST_1",
-                electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                    instance_size="M10",
-                    node_count=3,
-                ),
-            )],
-        )])
+        replication_specs=[{
+            "region_configs": [{
+                "priority": 7,
+                "provider_name": "AWS",
+                "region_name": "US_EAST_1",
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+            }],
+        }])
     test_ldap_verify = mongodbatlas.LdapVerify("test",
         project_id=test_project.id,
         hostname="HOSTNAME",

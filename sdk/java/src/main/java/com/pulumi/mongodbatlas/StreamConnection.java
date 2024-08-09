@@ -277,7 +277,7 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public StreamConnection(String name) {
+    public StreamConnection(java.lang.String name) {
         this(name, StreamConnectionArgs.Empty);
     }
     /**
@@ -285,7 +285,7 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public StreamConnection(String name, StreamConnectionArgs args) {
+    public StreamConnection(java.lang.String name, StreamConnectionArgs args) {
         this(name, args, null);
     }
     /**
@@ -294,12 +294,12 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public StreamConnection(String name, StreamConnectionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/streamConnection:StreamConnection", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public StreamConnection(java.lang.String name, StreamConnectionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/streamConnection:StreamConnection", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private StreamConnection(String name, Output<String> id, @Nullable StreamConnectionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/streamConnection:StreamConnection", name, state, makeResourceOptions(options, id));
+    private StreamConnection(java.lang.String name, Output<java.lang.String> id, @Nullable StreamConnectionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/streamConnection:StreamConnection", name, state, makeResourceOptions(options, id), false);
     }
 
     private static StreamConnectionArgs makeArgs(StreamConnectionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -309,7 +309,7 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
         return args == null ? StreamConnectionArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -325,7 +325,7 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static StreamConnection get(String name, Output<String> id, @Nullable StreamConnectionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static StreamConnection get(java.lang.String name, Output<java.lang.String> id, @Nullable StreamConnectionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new StreamConnection(name, id, state, options);
     }
 }

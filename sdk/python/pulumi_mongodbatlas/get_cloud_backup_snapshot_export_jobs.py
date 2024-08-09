@@ -134,10 +134,10 @@ def get_cloud_backup_snapshot_export_jobs(cluster_name: Optional[str] = None,
         cluster_name="{CLUSTER_NAME}",
         snapshot_id="{SNAPSHOT_ID}",
         export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id,
-        custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
-            key="exported by",
-            value="myName",
-        )])
+        custom_datas=[{
+            "key": "exported by",
+            "value": "myName",
+        }])
     test = mongodbatlas.get_cloud_backup_snapshot_export_jobs(project_id="{PROJECT_ID}",
         cluster_name="{CLUSTER_NAME}")
     ```
@@ -195,10 +195,10 @@ def get_cloud_backup_snapshot_export_jobs_output(cluster_name: Optional[pulumi.I
         cluster_name="{CLUSTER_NAME}",
         snapshot_id="{SNAPSHOT_ID}",
         export_bucket_id=test_cloud_backup_snapshot_export_bucket.export_bucket_id,
-        custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
-            key="exported by",
-            value="myName",
-        )])
+        custom_datas=[{
+            "key": "exported by",
+            "value": "myName",
+        }])
     test = mongodbatlas.get_cloud_backup_snapshot_export_jobs(project_id="{PROJECT_ID}",
         cluster_name="{CLUSTER_NAME}")
     ```

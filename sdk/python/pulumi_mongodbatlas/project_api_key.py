@@ -129,7 +129,7 @@ class ProjectApiKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyProjectAssignmentArgs']]]]] = None,
+                 project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -142,10 +142,10 @@ class ProjectApiKey(pulumi.CustomResource):
 
         test = mongodbatlas.ProjectApiKey("test",
             description="Description of your API key",
-            project_assignments=[mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-                project_id="64259ee860c43338194b0f8e",
-                role_names=["GROUP_OWNER"],
-            )])
+            project_assignments=[{
+                "project_id": "64259ee860c43338194b0f8e",
+                "role_names": ["GROUP_OWNER"],
+            }])
         ```
 
         ### Create And Assign PAK To Multiple Projects
@@ -157,17 +157,17 @@ class ProjectApiKey(pulumi.CustomResource):
         test = mongodbatlas.ProjectApiKey("test",
             description="Description of your API key",
             project_assignments=[
-                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-                    project_id="64259ee860c43338194b0f8e",
-                    role_names=[
+                {
+                    "project_id": "64259ee860c43338194b0f8e",
+                    "role_names": [
                         "GROUP_READ_ONLY",
                         "GROUP_OWNER",
                     ],
-                ),
-                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-                    project_id="74259ee860c43338194b0f8e",
-                    role_names=["GROUP_READ_ONLY"],
-                ),
+                },
+                {
+                    "project_id": "74259ee860c43338194b0f8e",
+                    "role_names": ["GROUP_READ_ONLY"],
+                },
             ])
         ```
 
@@ -201,10 +201,10 @@ class ProjectApiKey(pulumi.CustomResource):
 
         test = mongodbatlas.ProjectApiKey("test",
             description="Description of your API key",
-            project_assignments=[mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-                project_id="64259ee860c43338194b0f8e",
-                role_names=["GROUP_OWNER"],
-            )])
+            project_assignments=[{
+                "project_id": "64259ee860c43338194b0f8e",
+                "role_names": ["GROUP_OWNER"],
+            }])
         ```
 
         ### Create And Assign PAK To Multiple Projects
@@ -216,17 +216,17 @@ class ProjectApiKey(pulumi.CustomResource):
         test = mongodbatlas.ProjectApiKey("test",
             description="Description of your API key",
             project_assignments=[
-                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-                    project_id="64259ee860c43338194b0f8e",
-                    role_names=[
+                {
+                    "project_id": "64259ee860c43338194b0f8e",
+                    "role_names": [
                         "GROUP_READ_ONLY",
                         "GROUP_OWNER",
                     ],
-                ),
-                mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-                    project_id="74259ee860c43338194b0f8e",
-                    role_names=["GROUP_READ_ONLY"],
-                ),
+                },
+                {
+                    "project_id": "74259ee860c43338194b0f8e",
+                    "role_names": ["GROUP_READ_ONLY"],
+                },
             ])
         ```
 
@@ -255,7 +255,7 @@ class ProjectApiKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyProjectAssignmentArgs']]]]] = None,
+                 project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -289,7 +289,7 @@ class ProjectApiKey(pulumi.CustomResource):
             api_key_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
-            project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyProjectAssignmentArgs']]]]] = None,
+            project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
             public_key: Optional[pulumi.Input[str]] = None) -> 'ProjectApiKey':
         """
         Get an existing ProjectApiKey resource's state with the given name, id, and optional extra

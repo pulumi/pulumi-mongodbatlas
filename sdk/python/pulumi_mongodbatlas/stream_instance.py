@@ -175,10 +175,10 @@ class StreamInstance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data_process_region: Optional[pulumi.Input[pulumi.InputType['StreamInstanceDataProcessRegionArgs']]] = None,
+                 data_process_region: Optional[pulumi.Input[Union['StreamInstanceDataProcessRegionArgs', 'StreamInstanceDataProcessRegionArgsDict']]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 stream_config: Optional[pulumi.Input[pulumi.InputType['StreamInstanceStreamConfigArgs']]] = None,
+                 stream_config: Optional[pulumi.Input[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']]] = None,
                  __props__=None):
         """
         ## # Resource: StreamInstance
@@ -197,10 +197,10 @@ class StreamInstance(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['StreamInstanceDataProcessRegionArgs']] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+        :param pulumi.Input[Union['StreamInstanceDataProcessRegionArgs', 'StreamInstanceDataProcessRegionArgsDict']] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         :param pulumi.Input[str] instance_name: Human-readable label that identifies the stream instance.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[pulumi.InputType['StreamInstanceStreamConfigArgs']] stream_config: Configuration options for an Atlas Stream Processing Instance. See stream config
+        :param pulumi.Input[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']] stream_config: Configuration options for an Atlas Stream Processing Instance. See stream config
         """
         ...
     @overload
@@ -238,10 +238,10 @@ class StreamInstance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data_process_region: Optional[pulumi.Input[pulumi.InputType['StreamInstanceDataProcessRegionArgs']]] = None,
+                 data_process_region: Optional[pulumi.Input[Union['StreamInstanceDataProcessRegionArgs', 'StreamInstanceDataProcessRegionArgsDict']]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 stream_config: Optional[pulumi.Input[pulumi.InputType['StreamInstanceStreamConfigArgs']]] = None,
+                 stream_config: Optional[pulumi.Input[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -272,11 +272,11 @@ class StreamInstance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            data_process_region: Optional[pulumi.Input[pulumi.InputType['StreamInstanceDataProcessRegionArgs']]] = None,
+            data_process_region: Optional[pulumi.Input[Union['StreamInstanceDataProcessRegionArgs', 'StreamInstanceDataProcessRegionArgsDict']]] = None,
             hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            stream_config: Optional[pulumi.Input[pulumi.InputType['StreamInstanceStreamConfigArgs']]] = None) -> 'StreamInstance':
+            stream_config: Optional[pulumi.Input[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']]] = None) -> 'StreamInstance':
         """
         Get an existing StreamInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -284,11 +284,11 @@ class StreamInstance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['StreamInstanceDataProcessRegionArgs']] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+        :param pulumi.Input[Union['StreamInstanceDataProcessRegionArgs', 'StreamInstanceDataProcessRegionArgsDict']] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] hostnames: List that contains the hostnames assigned to the stream instance.
         :param pulumi.Input[str] instance_name: Human-readable label that identifies the stream instance.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[pulumi.InputType['StreamInstanceStreamConfigArgs']] stream_config: Configuration options for an Atlas Stream Processing Instance. See stream config
+        :param pulumi.Input[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']] stream_config: Configuration options for an Atlas Stream Processing Instance. See stream config
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

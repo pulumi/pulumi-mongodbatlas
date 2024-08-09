@@ -172,7 +172,7 @@ class AwaitableGetFederatedDatabaseInstanceResult(GetFederatedDatabaseInstanceRe
             storage_stores=self.storage_stores)
 
 
-def get_federated_database_instance(cloud_provider_config: Optional[pulumi.InputType['GetFederatedDatabaseInstanceCloudProviderConfigArgs']] = None,
+def get_federated_database_instance(cloud_provider_config: Optional[Union['GetFederatedDatabaseInstanceCloudProviderConfigArgs', 'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict']] = None,
                                     name: Optional[str] = None,
                                     project_id: Optional[str] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedDatabaseInstanceResult:
@@ -205,11 +205,11 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
 
     test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
         name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        cloud_provider_config=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigArgs(
-            aws=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs(
-                test_s3_bucket="Amazon S3 Bucket Name",
-            ),
-        ))
+        cloud_provider_config={
+            "aws": {
+                "test_s3_bucket": "Amazon S3 Bucket Name",
+            },
+        })
     ```
 
 
@@ -236,7 +236,7 @@ def get_federated_database_instance(cloud_provider_config: Optional[pulumi.Input
 
 
 @_utilities.lift_output_func(get_federated_database_instance)
-def get_federated_database_instance_output(cloud_provider_config: Optional[pulumi.Input[Optional[pulumi.InputType['GetFederatedDatabaseInstanceCloudProviderConfigArgs']]]] = None,
+def get_federated_database_instance_output(cloud_provider_config: Optional[pulumi.Input[Optional[Union['GetFederatedDatabaseInstanceCloudProviderConfigArgs', 'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict']]]] = None,
                                            name: Optional[pulumi.Input[str]] = None,
                                            project_id: Optional[pulumi.Input[str]] = None,
                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFederatedDatabaseInstanceResult]:
@@ -269,11 +269,11 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
 
     test = mongodbatlas.get_federated_database_instance(project_id="PROJECT ID",
         name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
-        cloud_provider_config=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigArgs(
-            aws=mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs(
-                test_s3_bucket="Amazon S3 Bucket Name",
-            ),
-        ))
+        cloud_provider_config={
+            "aws": {
+                "test_s3_bucket": "Amazon S3 Bucket Name",
+            },
+        })
     ```
 
 

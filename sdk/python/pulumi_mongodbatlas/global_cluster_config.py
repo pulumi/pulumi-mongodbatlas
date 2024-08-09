@@ -177,8 +177,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigCustomZoneMappingArgs']]]]] = None,
-                 managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigManagedNamespaceArgs']]]]] = None,
+                 custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]]] = None,
+                 managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -208,41 +208,41 @@ class GlobalClusterConfig(pulumi.CustomResource):
             provider_name="AWS",
             provider_instance_size_name="M30",
             replication_specs=[
-                mongodbatlas.ClusterReplicationSpecArgs(
-                    zone_name="Zone 1",
-                    num_shards=1,
-                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="EU_CENTRAL_1",
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                    )],
-                ),
-                mongodbatlas.ClusterReplicationSpecArgs(
-                    zone_name="Zone 2",
-                    num_shards=1,
-                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="US_EAST_2",
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                    )],
-                ),
+                {
+                    "zone_name": "Zone 1",
+                    "num_shards": 1,
+                    "regions_configs": [{
+                        "region_name": "EU_CENTRAL_1",
+                        "electable_nodes": 3,
+                        "priority": 7,
+                        "read_only_nodes": 0,
+                    }],
+                },
+                {
+                    "zone_name": "Zone 2",
+                    "num_shards": 1,
+                    "regions_configs": [{
+                        "region_name": "US_EAST_2",
+                        "electable_nodes": 3,
+                        "priority": 7,
+                        "read_only_nodes": 0,
+                    }],
+                },
             ])
         config = mongodbatlas.GlobalClusterConfig("config",
             project_id=test.project_id,
             cluster_name=test.name,
-            managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
-                db="mydata",
-                collection="publishers",
-                custom_shard_key="city",
-                is_custom_shard_key_hashed=False,
-                is_shard_key_unique=False,
-            )],
-            custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
-                location="CA",
-                zone="Zone 1",
-            )])
+            managed_namespaces=[{
+                "db": "mydata",
+                "collection": "publishers",
+                "custom_shard_key": "city",
+                "is_custom_shard_key_hashed": False,
+                "is_shard_key_unique": False,
+            }],
+            custom_zone_mappings=[{
+                "location": "CA",
+                "zone": "Zone 1",
+            }])
         ```
 
         ## Import
@@ -257,8 +257,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: The name of the Global Cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigCustomZoneMappingArgs']]]] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigManagedNamespaceArgs']]]] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         """
         ...
@@ -294,41 +294,41 @@ class GlobalClusterConfig(pulumi.CustomResource):
             provider_name="AWS",
             provider_instance_size_name="M30",
             replication_specs=[
-                mongodbatlas.ClusterReplicationSpecArgs(
-                    zone_name="Zone 1",
-                    num_shards=1,
-                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="EU_CENTRAL_1",
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                    )],
-                ),
-                mongodbatlas.ClusterReplicationSpecArgs(
-                    zone_name="Zone 2",
-                    num_shards=1,
-                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="US_EAST_2",
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                    )],
-                ),
+                {
+                    "zone_name": "Zone 1",
+                    "num_shards": 1,
+                    "regions_configs": [{
+                        "region_name": "EU_CENTRAL_1",
+                        "electable_nodes": 3,
+                        "priority": 7,
+                        "read_only_nodes": 0,
+                    }],
+                },
+                {
+                    "zone_name": "Zone 2",
+                    "num_shards": 1,
+                    "regions_configs": [{
+                        "region_name": "US_EAST_2",
+                        "electable_nodes": 3,
+                        "priority": 7,
+                        "read_only_nodes": 0,
+                    }],
+                },
             ])
         config = mongodbatlas.GlobalClusterConfig("config",
             project_id=test.project_id,
             cluster_name=test.name,
-            managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
-                db="mydata",
-                collection="publishers",
-                custom_shard_key="city",
-                is_custom_shard_key_hashed=False,
-                is_shard_key_unique=False,
-            )],
-            custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
-                location="CA",
-                zone="Zone 1",
-            )])
+            managed_namespaces=[{
+                "db": "mydata",
+                "collection": "publishers",
+                "custom_shard_key": "city",
+                "is_custom_shard_key_hashed": False,
+                "is_shard_key_unique": False,
+            }],
+            custom_zone_mappings=[{
+                "location": "CA",
+                "zone": "Zone 1",
+            }])
         ```
 
         ## Import
@@ -356,8 +356,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigCustomZoneMappingArgs']]]]] = None,
-                 managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigManagedNamespaceArgs']]]]] = None,
+                 custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]]] = None,
+                 managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -389,8 +389,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
             custom_zone_mapping: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-            custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigCustomZoneMappingArgs']]]]] = None,
-            managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigManagedNamespaceArgs']]]]] = None,
+            custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]]] = None,
+            managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None) -> 'GlobalClusterConfig':
         """
         Get an existing GlobalClusterConfig resource's state with the given name, id, and optional extra
@@ -401,8 +401,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: The name of the Global Cluster.
         :param pulumi.Input[Mapping[str, Any]] custom_zone_mapping: A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigCustomZoneMappingArgs']]]] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigManagedNamespaceArgs']]]] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

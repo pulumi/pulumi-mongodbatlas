@@ -62,12 +62,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
  *             .projectId("<PROJECT-ID>")
  *             .name("clusterTest")
@@ -130,7 +130,7 @@ import javax.annotation.Nullable;
  * 
  *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()
  *             .projectId("<PROJECT-ID>")
- *             .authorizedEmail("user{@literal @}email.com")
+ *             .authorizedEmail("user}{@literal @}{@code email.com")
  *             .authorizedUserFirstName("First")
  *             .authorizedUserLastName("Last")
  *             .copyProtectionEnabled(false)
@@ -169,8 +169,8 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
@@ -382,7 +382,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public BackupCompliancePolicy(String name) {
+    public BackupCompliancePolicy(java.lang.String name) {
         this(name, BackupCompliancePolicyArgs.Empty);
     }
     /**
@@ -390,7 +390,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public BackupCompliancePolicy(String name, BackupCompliancePolicyArgs args) {
+    public BackupCompliancePolicy(java.lang.String name, BackupCompliancePolicyArgs args) {
         this(name, args, null);
     }
     /**
@@ -399,12 +399,12 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public BackupCompliancePolicy(String name, BackupCompliancePolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public BackupCompliancePolicy(java.lang.String name, BackupCompliancePolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private BackupCompliancePolicy(String name, Output<String> id, @Nullable BackupCompliancePolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy", name, state, makeResourceOptions(options, id));
+    private BackupCompliancePolicy(java.lang.String name, Output<java.lang.String> id, @Nullable BackupCompliancePolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy", name, state, makeResourceOptions(options, id), false);
     }
 
     private static BackupCompliancePolicyArgs makeArgs(BackupCompliancePolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -414,7 +414,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
         return args == null ? BackupCompliancePolicyArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -430,7 +430,7 @@ public class BackupCompliancePolicy extends com.pulumi.resources.CustomResource 
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static BackupCompliancePolicy get(String name, Output<String> id, @Nullable BackupCompliancePolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static BackupCompliancePolicy get(java.lang.String name, Output<java.lang.String> id, @Nullable BackupCompliancePolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new BackupCompliancePolicy(name, id, state, options);
     }
 }

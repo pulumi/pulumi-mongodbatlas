@@ -137,9 +137,9 @@ class EncryptionAtRest(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws_kms_config: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestAwsKmsConfigArgs']]] = None,
-                 azure_key_vault_config: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestAzureKeyVaultConfigArgs']]] = None,
-                 google_cloud_kms_config: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestGoogleCloudKmsConfigArgs']]] = None,
+                 aws_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']]] = None,
+                 azure_key_vault_config: Optional[pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']]] = None,
+                 google_cloud_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -187,9 +187,9 @@ class EncryptionAtRest(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws_kms_config: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestAwsKmsConfigArgs']]] = None,
-                 azure_key_vault_config: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestAzureKeyVaultConfigArgs']]] = None,
-                 google_cloud_kms_config: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestGoogleCloudKmsConfigArgs']]] = None,
+                 aws_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']]] = None,
+                 azure_key_vault_config: Optional[pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']]] = None,
+                 google_cloud_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -216,9 +216,9 @@ class EncryptionAtRest(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            aws_kms_config: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestAwsKmsConfigArgs']]] = None,
-            azure_key_vault_config: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestAzureKeyVaultConfigArgs']]] = None,
-            google_cloud_kms_config: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestGoogleCloudKmsConfigArgs']]] = None,
+            aws_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']]] = None,
+            azure_key_vault_config: Optional[pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']]] = None,
+            google_cloud_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']]] = None,
             project_id: Optional[pulumi.Input[str]] = None) -> 'EncryptionAtRest':
         """
         Get an existing EncryptionAtRest resource's state with the given name, id, and optional extra

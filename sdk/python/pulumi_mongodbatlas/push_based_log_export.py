@@ -219,7 +219,7 @@ class PushBasedLogExport(pulumi.CustomResource):
                  iam_role_id: Optional[pulumi.Input[str]] = None,
                  prefix_path: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 timeouts: Optional[pulumi.Input[pulumi.InputType['PushBasedLogExportTimeoutsArgs']]] = None,
+                 timeouts: Optional[pulumi.Input[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
         ## # Resource: PushBasedLogExport
@@ -245,9 +245,9 @@ class PushBasedLogExport(pulumi.CustomResource):
         auth_role = mongodbatlas.CloudProviderAccessAuthorization("auth_role",
             project_id=project_tf.id,
             role_id=setup_only.role_id,
-            aws=mongodbatlas.CloudProviderAccessAuthorizationAwsArgs(
-                iam_assumed_role_arn=test_role["arn"],
-            ))
+            aws={
+                "iam_assumed_role_arn": test_role["arn"],
+            })
         # Set up push-based log export with authorized IAM role
         test_push_based_log_export = mongodbatlas.PushBasedLogExport("test",
             project_id=project_tf.id,
@@ -295,9 +295,9 @@ class PushBasedLogExport(pulumi.CustomResource):
         auth_role = mongodbatlas.CloudProviderAccessAuthorization("auth_role",
             project_id=project_tf.id,
             role_id=setup_only.role_id,
-            aws=mongodbatlas.CloudProviderAccessAuthorizationAwsArgs(
-                iam_assumed_role_arn=test_role["arn"],
-            ))
+            aws={
+                "iam_assumed_role_arn": test_role["arn"],
+            })
         # Set up push-based log export with authorized IAM role
         test_push_based_log_export = mongodbatlas.PushBasedLogExport("test",
             project_id=project_tf.id,
@@ -327,7 +327,7 @@ class PushBasedLogExport(pulumi.CustomResource):
                  iam_role_id: Optional[pulumi.Input[str]] = None,
                  prefix_path: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 timeouts: Optional[pulumi.Input[pulumi.InputType['PushBasedLogExportTimeoutsArgs']]] = None,
+                 timeouts: Optional[pulumi.Input[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -366,7 +366,7 @@ class PushBasedLogExport(pulumi.CustomResource):
             prefix_path: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
-            timeouts: Optional[pulumi.Input[pulumi.InputType['PushBasedLogExportTimeoutsArgs']]] = None) -> 'PushBasedLogExport':
+            timeouts: Optional[pulumi.Input[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None) -> 'PushBasedLogExport':
         """
         Get an existing PushBasedLogExport resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -413,13 +413,13 @@ class DatabaseUser(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auth_database_name: Optional[pulumi.Input[str]] = None,
                  aws_iam_type: Optional[pulumi.Input[str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
                  ldap_auth_type: Optional[pulumi.Input[str]] = None,
                  oidc_auth_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserScopeArgs']]]]] = None,
+                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
+                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  x509_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -450,28 +450,28 @@ class DatabaseUser(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             auth_database_name="admin",
             roles=[
-                mongodbatlas.DatabaseUserRoleArgs(
-                    role_name="readWrite",
-                    database_name="dbforApp",
-                ),
-                mongodbatlas.DatabaseUserRoleArgs(
-                    role_name="readAnyDatabase",
-                    database_name="admin",
-                ),
+                {
+                    "role_name": "readWrite",
+                    "database_name": "dbforApp",
+                },
+                {
+                    "role_name": "readAnyDatabase",
+                    "database_name": "admin",
+                },
             ],
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="My Key",
-                value="My Value",
-            )],
+            labels=[{
+                "key": "My Key",
+                "value": "My Value",
+            }],
             scopes=[
-                mongodbatlas.DatabaseUserScopeArgs(
-                    name="My cluster name",
-                    type="CLUSTER",
-                ),
-                mongodbatlas.DatabaseUserScopeArgs(
-                    name="My second cluster name",
-                    type="CLUSTER",
-                ),
+                {
+                    "name": "My cluster name",
+                    "type": "CLUSTER",
+                },
+                {
+                    "name": "My second cluster name",
+                    "type": "CLUSTER",
+                },
             ])
         ```
 
@@ -484,18 +484,18 @@ class DatabaseUser(pulumi.CustomResource):
             x509_type="MANAGED",
             project_id="<PROJECT-ID>",
             auth_database_name="$external",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readAnyDatabase",
-                database_name="admin",
-            )],
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="%s",
-                value="%s",
-            )],
-            scopes=[mongodbatlas.DatabaseUserScopeArgs(
-                name="My cluster name",
-                type="CLUSTER",
-            )])
+            roles=[{
+                "role_name": "readAnyDatabase",
+                "database_name": "admin",
+            }],
+            labels=[{
+                "key": "%s",
+                "value": "%s",
+            }],
+            scopes=[{
+                "name": "My cluster name",
+                "type": "CLUSTER",
+            }])
         ```
 
         ```python
@@ -507,18 +507,18 @@ class DatabaseUser(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             auth_database_name="$external",
             aws_iam_type="ROLE",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readAnyDatabase",
-                database_name="admin",
-            )],
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="%s",
-                value="%s",
-            )],
-            scopes=[mongodbatlas.DatabaseUserScopeArgs(
-                name="My cluster name",
-                type="CLUSTER",
-            )])
+            roles=[{
+                "role_name": "readAnyDatabase",
+                "database_name": "admin",
+            }],
+            labels=[{
+                "key": "%s",
+                "value": "%s",
+            }],
+            scopes=[{
+                "name": "My cluster name",
+                "type": "CLUSTER",
+            }])
         ```
 
         ## Example of how to create a OIDC federated authentication user
@@ -532,10 +532,10 @@ class DatabaseUser(pulumi.CustomResource):
             project_id="6414908c207f4d22f4d8f232",
             auth_database_name="admin",
             oidc_auth_type="IDP_GROUP",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readWriteAnyDatabase",
-                database_name="admin",
-            )])
+            roles=[{
+                "role_name": "readWriteAnyDatabase",
+                "database_name": "admin",
+            }])
         ```
         `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
 
@@ -567,7 +567,7 @@ class DatabaseUser(pulumi.CustomResource):
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
                * `NONE` -	The user does not use X.509 authentication.
@@ -607,28 +607,28 @@ class DatabaseUser(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             auth_database_name="admin",
             roles=[
-                mongodbatlas.DatabaseUserRoleArgs(
-                    role_name="readWrite",
-                    database_name="dbforApp",
-                ),
-                mongodbatlas.DatabaseUserRoleArgs(
-                    role_name="readAnyDatabase",
-                    database_name="admin",
-                ),
+                {
+                    "role_name": "readWrite",
+                    "database_name": "dbforApp",
+                },
+                {
+                    "role_name": "readAnyDatabase",
+                    "database_name": "admin",
+                },
             ],
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="My Key",
-                value="My Value",
-            )],
+            labels=[{
+                "key": "My Key",
+                "value": "My Value",
+            }],
             scopes=[
-                mongodbatlas.DatabaseUserScopeArgs(
-                    name="My cluster name",
-                    type="CLUSTER",
-                ),
-                mongodbatlas.DatabaseUserScopeArgs(
-                    name="My second cluster name",
-                    type="CLUSTER",
-                ),
+                {
+                    "name": "My cluster name",
+                    "type": "CLUSTER",
+                },
+                {
+                    "name": "My second cluster name",
+                    "type": "CLUSTER",
+                },
             ])
         ```
 
@@ -641,18 +641,18 @@ class DatabaseUser(pulumi.CustomResource):
             x509_type="MANAGED",
             project_id="<PROJECT-ID>",
             auth_database_name="$external",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readAnyDatabase",
-                database_name="admin",
-            )],
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="%s",
-                value="%s",
-            )],
-            scopes=[mongodbatlas.DatabaseUserScopeArgs(
-                name="My cluster name",
-                type="CLUSTER",
-            )])
+            roles=[{
+                "role_name": "readAnyDatabase",
+                "database_name": "admin",
+            }],
+            labels=[{
+                "key": "%s",
+                "value": "%s",
+            }],
+            scopes=[{
+                "name": "My cluster name",
+                "type": "CLUSTER",
+            }])
         ```
 
         ```python
@@ -664,18 +664,18 @@ class DatabaseUser(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             auth_database_name="$external",
             aws_iam_type="ROLE",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readAnyDatabase",
-                database_name="admin",
-            )],
-            labels=[mongodbatlas.DatabaseUserLabelArgs(
-                key="%s",
-                value="%s",
-            )],
-            scopes=[mongodbatlas.DatabaseUserScopeArgs(
-                name="My cluster name",
-                type="CLUSTER",
-            )])
+            roles=[{
+                "role_name": "readAnyDatabase",
+                "database_name": "admin",
+            }],
+            labels=[{
+                "key": "%s",
+                "value": "%s",
+            }],
+            scopes=[{
+                "name": "My cluster name",
+                "type": "CLUSTER",
+            }])
         ```
 
         ## Example of how to create a OIDC federated authentication user
@@ -689,10 +689,10 @@ class DatabaseUser(pulumi.CustomResource):
             project_id="6414908c207f4d22f4d8f232",
             auth_database_name="admin",
             oidc_auth_type="IDP_GROUP",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readWriteAnyDatabase",
-                database_name="admin",
-            )])
+            roles=[{
+                "role_name": "readWriteAnyDatabase",
+                "database_name": "admin",
+            }])
         ```
         `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
 
@@ -724,13 +724,13 @@ class DatabaseUser(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auth_database_name: Optional[pulumi.Input[str]] = None,
                  aws_iam_type: Optional[pulumi.Input[str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
                  ldap_auth_type: Optional[pulumi.Input[str]] = None,
                  oidc_auth_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserScopeArgs']]]]] = None,
+                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
+                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  x509_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -773,13 +773,13 @@ class DatabaseUser(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             auth_database_name: Optional[pulumi.Input[str]] = None,
             aws_iam_type: Optional[pulumi.Input[str]] = None,
-            labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserLabelArgs']]]]] = None,
+            labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
             ldap_auth_type: Optional[pulumi.Input[str]] = None,
             oidc_auth_type: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]]] = None,
-            scopes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserScopeArgs']]]]] = None,
+            roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
+            scopes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
             username: Optional[pulumi.Input[str]] = None,
             x509_type: Optional[pulumi.Input[str]] = None) -> 'DatabaseUser':
         """
@@ -804,7 +804,7 @@ class DatabaseUser(pulumi.CustomResource):
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
                * `NONE` -	The user does not use X.509 authentication.

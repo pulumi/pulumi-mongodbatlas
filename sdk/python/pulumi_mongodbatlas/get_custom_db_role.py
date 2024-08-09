@@ -85,7 +85,7 @@ class AwaitableGetCustomDbRoleResult(GetCustomDbRoleResult):
             role_name=self.role_name)
 
 
-def get_custom_db_role(inherited_roles: Optional[Sequence[pulumi.InputType['GetCustomDbRoleInheritedRoleArgs']]] = None,
+def get_custom_db_role(inherited_roles: Optional[Sequence[Union['GetCustomDbRoleInheritedRoleArgs', 'GetCustomDbRoleInheritedRoleArgsDict']]] = None,
                        project_id: Optional[str] = None,
                        role_name: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomDbRoleResult:
@@ -106,20 +106,20 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[pulumi.InputType['GetC
         project_id="<PROJECT-ID>",
         role_name="myCustomRole",
         actions=[
-            mongodbatlas.CustomDbRoleActionArgs(
-                action="UPDATE",
-                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                    collection_name="",
-                    database_name="anyDatabase",
-                )],
-            ),
-            mongodbatlas.CustomDbRoleActionArgs(
-                action="INSERT",
-                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                    collection_name="",
-                    database_name="anyDatabase",
-                )],
-            ),
+            {
+                "action": "UPDATE",
+                "resources": [{
+                    "collection_name": "",
+                    "database_name": "anyDatabase",
+                }],
+            },
+            {
+                "action": "INSERT",
+                "resources": [{
+                    "collection_name": "",
+                    "database_name": "anyDatabase",
+                }],
+            },
         ])
     test = mongodbatlas.get_custom_db_role_output(project_id=test_role.project_id,
         role_name=test_role.role_name)
@@ -145,7 +145,7 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[pulumi.InputType['GetC
 
 
 @_utilities.lift_output_func(get_custom_db_role)
-def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetCustomDbRoleInheritedRoleArgs']]]]] = None,
+def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Sequence[Union['GetCustomDbRoleInheritedRoleArgs', 'GetCustomDbRoleInheritedRoleArgsDict']]]]] = None,
                               project_id: Optional[pulumi.Input[str]] = None,
                               role_name: Optional[pulumi.Input[str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCustomDbRoleResult]:
@@ -166,20 +166,20 @@ def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Se
         project_id="<PROJECT-ID>",
         role_name="myCustomRole",
         actions=[
-            mongodbatlas.CustomDbRoleActionArgs(
-                action="UPDATE",
-                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                    collection_name="",
-                    database_name="anyDatabase",
-                )],
-            ),
-            mongodbatlas.CustomDbRoleActionArgs(
-                action="INSERT",
-                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                    collection_name="",
-                    database_name="anyDatabase",
-                )],
-            ),
+            {
+                "action": "UPDATE",
+                "resources": [{
+                    "collection_name": "",
+                    "database_name": "anyDatabase",
+                }],
+            },
+            {
+                "action": "INSERT",
+                "resources": [{
+                    "collection_name": "",
+                    "database_name": "anyDatabase",
+                }],
+            },
         ])
     test = mongodbatlas.get_custom_db_role_output(project_id=test_role.project_id,
         role_name=test_role.role_name)

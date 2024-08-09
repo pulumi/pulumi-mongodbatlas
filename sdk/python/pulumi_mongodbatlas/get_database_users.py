@@ -92,24 +92,24 @@ def get_database_users(project_id: Optional[str] = None,
         project_id="<PROJECT-ID>",
         auth_database_name="admin",
         roles=[
-            mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readWrite",
-                database_name="admin",
-            ),
-            mongodbatlas.DatabaseUserRoleArgs(
-                role_name="atlasAdmin",
-                database_name="admin",
-            ),
+            {
+                "role_name": "readWrite",
+                "database_name": "admin",
+            },
+            {
+                "role_name": "atlasAdmin",
+                "database_name": "admin",
+            },
         ],
         labels=[
-            mongodbatlas.DatabaseUserLabelArgs(
-                key="key 1",
-                value="value 1",
-            ),
-            mongodbatlas.DatabaseUserLabelArgs(
-                key="key 2",
-                value="value 2",
-            ),
+            {
+                "key": "key 1",
+                "value": "value 1",
+            },
+            {
+                "key": "key 2",
+                "value": "value 2",
+            },
         ])
     test = mongodbatlas.get_database_users_output(project_id=test_database_user.project_id)
     ```
@@ -124,10 +124,10 @@ def get_database_users(project_id: Optional[str] = None,
         project_id="6414908c207f4d22f4d8f232",
         auth_database_name="admin",
         oidc_auth_type="IDP_GROUP",
-        roles=[mongodbatlas.DatabaseUserRoleArgs(
-            role_name="readWriteAnyDatabase",
-            database_name="admin",
-        )])
+        roles=[{
+            "role_name": "readWriteAnyDatabase",
+            "database_name": "admin",
+        }])
     test = mongodbatlas.get_database_users(project_id="6414908c207f4d22f4d8f232")
     ```
     Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
@@ -170,24 +170,24 @@ def get_database_users_output(project_id: Optional[pulumi.Input[str]] = None,
         project_id="<PROJECT-ID>",
         auth_database_name="admin",
         roles=[
-            mongodbatlas.DatabaseUserRoleArgs(
-                role_name="readWrite",
-                database_name="admin",
-            ),
-            mongodbatlas.DatabaseUserRoleArgs(
-                role_name="atlasAdmin",
-                database_name="admin",
-            ),
+            {
+                "role_name": "readWrite",
+                "database_name": "admin",
+            },
+            {
+                "role_name": "atlasAdmin",
+                "database_name": "admin",
+            },
         ],
         labels=[
-            mongodbatlas.DatabaseUserLabelArgs(
-                key="key 1",
-                value="value 1",
-            ),
-            mongodbatlas.DatabaseUserLabelArgs(
-                key="key 2",
-                value="value 2",
-            ),
+            {
+                "key": "key 1",
+                "value": "value 1",
+            },
+            {
+                "key": "key 2",
+                "value": "value 2",
+            },
         ])
     test = mongodbatlas.get_database_users_output(project_id=test_database_user.project_id)
     ```
@@ -202,10 +202,10 @@ def get_database_users_output(project_id: Optional[pulumi.Input[str]] = None,
         project_id="6414908c207f4d22f4d8f232",
         auth_database_name="admin",
         oidc_auth_type="IDP_GROUP",
-        roles=[mongodbatlas.DatabaseUserRoleArgs(
-            role_name="readWriteAnyDatabase",
-            database_name="admin",
-        )])
+        roles=[{
+            "role_name": "readWriteAnyDatabase",
+            "database_name": "admin",
+        }])
     test = mongodbatlas.get_database_users(project_id="6414908c207f4d22f4d8f232")
     ```
     Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).

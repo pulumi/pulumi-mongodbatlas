@@ -54,10 +54,6 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
      * * `ORG_READ_ONLY`
      * * `ORG_MEMBER`
      * 
-     * ## Attributes Reference
-     * 
-     * In addition to all arguments above, the following attributes are exported:
-     * 
      */
     @Import(name="roleNames", required=true)
     private Output<List<String>> roleNames;
@@ -70,10 +66,6 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
      * * `ORG_BILLING_ADMIN`
      * * `ORG_READ_ONLY`
      * * `ORG_MEMBER`
-     * 
-     * ## Attributes Reference
-     * 
-     * In addition to all arguments above, the following attributes are exported:
      * 
      */
     public Output<List<String>> roleNames() {
@@ -157,10 +149,6 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
          * * `ORG_READ_ONLY`
          * * `ORG_MEMBER`
          * 
-         * ## Attributes Reference
-         * 
-         * In addition to all arguments above, the following attributes are exported:
-         * 
          * @return builder
          * 
          */
@@ -178,10 +166,6 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
          * * `ORG_READ_ONLY`
          * * `ORG_MEMBER`
          * 
-         * ## Attributes Reference
-         * 
-         * In addition to all arguments above, the following attributes are exported:
-         * 
          * @return builder
          * 
          */
@@ -197,10 +181,6 @@ public final class ApiKeyArgs extends com.pulumi.resources.ResourceArgs {
          * * `ORG_BILLING_ADMIN`
          * * `ORG_READ_ONLY`
          * * `ORG_MEMBER`
-         * 
-         * ## Attributes Reference
-         * 
-         * In addition to all arguments above, the following attributes are exported:
          * 
          * @return builder
          * 

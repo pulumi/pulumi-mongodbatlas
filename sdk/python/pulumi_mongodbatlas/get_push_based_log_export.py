@@ -125,9 +125,9 @@ def get_push_based_log_export(project_id: Optional[str] = None,
     auth_role = mongodbatlas.CloudProviderAccessAuthorization("auth_role",
         project_id=project_tf.id,
         role_id=setup_only.role_id,
-        aws=mongodbatlas.CloudProviderAccessAuthorizationAwsArgs(
-            iam_assumed_role_arn=test_role["arn"],
-        ))
+        aws={
+            "iam_assumed_role_arn": test_role["arn"],
+        })
     # Set up push-based log export with authorized IAM role
     test_push_based_log_export = mongodbatlas.PushBasedLogExport("test",
         project_id=project_tf.id,
@@ -181,9 +181,9 @@ def get_push_based_log_export_output(project_id: Optional[pulumi.Input[str]] = N
     auth_role = mongodbatlas.CloudProviderAccessAuthorization("auth_role",
         project_id=project_tf.id,
         role_id=setup_only.role_id,
-        aws=mongodbatlas.CloudProviderAccessAuthorizationAwsArgs(
-            iam_assumed_role_arn=test_role["arn"],
-        ))
+        aws={
+            "iam_assumed_role_arn": test_role["arn"],
+        })
     # Set up push-based log export with authorized IAM role
     test_push_based_log_export = mongodbatlas.PushBasedLogExport("test",
         project_id=project_tf.id,

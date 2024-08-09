@@ -172,8 +172,8 @@ class CustomDbRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomDbRoleActionArgs']]]]] = None,
-                 inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomDbRoleInheritedRoleArgs']]]]] = None,
+                 actions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict']]]]] = None,
+                 inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -196,27 +196,27 @@ class CustomDbRole(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             role_name="myCustomRole",
             actions=[
-                mongodbatlas.CustomDbRoleActionArgs(
-                    action="UPDATE",
-                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                        collection_name="",
-                        database_name="anyDatabase",
-                    )],
-                ),
-                mongodbatlas.CustomDbRoleActionArgs(
-                    action="INSERT",
-                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                        collection_name="",
-                        database_name="anyDatabase",
-                    )],
-                ),
-                mongodbatlas.CustomDbRoleActionArgs(
-                    action="REMOVE",
-                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                        collection_name="",
-                        database_name="anyDatabase",
-                    )],
-                ),
+                {
+                    "action": "UPDATE",
+                    "resources": [{
+                        "collection_name": "",
+                        "database_name": "anyDatabase",
+                    }],
+                },
+                {
+                    "action": "INSERT",
+                    "resources": [{
+                        "collection_name": "",
+                        "database_name": "anyDatabase",
+                    }],
+                },
+                {
+                    "action": "REMOVE",
+                    "resources": [{
+                        "collection_name": "",
+                        "database_name": "anyDatabase",
+                    }],
+                },
             ])
         ```
 
@@ -229,50 +229,50 @@ class CustomDbRole(pulumi.CustomResource):
         inherited_role_one = mongodbatlas.CustomDbRole("inherited_role_one",
             project_id="<PROJECT-ID>",
             role_name="insertRole",
-            actions=[mongodbatlas.CustomDbRoleActionArgs(
-                action="INSERT",
-                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                    collection_name="",
-                    database_name="anyDatabase",
-                )],
-            )])
+            actions=[{
+                "action": "INSERT",
+                "resources": [{
+                    "collection_name": "",
+                    "database_name": "anyDatabase",
+                }],
+            }])
         inherited_role_two = mongodbatlas.CustomDbRole("inherited_role_two",
             project_id=inherited_role_one.project_id,
             role_name="statusServerRole",
-            actions=[mongodbatlas.CustomDbRoleActionArgs(
-                action="SERVER_STATUS",
-                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                    cluster=True,
-                )],
-            )])
+            actions=[{
+                "action": "SERVER_STATUS",
+                "resources": [{
+                    "cluster": True,
+                }],
+            }])
         test_role = mongodbatlas.CustomDbRole("test_role",
             project_id=inherited_role_one.project_id,
             role_name="myCustomRole",
             actions=[
-                mongodbatlas.CustomDbRoleActionArgs(
-                    action="UPDATE",
-                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                        collection_name="",
-                        database_name="anyDatabase",
-                    )],
-                ),
-                mongodbatlas.CustomDbRoleActionArgs(
-                    action="REMOVE",
-                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                        collection_name="",
-                        database_name="anyDatabase",
-                    )],
-                ),
+                {
+                    "action": "UPDATE",
+                    "resources": [{
+                        "collection_name": "",
+                        "database_name": "anyDatabase",
+                    }],
+                },
+                {
+                    "action": "REMOVE",
+                    "resources": [{
+                        "collection_name": "",
+                        "database_name": "anyDatabase",
+                    }],
+                },
             ],
             inherited_roles=[
-                mongodbatlas.CustomDbRoleInheritedRoleArgs(
-                    role_name=inherited_role_one.role_name,
-                    database_name="admin",
-                ),
-                mongodbatlas.CustomDbRoleInheritedRoleArgs(
-                    role_name=inherited_role_two.role_name,
-                    database_name="admin",
-                ),
+                {
+                    "role_name": inherited_role_one.role_name,
+                    "database_name": "admin",
+                },
+                {
+                    "role_name": inherited_role_two.role_name,
+                    "database_name": "admin",
+                },
             ])
         ```
 
@@ -322,27 +322,27 @@ class CustomDbRole(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             role_name="myCustomRole",
             actions=[
-                mongodbatlas.CustomDbRoleActionArgs(
-                    action="UPDATE",
-                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                        collection_name="",
-                        database_name="anyDatabase",
-                    )],
-                ),
-                mongodbatlas.CustomDbRoleActionArgs(
-                    action="INSERT",
-                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                        collection_name="",
-                        database_name="anyDatabase",
-                    )],
-                ),
-                mongodbatlas.CustomDbRoleActionArgs(
-                    action="REMOVE",
-                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                        collection_name="",
-                        database_name="anyDatabase",
-                    )],
-                ),
+                {
+                    "action": "UPDATE",
+                    "resources": [{
+                        "collection_name": "",
+                        "database_name": "anyDatabase",
+                    }],
+                },
+                {
+                    "action": "INSERT",
+                    "resources": [{
+                        "collection_name": "",
+                        "database_name": "anyDatabase",
+                    }],
+                },
+                {
+                    "action": "REMOVE",
+                    "resources": [{
+                        "collection_name": "",
+                        "database_name": "anyDatabase",
+                    }],
+                },
             ])
         ```
 
@@ -355,50 +355,50 @@ class CustomDbRole(pulumi.CustomResource):
         inherited_role_one = mongodbatlas.CustomDbRole("inherited_role_one",
             project_id="<PROJECT-ID>",
             role_name="insertRole",
-            actions=[mongodbatlas.CustomDbRoleActionArgs(
-                action="INSERT",
-                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                    collection_name="",
-                    database_name="anyDatabase",
-                )],
-            )])
+            actions=[{
+                "action": "INSERT",
+                "resources": [{
+                    "collection_name": "",
+                    "database_name": "anyDatabase",
+                }],
+            }])
         inherited_role_two = mongodbatlas.CustomDbRole("inherited_role_two",
             project_id=inherited_role_one.project_id,
             role_name="statusServerRole",
-            actions=[mongodbatlas.CustomDbRoleActionArgs(
-                action="SERVER_STATUS",
-                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                    cluster=True,
-                )],
-            )])
+            actions=[{
+                "action": "SERVER_STATUS",
+                "resources": [{
+                    "cluster": True,
+                }],
+            }])
         test_role = mongodbatlas.CustomDbRole("test_role",
             project_id=inherited_role_one.project_id,
             role_name="myCustomRole",
             actions=[
-                mongodbatlas.CustomDbRoleActionArgs(
-                    action="UPDATE",
-                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                        collection_name="",
-                        database_name="anyDatabase",
-                    )],
-                ),
-                mongodbatlas.CustomDbRoleActionArgs(
-                    action="REMOVE",
-                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
-                        collection_name="",
-                        database_name="anyDatabase",
-                    )],
-                ),
+                {
+                    "action": "UPDATE",
+                    "resources": [{
+                        "collection_name": "",
+                        "database_name": "anyDatabase",
+                    }],
+                },
+                {
+                    "action": "REMOVE",
+                    "resources": [{
+                        "collection_name": "",
+                        "database_name": "anyDatabase",
+                    }],
+                },
             ],
             inherited_roles=[
-                mongodbatlas.CustomDbRoleInheritedRoleArgs(
-                    role_name=inherited_role_one.role_name,
-                    database_name="admin",
-                ),
-                mongodbatlas.CustomDbRoleInheritedRoleArgs(
-                    role_name=inherited_role_two.role_name,
-                    database_name="admin",
-                ),
+                {
+                    "role_name": inherited_role_one.role_name,
+                    "database_name": "admin",
+                },
+                {
+                    "role_name": inherited_role_two.role_name,
+                    "database_name": "admin",
+                },
             ])
         ```
 
@@ -426,8 +426,8 @@ class CustomDbRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomDbRoleActionArgs']]]]] = None,
-                 inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomDbRoleInheritedRoleArgs']]]]] = None,
+                 actions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict']]]]] = None,
+                 inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -457,8 +457,8 @@ class CustomDbRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            actions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomDbRoleActionArgs']]]]] = None,
-            inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomDbRoleInheritedRoleArgs']]]]] = None,
+            actions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict']]]]] = None,
+            inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             role_name: Optional[pulumi.Input[str]] = None) -> 'CustomDbRole':
         """

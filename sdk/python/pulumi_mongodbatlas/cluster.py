@@ -1444,18 +1444,18 @@ class Cluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
-                 advanced_configuration: Optional[pulumi.Input[pulumi.InputType['ClusterAdvancedConfigurationArgs']]] = None,
+                 advanced_configuration: Optional[pulumi.Input[Union['ClusterAdvancedConfigurationArgs', 'ClusterAdvancedConfigurationArgsDict']]] = None,
                  auto_scaling_compute_enabled: Optional[pulumi.Input[bool]] = None,
                  auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[bool]] = None,
                  auto_scaling_disk_gb_enabled: Optional[pulumi.Input[bool]] = None,
                  backing_provider_name: Optional[pulumi.Input[str]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
-                 bi_connector_config: Optional[pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']]] = None,
+                 bi_connector_config: Optional[pulumi.Input[Union['ClusterBiConnectorConfigArgs', 'ClusterBiConnectorConfigArgsDict']]] = None,
                  cloud_backup: Optional[pulumi.Input[bool]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterLabelArgs', 'ClusterLabelArgsDict']]]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  num_shards: Optional[pulumi.Input[int]] = None,
@@ -1472,9 +1472,9 @@ class Cluster(pulumi.CustomResource):
                  provider_region_name: Optional[pulumi.Input[str]] = None,
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
-                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterReplicationSpecArgs', 'ClusterReplicationSpecArgsDict']]]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterTagArgs', 'ClusterTagArgsDict']]]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1491,15 +1491,15 @@ class Cluster(pulumi.CustomResource):
             project_id="<YOUR-PROJECT-ID>",
             name="cluster-test",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_1",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
+            replication_specs=[{
+                "num_shards": 1,
+                "regions_configs": [{
+                    "region_name": "US_EAST_1",
+                    "electable_nodes": 3,
+                    "priority": 7,
+                    "read_only_nodes": 0,
+                }],
+            }],
             cloud_backup=True,
             auto_scaling_disk_gb_enabled=True,
             mongo_db_major_version="7.0",
@@ -1517,15 +1517,15 @@ class Cluster(pulumi.CustomResource):
             project_id="<YOUR-PROJECT-ID>",
             name="test",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
+            replication_specs=[{
+                "num_shards": 1,
+                "regions_configs": [{
+                    "region_name": "US_EAST",
+                    "electable_nodes": 3,
+                    "priority": 7,
+                    "read_only_nodes": 0,
+                }],
+            }],
             cloud_backup=True,
             auto_scaling_disk_gb_enabled=True,
             mongo_db_major_version="7.0",
@@ -1544,15 +1544,15 @@ class Cluster(pulumi.CustomResource):
             project_id="<YOUR-PROJECT-ID>",
             name="test",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="EASTERN_US",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
+            replication_specs=[{
+                "num_shards": 1,
+                "regions_configs": [{
+                    "region_name": "EASTERN_US",
+                    "electable_nodes": 3,
+                    "priority": 7,
+                    "read_only_nodes": 0,
+                }],
+            }],
             cloud_backup=True,
             auto_scaling_disk_gb_enabled=True,
             mongo_db_major_version="7.0",
@@ -1574,29 +1574,29 @@ class Cluster(pulumi.CustomResource):
             cluster_type="REPLICASET",
             provider_name="AWS",
             provider_instance_size_name="M10",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[
-                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="US_EAST_1",
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                    ),
-                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="US_EAST_2",
-                        electable_nodes=2,
-                        priority=6,
-                        read_only_nodes=0,
-                    ),
-                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="US_WEST_1",
-                        electable_nodes=2,
-                        priority=5,
-                        read_only_nodes=2,
-                    ),
+            replication_specs=[{
+                "num_shards": 1,
+                "regions_configs": [
+                    {
+                        "region_name": "US_EAST_1",
+                        "electable_nodes": 3,
+                        "priority": 7,
+                        "read_only_nodes": 0,
+                    },
+                    {
+                        "region_name": "US_EAST_2",
+                        "electable_nodes": 2,
+                        "priority": 6,
+                        "read_only_nodes": 0,
+                    },
+                    {
+                        "region_name": "US_WEST_1",
+                        "electable_nodes": 2,
+                        "priority": 5,
+                        "read_only_nodes": 2,
+                    },
                 ],
-            )])
+            }])
         ```
 
         ### Example Global cluster
@@ -1614,26 +1614,26 @@ class Cluster(pulumi.CustomResource):
             provider_name="AWS",
             provider_instance_size_name="M30",
             replication_specs=[
-                mongodbatlas.ClusterReplicationSpecArgs(
-                    zone_name="Zone 1",
-                    num_shards=2,
-                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="US_EAST_1",
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                    )],
-                ),
-                mongodbatlas.ClusterReplicationSpecArgs(
-                    zone_name="Zone 2",
-                    num_shards=2,
-                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="EU_CENTRAL_1",
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                    )],
-                ),
+                {
+                    "zone_name": "Zone 1",
+                    "num_shards": 2,
+                    "regions_configs": [{
+                        "region_name": "US_EAST_1",
+                        "electable_nodes": 3,
+                        "priority": 7,
+                        "read_only_nodes": 0,
+                    }],
+                },
+                {
+                    "zone_name": "Zone 2",
+                    "num_shards": 2,
+                    "regions_configs": [{
+                        "region_name": "EU_CENTRAL_1",
+                        "electable_nodes": 3,
+                        "priority": 7,
+                        "read_only_nodes": 0,
+                    }],
+                },
             ])
         ```
         ### Example AWS Shared Tier (M2/M5) cluster
@@ -1708,7 +1708,7 @@ class Cluster(pulumi.CustomResource):
                cloud_backup = "true"
                ```
                * The default value is false.  M10 and above only.
-        :param pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        :param pulumi.Input[Union['ClusterBiConnectorConfigArgs', 'ClusterBiConnectorConfigArgsDict']] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
                
                > **WHEN SHOULD YOU USE CLUSTERTYPE?**
@@ -1724,7 +1724,7 @@ class Cluster(pulumi.CustomResource):
                * Cannot be used with clusters with local NVMe SSDs
                * Cannot be used with Azure clusters
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLabelArgs']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterLabelArgs', 'ClusterLabelArgsDict']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[int] num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
@@ -1750,9 +1750,9 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
                > **NOTE:** `STANDARD` is not available for NVME clusters.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterReplicationSpecArgs', 'ClusterReplicationSpecArgsDict']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterTagArgs', 'ClusterTagArgsDict']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
                - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
@@ -1777,15 +1777,15 @@ class Cluster(pulumi.CustomResource):
             project_id="<YOUR-PROJECT-ID>",
             name="cluster-test",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_1",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
+            replication_specs=[{
+                "num_shards": 1,
+                "regions_configs": [{
+                    "region_name": "US_EAST_1",
+                    "electable_nodes": 3,
+                    "priority": 7,
+                    "read_only_nodes": 0,
+                }],
+            }],
             cloud_backup=True,
             auto_scaling_disk_gb_enabled=True,
             mongo_db_major_version="7.0",
@@ -1803,15 +1803,15 @@ class Cluster(pulumi.CustomResource):
             project_id="<YOUR-PROJECT-ID>",
             name="test",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
+            replication_specs=[{
+                "num_shards": 1,
+                "regions_configs": [{
+                    "region_name": "US_EAST",
+                    "electable_nodes": 3,
+                    "priority": 7,
+                    "read_only_nodes": 0,
+                }],
+            }],
             cloud_backup=True,
             auto_scaling_disk_gb_enabled=True,
             mongo_db_major_version="7.0",
@@ -1830,15 +1830,15 @@ class Cluster(pulumi.CustomResource):
             project_id="<YOUR-PROJECT-ID>",
             name="test",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="EASTERN_US",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            )],
+            replication_specs=[{
+                "num_shards": 1,
+                "regions_configs": [{
+                    "region_name": "EASTERN_US",
+                    "electable_nodes": 3,
+                    "priority": 7,
+                    "read_only_nodes": 0,
+                }],
+            }],
             cloud_backup=True,
             auto_scaling_disk_gb_enabled=True,
             mongo_db_major_version="7.0",
@@ -1860,29 +1860,29 @@ class Cluster(pulumi.CustomResource):
             cluster_type="REPLICASET",
             provider_name="AWS",
             provider_instance_size_name="M10",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[
-                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="US_EAST_1",
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                    ),
-                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="US_EAST_2",
-                        electable_nodes=2,
-                        priority=6,
-                        read_only_nodes=0,
-                    ),
-                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="US_WEST_1",
-                        electable_nodes=2,
-                        priority=5,
-                        read_only_nodes=2,
-                    ),
+            replication_specs=[{
+                "num_shards": 1,
+                "regions_configs": [
+                    {
+                        "region_name": "US_EAST_1",
+                        "electable_nodes": 3,
+                        "priority": 7,
+                        "read_only_nodes": 0,
+                    },
+                    {
+                        "region_name": "US_EAST_2",
+                        "electable_nodes": 2,
+                        "priority": 6,
+                        "read_only_nodes": 0,
+                    },
+                    {
+                        "region_name": "US_WEST_1",
+                        "electable_nodes": 2,
+                        "priority": 5,
+                        "read_only_nodes": 2,
+                    },
                 ],
-            )])
+            }])
         ```
 
         ### Example Global cluster
@@ -1900,26 +1900,26 @@ class Cluster(pulumi.CustomResource):
             provider_name="AWS",
             provider_instance_size_name="M30",
             replication_specs=[
-                mongodbatlas.ClusterReplicationSpecArgs(
-                    zone_name="Zone 1",
-                    num_shards=2,
-                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="US_EAST_1",
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                    )],
-                ),
-                mongodbatlas.ClusterReplicationSpecArgs(
-                    zone_name="Zone 2",
-                    num_shards=2,
-                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        region_name="EU_CENTRAL_1",
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                    )],
-                ),
+                {
+                    "zone_name": "Zone 1",
+                    "num_shards": 2,
+                    "regions_configs": [{
+                        "region_name": "US_EAST_1",
+                        "electable_nodes": 3,
+                        "priority": 7,
+                        "read_only_nodes": 0,
+                    }],
+                },
+                {
+                    "zone_name": "Zone 2",
+                    "num_shards": 2,
+                    "regions_configs": [{
+                        "region_name": "EU_CENTRAL_1",
+                        "electable_nodes": 3,
+                        "priority": 7,
+                        "read_only_nodes": 0,
+                    }],
+                },
             ])
         ```
         ### Example AWS Shared Tier (M2/M5) cluster
@@ -1987,18 +1987,18 @@ class Cluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
-                 advanced_configuration: Optional[pulumi.Input[pulumi.InputType['ClusterAdvancedConfigurationArgs']]] = None,
+                 advanced_configuration: Optional[pulumi.Input[Union['ClusterAdvancedConfigurationArgs', 'ClusterAdvancedConfigurationArgsDict']]] = None,
                  auto_scaling_compute_enabled: Optional[pulumi.Input[bool]] = None,
                  auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[bool]] = None,
                  auto_scaling_disk_gb_enabled: Optional[pulumi.Input[bool]] = None,
                  backing_provider_name: Optional[pulumi.Input[str]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
-                 bi_connector_config: Optional[pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']]] = None,
+                 bi_connector_config: Optional[pulumi.Input[Union['ClusterBiConnectorConfigArgs', 'ClusterBiConnectorConfigArgsDict']]] = None,
                  cloud_backup: Optional[pulumi.Input[bool]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterLabelArgs', 'ClusterLabelArgsDict']]]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  num_shards: Optional[pulumi.Input[int]] = None,
@@ -2015,9 +2015,9 @@ class Cluster(pulumi.CustomResource):
                  provider_region_name: Optional[pulumi.Input[str]] = None,
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
-                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterReplicationSpecArgs', 'ClusterReplicationSpecArgsDict']]]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterTagArgs', 'ClusterTagArgsDict']]]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -2091,21 +2091,21 @@ class Cluster(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
-            advanced_configuration: Optional[pulumi.Input[pulumi.InputType['ClusterAdvancedConfigurationArgs']]] = None,
+            advanced_configuration: Optional[pulumi.Input[Union['ClusterAdvancedConfigurationArgs', 'ClusterAdvancedConfigurationArgsDict']]] = None,
             auto_scaling_compute_enabled: Optional[pulumi.Input[bool]] = None,
             auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[bool]] = None,
             auto_scaling_disk_gb_enabled: Optional[pulumi.Input[bool]] = None,
             backing_provider_name: Optional[pulumi.Input[str]] = None,
             backup_enabled: Optional[pulumi.Input[bool]] = None,
-            bi_connector_config: Optional[pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']]] = None,
+            bi_connector_config: Optional[pulumi.Input[Union['ClusterBiConnectorConfigArgs', 'ClusterBiConnectorConfigArgsDict']]] = None,
             cloud_backup: Optional[pulumi.Input[bool]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             cluster_type: Optional[pulumi.Input[str]] = None,
-            connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterConnectionStringArgs']]]]] = None,
+            connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterConnectionStringArgs', 'ClusterConnectionStringArgsDict']]]]] = None,
             container_id: Optional[pulumi.Input[str]] = None,
             disk_size_gb: Optional[pulumi.Input[float]] = None,
             encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
-            labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLabelArgs']]]]] = None,
+            labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterLabelArgs', 'ClusterLabelArgsDict']]]]] = None,
             mongo_db_major_version: Optional[pulumi.Input[str]] = None,
             mongo_db_version: Optional[pulumi.Input[str]] = None,
             mongo_uri: Optional[pulumi.Input[str]] = None,
@@ -2127,12 +2127,12 @@ class Cluster(pulumi.CustomResource):
             provider_region_name: Optional[pulumi.Input[str]] = None,
             provider_volume_type: Optional[pulumi.Input[str]] = None,
             replication_factor: Optional[pulumi.Input[int]] = None,
-            replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+            replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterReplicationSpecArgs', 'ClusterReplicationSpecArgsDict']]]]] = None,
             retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
-            snapshot_backup_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]]] = None,
+            snapshot_backup_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterSnapshotBackupPolicyArgs', 'ClusterSnapshotBackupPolicyArgsDict']]]]] = None,
             srv_address: Optional[pulumi.Input[str]] = None,
             state_name: Optional[pulumi.Input[str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterTagArgs', 'ClusterTagArgsDict']]]]] = None,
             termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
             version_release_system: Optional[pulumi.Input[str]] = None) -> 'Cluster':
         """
@@ -2163,7 +2163,7 @@ class Cluster(pulumi.CustomResource):
                cloud_backup = "true"
                ```
                * The default value is false.  M10 and above only.
-        :param pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        :param pulumi.Input[Union['ClusterBiConnectorConfigArgs', 'ClusterBiConnectorConfigArgsDict']] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_id: The cluster ID.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
                
@@ -2174,7 +2174,7 @@ class Cluster(pulumi.CustomResource):
                - `REPLICASET` Replica set
                - `SHARDED` Sharded cluster
                - `GEOSHARDED` Global Cluster
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterConnectionStringArgs']]]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterConnectionStringArgs', 'ClusterConnectionStringArgsDict']]]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[str] container_id: The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
                * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -2182,7 +2182,7 @@ class Cluster(pulumi.CustomResource):
                * Cannot be used with clusters with local NVMe SSDs
                * Cannot be used with Azure clusters
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLabelArgs']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterLabelArgs', 'ClusterLabelArgsDict']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[str] mongo_uri: Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.
@@ -2212,9 +2212,9 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
                > **NOTE:** `STANDARD` is not available for NVME clusters.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterReplicationSpecArgs', 'ClusterReplicationSpecArgsDict']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param pulumi.Input[bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. M10 and above only.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterSnapshotBackupPolicyArgs', 'ClusterSnapshotBackupPolicyArgsDict']]]] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
         :param pulumi.Input[str] srv_address: Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
         :param pulumi.Input[str] state_name: Current state of the cluster. The possible states are:
                - IDLE
@@ -2223,7 +2223,7 @@ class Cluster(pulumi.CustomResource):
                - DELETING
                - DELETED
                - REPAIRING
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterTagArgs', 'ClusterTagArgsDict']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
                - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.

@@ -808,23 +808,23 @@ class AdvancedCluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
-                 advanced_configuration: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterAdvancedConfigurationArgs']]] = None,
+                 advanced_configuration: Optional[pulumi.Input[Union['AdvancedClusterAdvancedConfigurationArgs', 'AdvancedClusterAdvancedConfigurationArgsDict']]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
-                 bi_connector_config: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']]] = None,
+                 bi_connector_config: Optional[pulumi.Input[Union['AdvancedClusterBiConnectorConfigArgs', 'AdvancedClusterBiConnectorConfigArgsDict']]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
                  global_cluster_self_managed_sharding: Optional[pulumi.Input[bool]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]]] = None,
+                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterTagArgs']]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterTagArgs', 'AdvancedClusterTagArgsDict']]]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -862,21 +862,21 @@ class AdvancedCluster(pulumi.CustomResource):
             project_id="PROJECT ID",
             name="NAME OF CLUSTER",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                        node_count=3,
-                    ),
-                    analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                        instance_size="M10",
-                        node_count=1,
-                    ),
-                    provider_name="AWS",
-                    priority=7,
-                    region_name="US_EAST_1",
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                    "analytics_specs": {
+                        "instance_size": "M10",
+                        "node_count": 1,
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "US_EAST_1",
+                }],
+            }])
         ```
 
         ### Example Tenant Cluster
@@ -889,17 +889,17 @@ class AdvancedCluster(pulumi.CustomResource):
             project_id="PROJECT ID",
             name="NAME OF CLUSTER",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M5",
-                    ),
-                    provider_name="TENANT",
-                    backing_provider_name="AWS",
-                    region_name="US_EAST_1",
-                    priority=7,
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M5",
+                    },
+                    "provider_name": "TENANT",
+                    "backing_provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
         ```
 
         ### Example Tenant Cluster Upgrade
@@ -912,16 +912,16 @@ class AdvancedCluster(pulumi.CustomResource):
             project_id="PROJECT ID",
             name="NAME OF CLUSTER",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                    ),
-                    provider_name="AWS",
-                    region_name="US_EAST_1",
-                    priority=7,
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M10",
+                    },
+                    "provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
         ```
 
         ### Example Multi-Cloud Cluster
@@ -933,32 +933,32 @@ class AdvancedCluster(pulumi.CustomResource):
             project_id="PROJECT ID",
             name="NAME OF CLUSTER",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[
-                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                            instance_size="M10",
-                            node_count=3,
-                        ),
-                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                            instance_size="M10",
-                            node_count=1,
-                        ),
-                        provider_name="AWS",
-                        priority=7,
-                        region_name="US_EAST_1",
-                    ),
-                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                            instance_size="M10",
-                            node_count=2,
-                        ),
-                        provider_name="GCP",
-                        priority=6,
-                        region_name="NORTH_AMERICA_NORTHEAST_1",
-                    ),
+            replication_specs=[{
+                "region_configs": [
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 3,
+                        },
+                        "analytics_specs": {
+                            "instance_size": "M10",
+                            "node_count": 1,
+                        },
+                        "provider_name": "AWS",
+                        "priority": 7,
+                        "region_name": "US_EAST_1",
+                    },
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 2,
+                        },
+                        "provider_name": "GCP",
+                        "priority": 6,
+                        "region_name": "NORTH_AMERICA_NORTHEAST_1",
+                    },
                 ],
-            )])
+            }])
         ```
         ### Example of a Multi-Cloud Cluster
 
@@ -971,55 +971,55 @@ class AdvancedCluster(pulumi.CustomResource):
             name=cluster_name,
             cluster_type="SHARDED",
             backup_enabled=True,
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                num_shards=3,
-                region_configs=[
-                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                            instance_size="M10",
-                            node_count=3,
-                        ),
-                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                            instance_size="M10",
-                            node_count=1,
-                        ),
-                        provider_name="AWS",
-                        priority=7,
-                        region_name="US_EAST_1",
-                    ),
-                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                            instance_size="M10",
-                            node_count=2,
-                        ),
-                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                            instance_size="M10",
-                            node_count=1,
-                        ),
-                        provider_name="AZURE",
-                        priority=6,
-                        region_name="US_EAST_2",
-                    ),
-                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                            instance_size="M10",
-                            node_count=2,
-                        ),
-                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                            instance_size="M10",
-                            node_count=1,
-                        ),
-                        provider_name="GCP",
-                        priority=5,
-                        region_name="US_EAST_4",
-                    ),
+            replication_specs=[{
+                "num_shards": 3,
+                "region_configs": [
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 3,
+                        },
+                        "analytics_specs": {
+                            "instance_size": "M10",
+                            "node_count": 1,
+                        },
+                        "provider_name": "AWS",
+                        "priority": 7,
+                        "region_name": "US_EAST_1",
+                    },
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 2,
+                        },
+                        "analytics_specs": {
+                            "instance_size": "M10",
+                            "node_count": 1,
+                        },
+                        "provider_name": "AZURE",
+                        "priority": 6,
+                        "region_name": "US_EAST_2",
+                    },
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 2,
+                        },
+                        "analytics_specs": {
+                            "instance_size": "M10",
+                            "node_count": 1,
+                        },
+                        "provider_name": "GCP",
+                        "priority": 5,
+                        "region_name": "US_EAST_4",
+                    },
                 ],
-            )],
-            advanced_configuration=mongodbatlas.AdvancedClusterAdvancedConfigurationArgs(
-                javascript_enabled=True,
-                oplog_size_mb=30,
-                sample_refresh_interval_bi_connector=300,
-            ))
+            }],
+            advanced_configuration={
+                "javascript_enabled": True,
+                "oplog_size_mb": 30,
+                "sample_refresh_interval_bi_connector": 300,
+            })
         ```
 
         ### Example of a Global Cluster
@@ -1033,102 +1033,102 @@ class AdvancedCluster(pulumi.CustomResource):
             cluster_type="GEOSHARDED",
             backup_enabled=True,
             replication_specs=[
-                mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                    zone_name="zone n1",
-                    num_shards=3,
-                    region_configs=[
-                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                                instance_size="M10",
-                                node_count=3,
-                            ),
-                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                                instance_size="M10",
-                                node_count=1,
-                            ),
-                            provider_name="AWS",
-                            priority=7,
-                            region_name="US_EAST_1",
-                        ),
-                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                                instance_size="M10",
-                                node_count=2,
-                            ),
-                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                                instance_size="M10",
-                                node_count=1,
-                            ),
-                            provider_name="AZURE",
-                            priority=6,
-                            region_name="US_EAST_2",
-                        ),
-                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                                instance_size="M10",
-                                node_count=2,
-                            ),
-                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                                instance_size="M10",
-                                node_count=1,
-                            ),
-                            provider_name="GCP",
-                            priority=5,
-                            region_name="US_EAST_4",
-                        ),
+                {
+                    "zone_name": "zone n1",
+                    "num_shards": 3,
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M10",
+                                "node_count": 3,
+                            },
+                            "analytics_specs": {
+                                "instance_size": "M10",
+                                "node_count": 1,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "US_EAST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M10",
+                                "node_count": 2,
+                            },
+                            "analytics_specs": {
+                                "instance_size": "M10",
+                                "node_count": 1,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "US_EAST_2",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M10",
+                                "node_count": 2,
+                            },
+                            "analytics_specs": {
+                                "instance_size": "M10",
+                                "node_count": 1,
+                            },
+                            "provider_name": "GCP",
+                            "priority": 5,
+                            "region_name": "US_EAST_4",
+                        },
                     ],
-                ),
-                mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                    zone_name="zone n2",
-                    num_shards=2,
-                    region_configs=[
-                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                                instance_size="M10",
-                                node_count=3,
-                            ),
-                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                                instance_size="M10",
-                                node_count=1,
-                            ),
-                            provider_name="AWS",
-                            priority=7,
-                            region_name="EU_WEST_1",
-                        ),
-                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                                instance_size="M10",
-                                node_count=2,
-                            ),
-                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                                instance_size="M10",
-                                node_count=1,
-                            ),
-                            provider_name="AZURE",
-                            priority=6,
-                            region_name="EUROPE_NORTH",
-                        ),
-                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                                instance_size="M10",
-                                node_count=2,
-                            ),
-                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                                instance_size="M10",
-                                node_count=1,
-                            ),
-                            provider_name="GCP",
-                            priority=5,
-                            region_name="US_EAST_4",
-                        ),
+                },
+                {
+                    "zone_name": "zone n2",
+                    "num_shards": 2,
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M10",
+                                "node_count": 3,
+                            },
+                            "analytics_specs": {
+                                "instance_size": "M10",
+                                "node_count": 1,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "EU_WEST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M10",
+                                "node_count": 2,
+                            },
+                            "analytics_specs": {
+                                "instance_size": "M10",
+                                "node_count": 1,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "EUROPE_NORTH",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M10",
+                                "node_count": 2,
+                            },
+                            "analytics_specs": {
+                                "instance_size": "M10",
+                                "node_count": 1,
+                            },
+                            "provider_name": "GCP",
+                            "priority": 5,
+                            "region_name": "US_EAST_4",
+                        },
                     ],
-                ),
+                },
             ],
-            advanced_configuration=mongodbatlas.AdvancedClusterAdvancedConfigurationArgs(
-                javascript_enabled=True,
-                oplog_size_mb=999,
-                sample_refresh_interval_bi_connector=300,
-            ))
+            advanced_configuration={
+                "javascript_enabled": True,
+                "oplog_size_mb": 999,
+                "sample_refresh_interval_bi_connector": 300,
+            })
         ```
 
         ### Example - Return a Connection String
@@ -1166,7 +1166,7 @@ class AdvancedCluster(pulumi.CustomResource):
                If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
                
                This parameter defaults to false.
-        :param pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
+        :param pulumi.Input[Union['AdvancedClusterBiConnectorConfigArgs', 'AdvancedClusterBiConnectorConfigArgsDict']] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[str] cluster_type: Type of the cluster that you want to create.
                Accepted values include:
                - `REPLICASET` Replica set
@@ -1175,15 +1175,15 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterTagArgs']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterTagArgs', 'AdvancedClusterTagArgsDict']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
                - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
@@ -1229,21 +1229,21 @@ class AdvancedCluster(pulumi.CustomResource):
             project_id="PROJECT ID",
             name="NAME OF CLUSTER",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                        node_count=3,
-                    ),
-                    analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                        instance_size="M10",
-                        node_count=1,
-                    ),
-                    provider_name="AWS",
-                    priority=7,
-                    region_name="US_EAST_1",
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                    "analytics_specs": {
+                        "instance_size": "M10",
+                        "node_count": 1,
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "US_EAST_1",
+                }],
+            }])
         ```
 
         ### Example Tenant Cluster
@@ -1256,17 +1256,17 @@ class AdvancedCluster(pulumi.CustomResource):
             project_id="PROJECT ID",
             name="NAME OF CLUSTER",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M5",
-                    ),
-                    provider_name="TENANT",
-                    backing_provider_name="AWS",
-                    region_name="US_EAST_1",
-                    priority=7,
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M5",
+                    },
+                    "provider_name": "TENANT",
+                    "backing_provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
         ```
 
         ### Example Tenant Cluster Upgrade
@@ -1279,16 +1279,16 @@ class AdvancedCluster(pulumi.CustomResource):
             project_id="PROJECT ID",
             name="NAME OF CLUSTER",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                    ),
-                    provider_name="AWS",
-                    region_name="US_EAST_1",
-                    priority=7,
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M10",
+                    },
+                    "provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
         ```
 
         ### Example Multi-Cloud Cluster
@@ -1300,32 +1300,32 @@ class AdvancedCluster(pulumi.CustomResource):
             project_id="PROJECT ID",
             name="NAME OF CLUSTER",
             cluster_type="REPLICASET",
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[
-                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                            instance_size="M10",
-                            node_count=3,
-                        ),
-                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                            instance_size="M10",
-                            node_count=1,
-                        ),
-                        provider_name="AWS",
-                        priority=7,
-                        region_name="US_EAST_1",
-                    ),
-                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                            instance_size="M10",
-                            node_count=2,
-                        ),
-                        provider_name="GCP",
-                        priority=6,
-                        region_name="NORTH_AMERICA_NORTHEAST_1",
-                    ),
+            replication_specs=[{
+                "region_configs": [
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 3,
+                        },
+                        "analytics_specs": {
+                            "instance_size": "M10",
+                            "node_count": 1,
+                        },
+                        "provider_name": "AWS",
+                        "priority": 7,
+                        "region_name": "US_EAST_1",
+                    },
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 2,
+                        },
+                        "provider_name": "GCP",
+                        "priority": 6,
+                        "region_name": "NORTH_AMERICA_NORTHEAST_1",
+                    },
                 ],
-            )])
+            }])
         ```
         ### Example of a Multi-Cloud Cluster
 
@@ -1338,55 +1338,55 @@ class AdvancedCluster(pulumi.CustomResource):
             name=cluster_name,
             cluster_type="SHARDED",
             backup_enabled=True,
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                num_shards=3,
-                region_configs=[
-                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                            instance_size="M10",
-                            node_count=3,
-                        ),
-                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                            instance_size="M10",
-                            node_count=1,
-                        ),
-                        provider_name="AWS",
-                        priority=7,
-                        region_name="US_EAST_1",
-                    ),
-                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                            instance_size="M10",
-                            node_count=2,
-                        ),
-                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                            instance_size="M10",
-                            node_count=1,
-                        ),
-                        provider_name="AZURE",
-                        priority=6,
-                        region_name="US_EAST_2",
-                    ),
-                    mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                        electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                            instance_size="M10",
-                            node_count=2,
-                        ),
-                        analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                            instance_size="M10",
-                            node_count=1,
-                        ),
-                        provider_name="GCP",
-                        priority=5,
-                        region_name="US_EAST_4",
-                    ),
+            replication_specs=[{
+                "num_shards": 3,
+                "region_configs": [
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 3,
+                        },
+                        "analytics_specs": {
+                            "instance_size": "M10",
+                            "node_count": 1,
+                        },
+                        "provider_name": "AWS",
+                        "priority": 7,
+                        "region_name": "US_EAST_1",
+                    },
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 2,
+                        },
+                        "analytics_specs": {
+                            "instance_size": "M10",
+                            "node_count": 1,
+                        },
+                        "provider_name": "AZURE",
+                        "priority": 6,
+                        "region_name": "US_EAST_2",
+                    },
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 2,
+                        },
+                        "analytics_specs": {
+                            "instance_size": "M10",
+                            "node_count": 1,
+                        },
+                        "provider_name": "GCP",
+                        "priority": 5,
+                        "region_name": "US_EAST_4",
+                    },
                 ],
-            )],
-            advanced_configuration=mongodbatlas.AdvancedClusterAdvancedConfigurationArgs(
-                javascript_enabled=True,
-                oplog_size_mb=30,
-                sample_refresh_interval_bi_connector=300,
-            ))
+            }],
+            advanced_configuration={
+                "javascript_enabled": True,
+                "oplog_size_mb": 30,
+                "sample_refresh_interval_bi_connector": 300,
+            })
         ```
 
         ### Example of a Global Cluster
@@ -1400,102 +1400,102 @@ class AdvancedCluster(pulumi.CustomResource):
             cluster_type="GEOSHARDED",
             backup_enabled=True,
             replication_specs=[
-                mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                    zone_name="zone n1",
-                    num_shards=3,
-                    region_configs=[
-                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                                instance_size="M10",
-                                node_count=3,
-                            ),
-                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                                instance_size="M10",
-                                node_count=1,
-                            ),
-                            provider_name="AWS",
-                            priority=7,
-                            region_name="US_EAST_1",
-                        ),
-                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                                instance_size="M10",
-                                node_count=2,
-                            ),
-                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                                instance_size="M10",
-                                node_count=1,
-                            ),
-                            provider_name="AZURE",
-                            priority=6,
-                            region_name="US_EAST_2",
-                        ),
-                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                                instance_size="M10",
-                                node_count=2,
-                            ),
-                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                                instance_size="M10",
-                                node_count=1,
-                            ),
-                            provider_name="GCP",
-                            priority=5,
-                            region_name="US_EAST_4",
-                        ),
+                {
+                    "zone_name": "zone n1",
+                    "num_shards": 3,
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M10",
+                                "node_count": 3,
+                            },
+                            "analytics_specs": {
+                                "instance_size": "M10",
+                                "node_count": 1,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "US_EAST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M10",
+                                "node_count": 2,
+                            },
+                            "analytics_specs": {
+                                "instance_size": "M10",
+                                "node_count": 1,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "US_EAST_2",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M10",
+                                "node_count": 2,
+                            },
+                            "analytics_specs": {
+                                "instance_size": "M10",
+                                "node_count": 1,
+                            },
+                            "provider_name": "GCP",
+                            "priority": 5,
+                            "region_name": "US_EAST_4",
+                        },
                     ],
-                ),
-                mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                    zone_name="zone n2",
-                    num_shards=2,
-                    region_configs=[
-                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                                instance_size="M10",
-                                node_count=3,
-                            ),
-                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                                instance_size="M10",
-                                node_count=1,
-                            ),
-                            provider_name="AWS",
-                            priority=7,
-                            region_name="EU_WEST_1",
-                        ),
-                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                                instance_size="M10",
-                                node_count=2,
-                            ),
-                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                                instance_size="M10",
-                                node_count=1,
-                            ),
-                            provider_name="AZURE",
-                            priority=6,
-                            region_name="EUROPE_NORTH",
-                        ),
-                        mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                            electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                                instance_size="M10",
-                                node_count=2,
-                            ),
-                            analytics_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(
-                                instance_size="M10",
-                                node_count=1,
-                            ),
-                            provider_name="GCP",
-                            priority=5,
-                            region_name="US_EAST_4",
-                        ),
+                },
+                {
+                    "zone_name": "zone n2",
+                    "num_shards": 2,
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M10",
+                                "node_count": 3,
+                            },
+                            "analytics_specs": {
+                                "instance_size": "M10",
+                                "node_count": 1,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "EU_WEST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M10",
+                                "node_count": 2,
+                            },
+                            "analytics_specs": {
+                                "instance_size": "M10",
+                                "node_count": 1,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "EUROPE_NORTH",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M10",
+                                "node_count": 2,
+                            },
+                            "analytics_specs": {
+                                "instance_size": "M10",
+                                "node_count": 1,
+                            },
+                            "provider_name": "GCP",
+                            "priority": 5,
+                            "region_name": "US_EAST_4",
+                        },
                     ],
-                ),
+                },
             ],
-            advanced_configuration=mongodbatlas.AdvancedClusterAdvancedConfigurationArgs(
-                javascript_enabled=True,
-                oplog_size_mb=999,
-                sample_refresh_interval_bi_connector=300,
-            ))
+            advanced_configuration={
+                "javascript_enabled": True,
+                "oplog_size_mb": 999,
+                "sample_refresh_interval_bi_connector": 300,
+            })
         ```
 
         ### Example - Return a Connection String
@@ -1537,23 +1537,23 @@ class AdvancedCluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
-                 advanced_configuration: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterAdvancedConfigurationArgs']]] = None,
+                 advanced_configuration: Optional[pulumi.Input[Union['AdvancedClusterAdvancedConfigurationArgs', 'AdvancedClusterAdvancedConfigurationArgsDict']]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
-                 bi_connector_config: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']]] = None,
+                 bi_connector_config: Optional[pulumi.Input[Union['AdvancedClusterBiConnectorConfigArgs', 'AdvancedClusterBiConnectorConfigArgsDict']]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
                  global_cluster_self_managed_sharding: Optional[pulumi.Input[bool]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]]] = None,
+                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
                  root_cert_type: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterTagArgs']]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterTagArgs', 'AdvancedClusterTagArgsDict']]]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1607,28 +1607,28 @@ class AdvancedCluster(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[str]] = None,
-            advanced_configuration: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterAdvancedConfigurationArgs']]] = None,
+            advanced_configuration: Optional[pulumi.Input[Union['AdvancedClusterAdvancedConfigurationArgs', 'AdvancedClusterAdvancedConfigurationArgsDict']]] = None,
             backup_enabled: Optional[pulumi.Input[bool]] = None,
-            bi_connector_config: Optional[pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']]] = None,
+            bi_connector_config: Optional[pulumi.Input[Union['AdvancedClusterBiConnectorConfigArgs', 'AdvancedClusterBiConnectorConfigArgsDict']]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             cluster_type: Optional[pulumi.Input[str]] = None,
-            connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterConnectionStringArgs']]]]] = None,
+            connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterConnectionStringArgs', 'AdvancedClusterConnectionStringArgsDict']]]]] = None,
             create_date: Optional[pulumi.Input[str]] = None,
             disk_size_gb: Optional[pulumi.Input[float]] = None,
             encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
             global_cluster_self_managed_sharding: Optional[pulumi.Input[bool]] = None,
-            labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]]] = None,
+            labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]]] = None,
             mongo_db_major_version: Optional[pulumi.Input[str]] = None,
             mongo_db_version: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             paused: Optional[pulumi.Input[bool]] = None,
             pit_enabled: Optional[pulumi.Input[bool]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]]] = None,
+            replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]]] = None,
             retain_backups_enabled: Optional[pulumi.Input[bool]] = None,
             root_cert_type: Optional[pulumi.Input[str]] = None,
             state_name: Optional[pulumi.Input[str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterTagArgs']]]]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterTagArgs', 'AdvancedClusterTagArgsDict']]]]] = None,
             termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
             version_release_system: Optional[pulumi.Input[str]] = None) -> 'AdvancedCluster':
         """
@@ -1648,24 +1648,24 @@ class AdvancedCluster(pulumi.CustomResource):
                If "`backup_enabled`" : `false`, the cluster doesn't use Atlas backups.
                
                This parameter defaults to false.
-        :param pulumi.Input[pulumi.InputType['AdvancedClusterBiConnectorConfigArgs']] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
+        :param pulumi.Input[Union['AdvancedClusterBiConnectorConfigArgs', 'AdvancedClusterBiConnectorConfigArgsDict']] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[str] cluster_id: The cluster ID.
         :param pulumi.Input[str] cluster_type: Type of the cluster that you want to create.
                Accepted values include:
                - `REPLICASET` Replica set
                - `SHARDED`	Sharded cluster
                - `GEOSHARDED` Global Cluster
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterConnectionStringArgs']]]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterConnectionStringArgs', 'AdvancedClusterConnectionStringArgsDict']]]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more info [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterLabelArgs']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.4`, `5.0`, `6.0` or `7.0`. If omitted, Atlas deploys a cluster that runs MongoDB 7.0. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[str] state_name: Current state of the cluster. The possible states are:
@@ -1675,7 +1675,7 @@ class AdvancedCluster(pulumi.CustomResource):
                - DELETING
                - DELETED
                - REPAIRING
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AdvancedClusterTagArgs']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterTagArgs', 'AdvancedClusterTagArgsDict']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
                - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.

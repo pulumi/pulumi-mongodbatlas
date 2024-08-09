@@ -630,7 +630,7 @@ class SearchIndex(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  search_analyzer: Optional[pulumi.Input[str]] = None,
                  stored_source: Optional[pulumi.Input[str]] = None,
-                 synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]]] = None,
+                 synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -740,11 +740,11 @@ class SearchIndex(pulumi.CustomResource):
            \\x09}]
          }]
         \"\"\",
-            synonyms=[mongodbatlas.SearchIndexSynonymArgs(
-                analyzer="lucene.simple",
-                name="synonym_test",
-                source_collection="collection_test",
-            )])
+            synonyms=[{
+                "analyzer": "lucene.simple",
+                "name": "synonym_test",
+                "source_collection": "collection_test",
+            }])
         ```
 
         :param str resource_name: The name of the resource.
@@ -782,7 +782,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]] synonyms: Synonyms mapping definition to use in this index.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
         """
         ...
@@ -897,11 +897,11 @@ class SearchIndex(pulumi.CustomResource):
            \\x09}]
          }]
         \"\"\",
-            synonyms=[mongodbatlas.SearchIndexSynonymArgs(
-                analyzer="lucene.simple",
-                name="synonym_test",
-                source_collection="collection_test",
-            )])
+            synonyms=[{
+                "analyzer": "lucene.simple",
+                "name": "synonym_test",
+                "source_collection": "collection_test",
+            }])
         ```
 
         :param str resource_name: The name of the resource.
@@ -931,7 +931,7 @@ class SearchIndex(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  search_analyzer: Optional[pulumi.Input[str]] = None,
                  stored_source: Optional[pulumi.Input[str]] = None,
-                 synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]]] = None,
+                 synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -992,7 +992,7 @@ class SearchIndex(pulumi.CustomResource):
             search_analyzer: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             stored_source: Optional[pulumi.Input[str]] = None,
-            synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]]] = None,
+            synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             wait_for_index_build_completion: Optional[pulumi.Input[bool]] = None) -> 'SearchIndex':
         """
@@ -1037,7 +1037,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[str] status: Current status of the index.
         :param pulumi.Input[str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchIndexSynonymArgs']]]] synonyms: Synonyms mapping definition to use in this index.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

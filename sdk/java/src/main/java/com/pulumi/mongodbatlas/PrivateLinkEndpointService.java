@@ -426,7 +426,7 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public PrivateLinkEndpointService(String name) {
+    public PrivateLinkEndpointService(java.lang.String name) {
         this(name, PrivateLinkEndpointServiceArgs.Empty);
     }
     /**
@@ -434,7 +434,7 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public PrivateLinkEndpointService(String name, PrivateLinkEndpointServiceArgs args) {
+    public PrivateLinkEndpointService(java.lang.String name, PrivateLinkEndpointServiceArgs args) {
         this(name, args, null);
     }
     /**
@@ -443,12 +443,12 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public PrivateLinkEndpointService(String name, PrivateLinkEndpointServiceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public PrivateLinkEndpointService(java.lang.String name, PrivateLinkEndpointServiceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private PrivateLinkEndpointService(String name, Output<String> id, @Nullable PrivateLinkEndpointServiceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService", name, state, makeResourceOptions(options, id));
+    private PrivateLinkEndpointService(java.lang.String name, Output<java.lang.String> id, @Nullable PrivateLinkEndpointServiceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService", name, state, makeResourceOptions(options, id), false);
     }
 
     private static PrivateLinkEndpointServiceArgs makeArgs(PrivateLinkEndpointServiceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -458,7 +458,7 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
         return args == null ? PrivateLinkEndpointServiceArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -474,7 +474,7 @@ public class PrivateLinkEndpointService extends com.pulumi.resources.CustomResou
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static PrivateLinkEndpointService get(String name, Output<String> id, @Nullable PrivateLinkEndpointServiceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static PrivateLinkEndpointService get(java.lang.String name, Output<java.lang.String> id, @Nullable PrivateLinkEndpointServiceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new PrivateLinkEndpointService(name, id, state, options);
     }
 }

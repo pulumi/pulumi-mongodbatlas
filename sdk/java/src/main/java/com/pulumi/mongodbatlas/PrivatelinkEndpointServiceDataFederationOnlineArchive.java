@@ -185,7 +185,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public PrivatelinkEndpointServiceDataFederationOnlineArchive(String name) {
+    public PrivatelinkEndpointServiceDataFederationOnlineArchive(java.lang.String name) {
         this(name, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.Empty);
     }
     /**
@@ -193,7 +193,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public PrivatelinkEndpointServiceDataFederationOnlineArchive(String name, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args) {
+    public PrivatelinkEndpointServiceDataFederationOnlineArchive(java.lang.String name, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args) {
         this(name, args, null);
     }
     /**
@@ -202,12 +202,12 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public PrivatelinkEndpointServiceDataFederationOnlineArchive(String name, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public PrivatelinkEndpointServiceDataFederationOnlineArchive(java.lang.String name, PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private PrivatelinkEndpointServiceDataFederationOnlineArchive(String name, Output<String> id, @Nullable PrivatelinkEndpointServiceDataFederationOnlineArchiveState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive", name, state, makeResourceOptions(options, id));
+    private PrivatelinkEndpointServiceDataFederationOnlineArchive(java.lang.String name, Output<java.lang.String> id, @Nullable PrivatelinkEndpointServiceDataFederationOnlineArchiveState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive", name, state, makeResourceOptions(options, id), false);
     }
 
     private static PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs makeArgs(PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -217,7 +217,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
         return args == null ? PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -233,7 +233,7 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static PrivatelinkEndpointServiceDataFederationOnlineArchive get(String name, Output<String> id, @Nullable PrivatelinkEndpointServiceDataFederationOnlineArchiveState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static PrivatelinkEndpointServiceDataFederationOnlineArchive get(java.lang.String name, Output<java.lang.String> id, @Nullable PrivatelinkEndpointServiceDataFederationOnlineArchiveState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new PrivatelinkEndpointServiceDataFederationOnlineArchive(name, id, state, options);
     }
 }

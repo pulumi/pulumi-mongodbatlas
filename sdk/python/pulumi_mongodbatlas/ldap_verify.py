@@ -344,17 +344,17 @@ class LdapVerify(pulumi.CustomResource):
             name="NAME OF THE CLUSTER",
             cluster_type="REPLICASET",
             backup_enabled=True,
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    priority=7,
-                    provider_name="AWS",
-                    region_name="US_EAST_1",
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                        node_count=3,
-                    ),
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
         test_ldap_verify = mongodbatlas.LdapVerify("test",
             project_id=test.id,
             hostname="HOSTNAME",
@@ -408,17 +408,17 @@ class LdapVerify(pulumi.CustomResource):
             name="NAME OF THE CLUSTER",
             cluster_type="REPLICASET",
             backup_enabled=True,
-            replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-                region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                    priority=7,
-                    provider_name="AWS",
-                    region_name="US_EAST_1",
-                    electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                        instance_size="M10",
-                        node_count=3,
-                    ),
-                )],
-            )])
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
         test_ldap_verify = mongodbatlas.LdapVerify("test",
             project_id=test.id,
             hostname="HOSTNAME",
@@ -504,12 +504,12 @@ class LdapVerify(pulumi.CustomResource):
             bind_username: Optional[pulumi.Input[str]] = None,
             ca_certificate: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
-            links: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LdapVerifyLinkArgs']]]]] = None,
+            links: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyLinkArgs', 'LdapVerifyLinkArgsDict']]]]] = None,
             port: Optional[pulumi.Input[int]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             request_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
-            validations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LdapVerifyValidationArgs']]]]] = None) -> 'LdapVerify':
+            validations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyValidationArgs', 'LdapVerifyValidationArgsDict']]]]] = None) -> 'LdapVerify':
         """
         Get an existing LdapVerify resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -522,12 +522,12 @@ class LdapVerify(pulumi.CustomResource):
         :param pulumi.Input[str] bind_username: The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
         :param pulumi.Input[str] ca_certificate: CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
         :param pulumi.Input[str] hostname: The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LdapVerifyLinkArgs']]]] links: One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyLinkArgs', 'LdapVerifyLinkArgsDict']]]] links: One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
         :param pulumi.Input[int] port: The port to which the LDAP server listens for client connections. Default: `636`
         :param pulumi.Input[str] project_id: The unique ID for the project to configure LDAP.
         :param pulumi.Input[str] request_id: The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
         :param pulumi.Input[str] status: The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LdapVerifyValidationArgs']]]] validations: Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyValidationArgs', 'LdapVerifyValidationArgsDict']]]] validations: Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

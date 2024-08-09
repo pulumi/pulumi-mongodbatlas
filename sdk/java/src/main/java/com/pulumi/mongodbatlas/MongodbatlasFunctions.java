@@ -3604,12 +3604,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .name("clusterTest")
@@ -3672,7 +3672,7 @@ public final class MongodbatlasFunctions {
      * 
      *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()
      *             .projectId("<PROJECT-ID>")
-     *             .authorizedEmail("user{@literal @}email.com")
+     *             .authorizedEmail("user}{@literal @}{@code email.com")
      *             .authorizedUserFirstName("First")
      *             .authorizedUserLastName("Last")
      *             .copyProtectionEnabled(false)
@@ -3711,8 +3711,8 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
@@ -3760,12 +3760,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .name("clusterTest")
@@ -3828,7 +3828,7 @@ public final class MongodbatlasFunctions {
      * 
      *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()
      *             .projectId("<PROJECT-ID>")
-     *             .authorizedEmail("user{@literal @}email.com")
+     *             .authorizedEmail("user}{@literal @}{@code email.com")
      *             .authorizedUserFirstName("First")
      *             .authorizedUserLastName("Last")
      *             .copyProtectionEnabled(false)
@@ -3867,8 +3867,8 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
@@ -3916,12 +3916,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .name("clusterTest")
@@ -3984,7 +3984,7 @@ public final class MongodbatlasFunctions {
      * 
      *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()
      *             .projectId("<PROJECT-ID>")
-     *             .authorizedEmail("user{@literal @}email.com")
+     *             .authorizedEmail("user}{@literal @}{@code email.com")
      *             .authorizedUserFirstName("First")
      *             .authorizedUserLastName("Last")
      *             .copyProtectionEnabled(false)
@@ -4023,8 +4023,8 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
@@ -4072,12 +4072,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .name("clusterTest")
@@ -4140,7 +4140,7 @@ public final class MongodbatlasFunctions {
      * 
      *         var backupPolicyBackupCompliancePolicy = new BackupCompliancePolicy("backupPolicyBackupCompliancePolicy", BackupCompliancePolicyArgs.builder()
      *             .projectId("<PROJECT-ID>")
-     *             .authorizedEmail("user{@literal @}email.com")
+     *             .authorizedEmail("user}{@literal @}{@code email.com")
      *             .authorizedUserFirstName("First")
      *             .authorizedUserLastName("Last")
      *             .copyProtectionEnabled(false)
@@ -4179,8 +4179,8 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;

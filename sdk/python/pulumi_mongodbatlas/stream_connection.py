@@ -302,15 +302,15 @@ class StreamConnection(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authentication: Optional[pulumi.Input[pulumi.InputType['StreamConnectionAuthenticationArgs']]] = None,
+                 authentication: Optional[pulumi.Input[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
                  bootstrap_servers: Optional[pulumi.Input[str]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  connection_name: Optional[pulumi.Input[str]] = None,
-                 db_role_to_execute: Optional[pulumi.Input[pulumi.InputType['StreamConnectionDbRoleToExecuteArgs']]] = None,
+                 db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 security: Optional[pulumi.Input[pulumi.InputType['StreamConnectionSecurityArgs']]] = None,
+                 security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -347,14 +347,14 @@ class StreamConnection(pulumi.CustomResource):
             instance_name="NewInstance",
             connection_name="KafkaConnection",
             type="Kafka",
-            authentication=mongodbatlas.StreamConnectionAuthenticationArgs(
-                mechanism="SCRAM-256",
-                username="user",
-                password="somepassword",
-            ),
-            security=mongodbatlas.StreamConnectionSecurityArgs(
-                protocol="PLAINTEXT",
-            ),
+            authentication={
+                "mechanism": "SCRAM-256",
+                "username": "user",
+                "password": "somepassword",
+            },
+            security={
+                "protocol": "PLAINTEXT",
+            },
             config={
                 "auto.offset.reset": "latest",
             },
@@ -418,14 +418,14 @@ class StreamConnection(pulumi.CustomResource):
             instance_name="NewInstance",
             connection_name="KafkaConnection",
             type="Kafka",
-            authentication=mongodbatlas.StreamConnectionAuthenticationArgs(
-                mechanism="SCRAM-256",
-                username="user",
-                password="somepassword",
-            ),
-            security=mongodbatlas.StreamConnectionSecurityArgs(
-                protocol="PLAINTEXT",
-            ),
+            authentication={
+                "mechanism": "SCRAM-256",
+                "username": "user",
+                "password": "somepassword",
+            },
+            security={
+                "protocol": "PLAINTEXT",
+            },
             config={
                 "auto.offset.reset": "latest",
             },
@@ -457,15 +457,15 @@ class StreamConnection(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authentication: Optional[pulumi.Input[pulumi.InputType['StreamConnectionAuthenticationArgs']]] = None,
+                 authentication: Optional[pulumi.Input[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
                  bootstrap_servers: Optional[pulumi.Input[str]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  connection_name: Optional[pulumi.Input[str]] = None,
-                 db_role_to_execute: Optional[pulumi.Input[pulumi.InputType['StreamConnectionDbRoleToExecuteArgs']]] = None,
+                 db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 security: Optional[pulumi.Input[pulumi.InputType['StreamConnectionSecurityArgs']]] = None,
+                 security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -504,15 +504,15 @@ class StreamConnection(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            authentication: Optional[pulumi.Input[pulumi.InputType['StreamConnectionAuthenticationArgs']]] = None,
+            authentication: Optional[pulumi.Input[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
             bootstrap_servers: Optional[pulumi.Input[str]] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
             config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             connection_name: Optional[pulumi.Input[str]] = None,
-            db_role_to_execute: Optional[pulumi.Input[pulumi.InputType['StreamConnectionDbRoleToExecuteArgs']]] = None,
+            db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            security: Optional[pulumi.Input[pulumi.InputType['StreamConnectionSecurityArgs']]] = None,
+            security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'StreamConnection':
         """
         Get an existing StreamConnection resource's state with the given name, id, and optional extra
