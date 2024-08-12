@@ -241,7 +241,7 @@ public class CustomDbRole extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public CustomDbRole(String name) {
+    public CustomDbRole(java.lang.String name) {
         this(name, CustomDbRoleArgs.Empty);
     }
     /**
@@ -249,7 +249,7 @@ public class CustomDbRole extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public CustomDbRole(String name, CustomDbRoleArgs args) {
+    public CustomDbRole(java.lang.String name, CustomDbRoleArgs args) {
         this(name, args, null);
     }
     /**
@@ -258,12 +258,12 @@ public class CustomDbRole extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public CustomDbRole(String name, CustomDbRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/customDbRole:CustomDbRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public CustomDbRole(java.lang.String name, CustomDbRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/customDbRole:CustomDbRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private CustomDbRole(String name, Output<String> id, @Nullable CustomDbRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/customDbRole:CustomDbRole", name, state, makeResourceOptions(options, id));
+    private CustomDbRole(java.lang.String name, Output<java.lang.String> id, @Nullable CustomDbRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/customDbRole:CustomDbRole", name, state, makeResourceOptions(options, id), false);
     }
 
     private static CustomDbRoleArgs makeArgs(CustomDbRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -273,7 +273,7 @@ public class CustomDbRole extends com.pulumi.resources.CustomResource {
         return args == null ? CustomDbRoleArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -289,7 +289,7 @@ public class CustomDbRole extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static CustomDbRole get(String name, Output<String> id, @Nullable CustomDbRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static CustomDbRole get(java.lang.String name, Output<java.lang.String> id, @Nullable CustomDbRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new CustomDbRole(name, id, state, options);
     }
 }

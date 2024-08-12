@@ -151,7 +151,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public X509AuthenticationDatabaseUser(String name) {
+    public X509AuthenticationDatabaseUser(java.lang.String name) {
         this(name, X509AuthenticationDatabaseUserArgs.Empty);
     }
     /**
@@ -159,7 +159,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public X509AuthenticationDatabaseUser(String name, X509AuthenticationDatabaseUserArgs args) {
+    public X509AuthenticationDatabaseUser(java.lang.String name, X509AuthenticationDatabaseUserArgs args) {
         this(name, args, null);
     }
     /**
@@ -168,12 +168,12 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public X509AuthenticationDatabaseUser(String name, X509AuthenticationDatabaseUserArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public X509AuthenticationDatabaseUser(java.lang.String name, X509AuthenticationDatabaseUserArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private X509AuthenticationDatabaseUser(String name, Output<String> id, @Nullable X509AuthenticationDatabaseUserState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser", name, state, makeResourceOptions(options, id));
+    private X509AuthenticationDatabaseUser(java.lang.String name, Output<java.lang.String> id, @Nullable X509AuthenticationDatabaseUserState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser", name, state, makeResourceOptions(options, id), false);
     }
 
     private static X509AuthenticationDatabaseUserArgs makeArgs(X509AuthenticationDatabaseUserArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -183,7 +183,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
         return args == null ? X509AuthenticationDatabaseUserArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -203,7 +203,7 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static X509AuthenticationDatabaseUser get(String name, Output<String> id, @Nullable X509AuthenticationDatabaseUserState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static X509AuthenticationDatabaseUser get(java.lang.String name, Output<java.lang.String> id, @Nullable X509AuthenticationDatabaseUserState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new X509AuthenticationDatabaseUser(name, id, state, options);
     }
 }

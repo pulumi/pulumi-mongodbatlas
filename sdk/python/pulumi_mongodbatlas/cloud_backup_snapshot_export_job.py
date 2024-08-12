@@ -336,7 +336,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotExportJobCustomDataArgs']]]]] = None,
+                 custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]]] = None,
                  export_bucket_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
@@ -366,10 +366,10 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             cluster_name="{CLUSTER_NAME}",
             snapshot_id="{SNAPSHOT_ID}",
             export_bucket_id=test.export_bucket_id,
-            custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
-                key="exported by",
-                value="myName",
-            )])
+            custom_datas=[{
+                "key": "exported by",
+                "value": "myName",
+            }])
         ```
 
         ### Create backup and automatic snapshot export policies
@@ -387,34 +387,34 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             project_id="{PROJECT_ID}",
             cluster_name="{CLUSTER_NAME}",
             auto_export_enabled=True,
-            export=mongodbatlas.CloudBackupScheduleExportArgs(
-                export_bucket_id=export.export_bucket_id,
-                frequency_type="daily",
-            ),
+            export={
+                "export_bucket_id": export.export_bucket_id,
+                "frequency_type": "daily",
+            },
             use_org_and_group_names_in_export_prefix=True,
             reference_hour_of_day=7,
             reference_minute_of_hour=0,
             restore_window_days=5,
-            policy_item_hourly=mongodbatlas.CloudBackupSchedulePolicyItemHourlyArgs(
-                frequency_interval=6,
-                retention_unit="days",
-                retention_value=7,
-            ),
-            policy_item_daily=mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs(
-                frequency_interval=1,
-                retention_unit="days",
-                retention_value=7,
-            ),
-            policy_item_weeklies=[mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArgs(
-                frequency_interval=6,
-                retention_unit="weeks",
-                retention_value=4,
-            )],
-            policy_item_monthlies=[mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArgs(
-                frequency_interval=28,
-                retention_unit="months",
-                retention_value=12,
-            )])
+            policy_item_hourly={
+                "frequency_interval": 6,
+                "retention_unit": "days",
+                "retention_value": 7,
+            },
+            policy_item_daily={
+                "frequency_interval": 1,
+                "retention_unit": "days",
+                "retention_value": 7,
+            },
+            policy_item_weeklies=[{
+                "frequency_interval": 6,
+                "retention_unit": "weeks",
+                "retention_value": 4,
+            }],
+            policy_item_monthlies=[{
+                "frequency_interval": 28,
+                "retention_unit": "months",
+                "retention_value": 12,
+            }])
         ```
 
         ## Import
@@ -429,7 +429,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Name of the Atlas cluster whose snapshot you want to export.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotExportJobCustomDataArgs']]]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         :param pulumi.Input[str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the Get All Cloud Backups
@@ -465,10 +465,10 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             cluster_name="{CLUSTER_NAME}",
             snapshot_id="{SNAPSHOT_ID}",
             export_bucket_id=test.export_bucket_id,
-            custom_datas=[mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs(
-                key="exported by",
-                value="myName",
-            )])
+            custom_datas=[{
+                "key": "exported by",
+                "value": "myName",
+            }])
         ```
 
         ### Create backup and automatic snapshot export policies
@@ -486,34 +486,34 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             project_id="{PROJECT_ID}",
             cluster_name="{CLUSTER_NAME}",
             auto_export_enabled=True,
-            export=mongodbatlas.CloudBackupScheduleExportArgs(
-                export_bucket_id=export.export_bucket_id,
-                frequency_type="daily",
-            ),
+            export={
+                "export_bucket_id": export.export_bucket_id,
+                "frequency_type": "daily",
+            },
             use_org_and_group_names_in_export_prefix=True,
             reference_hour_of_day=7,
             reference_minute_of_hour=0,
             restore_window_days=5,
-            policy_item_hourly=mongodbatlas.CloudBackupSchedulePolicyItemHourlyArgs(
-                frequency_interval=6,
-                retention_unit="days",
-                retention_value=7,
-            ),
-            policy_item_daily=mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs(
-                frequency_interval=1,
-                retention_unit="days",
-                retention_value=7,
-            ),
-            policy_item_weeklies=[mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArgs(
-                frequency_interval=6,
-                retention_unit="weeks",
-                retention_value=4,
-            )],
-            policy_item_monthlies=[mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArgs(
-                frequency_interval=28,
-                retention_unit="months",
-                retention_value=12,
-            )])
+            policy_item_hourly={
+                "frequency_interval": 6,
+                "retention_unit": "days",
+                "retention_value": 7,
+            },
+            policy_item_daily={
+                "frequency_interval": 1,
+                "retention_unit": "days",
+                "retention_value": 7,
+            },
+            policy_item_weeklies=[{
+                "frequency_interval": 6,
+                "retention_unit": "weeks",
+                "retention_value": 4,
+            }],
+            policy_item_monthlies=[{
+                "frequency_interval": 28,
+                "retention_unit": "months",
+                "retention_value": 12,
+            }])
         ```
 
         ## Import
@@ -541,7 +541,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotExportJobCustomDataArgs']]]]] = None,
+                 custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]]] = None,
                  export_bucket_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
@@ -589,9 +589,9 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
-            components: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotExportJobComponentArgs']]]]] = None,
+            components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobComponentArgs', 'CloudBackupSnapshotExportJobComponentArgsDict']]]]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
-            custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotExportJobCustomDataArgs']]]]] = None,
+            custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]]] = None,
             err_msg: Optional[pulumi.Input[str]] = None,
             export_bucket_id: Optional[pulumi.Input[str]] = None,
             export_job_id: Optional[pulumi.Input[str]] = None,
@@ -610,9 +610,9 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Name of the Atlas cluster whose snapshot you want to export.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotExportJobComponentArgs']]]] components: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobComponentArgs', 'CloudBackupSnapshotExportJobComponentArgsDict']]]] components: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param pulumi.Input[str] created_at: Timestamp in ISO 8601 date and time format in UTC when the export job was created.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudBackupSnapshotExportJobCustomDataArgs']]]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         :param pulumi.Input[str] err_msg: Error message, only if the export job failed. **Note:** This attribute is deprecated as it is not being used.
         :param pulumi.Input[str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the Get All Snapshot Export Buckets
         :param pulumi.Input[str] export_job_id: Unique identifier of the export job.

@@ -260,7 +260,7 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public OrgInvitation(String name) {
+    public OrgInvitation(java.lang.String name) {
         this(name, OrgInvitationArgs.Empty);
     }
     /**
@@ -268,7 +268,7 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public OrgInvitation(String name, OrgInvitationArgs args) {
+    public OrgInvitation(java.lang.String name, OrgInvitationArgs args) {
         this(name, args, null);
     }
     /**
@@ -277,12 +277,12 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public OrgInvitation(String name, OrgInvitationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/orgInvitation:OrgInvitation", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public OrgInvitation(java.lang.String name, OrgInvitationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/orgInvitation:OrgInvitation", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private OrgInvitation(String name, Output<String> id, @Nullable OrgInvitationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/orgInvitation:OrgInvitation", name, state, makeResourceOptions(options, id));
+    private OrgInvitation(java.lang.String name, Output<java.lang.String> id, @Nullable OrgInvitationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/orgInvitation:OrgInvitation", name, state, makeResourceOptions(options, id), false);
     }
 
     private static OrgInvitationArgs makeArgs(OrgInvitationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -292,7 +292,7 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
         return args == null ? OrgInvitationArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -308,7 +308,7 @@ public class OrgInvitation extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static OrgInvitation get(String name, Output<String> id, @Nullable OrgInvitationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static OrgInvitation get(java.lang.String name, Output<java.lang.String> id, @Nullable OrgInvitationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new OrgInvitation(name, id, state, options);
     }
 }

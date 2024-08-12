@@ -77,7 +77,7 @@ import (
 //				Audience:             pulumi.Any(tokenAudience),
 //				AuthorizationType:    pulumi.String("USER"),
 //				Description:          pulumi.String("oidc"),
-//				IssuerUri:            pulumi.String(fmt.Sprintf("https://sts.windows.net/%v/", thisAzurermUserAssignedIdentity.TenantId)),
+//				IssuerUri:            pulumi.Sprintf("https://sts.windows.net/%v/", thisAzurermUserAssignedIdentity.TenantId),
 //				IdpType:              pulumi.String("WORKLOAD"),
 //				Name:                 pulumi.String("OIDC-for-azure"),
 //				Protocol:             pulumi.String("OIDC"),

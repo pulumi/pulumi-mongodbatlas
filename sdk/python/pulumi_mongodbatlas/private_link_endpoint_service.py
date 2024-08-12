@@ -433,7 +433,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  endpoint_service_id: Optional[pulumi.Input[str]] = None,
-                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateLinkEndpointServiceEndpointArgs']]]]] = None,
+                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]]] = None,
                  gcp_project_id: Optional[pulumi.Input[str]] = None,
                  private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
                  private_link_id: Optional[pulumi.Input[str]] = None,
@@ -552,10 +552,10 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                 network=default.id,
                 load_balancing_scheme=))
         test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
-            endpoints=[mongodbatlas.PrivateLinkEndpointServiceEndpointArgs(
-                ip_address=entry["value"]["address"],
-                endpoint_name=default_compute_forwarding_rule[entry["key"]]["name"],
-            ) for entry in [{"key": k, "value": v} for k, v in default_compute_address]],
+            endpoints=[{
+                "ip_address": entry["value"]["address"],
+                "endpoint_name": default_compute_forwarding_rule[entry["key"]]["name"],
+            } for entry in [{"key": k, "value": v} for k, v in default_compute_address]],
             project_id=test.project_id,
             private_link_id=test.private_link_id,
             provider_name="GCP",
@@ -579,7 +579,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateLinkEndpointServiceEndpointArgs']]]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
         :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
         :param pulumi.Input[str] private_endpoint_ip_address: Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
         :param pulumi.Input[str] private_link_id: Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
@@ -704,10 +704,10 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                 network=default.id,
                 load_balancing_scheme=))
         test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
-            endpoints=[mongodbatlas.PrivateLinkEndpointServiceEndpointArgs(
-                ip_address=entry["value"]["address"],
-                endpoint_name=default_compute_forwarding_rule[entry["key"]]["name"],
-            ) for entry in [{"key": k, "value": v} for k, v in default_compute_address]],
+            endpoints=[{
+                "ip_address": entry["value"]["address"],
+                "endpoint_name": default_compute_forwarding_rule[entry["key"]]["name"],
+            } for entry in [{"key": k, "value": v} for k, v in default_compute_address]],
             project_id=test.project_id,
             private_link_id=test.private_link_id,
             provider_name="GCP",
@@ -744,7 +744,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  endpoint_service_id: Optional[pulumi.Input[str]] = None,
-                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateLinkEndpointServiceEndpointArgs']]]]] = None,
+                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]]] = None,
                  gcp_project_id: Optional[pulumi.Input[str]] = None,
                  private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
                  private_link_id: Optional[pulumi.Input[str]] = None,
@@ -798,7 +798,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             delete_requested: Optional[pulumi.Input[bool]] = None,
             endpoint_group_name: Optional[pulumi.Input[str]] = None,
             endpoint_service_id: Optional[pulumi.Input[str]] = None,
-            endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateLinkEndpointServiceEndpointArgs']]]]] = None,
+            endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]]] = None,
             error_message: Optional[pulumi.Input[str]] = None,
             gcp_project_id: Optional[pulumi.Input[str]] = None,
             gcp_status: Optional[pulumi.Input[str]] = None,
@@ -833,7 +833,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param pulumi.Input[bool] delete_requested: Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
         :param pulumi.Input[str] endpoint_group_name: (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
         :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateLinkEndpointServiceEndpointArgs']]]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
         :param pulumi.Input[str] error_message: Error message pertaining to the interface endpoint. Returns null if there are no errors.
         :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
         :param pulumi.Input[str] gcp_status: Status of the interface endpoint for GCP.

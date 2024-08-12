@@ -18,6 +18,12 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ## ## Attributes Reference
+ *
+ * In addition to all arguments above, the following attributes are exported:
+ *
+ * * `apiKeyId` - Unique identifier for this Organization API key.
+ *
  * ## Import
  *
  * API Keys must be imported using org ID, API Key ID e.g.
@@ -55,9 +61,6 @@ export class ApiKey extends pulumi.CustomResource {
         return obj['__pulumiType'] === ApiKey.__pulumiType;
     }
 
-    /**
-     * Unique identifier for this Organization API key.
-     */
     public /*out*/ readonly apiKeyId!: pulumi.Output<string>;
     /**
      * Description of this Organization API key.
@@ -77,10 +80,6 @@ export class ApiKey extends pulumi.CustomResource {
      * * `ORG_BILLING_ADMIN`
      * * `ORG_READ_ONLY`
      * * `ORG_MEMBER`
-     *
-     * ## Attributes Reference
-     *
-     * In addition to all arguments above, the following attributes are exported:
      */
     public readonly roleNames!: pulumi.Output<string[]>;
 
@@ -132,9 +131,6 @@ export class ApiKey extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ApiKey resources.
  */
 export interface ApiKeyState {
-    /**
-     * Unique identifier for this Organization API key.
-     */
     apiKeyId?: pulumi.Input<string>;
     /**
      * Description of this Organization API key.
@@ -154,10 +150,6 @@ export interface ApiKeyState {
      * * `ORG_BILLING_ADMIN`
      * * `ORG_READ_ONLY`
      * * `ORG_MEMBER`
-     *
-     * ## Attributes Reference
-     *
-     * In addition to all arguments above, the following attributes are exported:
      */
     roleNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -182,10 +174,6 @@ export interface ApiKeyArgs {
      * * `ORG_BILLING_ADMIN`
      * * `ORG_READ_ONLY`
      * * `ORG_MEMBER`
-     *
-     * ## Attributes Reference
-     *
-     * In addition to all arguments above, the following attributes are exported:
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
 }

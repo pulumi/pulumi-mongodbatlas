@@ -165,7 +165,7 @@ public class AccessListApiKey extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AccessListApiKey(String name) {
+    public AccessListApiKey(java.lang.String name) {
         this(name, AccessListApiKeyArgs.Empty);
     }
     /**
@@ -173,7 +173,7 @@ public class AccessListApiKey extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AccessListApiKey(String name, AccessListApiKeyArgs args) {
+    public AccessListApiKey(java.lang.String name, AccessListApiKeyArgs args) {
         this(name, args, null);
     }
     /**
@@ -182,12 +182,12 @@ public class AccessListApiKey extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AccessListApiKey(String name, AccessListApiKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/accessListApiKey:AccessListApiKey", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public AccessListApiKey(java.lang.String name, AccessListApiKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/accessListApiKey:AccessListApiKey", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AccessListApiKey(String name, Output<String> id, @Nullable AccessListApiKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/accessListApiKey:AccessListApiKey", name, state, makeResourceOptions(options, id));
+    private AccessListApiKey(java.lang.String name, Output<java.lang.String> id, @Nullable AccessListApiKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/accessListApiKey:AccessListApiKey", name, state, makeResourceOptions(options, id), false);
     }
 
     private static AccessListApiKeyArgs makeArgs(AccessListApiKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -197,7 +197,7 @@ public class AccessListApiKey extends com.pulumi.resources.CustomResource {
         return args == null ? AccessListApiKeyArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -213,7 +213,7 @@ public class AccessListApiKey extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AccessListApiKey get(String name, Output<String> id, @Nullable AccessListApiKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AccessListApiKey get(java.lang.String name, Output<java.lang.String> id, @Nullable AccessListApiKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AccessListApiKey(name, id, state, options);
     }
 }

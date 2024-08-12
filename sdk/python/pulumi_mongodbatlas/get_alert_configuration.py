@@ -164,7 +164,7 @@ class AwaitableGetAlertConfigurationResult(GetAlertConfigurationResult):
 
 
 def get_alert_configuration(alert_configuration_id: Optional[str] = None,
-                            outputs: Optional[Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']]] = None,
+                            outputs: Optional[Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']]] = None,
                             project_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlertConfigurationResult:
     """
@@ -184,25 +184,25 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
         project_id="<PROJECT-ID>",
         event_type="OUTSIDE_METRIC_THRESHOLD",
         enabled=True,
-        notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-            type_name="GROUP",
-            interval_min=5,
-            delay_min=0,
-            sms_enabled=False,
-            email_enabled=True,
-        )],
-        matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
-            field_name="HOSTNAME_AND_PORT",
-            operator="EQUALS",
-            value="SECONDARY",
-        )],
-        metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
-            metric_name="ASSERT_REGULAR",
-            operator="LESS_THAN",
-            threshold=99,
-            units="RAW",
-            mode="AVERAGE",
-        ))
+        notifications=[{
+            "type_name": "GROUP",
+            "interval_min": 5,
+            "delay_min": 0,
+            "sms_enabled": False,
+            "email_enabled": True,
+        }],
+        matchers=[{
+            "field_name": "HOSTNAME_AND_PORT",
+            "operator": "EQUALS",
+            "value": "SECONDARY",
+        }],
+        metric_threshold_config={
+            "metric_name": "ASSERT_REGULAR",
+            "operator": "LESS_THAN",
+            "threshold": 99,
+            "units": "RAW",
+            "mode": "AVERAGE",
+        })
     test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
         alert_configuration_id=test_alert_configuration.alert_configuration_id)
     ```
@@ -217,24 +217,24 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
         project_id="<PROJECT-ID>",
         event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
         enabled=True,
-        notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-            type_name="GROUP",
-            interval_min=5,
-            delay_min=0,
-            sms_enabled=False,
-            email_enabled=True,
-            roles=["GROUP_CLUSTER_MANAGER"],
-        )],
-        matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
-            field_name="HOSTNAME_AND_PORT",
-            operator="EQUALS",
-            value="SECONDARY",
-        )],
-        threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
-            operator="LESS_THAN",
-            threshold=1,
-            units="HOURS",
-        ))
+        notifications=[{
+            "type_name": "GROUP",
+            "interval_min": 5,
+            "delay_min": 0,
+            "sms_enabled": False,
+            "email_enabled": True,
+            "roles": ["GROUP_CLUSTER_MANAGER"],
+        }],
+        matchers=[{
+            "field_name": "HOSTNAME_AND_PORT",
+            "operator": "EQUALS",
+            "value": "SECONDARY",
+        }],
+        threshold_config={
+            "operator": "LESS_THAN",
+            "threshold": 1,
+            "units": "HOURS",
+        })
     test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
         alert_configuration_id=test_alert_configuration.alert_configuration_id)
     ```
@@ -247,20 +247,20 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
     test = mongodbatlas.get_alert_configuration(project_id=project_id,
         alert_configuration_id=alert_configuration_id,
         outputs=[
-            mongodbatlas.GetAlertConfigurationOutputArgs(
-                type="resource_hcl",
-                label="test",
-            ),
-            mongodbatlas.GetAlertConfigurationOutputArgs(
-                type="resource_import",
-                label="test",
-            ),
+            {
+                "type": "resource_hcl",
+                "label": "test",
+            },
+            {
+                "type": "resource_import",
+                "label": "test",
+            },
         ])
     ```
 
 
     :param str alert_configuration_id: Unique identifier for the alert configuration.
-    :param Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']] outputs: List of formatted output requested for this alert configuration
+    :param Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']] outputs: List of formatted output requested for this alert configuration
            * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
     :param str project_id: The ID of the project where the alert configuration will create.
     """
@@ -288,7 +288,7 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
 
 @_utilities.lift_output_func(get_alert_configuration)
 def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input[str]] = None,
-                                   outputs: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']]]]] = None,
+                                   outputs: Optional[pulumi.Input[Optional[Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']]]]] = None,
                                    project_id: Optional[pulumi.Input[str]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAlertConfigurationResult]:
     """
@@ -308,25 +308,25 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
         project_id="<PROJECT-ID>",
         event_type="OUTSIDE_METRIC_THRESHOLD",
         enabled=True,
-        notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-            type_name="GROUP",
-            interval_min=5,
-            delay_min=0,
-            sms_enabled=False,
-            email_enabled=True,
-        )],
-        matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
-            field_name="HOSTNAME_AND_PORT",
-            operator="EQUALS",
-            value="SECONDARY",
-        )],
-        metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
-            metric_name="ASSERT_REGULAR",
-            operator="LESS_THAN",
-            threshold=99,
-            units="RAW",
-            mode="AVERAGE",
-        ))
+        notifications=[{
+            "type_name": "GROUP",
+            "interval_min": 5,
+            "delay_min": 0,
+            "sms_enabled": False,
+            "email_enabled": True,
+        }],
+        matchers=[{
+            "field_name": "HOSTNAME_AND_PORT",
+            "operator": "EQUALS",
+            "value": "SECONDARY",
+        }],
+        metric_threshold_config={
+            "metric_name": "ASSERT_REGULAR",
+            "operator": "LESS_THAN",
+            "threshold": 99,
+            "units": "RAW",
+            "mode": "AVERAGE",
+        })
     test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
         alert_configuration_id=test_alert_configuration.alert_configuration_id)
     ```
@@ -341,24 +341,24 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
         project_id="<PROJECT-ID>",
         event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
         enabled=True,
-        notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
-            type_name="GROUP",
-            interval_min=5,
-            delay_min=0,
-            sms_enabled=False,
-            email_enabled=True,
-            roles=["GROUP_CLUSTER_MANAGER"],
-        )],
-        matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
-            field_name="HOSTNAME_AND_PORT",
-            operator="EQUALS",
-            value="SECONDARY",
-        )],
-        threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
-            operator="LESS_THAN",
-            threshold=1,
-            units="HOURS",
-        ))
+        notifications=[{
+            "type_name": "GROUP",
+            "interval_min": 5,
+            "delay_min": 0,
+            "sms_enabled": False,
+            "email_enabled": True,
+            "roles": ["GROUP_CLUSTER_MANAGER"],
+        }],
+        matchers=[{
+            "field_name": "HOSTNAME_AND_PORT",
+            "operator": "EQUALS",
+            "value": "SECONDARY",
+        }],
+        threshold_config={
+            "operator": "LESS_THAN",
+            "threshold": 1,
+            "units": "HOURS",
+        })
     test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
         alert_configuration_id=test_alert_configuration.alert_configuration_id)
     ```
@@ -371,20 +371,20 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
     test = mongodbatlas.get_alert_configuration(project_id=project_id,
         alert_configuration_id=alert_configuration_id,
         outputs=[
-            mongodbatlas.GetAlertConfigurationOutputArgs(
-                type="resource_hcl",
-                label="test",
-            ),
-            mongodbatlas.GetAlertConfigurationOutputArgs(
-                type="resource_import",
-                label="test",
-            ),
+            {
+                "type": "resource_hcl",
+                "label": "test",
+            },
+            {
+                "type": "resource_import",
+                "label": "test",
+            },
         ])
     ```
 
 
     :param str alert_configuration_id: Unique identifier for the alert configuration.
-    :param Sequence[pulumi.InputType['GetAlertConfigurationOutputArgs']] outputs: List of formatted output requested for this alert configuration
+    :param Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']] outputs: List of formatted output requested for this alert configuration
            * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
     :param str project_id: The ID of the project where the alert configuration will create.
     """

@@ -352,7 +352,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public CloudBackupSnapshot(String name) {
+    public CloudBackupSnapshot(java.lang.String name) {
         this(name, CloudBackupSnapshotArgs.Empty);
     }
     /**
@@ -360,7 +360,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public CloudBackupSnapshot(String name, CloudBackupSnapshotArgs args) {
+    public CloudBackupSnapshot(java.lang.String name, CloudBackupSnapshotArgs args) {
         this(name, args, null);
     }
     /**
@@ -369,12 +369,12 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public CloudBackupSnapshot(String name, CloudBackupSnapshotArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public CloudBackupSnapshot(java.lang.String name, CloudBackupSnapshotArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private CloudBackupSnapshot(String name, Output<String> id, @Nullable CloudBackupSnapshotState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot", name, state, makeResourceOptions(options, id));
+    private CloudBackupSnapshot(java.lang.String name, Output<java.lang.String> id, @Nullable CloudBackupSnapshotState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot", name, state, makeResourceOptions(options, id), false);
     }
 
     private static CloudBackupSnapshotArgs makeArgs(CloudBackupSnapshotArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -384,7 +384,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
         return args == null ? CloudBackupSnapshotArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -400,7 +400,7 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static CloudBackupSnapshot get(String name, Output<String> id, @Nullable CloudBackupSnapshotState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static CloudBackupSnapshot get(java.lang.String name, Output<java.lang.String> id, @Nullable CloudBackupSnapshotState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new CloudBackupSnapshot(name, id, state, options);
     }
 }

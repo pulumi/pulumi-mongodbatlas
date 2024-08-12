@@ -124,10 +124,10 @@ def get_project_api_key(api_key_id: Optional[str] = None,
 
     test_project_api_key = mongodbatlas.ProjectApiKey("test",
         description="Description of your API key",
-        project_assignments=[mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-            project_id="64259ee860c43338194b0f8e",
-            role_names=["GROUP_READ_ONLY"],
-        )])
+        project_assignments=[{
+            "project_id": "64259ee860c43338194b0f8e",
+            "role_names": ["GROUP_READ_ONLY"],
+        }])
     test = mongodbatlas.get_project_api_key(project_id="64259ee860c43338194b0f8e",
         api_key_id=test_mongodbatlas_api_key["apiKeyId"])
     ```
@@ -166,10 +166,10 @@ def get_project_api_key_output(api_key_id: Optional[pulumi.Input[str]] = None,
 
     test_project_api_key = mongodbatlas.ProjectApiKey("test",
         description="Description of your API key",
-        project_assignments=[mongodbatlas.ProjectApiKeyProjectAssignmentArgs(
-            project_id="64259ee860c43338194b0f8e",
-            role_names=["GROUP_READ_ONLY"],
-        )])
+        project_assignments=[{
+            "project_id": "64259ee860c43338194b0f8e",
+            "role_names": ["GROUP_READ_ONLY"],
+        }])
     test = mongodbatlas.get_project_api_key(project_id="64259ee860c43338194b0f8e",
         api_key_id=test_mongodbatlas_api_key["apiKeyId"])
     ```

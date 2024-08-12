@@ -401,7 +401,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AlertConfiguration(String name) {
+    public AlertConfiguration(java.lang.String name) {
         this(name, AlertConfigurationArgs.Empty);
     }
     /**
@@ -409,7 +409,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AlertConfiguration(String name, AlertConfigurationArgs args) {
+    public AlertConfiguration(java.lang.String name, AlertConfigurationArgs args) {
         this(name, args, null);
     }
     /**
@@ -418,12 +418,12 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AlertConfiguration(String name, AlertConfigurationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/alertConfiguration:AlertConfiguration", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public AlertConfiguration(java.lang.String name, AlertConfigurationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/alertConfiguration:AlertConfiguration", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AlertConfiguration(String name, Output<String> id, @Nullable AlertConfigurationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/alertConfiguration:AlertConfiguration", name, state, makeResourceOptions(options, id));
+    private AlertConfiguration(java.lang.String name, Output<java.lang.String> id, @Nullable AlertConfigurationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/alertConfiguration:AlertConfiguration", name, state, makeResourceOptions(options, id), false);
     }
 
     private static AlertConfigurationArgs makeArgs(AlertConfigurationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -433,7 +433,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
         return args == null ? AlertConfigurationArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -449,7 +449,7 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AlertConfiguration get(String name, Output<String> id, @Nullable AlertConfigurationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AlertConfiguration get(java.lang.String name, Output<java.lang.String> id, @Nullable AlertConfigurationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AlertConfiguration(name, id, state, options);
     }
 }

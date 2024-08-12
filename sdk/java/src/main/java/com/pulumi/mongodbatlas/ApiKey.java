@@ -52,6 +52,12 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## ## Attributes Reference
+ * 
+ * In addition to all arguments above, the following attributes are exported:
+ * 
+ * * `api_key_id` - Unique identifier for this Organization API key.
+ * 
  * ## Import
  * 
  * API Keys must be imported using org ID, API Key ID e.g.
@@ -64,17 +70,9 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/apiKey:ApiKey")
 public class ApiKey extends com.pulumi.resources.CustomResource {
-    /**
-     * Unique identifier for this Organization API key.
-     * 
-     */
     @Export(name="apiKeyId", refs={String.class}, tree="[0]")
     private Output<String> apiKeyId;
 
-    /**
-     * @return Unique identifier for this Organization API key.
-     * 
-     */
     public Output<String> apiKeyId() {
         return this.apiKeyId;
     }
@@ -127,10 +125,6 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
      * * `ORG_READ_ONLY`
      * * `ORG_MEMBER`
      * 
-     * ## Attributes Reference
-     * 
-     * In addition to all arguments above, the following attributes are exported:
-     * 
      */
     @Export(name="roleNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> roleNames;
@@ -144,10 +138,6 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
      * * `ORG_READ_ONLY`
      * * `ORG_MEMBER`
      * 
-     * ## Attributes Reference
-     * 
-     * In addition to all arguments above, the following attributes are exported:
-     * 
      */
     public Output<List<String>> roleNames() {
         return this.roleNames;
@@ -157,7 +147,7 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ApiKey(String name) {
+    public ApiKey(java.lang.String name) {
         this(name, ApiKeyArgs.Empty);
     }
     /**
@@ -165,7 +155,7 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ApiKey(String name, ApiKeyArgs args) {
+    public ApiKey(java.lang.String name, ApiKeyArgs args) {
         this(name, args, null);
     }
     /**
@@ -174,12 +164,12 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ApiKey(String name, ApiKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/apiKey:ApiKey", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public ApiKey(java.lang.String name, ApiKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/apiKey:ApiKey", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ApiKey(String name, Output<String> id, @Nullable ApiKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/apiKey:ApiKey", name, state, makeResourceOptions(options, id));
+    private ApiKey(java.lang.String name, Output<java.lang.String> id, @Nullable ApiKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/apiKey:ApiKey", name, state, makeResourceOptions(options, id), false);
     }
 
     private static ApiKeyArgs makeArgs(ApiKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -189,7 +179,7 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
         return args == null ? ApiKeyArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -208,7 +198,7 @@ public class ApiKey extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ApiKey get(String name, Output<String> id, @Nullable ApiKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ApiKey get(java.lang.String name, Output<java.lang.String> id, @Nullable ApiKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ApiKey(name, id, state, options);
     }
 }

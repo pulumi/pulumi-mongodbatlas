@@ -169,8 +169,8 @@ class SearchDeployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchDeploymentSpecArgs']]]]] = None,
-                 timeouts: Optional[pulumi.Input[pulumi.InputType['SearchDeploymentTimeoutsArgs']]] = None,
+                 specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
+                 timeouts: Optional[pulumi.Input[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
         ## # Resource: SearchDeployment
@@ -187,7 +187,7 @@ class SearchDeployment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Label that identifies the cluster to return the search nodes for.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal character string that identifies the project.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchDeploymentSpecArgs']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
         ...
     @overload
@@ -223,8 +223,8 @@ class SearchDeployment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchDeploymentSpecArgs']]]]] = None,
-                 timeouts: Optional[pulumi.Input[pulumi.InputType['SearchDeploymentTimeoutsArgs']]] = None,
+                 specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
+                 timeouts: Optional[pulumi.Input[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -257,9 +257,9 @@ class SearchDeployment(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchDeploymentSpecArgs']]]]] = None,
+            specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
             state_name: Optional[pulumi.Input[str]] = None,
-            timeouts: Optional[pulumi.Input[pulumi.InputType['SearchDeploymentTimeoutsArgs']]] = None) -> 'SearchDeployment':
+            timeouts: Optional[pulumi.Input[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None) -> 'SearchDeployment':
         """
         Get an existing SearchDeployment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -269,7 +269,7 @@ class SearchDeployment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: Label that identifies the cluster to return the search nodes for.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal character string that identifies the project.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SearchDeploymentSpecArgs']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         :param pulumi.Input[str] state_name: Human-readable label that indicates the current operating condition of this search deployment.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
