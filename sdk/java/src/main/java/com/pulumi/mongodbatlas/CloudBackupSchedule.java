@@ -274,7 +274,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public CloudBackupSchedule(String name) {
+    public CloudBackupSchedule(java.lang.String name) {
         this(name, CloudBackupScheduleArgs.Empty);
     }
     /**
@@ -282,7 +282,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public CloudBackupSchedule(String name, CloudBackupScheduleArgs args) {
+    public CloudBackupSchedule(java.lang.String name, CloudBackupScheduleArgs args) {
         this(name, args, null);
     }
     /**
@@ -291,12 +291,12 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public CloudBackupSchedule(String name, CloudBackupScheduleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public CloudBackupSchedule(java.lang.String name, CloudBackupScheduleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private CloudBackupSchedule(String name, Output<String> id, @Nullable CloudBackupScheduleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule", name, state, makeResourceOptions(options, id));
+    private CloudBackupSchedule(java.lang.String name, Output<java.lang.String> id, @Nullable CloudBackupScheduleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule", name, state, makeResourceOptions(options, id), false);
     }
 
     private static CloudBackupScheduleArgs makeArgs(CloudBackupScheduleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -306,7 +306,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
         return args == null ? CloudBackupScheduleArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -322,7 +322,7 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static CloudBackupSchedule get(String name, Output<String> id, @Nullable CloudBackupScheduleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static CloudBackupSchedule get(java.lang.String name, Output<java.lang.String> id, @Nullable CloudBackupScheduleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new CloudBackupSchedule(name, id, state, options);
     }
 }

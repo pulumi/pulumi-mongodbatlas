@@ -152,7 +152,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessSetupAzureConfigArgs']]]]] = None,
+                 azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -184,7 +184,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessSetupAzureConfigArgs']]]]] = None,
+                 azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -217,8 +217,8 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessSetupAwsConfigArgs']]]]] = None,
-            azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessSetupAzureConfigArgs']]]]] = None,
+            aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAwsConfigArgs', 'CloudProviderAccessSetupAwsConfigArgsDict']]]]] = None,
+            azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
             created_date: Optional[pulumi.Input[str]] = None,
             last_updated_date: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,

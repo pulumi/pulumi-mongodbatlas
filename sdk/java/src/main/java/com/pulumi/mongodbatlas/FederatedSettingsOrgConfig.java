@@ -204,7 +204,7 @@ public class FederatedSettingsOrgConfig extends com.pulumi.resources.CustomResou
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public FederatedSettingsOrgConfig(String name) {
+    public FederatedSettingsOrgConfig(java.lang.String name) {
         this(name, FederatedSettingsOrgConfigArgs.Empty);
     }
     /**
@@ -212,7 +212,7 @@ public class FederatedSettingsOrgConfig extends com.pulumi.resources.CustomResou
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public FederatedSettingsOrgConfig(String name, FederatedSettingsOrgConfigArgs args) {
+    public FederatedSettingsOrgConfig(java.lang.String name, FederatedSettingsOrgConfigArgs args) {
         this(name, args, null);
     }
     /**
@@ -221,12 +221,12 @@ public class FederatedSettingsOrgConfig extends com.pulumi.resources.CustomResou
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public FederatedSettingsOrgConfig(String name, FederatedSettingsOrgConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public FederatedSettingsOrgConfig(java.lang.String name, FederatedSettingsOrgConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private FederatedSettingsOrgConfig(String name, Output<String> id, @Nullable FederatedSettingsOrgConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig", name, state, makeResourceOptions(options, id));
+    private FederatedSettingsOrgConfig(java.lang.String name, Output<java.lang.String> id, @Nullable FederatedSettingsOrgConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig", name, state, makeResourceOptions(options, id), false);
     }
 
     private static FederatedSettingsOrgConfigArgs makeArgs(FederatedSettingsOrgConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -236,7 +236,7 @@ public class FederatedSettingsOrgConfig extends com.pulumi.resources.CustomResou
         return args == null ? FederatedSettingsOrgConfigArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -252,7 +252,7 @@ public class FederatedSettingsOrgConfig extends com.pulumi.resources.CustomResou
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static FederatedSettingsOrgConfig get(String name, Output<String> id, @Nullable FederatedSettingsOrgConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static FederatedSettingsOrgConfig get(java.lang.String name, Output<java.lang.String> id, @Nullable FederatedSettingsOrgConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new FederatedSettingsOrgConfig(name, id, state, options);
     }
 }

@@ -89,7 +89,7 @@ class AwaitableGetGlobalClusterConfigResult(GetGlobalClusterConfigResult):
 
 
 def get_global_cluster_config(cluster_name: Optional[str] = None,
-                              managed_namespaces: Optional[Sequence[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']]] = None,
+                              managed_namespaces: Optional[Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']]] = None,
                               project_id: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGlobalClusterConfigResult:
     """
@@ -113,45 +113,45 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
         provider_name="AWS",
         provider_instance_size_name="M30",
         replication_specs=[
-            mongodbatlas.ClusterReplicationSpecArgs(
-                zone_name="Zone 1",
-                num_shards=2,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="EU_CENTRAL_1",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            ),
-            mongodbatlas.ClusterReplicationSpecArgs(
-                zone_name="Zone 2",
-                num_shards=2,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_2",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            ),
+            {
+                "zone_name": "Zone 1",
+                "num_shards": 2,
+                "regions_configs": [{
+                    "region_name": "EU_CENTRAL_1",
+                    "electable_nodes": 3,
+                    "priority": 7,
+                    "read_only_nodes": 0,
+                }],
+            },
+            {
+                "zone_name": "Zone 2",
+                "num_shards": 2,
+                "regions_configs": [{
+                    "region_name": "US_EAST_2",
+                    "electable_nodes": 3,
+                    "priority": 7,
+                    "read_only_nodes": 0,
+                }],
+            },
         ])
     config_global_cluster_config = mongodbatlas.GlobalClusterConfig("config",
         project_id=test.project_id,
         cluster_name=test.name,
-        managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
-            db="mydata",
-            collection="publishers",
-            custom_shard_key="city",
-        )],
-        custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
-            location="CA",
-            zone="Zone 1",
-        )])
+        managed_namespaces=[{
+            "db": "mydata",
+            "collection": "publishers",
+            "custom_shard_key": "city",
+        }],
+        custom_zone_mappings=[{
+            "location": "CA",
+            "zone": "Zone 1",
+        }])
     config = mongodbatlas.get_global_cluster_config_output(project_id=config_global_cluster_config.project_id,
         cluster_name=config_global_cluster_config.cluster_name)
     ```
 
 
-    :param Sequence[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+    :param Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
     :param str project_id: The unique ID for the project to create the database user.
            * `cluster_name - (Required) The name of the Global Cluster.
     """
@@ -172,7 +172,7 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_global_cluster_config)
 def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[str]] = None,
-                                     managed_namespaces: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']]]]] = None,
+                                     managed_namespaces: Optional[pulumi.Input[Optional[Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
                                      project_id: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGlobalClusterConfigResult]:
     """
@@ -196,45 +196,45 @@ def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[str]] =
         provider_name="AWS",
         provider_instance_size_name="M30",
         replication_specs=[
-            mongodbatlas.ClusterReplicationSpecArgs(
-                zone_name="Zone 1",
-                num_shards=2,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="EU_CENTRAL_1",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            ),
-            mongodbatlas.ClusterReplicationSpecArgs(
-                zone_name="Zone 2",
-                num_shards=2,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    region_name="US_EAST_2",
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                )],
-            ),
+            {
+                "zone_name": "Zone 1",
+                "num_shards": 2,
+                "regions_configs": [{
+                    "region_name": "EU_CENTRAL_1",
+                    "electable_nodes": 3,
+                    "priority": 7,
+                    "read_only_nodes": 0,
+                }],
+            },
+            {
+                "zone_name": "Zone 2",
+                "num_shards": 2,
+                "regions_configs": [{
+                    "region_name": "US_EAST_2",
+                    "electable_nodes": 3,
+                    "priority": 7,
+                    "read_only_nodes": 0,
+                }],
+            },
         ])
     config_global_cluster_config = mongodbatlas.GlobalClusterConfig("config",
         project_id=test.project_id,
         cluster_name=test.name,
-        managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
-            db="mydata",
-            collection="publishers",
-            custom_shard_key="city",
-        )],
-        custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
-            location="CA",
-            zone="Zone 1",
-        )])
+        managed_namespaces=[{
+            "db": "mydata",
+            "collection": "publishers",
+            "custom_shard_key": "city",
+        }],
+        custom_zone_mappings=[{
+            "location": "CA",
+            "zone": "Zone 1",
+        }])
     config = mongodbatlas.get_global_cluster_config_output(project_id=config_global_cluster_config.project_id,
         cluster_name=config_global_cluster_config.cluster_name)
     ```
 
 
-    :param Sequence[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+    :param Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
     :param str project_id: The unique ID for the project to create the database user.
            * `cluster_name - (Required) The name of the Global Cluster.
     """

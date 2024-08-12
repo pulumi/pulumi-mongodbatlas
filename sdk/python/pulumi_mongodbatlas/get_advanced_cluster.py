@@ -323,17 +323,17 @@ def get_advanced_cluster(name: Optional[str] = None,
         project_id="<YOUR-PROJECT-ID>",
         name="cluster-test",
         cluster_type="REPLICASET",
-        replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-            region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                    instance_size="M5",
-                ),
-                provider_name="TENANT",
-                backing_provider_name="AWS",
-                region_name="US_EAST_1",
-                priority=7,
-            )],
-        )])
+        replication_specs=[{
+            "region_configs": [{
+                "electable_specs": {
+                    "instance_size": "M5",
+                },
+                "provider_name": "TENANT",
+                "backing_provider_name": "AWS",
+                "region_name": "US_EAST_1",
+                "priority": 7,
+            }],
+        }])
     example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
         name=example_advanced_cluster.name)
     ```
@@ -402,17 +402,17 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
         project_id="<YOUR-PROJECT-ID>",
         name="cluster-test",
         cluster_type="REPLICASET",
-        replication_specs=[mongodbatlas.AdvancedClusterReplicationSpecArgs(
-            region_configs=[mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs(
-                electable_specs=mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs(
-                    instance_size="M5",
-                ),
-                provider_name="TENANT",
-                backing_provider_name="AWS",
-                region_name="US_EAST_1",
-                priority=7,
-            )],
-        )])
+        replication_specs=[{
+            "region_configs": [{
+                "electable_specs": {
+                    "instance_size": "M5",
+                },
+                "provider_name": "TENANT",
+                "backing_provider_name": "AWS",
+                "region_name": "US_EAST_1",
+                "priority": 7,
+            }],
+        }])
     example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
         name=example_advanced_cluster.name)
     ```

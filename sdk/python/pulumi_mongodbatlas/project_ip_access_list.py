@@ -230,7 +230,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 timeouts: Optional[pulumi.Input[pulumi.InputType['ProjectIpAccessListTimeoutsArgs']]] = None,
+                 timeouts: Optional[pulumi.Input[Union['ProjectIpAccessListTimeoutsArgs', 'ProjectIpAccessListTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
         ## # Resource: ProjectIpAccessList
@@ -408,7 +408,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 timeouts: Optional[pulumi.Input[pulumi.InputType['ProjectIpAccessListTimeoutsArgs']]] = None,
+                 timeouts: Optional[pulumi.Input[Union['ProjectIpAccessListTimeoutsArgs', 'ProjectIpAccessListTimeoutsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -441,7 +441,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
             comment: Optional[pulumi.Input[str]] = None,
             ip_address: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            timeouts: Optional[pulumi.Input[pulumi.InputType['ProjectIpAccessListTimeoutsArgs']]] = None) -> 'ProjectIpAccessList':
+            timeouts: Optional[pulumi.Input[Union['ProjectIpAccessListTimeoutsArgs', 'ProjectIpAccessListTimeoutsArgsDict']]] = None) -> 'ProjectIpAccessList':
         """
         Get an existing ProjectIpAccessList resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

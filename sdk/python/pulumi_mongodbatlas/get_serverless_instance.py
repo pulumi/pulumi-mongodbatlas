@@ -216,7 +216,7 @@ class AwaitableGetServerlessInstanceResult(GetServerlessInstanceResult):
 
 def get_serverless_instance(auto_indexing: Optional[bool] = None,
                             continuous_backup_enabled: Optional[bool] = None,
-                            links: Optional[Sequence[pulumi.InputType['GetServerlessInstanceLinkArgs']]] = None,
+                            links: Optional[Sequence[Union['GetServerlessInstanceLinkArgs', 'GetServerlessInstanceLinkArgsDict']]] = None,
                             name: Optional[str] = None,
                             project_id: Optional[str] = None,
                             state_name: Optional[str] = None,
@@ -289,7 +289,7 @@ def get_serverless_instance(auto_indexing: Optional[bool] = None,
 @_utilities.lift_output_func(get_serverless_instance)
 def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional[bool]]] = None,
                                    continuous_backup_enabled: Optional[pulumi.Input[Optional[bool]]] = None,
-                                   links: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetServerlessInstanceLinkArgs']]]]] = None,
+                                   links: Optional[pulumi.Input[Optional[Sequence[Union['GetServerlessInstanceLinkArgs', 'GetServerlessInstanceLinkArgsDict']]]]] = None,
                                    name: Optional[pulumi.Input[str]] = None,
                                    project_id: Optional[pulumi.Input[str]] = None,
                                    state_name: Optional[pulumi.Input[Optional[str]]] = None,

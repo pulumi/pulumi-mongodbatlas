@@ -295,7 +295,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ServerlessInstance(String name) {
+    public ServerlessInstance(java.lang.String name) {
         this(name, ServerlessInstanceArgs.Empty);
     }
     /**
@@ -303,7 +303,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ServerlessInstance(String name, ServerlessInstanceArgs args) {
+    public ServerlessInstance(java.lang.String name, ServerlessInstanceArgs args) {
         this(name, args, null);
     }
     /**
@@ -312,12 +312,12 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ServerlessInstance(String name, ServerlessInstanceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/serverlessInstance:ServerlessInstance", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public ServerlessInstance(java.lang.String name, ServerlessInstanceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/serverlessInstance:ServerlessInstance", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ServerlessInstance(String name, Output<String> id, @Nullable ServerlessInstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/serverlessInstance:ServerlessInstance", name, state, makeResourceOptions(options, id));
+    private ServerlessInstance(java.lang.String name, Output<java.lang.String> id, @Nullable ServerlessInstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/serverlessInstance:ServerlessInstance", name, state, makeResourceOptions(options, id), false);
     }
 
     private static ServerlessInstanceArgs makeArgs(ServerlessInstanceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -327,7 +327,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
         return args == null ? ServerlessInstanceArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -343,7 +343,7 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ServerlessInstance get(String name, Output<String> id, @Nullable ServerlessInstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ServerlessInstance get(java.lang.String name, Output<java.lang.String> id, @Nullable ServerlessInstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ServerlessInstance(name, id, state, options);
     }
 }

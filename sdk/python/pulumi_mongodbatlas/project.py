@@ -519,13 +519,13 @@ class Project(pulumi.CustomResource):
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectLimitArgs']]]]] = None,
+                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
                  region_usage_restrictions: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
+                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict']]]]] = None,
                  with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -547,27 +547,27 @@ class Project(pulumi.CustomResource):
             org_id=test.org_id,
             project_owner_id="<OWNER_ACCOUNT_ID>",
             teams=[
-                mongodbatlas.ProjectTeamArgs(
-                    team_id="5e0fa8c99ccf641c722fe645",
-                    role_names=["GROUP_OWNER"],
-                ),
-                mongodbatlas.ProjectTeamArgs(
-                    team_id="5e1dd7b4f2a30ba80a70cd4rw",
-                    role_names=[
+                {
+                    "team_id": "5e0fa8c99ccf641c722fe645",
+                    "role_names": ["GROUP_OWNER"],
+                },
+                {
+                    "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
+                    "role_names": [
                         "GROUP_READ_ONLY",
                         "GROUP_DATA_ACCESS_READ_WRITE",
                     ],
-                ),
+                },
             ],
             limits=[
-                mongodbatlas.ProjectLimitArgs(
-                    name="atlas.project.deployment.clusters",
-                    value=26,
-                ),
-                mongodbatlas.ProjectLimitArgs(
-                    name="atlas.project.deployment.nodesPerPrivateLinkRegion",
-                    value=51,
-                ),
+                {
+                    "name": "atlas.project.deployment.clusters",
+                    "value": 26,
+                },
+                {
+                    "name": "atlas.project.deployment.nodesPerPrivateLinkRegion",
+                    "value": 51,
+                },
             ],
             is_collect_database_specifics_statistics_enabled=True,
             is_data_explorer_enabled=True,
@@ -626,27 +626,27 @@ class Project(pulumi.CustomResource):
             org_id=test.org_id,
             project_owner_id="<OWNER_ACCOUNT_ID>",
             teams=[
-                mongodbatlas.ProjectTeamArgs(
-                    team_id="5e0fa8c99ccf641c722fe645",
-                    role_names=["GROUP_OWNER"],
-                ),
-                mongodbatlas.ProjectTeamArgs(
-                    team_id="5e1dd7b4f2a30ba80a70cd4rw",
-                    role_names=[
+                {
+                    "team_id": "5e0fa8c99ccf641c722fe645",
+                    "role_names": ["GROUP_OWNER"],
+                },
+                {
+                    "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
+                    "role_names": [
                         "GROUP_READ_ONLY",
                         "GROUP_DATA_ACCESS_READ_WRITE",
                     ],
-                ),
+                },
             ],
             limits=[
-                mongodbatlas.ProjectLimitArgs(
-                    name="atlas.project.deployment.clusters",
-                    value=26,
-                ),
-                mongodbatlas.ProjectLimitArgs(
-                    name="atlas.project.deployment.nodesPerPrivateLinkRegion",
-                    value=51,
-                ),
+                {
+                    "name": "atlas.project.deployment.clusters",
+                    "value": 26,
+                },
+                {
+                    "name": "atlas.project.deployment.nodesPerPrivateLinkRegion",
+                    "value": 51,
+                },
             ],
             is_collect_database_specifics_statistics_enabled=True,
             is_data_explorer_enabled=True,
@@ -686,13 +686,13 @@ class Project(pulumi.CustomResource):
                  is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectLimitArgs']]]]] = None,
+                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
                  region_usage_restrictions: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
+                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict']]]]] = None,
                  with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -734,20 +734,20 @@ class Project(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_count: Optional[pulumi.Input[int]] = None,
             created: Optional[pulumi.Input[str]] = None,
-            ip_addresses: Optional[pulumi.Input[pulumi.InputType['ProjectIpAddressesArgs']]] = None,
+            ip_addresses: Optional[pulumi.Input[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict']]] = None,
             is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
             is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
             is_extended_storage_sizes_enabled: Optional[pulumi.Input[bool]] = None,
             is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
             is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
             is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
-            limits: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectLimitArgs']]]]] = None,
+            limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
             project_owner_id: Optional[pulumi.Input[str]] = None,
             region_usage_restrictions: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
+            teams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict']]]]] = None,
             with_default_alerts_settings: Optional[pulumi.Input[bool]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
@@ -758,7 +758,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] cluster_count: The number of Atlas clusters deployed in the project.
         :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project.
-        :param pulumi.Input[pulumi.InputType['ProjectIpAddressesArgs']] ip_addresses: IP addresses in a project categorized by services. See IP Addresses.
+        :param pulumi.Input[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict']] ip_addresses: IP addresses in a project categorized by services. See IP Addresses.
         :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
         :param pulumi.Input[bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.

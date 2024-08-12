@@ -307,7 +307,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public PrivatelinkEndpointServiceServerless(String name) {
+    public PrivatelinkEndpointServiceServerless(java.lang.String name) {
         this(name, PrivatelinkEndpointServiceServerlessArgs.Empty);
     }
     /**
@@ -315,7 +315,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public PrivatelinkEndpointServiceServerless(String name, PrivatelinkEndpointServiceServerlessArgs args) {
+    public PrivatelinkEndpointServiceServerless(java.lang.String name, PrivatelinkEndpointServiceServerlessArgs args) {
         this(name, args, null);
     }
     /**
@@ -324,12 +324,12 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public PrivatelinkEndpointServiceServerless(String name, PrivatelinkEndpointServiceServerlessArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public PrivatelinkEndpointServiceServerless(java.lang.String name, PrivatelinkEndpointServiceServerlessArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private PrivatelinkEndpointServiceServerless(String name, Output<String> id, @Nullable PrivatelinkEndpointServiceServerlessState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless", name, state, makeResourceOptions(options, id));
+    private PrivatelinkEndpointServiceServerless(java.lang.String name, Output<java.lang.String> id, @Nullable PrivatelinkEndpointServiceServerlessState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless", name, state, makeResourceOptions(options, id), false);
     }
 
     private static PrivatelinkEndpointServiceServerlessArgs makeArgs(PrivatelinkEndpointServiceServerlessArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -339,7 +339,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
         return args == null ? PrivatelinkEndpointServiceServerlessArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -355,7 +355,7 @@ public class PrivatelinkEndpointServiceServerless extends com.pulumi.resources.C
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static PrivatelinkEndpointServiceServerless get(String name, Output<String> id, @Nullable PrivatelinkEndpointServiceServerlessState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static PrivatelinkEndpointServiceServerless get(java.lang.String name, Output<java.lang.String> id, @Nullable PrivatelinkEndpointServiceServerlessState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new PrivatelinkEndpointServiceServerless(name, id, state, options);
     }
 }

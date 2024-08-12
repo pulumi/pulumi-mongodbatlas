@@ -253,22 +253,22 @@ def get_project(name: Optional[str] = None,
         name="project-name",
         org_id=test.org_id,
         teams=[
-            mongodbatlas.ProjectTeamArgs(
-                team_id="5e0fa8c99ccf641c722fe645",
-                role_names=["GROUP_OWNER"],
-            ),
-            mongodbatlas.ProjectTeamArgs(
-                team_id="5e1dd7b4f2a30ba80a70cd4rw",
-                role_names=[
+            {
+                "team_id": "5e0fa8c99ccf641c722fe645",
+                "role_names": ["GROUP_OWNER"],
+            },
+            {
+                "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
+                "role_names": [
                     "GROUP_READ_ONLY",
                     "GROUP_DATA_ACCESS_READ_WRITE",
                 ],
-            ),
+            },
         ],
-        limits=[mongodbatlas.ProjectLimitArgs(
-            name="atlas.project.deployment.clusters",
-            value=26,
-        )])
+        limits=[{
+            "name": "atlas.project.deployment.clusters",
+            "value": 26,
+        }])
     test_get_project = mongodbatlas.get_project_output(project_id=test_project.id)
     ```
 
@@ -281,22 +281,22 @@ def get_project(name: Optional[str] = None,
         name="project-name",
         org_id="<ORG_ID>",
         teams=[
-            mongodbatlas.ProjectTeamArgs(
-                team_id="5e0fa8c99ccf641c722fe645",
-                role_names=["GROUP_OWNER"],
-            ),
-            mongodbatlas.ProjectTeamArgs(
-                team_id="5e1dd7b4f2a30ba80a70cd4rw",
-                role_names=[
+            {
+                "team_id": "5e0fa8c99ccf641c722fe645",
+                "role_names": ["GROUP_OWNER"],
+            },
+            {
+                "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
+                "role_names": [
                     "GROUP_READ_ONLY",
                     "GROUP_DATA_ACCESS_READ_WRITE",
                 ],
-            ),
+            },
         ],
-        limits=[mongodbatlas.ProjectLimitArgs(
-            name="atlas.project.deployment.clusters",
-            value=26,
-        )])
+        limits=[{
+            "name": "atlas.project.deployment.clusters",
+            "value": 26,
+        }])
     test = mongodbatlas.get_project_output(name=test_project.name)
     ```
 
@@ -355,22 +355,22 @@ def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
         name="project-name",
         org_id=test.org_id,
         teams=[
-            mongodbatlas.ProjectTeamArgs(
-                team_id="5e0fa8c99ccf641c722fe645",
-                role_names=["GROUP_OWNER"],
-            ),
-            mongodbatlas.ProjectTeamArgs(
-                team_id="5e1dd7b4f2a30ba80a70cd4rw",
-                role_names=[
+            {
+                "team_id": "5e0fa8c99ccf641c722fe645",
+                "role_names": ["GROUP_OWNER"],
+            },
+            {
+                "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
+                "role_names": [
                     "GROUP_READ_ONLY",
                     "GROUP_DATA_ACCESS_READ_WRITE",
                 ],
-            ),
+            },
         ],
-        limits=[mongodbatlas.ProjectLimitArgs(
-            name="atlas.project.deployment.clusters",
-            value=26,
-        )])
+        limits=[{
+            "name": "atlas.project.deployment.clusters",
+            "value": 26,
+        }])
     test_get_project = mongodbatlas.get_project_output(project_id=test_project.id)
     ```
 
@@ -383,22 +383,22 @@ def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
         name="project-name",
         org_id="<ORG_ID>",
         teams=[
-            mongodbatlas.ProjectTeamArgs(
-                team_id="5e0fa8c99ccf641c722fe645",
-                role_names=["GROUP_OWNER"],
-            ),
-            mongodbatlas.ProjectTeamArgs(
-                team_id="5e1dd7b4f2a30ba80a70cd4rw",
-                role_names=[
+            {
+                "team_id": "5e0fa8c99ccf641c722fe645",
+                "role_names": ["GROUP_OWNER"],
+            },
+            {
+                "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
+                "role_names": [
                     "GROUP_READ_ONLY",
                     "GROUP_DATA_ACCESS_READ_WRITE",
                 ],
-            ),
+            },
         ],
-        limits=[mongodbatlas.ProjectLimitArgs(
-            name="atlas.project.deployment.clusters",
-            value=26,
-        )])
+        limits=[{
+            "name": "atlas.project.deployment.clusters",
+            "value": 26,
+        }])
     test = mongodbatlas.get_project_output(name=test_project.name)
     ```
 
