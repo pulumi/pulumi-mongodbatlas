@@ -151,7 +151,7 @@ type LookupGlobalClusterConfigArgs struct {
 type LookupGlobalClusterConfigResult struct {
 	ClusterName string `pulumi:"clusterName"`
 	// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
-	CustomZoneMapping map[string]interface{} `pulumi:"customZoneMapping"`
+	CustomZoneMapping map[string]string `pulumi:"customZoneMapping"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
@@ -206,8 +206,8 @@ func (o LookupGlobalClusterConfigResultOutput) ClusterName() pulumi.StringOutput
 }
 
 // A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
-func (o LookupGlobalClusterConfigResultOutput) CustomZoneMapping() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupGlobalClusterConfigResult) map[string]interface{} { return v.CustomZoneMapping }).(pulumi.MapOutput)
+func (o LookupGlobalClusterConfigResultOutput) CustomZoneMapping() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupGlobalClusterConfigResult) map[string]string { return v.CustomZoneMapping }).(pulumi.StringMapOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

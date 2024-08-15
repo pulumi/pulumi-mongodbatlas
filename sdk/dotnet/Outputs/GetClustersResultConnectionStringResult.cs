@@ -13,8 +13,8 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetClustersResultConnectionStringResult
     {
-        public readonly ImmutableDictionary<string, object> AwsPrivateLink;
-        public readonly ImmutableDictionary<string, object> AwsPrivateLinkSrv;
+        public readonly ImmutableDictionary<string, string> AwsPrivateLink;
+        public readonly ImmutableDictionary<string, string> AwsPrivateLinkSrv;
         /// <summary>
         /// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         /// </summary>
@@ -43,9 +43,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetClustersResultConnectionStringResult(
-            ImmutableDictionary<string, object> awsPrivateLink,
+            ImmutableDictionary<string, string> awsPrivateLink,
 
-            ImmutableDictionary<string, object> awsPrivateLinkSrv,
+            ImmutableDictionary<string, string> awsPrivateLinkSrv,
 
             string @private,
 

@@ -128,7 +128,7 @@ export interface GetGlobalClusterConfigResult {
     /**
      * A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      */
-    readonly customZoneMapping: {[key: string]: any};
+    readonly customZoneMapping: {[key: string]: string};
     /**
      * The provider-assigned unique ID for this managed resource.
      */

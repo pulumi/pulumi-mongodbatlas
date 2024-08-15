@@ -129,7 +129,7 @@ namespace Pulumi.Mongodbatlas
         /// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         /// </summary>
         [Output("customZoneMapping")]
-        public Output<ImmutableDictionary<string, object>> CustomZoneMapping { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> CustomZoneMapping { get; private set; } = null!;
 
         /// <summary>
         /// Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
@@ -246,14 +246,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ClusterName { get; set; }
 
         [Input("customZoneMapping")]
-        private InputMap<object>? _customZoneMapping;
+        private InputMap<string>? _customZoneMapping;
 
         /// <summary>
         /// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         /// </summary>
-        public InputMap<object> CustomZoneMapping
+        public InputMap<string> CustomZoneMapping
         {
-            get => _customZoneMapping ?? (_customZoneMapping = new InputMap<object>());
+            get => _customZoneMapping ?? (_customZoneMapping = new InputMap<string>());
             set => _customZoneMapping = value;
         }
 

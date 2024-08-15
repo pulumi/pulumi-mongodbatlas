@@ -137,8 +137,11 @@ def get_cloud_backup_snapshot_restore_jobs(cluster_name: Optional[str] = None,
             "target_cluster_name": "MyCluster",
             "target_project_id": "5cf5a45a9ccf6400e60981b6",
         })
-    test = pulumi.Output.all(test_cloud_backup_snapshot_restore_job.project_id, test_cloud_backup_snapshot_restore_job.cluster_name).apply(lambda project_id, cluster_name: mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=project_id,
-        cluster_name=cluster_name,
+    test = pulumi.Output.all(
+        project_id=test_cloud_backup_snapshot_restore_job.project_id,
+        cluster_name=test_cloud_backup_snapshot_restore_job.cluster_name
+    ).apply(lambda resolved_outputs: mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=resolved_outputs['project_id'],
+        cluster_name=resolved_outputs['cluster_name'],
         page_num=1,
         items_per_page=5))
     ```
@@ -202,8 +205,11 @@ def get_cloud_backup_snapshot_restore_jobs_output(cluster_name: Optional[pulumi.
             "target_cluster_name": "MyCluster",
             "target_project_id": "5cf5a45a9ccf6400e60981b6",
         })
-    test = pulumi.Output.all(test_cloud_backup_snapshot_restore_job.project_id, test_cloud_backup_snapshot_restore_job.cluster_name).apply(lambda project_id, cluster_name: mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=project_id,
-        cluster_name=cluster_name,
+    test = pulumi.Output.all(
+        project_id=test_cloud_backup_snapshot_restore_job.project_id,
+        cluster_name=test_cloud_backup_snapshot_restore_job.cluster_name
+    ).apply(lambda resolved_outputs: mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=resolved_outputs['project_id'],
+        cluster_name=resolved_outputs['cluster_name'],
         page_num=1,
         items_per_page=5))
     ```
