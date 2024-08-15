@@ -63,24 +63,27 @@ func LookupCloudBackupSnapshotExportBucket(ctx *pulumi.Context, args *LookupClou
 type LookupCloudBackupSnapshotExportBucketArgs struct {
 	// Unique identifier of the snapshot export bucket.
 	ExportBucketId string `pulumi:"exportBucketId"`
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-	Id *string `pulumi:"id"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getCloudBackupSnapshotExportBucket.
 type LookupCloudBackupSnapshotExportBucketResult struct {
-	// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+	// Name of the bucket that the provided role ID is authorized to access.
 	BucketName string `pulumi:"bucketName"`
-	// Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+	// Name of the provider of the cloud service where Atlas can access the S3 bucket.
 	CloudProvider  string `pulumi:"cloudProvider"`
 	ExportBucketId string `pulumi:"exportBucketId"`
-	// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+	// Unique identifier of the role that Atlas can use to access the bucket.
 	IamRoleId string `pulumi:"iamRoleId"`
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
+	// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container.
+	RoleId string `pulumi:"roleId"`
+	// URL that identifies the blob Endpoint of the Azure Blob Storage Account.
+	ServiceUrl string `pulumi:"serviceUrl"`
+	// UUID that identifies the Azure Active Directory Tenant ID.
+	TenantId string `pulumi:"tenantId"`
 }
 
 func LookupCloudBackupSnapshotExportBucketOutput(ctx *pulumi.Context, args LookupCloudBackupSnapshotExportBucketOutputArgs, opts ...pulumi.InvokeOption) LookupCloudBackupSnapshotExportBucketResultOutput {
@@ -100,8 +103,6 @@ func LookupCloudBackupSnapshotExportBucketOutput(ctx *pulumi.Context, args Looku
 type LookupCloudBackupSnapshotExportBucketOutputArgs struct {
 	// Unique identifier of the snapshot export bucket.
 	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
@@ -125,12 +126,12 @@ func (o LookupCloudBackupSnapshotExportBucketResultOutput) ToLookupCloudBackupSn
 	return o
 }
 
-// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+// Name of the bucket that the provided role ID is authorized to access.
 func (o LookupCloudBackupSnapshotExportBucketResultOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+// Name of the provider of the cloud service where Atlas can access the S3 bucket.
 func (o LookupCloudBackupSnapshotExportBucketResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -139,18 +140,32 @@ func (o LookupCloudBackupSnapshotExportBucketResultOutput) ExportBucketId() pulu
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.ExportBucketId }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+// Unique identifier of the role that Atlas can use to access the bucket.
 func (o LookupCloudBackupSnapshotExportBucketResultOutput) IamRoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.IamRoleId }).(pulumi.StringOutput)
 }
 
-// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
 func (o LookupCloudBackupSnapshotExportBucketResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupCloudBackupSnapshotExportBucketResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container.
+func (o LookupCloudBackupSnapshotExportBucketResultOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+// URL that identifies the blob Endpoint of the Azure Blob Storage Account.
+func (o LookupCloudBackupSnapshotExportBucketResultOutput) ServiceUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.ServiceUrl }).(pulumi.StringOutput)
+}
+
+// UUID that identifies the Azure Active Directory Tenant ID.
+func (o LookupCloudBackupSnapshotExportBucketResultOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.TenantId }).(pulumi.StringOutput)
 }
 
 func init() {

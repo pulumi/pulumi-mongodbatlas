@@ -42,9 +42,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
- * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
  * import com.pulumi.mongodbatlas.GlobalClusterConfig;
  * import com.pulumi.mongodbatlas.GlobalClusterConfigArgs;
  * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigManagedNamespaceArgs;
@@ -62,32 +62,34 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Cluster("test", ClusterArgs.builder()
+ *         var test = new AdvancedCluster("test", AdvancedClusterArgs.builder()
  *             .projectId("<YOUR-PROJECT-ID>")
  *             .name("<CLUSTER-NAME>")
- *             .cloudBackup(true)
  *             .clusterType("GEOSHARDED")
- *             .providerName("AWS")
- *             .providerInstanceSizeName("M30")
+ *             .backupEnabled(true)
  *             .replicationSpecs(            
- *                 ClusterReplicationSpecArgs.builder()
+ *                 AdvancedClusterReplicationSpecArgs.builder()
  *                     .zoneName("Zone 1")
- *                     .numShards(1)
- *                     .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .regionName("EU_CENTRAL_1")
- *                         .electableNodes(3)
+ *                     .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                             .instanceSize("M30")
+ *                             .nodeCount(3)
+ *                             .build())
+ *                         .providerName("AWS")
  *                         .priority(7)
- *                         .readOnlyNodes(0)
+ *                         .regionName("EU_CENTRAL_1")
  *                         .build())
  *                     .build(),
- *                 ClusterReplicationSpecArgs.builder()
+ *                 AdvancedClusterReplicationSpecArgs.builder()
  *                     .zoneName("Zone 2")
- *                     .numShards(1)
- *                     .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .regionName("US_EAST_2")
- *                         .electableNodes(3)
+ *                     .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                             .instanceSize("M30")
+ *                             .nodeCount(3)
+ *                             .build())
+ *                         .providerName("AWS")
  *                         .priority(7)
- *                         .readOnlyNodes(0)
+ *                         .regionName("US_EAST_2")
  *                         .build())
  *                     .build())
  *             .build());

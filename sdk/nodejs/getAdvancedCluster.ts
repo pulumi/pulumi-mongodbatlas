@@ -44,6 +44,51 @@ import * as utilities from "./utilities";
  *     name: exampleAdvancedCluster.name,
  * });
  * ```
+ *
+ * ## Example using latest sharding schema with independent shard scaling in the cluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const exampleAdvancedCluster = new mongodbatlas.AdvancedCluster("example", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
+ *     backupEnabled: false,
+ *     clusterType: "SHARDED",
+ *     replicationSpecs: [
+ *         {
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M30",
+ *                     diskIops: 3000,
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
+ *                 priority: 7,
+ *                 regionName: "EU_WEST_1",
+ *             }],
+ *         },
+ *         {
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M40",
+ *                     diskIops: 3000,
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
+ *                 priority: 7,
+ *                 regionName: "EU_WEST_1",
+ *             }],
+ *         },
+ *     ],
+ * });
+ * const example = mongodbatlas.getAdvancedClusterOutput({
+ *     projectId: exampleAdvancedCluster.projectId,
+ *     name: exampleAdvancedCluster.name,
+ *     useReplicationSpecPerShard: true,
+ * });
+ * ```
  */
 export function getAdvancedCluster(args: GetAdvancedClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetAdvancedClusterResult> {
 
@@ -52,6 +97,7 @@ export function getAdvancedCluster(args: GetAdvancedClusterArgs, opts?: pulumi.I
         "name": args.name,
         "pitEnabled": args.pitEnabled,
         "projectId": args.projectId,
+        "useReplicationSpecPerShard": args.useReplicationSpecPerShard,
     }, opts);
 }
 
@@ -71,6 +117,10 @@ export interface GetAdvancedClusterArgs {
      * The unique ID for the project to create the database user.
      */
     projectId: string;
+    /**
+     * Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
+     */
+    useReplicationSpecPerShard?: boolean;
 }
 
 /**
@@ -96,7 +146,9 @@ export interface GetAdvancedClusterResult {
     readonly connectionStrings: outputs.GetAdvancedClusterConnectionString[];
     readonly createDate: string;
     /**
-     * Capacity, in gigabytes, of the host's root volume.
+     * Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     *
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
     readonly diskSizeGb: number;
     /**
@@ -112,7 +164,7 @@ export interface GetAdvancedClusterResult {
      */
     readonly id: string;
     /**
-     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
      *
      * @deprecated This parameter is deprecated and will be removed by September 2024. Please transition to tags.
      */
@@ -136,7 +188,7 @@ export interface GetAdvancedClusterResult {
     readonly pitEnabled: boolean;
     readonly projectId: string;
     /**
-     * Configuration for cluster regions and the hardware provisioned in them. See below.
+     * List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
      */
     readonly replicationSpecs: outputs.GetAdvancedClusterReplicationSpec[];
     /**
@@ -155,6 +207,7 @@ export interface GetAdvancedClusterResult {
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
     readonly terminationProtectionEnabled: boolean;
+    readonly useReplicationSpecPerShard?: boolean;
     /**
      * Release cadence that Atlas uses for this cluster.
      */
@@ -198,6 +251,51 @@ export interface GetAdvancedClusterResult {
  *     name: exampleAdvancedCluster.name,
  * });
  * ```
+ *
+ * ## Example using latest sharding schema with independent shard scaling in the cluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const exampleAdvancedCluster = new mongodbatlas.AdvancedCluster("example", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
+ *     backupEnabled: false,
+ *     clusterType: "SHARDED",
+ *     replicationSpecs: [
+ *         {
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M30",
+ *                     diskIops: 3000,
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
+ *                 priority: 7,
+ *                 regionName: "EU_WEST_1",
+ *             }],
+ *         },
+ *         {
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M40",
+ *                     diskIops: 3000,
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
+ *                 priority: 7,
+ *                 regionName: "EU_WEST_1",
+ *             }],
+ *         },
+ *     ],
+ * });
+ * const example = mongodbatlas.getAdvancedClusterOutput({
+ *     projectId: exampleAdvancedCluster.projectId,
+ *     name: exampleAdvancedCluster.name,
+ *     useReplicationSpecPerShard: true,
+ * });
+ * ```
  */
 export function getAdvancedClusterOutput(args: GetAdvancedClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAdvancedClusterResult> {
     return pulumi.output(args).apply((a: any) => getAdvancedCluster(a, opts))
@@ -219,4 +317,8 @@ export interface GetAdvancedClusterOutputArgs {
      * The unique ID for the project to create the database user.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
+     */
+    useReplicationSpecPerShard?: pulumi.Input<boolean>;
 }

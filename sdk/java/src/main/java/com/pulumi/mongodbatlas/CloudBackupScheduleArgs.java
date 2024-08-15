@@ -60,29 +60,45 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         return this.clusterName;
     }
 
+    /**
+     * List that contains a document for each copy setting item in the desired backup policy. See below
+     * 
+     */
     @Import(name="copySettings")
     private @Nullable Output<List<CloudBackupScheduleCopySettingArgs>> copySettings;
 
+    /**
+     * @return List that contains a document for each copy setting item in the desired backup policy. See below
+     * 
+     */
     public Optional<Output<List<CloudBackupScheduleCopySettingArgs>>> copySettings() {
         return Optional.ofNullable(this.copySettings);
     }
 
+    /**
+     * Policy for automatically exporting Cloud Backup Snapshots. See below
+     * 
+     */
     @Import(name="export")
     private @Nullable Output<CloudBackupScheduleExportArgs> export;
 
+    /**
+     * @return Policy for automatically exporting Cloud Backup Snapshots. See below
+     * 
+     */
     public Optional<Output<CloudBackupScheduleExportArgs>> export() {
         return Optional.ofNullable(this.export);
     }
 
     /**
-     * Daily policy item
+     * Daily policy item. See below
      * 
      */
     @Import(name="policyItemDaily")
     private @Nullable Output<CloudBackupSchedulePolicyItemDailyArgs> policyItemDaily;
 
     /**
-     * @return Daily policy item
+     * @return Daily policy item. See below
      * 
      */
     public Optional<Output<CloudBackupSchedulePolicyItemDailyArgs>> policyItemDaily() {
@@ -90,14 +106,14 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Hourly policy item
+     * Hourly policy item. See below
      * 
      */
     @Import(name="policyItemHourly")
     private @Nullable Output<CloudBackupSchedulePolicyItemHourlyArgs> policyItemHourly;
 
     /**
-     * @return Hourly policy item
+     * @return Hourly policy item. See below
      * 
      */
     public Optional<Output<CloudBackupSchedulePolicyItemHourlyArgs>> policyItemHourly() {
@@ -105,14 +121,14 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Monthly policy item
+     * Monthly policy item. See below
      * 
      */
     @Import(name="policyItemMonthlies")
     private @Nullable Output<List<CloudBackupSchedulePolicyItemMonthlyArgs>> policyItemMonthlies;
 
     /**
-     * @return Monthly policy item
+     * @return Monthly policy item. See below
      * 
      */
     public Optional<Output<List<CloudBackupSchedulePolicyItemMonthlyArgs>>> policyItemMonthlies() {
@@ -120,14 +136,14 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Weekly policy item
+     * Weekly policy item. See below
      * 
      */
     @Import(name="policyItemWeeklies")
     private @Nullable Output<List<CloudBackupSchedulePolicyItemWeeklyArgs>> policyItemWeeklies;
 
     /**
-     * @return Weekly policy item
+     * @return Weekly policy item. See below
      * 
      */
     public Optional<Output<List<CloudBackupSchedulePolicyItemWeeklyArgs>>> policyItemWeeklies() {
@@ -135,14 +151,14 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Yearly policy item
+     * Yearly policy item. See below
      * 
      */
     @Import(name="policyItemYearlies")
     private @Nullable Output<List<CloudBackupSchedulePolicyItemYearlyArgs>> policyItemYearlies;
 
     /**
-     * @return Yearly policy item
+     * @return Yearly policy item. See below
      * 
      */
     public Optional<Output<List<CloudBackupSchedulePolicyItemYearlyArgs>>> policyItemYearlies() {
@@ -315,30 +331,60 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
             return clusterName(Output.of(clusterName));
         }
 
+        /**
+         * @param copySettings List that contains a document for each copy setting item in the desired backup policy. See below
+         * 
+         * @return builder
+         * 
+         */
         public Builder copySettings(@Nullable Output<List<CloudBackupScheduleCopySettingArgs>> copySettings) {
             $.copySettings = copySettings;
             return this;
         }
 
+        /**
+         * @param copySettings List that contains a document for each copy setting item in the desired backup policy. See below
+         * 
+         * @return builder
+         * 
+         */
         public Builder copySettings(List<CloudBackupScheduleCopySettingArgs> copySettings) {
             return copySettings(Output.of(copySettings));
         }
 
+        /**
+         * @param copySettings List that contains a document for each copy setting item in the desired backup policy. See below
+         * 
+         * @return builder
+         * 
+         */
         public Builder copySettings(CloudBackupScheduleCopySettingArgs... copySettings) {
             return copySettings(List.of(copySettings));
         }
 
+        /**
+         * @param export Policy for automatically exporting Cloud Backup Snapshots. See below
+         * 
+         * @return builder
+         * 
+         */
         public Builder export(@Nullable Output<CloudBackupScheduleExportArgs> export) {
             $.export = export;
             return this;
         }
 
+        /**
+         * @param export Policy for automatically exporting Cloud Backup Snapshots. See below
+         * 
+         * @return builder
+         * 
+         */
         public Builder export(CloudBackupScheduleExportArgs export) {
             return export(Output.of(export));
         }
 
         /**
-         * @param policyItemDaily Daily policy item
+         * @param policyItemDaily Daily policy item. See below
          * 
          * @return builder
          * 
@@ -349,7 +395,7 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param policyItemDaily Daily policy item
+         * @param policyItemDaily Daily policy item. See below
          * 
          * @return builder
          * 
@@ -359,7 +405,7 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param policyItemHourly Hourly policy item
+         * @param policyItemHourly Hourly policy item. See below
          * 
          * @return builder
          * 
@@ -370,7 +416,7 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param policyItemHourly Hourly policy item
+         * @param policyItemHourly Hourly policy item. See below
          * 
          * @return builder
          * 
@@ -380,7 +426,7 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param policyItemMonthlies Monthly policy item
+         * @param policyItemMonthlies Monthly policy item. See below
          * 
          * @return builder
          * 
@@ -391,7 +437,7 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param policyItemMonthlies Monthly policy item
+         * @param policyItemMonthlies Monthly policy item. See below
          * 
          * @return builder
          * 
@@ -401,7 +447,7 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param policyItemMonthlies Monthly policy item
+         * @param policyItemMonthlies Monthly policy item. See below
          * 
          * @return builder
          * 
@@ -411,7 +457,7 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param policyItemWeeklies Weekly policy item
+         * @param policyItemWeeklies Weekly policy item. See below
          * 
          * @return builder
          * 
@@ -422,7 +468,7 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param policyItemWeeklies Weekly policy item
+         * @param policyItemWeeklies Weekly policy item. See below
          * 
          * @return builder
          * 
@@ -432,7 +478,7 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param policyItemWeeklies Weekly policy item
+         * @param policyItemWeeklies Weekly policy item. See below
          * 
          * @return builder
          * 
@@ -442,7 +488,7 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param policyItemYearlies Yearly policy item
+         * @param policyItemYearlies Yearly policy item. See below
          * 
          * @return builder
          * 
@@ -453,7 +499,7 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param policyItemYearlies Yearly policy item
+         * @param policyItemYearlies Yearly policy item. See below
          * 
          * @return builder
          * 
@@ -463,7 +509,7 @@ public final class CloudBackupScheduleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param policyItemYearlies Yearly policy item
+         * @param policyItemYearlies Yearly policy item. See below
          * 
          * @return builder
          * 

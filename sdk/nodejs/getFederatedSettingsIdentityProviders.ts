@@ -11,25 +11,7 @@ import * as utilities from "./utilities";
  *
  * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", {
- *     federationSettingsId: "627a9687f7f7f7f774de306f",
- *     name: "mongodb_federation_test",
- *     associatedDomains: ["yourdomain.com"],
- *     ssoDebugEnabled: true,
- *     status: "ACTIVE",
- * });
- * const identittyProvider = identityProvider.id.apply(id => mongodbatlas.getFederatedSettingsIdentityProvidersOutput({
- *     federationSettingsId: id,
- *     pageNum: 1,
- *     itemsPerPage: 5,
- * }));
- * ```
+ * Note: This implementation returns a maximum of 100 results.
  */
 export function getFederatedSettingsIdentityProviders(args: GetFederatedSettingsIdentityProvidersArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsIdentityProvidersResult> {
 
@@ -37,8 +19,6 @@ export function getFederatedSettingsIdentityProviders(args: GetFederatedSettings
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", {
         "federationSettingsId": args.federationSettingsId,
         "idpTypes": args.idpTypes,
-        "itemsPerPage": args.itemsPerPage,
-        "pageNum": args.pageNum,
         "protocols": args.protocols,
     }, opts);
 }
@@ -55,18 +35,6 @@ export interface GetFederatedSettingsIdentityProvidersArgs {
      * The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
      */
     idpTypes?: string[];
-    /**
-     * Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    itemsPerPage?: number;
-    /**
-     * The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    pageNum?: number;
     /**
      * The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
      */
@@ -86,14 +54,6 @@ export interface GetFederatedSettingsIdentityProvidersResult {
      */
     readonly id: string;
     readonly idpTypes?: string[];
-    /**
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    readonly itemsPerPage?: number;
-    /**
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    readonly pageNum?: number;
     readonly protocols?: string[];
     /**
      * Includes cloudProviderSnapshot object for each item detailed in the results array section.
@@ -106,25 +66,7 @@ export interface GetFederatedSettingsIdentityProvidersResult {
  *
  * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", {
- *     federationSettingsId: "627a9687f7f7f7f774de306f",
- *     name: "mongodb_federation_test",
- *     associatedDomains: ["yourdomain.com"],
- *     ssoDebugEnabled: true,
- *     status: "ACTIVE",
- * });
- * const identittyProvider = identityProvider.id.apply(id => mongodbatlas.getFederatedSettingsIdentityProvidersOutput({
- *     federationSettingsId: id,
- *     pageNum: 1,
- *     itemsPerPage: 5,
- * }));
- * ```
+ * Note: This implementation returns a maximum of 100 results.
  */
 export function getFederatedSettingsIdentityProvidersOutput(args: GetFederatedSettingsIdentityProvidersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsIdentityProvidersResult> {
     return pulumi.output(args).apply((a: any) => getFederatedSettingsIdentityProviders(a, opts))
@@ -142,18 +84,6 @@ export interface GetFederatedSettingsIdentityProvidersOutputArgs {
      * The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
      */
     idpTypes?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    itemsPerPage?: pulumi.Input<number>;
-    /**
-     * The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    pageNum?: pulumi.Input<number>;
     /**
      * The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
      */

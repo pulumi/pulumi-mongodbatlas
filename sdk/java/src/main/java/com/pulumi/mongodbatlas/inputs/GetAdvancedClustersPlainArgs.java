@@ -5,8 +5,11 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetAdvancedClustersPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -28,10 +31,26 @@ public final class GetAdvancedClustersPlainArgs extends com.pulumi.resources.Inv
         return this.projectId;
     }
 
+    /**
+     * Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+     * 
+     */
+    @Import(name="useReplicationSpecPerShard")
+    private @Nullable Boolean useReplicationSpecPerShard;
+
+    /**
+     * @return Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+     * 
+     */
+    public Optional<Boolean> useReplicationSpecPerShard() {
+        return Optional.ofNullable(this.useReplicationSpecPerShard);
+    }
+
     private GetAdvancedClustersPlainArgs() {}
 
     private GetAdvancedClustersPlainArgs(GetAdvancedClustersPlainArgs $) {
         this.projectId = $.projectId;
+        this.useReplicationSpecPerShard = $.useReplicationSpecPerShard;
     }
 
     public static Builder builder() {
@@ -60,6 +79,17 @@ public final class GetAdvancedClustersPlainArgs extends com.pulumi.resources.Inv
          */
         public Builder projectId(String projectId) {
             $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param useReplicationSpecPerShard Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useReplicationSpecPerShard(@Nullable Boolean useReplicationSpecPerShard) {
+            $.useReplicationSpecPerShard = useReplicationSpecPerShard;
             return this;
         }
 

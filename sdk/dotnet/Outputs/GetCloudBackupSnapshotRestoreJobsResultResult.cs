@@ -18,10 +18,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool Cancelled;
         /// <summary>
-        /// UTC ISO 8601 formatted point in time when Atlas created the restore job.
-        /// </summary>
-        public readonly string CreatedAt;
-        /// <summary>
         /// Type of restore job to create. Possible values are: automated and download.
         /// </summary>
         public readonly string DeliveryType;
@@ -72,8 +68,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         private GetCloudBackupSnapshotRestoreJobsResultResult(
             bool cancelled,
 
-            string createdAt,
-
             string deliveryType,
 
             ImmutableArray<string> deliveryUrls,
@@ -101,7 +95,6 @@ namespace Pulumi.Mongodbatlas.Outputs
             string timestamp)
         {
             Cancelled = cancelled;
-            CreatedAt = createdAt;
             DeliveryType = deliveryType;
             DeliveryUrls = deliveryUrls;
             Expired = expired;

@@ -17,18 +17,34 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AdvancedClusterReplicationSpec {
     private @Nullable Map<String,String> containerId;
+    private @Nullable String externalId;
+    /**
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     private @Nullable String id;
     /**
      * @return Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don&#39;t create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don&#39;t provide the same benefits as multi-shard configurations.
-     * If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster).
+     * If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     private @Nullable Integer numShards;
     /**
      * @return Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
      * 
      */
     private List<AdvancedClusterReplicationSpecRegionConfig> regionConfigs;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+     * 
+     */
+    private @Nullable String zoneId;
     /**
      * @return Name for the zone in a Global Cluster.
      * 
@@ -39,14 +55,27 @@ public final class AdvancedClusterReplicationSpec {
     public Map<String,String> containerId() {
         return this.containerId == null ? Map.of() : this.containerId;
     }
+    public Optional<String> externalId() {
+        return Optional.ofNullable(this.externalId);
+    }
+    /**
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
     /**
      * @return Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don&#39;t create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don&#39;t provide the same benefits as multi-shard configurations.
-     * If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster).
+     * If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     public Optional<Integer> numShards() {
         return Optional.ofNullable(this.numShards);
     }
@@ -56,6 +85,13 @@ public final class AdvancedClusterReplicationSpec {
      */
     public List<AdvancedClusterReplicationSpecRegionConfig> regionConfigs() {
         return this.regionConfigs;
+    }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+     * 
+     */
+    public Optional<String> zoneId() {
+        return Optional.ofNullable(this.zoneId);
     }
     /**
      * @return Name for the zone in a Global Cluster.
@@ -75,17 +111,21 @@ public final class AdvancedClusterReplicationSpec {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Map<String,String> containerId;
+        private @Nullable String externalId;
         private @Nullable String id;
         private @Nullable Integer numShards;
         private List<AdvancedClusterReplicationSpecRegionConfig> regionConfigs;
+        private @Nullable String zoneId;
         private @Nullable String zoneName;
         public Builder() {}
         public Builder(AdvancedClusterReplicationSpec defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.containerId = defaults.containerId;
+    	      this.externalId = defaults.externalId;
     	      this.id = defaults.id;
     	      this.numShards = defaults.numShards;
     	      this.regionConfigs = defaults.regionConfigs;
+    	      this.zoneId = defaults.zoneId;
     	      this.zoneName = defaults.zoneName;
         }
 
@@ -93,6 +133,12 @@ public final class AdvancedClusterReplicationSpec {
         public Builder containerId(@Nullable Map<String,String> containerId) {
 
             this.containerId = containerId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder externalId(@Nullable String externalId) {
+
+            this.externalId = externalId;
             return this;
         }
         @CustomType.Setter
@@ -119,6 +165,12 @@ public final class AdvancedClusterReplicationSpec {
             return regionConfigs(List.of(regionConfigs));
         }
         @CustomType.Setter
+        public Builder zoneId(@Nullable String zoneId) {
+
+            this.zoneId = zoneId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder zoneName(@Nullable String zoneName) {
 
             this.zoneName = zoneName;
@@ -127,9 +179,11 @@ public final class AdvancedClusterReplicationSpec {
         public AdvancedClusterReplicationSpec build() {
             final var _resultValue = new AdvancedClusterReplicationSpec();
             _resultValue.containerId = containerId;
+            _resultValue.externalId = externalId;
             _resultValue.id = id;
             _resultValue.numShards = numShards;
             _resultValue.regionConfigs = regionConfigs;
+            _resultValue.zoneId = zoneId;
             _resultValue.zoneName = zoneName;
             return _resultValue;
         }

@@ -61,12 +61,28 @@ public final class GetAdvancedClusterPlainArgs extends com.pulumi.resources.Invo
         return this.projectId;
     }
 
+    /**
+     * Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+     * 
+     */
+    @Import(name="useReplicationSpecPerShard")
+    private @Nullable Boolean useReplicationSpecPerShard;
+
+    /**
+     * @return Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+     * 
+     */
+    public Optional<Boolean> useReplicationSpecPerShard() {
+        return Optional.ofNullable(this.useReplicationSpecPerShard);
+    }
+
     private GetAdvancedClusterPlainArgs() {}
 
     private GetAdvancedClusterPlainArgs(GetAdvancedClusterPlainArgs $) {
         this.name = $.name;
         this.pitEnabled = $.pitEnabled;
         this.projectId = $.projectId;
+        this.useReplicationSpecPerShard = $.useReplicationSpecPerShard;
     }
 
     public static Builder builder() {
@@ -117,6 +133,17 @@ public final class GetAdvancedClusterPlainArgs extends com.pulumi.resources.Invo
          */
         public Builder projectId(String projectId) {
             $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param useReplicationSpecPerShard Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useReplicationSpecPerShard(@Nullable Boolean useReplicationSpecPerShard) {
+            $.useReplicationSpecPerShard = useReplicationSpecPerShard;
             return this;
         }
 

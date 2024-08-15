@@ -6,9 +6,12 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResult;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAdvancedClustersInvokeResult {
@@ -23,6 +26,7 @@ public final class GetAdvancedClustersInvokeResult {
      * 
      */
     private List<GetAdvancedClustersResult> results;
+    private @Nullable Boolean useReplicationSpecPerShard;
 
     private GetAdvancedClustersInvokeResult() {}
     /**
@@ -42,6 +46,9 @@ public final class GetAdvancedClustersInvokeResult {
     public List<GetAdvancedClustersResult> results() {
         return this.results;
     }
+    public Optional<Boolean> useReplicationSpecPerShard() {
+        return Optional.ofNullable(this.useReplicationSpecPerShard);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -55,12 +62,14 @@ public final class GetAdvancedClustersInvokeResult {
         private String id;
         private String projectId;
         private List<GetAdvancedClustersResult> results;
+        private @Nullable Boolean useReplicationSpecPerShard;
         public Builder() {}
         public Builder(GetAdvancedClustersInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
+    	      this.useReplicationSpecPerShard = defaults.useReplicationSpecPerShard;
         }
 
         @CustomType.Setter
@@ -90,11 +99,18 @@ public final class GetAdvancedClustersInvokeResult {
         public Builder results(GetAdvancedClustersResult... results) {
             return results(List.of(results));
         }
+        @CustomType.Setter
+        public Builder useReplicationSpecPerShard(@Nullable Boolean useReplicationSpecPerShard) {
+
+            this.useReplicationSpecPerShard = useReplicationSpecPerShard;
+            return this;
+        }
         public GetAdvancedClustersInvokeResult build() {
             final var _resultValue = new GetAdvancedClustersInvokeResult();
             _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
+            _resultValue.useReplicationSpecPerShard = useReplicationSpecPerShard;
             return _resultValue;
         }
     }

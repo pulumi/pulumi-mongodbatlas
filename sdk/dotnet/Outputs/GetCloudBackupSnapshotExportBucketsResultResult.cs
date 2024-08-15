@@ -14,11 +14,11 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetCloudBackupSnapshotExportBucketsResultResult
     {
         /// <summary>
-        /// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+        /// Name of the bucket that the provided role ID is authorized to access.
         /// </summary>
         public readonly string BucketName;
         /// <summary>
-        /// Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+        /// Name of the provider of the cloud service where Atlas can access the S3 bucket.
         /// </summary>
         public readonly string CloudProvider;
         /// <summary>
@@ -26,9 +26,21 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ExportBucketId;
         /// <summary>
-        /// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+        /// Unique identifier of the role that Atlas can use to access the bucket.
         /// </summary>
         public readonly string IamRoleId;
+        /// <summary>
+        /// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container.
+        /// </summary>
+        public readonly string RoleId;
+        /// <summary>
+        /// URL that identifies the blob Endpoint of the Azure Blob Storage Account.
+        /// </summary>
+        public readonly string ServiceUrl;
+        /// <summary>
+        /// UUID that identifies the Azure Active Directory Tenant ID.
+        /// </summary>
+        public readonly string TenantId;
 
         [OutputConstructor]
         private GetCloudBackupSnapshotExportBucketsResultResult(
@@ -38,12 +50,21 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string exportBucketId,
 
-            string iamRoleId)
+            string iamRoleId,
+
+            string roleId,
+
+            string serviceUrl,
+
+            string tenantId)
         {
             BucketName = bucketName;
             CloudProvider = cloudProvider;
             ExportBucketId = exportBucketId;
             IamRoleId = iamRoleId;
+            RoleId = roleId;
+            ServiceUrl = serviceUrl;
+            TenantId = tenantId;
         }
     }
 }

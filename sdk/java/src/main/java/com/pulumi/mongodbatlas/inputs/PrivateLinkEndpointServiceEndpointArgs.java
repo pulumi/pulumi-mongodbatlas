@@ -46,29 +46,6 @@ public final class PrivateLinkEndpointServiceEndpointArgs extends com.pulumi.res
     }
 
     /**
-     * Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    @Import(name="serviceAttachmentName")
-    private @Nullable Output<String> serviceAttachmentName;
-
-    /**
-     * @return Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public Optional<Output<String>> serviceAttachmentName() {
-        return Optional.ofNullable(this.serviceAttachmentName);
-    }
-
-    /**
      * Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      * 
      */
@@ -88,7 +65,6 @@ public final class PrivateLinkEndpointServiceEndpointArgs extends com.pulumi.res
     private PrivateLinkEndpointServiceEndpointArgs(PrivateLinkEndpointServiceEndpointArgs $) {
         this.endpointName = $.endpointName;
         this.ipAddress = $.ipAddress;
-        this.serviceAttachmentName = $.serviceAttachmentName;
         this.status = $.status;
     }
 
@@ -150,35 +126,6 @@ public final class PrivateLinkEndpointServiceEndpointArgs extends com.pulumi.res
          */
         public Builder ipAddress(String ipAddress) {
             return ipAddress(Output.of(ipAddress));
-        }
-
-        /**
-         * @param serviceAttachmentName Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder serviceAttachmentName(@Nullable Output<String> serviceAttachmentName) {
-            $.serviceAttachmentName = serviceAttachmentName;
-            return this;
-        }
-
-        /**
-         * @param serviceAttachmentName Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder serviceAttachmentName(String serviceAttachmentName) {
-            return serviceAttachmentName(Output.of(serviceAttachmentName));
         }
 
         /**

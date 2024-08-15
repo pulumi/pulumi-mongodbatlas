@@ -22,7 +22,7 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_replication_spec_per_shard=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
@@ -89,6 +89,9 @@ class GetAdvancedClusterResult:
         if termination_protection_enabled and not isinstance(termination_protection_enabled, bool):
             raise TypeError("Expected argument 'termination_protection_enabled' to be a bool")
         pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+        if use_replication_spec_per_shard and not isinstance(use_replication_spec_per_shard, bool):
+            raise TypeError("Expected argument 'use_replication_spec_per_shard' to be a bool")
+        pulumi.set(__self__, "use_replication_spec_per_shard", use_replication_spec_per_shard)
         if version_release_system and not isinstance(version_release_system, str):
             raise TypeError("Expected argument 'version_release_system' to be a str")
         pulumi.set(__self__, "version_release_system", version_release_system)
@@ -137,9 +140,10 @@ class GetAdvancedClusterResult:
 
     @property
     @pulumi.getter(name="diskSizeGb")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def disk_size_gb(self) -> float:
         """
-        Capacity, in gigabytes, of the host's root volume.
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         """
         return pulumi.get(self, "disk_size_gb")
 
@@ -172,7 +176,7 @@ class GetAdvancedClusterResult:
     @_utilities.deprecated("""This parameter is deprecated and will be removed by September 2024. Please transition to tags.""")
     def labels(self) -> Sequence['outputs.GetAdvancedClusterLabelResult']:
         """
-        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
         """
         return pulumi.get(self, "labels")
 
@@ -222,7 +226,7 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="replicationSpecs")
     def replication_specs(self) -> Sequence['outputs.GetAdvancedClusterReplicationSpecResult']:
         """
-        Configuration for cluster regions and the hardware provisioned in them. See below.
+        List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
         """
         return pulumi.get(self, "replication_specs")
 
@@ -257,6 +261,11 @@ class GetAdvancedClusterResult:
         Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         return pulumi.get(self, "termination_protection_enabled")
+
+    @property
+    @pulumi.getter(name="useReplicationSpecPerShard")
+    def use_replication_spec_per_shard(self) -> Optional[bool]:
+        return pulumi.get(self, "use_replication_spec_per_shard")
 
     @property
     @pulumi.getter(name="versionReleaseSystem")
@@ -295,12 +304,14 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             state_name=self.state_name,
             tags=self.tags,
             termination_protection_enabled=self.termination_protection_enabled,
+            use_replication_spec_per_shard=self.use_replication_spec_per_shard,
             version_release_system=self.version_release_system)
 
 
 def get_advanced_cluster(name: Optional[str] = None,
                          pit_enabled: Optional[bool] = None,
                          project_id: Optional[str] = None,
+                         use_replication_spec_per_shard: Optional[bool] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAdvancedClusterResult:
     """
     ## # Data Source: AdvancedCluster
@@ -338,15 +349,59 @@ def get_advanced_cluster(name: Optional[str] = None,
         name=example_advanced_cluster.name)
     ```
 
+    ## Example using latest sharding schema with independent shard scaling in the cluster
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example_advanced_cluster = mongodbatlas.AdvancedCluster("example",
+        project_id="<YOUR-PROJECT-ID>",
+        name="cluster-test",
+        backup_enabled=False,
+        cluster_type="SHARDED",
+        replication_specs=[
+            {
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M30",
+                        "disk_iops": 3000,
+                        "node_count": 3,
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "EU_WEST_1",
+                }],
+            },
+            {
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M40",
+                        "disk_iops": 3000,
+                        "node_count": 3,
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "EU_WEST_1",
+                }],
+            },
+        ])
+    example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
+        name=example_advanced_cluster.name,
+        use_replication_spec_per_shard=True)
+    ```
+
 
     :param str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
     :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
     :param str project_id: The unique ID for the project to create the database user.
+    :param bool use_replication_spec_per_shard: Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
     """
     __args__ = dict()
     __args__['name'] = name
     __args__['pitEnabled'] = pit_enabled
     __args__['projectId'] = project_id
+    __args__['useReplicationSpecPerShard'] = use_replication_spec_per_shard
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAdvancedCluster:getAdvancedCluster', __args__, opts=opts, typ=GetAdvancedClusterResult).value
 
@@ -373,6 +428,7 @@ def get_advanced_cluster(name: Optional[str] = None,
         state_name=pulumi.get(__ret__, 'state_name'),
         tags=pulumi.get(__ret__, 'tags'),
         termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'),
+        use_replication_spec_per_shard=pulumi.get(__ret__, 'use_replication_spec_per_shard'),
         version_release_system=pulumi.get(__ret__, 'version_release_system'))
 
 
@@ -380,6 +436,7 @@ def get_advanced_cluster(name: Optional[str] = None,
 def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
                                 pit_enabled: Optional[pulumi.Input[Optional[bool]]] = None,
                                 project_id: Optional[pulumi.Input[str]] = None,
+                                use_replication_spec_per_shard: Optional[pulumi.Input[Optional[bool]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAdvancedClusterResult]:
     """
     ## # Data Source: AdvancedCluster
@@ -417,9 +474,52 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
         name=example_advanced_cluster.name)
     ```
 
+    ## Example using latest sharding schema with independent shard scaling in the cluster
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example_advanced_cluster = mongodbatlas.AdvancedCluster("example",
+        project_id="<YOUR-PROJECT-ID>",
+        name="cluster-test",
+        backup_enabled=False,
+        cluster_type="SHARDED",
+        replication_specs=[
+            {
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M30",
+                        "disk_iops": 3000,
+                        "node_count": 3,
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "EU_WEST_1",
+                }],
+            },
+            {
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M40",
+                        "disk_iops": 3000,
+                        "node_count": 3,
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "EU_WEST_1",
+                }],
+            },
+        ])
+    example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
+        name=example_advanced_cluster.name,
+        use_replication_spec_per_shard=True)
+    ```
+
 
     :param str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
     :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
     :param str project_id: The unique ID for the project to create the database user.
+    :param bool use_replication_spec_per_shard: Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
     """
     ...

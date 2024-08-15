@@ -21,7 +21,7 @@ class GetThirdPartyIntegrationResult:
     """
     A collection of values returned by getThirdPartyIntegration.
     """
-    def __init__(__self__, account_id=None, api_key=None, channel_name=None, enabled=None, id=None, microsoft_teams_webhook_url=None, project_id=None, region=None, routing_key=None, scheme=None, secret=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None):
+    def __init__(__self__, account_id=None, api_key=None, channel_name=None, enabled=None, id=None, microsoft_teams_webhook_url=None, project_id=None, region=None, routing_key=None, secret=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None):
         if account_id and not isinstance(account_id, str):
             raise TypeError("Expected argument 'account_id' to be a str")
         pulumi.set(__self__, "account_id", account_id)
@@ -49,9 +49,6 @@ class GetThirdPartyIntegrationResult:
         if routing_key and not isinstance(routing_key, str):
             raise TypeError("Expected argument 'routing_key' to be a str")
         pulumi.set(__self__, "routing_key", routing_key)
-        if scheme and not isinstance(scheme, str):
-            raise TypeError("Expected argument 'scheme' to be a str")
-        pulumi.set(__self__, "scheme", scheme)
         if secret and not isinstance(secret, str):
             raise TypeError("Expected argument 'secret' to be a str")
         pulumi.set(__self__, "secret", secret)
@@ -142,15 +139,6 @@ class GetThirdPartyIntegrationResult:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
-    def scheme(self) -> Optional[str]:
-        """
-        Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-        """
-        return pulumi.get(self, "scheme")
-
-    @property
-    @pulumi.getter
     def secret(self) -> str:
         """
         An optional field for your webhook secret.
@@ -217,7 +205,6 @@ class AwaitableGetThirdPartyIntegrationResult(GetThirdPartyIntegrationResult):
             project_id=self.project_id,
             region=self.region,
             routing_key=self.routing_key,
-            scheme=self.scheme,
             secret=self.secret,
             service_discovery=self.service_discovery,
             service_key=self.service_key,
@@ -230,7 +217,6 @@ class AwaitableGetThirdPartyIntegrationResult(GetThirdPartyIntegrationResult):
 def get_third_party_integration(enabled: Optional[bool] = None,
                                 microsoft_teams_webhook_url: Optional[str] = None,
                                 project_id: Optional[str] = None,
-                                scheme: Optional[str] = None,
                                 service_discovery: Optional[str] = None,
                                 type: Optional[str] = None,
                                 user_name: Optional[str] = None,
@@ -262,7 +248,6 @@ def get_third_party_integration(enabled: Optional[bool] = None,
     :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
            * `PROMETHEUS`
     :param str project_id: The unique ID for the project to get all Third-Party service integrations
-    :param str scheme: Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
     :param str service_discovery: Indicates which service discovery method is used, either file or http.
     :param str type: Third-Party service integration type
            * PAGER_DUTY
@@ -278,7 +263,6 @@ def get_third_party_integration(enabled: Optional[bool] = None,
     __args__['enabled'] = enabled
     __args__['microsoftTeamsWebhookUrl'] = microsoft_teams_webhook_url
     __args__['projectId'] = project_id
-    __args__['scheme'] = scheme
     __args__['serviceDiscovery'] = service_discovery
     __args__['type'] = type
     __args__['userName'] = user_name
@@ -295,7 +279,6 @@ def get_third_party_integration(enabled: Optional[bool] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
         routing_key=pulumi.get(__ret__, 'routing_key'),
-        scheme=pulumi.get(__ret__, 'scheme'),
         secret=pulumi.get(__ret__, 'secret'),
         service_discovery=pulumi.get(__ret__, 'service_discovery'),
         service_key=pulumi.get(__ret__, 'service_key'),
@@ -309,7 +292,6 @@ def get_third_party_integration(enabled: Optional[bool] = None,
 def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[bool]]] = None,
                                        microsoft_teams_webhook_url: Optional[pulumi.Input[Optional[str]]] = None,
                                        project_id: Optional[pulumi.Input[str]] = None,
-                                       scheme: Optional[pulumi.Input[Optional[str]]] = None,
                                        service_discovery: Optional[pulumi.Input[Optional[str]]] = None,
                                        type: Optional[pulumi.Input[str]] = None,
                                        user_name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -341,7 +323,6 @@ def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[b
     :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
            * `PROMETHEUS`
     :param str project_id: The unique ID for the project to get all Third-Party service integrations
-    :param str scheme: Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
     :param str service_discovery: Indicates which service discovery method is used, either file or http.
     :param str type: Third-Party service integration type
            * PAGER_DUTY

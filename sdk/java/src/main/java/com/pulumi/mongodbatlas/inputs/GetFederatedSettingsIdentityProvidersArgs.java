@@ -6,7 +6,6 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -49,52 +48,6 @@ public final class GetFederatedSettingsIdentityProvidersArgs extends com.pulumi.
     }
 
     /**
-     * Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    @Import(name="itemsPerPage")
-    private @Nullable Output<Integer> itemsPerPage;
-
-    /**
-     * @return Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public Optional<Output<Integer>> itemsPerPage() {
-        return Optional.ofNullable(this.itemsPerPage);
-    }
-
-    /**
-     * The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    @Import(name="pageNum")
-    private @Nullable Output<Integer> pageNum;
-
-    /**
-     * @return The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public Optional<Output<Integer>> pageNum() {
-        return Optional.ofNullable(this.pageNum);
-    }
-
-    /**
      * The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
      * 
      */
@@ -114,8 +67,6 @@ public final class GetFederatedSettingsIdentityProvidersArgs extends com.pulumi.
     private GetFederatedSettingsIdentityProvidersArgs(GetFederatedSettingsIdentityProvidersArgs $) {
         this.federationSettingsId = $.federationSettingsId;
         this.idpTypes = $.idpTypes;
-        this.itemsPerPage = $.itemsPerPage;
-        this.pageNum = $.pageNum;
         this.protocols = $.protocols;
     }
 
@@ -187,64 +138,6 @@ public final class GetFederatedSettingsIdentityProvidersArgs extends com.pulumi.
          */
         public Builder idpTypes(String... idpTypes) {
             return idpTypes(List.of(idpTypes));
-        }
-
-        /**
-         * @param itemsPerPage Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder itemsPerPage(@Nullable Output<Integer> itemsPerPage) {
-            $.itemsPerPage = itemsPerPage;
-            return this;
-        }
-
-        /**
-         * @param itemsPerPage Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder itemsPerPage(Integer itemsPerPage) {
-            return itemsPerPage(Output.of(itemsPerPage));
-        }
-
-        /**
-         * @param pageNum The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder pageNum(@Nullable Output<Integer> pageNum) {
-            $.pageNum = pageNum;
-            return this;
-        }
-
-        /**
-         * @param pageNum The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder pageNum(Integer pageNum) {
-            return pageNum(Output.of(pageNum));
         }
 
         /**

@@ -16,6 +16,8 @@ import java.lang.Double;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAdvancedClusterResult {
@@ -42,9 +44,13 @@ public final class GetAdvancedClusterResult {
     private List<GetAdvancedClusterConnectionString> connectionStrings;
     private String createDate;
     /**
-     * @return Capacity, in gigabytes, of the host&#39;s root volume.
+     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     private Double diskSizeGb;
     /**
      * @return Possible values are AWS, GCP, AZURE or NONE.
@@ -62,7 +68,7 @@ public final class GetAdvancedClusterResult {
      */
     private String id;
     /**
-     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
      * 
      * @deprecated
      * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
@@ -93,7 +99,7 @@ public final class GetAdvancedClusterResult {
     private Boolean pitEnabled;
     private String projectId;
     /**
-     * @return Configuration for cluster regions and the hardware provisioned in them. See below.
+     * @return List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
      * 
      */
     private List<GetAdvancedClusterReplicationSpec> replicationSpecs;
@@ -117,6 +123,7 @@ public final class GetAdvancedClusterResult {
      * 
      */
     private Boolean terminationProtectionEnabled;
+    private @Nullable Boolean useReplicationSpecPerShard;
     /**
      * @return Release cadence that Atlas uses for this cluster.
      * 
@@ -159,9 +166,13 @@ public final class GetAdvancedClusterResult {
         return this.createDate;
     }
     /**
-     * @return Capacity, in gigabytes, of the host&#39;s root volume.
+     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     public Double diskSizeGb() {
         return this.diskSizeGb;
     }
@@ -187,7 +198,7 @@ public final class GetAdvancedClusterResult {
         return this.id;
     }
     /**
-     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+     * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
      * 
      * @deprecated
      * This parameter is deprecated and will be removed by September 2024. Please transition to tags.
@@ -232,7 +243,7 @@ public final class GetAdvancedClusterResult {
         return this.projectId;
     }
     /**
-     * @return Configuration for cluster regions and the hardware provisioned in them. See below.
+     * @return List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
      * 
      */
     public List<GetAdvancedClusterReplicationSpec> replicationSpecs() {
@@ -265,6 +276,9 @@ public final class GetAdvancedClusterResult {
      */
     public Boolean terminationProtectionEnabled() {
         return this.terminationProtectionEnabled;
+    }
+    public Optional<Boolean> useReplicationSpecPerShard() {
+        return Optional.ofNullable(this.useReplicationSpecPerShard);
     }
     /**
      * @return Release cadence that Atlas uses for this cluster.
@@ -305,6 +319,7 @@ public final class GetAdvancedClusterResult {
         private String stateName;
         private List<GetAdvancedClusterTag> tags;
         private Boolean terminationProtectionEnabled;
+        private @Nullable Boolean useReplicationSpecPerShard;
         private String versionReleaseSystem;
         public Builder() {}
         public Builder(GetAdvancedClusterResult defaults) {
@@ -331,6 +346,7 @@ public final class GetAdvancedClusterResult {
     	      this.stateName = defaults.stateName;
     	      this.tags = defaults.tags;
     	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
+    	      this.useReplicationSpecPerShard = defaults.useReplicationSpecPerShard;
     	      this.versionReleaseSystem = defaults.versionReleaseSystem;
         }
 
@@ -529,6 +545,12 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
+        public Builder useReplicationSpecPerShard(@Nullable Boolean useReplicationSpecPerShard) {
+
+            this.useReplicationSpecPerShard = useReplicationSpecPerShard;
+            return this;
+        }
+        @CustomType.Setter
         public Builder versionReleaseSystem(String versionReleaseSystem) {
             if (versionReleaseSystem == null) {
               throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "versionReleaseSystem");
@@ -560,6 +582,7 @@ public final class GetAdvancedClusterResult {
             _resultValue.stateName = stateName;
             _resultValue.tags = tags;
             _resultValue.terminationProtectionEnabled = terminationProtectionEnabled;
+            _resultValue.useReplicationSpecPerShard = useReplicationSpecPerShard;
             _resultValue.versionReleaseSystem = versionReleaseSystem;
             return _resultValue;
         }

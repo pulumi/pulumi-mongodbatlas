@@ -22,7 +22,7 @@ class GetAdvancedClustersResult:
     """
     A collection of values returned by getAdvancedClusters.
     """
-    def __init__(__self__, id=None, project_id=None, results=None):
+    def __init__(__self__, id=None, project_id=None, results=None, use_replication_spec_per_shard=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -32,6 +32,9 @@ class GetAdvancedClustersResult:
         if results and not isinstance(results, list):
             raise TypeError("Expected argument 'results' to be a list")
         pulumi.set(__self__, "results", results)
+        if use_replication_spec_per_shard and not isinstance(use_replication_spec_per_shard, bool):
+            raise TypeError("Expected argument 'use_replication_spec_per_shard' to be a bool")
+        pulumi.set(__self__, "use_replication_spec_per_shard", use_replication_spec_per_shard)
 
     @property
     @pulumi.getter
@@ -54,6 +57,11 @@ class GetAdvancedClustersResult:
         """
         return pulumi.get(self, "results")
 
+    @property
+    @pulumi.getter(name="useReplicationSpecPerShard")
+    def use_replication_spec_per_shard(self) -> Optional[bool]:
+        return pulumi.get(self, "use_replication_spec_per_shard")
+
 
 class AwaitableGetAdvancedClustersResult(GetAdvancedClustersResult):
     # pylint: disable=using-constant-test
@@ -63,10 +71,12 @@ class AwaitableGetAdvancedClustersResult(GetAdvancedClustersResult):
         return GetAdvancedClustersResult(
             id=self.id,
             project_id=self.project_id,
-            results=self.results)
+            results=self.results,
+            use_replication_spec_per_shard=self.use_replication_spec_per_shard)
 
 
 def get_advanced_clusters(project_id: Optional[str] = None,
+                          use_replication_spec_per_shard: Optional[bool] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAdvancedClustersResult:
     """
     ## # Data Source: get_advanced_clusters
@@ -103,22 +113,68 @@ def get_advanced_clusters(project_id: Optional[str] = None,
     example = mongodbatlas.get_advanced_clusters_output(project_id=example_advanced_cluster.project_id)
     ```
 
+    ## Example using latest sharding schema with independent shard scaling in the cluster
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example = mongodbatlas.AdvancedCluster("example",
+        project_id="<YOUR-PROJECT-ID>",
+        name="cluster-test",
+        backup_enabled=False,
+        cluster_type="SHARDED",
+        replication_specs=[
+            {
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M30",
+                        "disk_iops": 3000,
+                        "node_count": 3,
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "EU_WEST_1",
+                }],
+            },
+            {
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M40",
+                        "disk_iops": 3000,
+                        "node_count": 3,
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "EU_WEST_1",
+                }],
+            },
+        ])
+    example_asym = mongodbatlas.get_advanced_cluster_output(project_id=example.project_id,
+        name=example.name,
+        use_replication_spec_per_shard=True)
+    ```
+
 
     :param str project_id: The unique ID for the project to get the clusters.
+    :param bool use_replication_spec_per_shard: Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
+    __args__['useReplicationSpecPerShard'] = use_replication_spec_per_shard
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAdvancedClusters:getAdvancedClusters', __args__, opts=opts, typ=GetAdvancedClustersResult).value
 
     return AwaitableGetAdvancedClustersResult(
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
-        results=pulumi.get(__ret__, 'results'))
+        results=pulumi.get(__ret__, 'results'),
+        use_replication_spec_per_shard=pulumi.get(__ret__, 'use_replication_spec_per_shard'))
 
 
 @_utilities.lift_output_func(get_advanced_clusters)
 def get_advanced_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
+                                 use_replication_spec_per_shard: Optional[pulumi.Input[Optional[bool]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAdvancedClustersResult]:
     """
     ## # Data Source: get_advanced_clusters
@@ -155,7 +211,50 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
     example = mongodbatlas.get_advanced_clusters_output(project_id=example_advanced_cluster.project_id)
     ```
 
+    ## Example using latest sharding schema with independent shard scaling in the cluster
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example = mongodbatlas.AdvancedCluster("example",
+        project_id="<YOUR-PROJECT-ID>",
+        name="cluster-test",
+        backup_enabled=False,
+        cluster_type="SHARDED",
+        replication_specs=[
+            {
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M30",
+                        "disk_iops": 3000,
+                        "node_count": 3,
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "EU_WEST_1",
+                }],
+            },
+            {
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M40",
+                        "disk_iops": 3000,
+                        "node_count": 3,
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "EU_WEST_1",
+                }],
+            },
+        ])
+    example_asym = mongodbatlas.get_advanced_cluster_output(project_id=example.project_id,
+        name=example.name,
+        use_replication_spec_per_shard=True)
+    ```
+
 
     :param str project_id: The unique ID for the project to get the clusters.
+    :param bool use_replication_spec_per_shard: Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
     """
     ...

@@ -8,8 +8,6 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class GetCloudBackupSnapshotExportJobArgs extends com.pulumi.resources.InvokeArgs {
@@ -47,25 +45,6 @@ public final class GetCloudBackupSnapshotExportJobArgs extends com.pulumi.resour
     }
 
     /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
-    @Import(name="id")
-    private @Nullable Output<String> id;
-
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
-    public Optional<Output<String>> id() {
-        return Optional.ofNullable(this.id);
-    }
-
-    /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
      * 
      */
@@ -85,7 +64,6 @@ public final class GetCloudBackupSnapshotExportJobArgs extends com.pulumi.resour
     private GetCloudBackupSnapshotExportJobArgs(GetCloudBackupSnapshotExportJobArgs $) {
         this.clusterName = $.clusterName;
         this.exportJobId = $.exportJobId;
-        this.id = $.id;
         this.projectId = $.projectId;
     }
 
@@ -147,31 +125,6 @@ public final class GetCloudBackupSnapshotExportJobArgs extends com.pulumi.resour
          */
         public Builder exportJobId(String exportJobId) {
             return exportJobId(Output.of(exportJobId));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
-        public Builder id(@Nullable Output<String> id) {
-            $.id = id;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
-        public Builder id(String id) {
-            return id(Output.of(id));
         }
 
         /**

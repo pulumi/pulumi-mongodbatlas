@@ -79,10 +79,6 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     public readonly projectId!: pulumi.Output<string>;
     public readonly region!: pulumi.Output<string>;
     public readonly routingKey!: pulumi.Output<string>;
-    /**
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    public readonly scheme!: pulumi.Output<string>;
     public readonly secret!: pulumi.Output<string | undefined>;
     public readonly serviceDiscovery!: pulumi.Output<string>;
     public readonly serviceKey!: pulumi.Output<string>;
@@ -125,7 +121,6 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["routingKey"] = state ? state.routingKey : undefined;
-            resourceInputs["scheme"] = state ? state.scheme : undefined;
             resourceInputs["secret"] = state ? state.secret : undefined;
             resourceInputs["serviceDiscovery"] = state ? state.serviceDiscovery : undefined;
             resourceInputs["serviceKey"] = state ? state.serviceKey : undefined;
@@ -149,7 +144,6 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["routingKey"] = args?.routingKey ? pulumi.secret(args.routingKey) : undefined;
-            resourceInputs["scheme"] = args ? args.scheme : undefined;
             resourceInputs["secret"] = args?.secret ? pulumi.secret(args.secret) : undefined;
             resourceInputs["serviceDiscovery"] = args?.serviceDiscovery ? pulumi.secret(args.serviceDiscovery) : undefined;
             resourceInputs["serviceKey"] = args?.serviceKey ? pulumi.secret(args.serviceKey) : undefined;
@@ -180,10 +174,6 @@ export interface ThirdPartyIntegrationState {
     projectId?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
     routingKey?: pulumi.Input<string>;
-    /**
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    scheme?: pulumi.Input<string>;
     secret?: pulumi.Input<string>;
     serviceDiscovery?: pulumi.Input<string>;
     serviceKey?: pulumi.Input<string>;
@@ -221,10 +211,6 @@ export interface ThirdPartyIntegrationArgs {
     projectId: pulumi.Input<string>;
     region?: pulumi.Input<string>;
     routingKey?: pulumi.Input<string>;
-    /**
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    scheme?: pulumi.Input<string>;
     secret?: pulumi.Input<string>;
     serviceDiscovery?: pulumi.Input<string>;
     serviceKey?: pulumi.Input<string>;

@@ -30,22 +30,24 @@ type CloudBackupSchedule struct {
 	// Unique identifier of the Atlas cluster.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName  pulumi.StringOutput                       `pulumi:"clusterName"`
+	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
+	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings CloudBackupScheduleCopySettingArrayOutput `pulumi:"copySettings"`
-	Export       CloudBackupScheduleExportOutput           `pulumi:"export"`
+	// Policy for automatically exporting Cloud Backup Snapshots. See below
+	Export CloudBackupScheduleExportOutput `pulumi:"export"`
 	// Unique identifier of the backup policy.
 	IdPolicy pulumi.StringOutput `pulumi:"idPolicy"`
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
 	NextSnapshot pulumi.StringOutput `pulumi:"nextSnapshot"`
-	// Daily policy item
+	// Daily policy item. See below
 	PolicyItemDaily CloudBackupSchedulePolicyItemDailyPtrOutput `pulumi:"policyItemDaily"`
-	// Hourly policy item
+	// Hourly policy item. See below
 	PolicyItemHourly CloudBackupSchedulePolicyItemHourlyPtrOutput `pulumi:"policyItemHourly"`
-	// Monthly policy item
+	// Monthly policy item. See below
 	PolicyItemMonthlies CloudBackupSchedulePolicyItemMonthlyArrayOutput `pulumi:"policyItemMonthlies"`
-	// Weekly policy item
+	// Weekly policy item. See below
 	PolicyItemWeeklies CloudBackupSchedulePolicyItemWeeklyArrayOutput `pulumi:"policyItemWeeklies"`
-	// Yearly policy item
+	// Yearly policy item. See below
 	PolicyItemYearlies CloudBackupSchedulePolicyItemYearlyArrayOutput `pulumi:"policyItemYearlies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -103,22 +105,24 @@ type cloudBackupScheduleState struct {
 	// Unique identifier of the Atlas cluster.
 	ClusterId *string `pulumi:"clusterId"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName  *string                          `pulumi:"clusterName"`
+	ClusterName *string `pulumi:"clusterName"`
+	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings []CloudBackupScheduleCopySetting `pulumi:"copySettings"`
-	Export       *CloudBackupScheduleExport       `pulumi:"export"`
+	// Policy for automatically exporting Cloud Backup Snapshots. See below
+	Export *CloudBackupScheduleExport `pulumi:"export"`
 	// Unique identifier of the backup policy.
 	IdPolicy *string `pulumi:"idPolicy"`
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
 	NextSnapshot *string `pulumi:"nextSnapshot"`
-	// Daily policy item
+	// Daily policy item. See below
 	PolicyItemDaily *CloudBackupSchedulePolicyItemDaily `pulumi:"policyItemDaily"`
-	// Hourly policy item
+	// Hourly policy item. See below
 	PolicyItemHourly *CloudBackupSchedulePolicyItemHourly `pulumi:"policyItemHourly"`
-	// Monthly policy item
+	// Monthly policy item. See below
 	PolicyItemMonthlies []CloudBackupSchedulePolicyItemMonthly `pulumi:"policyItemMonthlies"`
-	// Weekly policy item
+	// Weekly policy item. See below
 	PolicyItemWeeklies []CloudBackupSchedulePolicyItemWeekly `pulumi:"policyItemWeeklies"`
-	// Yearly policy item
+	// Yearly policy item. See below
 	PolicyItemYearlies []CloudBackupSchedulePolicyItemYearly `pulumi:"policyItemYearlies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId *string `pulumi:"projectId"`
@@ -141,22 +145,24 @@ type CloudBackupScheduleState struct {
 	// Unique identifier of the Atlas cluster.
 	ClusterId pulumi.StringPtrInput
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName  pulumi.StringPtrInput
+	ClusterName pulumi.StringPtrInput
+	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings CloudBackupScheduleCopySettingArrayInput
-	Export       CloudBackupScheduleExportPtrInput
+	// Policy for automatically exporting Cloud Backup Snapshots. See below
+	Export CloudBackupScheduleExportPtrInput
 	// Unique identifier of the backup policy.
 	IdPolicy pulumi.StringPtrInput
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
 	NextSnapshot pulumi.StringPtrInput
-	// Daily policy item
+	// Daily policy item. See below
 	PolicyItemDaily CloudBackupSchedulePolicyItemDailyPtrInput
-	// Hourly policy item
+	// Hourly policy item. See below
 	PolicyItemHourly CloudBackupSchedulePolicyItemHourlyPtrInput
-	// Monthly policy item
+	// Monthly policy item. See below
 	PolicyItemMonthlies CloudBackupSchedulePolicyItemMonthlyArrayInput
-	// Weekly policy item
+	// Weekly policy item. See below
 	PolicyItemWeeklies CloudBackupSchedulePolicyItemWeeklyArrayInput
-	// Yearly policy item
+	// Yearly policy item. See below
 	PolicyItemYearlies CloudBackupSchedulePolicyItemYearlyArrayInput
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringPtrInput
@@ -181,18 +187,20 @@ type cloudBackupScheduleArgs struct {
 	// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled *bool `pulumi:"autoExportEnabled"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName  string                           `pulumi:"clusterName"`
+	ClusterName string `pulumi:"clusterName"`
+	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings []CloudBackupScheduleCopySetting `pulumi:"copySettings"`
-	Export       *CloudBackupScheduleExport       `pulumi:"export"`
-	// Daily policy item
+	// Policy for automatically exporting Cloud Backup Snapshots. See below
+	Export *CloudBackupScheduleExport `pulumi:"export"`
+	// Daily policy item. See below
 	PolicyItemDaily *CloudBackupSchedulePolicyItemDaily `pulumi:"policyItemDaily"`
-	// Hourly policy item
+	// Hourly policy item. See below
 	PolicyItemHourly *CloudBackupSchedulePolicyItemHourly `pulumi:"policyItemHourly"`
-	// Monthly policy item
+	// Monthly policy item. See below
 	PolicyItemMonthlies []CloudBackupSchedulePolicyItemMonthly `pulumi:"policyItemMonthlies"`
-	// Weekly policy item
+	// Weekly policy item. See below
 	PolicyItemWeeklies []CloudBackupSchedulePolicyItemWeekly `pulumi:"policyItemWeeklies"`
-	// Yearly policy item
+	// Yearly policy item. See below
 	PolicyItemYearlies []CloudBackupSchedulePolicyItemYearly `pulumi:"policyItemYearlies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
@@ -214,18 +222,20 @@ type CloudBackupScheduleArgs struct {
 	// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled pulumi.BoolPtrInput
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName  pulumi.StringInput
+	ClusterName pulumi.StringInput
+	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings CloudBackupScheduleCopySettingArrayInput
-	Export       CloudBackupScheduleExportPtrInput
-	// Daily policy item
+	// Policy for automatically exporting Cloud Backup Snapshots. See below
+	Export CloudBackupScheduleExportPtrInput
+	// Daily policy item. See below
 	PolicyItemDaily CloudBackupSchedulePolicyItemDailyPtrInput
-	// Hourly policy item
+	// Hourly policy item. See below
 	PolicyItemHourly CloudBackupSchedulePolicyItemHourlyPtrInput
-	// Monthly policy item
+	// Monthly policy item. See below
 	PolicyItemMonthlies CloudBackupSchedulePolicyItemMonthlyArrayInput
-	// Weekly policy item
+	// Weekly policy item. See below
 	PolicyItemWeeklies CloudBackupSchedulePolicyItemWeeklyArrayInput
-	// Yearly policy item
+	// Yearly policy item. See below
 	PolicyItemYearlies CloudBackupSchedulePolicyItemYearlyArrayInput
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringInput
@@ -344,10 +354,12 @@ func (o CloudBackupScheduleOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
 }
 
+// List that contains a document for each copy setting item in the desired backup policy. See below
 func (o CloudBackupScheduleOutput) CopySettings() CloudBackupScheduleCopySettingArrayOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupScheduleCopySettingArrayOutput { return v.CopySettings }).(CloudBackupScheduleCopySettingArrayOutput)
 }
 
+// Policy for automatically exporting Cloud Backup Snapshots. See below
 func (o CloudBackupScheduleOutput) Export() CloudBackupScheduleExportOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupScheduleExportOutput { return v.Export }).(CloudBackupScheduleExportOutput)
 }
@@ -362,31 +374,31 @@ func (o CloudBackupScheduleOutput) NextSnapshot() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.StringOutput { return v.NextSnapshot }).(pulumi.StringOutput)
 }
 
-// Daily policy item
+// Daily policy item. See below
 func (o CloudBackupScheduleOutput) PolicyItemDaily() CloudBackupSchedulePolicyItemDailyPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupSchedulePolicyItemDailyPtrOutput { return v.PolicyItemDaily }).(CloudBackupSchedulePolicyItemDailyPtrOutput)
 }
 
-// Hourly policy item
+// Hourly policy item. See below
 func (o CloudBackupScheduleOutput) PolicyItemHourly() CloudBackupSchedulePolicyItemHourlyPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupSchedulePolicyItemHourlyPtrOutput { return v.PolicyItemHourly }).(CloudBackupSchedulePolicyItemHourlyPtrOutput)
 }
 
-// Monthly policy item
+// Monthly policy item. See below
 func (o CloudBackupScheduleOutput) PolicyItemMonthlies() CloudBackupSchedulePolicyItemMonthlyArrayOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupSchedulePolicyItemMonthlyArrayOutput {
 		return v.PolicyItemMonthlies
 	}).(CloudBackupSchedulePolicyItemMonthlyArrayOutput)
 }
 
-// Weekly policy item
+// Weekly policy item. See below
 func (o CloudBackupScheduleOutput) PolicyItemWeeklies() CloudBackupSchedulePolicyItemWeeklyArrayOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupSchedulePolicyItemWeeklyArrayOutput {
 		return v.PolicyItemWeeklies
 	}).(CloudBackupSchedulePolicyItemWeeklyArrayOutput)
 }
 
-// Yearly policy item
+// Yearly policy item. See below
 func (o CloudBackupScheduleOutput) PolicyItemYearlies() CloudBackupSchedulePolicyItemYearlyArrayOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupSchedulePolicyItemYearlyArrayOutput {
 		return v.PolicyItemYearlies

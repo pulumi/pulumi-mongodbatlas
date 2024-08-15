@@ -97,9 +97,6 @@ namespace Pulumi.Mongodbatlas
         [Input("exportBucketId", required: true)]
         public string ExportBucketId { get; set; } = null!;
 
-        [Input("id")]
-        public string? Id { get; set; }
-
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
         /// </summary>
@@ -120,9 +117,6 @@ namespace Pulumi.Mongodbatlas
         [Input("exportBucketId", required: true)]
         public Input<string> ExportBucketId { get; set; } = null!;
 
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
         /// </summary>
@@ -140,20 +134,32 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetCloudBackupSnapshotExportBucketResult
     {
         /// <summary>
-        /// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+        /// Name of the bucket that the provided role ID is authorized to access.
         /// </summary>
         public readonly string BucketName;
         /// <summary>
-        /// Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+        /// Name of the provider of the cloud service where Atlas can access the S3 bucket.
         /// </summary>
         public readonly string CloudProvider;
         public readonly string ExportBucketId;
         /// <summary>
-        /// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+        /// Unique identifier of the role that Atlas can use to access the bucket.
         /// </summary>
         public readonly string IamRoleId;
         public readonly string Id;
         public readonly string ProjectId;
+        /// <summary>
+        /// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container.
+        /// </summary>
+        public readonly string RoleId;
+        /// <summary>
+        /// URL that identifies the blob Endpoint of the Azure Blob Storage Account.
+        /// </summary>
+        public readonly string ServiceUrl;
+        /// <summary>
+        /// UUID that identifies the Azure Active Directory Tenant ID.
+        /// </summary>
+        public readonly string TenantId;
 
         [OutputConstructor]
         private GetCloudBackupSnapshotExportBucketResult(
@@ -167,7 +173,13 @@ namespace Pulumi.Mongodbatlas
 
             string id,
 
-            string projectId)
+            string projectId,
+
+            string roleId,
+
+            string serviceUrl,
+
+            string tenantId)
         {
             BucketName = bucketName;
             CloudProvider = cloudProvider;
@@ -175,6 +187,9 @@ namespace Pulumi.Mongodbatlas
             IamRoleId = iamRoleId;
             Id = id;
             ProjectId = projectId;
+            RoleId = roleId;
+            ServiceUrl = serviceUrl;
+            TenantId = tenantId;
         }
     }
 }

@@ -42,9 +42,15 @@ namespace Pulumi.Mongodbatlas
         [Output("clusterName")]
         public Output<string> ClusterName { get; private set; } = null!;
 
+        /// <summary>
+        /// List that contains a document for each copy setting item in the desired backup policy. See below
+        /// </summary>
         [Output("copySettings")]
         public Output<ImmutableArray<Outputs.CloudBackupScheduleCopySetting>> CopySettings { get; private set; } = null!;
 
+        /// <summary>
+        /// Policy for automatically exporting Cloud Backup Snapshots. See below
+        /// </summary>
         [Output("export")]
         public Output<Outputs.CloudBackupScheduleExport> Export { get; private set; } = null!;
 
@@ -61,31 +67,31 @@ namespace Pulumi.Mongodbatlas
         public Output<string> NextSnapshot { get; private set; } = null!;
 
         /// <summary>
-        /// Daily policy item
+        /// Daily policy item. See below
         /// </summary>
         [Output("policyItemDaily")]
         public Output<Outputs.CloudBackupSchedulePolicyItemDaily?> PolicyItemDaily { get; private set; } = null!;
 
         /// <summary>
-        /// Hourly policy item
+        /// Hourly policy item. See below
         /// </summary>
         [Output("policyItemHourly")]
         public Output<Outputs.CloudBackupSchedulePolicyItemHourly?> PolicyItemHourly { get; private set; } = null!;
 
         /// <summary>
-        /// Monthly policy item
+        /// Monthly policy item. See below
         /// </summary>
         [Output("policyItemMonthlies")]
         public Output<ImmutableArray<Outputs.CloudBackupSchedulePolicyItemMonthly>> PolicyItemMonthlies { get; private set; } = null!;
 
         /// <summary>
-        /// Weekly policy item
+        /// Weekly policy item. See below
         /// </summary>
         [Output("policyItemWeeklies")]
         public Output<ImmutableArray<Outputs.CloudBackupSchedulePolicyItemWeekly>> PolicyItemWeeklies { get; private set; } = null!;
 
         /// <summary>
-        /// Yearly policy item
+        /// Yearly policy item. See below
         /// </summary>
         [Output("policyItemYearlies")]
         public Output<ImmutableArray<Outputs.CloudBackupSchedulePolicyItemYearly>> PolicyItemYearlies { get; private set; } = null!;
@@ -185,23 +191,30 @@ namespace Pulumi.Mongodbatlas
 
         [Input("copySettings")]
         private InputList<Inputs.CloudBackupScheduleCopySettingArgs>? _copySettings;
+
+        /// <summary>
+        /// List that contains a document for each copy setting item in the desired backup policy. See below
+        /// </summary>
         public InputList<Inputs.CloudBackupScheduleCopySettingArgs> CopySettings
         {
             get => _copySettings ?? (_copySettings = new InputList<Inputs.CloudBackupScheduleCopySettingArgs>());
             set => _copySettings = value;
         }
 
+        /// <summary>
+        /// Policy for automatically exporting Cloud Backup Snapshots. See below
+        /// </summary>
         [Input("export")]
         public Input<Inputs.CloudBackupScheduleExportArgs>? Export { get; set; }
 
         /// <summary>
-        /// Daily policy item
+        /// Daily policy item. See below
         /// </summary>
         [Input("policyItemDaily")]
         public Input<Inputs.CloudBackupSchedulePolicyItemDailyArgs>? PolicyItemDaily { get; set; }
 
         /// <summary>
-        /// Hourly policy item
+        /// Hourly policy item. See below
         /// </summary>
         [Input("policyItemHourly")]
         public Input<Inputs.CloudBackupSchedulePolicyItemHourlyArgs>? PolicyItemHourly { get; set; }
@@ -210,7 +223,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.CloudBackupSchedulePolicyItemMonthlyArgs>? _policyItemMonthlies;
 
         /// <summary>
-        /// Monthly policy item
+        /// Monthly policy item. See below
         /// </summary>
         public InputList<Inputs.CloudBackupSchedulePolicyItemMonthlyArgs> PolicyItemMonthlies
         {
@@ -222,7 +235,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.CloudBackupSchedulePolicyItemWeeklyArgs>? _policyItemWeeklies;
 
         /// <summary>
-        /// Weekly policy item
+        /// Weekly policy item. See below
         /// </summary>
         public InputList<Inputs.CloudBackupSchedulePolicyItemWeeklyArgs> PolicyItemWeeklies
         {
@@ -234,7 +247,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.CloudBackupSchedulePolicyItemYearlyArgs>? _policyItemYearlies;
 
         /// <summary>
-        /// Yearly policy item
+        /// Yearly policy item. See below
         /// </summary>
         public InputList<Inputs.CloudBackupSchedulePolicyItemYearlyArgs> PolicyItemYearlies
         {
@@ -305,12 +318,19 @@ namespace Pulumi.Mongodbatlas
 
         [Input("copySettings")]
         private InputList<Inputs.CloudBackupScheduleCopySettingGetArgs>? _copySettings;
+
+        /// <summary>
+        /// List that contains a document for each copy setting item in the desired backup policy. See below
+        /// </summary>
         public InputList<Inputs.CloudBackupScheduleCopySettingGetArgs> CopySettings
         {
             get => _copySettings ?? (_copySettings = new InputList<Inputs.CloudBackupScheduleCopySettingGetArgs>());
             set => _copySettings = value;
         }
 
+        /// <summary>
+        /// Policy for automatically exporting Cloud Backup Snapshots. See below
+        /// </summary>
         [Input("export")]
         public Input<Inputs.CloudBackupScheduleExportGetArgs>? Export { get; set; }
 
@@ -327,13 +347,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? NextSnapshot { get; set; }
 
         /// <summary>
-        /// Daily policy item
+        /// Daily policy item. See below
         /// </summary>
         [Input("policyItemDaily")]
         public Input<Inputs.CloudBackupSchedulePolicyItemDailyGetArgs>? PolicyItemDaily { get; set; }
 
         /// <summary>
-        /// Hourly policy item
+        /// Hourly policy item. See below
         /// </summary>
         [Input("policyItemHourly")]
         public Input<Inputs.CloudBackupSchedulePolicyItemHourlyGetArgs>? PolicyItemHourly { get; set; }
@@ -342,7 +362,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.CloudBackupSchedulePolicyItemMonthlyGetArgs>? _policyItemMonthlies;
 
         /// <summary>
-        /// Monthly policy item
+        /// Monthly policy item. See below
         /// </summary>
         public InputList<Inputs.CloudBackupSchedulePolicyItemMonthlyGetArgs> PolicyItemMonthlies
         {
@@ -354,7 +374,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.CloudBackupSchedulePolicyItemWeeklyGetArgs>? _policyItemWeeklies;
 
         /// <summary>
-        /// Weekly policy item
+        /// Weekly policy item. See below
         /// </summary>
         public InputList<Inputs.CloudBackupSchedulePolicyItemWeeklyGetArgs> PolicyItemWeeklies
         {
@@ -366,7 +386,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.CloudBackupSchedulePolicyItemYearlyGetArgs>? _policyItemYearlies;
 
         /// <summary>
-        /// Yearly policy item
+        /// Yearly policy item. See below
         /// </summary>
         public InputList<Inputs.CloudBackupSchedulePolicyItemYearlyGetArgs> PolicyItemYearlies
         {

@@ -16,37 +16,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
         /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
-        ///     {
-        ///         FederationSettingsId = "627a9687f7f7f7f774de306f",
-        ///         Name = "mongodb_federation_test",
-        ///         AssociatedDomains = new[]
-        ///         {
-        ///             "yourdomain.com",
-        ///         },
-        ///         SsoDebugEnabled = true,
-        ///         Status = "ACTIVE",
-        ///     });
-        /// 
-        ///     var identittyProvider = Mongodbatlas.GetFederatedSettingsIdentityProviders.Invoke(new()
-        ///     {
-        ///         FederationSettingsId = identityProvider.Id,
-        ///         PageNum = 1,
-        ///         ItemsPerPage = 5,
-        ///     });
-        /// 
-        /// });
-        /// ```
+        /// Note: This implementation returns a maximum of 100 results.
         /// </summary>
         public static Task<GetFederatedSettingsIdentityProvidersResult> InvokeAsync(GetFederatedSettingsIdentityProvidersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersArgs(), options.WithDefaults());
@@ -56,37 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
         /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
-        ///     {
-        ///         FederationSettingsId = "627a9687f7f7f7f774de306f",
-        ///         Name = "mongodb_federation_test",
-        ///         AssociatedDomains = new[]
-        ///         {
-        ///             "yourdomain.com",
-        ///         },
-        ///         SsoDebugEnabled = true,
-        ///         Status = "ACTIVE",
-        ///     });
-        /// 
-        ///     var identittyProvider = Mongodbatlas.GetFederatedSettingsIdentityProviders.Invoke(new()
-        ///     {
-        ///         FederationSettingsId = identityProvider.Id,
-        ///         PageNum = 1,
-        ///         ItemsPerPage = 5,
-        ///     });
-        /// 
-        /// });
-        /// ```
+        /// Note: This implementation returns a maximum of 100 results.
         /// </summary>
         public static Output<GetFederatedSettingsIdentityProvidersResult> Invoke(GetFederatedSettingsIdentityProvidersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersInvokeArgs(), options.WithDefaults());
@@ -112,18 +52,6 @@ namespace Pulumi.Mongodbatlas
             get => _idpTypes ?? (_idpTypes = new List<string>());
             set => _idpTypes = value;
         }
-
-        /// <summary>
-        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-        /// </summary>
-        [Input("itemsPerPage")]
-        public int? ItemsPerPage { get; set; }
-
-        /// <summary>
-        /// The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-        /// </summary>
-        [Input("pageNum")]
-        public int? PageNum { get; set; }
 
         [Input("protocols")]
         private List<string>? _protocols;
@@ -163,18 +91,6 @@ namespace Pulumi.Mongodbatlas
             set => _idpTypes = value;
         }
 
-        /// <summary>
-        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-        /// </summary>
-        [Input("itemsPerPage")]
-        public Input<int>? ItemsPerPage { get; set; }
-
-        /// <summary>
-        /// The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-        /// </summary>
-        [Input("pageNum")]
-        public Input<int>? PageNum { get; set; }
-
         [Input("protocols")]
         private InputList<string>? _protocols;
 
@@ -206,8 +122,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> IdpTypes;
-        public readonly int? ItemsPerPage;
-        public readonly int? PageNum;
         public readonly ImmutableArray<string> Protocols;
         /// <summary>
         /// Includes cloudProviderSnapshot object for each item detailed in the results array section.
@@ -223,10 +137,6 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<string> idpTypes,
 
-            int? itemsPerPage,
-
-            int? pageNum,
-
             ImmutableArray<string> protocols,
 
             ImmutableArray<Outputs.GetFederatedSettingsIdentityProvidersResultResult> results)
@@ -234,8 +144,6 @@ namespace Pulumi.Mongodbatlas
             FederationSettingsId = federationSettingsId;
             Id = id;
             IdpTypes = idpTypes;
-            ItemsPerPage = itemsPerPage;
-            PageNum = pageNum;
             Protocols = protocols;
             Results = results;
         }

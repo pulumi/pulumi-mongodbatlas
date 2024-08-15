@@ -21,16 +21,13 @@ class GetCloudBackupSnapshotRestoreJobResult:
     """
     A collection of values returned by getCloudBackupSnapshotRestoreJob.
     """
-    def __init__(__self__, cancelled=None, cluster_name=None, created_at=None, delivery_type=None, delivery_urls=None, expired=None, expires_at=None, finished_at=None, id=None, job_id=None, oplog_inc=None, oplog_ts=None, point_in_time_utc_seconds=None, project_id=None, snapshot_id=None, snapshot_restore_job_id=None, target_cluster_name=None, target_project_id=None, timestamp=None):
+    def __init__(__self__, cancelled=None, cluster_name=None, delivery_type=None, delivery_urls=None, expired=None, expires_at=None, finished_at=None, id=None, oplog_inc=None, oplog_ts=None, point_in_time_utc_seconds=None, project_id=None, snapshot_id=None, snapshot_restore_job_id=None, target_cluster_name=None, target_project_id=None, timestamp=None):
         if cancelled and not isinstance(cancelled, bool):
             raise TypeError("Expected argument 'cancelled' to be a bool")
         pulumi.set(__self__, "cancelled", cancelled)
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
         pulumi.set(__self__, "cluster_name", cluster_name)
-        if created_at and not isinstance(created_at, str):
-            raise TypeError("Expected argument 'created_at' to be a str")
-        pulumi.set(__self__, "created_at", created_at)
         if delivery_type and not isinstance(delivery_type, str):
             raise TypeError("Expected argument 'delivery_type' to be a str")
         pulumi.set(__self__, "delivery_type", delivery_type)
@@ -49,9 +46,6 @@ class GetCloudBackupSnapshotRestoreJobResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if job_id and not isinstance(job_id, str):
-            raise TypeError("Expected argument 'job_id' to be a str")
-        pulumi.set(__self__, "job_id", job_id)
         if oplog_inc and not isinstance(oplog_inc, int):
             raise TypeError("Expected argument 'oplog_inc' to be a int")
         pulumi.set(__self__, "oplog_inc", oplog_inc)
@@ -92,15 +86,6 @@ class GetCloudBackupSnapshotRestoreJobResult:
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> str:
         return pulumi.get(self, "cluster_name")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
-    def created_at(self) -> str:
-        """
-        UTC ISO 8601 formatted point in time when Atlas created the restore job.
-        """
-        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="deliveryType")
@@ -151,12 +136,6 @@ class GetCloudBackupSnapshotRestoreJobResult:
         return pulumi.get(self, "id")
 
     @property
-    @pulumi.getter(name="jobId")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead.""")
-    def job_id(self) -> Optional[str]:
-        return pulumi.get(self, "job_id")
-
-    @property
     @pulumi.getter(name="oplogInc")
     def oplog_inc(self) -> int:
         return pulumi.get(self, "oplog_inc")
@@ -186,7 +165,7 @@ class GetCloudBackupSnapshotRestoreJobResult:
 
     @property
     @pulumi.getter(name="snapshotRestoreJobId")
-    def snapshot_restore_job_id(self) -> Optional[str]:
+    def snapshot_restore_job_id(self) -> str:
         return pulumi.get(self, "snapshot_restore_job_id")
 
     @property
@@ -225,14 +204,12 @@ class AwaitableGetCloudBackupSnapshotRestoreJobResult(GetCloudBackupSnapshotRest
         return GetCloudBackupSnapshotRestoreJobResult(
             cancelled=self.cancelled,
             cluster_name=self.cluster_name,
-            created_at=self.created_at,
             delivery_type=self.delivery_type,
             delivery_urls=self.delivery_urls,
             expired=self.expired,
             expires_at=self.expires_at,
             finished_at=self.finished_at,
             id=self.id,
-            job_id=self.job_id,
             oplog_inc=self.oplog_inc,
             oplog_ts=self.oplog_ts,
             point_in_time_utc_seconds=self.point_in_time_utc_seconds,
@@ -245,7 +222,6 @@ class AwaitableGetCloudBackupSnapshotRestoreJobResult(GetCloudBackupSnapshotRest
 
 
 def get_cloud_backup_snapshot_restore_job(cluster_name: Optional[str] = None,
-                                          job_id: Optional[str] = None,
                                           project_id: Optional[str] = None,
                                           snapshot_restore_job_id: Optional[str] = None,
                                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupSnapshotRestoreJobResult:
@@ -258,13 +234,11 @@ def get_cloud_backup_snapshot_restore_job(cluster_name: Optional[str] = None,
 
 
     :param str cluster_name: The name of the Atlas cluster for which you want to retrieve the restore job.
-    :param str job_id: A base64-encoded ID  of `project_id`, `cluster_name`, and `job_id` of this resource. **Note**: This attribute is deprecated, use `snapshot_restore_job_id` instead.
     :param str project_id: The unique identifier of the project for the Atlas cluster.
-    :param str snapshot_restore_job_id: The unique identifier of the restore job to retrieve. Required for versions 1.18.0 and later.
+    :param str snapshot_restore_job_id: The unique identifier of the restore job to retrieve.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
-    __args__['jobId'] = job_id
     __args__['projectId'] = project_id
     __args__['snapshotRestoreJobId'] = snapshot_restore_job_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -273,14 +247,12 @@ def get_cloud_backup_snapshot_restore_job(cluster_name: Optional[str] = None,
     return AwaitableGetCloudBackupSnapshotRestoreJobResult(
         cancelled=pulumi.get(__ret__, 'cancelled'),
         cluster_name=pulumi.get(__ret__, 'cluster_name'),
-        created_at=pulumi.get(__ret__, 'created_at'),
         delivery_type=pulumi.get(__ret__, 'delivery_type'),
         delivery_urls=pulumi.get(__ret__, 'delivery_urls'),
         expired=pulumi.get(__ret__, 'expired'),
         expires_at=pulumi.get(__ret__, 'expires_at'),
         finished_at=pulumi.get(__ret__, 'finished_at'),
         id=pulumi.get(__ret__, 'id'),
-        job_id=pulumi.get(__ret__, 'job_id'),
         oplog_inc=pulumi.get(__ret__, 'oplog_inc'),
         oplog_ts=pulumi.get(__ret__, 'oplog_ts'),
         point_in_time_utc_seconds=pulumi.get(__ret__, 'point_in_time_utc_seconds'),
@@ -294,9 +266,8 @@ def get_cloud_backup_snapshot_restore_job(cluster_name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_cloud_backup_snapshot_restore_job)
 def get_cloud_backup_snapshot_restore_job_output(cluster_name: Optional[pulumi.Input[str]] = None,
-                                                 job_id: Optional[pulumi.Input[Optional[str]]] = None,
                                                  project_id: Optional[pulumi.Input[str]] = None,
-                                                 snapshot_restore_job_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                                 snapshot_restore_job_id: Optional[pulumi.Input[str]] = None,
                                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotRestoreJobResult]:
     """
     ## # Data Source: CloudBackupSnapshotRestoreJob
@@ -307,8 +278,7 @@ def get_cloud_backup_snapshot_restore_job_output(cluster_name: Optional[pulumi.I
 
 
     :param str cluster_name: The name of the Atlas cluster for which you want to retrieve the restore job.
-    :param str job_id: A base64-encoded ID  of `project_id`, `cluster_name`, and `job_id` of this resource. **Note**: This attribute is deprecated, use `snapshot_restore_job_id` instead.
     :param str project_id: The unique identifier of the project for the Atlas cluster.
-    :param str snapshot_restore_job_id: The unique identifier of the restore job to retrieve. Required for versions 1.18.0 and later.
+    :param str snapshot_restore_job_id: The unique identifier of the restore job to retrieve.
     """
     ...

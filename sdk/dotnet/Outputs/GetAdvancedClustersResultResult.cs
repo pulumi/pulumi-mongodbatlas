@@ -32,7 +32,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultConnectionStringResult> ConnectionStrings;
         public readonly string CreateDate;
         /// <summary>
-        /// Capacity, in gigabytes, of the host's root volume.
+        /// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         /// </summary>
         public readonly double DiskSizeGb;
         /// <summary>
@@ -65,7 +65,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool PitEnabled;
         /// <summary>
-        /// Configuration for cluster regions and the hardware provisioned in them. See below
+        /// List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultReplicationSpecResult> ReplicationSpecs;
         /// <summary>

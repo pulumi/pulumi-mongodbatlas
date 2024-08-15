@@ -22,15 +22,6 @@ public final class PrivateLinkEndpointServiceEndpoint {
      */
     private @Nullable String ipAddress;
     /**
-     * @return Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    private @Nullable String serviceAttachmentName;
-    /**
      * @return Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      * 
      */
@@ -52,17 +43,6 @@ public final class PrivateLinkEndpointServiceEndpoint {
         return Optional.ofNullable(this.ipAddress);
     }
     /**
-     * @return Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public Optional<String> serviceAttachmentName() {
-        return Optional.ofNullable(this.serviceAttachmentName);
-    }
-    /**
      * @return Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      * 
      */
@@ -81,14 +61,12 @@ public final class PrivateLinkEndpointServiceEndpoint {
     public static final class Builder {
         private @Nullable String endpointName;
         private @Nullable String ipAddress;
-        private @Nullable String serviceAttachmentName;
         private @Nullable String status;
         public Builder() {}
         public Builder(PrivateLinkEndpointServiceEndpoint defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.endpointName = defaults.endpointName;
     	      this.ipAddress = defaults.ipAddress;
-    	      this.serviceAttachmentName = defaults.serviceAttachmentName;
     	      this.status = defaults.status;
         }
 
@@ -105,12 +83,6 @@ public final class PrivateLinkEndpointServiceEndpoint {
             return this;
         }
         @CustomType.Setter
-        public Builder serviceAttachmentName(@Nullable String serviceAttachmentName) {
-
-            this.serviceAttachmentName = serviceAttachmentName;
-            return this;
-        }
-        @CustomType.Setter
         public Builder status(@Nullable String status) {
 
             this.status = status;
@@ -120,7 +92,6 @@ public final class PrivateLinkEndpointServiceEndpoint {
             final var _resultValue = new PrivateLinkEndpointServiceEndpoint();
             _resultValue.endpointName = endpointName;
             _resultValue.ipAddress = ipAddress;
-            _resultValue.serviceAttachmentName = serviceAttachmentName;
             _resultValue.status = status;
             return _resultValue;
         }

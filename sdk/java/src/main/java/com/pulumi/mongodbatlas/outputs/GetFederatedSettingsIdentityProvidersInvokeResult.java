@@ -6,11 +6,9 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedSettingsIdentityProvidersResult;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
@@ -26,20 +24,6 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
      */
     private String id;
     private @Nullable List<String> idpTypes;
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    private @Nullable Integer itemsPerPage;
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    private @Nullable Integer pageNum;
     private @Nullable List<String> protocols;
     /**
      * @return Includes cloudProviderSnapshot object for each item detailed in the results array section.
@@ -66,24 +50,6 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
     public List<String> idpTypes() {
         return this.idpTypes == null ? List.of() : this.idpTypes;
     }
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public Optional<Integer> itemsPerPage() {
-        return Optional.ofNullable(this.itemsPerPage);
-    }
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public Optional<Integer> pageNum() {
-        return Optional.ofNullable(this.pageNum);
-    }
     public List<String> protocols() {
         return this.protocols == null ? List.of() : this.protocols;
     }
@@ -108,8 +74,6 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
         private String federationSettingsId;
         private String id;
         private @Nullable List<String> idpTypes;
-        private @Nullable Integer itemsPerPage;
-        private @Nullable Integer pageNum;
         private @Nullable List<String> protocols;
         private List<GetFederatedSettingsIdentityProvidersResult> results;
         public Builder() {}
@@ -118,8 +82,6 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
     	      this.federationSettingsId = defaults.federationSettingsId;
     	      this.id = defaults.id;
     	      this.idpTypes = defaults.idpTypes;
-    	      this.itemsPerPage = defaults.itemsPerPage;
-    	      this.pageNum = defaults.pageNum;
     	      this.protocols = defaults.protocols;
     	      this.results = defaults.results;
         }
@@ -150,18 +112,6 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
             return idpTypes(List.of(idpTypes));
         }
         @CustomType.Setter
-        public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
-
-            this.itemsPerPage = itemsPerPage;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder pageNum(@Nullable Integer pageNum) {
-
-            this.pageNum = pageNum;
-            return this;
-        }
-        @CustomType.Setter
         public Builder protocols(@Nullable List<String> protocols) {
 
             this.protocols = protocols;
@@ -186,8 +136,6 @@ public final class GetFederatedSettingsIdentityProvidersInvokeResult {
             _resultValue.federationSettingsId = federationSettingsId;
             _resultValue.id = id;
             _resultValue.idpTypes = idpTypes;
-            _resultValue.itemsPerPage = itemsPerPage;
-            _resultValue.pageNum = pageNum;
             _resultValue.protocols = protocols;
             _resultValue.results = results;
             return _resultValue;

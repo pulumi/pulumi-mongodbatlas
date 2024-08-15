@@ -18,9 +18,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// 
-        /// &gt; **NOTE:** If you need to get an existing container ID see the How-To Guide.
-        /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ### Basic Example (AWS).
@@ -62,9 +59,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
-        /// &gt; **NOTE:** If you need to get an existing container ID see the How-To Guide.
-        /// 
         /// 
         /// ## Example Usage
         /// 

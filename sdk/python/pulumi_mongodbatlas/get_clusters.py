@@ -73,12 +73,12 @@ def get_clusters(project_id: Optional[str] = None,
 
     `Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     > **IMPORTANT:**
     <br> &#8226; Multi Region Cluster: The `Cluster` data source doesn't return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `AdvancedCluster` data source instead.
     <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
     <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
 
@@ -128,12 +128,12 @@ def get_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
 
     `Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     > **IMPORTANT:**
     <br> &#8226; Multi Region Cluster: The `Cluster` data source doesn't return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `AdvancedCluster` data source instead.
     <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
     <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
     ## Example Usage
 

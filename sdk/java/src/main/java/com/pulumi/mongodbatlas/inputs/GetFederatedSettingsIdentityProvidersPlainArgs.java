@@ -5,7 +5,6 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -48,52 +47,6 @@ public final class GetFederatedSettingsIdentityProvidersPlainArgs extends com.pu
     }
 
     /**
-     * Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    @Import(name="itemsPerPage")
-    private @Nullable Integer itemsPerPage;
-
-    /**
-     * @return Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public Optional<Integer> itemsPerPage() {
-        return Optional.ofNullable(this.itemsPerPage);
-    }
-
-    /**
-     * The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    @Import(name="pageNum")
-    private @Nullable Integer pageNum;
-
-    /**
-     * @return The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public Optional<Integer> pageNum() {
-        return Optional.ofNullable(this.pageNum);
-    }
-
-    /**
      * The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
      * 
      */
@@ -113,8 +66,6 @@ public final class GetFederatedSettingsIdentityProvidersPlainArgs extends com.pu
     private GetFederatedSettingsIdentityProvidersPlainArgs(GetFederatedSettingsIdentityProvidersPlainArgs $) {
         this.federationSettingsId = $.federationSettingsId;
         this.idpTypes = $.idpTypes;
-        this.itemsPerPage = $.itemsPerPage;
-        this.pageNum = $.pageNum;
         this.protocols = $.protocols;
     }
 
@@ -166,36 +117,6 @@ public final class GetFederatedSettingsIdentityProvidersPlainArgs extends com.pu
          */
         public Builder idpTypes(String... idpTypes) {
             return idpTypes(List.of(idpTypes));
-        }
-
-        /**
-         * @param itemsPerPage Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder itemsPerPage(@Nullable Integer itemsPerPage) {
-            $.itemsPerPage = itemsPerPage;
-            return this;
-        }
-
-        /**
-         * @param pageNum The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder pageNum(@Nullable Integer pageNum) {
-            $.pageNum = pageNum;
-            return this;
         }
 
         /**

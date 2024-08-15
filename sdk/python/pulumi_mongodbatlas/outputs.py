@@ -422,9 +422,9 @@ class AdvancedClusterAdvancedConfiguration(dict):
                  sample_size_bi_connector: Optional[int] = None,
                  transaction_lifetime_limit_seconds: Optional[int] = None):
         """
-        :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
         :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
                
@@ -464,9 +464,10 @@ class AdvancedClusterAdvancedConfiguration(dict):
 
     @property
     @pulumi.getter(name="defaultReadConcern")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def default_read_concern(self) -> Optional[str]:
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         return pulumi.get(self, "default_read_concern")
 
@@ -480,9 +481,10 @@ class AdvancedClusterAdvancedConfiguration(dict):
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def fail_index_key_too_long(self) -> Optional[bool]:
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
         """
         return pulumi.get(self, "fail_index_key_too_long")
 
@@ -902,8 +904,12 @@ class AdvancedClusterReplicationSpec(dict):
             suggest = "region_configs"
         elif key == "containerId":
             suggest = "container_id"
+        elif key == "externalId":
+            suggest = "external_id"
         elif key == "numShards":
             suggest = "num_shards"
+        elif key == "zoneId":
+            suggest = "zone_id"
         elif key == "zoneName":
             suggest = "zone_name"
 
@@ -921,22 +927,29 @@ class AdvancedClusterReplicationSpec(dict):
     def __init__(__self__, *,
                  region_configs: Sequence['outputs.AdvancedClusterReplicationSpecRegionConfig'],
                  container_id: Optional[Mapping[str, str]] = None,
+                 external_id: Optional[str] = None,
                  id: Optional[str] = None,
                  num_shards: Optional[int] = None,
+                 zone_id: Optional[str] = None,
                  zone_name: Optional[str] = None):
         """
         :param Sequence['AdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
         :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
-               If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster).
+               If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
+        :param str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
         :param str zone_name: Name for the zone in a Global Cluster.
         """
         pulumi.set(__self__, "region_configs", region_configs)
         if container_id is not None:
             pulumi.set(__self__, "container_id", container_id)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if num_shards is not None:
             pulumi.set(__self__, "num_shards", num_shards)
+        if zone_id is not None:
+            pulumi.set(__self__, "zone_id", zone_id)
         if zone_name is not None:
             pulumi.set(__self__, "zone_name", zone_name)
 
@@ -954,18 +967,33 @@ class AdvancedClusterReplicationSpec(dict):
         return pulumi.get(self, "container_id")
 
     @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[str]:
+        return pulumi.get(self, "external_id")
+
+    @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def id(self) -> Optional[str]:
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="numShards")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def num_shards(self) -> Optional[int]:
         """
         Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
-        If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster).
+        If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
         """
         return pulumi.get(self, "num_shards")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> Optional[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+        """
+        return pulumi.get(self, "zone_id")
 
     @property
     @pulumi.getter(name="zoneName")
@@ -1031,9 +1059,9 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
                - `AZURE` - Microsoft Azure
                - `TENANT` - M2 or M5 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
         :param str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-        :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+        :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
-        :param 'AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+        :param 'AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
         :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
         :param 'AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
         :param 'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
@@ -1090,7 +1118,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
     @pulumi.getter(name="analyticsAutoScaling")
     def analytics_auto_scaling(self) -> Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling']:
         """
-        Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+        Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
         """
         return pulumi.get(self, "analytics_auto_scaling")
 
@@ -1106,7 +1134,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
     @pulumi.getter(name="autoScaling")
     def auto_scaling(self) -> Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling']:
         """
-        Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+        Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
         """
         return pulumi.get(self, "auto_scaling")
 
@@ -1232,6 +1260,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
             suggest = "instance_size"
         elif key == "diskIops":
             suggest = "disk_iops"
+        elif key == "diskSizeGb":
+            suggest = "disk_size_gb"
         elif key == "ebsVolumeType":
             suggest = "ebs_volume_type"
         elif key == "nodeCount":
@@ -1251,11 +1281,13 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
     def __init__(__self__, *,
                  instance_size: str,
                  disk_iops: Optional[int] = None,
+                 disk_size_gb: Optional[float] = None,
                  ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
-        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+        :param str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+        :param int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+        :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
@@ -1264,6 +1296,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
         pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
             pulumi.set(__self__, "disk_iops", disk_iops)
+        if disk_size_gb is not None:
+            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
@@ -1273,7 +1307,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
     @pulumi.getter(name="instanceSize")
     def instance_size(self) -> str:
         """
-        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         """
         return pulumi.get(self, "instance_size")
 
@@ -1281,9 +1315,17 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> Optional[int]:
         """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
         """
         return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> Optional[float]:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+        """
+        return pulumi.get(self, "disk_size_gb")
 
     @property
     @pulumi.getter(name="ebsVolumeType")
@@ -1397,6 +1439,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
             suggest = "instance_size"
         elif key == "diskIops":
             suggest = "disk_iops"
+        elif key == "diskSizeGb":
+            suggest = "disk_size_gb"
         elif key == "ebsVolumeType":
             suggest = "ebs_volume_type"
         elif key == "nodeCount":
@@ -1416,11 +1460,13 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
     def __init__(__self__, *,
                  instance_size: str,
                  disk_iops: Optional[int] = None,
+                 disk_size_gb: Optional[float] = None,
                  ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
-        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+        :param str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+        :param int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+        :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
@@ -1429,6 +1475,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
         pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
             pulumi.set(__self__, "disk_iops", disk_iops)
+        if disk_size_gb is not None:
+            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
@@ -1438,7 +1486,7 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
     @pulumi.getter(name="instanceSize")
     def instance_size(self) -> str:
         """
-        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         """
         return pulumi.get(self, "instance_size")
 
@@ -1446,9 +1494,17 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> Optional[int]:
         """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
         """
         return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> Optional[float]:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+        """
+        return pulumi.get(self, "disk_size_gb")
 
     @property
     @pulumi.getter(name="ebsVolumeType")
@@ -1478,6 +1534,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
             suggest = "instance_size"
         elif key == "diskIops":
             suggest = "disk_iops"
+        elif key == "diskSizeGb":
+            suggest = "disk_size_gb"
         elif key == "ebsVolumeType":
             suggest = "ebs_volume_type"
         elif key == "nodeCount":
@@ -1497,11 +1555,13 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
     def __init__(__self__, *,
                  instance_size: str,
                  disk_iops: Optional[int] = None,
+                 disk_size_gb: Optional[float] = None,
                  ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
-        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+        :param str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+        :param int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+        :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
@@ -1510,6 +1570,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
         pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
             pulumi.set(__self__, "disk_iops", disk_iops)
+        if disk_size_gb is not None:
+            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
@@ -1519,7 +1581,7 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
     @pulumi.getter(name="instanceSize")
     def instance_size(self) -> str:
         """
-        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         """
         return pulumi.get(self, "instance_size")
 
@@ -1527,9 +1589,17 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> Optional[int]:
         """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
         """
         return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> Optional[float]:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+        """
+        return pulumi.get(self, "disk_size_gb")
 
     @property
     @pulumi.getter(name="ebsVolumeType")
@@ -2720,6 +2790,8 @@ class CloudBackupScheduleCopySetting(dict):
             suggest = "replication_spec_id"
         elif key == "shouldCopyOplogs":
             suggest = "should_copy_oplogs"
+        elif key == "zoneId":
+            suggest = "zone_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in CloudBackupScheduleCopySetting. Access the value via the '{suggest}' property getter instead.")
@@ -2737,13 +2809,15 @@ class CloudBackupScheduleCopySetting(dict):
                  frequencies: Optional[Sequence[str]] = None,
                  region_name: Optional[str] = None,
                  replication_spec_id: Optional[str] = None,
-                 should_copy_oplogs: Optional[bool] = None):
+                 should_copy_oplogs: Optional[bool] = None,
+                 zone_id: Optional[str] = None):
         """
         :param str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param Sequence[str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
         :param str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
+        :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         :param bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
+        :param str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
         """
         if cloud_provider is not None:
             pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -2755,6 +2829,8 @@ class CloudBackupScheduleCopySetting(dict):
             pulumi.set(__self__, "replication_spec_id", replication_spec_id)
         if should_copy_oplogs is not None:
             pulumi.set(__self__, "should_copy_oplogs", should_copy_oplogs)
+        if zone_id is not None:
+            pulumi.set(__self__, "zone_id", zone_id)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -2782,9 +2858,10 @@ class CloudBackupScheduleCopySetting(dict):
 
     @property
     @pulumi.getter(name="replicationSpecId")
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def replication_spec_id(self) -> Optional[str]:
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
+        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         """
         return pulumi.get(self, "replication_spec_id")
 
@@ -2795,6 +2872,14 @@ class CloudBackupScheduleCopySetting(dict):
         Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         """
         return pulumi.get(self, "should_copy_oplogs")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> Optional[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
+        """
+        return pulumi.get(self, "zone_id")
 
 
 @pulumi.output_type
@@ -3826,6 +3911,7 @@ class ClusterAdvancedConfiguration(dict):
 
     @property
     @pulumi.getter(name="defaultReadConcern")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def default_read_concern(self) -> Optional[str]:
         """
         [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -3842,6 +3928,7 @@ class ClusterAdvancedConfiguration(dict):
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def fail_index_key_too_long(self) -> Optional[bool]:
         """
         When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
@@ -7312,8 +7399,6 @@ class PrivateLinkEndpointServiceEndpoint(dict):
             suggest = "endpoint_name"
         elif key == "ipAddress":
             suggest = "ip_address"
-        elif key == "serviceAttachmentName":
-            suggest = "service_attachment_name"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in PrivateLinkEndpointServiceEndpoint. Access the value via the '{suggest}' property getter instead.")
@@ -7329,20 +7414,16 @@ class PrivateLinkEndpointServiceEndpoint(dict):
     def __init__(__self__, *,
                  endpoint_name: Optional[str] = None,
                  ip_address: Optional[str] = None,
-                 service_attachment_name: Optional[str] = None,
                  status: Optional[str] = None):
         """
         :param str endpoint_name: Forwarding rule that corresponds to the endpoint you created in GCP.
         :param str ip_address: Private IP address of the endpoint you created in GCP.
-        :param str service_attachment_name: Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
         :param str status: Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         """
         if endpoint_name is not None:
             pulumi.set(__self__, "endpoint_name", endpoint_name)
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
-        if service_attachment_name is not None:
-            pulumi.set(__self__, "service_attachment_name", service_attachment_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
 
@@ -7361,15 +7442,6 @@ class PrivateLinkEndpointServiceEndpoint(dict):
         Private IP address of the endpoint you created in GCP.
         """
         return pulumi.get(self, "ip_address")
-
-    @property
-    @pulumi.getter(name="serviceAttachmentName")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
-    def service_attachment_name(self) -> Optional[str]:
-        """
-        Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-        """
-        return pulumi.get(self, "service_attachment_name")
 
     @property
     @pulumi.getter
@@ -8265,9 +8337,9 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
                  sample_size_bi_connector: int,
                  transaction_lifetime_limit_seconds: int):
         """
-        :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
         :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
         :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
@@ -8291,9 +8363,10 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="defaultReadConcern")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def default_read_concern(self) -> str:
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         return pulumi.get(self, "default_read_concern")
 
@@ -8307,9 +8380,10 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def fail_index_key_too_long(self) -> bool:
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
         """
         return pulumi.get(self, "fail_index_key_too_long")
 
@@ -8590,20 +8664,25 @@ class GetAdvancedClusterLabelResult(dict):
 class GetAdvancedClusterReplicationSpecResult(dict):
     def __init__(__self__, *,
                  container_id: Mapping[str, str],
+                 external_id: str,
                  id: str,
                  num_shards: int,
                  region_configs: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigResult'],
+                 zone_id: str,
                  zone_name: str):
         """
         :param Mapping[str, str] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
-        :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED.
+        :param int num_shards: Provide this value if you set a `cluster_type` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED.)** To learn more, see the Migration Guide.
         :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        :param str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
         :param str zone_name: Name for the zone in a Global Cluster.
         """
         pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "external_id", external_id)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "num_shards", num_shards)
         pulumi.set(__self__, "region_configs", region_configs)
+        pulumi.set(__self__, "zone_id", zone_id)
         pulumi.set(__self__, "zone_name", zone_name)
 
     @property
@@ -8615,15 +8694,22 @@ class GetAdvancedClusterReplicationSpecResult(dict):
         return pulumi.get(self, "container_id")
 
     @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> str:
+        return pulumi.get(self, "external_id")
+
+    @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def id(self) -> str:
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="numShards")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def num_shards(self) -> int:
         """
-        Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED.
+        Provide this value if you set a `cluster_type` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED.)** To learn more, see the Migration Guide.
         """
         return pulumi.get(self, "num_shards")
 
@@ -8634,6 +8720,14 @@ class GetAdvancedClusterReplicationSpecResult(dict):
         Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
         """
         return pulumi.get(self, "region_configs")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+        """
+        return pulumi.get(self, "zone_id")
 
     @property
     @pulumi.getter(name="zoneName")
@@ -8648,37 +8742,34 @@ class GetAdvancedClusterReplicationSpecResult(dict):
 class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
     def __init__(__self__, *,
                  analytics_auto_scalings: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult'],
+                 analytics_specs: 'outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult',
                  auto_scalings: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult'],
                  backing_provider_name: str,
+                 electable_specs: 'outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult',
                  priority: int,
                  provider_name: str,
-                 region_name: str,
-                 analytics_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult'] = None,
-                 electable_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult'] = None,
-                 read_only_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult'] = None):
+                 read_only_specs: 'outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult',
+                 region_name: str):
         """
         :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scalings: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
+        :param 'GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
         :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs'] auto_scalings: Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
         :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster.
+        :param 'GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
         :param int priority: Election priority of the region.
         :param str provider_name: Cloud service provider on which the servers are provisioned.
-        :param str region_name: Physical location of your MongoDB cluster.
-        :param 'GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
-        :param 'GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
         :param 'GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. See below
+        :param str region_name: Physical location of your MongoDB cluster.
         """
         pulumi.set(__self__, "analytics_auto_scalings", analytics_auto_scalings)
+        pulumi.set(__self__, "analytics_specs", analytics_specs)
         pulumi.set(__self__, "auto_scalings", auto_scalings)
         pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "electable_specs", electable_specs)
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "read_only_specs", read_only_specs)
         pulumi.set(__self__, "region_name", region_name)
-        if analytics_specs is not None:
-            pulumi.set(__self__, "analytics_specs", analytics_specs)
-        if electable_specs is not None:
-            pulumi.set(__self__, "electable_specs", electable_specs)
-        if read_only_specs is not None:
-            pulumi.set(__self__, "read_only_specs", read_only_specs)
 
     @property
     @pulumi.getter(name="analyticsAutoScalings")
@@ -8687,6 +8778,14 @@ class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
         Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
         """
         return pulumi.get(self, "analytics_auto_scalings")
+
+    @property
+    @pulumi.getter(name="analyticsSpecs")
+    def analytics_specs(self) -> 'outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult':
+        """
+        Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+        """
+        return pulumi.get(self, "analytics_specs")
 
     @property
     @pulumi.getter(name="autoScalings")
@@ -8705,6 +8804,14 @@ class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
         return pulumi.get(self, "backing_provider_name")
 
     @property
+    @pulumi.getter(name="electableSpecs")
+    def electable_specs(self) -> 'outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult':
+        """
+        Hardware specifications for electable nodes in the region.
+        """
+        return pulumi.get(self, "electable_specs")
+
+    @property
     @pulumi.getter
     def priority(self) -> int:
         """
@@ -8721,36 +8828,20 @@ class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
         return pulumi.get(self, "provider_name")
 
     @property
+    @pulumi.getter(name="readOnlySpecs")
+    def read_only_specs(self) -> 'outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult':
+        """
+        Hardware specifications for read-only nodes in the region. See below
+        """
+        return pulumi.get(self, "read_only_specs")
+
+    @property
     @pulumi.getter(name="regionName")
     def region_name(self) -> str:
         """
         Physical location of your MongoDB cluster.
         """
         return pulumi.get(self, "region_name")
-
-    @property
-    @pulumi.getter(name="analyticsSpecs")
-    def analytics_specs(self) -> Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult']:
-        """
-        Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
-        """
-        return pulumi.get(self, "analytics_specs")
-
-    @property
-    @pulumi.getter(name="electableSpecs")
-    def electable_specs(self) -> Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult']:
-        """
-        Hardware specifications for electable nodes in the region.
-        """
-        return pulumi.get(self, "electable_specs")
-
-    @property
-    @pulumi.getter(name="readOnlySpecs")
-    def read_only_specs(self) -> Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult']:
-        """
-        Hardware specifications for read-only nodes in the region. See below
-        """
-        return pulumi.get(self, "read_only_specs")
 
 
 @pulumi.output_type
@@ -8821,21 +8912,23 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult(di
 class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
     def __init__(__self__, *,
                  disk_iops: int,
+                 disk_size_gb: float,
+                 ebs_volume_type: str,
                  instance_size: str,
-                 ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
-        :param str instance_size: Hardware specification for the instance sizes in this region.
+        :param int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "disk_iops", disk_iops)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         pulumi.set(__self__, "instance_size", instance_size)
-        if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
 
@@ -8843,9 +8936,27 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> int:
         """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         """
         return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> float:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> str:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster. 
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -8854,16 +8965,6 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
         Hardware specification for the instance sizes in this region.
         """
         return pulumi.get(self, "instance_size")
-
-    @property
-    @pulumi.getter(name="ebsVolumeType")
-    def ebs_volume_type(self) -> Optional[str]:
-        """
-        Type of storage you want to attach to your AWS-provisioned cluster. 
-        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-        """
-        return pulumi.get(self, "ebs_volume_type")
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -8942,21 +9043,23 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
 class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
     def __init__(__self__, *,
                  disk_iops: int,
+                 disk_size_gb: float,
+                 ebs_volume_type: str,
                  instance_size: str,
-                 ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
-        :param str instance_size: Hardware specification for the instance sizes in this region.
+        :param int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "disk_iops", disk_iops)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         pulumi.set(__self__, "instance_size", instance_size)
-        if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
 
@@ -8964,9 +9067,27 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> int:
         """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         """
         return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> float:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> str:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster. 
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -8975,16 +9096,6 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
         Hardware specification for the instance sizes in this region.
         """
         return pulumi.get(self, "instance_size")
-
-    @property
-    @pulumi.getter(name="ebsVolumeType")
-    def ebs_volume_type(self) -> Optional[str]:
-        """
-        Type of storage you want to attach to your AWS-provisioned cluster. 
-        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-        """
-        return pulumi.get(self, "ebs_volume_type")
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -8999,21 +9110,23 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
 class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
     def __init__(__self__, *,
                  disk_iops: int,
+                 disk_size_gb: float,
+                 ebs_volume_type: str,
                  instance_size: str,
-                 ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
-        :param str instance_size: Hardware specification for the instance sizes in this region.
+        :param int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "disk_iops", disk_iops)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         pulumi.set(__self__, "instance_size", instance_size)
-        if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
 
@@ -9021,9 +9134,27 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> int:
         """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         """
         return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> float:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> str:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster. 
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -9032,16 +9163,6 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
         Hardware specification for the instance sizes in this region.
         """
         return pulumi.get(self, "instance_size")
-
-    @property
-    @pulumi.getter(name="ebsVolumeType")
-    def ebs_volume_type(self) -> Optional[str]:
-        """
-        Type of storage you want to attach to your AWS-provisioned cluster. 
-        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-        """
-        return pulumi.get(self, "ebs_volume_type")
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -9110,7 +9231,7 @@ class GetAdvancedClustersResultResult(dict):
         :param Sequence['GetAdvancedClustersResultBiConnectorConfigArgs'] bi_connector_configs: Configuration settings applied to BI Connector for Atlas on this cluster. See below. **NOTE** Prior version of provider had parameter as `bi_connector`
         :param str cluster_type: Type of the cluster that you want to create.
         :param Sequence['GetAdvancedClustersResultConnectionStringArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-        :param float disk_size_gb: Capacity, in gigabytes, of the host's root volume.
+        :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         :param str encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.
         :param bool global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
         :param Sequence['GetAdvancedClustersResultLabelArgs'] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -9118,7 +9239,7 @@ class GetAdvancedClustersResultResult(dict):
         :param str mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param bool paused: Flag that indicates whether the cluster is paused or not.
         :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
-        :param Sequence['GetAdvancedClustersResultReplicationSpecArgs'] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
+        :param Sequence['GetAdvancedClustersResultReplicationSpecArgs'] replication_specs: List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         :param str root_cert_type: Certificate Authority that MongoDB Atlas clusters use.
         :param str state_name: Current state of the cluster. The possible states are:
         :param Sequence['GetAdvancedClustersResultTagArgs'] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -9191,9 +9312,10 @@ class GetAdvancedClustersResultResult(dict):
 
     @property
     @pulumi.getter(name="diskSizeGb")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def disk_size_gb(self) -> float:
         """
-        Capacity, in gigabytes, of the host's root volume.
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         """
         return pulumi.get(self, "disk_size_gb")
 
@@ -9263,7 +9385,7 @@ class GetAdvancedClustersResultResult(dict):
     @pulumi.getter(name="replicationSpecs")
     def replication_specs(self) -> Sequence['outputs.GetAdvancedClustersResultReplicationSpecResult']:
         """
-        Configuration for cluster regions and the hardware provisioned in them. See below
+        List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         """
         return pulumi.get(self, "replication_specs")
 
@@ -9323,9 +9445,9 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
                  sample_size_bi_connector: int,
                  transaction_lifetime_limit_seconds: int):
         """
-        :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
         :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
         :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
@@ -9348,9 +9470,10 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="defaultReadConcern")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def default_read_concern(self) -> str:
         """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         return pulumi.get(self, "default_read_concern")
 
@@ -9364,9 +9487,10 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def fail_index_key_too_long(self) -> bool:
         """
-        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
         """
         return pulumi.get(self, "fail_index_key_too_long")
 
@@ -9644,20 +9768,25 @@ class GetAdvancedClustersResultLabelResult(dict):
 class GetAdvancedClustersResultReplicationSpecResult(dict):
     def __init__(__self__, *,
                  container_id: Mapping[str, str],
+                 external_id: str,
                  id: str,
                  num_shards: int,
                  region_configs: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigResult'],
+                 zone_id: str,
                  zone_name: str):
         """
         :param Mapping[str, str] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
-        :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED.
+        :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
         :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        :param str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
         :param str zone_name: Name for the zone in a Global Cluster.
         """
         pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "external_id", external_id)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "num_shards", num_shards)
         pulumi.set(__self__, "region_configs", region_configs)
+        pulumi.set(__self__, "zone_id", zone_id)
         pulumi.set(__self__, "zone_name", zone_name)
 
     @property
@@ -9669,15 +9798,22 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
         return pulumi.get(self, "container_id")
 
     @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> str:
+        return pulumi.get(self, "external_id")
+
+    @property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def id(self) -> str:
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="numShards")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def num_shards(self) -> int:
         """
-        Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED.
+        Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
         """
         return pulumi.get(self, "num_shards")
 
@@ -9688,6 +9824,14 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
         Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
         """
         return pulumi.get(self, "region_configs")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+        """
+        return pulumi.get(self, "zone_id")
 
     @property
     @pulumi.getter(name="zoneName")
@@ -9702,37 +9846,34 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
 class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
     def __init__(__self__, *,
                  analytics_auto_scalings: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult'],
+                 analytics_specs: 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult',
                  auto_scalings: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult'],
                  backing_provider_name: str,
+                 electable_specs: 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult',
                  priority: int,
                  provider_name: str,
-                 region_name: str,
-                 analytics_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult'] = None,
-                 electable_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult'] = None,
-                 read_only_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult'] = None):
+                 read_only_specs: 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult',
+                 region_name: str):
         """
         :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scalings: Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
+        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
         :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs'] auto_scalings: Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
         :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster.
+        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
         :param int priority: Election priority of the region.
         :param str provider_name: Cloud service provider on which the servers are provisioned.
-        :param str region_name: Physical location of your MongoDB cluster.
-        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
-        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
         :param 'GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. See below
+        :param str region_name: Physical location of your MongoDB cluster.
         """
         pulumi.set(__self__, "analytics_auto_scalings", analytics_auto_scalings)
+        pulumi.set(__self__, "analytics_specs", analytics_specs)
         pulumi.set(__self__, "auto_scalings", auto_scalings)
         pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "electable_specs", electable_specs)
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "read_only_specs", read_only_specs)
         pulumi.set(__self__, "region_name", region_name)
-        if analytics_specs is not None:
-            pulumi.set(__self__, "analytics_specs", analytics_specs)
-        if electable_specs is not None:
-            pulumi.set(__self__, "electable_specs", electable_specs)
-        if read_only_specs is not None:
-            pulumi.set(__self__, "read_only_specs", read_only_specs)
 
     @property
     @pulumi.getter(name="analyticsAutoScalings")
@@ -9741,6 +9882,14 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
         Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
         """
         return pulumi.get(self, "analytics_auto_scalings")
+
+    @property
+    @pulumi.getter(name="analyticsSpecs")
+    def analytics_specs(self) -> 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult':
+        """
+        Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+        """
+        return pulumi.get(self, "analytics_specs")
 
     @property
     @pulumi.getter(name="autoScalings")
@@ -9759,6 +9908,14 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
         return pulumi.get(self, "backing_provider_name")
 
     @property
+    @pulumi.getter(name="electableSpecs")
+    def electable_specs(self) -> 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult':
+        """
+        Hardware specifications for electable nodes in the region.
+        """
+        return pulumi.get(self, "electable_specs")
+
+    @property
     @pulumi.getter
     def priority(self) -> int:
         """
@@ -9775,36 +9932,20 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
         return pulumi.get(self, "provider_name")
 
     @property
+    @pulumi.getter(name="readOnlySpecs")
+    def read_only_specs(self) -> 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult':
+        """
+        Hardware specifications for read-only nodes in the region. See below
+        """
+        return pulumi.get(self, "read_only_specs")
+
+    @property
     @pulumi.getter(name="regionName")
     def region_name(self) -> str:
         """
         Physical location of your MongoDB cluster.
         """
         return pulumi.get(self, "region_name")
-
-    @property
-    @pulumi.getter(name="analyticsSpecs")
-    def analytics_specs(self) -> Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult']:
-        """
-        Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
-        """
-        return pulumi.get(self, "analytics_specs")
-
-    @property
-    @pulumi.getter(name="electableSpecs")
-    def electable_specs(self) -> Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult']:
-        """
-        Hardware specifications for electable nodes in the region.
-        """
-        return pulumi.get(self, "electable_specs")
-
-    @property
-    @pulumi.getter(name="readOnlySpecs")
-    def read_only_specs(self) -> Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult']:
-        """
-        Hardware specifications for read-only nodes in the region. See below
-        """
-        return pulumi.get(self, "read_only_specs")
 
 
 @pulumi.output_type
@@ -9873,21 +10014,23 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingRe
 class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
     def __init__(__self__, *,
                  disk_iops: int,
+                 disk_size_gb: float,
+                 ebs_volume_type: str,
                  instance_size: str,
-                 ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
-        :param str instance_size: Hardware specification for the instance sizes in this region.
+        :param int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "disk_iops", disk_iops)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         pulumi.set(__self__, "instance_size", instance_size)
-        if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
 
@@ -9895,9 +10038,27 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> int:
         """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         """
         return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> float:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> str:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster.
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -9906,16 +10067,6 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
         Hardware specification for the instance sizes in this region.
         """
         return pulumi.get(self, "instance_size")
-
-    @property
-    @pulumi.getter(name="ebsVolumeType")
-    def ebs_volume_type(self) -> Optional[str]:
-        """
-        Type of storage you want to attach to your AWS-provisioned cluster.
-        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-        """
-        return pulumi.get(self, "ebs_volume_type")
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -9992,21 +10143,23 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult(dict
 class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(dict):
     def __init__(__self__, *,
                  disk_iops: int,
+                 disk_size_gb: float,
+                 ebs_volume_type: str,
                  instance_size: str,
-                 ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
-        :param str instance_size: Hardware specification for the instance sizes in this region.
+        :param int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "disk_iops", disk_iops)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         pulumi.set(__self__, "instance_size", instance_size)
-        if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
 
@@ -10014,9 +10167,27 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> int:
         """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         """
         return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> float:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> str:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster.
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -10025,16 +10196,6 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
         Hardware specification for the instance sizes in this region.
         """
         return pulumi.get(self, "instance_size")
-
-    @property
-    @pulumi.getter(name="ebsVolumeType")
-    def ebs_volume_type(self) -> Optional[str]:
-        """
-        Type of storage you want to attach to your AWS-provisioned cluster.
-        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-        """
-        return pulumi.get(self, "ebs_volume_type")
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -10049,21 +10210,23 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
 class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(dict):
     def __init__(__self__, *,
                  disk_iops: int,
+                 disk_size_gb: float,
+                 ebs_volume_type: str,
                  instance_size: str,
-                 ebs_volume_type: Optional[str] = None,
                  node_count: Optional[int] = None):
         """
-        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
-        :param str instance_size: Hardware specification for the instance sizes in this region.
+        :param int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        :param float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param str instance_size: Hardware specification for the instance sizes in this region.
         :param int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         pulumi.set(__self__, "disk_iops", disk_iops)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         pulumi.set(__self__, "instance_size", instance_size)
-        if ebs_volume_type is not None:
-            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
 
@@ -10071,9 +10234,27 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> int:
         """
-        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         """
         return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> float:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> str:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster.
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
 
     @property
     @pulumi.getter(name="instanceSize")
@@ -10082,16 +10263,6 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
         Hardware specification for the instance sizes in this region.
         """
         return pulumi.get(self, "instance_size")
-
-    @property
-    @pulumi.getter(name="ebsVolumeType")
-    def ebs_volume_type(self) -> Optional[str]:
-        """
-        Type of storage you want to attach to your AWS-provisioned cluster.
-        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-        """
-        return pulumi.get(self, "ebs_volume_type")
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -12032,19 +12203,22 @@ class GetCloudBackupScheduleCopySettingResult(dict):
                  frequencies: Sequence[str],
                  region_name: str,
                  replication_spec_id: str,
-                 should_copy_oplogs: bool):
+                 should_copy_oplogs: bool,
+                 zone_id: str):
         """
         :param str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param Sequence[str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
         :param str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
+        :param str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         :param bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
+        :param str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster.
         """
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         pulumi.set(__self__, "frequencies", frequencies)
         pulumi.set(__self__, "region_name", region_name)
         pulumi.set(__self__, "replication_spec_id", replication_spec_id)
         pulumi.set(__self__, "should_copy_oplogs", should_copy_oplogs)
+        pulumi.set(__self__, "zone_id", zone_id)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -12072,9 +12246,10 @@ class GetCloudBackupScheduleCopySettingResult(dict):
 
     @property
     @pulumi.getter(name="replicationSpecId")
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def replication_spec_id(self) -> str:
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
+        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         """
         return pulumi.get(self, "replication_spec_id")
 
@@ -12085,6 +12260,14 @@ class GetCloudBackupScheduleCopySettingResult(dict):
         Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         """
         return pulumi.get(self, "should_copy_oplogs")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster.
+        """
+        return pulumi.get(self, "zone_id")
 
 
 @pulumi.output_type
@@ -12432,23 +12615,32 @@ class GetCloudBackupSnapshotExportBucketsResultResult(dict):
                  bucket_name: str,
                  cloud_provider: str,
                  export_bucket_id: str,
-                 iam_role_id: str):
+                 iam_role_id: str,
+                 role_id: str,
+                 service_url: str,
+                 tenant_id: str):
         """
-        :param str bucket_name: Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
-        :param str cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+        :param str bucket_name: Name of the bucket that the provided role ID is authorized to access.
+        :param str cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket.
         :param str export_bucket_id: Unique identifier of the snapshot bucket id.
-        :param str iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+        :param str iam_role_id: Unique identifier of the role that Atlas can use to access the bucket.
+        :param str role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container.
+        :param str service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account.
+        :param str tenant_id: UUID that identifies the Azure Active Directory Tenant ID.
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         pulumi.set(__self__, "export_bucket_id", export_bucket_id)
         pulumi.set(__self__, "iam_role_id", iam_role_id)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "service_url", service_url)
+        pulumi.set(__self__, "tenant_id", tenant_id)
 
     @property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> str:
         """
-        Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+        Name of the bucket that the provided role ID is authorized to access.
         """
         return pulumi.get(self, "bucket_name")
 
@@ -12456,7 +12648,7 @@ class GetCloudBackupSnapshotExportBucketsResultResult(dict):
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> str:
         """
-        Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+        Name of the provider of the cloud service where Atlas can access the S3 bucket.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -12472,9 +12664,33 @@ class GetCloudBackupSnapshotExportBucketsResultResult(dict):
     @pulumi.getter(name="iamRoleId")
     def iam_role_id(self) -> str:
         """
-        Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+        Unique identifier of the role that Atlas can use to access the bucket.
         """
         return pulumi.get(self, "iam_role_id")
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> str:
+        """
+        Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container.
+        """
+        return pulumi.get(self, "role_id")
+
+    @property
+    @pulumi.getter(name="serviceUrl")
+    def service_url(self) -> str:
+        """
+        URL that identifies the blob Endpoint of the Azure Blob Storage Account.
+        """
+        return pulumi.get(self, "service_url")
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> str:
+        """
+        UUID that identifies the Azure Active Directory Tenant ID.
+        """
+        return pulumi.get(self, "tenant_id")
 
 
 @pulumi.output_type
@@ -12775,7 +12991,6 @@ class GetCloudBackupSnapshotMemberResult(dict):
 class GetCloudBackupSnapshotRestoreJobsResultResult(dict):
     def __init__(__self__, *,
                  cancelled: bool,
-                 created_at: str,
                  delivery_type: str,
                  delivery_urls: Sequence[str],
                  expired: bool,
@@ -12791,7 +13006,6 @@ class GetCloudBackupSnapshotRestoreJobsResultResult(dict):
                  timestamp: str):
         """
         :param bool cancelled: Indicates whether the restore job was canceled.
-        :param str created_at: UTC ISO 8601 formatted point in time when Atlas created the restore job.
         :param str delivery_type: Type of restore job to create. Possible values are: automated and download.
         :param Sequence[str] delivery_urls: One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
         :param bool expired: Indicates whether the restore job expired.
@@ -12807,7 +13021,6 @@ class GetCloudBackupSnapshotRestoreJobsResultResult(dict):
                * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
         """
         pulumi.set(__self__, "cancelled", cancelled)
-        pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "delivery_type", delivery_type)
         pulumi.set(__self__, "delivery_urls", delivery_urls)
         pulumi.set(__self__, "expired", expired)
@@ -12829,15 +13042,6 @@ class GetCloudBackupSnapshotRestoreJobsResultResult(dict):
         Indicates whether the restore job was canceled.
         """
         return pulumi.get(self, "cancelled")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
-    def created_at(self) -> str:
-        """
-        UTC ISO 8601 formatted point in time when Atlas created the restore job.
-        """
-        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="deliveryType")
@@ -13249,6 +13453,7 @@ class GetClusterAdvancedConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="defaultReadConcern")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def default_read_concern(self) -> str:
         """
         [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -13265,6 +13470,7 @@ class GetClusterAdvancedConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def fail_index_key_too_long(self) -> bool:
         """
         When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
@@ -14378,6 +14584,7 @@ class GetClustersResultAdvancedConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="defaultReadConcern")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def default_read_concern(self) -> str:
         """
         [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -14394,6 +14601,7 @@ class GetClustersResultAdvancedConfigurationResult(dict):
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
+    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown""")
     def fail_index_key_too_long(self) -> bool:
         """
         When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
@@ -20159,17 +20367,14 @@ class GetPrivateLinkEndpointServiceEndpointResult(dict):
     def __init__(__self__, *,
                  endpoint_name: str,
                  ip_address: str,
-                 service_attachment_name: str,
                  status: str):
         """
         :param str endpoint_name: Forwarding rule that corresponds to the endpoint you created in GCP.
         :param str ip_address: Private IP address of the network endpoint group you created in GCP.
-        :param str service_attachment_name: Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
         :param str status: Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         """
         pulumi.set(__self__, "endpoint_name", endpoint_name)
         pulumi.set(__self__, "ip_address", ip_address)
-        pulumi.set(__self__, "service_attachment_name", service_attachment_name)
         pulumi.set(__self__, "status", status)
 
     @property
@@ -20187,14 +20392,6 @@ class GetPrivateLinkEndpointServiceEndpointResult(dict):
         Private IP address of the network endpoint group you created in GCP.
         """
         return pulumi.get(self, "ip_address")
-
-    @property
-    @pulumi.getter(name="serviceAttachmentName")
-    def service_attachment_name(self) -> str:
-        """
-        Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-        """
-        return pulumi.get(self, "service_attachment_name")
 
     @property
     @pulumi.getter
@@ -22135,7 +22332,6 @@ class GetThirdPartyIntegrationsResultResult(dict):
                  url: str,
                  enabled: Optional[bool] = None,
                  microsoft_teams_webhook_url: Optional[str] = None,
-                 scheme: Optional[str] = None,
                  service_discovery: Optional[str] = None,
                  user_name: Optional[str] = None):
         """
@@ -22155,7 +22351,6 @@ class GetThirdPartyIntegrationsResultResult(dict):
         :param bool enabled: Whether your cluster has Prometheus enabled.
         :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
                * `PROMETHEUS`
-        :param str scheme: Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
         :param str service_discovery: Indicates which service discovery method is used, either file or http.
         :param str user_name: Your Prometheus username.
         """
@@ -22175,8 +22370,6 @@ class GetThirdPartyIntegrationsResultResult(dict):
             pulumi.set(__self__, "enabled", enabled)
         if microsoft_teams_webhook_url is not None:
             pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
-        if scheme is not None:
-            pulumi.set(__self__, "scheme", scheme)
         if service_discovery is not None:
             pulumi.set(__self__, "service_discovery", service_discovery)
         if user_name is not None:
@@ -22289,15 +22482,6 @@ class GetThirdPartyIntegrationsResultResult(dict):
         * `PROMETHEUS`
         """
         return pulumi.get(self, "microsoft_teams_webhook_url")
-
-    @property
-    @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
-    def scheme(self) -> Optional[str]:
-        """
-        Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-        """
-        return pulumi.get(self, "scheme")
 
     @property
     @pulumi.getter(name="serviceDiscovery")

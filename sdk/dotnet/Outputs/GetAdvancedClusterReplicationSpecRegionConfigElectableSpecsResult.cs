@@ -14,15 +14,19 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult
     {
         /// <summary>
-        /// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        /// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         /// </summary>
         public readonly int DiskIops;
+        /// <summary>
+        /// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        /// </summary>
+        public readonly double DiskSizeGb;
         /// <summary>
         /// Type of storage you want to attach to your AWS-provisioned cluster. 
         /// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
         /// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         /// </summary>
-        public readonly string? EbsVolumeType;
+        public readonly string EbsVolumeType;
         /// <summary>
         /// Hardware specification for the instance sizes in this region.
         /// </summary>
@@ -36,13 +40,16 @@ namespace Pulumi.Mongodbatlas.Outputs
         private GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(
             int diskIops,
 
-            string? ebsVolumeType,
+            double diskSizeGb,
+
+            string ebsVolumeType,
 
             string instanceSize,
 
             int? nodeCount)
         {
             DiskIops = diskIops;
+            DiskSizeGb = diskSizeGb;
             EbsVolumeType = ebsVolumeType;
             InstanceSize = instanceSize;
             NodeCount = nodeCount;

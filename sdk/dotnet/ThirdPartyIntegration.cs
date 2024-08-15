@@ -82,9 +82,6 @@ namespace Pulumi.Mongodbatlas
         [Output("routingKey")]
         public Output<string> RoutingKey { get; private set; } = null!;
 
-        [Output("scheme")]
-        public Output<string> Scheme { get; private set; } = null!;
-
         [Output("secret")]
         public Output<string?> Secret { get; private set; } = null!;
 
@@ -239,9 +236,6 @@ namespace Pulumi.Mongodbatlas
             }
         }
 
-        [Input("scheme")]
-        public Input<string>? Scheme { get; set; }
-
         [Input("secret")]
         private Input<string>? _secret;
         public Input<string>? Secret
@@ -382,9 +376,6 @@ namespace Pulumi.Mongodbatlas
                 _routingKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
-
-        [Input("scheme")]
-        public Input<string>? Scheme { get; set; }
 
         [Input("secret")]
         private Input<string>? _secret;

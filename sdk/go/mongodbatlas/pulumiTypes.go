@@ -14,11 +14,15 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type AdvancedClusterAdvancedConfiguration struct {
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern *string `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern *string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong *bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
@@ -55,11 +59,15 @@ type AdvancedClusterAdvancedConfigurationInput interface {
 }
 
 type AdvancedClusterAdvancedConfigurationArgs struct {
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern pulumi.StringPtrInput `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringPtrInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong pulumi.BoolPtrInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
@@ -161,7 +169,9 @@ func (o AdvancedClusterAdvancedConfigurationOutput) ToAdvancedClusterAdvancedCon
 	}).(AdvancedClusterAdvancedConfigurationPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o AdvancedClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *string { return v.DefaultReadConcern }).(pulumi.StringPtrOutput)
 }
@@ -171,7 +181,9 @@ func (o AdvancedClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *string { return v.DefaultWriteConcern }).(pulumi.StringPtrOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o AdvancedClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *bool { return v.FailIndexKeyTooLong }).(pulumi.BoolPtrOutput)
 }
@@ -245,7 +257,9 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) Elem() AdvancedClusterAdv
 	}).(AdvancedClusterAdvancedConfigurationOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -265,7 +279,9 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pul
 	}).(pulumi.StringPtrOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *bool {
 		if v == nil {
@@ -1074,12 +1090,18 @@ func (o AdvancedClusterLabelArrayOutput) Index(i pulumi.IntInput) AdvancedCluste
 
 type AdvancedClusterReplicationSpec struct {
 	ContainerId map[string]string `pulumi:"containerId"`
-	Id          *string           `pulumi:"id"`
+	ExternalId  *string           `pulumi:"externalId"`
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	Id *string `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
-	// If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster).
+	// If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards *int `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
 	RegionConfigs []AdvancedClusterReplicationSpecRegionConfig `pulumi:"regionConfigs"`
+	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+	ZoneId *string `pulumi:"zoneId"`
 	// Name for the zone in a Global Cluster.
 	ZoneName *string `pulumi:"zoneName"`
 }
@@ -1097,12 +1119,18 @@ type AdvancedClusterReplicationSpecInput interface {
 
 type AdvancedClusterReplicationSpecArgs struct {
 	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
-	Id          pulumi.StringPtrInput `pulumi:"id"`
+	ExternalId  pulumi.StringPtrInput `pulumi:"externalId"`
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
-	// If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster).
+	// If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards pulumi.IntPtrInput `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
 	RegionConfigs AdvancedClusterReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
+	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+	ZoneId pulumi.StringPtrInput `pulumi:"zoneId"`
 	// Name for the zone in a Global Cluster.
 	ZoneName pulumi.StringPtrInput `pulumi:"zoneName"`
 }
@@ -1162,12 +1190,19 @@ func (o AdvancedClusterReplicationSpecOutput) ContainerId() pulumi.StringMapOutp
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) map[string]string { return v.ContainerId }).(pulumi.StringMapOutput)
 }
 
+func (o AdvancedClusterReplicationSpecOutput) ExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *string { return v.ExternalId }).(pulumi.StringPtrOutput)
+}
+
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o AdvancedClusterReplicationSpecOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
-// If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster).
+// If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o AdvancedClusterReplicationSpecOutput) NumShards() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *int { return v.NumShards }).(pulumi.IntPtrOutput)
 }
@@ -1177,6 +1212,11 @@ func (o AdvancedClusterReplicationSpecOutput) RegionConfigs() AdvancedClusterRep
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) []AdvancedClusterReplicationSpecRegionConfig {
 		return v.RegionConfigs
 	}).(AdvancedClusterReplicationSpecRegionConfigArrayOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+func (o AdvancedClusterReplicationSpecOutput) ZoneId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *string { return v.ZoneId }).(pulumi.StringPtrOutput)
 }
 
 // Name for the zone in a Global Cluster.
@@ -1205,11 +1245,11 @@ func (o AdvancedClusterReplicationSpecArrayOutput) Index(i pulumi.IntInput) Adva
 }
 
 type AdvancedClusterReplicationSpecRegionConfig struct {
-	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` parameter must be the same for every item in the `replicationSpecs` array. See below
+	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
 	AnalyticsAutoScaling *AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling `pulumi:"analyticsAutoScaling"`
 	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
 	AnalyticsSpecs *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
-	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for every item in the `replicationSpecs` array. See below
+	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
 	AutoScaling *AdvancedClusterReplicationSpecRegionConfigAutoScaling `pulumi:"autoScaling"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
 	BackingProviderName *string `pulumi:"backingProviderName"`
@@ -1245,11 +1285,11 @@ type AdvancedClusterReplicationSpecRegionConfigInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigArgs struct {
-	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` parameter must be the same for every item in the `replicationSpecs` array. See below
+	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
 	AnalyticsAutoScaling AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrInput `pulumi:"analyticsAutoScaling"`
 	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
 	AnalyticsSpecs AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput `pulumi:"analyticsSpecs"`
-	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for every item in the `replicationSpecs` array. See below
+	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
 	AutoScaling AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput `pulumi:"autoScaling"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
 	BackingProviderName pulumi.StringPtrInput `pulumi:"backingProviderName"`
@@ -1324,7 +1364,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) ToAdvancedClusterRepli
 	return o
 }
 
-// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` parameter must be the same for every item in the `replicationSpecs` array. See below
+// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsAutoScaling() AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling {
 		return v.AnalyticsAutoScaling
@@ -1338,7 +1378,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsSpecs() Advan
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
 }
 
-// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for every item in the `replicationSpecs` array. See below
+// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for all `regionConfigs` in all `replicationSpecs`. See below
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) AutoScaling() AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigAutoScaling {
 		return v.AutoScaling
@@ -1623,13 +1663,15 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput)
 }
 
 type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
-	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	InstanceSize string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount *int `pulumi:"nodeCount"`
@@ -1647,13 +1689,15 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
-	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
@@ -1736,9 +1780,14 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToAdvanc
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
 }
 
-// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+}
+
+// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskSizeGb() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
@@ -1748,7 +1797,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolum
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
 
-// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) InstanceSize() pulumi.StringOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) string { return v.InstanceSize }).(pulumi.StringOutput)
 }
@@ -1782,7 +1831,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Elem(
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput)
 }
 
-// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int {
 		if v == nil {
@@ -1790,6 +1839,16 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskI
 		}
 		return v.DiskIops
 	}).(pulumi.IntPtrOutput)
+}
+
+// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskSizeGb() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.DiskSizeGb
+	}).(pulumi.Float64PtrOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
@@ -1804,7 +1863,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVo
 	}).(pulumi.StringPtrOutput)
 }
 
-// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -2030,13 +2089,15 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) DiskGbEn
 }
 
 type AdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
-	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	InstanceSize string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount *int `pulumi:"nodeCount"`
@@ -2054,13 +2115,15 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecsInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
-	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
@@ -2143,9 +2206,14 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToAdvanc
 	}).(AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput)
 }
 
-// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+}
+
+// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskSizeGb() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
@@ -2155,7 +2223,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolum
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
 
-// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) InstanceSize() pulumi.StringOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) string { return v.InstanceSize }).(pulumi.StringOutput)
 }
@@ -2189,7 +2257,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) Elem(
 	}).(AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput)
 }
 
-// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int {
 		if v == nil {
@@ -2197,6 +2265,16 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskI
 		}
 		return v.DiskIops
 	}).(pulumi.IntPtrOutput)
+}
+
+// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskSizeGb() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.DiskSizeGb
+	}).(pulumi.Float64PtrOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
@@ -2211,7 +2289,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVo
 	}).(pulumi.StringPtrOutput)
 }
 
-// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -2232,13 +2310,15 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) NodeC
 }
 
 type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops *int `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
-	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	InstanceSize string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount *int `pulumi:"nodeCount"`
@@ -2256,13 +2336,15 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
-	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
@@ -2345,9 +2427,14 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToAdvance
 	}).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
 }
 
-// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+}
+
+// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskSizeGb() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
@@ -2357,7 +2444,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolume
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
 
-// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) InstanceSize() pulumi.StringOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) string { return v.InstanceSize }).(pulumi.StringOutput)
 }
@@ -2391,7 +2478,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Elem()
 	}).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput)
 }
 
-// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int {
 		if v == nil {
@@ -2399,6 +2486,16 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIo
 		}
 		return v.DiskIops
 	}).(pulumi.IntPtrOutput)
+}
+
+// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskSizeGb() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.DiskSizeGb
+	}).(pulumi.Float64PtrOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
@@ -2413,7 +2510,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVol
 	}).(pulumi.StringPtrOutput)
 }
 
-// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -4496,10 +4593,14 @@ type CloudBackupScheduleCopySetting struct {
 	Frequencies []string `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName *string `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	ReplicationSpecId *string `pulumi:"replicationSpecId"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs *bool `pulumi:"shouldCopyOplogs"`
+	// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
+	ZoneId *string `pulumi:"zoneId"`
 }
 
 // CloudBackupScheduleCopySettingInput is an input type that accepts CloudBackupScheduleCopySettingArgs and CloudBackupScheduleCopySettingOutput values.
@@ -4520,10 +4621,14 @@ type CloudBackupScheduleCopySettingArgs struct {
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName pulumi.StringPtrInput `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	ReplicationSpecId pulumi.StringPtrInput `pulumi:"replicationSpecId"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs pulumi.BoolPtrInput `pulumi:"shouldCopyOplogs"`
+	// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
+	ZoneId pulumi.StringPtrInput `pulumi:"zoneId"`
 }
 
 func (CloudBackupScheduleCopySettingArgs) ElementType() reflect.Type {
@@ -4592,7 +4697,9 @@ func (o CloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.RegionName }).(pulumi.StringPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
+// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+//
+// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o CloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.ReplicationSpecId }).(pulumi.StringPtrOutput)
 }
@@ -4600,6 +4707,11 @@ func (o CloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.StringP
 // Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 func (o CloudBackupScheduleCopySettingOutput) ShouldCopyOplogs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *bool { return v.ShouldCopyOplogs }).(pulumi.BoolPtrOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
+func (o CloudBackupScheduleCopySettingOutput) ZoneId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.ZoneId }).(pulumi.StringPtrOutput)
 }
 
 type CloudBackupScheduleCopySettingArrayOutput struct{ *pulumi.OutputState }
@@ -6780,10 +6892,14 @@ func (o CloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInput)
 
 type ClusterAdvancedConfiguration struct {
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern *string `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern *string `pulumi:"defaultWriteConcern"`
 	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong *bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
@@ -6821,10 +6937,14 @@ type ClusterAdvancedConfigurationInput interface {
 
 type ClusterAdvancedConfigurationArgs struct {
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern pulumi.StringPtrInput `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringPtrInput `pulumi:"defaultWriteConcern"`
 	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong pulumi.BoolPtrInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
@@ -6927,6 +7047,8 @@ func (o ClusterAdvancedConfigurationOutput) ToClusterAdvancedConfigurationPtrOut
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o ClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.DefaultReadConcern }).(pulumi.StringPtrOutput)
 }
@@ -6937,6 +7059,8 @@ func (o ClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringP
 }
 
 // When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o ClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *bool { return v.FailIndexKeyTooLong }).(pulumi.BoolPtrOutput)
 }
@@ -7011,6 +7135,8 @@ func (o ClusterAdvancedConfigurationPtrOutput) Elem() ClusterAdvancedConfigurati
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o ClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -7031,6 +7157,8 @@ func (o ClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pulumi.Stri
 }
 
 // When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o ClusterAdvancedConfigurationPtrOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *bool {
 		if v == nil {
@@ -14578,10 +14706,6 @@ type PrivateLinkEndpointServiceEndpoint struct {
 	EndpointName *string `pulumi:"endpointName"`
 	// Private IP address of the endpoint you created in GCP.
 	IpAddress *string `pulumi:"ipAddress"`
-	// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	ServiceAttachmentName *string `pulumi:"serviceAttachmentName"`
 	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status *string `pulumi:"status"`
 }
@@ -14602,10 +14726,6 @@ type PrivateLinkEndpointServiceEndpointArgs struct {
 	EndpointName pulumi.StringPtrInput `pulumi:"endpointName"`
 	// Private IP address of the endpoint you created in GCP.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
-	// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	ServiceAttachmentName pulumi.StringPtrInput `pulumi:"serviceAttachmentName"`
 	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status pulumi.StringPtrInput `pulumi:"status"`
 }
@@ -14669,13 +14789,6 @@ func (o PrivateLinkEndpointServiceEndpointOutput) EndpointName() pulumi.StringPt
 // Private IP address of the endpoint you created in GCP.
 func (o PrivateLinkEndpointServiceEndpointOutput) IpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PrivateLinkEndpointServiceEndpoint) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
-}
-
-// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-//
-// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-func (o PrivateLinkEndpointServiceEndpointOutput) ServiceAttachmentName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v PrivateLinkEndpointServiceEndpoint) *string { return v.ServiceAttachmentName }).(pulumi.StringPtrOutput)
 }
 
 // Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
@@ -17792,11 +17905,15 @@ func (o GetAccessListApiKeysResultArrayOutput) Index(i pulumi.IntInput) GetAcces
 }
 
 type GetAdvancedClusterAdvancedConfiguration struct {
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern string `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
@@ -17828,11 +17945,15 @@ type GetAdvancedClusterAdvancedConfigurationInput interface {
 }
 
 type GetAdvancedClusterAdvancedConfigurationArgs struct {
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
@@ -17903,7 +18024,9 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) ToGetAdvancedClusterAdvan
 	return o
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
 }
@@ -17913,7 +18036,9 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultWriteConcern() pul
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) bool { return v.FailIndexKeyTooLong }).(pulumi.BoolOutput)
 }
@@ -18583,11 +18708,17 @@ func (o GetAdvancedClusterLabelArrayOutput) Index(i pulumi.IntInput) GetAdvanced
 type GetAdvancedClusterReplicationSpec struct {
 	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 	ContainerId map[string]string `pulumi:"containerId"`
-	Id          string            `pulumi:"id"`
-	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED.
+	ExternalId  string            `pulumi:"externalId"`
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	Id string `pulumi:"id"`
+	// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED.)** To learn more, see the Migration Guide.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards int `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
 	RegionConfigs []GetAdvancedClusterReplicationSpecRegionConfig `pulumi:"regionConfigs"`
+	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+	ZoneId string `pulumi:"zoneId"`
 	// Name for the zone in a Global Cluster.
 	ZoneName string `pulumi:"zoneName"`
 }
@@ -18606,11 +18737,17 @@ type GetAdvancedClusterReplicationSpecInput interface {
 type GetAdvancedClusterReplicationSpecArgs struct {
 	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
-	Id          pulumi.StringInput    `pulumi:"id"`
-	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED.
+	ExternalId  pulumi.StringInput    `pulumi:"externalId"`
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	Id pulumi.StringInput `pulumi:"id"`
+	// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED.)** To learn more, see the Migration Guide.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards pulumi.IntInput `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
 	RegionConfigs GetAdvancedClusterReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
+	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
 	// Name for the zone in a Global Cluster.
 	ZoneName pulumi.StringInput `pulumi:"zoneName"`
 }
@@ -18671,11 +18808,18 @@ func (o GetAdvancedClusterReplicationSpecOutput) ContainerId() pulumi.StringMapO
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) map[string]string { return v.ContainerId }).(pulumi.StringMapOutput)
 }
 
+func (o GetAdvancedClusterReplicationSpecOutput) ExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) string { return v.ExternalId }).(pulumi.StringOutput)
+}
+
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClusterReplicationSpecOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED.
+// Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED.)** To learn more, see the Migration Guide.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClusterReplicationSpecOutput) NumShards() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) int { return v.NumShards }).(pulumi.IntOutput)
 }
@@ -18685,6 +18829,11 @@ func (o GetAdvancedClusterReplicationSpecOutput) RegionConfigs() GetAdvancedClus
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) []GetAdvancedClusterReplicationSpecRegionConfig {
 		return v.RegionConfigs
 	}).(GetAdvancedClusterReplicationSpecRegionConfigArrayOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+func (o GetAdvancedClusterReplicationSpecOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) string { return v.ZoneId }).(pulumi.StringOutput)
 }
 
 // Name for the zone in a Global Cluster.
@@ -18716,19 +18865,19 @@ type GetAdvancedClusterReplicationSpecRegionConfig struct {
 	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
 	AnalyticsAutoScalings []GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling `pulumi:"analyticsAutoScalings"`
 	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
-	AnalyticsSpecs *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
+	AnalyticsSpecs GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
 	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
 	AutoScalings []GetAdvancedClusterReplicationSpecRegionConfigAutoScaling `pulumi:"autoScalings"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster.
 	BackingProviderName string `pulumi:"backingProviderName"`
 	// Hardware specifications for electable nodes in the region.
-	ElectableSpecs *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs `pulumi:"electableSpecs"`
+	ElectableSpecs GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs `pulumi:"electableSpecs"`
 	// Election priority of the region.
 	Priority int `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName string `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. See below
-	ReadOnlySpecs *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
+	ReadOnlySpecs GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster.
 	RegionName string `pulumi:"regionName"`
 }
@@ -18748,19 +18897,19 @@ type GetAdvancedClusterReplicationSpecRegionConfigArgs struct {
 	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below
 	AnalyticsAutoScalings GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArrayInput `pulumi:"analyticsAutoScalings"`
 	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
-	AnalyticsSpecs GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput `pulumi:"analyticsSpecs"`
+	AnalyticsSpecs GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput `pulumi:"analyticsSpecs"`
 	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
 	AutoScalings GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayInput `pulumi:"autoScalings"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster.
 	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
 	// Hardware specifications for electable nodes in the region.
-	ElectableSpecs GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput `pulumi:"electableSpecs"`
+	ElectableSpecs GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsInput `pulumi:"electableSpecs"`
 	// Election priority of the region.
 	Priority pulumi.IntInput `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. See below
-	ReadOnlySpecs GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
+	ReadOnlySpecs GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
@@ -18824,10 +18973,10 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsAutoScalin
 }
 
 // Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
-func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsSpecs() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsSpecs() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
 		return v.AnalyticsSpecs
-	}).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
+	}).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput)
 }
 
 // Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
@@ -18843,10 +18992,10 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) BackingProviderName
 }
 
 // Hardware specifications for electable nodes in the region.
-func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ElectableSpecs() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ElectableSpecs() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
 		return v.ElectableSpecs
-	}).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput)
+	}).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput)
 }
 
 // Election priority of the region.
@@ -18860,10 +19009,10 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ProviderName() pulu
 }
 
 // Hardware specifications for read-only nodes in the region. See below
-func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ReadOnlySpecs() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ReadOnlySpecs() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
 		return v.ReadOnlySpecs
-	}).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
+	}).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput)
 }
 
 // Physical location of your MongoDB cluster.
@@ -19036,12 +19185,14 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArrayOu
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops int `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -19060,12 +19211,14 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput interface 
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -19084,47 +19237,6 @@ func (i GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAd
 	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput)
 }
 
-func (i GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return i.ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
-}
-
-func (i GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput).ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx)
-}
-
-// GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs, GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtr and GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput values.
-// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput` via:
-//
-//	        GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput interface {
-	pulumi.Input
-
-	ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput
-	ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput
-}
-
-type getAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-
-func GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtr(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput {
-	return (*getAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType)(v)
-}
-
-func (*getAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
-}
-
-func (i *getAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return i.ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
-}
-
-func (i *getAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
-}
-
 type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput struct{ *pulumi.OutputState }
 
 func (GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ElementType() reflect.Type {
@@ -19139,26 +19251,21 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGet
 	return o
 }
 
-func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return o.ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
-}
-
-func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
-		return &v
-	}).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
-}
-
-// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
+}
+
+// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskSizeGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
 // * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 // * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) string { return v.EbsVolumeType }).(pulumi.StringOutput)
 }
 
 // Hardware specification for the instance sizes in this region.
@@ -19169,72 +19276,6 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) Insta
 // Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) NodeCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
-}
-
-type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput struct{ *pulumi.OutputState }
-
-func (GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
-}
-
-func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return o
-}
-
-func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return o
-}
-
-func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Elem() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
-		if v != nil {
-			return *v
-		}
-		var ret GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs
-		return ret
-	}).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput)
-}
-
-// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.DiskIops
-	}).(pulumi.IntPtrOutput)
-}
-
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
-		if v == nil {
-			return nil
-		}
-		return v.EbsVolumeType
-	}).(pulumi.StringPtrOutput)
-}
-
-// Hardware specification for the instance sizes in this region.
-func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.InstanceSize
-	}).(pulumi.StringPtrOutput)
-}
-
-// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
-func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int {
-		if v == nil {
-			return nil
-		}
-		return v.NodeCount
-	}).(pulumi.IntPtrOutput)
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
@@ -19380,12 +19421,14 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput) Ind
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops int `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -19404,12 +19447,14 @@ type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsInput interface 
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -19428,47 +19473,6 @@ func (i GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToGetAd
 	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput)
 }
 
-func (i GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return i.ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
-}
-
-func (i GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput).ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx)
-}
-
-// GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs, GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtr and GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput values.
-// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput` via:
-//
-//	        GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput interface {
-	pulumi.Input
-
-	ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput
-	ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput
-}
-
-type getAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrType GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
-
-func GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtr(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput {
-	return (*getAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrType)(v)
-}
-
-func (*getAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
-}
-
-func (i *getAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrType) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return i.ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
-}
-
-func (i *getAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrType) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput)
-}
-
 type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput struct{ *pulumi.OutputState }
 
 func (GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ElementType() reflect.Type {
@@ -19483,26 +19487,21 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToGet
 	return o
 }
 
-func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return o.ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
-}
-
-func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
-		return &v
-	}).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput)
-}
-
-// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
+}
+
+// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskSizeGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
 // * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 // * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) string { return v.EbsVolumeType }).(pulumi.StringOutput)
 }
 
 // Hardware specification for the instance sizes in this region.
@@ -19515,79 +19514,15 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) NodeC
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
 }
 
-type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput struct{ *pulumi.OutputState }
-
-func (GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
-}
-
-func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return o
-}
-
-func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return o
-}
-
-func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) Elem() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
-		if v != nil {
-			return *v
-		}
-		var ret GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs
-		return ret
-	}).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput)
-}
-
-// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.DiskIops
-	}).(pulumi.IntPtrOutput)
-}
-
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
-		if v == nil {
-			return nil
-		}
-		return v.EbsVolumeType
-	}).(pulumi.StringPtrOutput)
-}
-
-// Hardware specification for the instance sizes in this region.
-func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.InstanceSize
-	}).(pulumi.StringPtrOutput)
-}
-
-// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
-func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int {
-		if v == nil {
-			return nil
-		}
-		return v.NodeCount
-	}).(pulumi.IntPtrOutput)
-}
-
 type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops int `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -19606,12 +19541,14 @@ type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput interface {
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -19630,47 +19567,6 @@ func (i GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdv
 	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput)
 }
 
-func (i GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return i.ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
-}
-
-func (i GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput).ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx)
-}
-
-// GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs, GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtr and GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput values.
-// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput` via:
-//
-//	        GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput interface {
-	pulumi.Input
-
-	ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput
-	ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput
-}
-
-type getAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs
-
-func GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtr(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput {
-	return (*getAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType)(v)
-}
-
-func (*getAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
-}
-
-func (i *getAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return i.ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
-}
-
-func (i *getAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
-}
-
 type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput struct{ *pulumi.OutputState }
 
 func (GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ElementType() reflect.Type {
@@ -19685,26 +19581,21 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetA
 	return o
 }
 
-func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return o.ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
-}
-
-func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
-		return &v
-	}).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
-}
-
-// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) int { return v.DiskIops }).(pulumi.IntOutput)
+}
+
+// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskSizeGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
 // * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 // * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) string { return v.EbsVolumeType }).(pulumi.StringOutput)
 }
 
 // Hardware specification for the instance sizes in this region.
@@ -19715,72 +19606,6 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) Instan
 // Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) NodeCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
-}
-
-type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput struct{ *pulumi.OutputState }
-
-func (GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
-}
-
-func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return o
-}
-
-func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return o
-}
-
-func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Elem() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
-		if v != nil {
-			return *v
-		}
-		var ret GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs
-		return ret
-	}).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput)
-}
-
-// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.DiskIops
-	}).(pulumi.IntPtrOutput)
-}
-
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
-		if v == nil {
-			return nil
-		}
-		return v.EbsVolumeType
-	}).(pulumi.StringPtrOutput)
-}
-
-// Hardware specification for the instance sizes in this region.
-func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.InstanceSize
-	}).(pulumi.StringPtrOutput)
-}
-
-// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
-func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int {
-		if v == nil {
-			return nil
-		}
-		return v.NodeCount
-	}).(pulumi.IntPtrOutput)
 }
 
 type GetAdvancedClusterTag struct {
@@ -19900,7 +19725,9 @@ type GetAdvancedClustersResult struct {
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings []GetAdvancedClustersResultConnectionString `pulumi:"connectionStrings"`
 	CreateDate        string                                      `pulumi:"createDate"`
-	// Capacity, in gigabytes, of the host's root volume.
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
@@ -19919,7 +19746,7 @@ type GetAdvancedClustersResult struct {
 	Paused bool `pulumi:"paused"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool `pulumi:"pitEnabled"`
-	// Configuration for cluster regions and the hardware provisioned in them. See below
+	// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
 	ReplicationSpecs []GetAdvancedClustersResultReplicationSpec `pulumi:"replicationSpecs"`
 	// Certificate Authority that MongoDB Atlas clusters use.
 	RootCertType string `pulumi:"rootCertType"`
@@ -19955,7 +19782,9 @@ type GetAdvancedClustersResultArgs struct {
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings GetAdvancedClustersResultConnectionStringArrayInput `pulumi:"connectionStrings"`
 	CreateDate        pulumi.StringInput                                  `pulumi:"createDate"`
-	// Capacity, in gigabytes, of the host's root volume.
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.
 	EncryptionAtRestProvider pulumi.StringInput `pulumi:"encryptionAtRestProvider"`
@@ -19974,7 +19803,7 @@ type GetAdvancedClustersResultArgs struct {
 	Paused pulumi.BoolInput `pulumi:"paused"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
-	// Configuration for cluster regions and the hardware provisioned in them. See below
+	// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
 	ReplicationSpecs GetAdvancedClustersResultReplicationSpecArrayInput `pulumi:"replicationSpecs"`
 	// Certificate Authority that MongoDB Atlas clusters use.
 	RootCertType pulumi.StringInput `pulumi:"rootCertType"`
@@ -20073,7 +19902,9 @@ func (o GetAdvancedClustersResultOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.CreateDate }).(pulumi.StringOutput)
 }
 
-// Capacity, in gigabytes, of the host's root volume.
+// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClustersResultOutput) DiskSizeGb() pulumi.Float64Output {
 	return o.ApplyT(func(v GetAdvancedClustersResult) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
@@ -20119,7 +19950,7 @@ func (o GetAdvancedClustersResultOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
 }
 
-// Configuration for cluster regions and the hardware provisioned in them. See below
+// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
 func (o GetAdvancedClustersResultOutput) ReplicationSpecs() GetAdvancedClustersResultReplicationSpecArrayOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultReplicationSpec {
 		return v.ReplicationSpecs
@@ -20172,11 +20003,15 @@ func (o GetAdvancedClustersResultArrayOutput) Index(i pulumi.IntInput) GetAdvanc
 }
 
 type GetAdvancedClustersResultAdvancedConfiguration struct {
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern string `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
@@ -20207,11 +20042,15 @@ type GetAdvancedClustersResultAdvancedConfigurationInput interface {
 }
 
 type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
-	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
@@ -20281,7 +20120,9 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) ToGetAdvancedClust
 	return o
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/). **(DEPRECATED.)** MongoDB 5.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
 }
@@ -20291,7 +20132,9 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultWriteConcer
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
 
-// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them. **(DEPRECATED.)** This parameter has been removed as of [MongoDB 4.4](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.failIndexKeyTooLong).
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) bool { return v.FailIndexKeyTooLong }).(pulumi.BoolOutput)
 }
@@ -20960,11 +20803,17 @@ func (o GetAdvancedClustersResultLabelArrayOutput) Index(i pulumi.IntInput) GetA
 type GetAdvancedClustersResultReplicationSpec struct {
 	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 	ContainerId map[string]string `pulumi:"containerId"`
-	Id          string            `pulumi:"id"`
-	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED.
+	ExternalId  string            `pulumi:"externalId"`
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	Id string `pulumi:"id"`
+	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards int `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
 	RegionConfigs []GetAdvancedClustersResultReplicationSpecRegionConfig `pulumi:"regionConfigs"`
+	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+	ZoneId string `pulumi:"zoneId"`
 	// Name for the zone in a Global Cluster.
 	ZoneName string `pulumi:"zoneName"`
 }
@@ -20983,11 +20832,17 @@ type GetAdvancedClustersResultReplicationSpecInput interface {
 type GetAdvancedClustersResultReplicationSpecArgs struct {
 	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
-	Id          pulumi.StringInput    `pulumi:"id"`
-	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED.
+	ExternalId  pulumi.StringInput    `pulumi:"externalId"`
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+	Id pulumi.StringInput `pulumi:"id"`
+	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	NumShards pulumi.IntInput `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
 	RegionConfigs GetAdvancedClustersResultReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
+	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
 	// Name for the zone in a Global Cluster.
 	ZoneName pulumi.StringInput `pulumi:"zoneName"`
 }
@@ -21048,11 +20903,18 @@ func (o GetAdvancedClustersResultReplicationSpecOutput) ContainerId() pulumi.Str
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) map[string]string { return v.ContainerId }).(pulumi.StringMapOutput)
 }
 
+func (o GetAdvancedClustersResultReplicationSpecOutput) ExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) string { return v.ExternalId }).(pulumi.StringOutput)
+}
+
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClustersResultReplicationSpecOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED.
+// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED.)** To learn more, see the Migration Guide for more details.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetAdvancedClustersResultReplicationSpecOutput) NumShards() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) int { return v.NumShards }).(pulumi.IntOutput)
 }
@@ -21062,6 +20924,11 @@ func (o GetAdvancedClustersResultReplicationSpecOutput) RegionConfigs() GetAdvan
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) []GetAdvancedClustersResultReplicationSpecRegionConfig {
 		return v.RegionConfigs
 	}).(GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
+func (o GetAdvancedClustersResultReplicationSpecOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) string { return v.ZoneId }).(pulumi.StringOutput)
 }
 
 // Name for the zone in a Global Cluster.
@@ -21093,19 +20960,19 @@ type GetAdvancedClustersResultReplicationSpecRegionConfig struct {
 	// Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
 	AnalyticsAutoScalings []GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling `pulumi:"analyticsAutoScalings"`
 	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
-	AnalyticsSpecs *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
+	AnalyticsSpecs GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
 	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
 	AutoScalings []GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling `pulumi:"autoScalings"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster.
 	BackingProviderName string `pulumi:"backingProviderName"`
 	// Hardware specifications for electable nodes in the region.
-	ElectableSpecs *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs `pulumi:"electableSpecs"`
+	ElectableSpecs GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs `pulumi:"electableSpecs"`
 	// Election priority of the region.
 	Priority int `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName string `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. See below
-	ReadOnlySpecs *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
+	ReadOnlySpecs GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster.
 	RegionName string `pulumi:"regionName"`
 }
@@ -21125,19 +20992,19 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigArgs struct {
 	// Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below
 	AnalyticsAutoScalings GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArrayInput `pulumi:"analyticsAutoScalings"`
 	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
-	AnalyticsSpecs GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput `pulumi:"analyticsSpecs"`
+	AnalyticsSpecs GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput `pulumi:"analyticsSpecs"`
 	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
 	AutoScalings GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayInput `pulumi:"autoScalings"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster.
 	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
 	// Hardware specifications for electable nodes in the region.
-	ElectableSpecs GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput `pulumi:"electableSpecs"`
+	ElectableSpecs GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput `pulumi:"electableSpecs"`
 	// Election priority of the region.
 	Priority pulumi.IntInput `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
 	// Hardware specifications for read-only nodes in the region. See below
-	ReadOnlySpecs GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
+	ReadOnlySpecs GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
@@ -21201,10 +21068,10 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) AnalyticsAut
 }
 
 // Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) AnalyticsSpecs() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs {
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) AnalyticsSpecs() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs {
 		return v.AnalyticsSpecs
-	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput)
 }
 
 // Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
@@ -21220,10 +21087,10 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) BackingProvi
 }
 
 // Hardware specifications for electable nodes in the region.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ElectableSpecs() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs {
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ElectableSpecs() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs {
 		return v.ElectableSpecs
-	}).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput)
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput)
 }
 
 // Election priority of the region.
@@ -21237,10 +21104,10 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ProviderName
 }
 
 // Hardware specifications for read-only nodes in the region. See below
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ReadOnlySpecs() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs {
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ReadOnlySpecs() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs {
 		return v.ReadOnlySpecs
-	}).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
 }
 
 // Physical location of your MongoDB cluster.
@@ -21412,12 +21279,14 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops int `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -21436,12 +21305,14 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput int
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -21460,47 +21331,6 @@ func (i GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs) 
 	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput)
 }
 
-func (i GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
-}
-
-func (i GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput).ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx)
-}
-
-// GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs, GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtr and GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput values.
-// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput` via:
-//
-//	        GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput interface {
-	pulumi.Input
-
-	ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput
-	ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput
-}
-
-type getAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrType GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs
-
-func GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtr(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput {
-	return (*getAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrType)(v)
-}
-
-func (*getAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
-}
-
-func (i *getAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrType) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
-}
-
-func (i *getAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrType) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
-}
-
 type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput struct{ *pulumi.OutputState }
 
 func (GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) ElementType() reflect.Type {
@@ -21515,28 +21345,25 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput
 	return o
 }
 
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return o.ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
-}
-
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs {
-		return &v
-	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
-}
-
-// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
+}
+
+// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskSizeGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) float64 {
+		return v.DiskSizeGb
+	}).(pulumi.Float64Output)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
 // * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 // * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *string {
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) string {
 		return v.EbsVolumeType
-	}).(pulumi.StringPtrOutput)
+	}).(pulumi.StringOutput)
 }
 
 // Hardware specification for the instance sizes in this region.
@@ -21549,72 +21376,6 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput
 // Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) NodeCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
-}
-
-type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput struct{ *pulumi.OutputState }
-
-func (GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
-}
-
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return o
-}
-
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
-	return o
-}
-
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Elem() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs {
-		if v != nil {
-			return *v
-		}
-		var ret GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs
-		return ret
-	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput)
-}
-
-// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.DiskIops
-	}).(pulumi.IntPtrOutput)
-}
-
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *string {
-		if v == nil {
-			return nil
-		}
-		return v.EbsVolumeType
-	}).(pulumi.StringPtrOutput)
-}
-
-// Hardware specification for the instance sizes in this region.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.InstanceSize
-	}).(pulumi.StringPtrOutput)
-}
-
-// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *int {
-		if v == nil {
-			return nil
-		}
-		return v.NodeCount
-	}).(pulumi.IntPtrOutput)
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling struct {
@@ -21757,12 +21518,14 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutp
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops int `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -21781,12 +21544,14 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput int
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -21805,47 +21570,6 @@ func (i GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs) 
 	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput)
 }
 
-func (i GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
-}
-
-func (i GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput).ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx)
-}
-
-// GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs, GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtr and GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput values.
-// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput` via:
-//
-//	        GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput interface {
-	pulumi.Input
-
-	ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput
-	ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput
-}
-
-type getAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrType GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs
-
-func GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtr(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput {
-	return (*getAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrType)(v)
-}
-
-func (*getAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
-}
-
-func (i *getAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrType) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
-}
-
-func (i *getAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrType) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput)
-}
-
 type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput struct{ *pulumi.OutputState }
 
 func (GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) ElementType() reflect.Type {
@@ -21860,28 +21584,25 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput
 	return o
 }
 
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return o.ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
-}
-
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs {
-		return &v
-	}).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput)
-}
-
-// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
+}
+
+// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) DiskSizeGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) float64 {
+		return v.DiskSizeGb
+	}).(pulumi.Float64Output)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
 // * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 // * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *string {
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) string {
 		return v.EbsVolumeType
-	}).(pulumi.StringPtrOutput)
+	}).(pulumi.StringOutput)
 }
 
 // Hardware specification for the instance sizes in this region.
@@ -21896,79 +21617,15 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
 }
 
-type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput struct{ *pulumi.OutputState }
-
-func (GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
-}
-
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return o
-}
-
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
-	return o
-}
-
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) Elem() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs {
-		if v != nil {
-			return *v
-		}
-		var ret GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs
-		return ret
-	}).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput)
-}
-
-// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.DiskIops
-	}).(pulumi.IntPtrOutput)
-}
-
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *string {
-		if v == nil {
-			return nil
-		}
-		return v.EbsVolumeType
-	}).(pulumi.StringPtrOutput)
-}
-
-// Hardware specification for the instance sizes in this region.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.InstanceSize
-	}).(pulumi.StringPtrOutput)
-}
-
-// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *int {
-		if v == nil {
-			return nil
-		}
-		return v.NodeCount
-	}).(pulumi.IntPtrOutput)
-}
-
 type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops int `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -21987,12 +21644,14 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput inte
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs struct {
-	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
 	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -22011,47 +21670,6 @@ func (i GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs) T
 	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
 }
 
-func (i GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
-}
-
-func (i GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput).ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx)
-}
-
-// GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs, GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtr and GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput values.
-// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput` via:
-//
-//	        GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput interface {
-	pulumi.Input
-
-	ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput
-	ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput
-}
-
-type getAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrType GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs
-
-func GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtr(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput {
-	return (*getAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrType)(v)
-}
-
-func (*getAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
-}
-
-func (i *getAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrType) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
-}
-
-func (i *getAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrType) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
-}
-
 type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput struct{ *pulumi.OutputState }
 
 func (GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) ElementType() reflect.Type {
@@ -22066,28 +21684,23 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
 	return o
 }
 
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return o.ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
-}
-
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs {
-		return &v
-	}).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
-}
-
-// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) int { return v.DiskIops }).(pulumi.IntOutput)
+}
+
+// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) DiskSizeGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
 // * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
 // * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *string {
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) string {
 		return v.EbsVolumeType
-	}).(pulumi.StringPtrOutput)
+	}).(pulumi.StringOutput)
 }
 
 // Hardware specification for the instance sizes in this region.
@@ -22100,72 +21713,6 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
 // Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) NodeCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
-}
-
-type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput struct{ *pulumi.OutputState }
-
-func (GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
-}
-
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return o
-}
-
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
-	return o
-}
-
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Elem() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs {
-		if v != nil {
-			return *v
-		}
-		var ret GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs
-		return ret
-	}).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
-}
-
-// Target throughput (IOPS) desired for AWS storage attached to your cluster.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.DiskIops
-	}).(pulumi.IntPtrOutput)
-}
-
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *string {
-		if v == nil {
-			return nil
-		}
-		return v.EbsVolumeType
-	}).(pulumi.StringPtrOutput)
-}
-
-// Hardware specification for the instance sizes in this region.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.InstanceSize
-	}).(pulumi.StringPtrOutput)
-}
-
-// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
-func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *int {
-		if v == nil {
-			return nil
-		}
-		return v.NodeCount
-	}).(pulumi.IntPtrOutput)
 }
 
 type GetAdvancedClustersResultTag struct {
@@ -25800,10 +25347,14 @@ type GetCloudBackupScheduleCopySetting struct {
 	Frequencies []string `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName string `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	ReplicationSpecId string `pulumi:"replicationSpecId"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs bool `pulumi:"shouldCopyOplogs"`
+	// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster.
+	ZoneId string `pulumi:"zoneId"`
 }
 
 // GetCloudBackupScheduleCopySettingInput is an input type that accepts GetCloudBackupScheduleCopySettingArgs and GetCloudBackupScheduleCopySettingOutput values.
@@ -25824,10 +25375,14 @@ type GetCloudBackupScheduleCopySettingArgs struct {
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName pulumi.StringInput `pulumi:"regionName"`
-	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
+	// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	ReplicationSpecId pulumi.StringInput `pulumi:"replicationSpecId"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs pulumi.BoolInput `pulumi:"shouldCopyOplogs"`
+	// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
 }
 
 func (GetCloudBackupScheduleCopySettingArgs) ElementType() reflect.Type {
@@ -25896,7 +25451,9 @@ func (o GetCloudBackupScheduleCopySettingOutput) RegionName() pulumi.StringOutpu
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) string { return v.RegionName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
+// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
+//
+// Deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetCloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) string { return v.ReplicationSpecId }).(pulumi.StringOutput)
 }
@@ -25904,6 +25461,11 @@ func (o GetCloudBackupScheduleCopySettingOutput) ReplicationSpecId() pulumi.Stri
 // Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 func (o GetCloudBackupScheduleCopySettingOutput) ShouldCopyOplogs() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) bool { return v.ShouldCopyOplogs }).(pulumi.BoolOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster.
+func (o GetCloudBackupScheduleCopySettingOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) string { return v.ZoneId }).(pulumi.StringOutput)
 }
 
 type GetCloudBackupScheduleCopySettingArrayOutput struct{ *pulumi.OutputState }
@@ -26698,14 +26260,20 @@ func (o GetCloudBackupSchedulePolicyItemYearlyArrayOutput) Index(i pulumi.IntInp
 }
 
 type GetCloudBackupSnapshotExportBucketsResult struct {
-	// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+	// Name of the bucket that the provided role ID is authorized to access.
 	BucketName string `pulumi:"bucketName"`
-	// Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+	// Name of the provider of the cloud service where Atlas can access the S3 bucket.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Unique identifier of the snapshot bucket id.
 	ExportBucketId string `pulumi:"exportBucketId"`
-	// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+	// Unique identifier of the role that Atlas can use to access the bucket.
 	IamRoleId string `pulumi:"iamRoleId"`
+	// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container.
+	RoleId string `pulumi:"roleId"`
+	// URL that identifies the blob Endpoint of the Azure Blob Storage Account.
+	ServiceUrl string `pulumi:"serviceUrl"`
+	// UUID that identifies the Azure Active Directory Tenant ID.
+	TenantId string `pulumi:"tenantId"`
 }
 
 // GetCloudBackupSnapshotExportBucketsResultInput is an input type that accepts GetCloudBackupSnapshotExportBucketsResultArgs and GetCloudBackupSnapshotExportBucketsResultOutput values.
@@ -26720,14 +26288,20 @@ type GetCloudBackupSnapshotExportBucketsResultInput interface {
 }
 
 type GetCloudBackupSnapshotExportBucketsResultArgs struct {
-	// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+	// Name of the bucket that the provided role ID is authorized to access.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+	// Name of the provider of the cloud service where Atlas can access the S3 bucket.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// Unique identifier of the snapshot bucket id.
 	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
-	// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+	// Unique identifier of the role that Atlas can use to access the bucket.
 	IamRoleId pulumi.StringInput `pulumi:"iamRoleId"`
+	// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container.
+	RoleId pulumi.StringInput `pulumi:"roleId"`
+	// URL that identifies the blob Endpoint of the Azure Blob Storage Account.
+	ServiceUrl pulumi.StringInput `pulumi:"serviceUrl"`
+	// UUID that identifies the Azure Active Directory Tenant ID.
+	TenantId pulumi.StringInput `pulumi:"tenantId"`
 }
 
 func (GetCloudBackupSnapshotExportBucketsResultArgs) ElementType() reflect.Type {
@@ -26781,12 +26355,12 @@ func (o GetCloudBackupSnapshotExportBucketsResultOutput) ToGetCloudBackupSnapsho
 	return o
 }
 
-// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+// Name of the bucket that the provided role ID is authorized to access.
 func (o GetCloudBackupSnapshotExportBucketsResultOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportBucketsResult) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+// Name of the provider of the cloud service where Atlas can access the S3 bucket.
 func (o GetCloudBackupSnapshotExportBucketsResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportBucketsResult) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -26796,9 +26370,24 @@ func (o GetCloudBackupSnapshotExportBucketsResultOutput) ExportBucketId() pulumi
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportBucketsResult) string { return v.ExportBucketId }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+// Unique identifier of the role that Atlas can use to access the bucket.
 func (o GetCloudBackupSnapshotExportBucketsResultOutput) IamRoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportBucketsResult) string { return v.IamRoleId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container.
+func (o GetCloudBackupSnapshotExportBucketsResultOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportBucketsResult) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+// URL that identifies the blob Endpoint of the Azure Blob Storage Account.
+func (o GetCloudBackupSnapshotExportBucketsResultOutput) ServiceUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportBucketsResult) string { return v.ServiceUrl }).(pulumi.StringOutput)
+}
+
+// UUID that identifies the Azure Active Directory Tenant ID.
+func (o GetCloudBackupSnapshotExportBucketsResultOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportBucketsResult) string { return v.TenantId }).(pulumi.StringOutput)
 }
 
 type GetCloudBackupSnapshotExportBucketsResultArrayOutput struct{ *pulumi.OutputState }
@@ -27575,10 +27164,6 @@ func (o GetCloudBackupSnapshotMemberArrayOutput) Index(i pulumi.IntInput) GetClo
 type GetCloudBackupSnapshotRestoreJobsResult struct {
 	// Indicates whether the restore job was canceled.
 	Cancelled bool `pulumi:"cancelled"`
-	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	CreatedAt string `pulumi:"createdAt"`
 	// Type of restore job to create. Possible values are: automated and download.
 	DeliveryType string `pulumi:"deliveryType"`
 	// One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
@@ -27621,10 +27206,6 @@ type GetCloudBackupSnapshotRestoreJobsResultInput interface {
 type GetCloudBackupSnapshotRestoreJobsResultArgs struct {
 	// Indicates whether the restore job was canceled.
 	Cancelled pulumi.BoolInput `pulumi:"cancelled"`
-	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Type of restore job to create. Possible values are: automated and download.
 	DeliveryType pulumi.StringInput `pulumi:"deliveryType"`
 	// One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
@@ -27707,13 +27288,6 @@ func (o GetCloudBackupSnapshotRestoreJobsResultOutput) ToGetCloudBackupSnapshotR
 // Indicates whether the restore job was canceled.
 func (o GetCloudBackupSnapshotRestoreJobsResultOutput) Cancelled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) bool { return v.Cancelled }).(pulumi.BoolOutput)
-}
-
-// UTC ISO 8601 formatted point in time when Atlas created the restore job.
-//
-// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-func (o GetCloudBackupSnapshotRestoreJobsResultOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
 // Type of restore job to create. Possible values are: automated and download.
@@ -28353,10 +27927,14 @@ func (o GetCloudProviderAccessSetupAzureConfigArrayOutput) Index(i pulumi.IntInp
 
 type GetClusterAdvancedConfiguration struct {
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern string `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
 	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
@@ -28389,10 +27967,14 @@ type GetClusterAdvancedConfigurationInput interface {
 
 type GetClusterAdvancedConfigurationArgs struct {
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
 	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
@@ -28464,6 +28046,8 @@ func (o GetClusterAdvancedConfigurationOutput) ToGetClusterAdvancedConfiguration
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
 }
@@ -28474,6 +28058,8 @@ func (o GetClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.Stri
 }
 
 // When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) bool { return v.FailIndexKeyTooLong }).(pulumi.BoolOutput)
 }
@@ -30476,10 +30062,14 @@ func (o GetClustersResultArrayOutput) Index(i pulumi.IntInput) GetClustersResult
 
 type GetClustersResultAdvancedConfiguration struct {
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern string `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
 	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
@@ -30511,10 +30101,14 @@ type GetClustersResultAdvancedConfigurationInput interface {
 
 type GetClustersResultAdvancedConfigurationArgs struct {
 	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
 	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
 	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
@@ -30585,6 +30179,8 @@ func (o GetClustersResultAdvancedConfigurationOutput) ToGetClustersResultAdvance
 }
 
 // [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetClustersResultAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
 }
@@ -30595,6 +30191,8 @@ func (o GetClustersResultAdvancedConfigurationOutput) DefaultWriteConcern() pulu
 }
 
 // When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o GetClustersResultAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) bool { return v.FailIndexKeyTooLong }).(pulumi.BoolOutput)
 }
@@ -44918,8 +44516,6 @@ type GetPrivateLinkEndpointServiceEndpoint struct {
 	EndpointName string `pulumi:"endpointName"`
 	// Private IP address of the network endpoint group you created in GCP.
 	IpAddress string `pulumi:"ipAddress"`
-	// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-	ServiceAttachmentName string `pulumi:"serviceAttachmentName"`
 	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status string `pulumi:"status"`
 }
@@ -44940,8 +44536,6 @@ type GetPrivateLinkEndpointServiceEndpointArgs struct {
 	EndpointName pulumi.StringInput `pulumi:"endpointName"`
 	// Private IP address of the network endpoint group you created in GCP.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-	ServiceAttachmentName pulumi.StringInput `pulumi:"serviceAttachmentName"`
 	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status pulumi.StringInput `pulumi:"status"`
 }
@@ -45005,11 +44599,6 @@ func (o GetPrivateLinkEndpointServiceEndpointOutput) EndpointName() pulumi.Strin
 // Private IP address of the network endpoint group you created in GCP.
 func (o GetPrivateLinkEndpointServiceEndpointOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateLinkEndpointServiceEndpoint) string { return v.IpAddress }).(pulumi.StringOutput)
-}
-
-// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-func (o GetPrivateLinkEndpointServiceEndpointOutput) ServiceAttachmentName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivateLinkEndpointServiceEndpoint) string { return v.ServiceAttachmentName }).(pulumi.StringOutput)
 }
 
 // Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
@@ -49242,10 +48831,6 @@ type GetThirdPartyIntegrationsResult struct {
 	// An optional field for your Routing Key.
 	// * `WEBHOOK`
 	RoutingKey string `pulumi:"routingKey"`
-	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	Scheme *string `pulumi:"scheme"`
 	// An optional field for your webhook secret.
 	// * `MICROSOFT_TEAMS`
 	Secret string `pulumi:"secret"`
@@ -49294,10 +48879,6 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// An optional field for your Routing Key.
 	// * `WEBHOOK`
 	RoutingKey pulumi.StringInput `pulumi:"routingKey"`
-	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	Scheme pulumi.StringPtrInput `pulumi:"scheme"`
 	// An optional field for your webhook secret.
 	// * `MICROSOFT_TEAMS`
 	Secret pulumi.StringInput `pulumi:"secret"`
@@ -49410,13 +48991,6 @@ func (o GetThirdPartyIntegrationsResultOutput) Region() pulumi.StringOutput {
 // * `WEBHOOK`
 func (o GetThirdPartyIntegrationsResultOutput) RoutingKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.RoutingKey }).(pulumi.StringOutput)
-}
-
-// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-//
-// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-func (o GetThirdPartyIntegrationsResultOutput) Scheme() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.Scheme }).(pulumi.StringPtrOutput)
 }
 
 // An optional field for your webhook secret.
@@ -49845,13 +49419,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArrayInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAutoScalingInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterTagInput)(nil)).Elem(), GetAdvancedClusterTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterTagArrayInput)(nil)).Elem(), GetAdvancedClusterTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultInput)(nil)).Elem(), GetAdvancedClustersResultArgs{})
@@ -49875,13 +49446,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArrayInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultTagInput)(nil)).Elem(), GetAdvancedClustersResultTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultTagArrayInput)(nil)).Elem(), GetAdvancedClustersResultTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationMatcherInput)(nil)).Elem(), GetAlertConfigurationMatcherArgs{})
@@ -50540,13 +50108,10 @@ func init() {
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArrayOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput{})
-	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput{})
-	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput{})
-	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterTagOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterTagArrayOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultOutput{})
@@ -50570,13 +50135,10 @@ func init() {
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArrayOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput{})
-	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput{})
-	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput{})
-	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultTagOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultTagArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationMatcherOutput{})

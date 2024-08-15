@@ -13,7 +13,7 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class AdvancedClusterReplicationSpecRegionConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+        /// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
         /// </summary>
         [Input("analyticsAutoScaling")]
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs>? AnalyticsAutoScaling { get; set; }
@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs>? AnalyticsSpecs { get; set; }
 
         /// <summary>
-        /// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+        /// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
         /// </summary>
         [Input("autoScaling")]
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs>? AutoScaling { get; set; }

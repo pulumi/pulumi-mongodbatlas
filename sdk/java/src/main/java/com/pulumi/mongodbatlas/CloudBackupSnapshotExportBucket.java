@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportBucketState;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -21,6 +22,8 @@ import javax.annotation.Nullable;
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  * 
  * ## Example Usage
+ * 
+ * ### AWS Example
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -58,6 +61,46 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ### Azure Example
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucket;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new CloudBackupSnapshotExportBucket("test", CloudBackupSnapshotExportBucketArgs.builder()
+ *             .projectId("{PROJECT_ID}")
+ *             .roleId("{ROLE_ID}")
+ *             .serviceUrl("{SERVICE_URL}")
+ *             .tenantId("{TENANT_ID}")
+ *             .bucketName("example-bucket")
+ *             .cloudProvider("AZURE")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * Cloud Backup Snapshot Export Backup entries can be imported using project project_id, and bucket_id (Unique identifier of the snapshot export bucket), in the format `PROJECTID-BUCKETID`, e.g.
@@ -71,28 +114,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket")
 public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.CustomResource {
     /**
-     * Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+     * Name of the bucket that the provided role ID is authorized to access.
      * 
      */
     @Export(name="bucketName", refs={String.class}, tree="[0]")
     private Output<String> bucketName;
 
     /**
-     * @return Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+     * @return Name of the bucket that the provided role ID is authorized to access.
      * 
      */
     public Output<String> bucketName() {
         return this.bucketName;
     }
     /**
-     * Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+     * Name of the provider of the cloud service where Atlas can access the S3 bucket.
      * 
      */
     @Export(name="cloudProvider", refs={String.class}, tree="[0]")
     private Output<String> cloudProvider;
 
     /**
-     * @return Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+     * @return Name of the provider of the cloud service where Atlas can access the S3 bucket.
      * 
      */
     public Output<String> cloudProvider() {
@@ -113,18 +156,18 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
         return this.exportBucketId;
     }
     /**
-     * Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+     * Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
      * 
      */
     @Export(name="iamRoleId", refs={String.class}, tree="[0]")
-    private Output<String> iamRoleId;
+    private Output</* @Nullable */ String> iamRoleId;
 
     /**
-     * @return Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+     * @return Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
      * 
      */
-    public Output<String> iamRoleId() {
-        return this.iamRoleId;
+    public Output<Optional<String>> iamRoleId() {
+        return Codegen.optional(this.iamRoleId);
     }
     /**
      * The unique identifier of the project for the Atlas cluster.
@@ -139,6 +182,48 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
      */
     public Output<String> projectId() {
         return this.projectId;
+    }
+    /**
+     * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+     * 
+     */
+    @Export(name="roleId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> roleId;
+
+    /**
+     * @return Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+     * 
+     */
+    public Output<Optional<String>> roleId() {
+        return Codegen.optional(this.roleId);
+    }
+    /**
+     * URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+     * 
+     */
+    @Export(name="serviceUrl", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> serviceUrl;
+
+    /**
+     * @return URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+     * 
+     */
+    public Output<Optional<String>> serviceUrl() {
+        return Codegen.optional(this.serviceUrl);
+    }
+    /**
+     * UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+     * 
+     */
+    @Export(name="tenantId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tenantId;
+
+    /**
+     * @return UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+     * 
+     */
+    public Output<Optional<String>> tenantId() {
+        return Codegen.optional(this.tenantId);
     }
 
     /**

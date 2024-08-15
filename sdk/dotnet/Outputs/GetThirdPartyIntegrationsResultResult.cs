@@ -47,10 +47,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string RoutingKey;
         /// <summary>
-        /// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-        /// </summary>
-        public readonly string? Scheme;
-        /// <summary>
         /// An optional field for your webhook secret.
         /// * `MICROSOFT_TEAMS`
         /// </summary>
@@ -98,8 +94,6 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string routingKey,
 
-            string? scheme,
-
             string secret,
 
             string? serviceDiscovery,
@@ -123,7 +117,6 @@ namespace Pulumi.Mongodbatlas.Outputs
             ProjectId = projectId;
             Region = region;
             RoutingKey = routingKey;
-            Scheme = scheme;
             Secret = secret;
             ServiceDiscovery = serviceDiscovery;
             ServiceKey = serviceKey;

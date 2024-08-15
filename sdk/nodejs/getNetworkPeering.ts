@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
- * > **NOTE:** If you need to get an existing container ID see the How-To Guide.
- *
  * ## Example Usage
  *
  * ### Basic Example (AWS).
@@ -147,8 +145,6 @@ export interface GetNetworkPeeringResult {
  * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
- * > **NOTE:** If you need to get an existing container ID see the How-To Guide.
  *
  * ## Example Usage
  *

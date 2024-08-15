@@ -10,8 +10,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetCloudBackupSnapshotRestoreJobResult {
@@ -21,15 +19,6 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
      */
     private Boolean cancelled;
     private String clusterName;
-    /**
-     * @return UTC ISO 8601 formatted point in time when Atlas created the restore job.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    private String createdAt;
     /**
      * @return Type of restore job to create. Possible values are: automated and download.
      * 
@@ -60,13 +49,6 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
      * 
      */
     private String id;
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead. */
-    private @Nullable String jobId;
     private Integer oplogInc;
     private Integer oplogTs;
     private Integer pointInTimeUtcSeconds;
@@ -76,7 +58,7 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
      * 
      */
     private String snapshotId;
-    private @Nullable String snapshotRestoreJobId;
+    private String snapshotRestoreJobId;
     /**
      * @return Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
      * 
@@ -106,17 +88,6 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
     }
     public String clusterName() {
         return this.clusterName;
-    }
-    /**
-     * @return UTC ISO 8601 formatted point in time when Atlas created the restore job.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public String createdAt() {
-        return this.createdAt;
     }
     /**
      * @return Type of restore job to create. Possible values are: automated and download.
@@ -160,15 +131,6 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
     public String id() {
         return this.id;
     }
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead. */
-    public Optional<String> jobId() {
-        return Optional.ofNullable(this.jobId);
-    }
     public Integer oplogInc() {
         return this.oplogInc;
     }
@@ -188,8 +150,8 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
     public String snapshotId() {
         return this.snapshotId;
     }
-    public Optional<String> snapshotRestoreJobId() {
-        return Optional.ofNullable(this.snapshotRestoreJobId);
+    public String snapshotRestoreJobId() {
+        return this.snapshotRestoreJobId;
     }
     /**
      * @return Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
@@ -227,20 +189,18 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
     public static final class Builder {
         private Boolean cancelled;
         private String clusterName;
-        private String createdAt;
         private String deliveryType;
         private List<String> deliveryUrls;
         private Boolean expired;
         private String expiresAt;
         private String finishedAt;
         private String id;
-        private @Nullable String jobId;
         private Integer oplogInc;
         private Integer oplogTs;
         private Integer pointInTimeUtcSeconds;
         private String projectId;
         private String snapshotId;
-        private @Nullable String snapshotRestoreJobId;
+        private String snapshotRestoreJobId;
         private String targetClusterName;
         private String targetProjectId;
         private String timestamp;
@@ -249,14 +209,12 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
     	      Objects.requireNonNull(defaults);
     	      this.cancelled = defaults.cancelled;
     	      this.clusterName = defaults.clusterName;
-    	      this.createdAt = defaults.createdAt;
     	      this.deliveryType = defaults.deliveryType;
     	      this.deliveryUrls = defaults.deliveryUrls;
     	      this.expired = defaults.expired;
     	      this.expiresAt = defaults.expiresAt;
     	      this.finishedAt = defaults.finishedAt;
     	      this.id = defaults.id;
-    	      this.jobId = defaults.jobId;
     	      this.oplogInc = defaults.oplogInc;
     	      this.oplogTs = defaults.oplogTs;
     	      this.pointInTimeUtcSeconds = defaults.pointInTimeUtcSeconds;
@@ -282,14 +240,6 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
               throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobResult", "clusterName");
             }
             this.clusterName = clusterName;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder createdAt(String createdAt) {
-            if (createdAt == null) {
-              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobResult", "createdAt");
-            }
-            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
@@ -344,12 +294,6 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
             return this;
         }
         @CustomType.Setter
-        public Builder jobId(@Nullable String jobId) {
-
-            this.jobId = jobId;
-            return this;
-        }
-        @CustomType.Setter
         public Builder oplogInc(Integer oplogInc) {
             if (oplogInc == null) {
               throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobResult", "oplogInc");
@@ -390,8 +334,10 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
             return this;
         }
         @CustomType.Setter
-        public Builder snapshotRestoreJobId(@Nullable String snapshotRestoreJobId) {
-
+        public Builder snapshotRestoreJobId(String snapshotRestoreJobId) {
+            if (snapshotRestoreJobId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobResult", "snapshotRestoreJobId");
+            }
             this.snapshotRestoreJobId = snapshotRestoreJobId;
             return this;
         }
@@ -423,14 +369,12 @@ public final class GetCloudBackupSnapshotRestoreJobResult {
             final var _resultValue = new GetCloudBackupSnapshotRestoreJobResult();
             _resultValue.cancelled = cancelled;
             _resultValue.clusterName = clusterName;
-            _resultValue.createdAt = createdAt;
             _resultValue.deliveryType = deliveryType;
             _resultValue.deliveryUrls = deliveryUrls;
             _resultValue.expired = expired;
             _resultValue.expiresAt = expiresAt;
             _resultValue.finishedAt = finishedAt;
             _resultValue.id = id;
-            _resultValue.jobId = jobId;
             _resultValue.oplogInc = oplogInc;
             _resultValue.oplogTs = oplogTs;
             _resultValue.pointInTimeUtcSeconds = pointInTimeUtcSeconds;

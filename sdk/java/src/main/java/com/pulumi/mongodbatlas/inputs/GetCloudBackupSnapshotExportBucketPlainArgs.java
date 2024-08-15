@@ -7,8 +7,6 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class GetCloudBackupSnapshotExportBucketPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -31,25 +29,6 @@ public final class GetCloudBackupSnapshotExportBucketPlainArgs extends com.pulum
     }
 
     /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
-    @Import(name="id")
-    private @Nullable String id;
-
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
-    public Optional<String> id() {
-        return Optional.ofNullable(this.id);
-    }
-
-    /**
      * The unique identifier of the project for the Atlas cluster.
      * 
      */
@@ -68,7 +47,6 @@ public final class GetCloudBackupSnapshotExportBucketPlainArgs extends com.pulum
 
     private GetCloudBackupSnapshotExportBucketPlainArgs(GetCloudBackupSnapshotExportBucketPlainArgs $) {
         this.exportBucketId = $.exportBucketId;
-        this.id = $.id;
         this.projectId = $.projectId;
     }
 
@@ -98,19 +76,6 @@ public final class GetCloudBackupSnapshotExportBucketPlainArgs extends com.pulum
          */
         public Builder exportBucketId(String exportBucketId) {
             $.exportBucketId = exportBucketId;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed. */
-        public Builder id(@Nullable String id) {
-            $.id = id;
             return this;
         }
 

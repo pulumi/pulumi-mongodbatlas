@@ -17,62 +17,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster. 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
-        ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
-        ///         Name = "clusterTest",
-        ///         ClusterType = "REPLICASET",
-        ///         BackupEnabled = true,
-        ///         ReplicationSpecs = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
-        ///             {
-        ///                 RegionConfigs = new[]
-        ///                 {
-        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
-        ///                     {
-        ///                         Priority = 7,
-        ///                         ProviderName = "AWS",
-        ///                         RegionName = "EU_CENTRAL_1",
-        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
-        ///                         {
-        ///                             InstanceSize = "M10",
-        ///                             NodeCount = 3,
-        ///                         },
-        ///                     },
-        ///                 },
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()
-        ///     {
-        ///         ProjectId = myCluster.ProjectId,
-        ///         ClusterName = myCluster.Name,
-        ///         ReferenceHourOfDay = 3,
-        ///         ReferenceMinuteOfHour = 45,
-        ///         RestoreWindowDays = 4,
-        ///     });
-        /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
-        ///     {
-        ///         ProjectId = testCloudBackupSchedule.ProjectId,
-        ///         ClusterName = testCloudBackupSchedule.ClusterName,
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Task<GetCloudBackupScheduleResult> InvokeAsync(GetCloudBackupScheduleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupScheduleResult>("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args ?? new GetCloudBackupScheduleArgs(), options.WithDefaults());
@@ -83,62 +27,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster. 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
-        ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
-        ///         Name = "clusterTest",
-        ///         ClusterType = "REPLICASET",
-        ///         BackupEnabled = true,
-        ///         ReplicationSpecs = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
-        ///             {
-        ///                 RegionConfigs = new[]
-        ///                 {
-        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
-        ///                     {
-        ///                         Priority = 7,
-        ///                         ProviderName = "AWS",
-        ///                         RegionName = "EU_CENTRAL_1",
-        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
-        ///                         {
-        ///                             InstanceSize = "M10",
-        ///                             NodeCount = 3,
-        ///                         },
-        ///                     },
-        ///                 },
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()
-        ///     {
-        ///         ProjectId = myCluster.ProjectId,
-        ///         ClusterName = myCluster.Name,
-        ///         ReferenceHourOfDay = 3,
-        ///         ReferenceMinuteOfHour = 45,
-        ///         RestoreWindowDays = 4,
-        ///     });
-        /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
-        ///     {
-        ///         ProjectId = testCloudBackupSchedule.ProjectId,
-        ///         ClusterName = testCloudBackupSchedule.ClusterName,
-        ///     });
-        /// 
-        /// });
-        /// ```
         /// </summary>
         public static Output<GetCloudBackupScheduleResult> Invoke(GetCloudBackupScheduleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupScheduleResult>("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args ?? new GetCloudBackupScheduleInvokeArgs(), options.WithDefaults());
@@ -159,6 +47,12 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
+        /// </summary>
+        [Input("useZoneIdForCopySettings")]
+        public bool? UseZoneIdForCopySettings { get; set; }
+
         public GetCloudBackupScheduleArgs()
         {
         }
@@ -178,6 +72,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
+        /// </summary>
+        [Input("useZoneIdForCopySettings")]
+        public Input<bool>? UseZoneIdForCopySettings { get; set; }
 
         public GetCloudBackupScheduleInvokeArgs()
         {
@@ -200,7 +100,13 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ClusterId;
         public readonly string ClusterName;
+        /// <summary>
+        /// List that contains a document for each copy setting item in the desired backup policy. See below
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupScheduleCopySettingResult> CopySettings;
+        /// <summary>
+        /// Policy for automatically exporting Cloud Backup Snapshots. See below
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupScheduleExportResult> Exports;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -215,23 +121,23 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string NextSnapshot;
         /// <summary>
-        /// Daily policy item
+        /// (Optional) Daily policy item. See below
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemDailyResult> PolicyItemDailies;
         /// <summary>
-        /// Hourly policy item
+        /// (Optional) Hourly policy item. See below
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemHourlyResult> PolicyItemHourlies;
         /// <summary>
-        /// Monthly policy item
+        /// (Optional) Monthly policy item. See below
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemMonthlyResult> PolicyItemMonthlies;
         /// <summary>
-        /// Weekly policy item
+        /// (Optional) Weekly policy item. See below
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemWeeklyResult> PolicyItemWeeklies;
         /// <summary>
-        /// Yearly policy item
+        /// (Optional) Yearly policy item. See below
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupSchedulePolicyItemYearlyResult> PolicyItemYearlies;
         public readonly string ProjectId;
@@ -251,6 +157,7 @@ namespace Pulumi.Mongodbatlas
         /// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         /// </summary>
         public readonly bool UseOrgAndGroupNamesInExportPrefix;
+        public readonly bool? UseZoneIdForCopySettings;
 
         [OutputConstructor]
         private GetCloudBackupScheduleResult(
@@ -288,7 +195,9 @@ namespace Pulumi.Mongodbatlas
 
             int restoreWindowDays,
 
-            bool useOrgAndGroupNamesInExportPrefix)
+            bool useOrgAndGroupNamesInExportPrefix,
+
+            bool? useZoneIdForCopySettings)
         {
             AutoExportEnabled = autoExportEnabled;
             ClusterId = clusterId;
@@ -308,6 +217,7 @@ namespace Pulumi.Mongodbatlas
             ReferenceMinuteOfHour = referenceMinuteOfHour;
             RestoreWindowDays = restoreWindowDays;
             UseOrgAndGroupNamesInExportPrefix = useOrgAndGroupNamesInExportPrefix;
+            UseZoneIdForCopySettings = useZoneIdForCopySettings;
         }
     }
 }

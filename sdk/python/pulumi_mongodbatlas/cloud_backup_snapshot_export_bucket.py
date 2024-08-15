@@ -16,25 +16,38 @@ class CloudBackupSnapshotExportBucketArgs:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[str],
                  cloud_provider: pulumi.Input[str],
-                 iam_role_id: pulumi.Input[str],
-                 project_id: pulumi.Input[str]):
+                 project_id: pulumi.Input[str],
+                 iam_role_id: Optional[pulumi.Input[str]] = None,
+                 role_id: Optional[pulumi.Input[str]] = None,
+                 service_url: Optional[pulumi.Input[str]] = None,
+                 tenant_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CloudBackupSnapshotExportBucket resource.
-        :param pulumi.Input[str] bucket_name: Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
-        :param pulumi.Input[str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
-        :param pulumi.Input[str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+        :param pulumi.Input[str] bucket_name: Name of the bucket that the provided role ID is authorized to access.
+        :param pulumi.Input[str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
+        :param pulumi.Input[str] role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+        :param pulumi.Input[str] service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+        :param pulumi.Input[str] tenant_id: UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "cloud_provider", cloud_provider)
-        pulumi.set(__self__, "iam_role_id", iam_role_id)
         pulumi.set(__self__, "project_id", project_id)
+        if iam_role_id is not None:
+            pulumi.set(__self__, "iam_role_id", iam_role_id)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
+        if service_url is not None:
+            pulumi.set(__self__, "service_url", service_url)
+        if tenant_id is not None:
+            pulumi.set(__self__, "tenant_id", tenant_id)
 
     @property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
         """
-        Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+        Name of the bucket that the provided role ID is authorized to access.
         """
         return pulumi.get(self, "bucket_name")
 
@@ -46,25 +59,13 @@ class CloudBackupSnapshotExportBucketArgs:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> pulumi.Input[str]:
         """
-        Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+        Name of the provider of the cloud service where Atlas can access the S3 bucket.
         """
         return pulumi.get(self, "cloud_provider")
 
     @cloud_provider.setter
     def cloud_provider(self, value: pulumi.Input[str]):
         pulumi.set(self, "cloud_provider", value)
-
-    @property
-    @pulumi.getter(name="iamRoleId")
-    def iam_role_id(self) -> pulumi.Input[str]:
-        """
-        Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
-        """
-        return pulumi.get(self, "iam_role_id")
-
-    @iam_role_id.setter
-    def iam_role_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "iam_role_id", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -78,6 +79,54 @@ class CloudBackupSnapshotExportBucketArgs:
     def project_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "project_id", value)
 
+    @property
+    @pulumi.getter(name="iamRoleId")
+    def iam_role_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
+        """
+        return pulumi.get(self, "iam_role_id")
+
+    @iam_role_id.setter
+    def iam_role_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_role_id", value)
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_id", value)
+
+    @property
+    @pulumi.getter(name="serviceUrl")
+    def service_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+        """
+        return pulumi.get(self, "service_url")
+
+    @service_url.setter
+    def service_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_url", value)
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        """
+        return pulumi.get(self, "tenant_id")
+
+    @tenant_id.setter
+    def tenant_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tenant_id", value)
+
 
 @pulumi.input_type
 class _CloudBackupSnapshotExportBucketState:
@@ -86,14 +135,20 @@ class _CloudBackupSnapshotExportBucketState:
                  cloud_provider: Optional[pulumi.Input[str]] = None,
                  export_bucket_id: Optional[pulumi.Input[str]] = None,
                  iam_role_id: Optional[pulumi.Input[str]] = None,
-                 project_id: Optional[pulumi.Input[str]] = None):
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 role_id: Optional[pulumi.Input[str]] = None,
+                 service_url: Optional[pulumi.Input[str]] = None,
+                 tenant_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CloudBackupSnapshotExportBucket resources.
-        :param pulumi.Input[str] bucket_name: Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
-        :param pulumi.Input[str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+        :param pulumi.Input[str] bucket_name: Name of the bucket that the provided role ID is authorized to access.
+        :param pulumi.Input[str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket.
         :param pulumi.Input[str] export_bucket_id: Unique identifier of the snapshot export bucket.
-        :param pulumi.Input[str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+        :param pulumi.Input[str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[str] role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+        :param pulumi.Input[str] service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+        :param pulumi.Input[str] tenant_id: UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
         """
         if bucket_name is not None:
             pulumi.set(__self__, "bucket_name", bucket_name)
@@ -105,12 +160,18 @@ class _CloudBackupSnapshotExportBucketState:
             pulumi.set(__self__, "iam_role_id", iam_role_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
+        if service_url is not None:
+            pulumi.set(__self__, "service_url", service_url)
+        if tenant_id is not None:
+            pulumi.set(__self__, "tenant_id", tenant_id)
 
     @property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+        Name of the bucket that the provided role ID is authorized to access.
         """
         return pulumi.get(self, "bucket_name")
 
@@ -122,7 +183,7 @@ class _CloudBackupSnapshotExportBucketState:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+        Name of the provider of the cloud service where Atlas can access the S3 bucket.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -146,7 +207,7 @@ class _CloudBackupSnapshotExportBucketState:
     @pulumi.getter(name="iamRoleId")
     def iam_role_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+        Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
         """
         return pulumi.get(self, "iam_role_id")
 
@@ -166,6 +227,42 @@ class _CloudBackupSnapshotExportBucketState:
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
 
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_id", value)
+
+    @property
+    @pulumi.getter(name="serviceUrl")
+    def service_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+        """
+        return pulumi.get(self, "service_url")
+
+    @service_url.setter
+    def service_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_url", value)
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        """
+        return pulumi.get(self, "tenant_id")
+
+    @tenant_id.setter
+    def tenant_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tenant_id", value)
+
 
 class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
     @overload
@@ -176,6 +273,9 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
                  cloud_provider: Optional[pulumi.Input[str]] = None,
                  iam_role_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 role_id: Optional[pulumi.Input[str]] = None,
+                 service_url: Optional[pulumi.Input[str]] = None,
+                 tenant_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## # Resource: CloudBackupSnapshotExportBucket
@@ -186,6 +286,8 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### AWS Example
+
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -195,6 +297,21 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             iam_role_id="{IAM_ROLE_ID}",
             bucket_name="example-bucket",
             cloud_provider="AWS")
+        ```
+
+        ### Azure Example
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.CloudBackupSnapshotExportBucket("test",
+            project_id="{PROJECT_ID}",
+            role_id="{ROLE_ID}",
+            service_url="{SERVICE_URL}",
+            tenant_id="{TENANT_ID}",
+            bucket_name="example-bucket",
+            cloud_provider="AZURE")
         ```
 
         ## Import
@@ -208,10 +325,13 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] bucket_name: Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
-        :param pulumi.Input[str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
-        :param pulumi.Input[str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+        :param pulumi.Input[str] bucket_name: Name of the bucket that the provided role ID is authorized to access.
+        :param pulumi.Input[str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket.
+        :param pulumi.Input[str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[str] role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+        :param pulumi.Input[str] service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+        :param pulumi.Input[str] tenant_id: UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
         """
         ...
     @overload
@@ -228,6 +348,8 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### AWS Example
+
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
@@ -237,6 +359,21 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             iam_role_id="{IAM_ROLE_ID}",
             bucket_name="example-bucket",
             cloud_provider="AWS")
+        ```
+
+        ### Azure Example
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.CloudBackupSnapshotExportBucket("test",
+            project_id="{PROJECT_ID}",
+            role_id="{ROLE_ID}",
+            service_url="{SERVICE_URL}",
+            tenant_id="{TENANT_ID}",
+            bucket_name="example-bucket",
+            cloud_provider="AZURE")
         ```
 
         ## Import
@@ -267,6 +404,9 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
                  cloud_provider: Optional[pulumi.Input[str]] = None,
                  iam_role_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 role_id: Optional[pulumi.Input[str]] = None,
+                 service_url: Optional[pulumi.Input[str]] = None,
+                 tenant_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -282,12 +422,13 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             if cloud_provider is None and not opts.urn:
                 raise TypeError("Missing required property 'cloud_provider'")
             __props__.__dict__["cloud_provider"] = cloud_provider
-            if iam_role_id is None and not opts.urn:
-                raise TypeError("Missing required property 'iam_role_id'")
             __props__.__dict__["iam_role_id"] = iam_role_id
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["role_id"] = role_id
+            __props__.__dict__["service_url"] = service_url
+            __props__.__dict__["tenant_id"] = tenant_id
             __props__.__dict__["export_bucket_id"] = None
         super(CloudBackupSnapshotExportBucket, __self__).__init__(
             'mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket',
@@ -303,7 +444,10 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             cloud_provider: Optional[pulumi.Input[str]] = None,
             export_bucket_id: Optional[pulumi.Input[str]] = None,
             iam_role_id: Optional[pulumi.Input[str]] = None,
-            project_id: Optional[pulumi.Input[str]] = None) -> 'CloudBackupSnapshotExportBucket':
+            project_id: Optional[pulumi.Input[str]] = None,
+            role_id: Optional[pulumi.Input[str]] = None,
+            service_url: Optional[pulumi.Input[str]] = None,
+            tenant_id: Optional[pulumi.Input[str]] = None) -> 'CloudBackupSnapshotExportBucket':
         """
         Get an existing CloudBackupSnapshotExportBucket resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -311,11 +455,14 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] bucket_name: Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
-        :param pulumi.Input[str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+        :param pulumi.Input[str] bucket_name: Name of the bucket that the provided role ID is authorized to access.
+        :param pulumi.Input[str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket.
         :param pulumi.Input[str] export_bucket_id: Unique identifier of the snapshot export bucket.
-        :param pulumi.Input[str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+        :param pulumi.Input[str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[str] role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+        :param pulumi.Input[str] service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+        :param pulumi.Input[str] tenant_id: UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -326,13 +473,16 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         __props__.__dict__["export_bucket_id"] = export_bucket_id
         __props__.__dict__["iam_role_id"] = iam_role_id
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["role_id"] = role_id
+        __props__.__dict__["service_url"] = service_url
+        __props__.__dict__["tenant_id"] = tenant_id
         return CloudBackupSnapshotExportBucket(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Output[str]:
         """
-        Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+        Name of the bucket that the provided role ID is authorized to access.
         """
         return pulumi.get(self, "bucket_name")
 
@@ -340,7 +490,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> pulumi.Output[str]:
         """
-        Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+        Name of the provider of the cloud service where Atlas can access the S3 bucket.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -354,9 +504,9 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="iamRoleId")
-    def iam_role_id(self) -> pulumi.Output[str]:
+    def iam_role_id(self) -> pulumi.Output[Optional[str]]:
         """
-        Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+        Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
         """
         return pulumi.get(self, "iam_role_id")
 
@@ -367,4 +517,28 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         The unique identifier of the project for the Atlas cluster.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+        """
+        return pulumi.get(self, "role_id")
+
+    @property
+    @pulumi.getter(name="serviceUrl")
+    def service_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+        """
+        return pulumi.get(self, "service_url")
+
+    @property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+        """
+        return pulumi.get(self, "tenant_id")
 

@@ -43,12 +43,58 @@ import * as utilities from "./utilities";
  *     projectId: exampleAdvancedCluster.projectId,
  * });
  * ```
+ *
+ * ## Example using latest sharding schema with independent shard scaling in the cluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example = new mongodbatlas.AdvancedCluster("example", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
+ *     backupEnabled: false,
+ *     clusterType: "SHARDED",
+ *     replicationSpecs: [
+ *         {
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M30",
+ *                     diskIops: 3000,
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
+ *                 priority: 7,
+ *                 regionName: "EU_WEST_1",
+ *             }],
+ *         },
+ *         {
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M40",
+ *                     diskIops: 3000,
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
+ *                 priority: 7,
+ *                 regionName: "EU_WEST_1",
+ *             }],
+ *         },
+ *     ],
+ * });
+ * const example-asym = mongodbatlas.getAdvancedClusterOutput({
+ *     projectId: example.projectId,
+ *     name: example.name,
+ *     useReplicationSpecPerShard: true,
+ * });
+ * ```
  */
 export function getAdvancedClusters(args: GetAdvancedClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetAdvancedClustersResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", {
         "projectId": args.projectId,
+        "useReplicationSpecPerShard": args.useReplicationSpecPerShard,
     }, opts);
 }
 
@@ -60,6 +106,10 @@ export interface GetAdvancedClustersArgs {
      * The unique ID for the project to get the clusters.
      */
     projectId: string;
+    /**
+     * Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+     */
+    useReplicationSpecPerShard?: boolean;
 }
 
 /**
@@ -75,6 +125,7 @@ export interface GetAdvancedClustersResult {
      * A list where each represents a Cluster. See below for more details.
      */
     readonly results: outputs.GetAdvancedClustersResult[];
+    readonly useReplicationSpecPerShard?: boolean;
 }
 /**
  * ## # Data Source: mongodbatlas.getAdvancedClusters
@@ -113,6 +164,51 @@ export interface GetAdvancedClustersResult {
  *     projectId: exampleAdvancedCluster.projectId,
  * });
  * ```
+ *
+ * ## Example using latest sharding schema with independent shard scaling in the cluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example = new mongodbatlas.AdvancedCluster("example", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "cluster-test",
+ *     backupEnabled: false,
+ *     clusterType: "SHARDED",
+ *     replicationSpecs: [
+ *         {
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M30",
+ *                     diskIops: 3000,
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
+ *                 priority: 7,
+ *                 regionName: "EU_WEST_1",
+ *             }],
+ *         },
+ *         {
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M40",
+ *                     diskIops: 3000,
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
+ *                 priority: 7,
+ *                 regionName: "EU_WEST_1",
+ *             }],
+ *         },
+ *     ],
+ * });
+ * const example-asym = mongodbatlas.getAdvancedClusterOutput({
+ *     projectId: example.projectId,
+ *     name: example.name,
+ *     useReplicationSpecPerShard: true,
+ * });
+ * ```
  */
 export function getAdvancedClustersOutput(args: GetAdvancedClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAdvancedClustersResult> {
     return pulumi.output(args).apply((a: any) => getAdvancedClusters(a, opts))
@@ -126,4 +222,8 @@ export interface GetAdvancedClustersOutputArgs {
      * The unique ID for the project to get the clusters.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+     */
+    useReplicationSpecPerShard?: pulumi.Input<boolean>;
 }

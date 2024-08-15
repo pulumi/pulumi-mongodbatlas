@@ -6,8 +6,11 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetCloudBackupScheduleArgs extends com.pulumi.resources.InvokeArgs {
@@ -44,11 +47,27 @@ public final class GetCloudBackupScheduleArgs extends com.pulumi.resources.Invok
         return this.projectId;
     }
 
+    /**
+     * Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
+     * 
+     */
+    @Import(name="useZoneIdForCopySettings")
+    private @Nullable Output<Boolean> useZoneIdForCopySettings;
+
+    /**
+     * @return Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
+     * 
+     */
+    public Optional<Output<Boolean>> useZoneIdForCopySettings() {
+        return Optional.ofNullable(this.useZoneIdForCopySettings);
+    }
+
     private GetCloudBackupScheduleArgs() {}
 
     private GetCloudBackupScheduleArgs(GetCloudBackupScheduleArgs $) {
         this.clusterName = $.clusterName;
         this.projectId = $.projectId;
+        this.useZoneIdForCopySettings = $.useZoneIdForCopySettings;
     }
 
     public static Builder builder() {
@@ -109,6 +128,27 @@ public final class GetCloudBackupScheduleArgs extends com.pulumi.resources.Invok
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param useZoneIdForCopySettings Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useZoneIdForCopySettings(@Nullable Output<Boolean> useZoneIdForCopySettings) {
+            $.useZoneIdForCopySettings = useZoneIdForCopySettings;
+            return this;
+        }
+
+        /**
+         * @param useZoneIdForCopySettings Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useZoneIdForCopySettings(Boolean useZoneIdForCopySettings) {
+            return useZoneIdForCopySettings(Output.of(useZoneIdForCopySettings));
         }
 
         public GetCloudBackupScheduleArgs build() {

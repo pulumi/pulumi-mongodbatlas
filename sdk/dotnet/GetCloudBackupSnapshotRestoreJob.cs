@@ -42,22 +42,16 @@ namespace Pulumi.Mongodbatlas
         public string ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// A base64-encoded ID  of `project_id`, `cluster_name`, and `job_id` of this resource. **Note**: This attribute is deprecated, use `snapshot_restore_job_id` instead.
-        /// </summary>
-        [Input("jobId")]
-        public string? JobId { get; set; }
-
-        /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// The unique identifier of the restore job to retrieve. Required for versions 1.18.0 and later.
+        /// The unique identifier of the restore job to retrieve.
         /// </summary>
-        [Input("snapshotRestoreJobId")]
-        public string? SnapshotRestoreJobId { get; set; }
+        [Input("snapshotRestoreJobId", required: true)]
+        public string SnapshotRestoreJobId { get; set; } = null!;
 
         public GetCloudBackupSnapshotRestoreJobArgs()
         {
@@ -74,22 +68,16 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// A base64-encoded ID  of `project_id`, `cluster_name`, and `job_id` of this resource. **Note**: This attribute is deprecated, use `snapshot_restore_job_id` instead.
-        /// </summary>
-        [Input("jobId")]
-        public Input<string>? JobId { get; set; }
-
-        /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// The unique identifier of the restore job to retrieve. Required for versions 1.18.0 and later.
+        /// The unique identifier of the restore job to retrieve.
         /// </summary>
-        [Input("snapshotRestoreJobId")]
-        public Input<string>? SnapshotRestoreJobId { get; set; }
+        [Input("snapshotRestoreJobId", required: true)]
+        public Input<string> SnapshotRestoreJobId { get; set; } = null!;
 
         public GetCloudBackupSnapshotRestoreJobInvokeArgs()
         {
@@ -106,10 +94,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly bool Cancelled;
         public readonly string ClusterName;
-        /// <summary>
-        /// UTC ISO 8601 formatted point in time when Atlas created the restore job.
-        /// </summary>
-        public readonly string CreatedAt;
         /// <summary>
         /// Type of restore job to create. Possible values are: automated and download.
         /// </summary>
@@ -134,7 +118,6 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly string? JobId;
         public readonly int OplogInc;
         public readonly int OplogTs;
         public readonly int PointInTimeUtcSeconds;
@@ -143,7 +126,7 @@ namespace Pulumi.Mongodbatlas
         /// Unique identifier of the source snapshot ID of the restore job.
         /// </summary>
         public readonly string SnapshotId;
-        public readonly string? SnapshotRestoreJobId;
+        public readonly string SnapshotRestoreJobId;
         /// <summary>
         /// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
         /// </summary>
@@ -166,8 +149,6 @@ namespace Pulumi.Mongodbatlas
 
             string clusterName,
 
-            string createdAt,
-
             string deliveryType,
 
             ImmutableArray<string> deliveryUrls,
@@ -180,8 +161,6 @@ namespace Pulumi.Mongodbatlas
 
             string id,
 
-            string? jobId,
-
             int oplogInc,
 
             int oplogTs,
@@ -192,7 +171,7 @@ namespace Pulumi.Mongodbatlas
 
             string snapshotId,
 
-            string? snapshotRestoreJobId,
+            string snapshotRestoreJobId,
 
             string targetClusterName,
 
@@ -202,14 +181,12 @@ namespace Pulumi.Mongodbatlas
         {
             Cancelled = cancelled;
             ClusterName = clusterName;
-            CreatedAt = createdAt;
             DeliveryType = deliveryType;
             DeliveryUrls = deliveryUrls;
             Expired = expired;
             ExpiresAt = expiresAt;
             FinishedAt = finishedAt;
             Id = id;
-            JobId = jobId;
             OplogInc = oplogInc;
             OplogTs = oplogTs;
             PointInTimeUtcSeconds = pointInTimeUtcSeconds;

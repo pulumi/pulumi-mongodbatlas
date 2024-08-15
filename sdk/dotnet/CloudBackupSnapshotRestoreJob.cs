@@ -229,12 +229,6 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ClusterName { get; private set; } = null!;
 
         /// <summary>
-        /// UTC ISO 8601 formatted point in time when Atlas created the restore job.
-        /// </summary>
-        [Output("createdAt")]
-        public Output<string> CreatedAt { get; private set; } = null!;
-
-        /// <summary>
         /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
         /// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         /// * `delivery_type_config.download` - Set to `true` to use the download configuration.
@@ -407,12 +401,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("clusterName")]
         public Input<string>? ClusterName { get; set; }
-
-        /// <summary>
-        /// UTC ISO 8601 formatted point in time when Atlas created the restore job.
-        /// </summary>
-        [Input("createdAt")]
-        public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
         /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
