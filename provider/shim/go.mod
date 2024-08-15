@@ -7,7 +7,7 @@ toolchain go1.22.1
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.10.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
-	github.com/mongodb/terraform-provider-mongodbatlas v1.17.6
+	github.com/mongodb/terraform-provider-mongodbatlas v1.18.0
 )
 
 require (
@@ -85,7 +85,8 @@ require (
 	github.com/zclconf/go-cty v1.15.0 // indirect
 	github.com/zclconf/go-cty-yaml v1.0.2 // indirect
 	go.mongodb.org/atlas v0.36.0 // indirect
-	go.mongodb.org/atlas-sdk/v20240530002 v20240530002.0.0 // indirect
+	go.mongodb.org/atlas-sdk/v20240530005 v20240530005.0.0 // indirect
+	go.mongodb.org/atlas-sdk/v20240805001 v20240805001.0.0 // indirect
 	go.mongodb.org/realm v0.1.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.47.0 // indirect
