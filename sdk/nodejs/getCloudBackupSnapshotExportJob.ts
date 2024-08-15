@@ -48,7 +48,6 @@ export function getCloudBackupSnapshotExportJob(args: GetCloudBackupSnapshotExpo
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", {
         "clusterName": args.clusterName,
         "exportJobId": args.exportJobId,
-        "id": args.id,
         "projectId": args.projectId,
     }, opts);
 }
@@ -65,10 +64,6 @@ export interface GetCloudBackupSnapshotExportJobArgs {
      * Unique identifier of the export job to retrieve.
      */
     exportJobId: string;
-    /**
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-     */
-    id?: string;
     /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
      */
@@ -113,9 +108,6 @@ export interface GetCloudBackupSnapshotExportJobResult {
      * Timestamp in ISO 8601 date and time format in UTC when the export job completes.
      */
     readonly finishedAt: string;
-    /**
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-     */
     readonly id: string;
     readonly prefix: string;
     readonly projectId: string;
@@ -184,10 +176,6 @@ export interface GetCloudBackupSnapshotExportJobOutputArgs {
      * Unique identifier of the export job to retrieve.
      */
     exportJobId: pulumi.Input<string>;
-    /**
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-     */
-    id?: pulumi.Input<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
      */

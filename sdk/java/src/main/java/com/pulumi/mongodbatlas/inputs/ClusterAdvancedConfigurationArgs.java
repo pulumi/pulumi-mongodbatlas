@@ -20,14 +20,22 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
      * 
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * 
      */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     @Import(name="defaultReadConcern")
     private @Nullable Output<String> defaultReadConcern;
 
     /**
      * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
      * 
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * 
      */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     public Optional<Output<String>> defaultReadConcern() {
         return Optional.ofNullable(this.defaultReadConcern);
     }
@@ -50,14 +58,22 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
     /**
      * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
      * 
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * 
      */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     @Import(name="failIndexKeyTooLong")
     private @Nullable Output<Boolean> failIndexKeyTooLong;
 
     /**
      * @return When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
      * 
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+     * 
      */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     public Optional<Output<Boolean>> failIndexKeyTooLong() {
         return Optional.ofNullable(this.failIndexKeyTooLong);
     }
@@ -231,7 +247,11 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+         * 
          */
+        @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
         public Builder defaultReadConcern(@Nullable Output<String> defaultReadConcern) {
             $.defaultReadConcern = defaultReadConcern;
             return this;
@@ -242,7 +262,11 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+         * 
          */
+        @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
         public Builder defaultReadConcern(String defaultReadConcern) {
             return defaultReadConcern(Output.of(defaultReadConcern));
         }
@@ -273,7 +297,11 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+         * 
          */
+        @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
         public Builder failIndexKeyTooLong(@Nullable Output<Boolean> failIndexKeyTooLong) {
             $.failIndexKeyTooLong = failIndexKeyTooLong;
             return this;
@@ -284,7 +312,11 @@ public final class ClusterAdvancedConfigurationArgs extends com.pulumi.resources
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
+         * 
          */
+        @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
         public Builder failIndexKeyTooLong(Boolean failIndexKeyTooLong) {
             return failIndexKeyTooLong(Output.of(failIndexKeyTooLong));
         }

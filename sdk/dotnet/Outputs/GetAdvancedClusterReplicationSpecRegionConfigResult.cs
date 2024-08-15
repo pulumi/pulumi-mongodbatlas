@@ -20,7 +20,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
         /// </summary>
-        public readonly Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult? AnalyticsSpecs;
+        public readonly Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult AnalyticsSpecs;
         /// <summary>
         /// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
         /// </summary>
@@ -32,7 +32,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Hardware specifications for electable nodes in the region.
         /// </summary>
-        public readonly Outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult? ElectableSpecs;
+        public readonly Outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult ElectableSpecs;
         /// <summary>
         /// Election priority of the region.
         /// </summary>
@@ -44,7 +44,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Hardware specifications for read-only nodes in the region. See below
         /// </summary>
-        public readonly Outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult? ReadOnlySpecs;
+        public readonly Outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult ReadOnlySpecs;
         /// <summary>
         /// Physical location of your MongoDB cluster.
         /// </summary>
@@ -54,19 +54,19 @@ namespace Pulumi.Mongodbatlas.Outputs
         private GetAdvancedClusterReplicationSpecRegionConfigResult(
             ImmutableArray<Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult> analyticsAutoScalings,
 
-            Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult? analyticsSpecs,
+            Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult analyticsSpecs,
 
             ImmutableArray<Outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult> autoScalings,
 
             string backingProviderName,
 
-            Outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult? electableSpecs,
+            Outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult electableSpecs,
 
             int priority,
 
             string providerName,
 
-            Outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult? readOnlySpecs,
+            Outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult readOnlySpecs,
 
             string regionName)
         {

@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -14,17 +15,22 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     /**
-     * @return Target throughput (IOPS) desired for AWS storage attached to your cluster.
+     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier&#39;s standard IOPS value.
      * 
      */
     private Integer diskIops;
+    /**
+     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     * 
+     */
+    private Double diskSizeGb;
     /**
      * @return Type of storage you want to attach to your AWS-provisioned cluster.
      * * `STANDARD` volume types can&#39;t exceed the default IOPS rate for the selected volume size.
      * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      * 
      */
-    private @Nullable String ebsVolumeType;
+    private String ebsVolumeType;
     /**
      * @return Hardware specification for the instance sizes in this region.
      * 
@@ -38,11 +44,18 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
 
     private GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs() {}
     /**
-     * @return Target throughput (IOPS) desired for AWS storage attached to your cluster.
+     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier&#39;s standard IOPS value.
      * 
      */
     public Integer diskIops() {
         return this.diskIops;
+    }
+    /**
+     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     * 
+     */
+    public Double diskSizeGb() {
+        return this.diskSizeGb;
     }
     /**
      * @return Type of storage you want to attach to your AWS-provisioned cluster.
@@ -50,8 +63,8 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      * 
      */
-    public Optional<String> ebsVolumeType() {
-        return Optional.ofNullable(this.ebsVolumeType);
+    public String ebsVolumeType() {
+        return this.ebsVolumeType;
     }
     /**
      * @return Hardware specification for the instance sizes in this region.
@@ -78,13 +91,15 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     @CustomType.Builder
     public static final class Builder {
         private Integer diskIops;
-        private @Nullable String ebsVolumeType;
+        private Double diskSizeGb;
+        private String ebsVolumeType;
         private String instanceSize;
         private @Nullable Integer nodeCount;
         public Builder() {}
         public Builder(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.diskIops = defaults.diskIops;
+    	      this.diskSizeGb = defaults.diskSizeGb;
     	      this.ebsVolumeType = defaults.ebsVolumeType;
     	      this.instanceSize = defaults.instanceSize;
     	      this.nodeCount = defaults.nodeCount;
@@ -99,8 +114,18 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
             return this;
         }
         @CustomType.Setter
-        public Builder ebsVolumeType(@Nullable String ebsVolumeType) {
-
+        public Builder diskSizeGb(Double diskSizeGb) {
+            if (diskSizeGb == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs", "diskSizeGb");
+            }
+            this.diskSizeGb = diskSizeGb;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ebsVolumeType(String ebsVolumeType) {
+            if (ebsVolumeType == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs", "ebsVolumeType");
+            }
             this.ebsVolumeType = ebsVolumeType;
             return this;
         }
@@ -121,6 +146,7 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
         public GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs build() {
             final var _resultValue = new GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs();
             _resultValue.diskIops = diskIops;
+            _resultValue.diskSizeGb = diskSizeGb;
             _resultValue.ebsVolumeType = ebsVolumeType;
             _resultValue.instanceSize = instanceSize;
             _resultValue.nodeCount = nodeCount;

@@ -58,7 +58,13 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
     public readonly clusterName!: pulumi.Output<string>;
+    /**
+     * List that contains a document for each copy setting item in the desired backup policy. See below
+     */
     public readonly copySettings!: pulumi.Output<outputs.CloudBackupScheduleCopySetting[] | undefined>;
+    /**
+     * Policy for automatically exporting Cloud Backup Snapshots. See below
+     */
     public readonly export!: pulumi.Output<outputs.CloudBackupScheduleExport>;
     /**
      * Unique identifier of the backup policy.
@@ -69,23 +75,23 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      */
     public /*out*/ readonly nextSnapshot!: pulumi.Output<string>;
     /**
-     * Daily policy item
+     * Daily policy item. See below
      */
     public readonly policyItemDaily!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemDaily | undefined>;
     /**
-     * Hourly policy item
+     * Hourly policy item. See below
      */
     public readonly policyItemHourly!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemHourly | undefined>;
     /**
-     * Monthly policy item
+     * Monthly policy item. See below
      */
     public readonly policyItemMonthlies!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemMonthly[] | undefined>;
     /**
-     * Weekly policy item
+     * Weekly policy item. See below
      */
     public readonly policyItemWeeklies!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemWeekly[] | undefined>;
     /**
-     * Yearly policy item
+     * Yearly policy item. See below
      */
     public readonly policyItemYearlies!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemYearly[] | undefined>;
     /**
@@ -191,7 +197,13 @@ export interface CloudBackupScheduleState {
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
     clusterName?: pulumi.Input<string>;
+    /**
+     * List that contains a document for each copy setting item in the desired backup policy. See below
+     */
     copySettings?: pulumi.Input<pulumi.Input<inputs.CloudBackupScheduleCopySetting>[]>;
+    /**
+     * Policy for automatically exporting Cloud Backup Snapshots. See below
+     */
     export?: pulumi.Input<inputs.CloudBackupScheduleExport>;
     /**
      * Unique identifier of the backup policy.
@@ -202,23 +214,23 @@ export interface CloudBackupScheduleState {
      */
     nextSnapshot?: pulumi.Input<string>;
     /**
-     * Daily policy item
+     * Daily policy item. See below
      */
     policyItemDaily?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemDaily>;
     /**
-     * Hourly policy item
+     * Hourly policy item. See below
      */
     policyItemHourly?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemHourly>;
     /**
-     * Monthly policy item
+     * Monthly policy item. See below
      */
     policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemMonthly>[]>;
     /**
-     * Weekly policy item
+     * Weekly policy item. See below
      */
     policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemWeekly>[]>;
     /**
-     * Yearly policy item
+     * Yearly policy item. See below
      */
     policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemYearly>[]>;
     /**
@@ -258,26 +270,32 @@ export interface CloudBackupScheduleArgs {
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
     clusterName: pulumi.Input<string>;
+    /**
+     * List that contains a document for each copy setting item in the desired backup policy. See below
+     */
     copySettings?: pulumi.Input<pulumi.Input<inputs.CloudBackupScheduleCopySetting>[]>;
+    /**
+     * Policy for automatically exporting Cloud Backup Snapshots. See below
+     */
     export?: pulumi.Input<inputs.CloudBackupScheduleExport>;
     /**
-     * Daily policy item
+     * Daily policy item. See below
      */
     policyItemDaily?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemDaily>;
     /**
-     * Hourly policy item
+     * Hourly policy item. See below
      */
     policyItemHourly?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemHourly>;
     /**
-     * Monthly policy item
+     * Monthly policy item. See below
      */
     policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemMonthly>[]>;
     /**
-     * Weekly policy item
+     * Weekly policy item. See below
      */
     policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemWeekly>[]>;
     /**
-     * Yearly policy item
+     * Yearly policy item. See below
      */
     policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemYearly>[]>;
     /**

@@ -16,64 +16,6 @@ import (
 // `CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "my_cluster", &mongodbatlas.AdvancedClusterArgs{
-//				ProjectId:     pulumi.String("<PROJECT-ID>"),
-//				Name:          pulumi.String("clusterTest"),
-//				ClusterType:   pulumi.String("REPLICASET"),
-//				BackupEnabled: pulumi.Bool(true),
-//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
-//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
-//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
-//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
-//								Priority:     pulumi.Int(7),
-//								ProviderName: pulumi.String("AWS"),
-//								RegionName:   pulumi.String("EU_CENTRAL_1"),
-//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
-//									InstanceSize: pulumi.String("M10"),
-//									NodeCount:    pulumi.Int(3),
-//								},
-//							},
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			testCloudBackupSchedule, err := mongodbatlas.NewCloudBackupSchedule(ctx, "test", &mongodbatlas.CloudBackupScheduleArgs{
-//				ProjectId:             myCluster.ProjectId,
-//				ClusterName:           myCluster.Name,
-//				ReferenceHourOfDay:    pulumi.Int(3),
-//				ReferenceMinuteOfHour: pulumi.Int(45),
-//				RestoreWindowDays:     pulumi.Int(4),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = mongodbatlas.LookupCloudBackupScheduleOutput(ctx, mongodbatlas.GetCloudBackupScheduleOutputArgs{
-//				ProjectId:   testCloudBackupSchedule.ProjectId,
-//				ClusterName: testCloudBackupSchedule.ClusterName,
-//			}, nil)
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupCloudBackupSchedule(ctx *pulumi.Context, args *LookupCloudBackupScheduleArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupScheduleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupScheduleResult
@@ -90,6 +32,8 @@ type LookupCloudBackupScheduleArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
+	// Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
+	UseZoneIdForCopySettings *bool `pulumi:"useZoneIdForCopySettings"`
 }
 
 // A collection of values returned by getCloudBackupSchedule.
@@ -99,25 +43,27 @@ type LookupCloudBackupScheduleResult struct {
 	// * false - disables automatic export of cloud backup snapshots to the AWS bucket (default)
 	AutoExportEnabled bool `pulumi:"autoExportEnabled"`
 	// Unique identifier of the Atlas cluster.
-	ClusterId    string                              `pulumi:"clusterId"`
-	ClusterName  string                              `pulumi:"clusterName"`
+	ClusterId   string `pulumi:"clusterId"`
+	ClusterName string `pulumi:"clusterName"`
+	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings []GetCloudBackupScheduleCopySetting `pulumi:"copySettings"`
-	Exports      []GetCloudBackupScheduleExport      `pulumi:"exports"`
+	// Policy for automatically exporting Cloud Backup Snapshots. See below
+	Exports []GetCloudBackupScheduleExport `pulumi:"exports"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Unique identifier of the backup policy.
 	IdPolicy string `pulumi:"idPolicy"`
 	// UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.
 	NextSnapshot string `pulumi:"nextSnapshot"`
-	// Daily policy item
+	// (Optional) Daily policy item. See below
 	PolicyItemDailies []GetCloudBackupSchedulePolicyItemDaily `pulumi:"policyItemDailies"`
-	// Hourly policy item
+	// (Optional) Hourly policy item. See below
 	PolicyItemHourlies []GetCloudBackupSchedulePolicyItemHourly `pulumi:"policyItemHourlies"`
-	// Monthly policy item
+	// (Optional) Monthly policy item. See below
 	PolicyItemMonthlies []GetCloudBackupSchedulePolicyItemMonthly `pulumi:"policyItemMonthlies"`
-	// Weekly policy item
+	// (Optional) Weekly policy item. See below
 	PolicyItemWeeklies []GetCloudBackupSchedulePolicyItemWeekly `pulumi:"policyItemWeeklies"`
-	// Yearly policy item
+	// (Optional) Yearly policy item. See below
 	PolicyItemYearlies []GetCloudBackupSchedulePolicyItemYearly `pulumi:"policyItemYearlies"`
 	ProjectId          string                                   `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.
@@ -127,7 +73,8 @@ type LookupCloudBackupScheduleResult struct {
 	// Specifies a restore window in days for cloud backup to maintain.
 	RestoreWindowDays int `pulumi:"restoreWindowDays"`
 	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
-	UseOrgAndGroupNamesInExportPrefix bool `pulumi:"useOrgAndGroupNamesInExportPrefix"`
+	UseOrgAndGroupNamesInExportPrefix bool  `pulumi:"useOrgAndGroupNamesInExportPrefix"`
+	UseZoneIdForCopySettings          *bool `pulumi:"useZoneIdForCopySettings"`
 }
 
 func LookupCloudBackupScheduleOutput(ctx *pulumi.Context, args LookupCloudBackupScheduleOutputArgs, opts ...pulumi.InvokeOption) LookupCloudBackupScheduleResultOutput {
@@ -149,6 +96,8 @@ type LookupCloudBackupScheduleOutputArgs struct {
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
+	UseZoneIdForCopySettings pulumi.BoolPtrInput `pulumi:"useZoneIdForCopySettings"`
 }
 
 func (LookupCloudBackupScheduleOutputArgs) ElementType() reflect.Type {
@@ -186,10 +135,12 @@ func (o LookupCloudBackupScheduleResultOutput) ClusterName() pulumi.StringOutput
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) string { return v.ClusterName }).(pulumi.StringOutput)
 }
 
+// List that contains a document for each copy setting item in the desired backup policy. See below
 func (o LookupCloudBackupScheduleResultOutput) CopySettings() GetCloudBackupScheduleCopySettingArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) []GetCloudBackupScheduleCopySetting { return v.CopySettings }).(GetCloudBackupScheduleCopySettingArrayOutput)
 }
 
+// Policy for automatically exporting Cloud Backup Snapshots. See below
 func (o LookupCloudBackupScheduleResultOutput) Exports() GetCloudBackupScheduleExportArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) []GetCloudBackupScheduleExport { return v.Exports }).(GetCloudBackupScheduleExportArrayOutput)
 }
@@ -209,35 +160,35 @@ func (o LookupCloudBackupScheduleResultOutput) NextSnapshot() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) string { return v.NextSnapshot }).(pulumi.StringOutput)
 }
 
-// Daily policy item
+// (Optional) Daily policy item. See below
 func (o LookupCloudBackupScheduleResultOutput) PolicyItemDailies() GetCloudBackupSchedulePolicyItemDailyArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) []GetCloudBackupSchedulePolicyItemDaily {
 		return v.PolicyItemDailies
 	}).(GetCloudBackupSchedulePolicyItemDailyArrayOutput)
 }
 
-// Hourly policy item
+// (Optional) Hourly policy item. See below
 func (o LookupCloudBackupScheduleResultOutput) PolicyItemHourlies() GetCloudBackupSchedulePolicyItemHourlyArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) []GetCloudBackupSchedulePolicyItemHourly {
 		return v.PolicyItemHourlies
 	}).(GetCloudBackupSchedulePolicyItemHourlyArrayOutput)
 }
 
-// Monthly policy item
+// (Optional) Monthly policy item. See below
 func (o LookupCloudBackupScheduleResultOutput) PolicyItemMonthlies() GetCloudBackupSchedulePolicyItemMonthlyArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) []GetCloudBackupSchedulePolicyItemMonthly {
 		return v.PolicyItemMonthlies
 	}).(GetCloudBackupSchedulePolicyItemMonthlyArrayOutput)
 }
 
-// Weekly policy item
+// (Optional) Weekly policy item. See below
 func (o LookupCloudBackupScheduleResultOutput) PolicyItemWeeklies() GetCloudBackupSchedulePolicyItemWeeklyArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) []GetCloudBackupSchedulePolicyItemWeekly {
 		return v.PolicyItemWeeklies
 	}).(GetCloudBackupSchedulePolicyItemWeeklyArrayOutput)
 }
 
-// Yearly policy item
+// (Optional) Yearly policy item. See below
 func (o LookupCloudBackupScheduleResultOutput) PolicyItemYearlies() GetCloudBackupSchedulePolicyItemYearlyArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) []GetCloudBackupSchedulePolicyItemYearly {
 		return v.PolicyItemYearlies
@@ -266,6 +217,10 @@ func (o LookupCloudBackupScheduleResultOutput) RestoreWindowDays() pulumi.IntOut
 // Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 func (o LookupCloudBackupScheduleResultOutput) UseOrgAndGroupNamesInExportPrefix() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) bool { return v.UseOrgAndGroupNamesInExportPrefix }).(pulumi.BoolOutput)
+}
+
+func (o LookupCloudBackupScheduleResultOutput) UseZoneIdForCopySettings() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupCloudBackupScheduleResult) *bool { return v.UseZoneIdForCopySettings }).(pulumi.BoolPtrOutput)
 }
 
 func init() {

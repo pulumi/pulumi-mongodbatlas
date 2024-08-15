@@ -25,12 +25,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-        /// </summary>
-        [Input("serviceAttachmentName")]
-        public Input<string>? ServiceAttachmentName { get; set; }
-
-        /// <summary>
         /// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         /// </summary>
         [Input("status")]

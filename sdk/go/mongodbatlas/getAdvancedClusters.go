@@ -66,6 +66,70 @@ import (
 //	}
 //
 // ```
+//
+// ## Example using latest sharding schema with independent shard scaling in the cluster
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := mongodbatlas.NewAdvancedCluster(ctx, "example", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.String("<YOUR-PROJECT-ID>"),
+//				Name:          pulumi.String("cluster-test"),
+//				BackupEnabled: pulumi.Bool(false),
+//				ClusterType:   pulumi.String("SHARDED"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									DiskIops:     pulumi.Int(3000),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("EU_WEST_1"),
+//							},
+//						},
+//					},
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M40"),
+//									DiskIops:     pulumi.Int(3000),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("EU_WEST_1"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
+//				ProjectId:                  example.ProjectId,
+//				Name:                       example.Name,
+//				UseReplicationSpecPerShard: pulumi.Bool(true),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupAdvancedClusters(ctx *pulumi.Context, args *LookupAdvancedClustersArgs, opts ...pulumi.InvokeOption) (*LookupAdvancedClustersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAdvancedClustersResult
@@ -80,6 +144,8 @@ func LookupAdvancedClusters(ctx *pulumi.Context, args *LookupAdvancedClustersArg
 type LookupAdvancedClustersArgs struct {
 	// The unique ID for the project to get the clusters.
 	ProjectId string `pulumi:"projectId"`
+	// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+	UseReplicationSpecPerShard *bool `pulumi:"useReplicationSpecPerShard"`
 }
 
 // A collection of values returned by getAdvancedClusters.
@@ -88,7 +154,8 @@ type LookupAdvancedClustersResult struct {
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Cluster. See below for more details.
-	Results []GetAdvancedClustersResult `pulumi:"results"`
+	Results                    []GetAdvancedClustersResult `pulumi:"results"`
+	UseReplicationSpecPerShard *bool                       `pulumi:"useReplicationSpecPerShard"`
 }
 
 func LookupAdvancedClustersOutput(ctx *pulumi.Context, args LookupAdvancedClustersOutputArgs, opts ...pulumi.InvokeOption) LookupAdvancedClustersResultOutput {
@@ -108,6 +175,8 @@ func LookupAdvancedClustersOutput(ctx *pulumi.Context, args LookupAdvancedCluste
 type LookupAdvancedClustersOutputArgs struct {
 	// The unique ID for the project to get the clusters.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+	UseReplicationSpecPerShard pulumi.BoolPtrInput `pulumi:"useReplicationSpecPerShard"`
 }
 
 func (LookupAdvancedClustersOutputArgs) ElementType() reflect.Type {
@@ -141,6 +210,10 @@ func (o LookupAdvancedClustersResultOutput) ProjectId() pulumi.StringOutput {
 // A list where each represents a Cluster. See below for more details.
 func (o LookupAdvancedClustersResultOutput) Results() GetAdvancedClustersResultArrayOutput {
 	return o.ApplyT(func(v LookupAdvancedClustersResult) []GetAdvancedClustersResult { return v.Results }).(GetAdvancedClustersResultArrayOutput)
+}
+
+func (o LookupAdvancedClustersResultOutput) UseReplicationSpecPerShard() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupAdvancedClustersResult) *bool { return v.UseReplicationSpecPerShard }).(pulumi.BoolPtrOutput)
 }
 
 func init() {

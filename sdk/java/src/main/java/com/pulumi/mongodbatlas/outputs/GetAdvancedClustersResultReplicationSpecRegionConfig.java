@@ -14,8 +14,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
@@ -28,7 +26,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
      * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
      * 
      */
-    private @Nullable GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs;
+    private GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs;
     /**
      * @return Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
      * 
@@ -43,7 +41,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
      * @return Hardware specifications for electable nodes in the region.
      * 
      */
-    private @Nullable GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs electableSpecs;
+    private GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs electableSpecs;
     /**
      * @return Election priority of the region.
      * 
@@ -58,7 +56,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
      * @return Hardware specifications for read-only nodes in the region. See below
      * 
      */
-    private @Nullable GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs readOnlySpecs;
+    private GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs readOnlySpecs;
     /**
      * @return Physical location of your MongoDB cluster.
      * 
@@ -77,8 +75,8 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
      * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
      * 
      */
-    public Optional<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs> analyticsSpecs() {
-        return Optional.ofNullable(this.analyticsSpecs);
+    public GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs() {
+        return this.analyticsSpecs;
     }
     /**
      * @return Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
@@ -98,8 +96,8 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
      * @return Hardware specifications for electable nodes in the region.
      * 
      */
-    public Optional<GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs> electableSpecs() {
-        return Optional.ofNullable(this.electableSpecs);
+    public GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs electableSpecs() {
+        return this.electableSpecs;
     }
     /**
      * @return Election priority of the region.
@@ -119,8 +117,8 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
      * @return Hardware specifications for read-only nodes in the region. See below
      * 
      */
-    public Optional<GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs> readOnlySpecs() {
-        return Optional.ofNullable(this.readOnlySpecs);
+    public GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs readOnlySpecs() {
+        return this.readOnlySpecs;
     }
     /**
      * @return Physical location of your MongoDB cluster.
@@ -140,13 +138,13 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
     @CustomType.Builder
     public static final class Builder {
         private List<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings;
-        private @Nullable GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs;
+        private GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs;
         private List<GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling> autoScalings;
         private String backingProviderName;
-        private @Nullable GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs electableSpecs;
+        private GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs electableSpecs;
         private Integer priority;
         private String providerName;
-        private @Nullable GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs readOnlySpecs;
+        private GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs readOnlySpecs;
         private String regionName;
         public Builder() {}
         public Builder(GetAdvancedClustersResultReplicationSpecRegionConfig defaults) {
@@ -174,8 +172,10 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
             return analyticsAutoScalings(List.of(analyticsAutoScalings));
         }
         @CustomType.Setter
-        public Builder analyticsSpecs(@Nullable GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs) {
-
+        public Builder analyticsSpecs(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs) {
+            if (analyticsSpecs == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "analyticsSpecs");
+            }
             this.analyticsSpecs = analyticsSpecs;
             return this;
         }
@@ -199,8 +199,10 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
             return this;
         }
         @CustomType.Setter
-        public Builder electableSpecs(@Nullable GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs electableSpecs) {
-
+        public Builder electableSpecs(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs electableSpecs) {
+            if (electableSpecs == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "electableSpecs");
+            }
             this.electableSpecs = electableSpecs;
             return this;
         }
@@ -221,8 +223,10 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
             return this;
         }
         @CustomType.Setter
-        public Builder readOnlySpecs(@Nullable GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs readOnlySpecs) {
-
+        public Builder readOnlySpecs(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs readOnlySpecs) {
+            if (readOnlySpecs == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "readOnlySpecs");
+            }
             this.readOnlySpecs = readOnlySpecs;
             return this;
         }

@@ -31,35 +31,65 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			test, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
-//				ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
-//				Name:                     pulumi.String("<CLUSTER-NAME>"),
-//				CloudBackup:              pulumi.Bool(true),
-//				ClusterType:              pulumi.String("GEOSHARDED"),
-//				ProviderName:             pulumi.String("AWS"),
-//				ProviderInstanceSizeName: pulumi.String("M30"),
-//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-//					&mongodbatlas.ClusterReplicationSpecArgs{
-//						ZoneName:  pulumi.String("Zone 1"),
-//						NumShards: pulumi.Int(2),
-//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-//								RegionName:     pulumi.String("EU_CENTRAL_1"),
-//								ElectableNodes: pulumi.Int(3),
-//								Priority:       pulumi.Int(7),
-//								ReadOnlyNodes:  pulumi.Int(0),
+//			test, err := mongodbatlas.NewAdvancedCluster(ctx, "test", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.String("<YOUR-PROJECT-ID>"),
+//				Name:          pulumi.String("<CLUSTER-NAME>"),
+//				ClusterType:   pulumi.String("GEOSHARDED"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						ZoneName: pulumi.String("Zone 1"),
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("EU_CENTRAL_1"),
 //							},
 //						},
 //					},
-//					&mongodbatlas.ClusterReplicationSpecArgs{
-//						ZoneName:  pulumi.String("Zone 2"),
-//						NumShards: pulumi.Int(2),
-//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-//								RegionName:     pulumi.String("US_EAST_2"),
-//								ElectableNodes: pulumi.Int(3),
-//								Priority:       pulumi.Int(7),
-//								ReadOnlyNodes:  pulumi.Int(0),
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						ZoneName: pulumi.String("Zone 1"),
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("EU_CENTRAL_1"),
+//							},
+//						},
+//					},
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						ZoneName: pulumi.String("Zone 2"),
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("US_EAST_2"),
+//							},
+//						},
+//					},
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						ZoneName: pulumi.String("Zone 2"),
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("US_EAST_2"),
 //							},
 //						},
 //					},

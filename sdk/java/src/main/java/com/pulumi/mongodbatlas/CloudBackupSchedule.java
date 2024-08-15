@@ -83,15 +83,31 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
     public Output<String> clusterName() {
         return this.clusterName;
     }
+    /**
+     * List that contains a document for each copy setting item in the desired backup policy. See below
+     * 
+     */
     @Export(name="copySettings", refs={List.class,CloudBackupScheduleCopySetting.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CloudBackupScheduleCopySetting>> copySettings;
 
+    /**
+     * @return List that contains a document for each copy setting item in the desired backup policy. See below
+     * 
+     */
     public Output<Optional<List<CloudBackupScheduleCopySetting>>> copySettings() {
         return Codegen.optional(this.copySettings);
     }
+    /**
+     * Policy for automatically exporting Cloud Backup Snapshots. See below
+     * 
+     */
     @Export(name="export", refs={CloudBackupScheduleExport.class}, tree="[0]")
     private Output<CloudBackupScheduleExport> export;
 
+    /**
+     * @return Policy for automatically exporting Cloud Backup Snapshots. See below
+     * 
+     */
     public Output<CloudBackupScheduleExport> export() {
         return this.export;
     }
@@ -124,70 +140,70 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
         return this.nextSnapshot;
     }
     /**
-     * Daily policy item
+     * Daily policy item. See below
      * 
      */
     @Export(name="policyItemDaily", refs={CloudBackupSchedulePolicyItemDaily.class}, tree="[0]")
     private Output</* @Nullable */ CloudBackupSchedulePolicyItemDaily> policyItemDaily;
 
     /**
-     * @return Daily policy item
+     * @return Daily policy item. See below
      * 
      */
     public Output<Optional<CloudBackupSchedulePolicyItemDaily>> policyItemDaily() {
         return Codegen.optional(this.policyItemDaily);
     }
     /**
-     * Hourly policy item
+     * Hourly policy item. See below
      * 
      */
     @Export(name="policyItemHourly", refs={CloudBackupSchedulePolicyItemHourly.class}, tree="[0]")
     private Output</* @Nullable */ CloudBackupSchedulePolicyItemHourly> policyItemHourly;
 
     /**
-     * @return Hourly policy item
+     * @return Hourly policy item. See below
      * 
      */
     public Output<Optional<CloudBackupSchedulePolicyItemHourly>> policyItemHourly() {
         return Codegen.optional(this.policyItemHourly);
     }
     /**
-     * Monthly policy item
+     * Monthly policy item. See below
      * 
      */
     @Export(name="policyItemMonthlies", refs={List.class,CloudBackupSchedulePolicyItemMonthly.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CloudBackupSchedulePolicyItemMonthly>> policyItemMonthlies;
 
     /**
-     * @return Monthly policy item
+     * @return Monthly policy item. See below
      * 
      */
     public Output<Optional<List<CloudBackupSchedulePolicyItemMonthly>>> policyItemMonthlies() {
         return Codegen.optional(this.policyItemMonthlies);
     }
     /**
-     * Weekly policy item
+     * Weekly policy item. See below
      * 
      */
     @Export(name="policyItemWeeklies", refs={List.class,CloudBackupSchedulePolicyItemWeekly.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CloudBackupSchedulePolicyItemWeekly>> policyItemWeeklies;
 
     /**
-     * @return Weekly policy item
+     * @return Weekly policy item. See below
      * 
      */
     public Output<Optional<List<CloudBackupSchedulePolicyItemWeekly>>> policyItemWeeklies() {
         return Codegen.optional(this.policyItemWeeklies);
     }
     /**
-     * Yearly policy item
+     * Yearly policy item. See below
      * 
      */
     @Export(name="policyItemYearlies", refs={List.class,CloudBackupSchedulePolicyItemYearly.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CloudBackupSchedulePolicyItemYearly>> policyItemYearlies;
 
     /**
-     * @return Yearly policy item
+     * @return Yearly policy item. See below
      * 
      */
     public Output<Optional<List<CloudBackupSchedulePolicyItemYearly>>> policyItemYearlies() {

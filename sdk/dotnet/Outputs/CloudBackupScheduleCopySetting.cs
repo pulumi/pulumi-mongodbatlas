@@ -26,13 +26,17 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? RegionName;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster).
+        /// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Clusters/operation/getCluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         /// </summary>
         public readonly string? ReplicationSpecId;
         /// <summary>
         /// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         /// </summary>
         public readonly bool? ShouldCopyOplogs;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `mongodbatlas.AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
+        /// </summary>
+        public readonly string? ZoneId;
 
         [OutputConstructor]
         private CloudBackupScheduleCopySetting(
@@ -44,13 +48,16 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string? replicationSpecId,
 
-            bool? shouldCopyOplogs)
+            bool? shouldCopyOplogs,
+
+            string? zoneId)
         {
             CloudProvider = cloudProvider;
             Frequencies = frequencies;
             RegionName = regionName;
             ReplicationSpecId = replicationSpecId;
             ShouldCopyOplogs = shouldCopyOplogs;
+            ZoneId = zoneId;
         }
     }
 }

@@ -32,43 +32,47 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Cluster("test", new()
+    ///     var test = new Mongodbatlas.AdvancedCluster("test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///         Name = "&lt;CLUSTER-NAME&gt;",
-    ///         CloudBackup = true,
     ///         ClusterType = "GEOSHARDED",
-    ///         ProviderName = "AWS",
-    ///         ProviderInstanceSizeName = "M30",
+    ///         BackupEnabled = true,
     ///         ReplicationSpecs = new[]
     ///         {
-    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
     ///             {
     ///                 ZoneName = "Zone 1",
-    ///                 NumShards = 1,
-    ///                 RegionsConfigs = new[]
+    ///                 RegionConfigs = new[]
     ///                 {
-    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
     ///                     {
-    ///                         RegionName = "EU_CENTRAL_1",
-    ///                         ElectableNodes = 3,
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M30",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                         ProviderName = "AWS",
     ///                         Priority = 7,
-    ///                         ReadOnlyNodes = 0,
+    ///                         RegionName = "EU_CENTRAL_1",
     ///                     },
     ///                 },
     ///             },
-    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
     ///             {
     ///                 ZoneName = "Zone 2",
-    ///                 NumShards = 1,
-    ///                 RegionsConfigs = new[]
+    ///                 RegionConfigs = new[]
     ///                 {
-    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
     ///                     {
-    ///                         RegionName = "US_EAST_2",
-    ///                         ElectableNodes = 3,
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M30",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                         ProviderName = "AWS",
     ///                         Priority = 7,
-    ///                         ReadOnlyNodes = 0,
+    ///                         RegionName = "US_EAST_2",
     ///                     },
     ///                 },
     ///             },

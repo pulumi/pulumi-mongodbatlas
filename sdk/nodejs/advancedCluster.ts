@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** To enable Cluster Extended Storage Sizes use the `isExtendedStorageSizesEnabled` parameter in the mongodbatlas.Project resource.
  *
- * > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, i.e. `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
+ * > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, for example `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
  *
  * ## Example Usage
  *
@@ -142,7 +142,7 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * ### Example of a Multi-Cloud Cluster
+ * ### Example of a Multi Cloud Sharded Cluster with 2 shards
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -153,59 +153,61 @@ import * as utilities from "./utilities";
  *     name: clusterName,
  *     clusterType: "SHARDED",
  *     backupEnabled: true,
- *     replicationSpecs: [{
- *         numShards: 3,
- *         regionConfigs: [
- *             {
- *                 electableSpecs: {
- *                     instanceSize: "M10",
- *                     nodeCount: 3,
+ *     replicationSpecs: [
+ *         {
+ *             regionConfigs: [
+ *                 {
+ *                     electableSpecs: {
+ *                         instanceSize: "M10",
+ *                         nodeCount: 3,
+ *                     },
+ *                     providerName: "AWS",
+ *                     priority: 7,
+ *                     regionName: "US_EAST_1",
  *                 },
- *                 analyticsSpecs: {
- *                     instanceSize: "M10",
- *                     nodeCount: 1,
+ *                 {
+ *                     electableSpecs: {
+ *                         instanceSize: "M10",
+ *                         nodeCount: 2,
+ *                     },
+ *                     providerName: "AZURE",
+ *                     priority: 6,
+ *                     regionName: "US_EAST_2",
  *                 },
- *                 providerName: "AWS",
- *                 priority: 7,
- *                 regionName: "US_EAST_1",
- *             },
- *             {
- *                 electableSpecs: {
- *                     instanceSize: "M10",
- *                     nodeCount: 2,
+ *             ],
+ *         },
+ *         {
+ *             regionConfigs: [
+ *                 {
+ *                     electableSpecs: {
+ *                         instanceSize: "M10",
+ *                         nodeCount: 3,
+ *                     },
+ *                     providerName: "AWS",
+ *                     priority: 7,
+ *                     regionName: "US_EAST_1",
  *                 },
- *                 analyticsSpecs: {
- *                     instanceSize: "M10",
- *                     nodeCount: 1,
+ *                 {
+ *                     electableSpecs: {
+ *                         instanceSize: "M10",
+ *                         nodeCount: 2,
+ *                     },
+ *                     providerName: "AZURE",
+ *                     priority: 6,
+ *                     regionName: "US_EAST_2",
  *                 },
- *                 providerName: "AZURE",
- *                 priority: 6,
- *                 regionName: "US_EAST_2",
- *             },
- *             {
- *                 electableSpecs: {
- *                     instanceSize: "M10",
- *                     nodeCount: 2,
- *                 },
- *                 analyticsSpecs: {
- *                     instanceSize: "M10",
- *                     nodeCount: 1,
- *                 },
- *                 providerName: "GCP",
- *                 priority: 5,
- *                 regionName: "US_EAST_4",
- *             },
- *         ],
- *     }],
+ *             ],
+ *         },
+ *     ],
  *     advancedConfiguration: {
  *         javascriptEnabled: true,
- *         oplogSizeMb: 30,
+ *         oplogSizeMb: 991,
  *         sampleRefreshIntervalBiConnector: 300,
  *     },
  * });
  * ```
  *
- * ### Example of a Global Cluster
+ * ### Example of a Global Cluster with 2 zones
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -218,16 +220,11 @@ import * as utilities from "./utilities";
  *     replicationSpecs: [
  *         {
  *             zoneName: "zone n1",
- *             numShards: 3,
  *             regionConfigs: [
  *                 {
  *                     electableSpecs: {
  *                         instanceSize: "M10",
  *                         nodeCount: 3,
- *                     },
- *                     analyticsSpecs: {
- *                         instanceSize: "M10",
- *                         nodeCount: 1,
  *                     },
  *                     providerName: "AWS",
  *                     priority: 7,
@@ -238,41 +235,42 @@ import * as utilities from "./utilities";
  *                         instanceSize: "M10",
  *                         nodeCount: 2,
  *                     },
- *                     analyticsSpecs: {
- *                         instanceSize: "M10",
- *                         nodeCount: 1,
- *                     },
  *                     providerName: "AZURE",
  *                     priority: 6,
  *                     regionName: "US_EAST_2",
  *                 },
- *                 {
- *                     electableSpecs: {
- *                         instanceSize: "M10",
- *                         nodeCount: 2,
- *                     },
- *                     analyticsSpecs: {
- *                         instanceSize: "M10",
- *                         nodeCount: 1,
- *                     },
- *                     providerName: "GCP",
- *                     priority: 5,
- *                     regionName: "US_EAST_4",
- *                 },
  *             ],
  *         },
  *         {
- *             zoneName: "zone n2",
- *             numShards: 2,
+ *             zoneName: "zone n1",
  *             regionConfigs: [
  *                 {
  *                     electableSpecs: {
  *                         instanceSize: "M10",
  *                         nodeCount: 3,
  *                     },
- *                     analyticsSpecs: {
+ *                     providerName: "AWS",
+ *                     priority: 7,
+ *                     regionName: "US_EAST_1",
+ *                 },
+ *                 {
+ *                     electableSpecs: {
  *                         instanceSize: "M10",
- *                         nodeCount: 1,
+ *                         nodeCount: 2,
+ *                     },
+ *                     providerName: "AZURE",
+ *                     priority: 6,
+ *                     regionName: "US_EAST_2",
+ *                 },
+ *             ],
+ *         },
+ *         {
+ *             zoneName: "zone n2",
+ *             regionConfigs: [
+ *                 {
+ *                     electableSpecs: {
+ *                         instanceSize: "M10",
+ *                         nodeCount: 3,
  *                     },
  *                     providerName: "AWS",
  *                     priority: 7,
@@ -283,26 +281,32 @@ import * as utilities from "./utilities";
  *                         instanceSize: "M10",
  *                         nodeCount: 2,
  *                     },
- *                     analyticsSpecs: {
- *                         instanceSize: "M10",
- *                         nodeCount: 1,
- *                     },
  *                     providerName: "AZURE",
  *                     priority: 6,
  *                     regionName: "EUROPE_NORTH",
+ *                 },
+ *             ],
+ *         },
+ *         {
+ *             zoneName: "zone n2",
+ *             regionConfigs: [
+ *                 {
+ *                     electableSpecs: {
+ *                         instanceSize: "M10",
+ *                         nodeCount: 3,
+ *                     },
+ *                     providerName: "AWS",
+ *                     priority: 7,
+ *                     regionName: "EU_WEST_1",
  *                 },
  *                 {
  *                     electableSpecs: {
  *                         instanceSize: "M10",
  *                         nodeCount: 2,
  *                     },
- *                     analyticsSpecs: {
- *                         instanceSize: "M10",
- *                         nodeCount: 1,
- *                     },
- *                     providerName: "GCP",
- *                     priority: 5,
- *                     regionName: "US_EAST_4",
+ *                     providerName: "AZURE",
+ *                     priority: 6,
+ *                     regionName: "EUROPE_NORTH",
  *                 },
  *             ],
  *         },
@@ -337,6 +341,9 @@ import * as utilities from "./utilities";
  * $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
  * ```
  * See detailed information for arguments and attributes: [MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
+ *
+ * ~> __IMPORTANT:__
+ * \n\n &#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
  */
 export class AdvancedCluster extends pulumi.CustomResource {
     /**
@@ -405,7 +412,9 @@ export class AdvancedCluster extends pulumi.CustomResource {
     public /*out*/ readonly connectionStrings!: pulumi.Output<outputs.AdvancedClusterConnectionString[]>;
     public /*out*/ readonly createDate!: pulumi.Output<string>;
     /**
-     * Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
+     * Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
+     *
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
     public readonly diskSizeGb!: pulumi.Output<number>;
     /**
@@ -444,7 +453,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Configuration for cluster regions and the hardware provisioned in them. See below
+     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
      */
     public readonly replicationSpecs!: pulumi.Output<outputs.AdvancedClusterReplicationSpec[]>;
     /**
@@ -463,6 +472,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
      * - DELETING
      * - DELETED
      * - REPAIRING
+     * * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
      */
     public /*out*/ readonly stateName!: pulumi.Output<string>;
     /**
@@ -603,7 +613,9 @@ export interface AdvancedClusterState {
     connectionStrings?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterConnectionString>[]>;
     createDate?: pulumi.Input<string>;
     /**
-     * Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
+     * Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
+     *
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
     diskSizeGb?: pulumi.Input<number>;
     /**
@@ -642,7 +654,7 @@ export interface AdvancedClusterState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Configuration for cluster regions and the hardware provisioned in them. See below
+     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
      */
     replicationSpecs?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterReplicationSpec>[]>;
     /**
@@ -661,6 +673,7 @@ export interface AdvancedClusterState {
      * - DELETING
      * - DELETED
      * - REPAIRING
+     * * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
      */
     stateName?: pulumi.Input<string>;
     /**
@@ -713,7 +726,9 @@ export interface AdvancedClusterArgs {
      */
     clusterType: pulumi.Input<string>;
     /**
-     * Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
+     * Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
+     *
+     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      */
     diskSizeGb?: pulumi.Input<number>;
     /**
@@ -748,7 +763,7 @@ export interface AdvancedClusterArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Configuration for cluster regions and the hardware provisioned in them. See below
+     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
      */
     replicationSpecs: pulumi.Input<pulumi.Input<inputs.AdvancedClusterReplicationSpec>[]>;
     /**

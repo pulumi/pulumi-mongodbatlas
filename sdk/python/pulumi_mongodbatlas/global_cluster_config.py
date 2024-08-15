@@ -200,32 +200,34 @@ class GlobalClusterConfig(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.Cluster("test",
+        test = mongodbatlas.AdvancedCluster("test",
             project_id="<YOUR-PROJECT-ID>",
             name="<CLUSTER-NAME>",
-            cloud_backup=True,
             cluster_type="GEOSHARDED",
-            provider_name="AWS",
-            provider_instance_size_name="M30",
+            backup_enabled=True,
             replication_specs=[
                 {
                     "zone_name": "Zone 1",
-                    "num_shards": 1,
-                    "regions_configs": [{
-                        "region_name": "EU_CENTRAL_1",
-                        "electable_nodes": 3,
+                    "region_configs": [{
+                        "electable_specs": {
+                            "instance_size": "M30",
+                            "node_count": 3,
+                        },
+                        "provider_name": "AWS",
                         "priority": 7,
-                        "read_only_nodes": 0,
+                        "region_name": "EU_CENTRAL_1",
                     }],
                 },
                 {
                     "zone_name": "Zone 2",
-                    "num_shards": 1,
-                    "regions_configs": [{
-                        "region_name": "US_EAST_2",
-                        "electable_nodes": 3,
+                    "region_configs": [{
+                        "electable_specs": {
+                            "instance_size": "M30",
+                            "node_count": 3,
+                        },
+                        "provider_name": "AWS",
                         "priority": 7,
-                        "read_only_nodes": 0,
+                        "region_name": "US_EAST_2",
                     }],
                 },
             ])
@@ -286,32 +288,34 @@ class GlobalClusterConfig(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.Cluster("test",
+        test = mongodbatlas.AdvancedCluster("test",
             project_id="<YOUR-PROJECT-ID>",
             name="<CLUSTER-NAME>",
-            cloud_backup=True,
             cluster_type="GEOSHARDED",
-            provider_name="AWS",
-            provider_instance_size_name="M30",
+            backup_enabled=True,
             replication_specs=[
                 {
                     "zone_name": "Zone 1",
-                    "num_shards": 1,
-                    "regions_configs": [{
-                        "region_name": "EU_CENTRAL_1",
-                        "electable_nodes": 3,
+                    "region_configs": [{
+                        "electable_specs": {
+                            "instance_size": "M30",
+                            "node_count": 3,
+                        },
+                        "provider_name": "AWS",
                         "priority": 7,
-                        "read_only_nodes": 0,
+                        "region_name": "EU_CENTRAL_1",
                     }],
                 },
                 {
                     "zone_name": "Zone 2",
-                    "num_shards": 1,
-                    "regions_configs": [{
-                        "region_name": "US_EAST_2",
-                        "electable_nodes": 3,
+                    "region_configs": [{
+                        "electable_specs": {
+                            "instance_size": "M30",
+                            "node_count": 3,
+                        },
+                        "provider_name": "AWS",
                         "priority": 7,
-                        "read_only_nodes": 0,
+                        "region_name": "US_EAST_2",
                     }],
                 },
             ])

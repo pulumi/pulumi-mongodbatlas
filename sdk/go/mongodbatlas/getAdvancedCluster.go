@@ -67,6 +67,70 @@ import (
 //	}
 //
 // ```
+//
+// ## Example using latest sharding schema with independent shard scaling in the cluster
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "example", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.String("<YOUR-PROJECT-ID>"),
+//				Name:          pulumi.String("cluster-test"),
+//				BackupEnabled: pulumi.Bool(false),
+//				ClusterType:   pulumi.String("SHARDED"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									DiskIops:     pulumi.Int(3000),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("EU_WEST_1"),
+//							},
+//						},
+//					},
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M40"),
+//									DiskIops:     pulumi.Int(3000),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("EU_WEST_1"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
+//				ProjectId:                  exampleAdvancedCluster.ProjectId,
+//				Name:                       exampleAdvancedCluster.Name,
+//				UseReplicationSpecPerShard: pulumi.Bool(true),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupAdvancedCluster(ctx *pulumi.Context, args *LookupAdvancedClusterArgs, opts ...pulumi.InvokeOption) (*LookupAdvancedClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAdvancedClusterResult
@@ -85,6 +149,8 @@ type LookupAdvancedClusterArgs struct {
 	PitEnabled *bool `pulumi:"pitEnabled"`
 	// The unique ID for the project to create the database user.
 	ProjectId string `pulumi:"projectId"`
+	// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
+	UseReplicationSpecPerShard *bool `pulumi:"useReplicationSpecPerShard"`
 }
 
 // A collection of values returned by getAdvancedCluster.
@@ -99,7 +165,9 @@ type LookupAdvancedClusterResult struct {
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings []GetAdvancedClusterConnectionString `pulumi:"connectionStrings"`
 	CreateDate        string                               `pulumi:"createDate"`
-	// Capacity, in gigabytes, of the host's root volume.
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+	//
+	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Possible values are AWS, GCP, AZURE or NONE.
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
@@ -107,7 +175,7 @@ type LookupAdvancedClusterResult struct {
 	GlobalClusterSelfManagedSharding bool `pulumi:"globalClusterSelfManagedSharding"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
 	//
 	// Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 	Labels []GetAdvancedClusterLabel `pulumi:"labels"`
@@ -121,7 +189,7 @@ type LookupAdvancedClusterResult struct {
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool   `pulumi:"pitEnabled"`
 	ProjectId  string `pulumi:"projectId"`
-	// Configuration for cluster regions and the hardware provisioned in them. See below.
+	// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
 	ReplicationSpecs []GetAdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
 	// Certificate Authority that MongoDB Atlas clusters use.
 	RootCertType string `pulumi:"rootCertType"`
@@ -130,7 +198,8 @@ type LookupAdvancedClusterResult struct {
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 	Tags []GetAdvancedClusterTag `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
-	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
+	TerminationProtectionEnabled bool  `pulumi:"terminationProtectionEnabled"`
+	UseReplicationSpecPerShard   *bool `pulumi:"useReplicationSpecPerShard"`
 	// Release cadence that Atlas uses for this cluster.
 	VersionReleaseSystem string `pulumi:"versionReleaseSystem"`
 }
@@ -156,6 +225,8 @@ type LookupAdvancedClusterOutputArgs struct {
 	PitEnabled pulumi.BoolPtrInput `pulumi:"pitEnabled"`
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
+	UseReplicationSpecPerShard pulumi.BoolPtrInput `pulumi:"useReplicationSpecPerShard"`
 }
 
 func (LookupAdvancedClusterOutputArgs) ElementType() reflect.Type {
@@ -207,7 +278,9 @@ func (o LookupAdvancedClusterResultOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.CreateDate }).(pulumi.StringOutput)
 }
 
-// Capacity, in gigabytes, of the host's root volume.
+// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+//
+// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
 func (o LookupAdvancedClusterResultOutput) DiskSizeGb() pulumi.Float64Output {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
@@ -227,7 +300,7 @@ func (o LookupAdvancedClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
 //
 // Deprecated: This parameter is deprecated and will be removed by September 2024. Please transition to tags.
 func (o LookupAdvancedClusterResultOutput) Labels() GetAdvancedClusterLabelArrayOutput {
@@ -262,7 +335,7 @@ func (o LookupAdvancedClusterResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Configuration for cluster regions and the hardware provisioned in them. See below.
+// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
 func (o LookupAdvancedClusterResultOutput) ReplicationSpecs() GetAdvancedClusterReplicationSpecArrayOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterReplicationSpec { return v.ReplicationSpecs }).(GetAdvancedClusterReplicationSpecArrayOutput)
 }
@@ -285,6 +358,10 @@ func (o LookupAdvancedClusterResultOutput) Tags() GetAdvancedClusterTagArrayOutp
 // Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 func (o LookupAdvancedClusterResultOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupAdvancedClusterResultOutput) UseReplicationSpecPerShard() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) *bool { return v.UseReplicationSpecPerShard }).(pulumi.BoolPtrOutput)
 }
 
 // Release cadence that Atlas uses for this cluster.

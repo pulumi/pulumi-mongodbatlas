@@ -23,14 +23,14 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
     public static final AdvancedClusterReplicationSpecRegionConfigArgs Empty = new AdvancedClusterReplicationSpecRegionConfigArgs();
 
     /**
-     * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+     * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
      * 
      */
     @Import(name="analyticsAutoScaling")
     private @Nullable Output<AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs> analyticsAutoScaling;
 
     /**
-     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+     * @return Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
      * 
      */
     public Optional<Output<AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs>> analyticsAutoScaling() {
@@ -53,14 +53,14 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
     }
 
     /**
-     * Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+     * Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
      * 
      */
     @Import(name="autoScaling")
     private @Nullable Output<AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs> autoScaling;
 
     /**
-     * @return Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+     * @return Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
      * 
      */
     public Optional<Output<AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs>> autoScaling() {
@@ -206,7 +206,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         }
 
         /**
-         * @param analyticsAutoScaling Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+         * @param analyticsAutoScaling Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
          * 
          * @return builder
          * 
@@ -217,7 +217,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         }
 
         /**
-         * @param analyticsAutoScaling Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+         * @param analyticsAutoScaling Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
          * 
          * @return builder
          * 
@@ -248,7 +248,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         }
 
         /**
-         * @param autoScaling Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+         * @param autoScaling Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
          * 
          * @return builder
          * 
@@ -259,7 +259,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         }
 
         /**
-         * @param autoScaling Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+         * @param autoScaling Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for all `region_configs` in all `replication_specs`. See below
          * 
          * @return builder
          * 

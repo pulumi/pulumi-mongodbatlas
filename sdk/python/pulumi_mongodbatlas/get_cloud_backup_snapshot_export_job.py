@@ -144,7 +144,6 @@ class GetCloudBackupSnapshotExportJobResult:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.""")
     def id(self) -> str:
         return pulumi.get(self, "id")
 
@@ -204,7 +203,6 @@ class AwaitableGetCloudBackupSnapshotExportJobResult(GetCloudBackupSnapshotExpor
 
 def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
                                          export_job_id: Optional[str] = None,
-                                         id: Optional[str] = None,
                                          project_id: Optional[str] = None,
                                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupSnapshotExportJobResult:
     """
@@ -247,7 +245,6 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
     __args__ = dict()
     __args__['clusterName'] = cluster_name
     __args__['exportJobId'] = export_job_id
-    __args__['id'] = id
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob', __args__, opts=opts, typ=GetCloudBackupSnapshotExportJobResult).value
@@ -273,7 +270,6 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
 @_utilities.lift_output_func(get_cloud_backup_snapshot_export_job)
 def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.Input[str]] = None,
                                                 export_job_id: Optional[pulumi.Input[str]] = None,
-                                                id: Optional[pulumi.Input[Optional[str]]] = None,
                                                 project_id: Optional[pulumi.Input[str]] = None,
                                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotExportJobResult]:
     """

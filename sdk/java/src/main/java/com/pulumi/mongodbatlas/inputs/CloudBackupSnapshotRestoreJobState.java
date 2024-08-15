@@ -49,29 +49,6 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
     }
 
     /**
-     * UTC ISO 8601 formatted point in time when Atlas created the restore job.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    @Import(name="createdAt")
-    private @Nullable Output<String> createdAt;
-
-    /**
-     * @return UTC ISO 8601 formatted point in time when Atlas created the restore job.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public Optional<Output<String>> createdAt() {
-        return Optional.ofNullable(this.createdAt);
-    }
-
-    /**
      * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
      * * `delivery_type_config.download` - Set to `true` to use the download configuration.
@@ -255,7 +232,6 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
     private CloudBackupSnapshotRestoreJobState(CloudBackupSnapshotRestoreJobState $) {
         this.cancelled = $.cancelled;
         this.clusterName = $.clusterName;
-        this.createdAt = $.createdAt;
         this.deliveryTypeConfig = $.deliveryTypeConfig;
         this.deliveryUrls = $.deliveryUrls;
         this.expired = $.expired;
@@ -325,35 +301,6 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
          */
         public Builder clusterName(String clusterName) {
             return clusterName(Output.of(clusterName));
-        }
-
-        /**
-         * @param createdAt UTC ISO 8601 formatted point in time when Atlas created the restore job.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder createdAt(@Nullable Output<String> createdAt) {
-            $.createdAt = createdAt;
-            return this;
-        }
-
-        /**
-         * @param createdAt UTC ISO 8601 formatted point in time when Atlas created the restore job.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder createdAt(String createdAt) {
-            return createdAt(Output.of(createdAt));
         }
 
         /**

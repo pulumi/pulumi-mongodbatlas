@@ -30,14 +30,10 @@ func LookupCloudBackupSnapshotRestoreJob(ctx *pulumi.Context, args *LookupCloudB
 type LookupCloudBackupSnapshotRestoreJobArgs struct {
 	// The name of the Atlas cluster for which you want to retrieve the restore job.
 	ClusterName string `pulumi:"clusterName"`
-	// A base64-encoded ID  of `projectId`, `clusterName`, and `jobId` of this resource. **Note**: This attribute is deprecated, use `snapshotRestoreJobId` instead.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Use snapshotRestoreJobId instead.
-	JobId *string `pulumi:"jobId"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
-	// The unique identifier of the restore job to retrieve. Required for versions 1.18.0 and later.
-	SnapshotRestoreJobId *string `pulumi:"snapshotRestoreJobId"`
+	// The unique identifier of the restore job to retrieve.
+	SnapshotRestoreJobId string `pulumi:"snapshotRestoreJobId"`
 }
 
 // A collection of values returned by getCloudBackupSnapshotRestoreJob.
@@ -45,10 +41,6 @@ type LookupCloudBackupSnapshotRestoreJobResult struct {
 	// Indicates whether the restore job was canceled.
 	Cancelled   bool   `pulumi:"cancelled"`
 	ClusterName string `pulumi:"clusterName"`
-	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	CreatedAt string `pulumi:"createdAt"`
 	// Type of restore job to create. Possible values are: automated and download.
 	DeliveryType string `pulumi:"deliveryType"`
 	// One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
@@ -60,16 +52,14 @@ type LookupCloudBackupSnapshotRestoreJobResult struct {
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt string `pulumi:"finishedAt"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Use snapshotRestoreJobId instead.
-	JobId                 *string `pulumi:"jobId"`
-	OplogInc              int     `pulumi:"oplogInc"`
-	OplogTs               int     `pulumi:"oplogTs"`
-	PointInTimeUtcSeconds int     `pulumi:"pointInTimeUtcSeconds"`
-	ProjectId             string  `pulumi:"projectId"`
+	Id                    string `pulumi:"id"`
+	OplogInc              int    `pulumi:"oplogInc"`
+	OplogTs               int    `pulumi:"oplogTs"`
+	PointInTimeUtcSeconds int    `pulumi:"pointInTimeUtcSeconds"`
+	ProjectId             string `pulumi:"projectId"`
 	// Unique identifier of the source snapshot ID of the restore job.
-	SnapshotId           string  `pulumi:"snapshotId"`
-	SnapshotRestoreJobId *string `pulumi:"snapshotRestoreJobId"`
+	SnapshotId           string `pulumi:"snapshotId"`
+	SnapshotRestoreJobId string `pulumi:"snapshotRestoreJobId"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
 	TargetClusterName string `pulumi:"targetClusterName"`
 	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
@@ -98,14 +88,10 @@ func LookupCloudBackupSnapshotRestoreJobOutput(ctx *pulumi.Context, args LookupC
 type LookupCloudBackupSnapshotRestoreJobOutputArgs struct {
 	// The name of the Atlas cluster for which you want to retrieve the restore job.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// A base64-encoded ID  of `projectId`, `clusterName`, and `jobId` of this resource. **Note**: This attribute is deprecated, use `snapshotRestoreJobId` instead.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Use snapshotRestoreJobId instead.
-	JobId pulumi.StringPtrInput `pulumi:"jobId"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// The unique identifier of the restore job to retrieve. Required for versions 1.18.0 and later.
-	SnapshotRestoreJobId pulumi.StringPtrInput `pulumi:"snapshotRestoreJobId"`
+	// The unique identifier of the restore job to retrieve.
+	SnapshotRestoreJobId pulumi.StringInput `pulumi:"snapshotRestoreJobId"`
 }
 
 func (LookupCloudBackupSnapshotRestoreJobOutputArgs) ElementType() reflect.Type {
@@ -134,13 +120,6 @@ func (o LookupCloudBackupSnapshotRestoreJobResultOutput) Cancelled() pulumi.Bool
 
 func (o LookupCloudBackupSnapshotRestoreJobResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) string { return v.ClusterName }).(pulumi.StringOutput)
-}
-
-// UTC ISO 8601 formatted point in time when Atlas created the restore job.
-//
-// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-func (o LookupCloudBackupSnapshotRestoreJobResultOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
 // Type of restore job to create. Possible values are: automated and download.
@@ -173,11 +152,6 @@ func (o LookupCloudBackupSnapshotRestoreJobResultOutput) Id() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Deprecated: This parameter is deprecated and will be removed in version 1.18.0. Use snapshotRestoreJobId instead.
-func (o LookupCloudBackupSnapshotRestoreJobResultOutput) JobId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) *string { return v.JobId }).(pulumi.StringPtrOutput)
-}
-
 func (o LookupCloudBackupSnapshotRestoreJobResultOutput) OplogInc() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) int { return v.OplogInc }).(pulumi.IntOutput)
 }
@@ -199,8 +173,8 @@ func (o LookupCloudBackupSnapshotRestoreJobResultOutput) SnapshotId() pulumi.Str
 	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) string { return v.SnapshotId }).(pulumi.StringOutput)
 }
 
-func (o LookupCloudBackupSnapshotRestoreJobResultOutput) SnapshotRestoreJobId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) *string { return v.SnapshotRestoreJobId }).(pulumi.StringPtrOutput)
+func (o LookupCloudBackupSnapshotRestoreJobResultOutput) SnapshotRestoreJobId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) string { return v.SnapshotRestoreJobId }).(pulumi.StringOutput)
 }
 
 // Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.

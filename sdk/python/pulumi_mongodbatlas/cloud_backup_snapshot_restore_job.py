@@ -104,7 +104,6 @@ class _CloudBackupSnapshotRestoreJobState:
     def __init__(__self__, *,
                  cancelled: Optional[pulumi.Input[bool]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 created_at: Optional[pulumi.Input[str]] = None,
                  delivery_type_config: Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] = None,
                  delivery_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  expired: Optional[pulumi.Input[bool]] = None,
@@ -118,7 +117,6 @@ class _CloudBackupSnapshotRestoreJobState:
         Input properties used for looking up and filtering CloudBackupSnapshotRestoreJob resources.
         :param pulumi.Input[bool] cancelled: Indicates whether the restore job was canceled.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[str] created_at: UTC ISO 8601 formatted point in time when Atlas created the restore job.
         :param pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
@@ -155,11 +153,6 @@ class _CloudBackupSnapshotRestoreJobState:
             pulumi.set(__self__, "cancelled", cancelled)
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
-        if created_at is not None:
-            warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-            pulumi.log.warn("""created_at is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
         if delivery_type_config is not None:
             pulumi.set(__self__, "delivery_type_config", delivery_type_config)
         if delivery_urls is not None:
@@ -202,19 +195,6 @@ class _CloudBackupSnapshotRestoreJobState:
     @cluster_name.setter
     def cluster_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cluster_name", value)
-
-    @property
-    @pulumi.getter(name="createdAt")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
-    def created_at(self) -> Optional[pulumi.Input[str]]:
-        """
-        UTC ISO 8601 formatted point in time when Atlas created the restore job.
-        """
-        return pulumi.get(self, "created_at")
-
-    @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "created_at", value)
 
     @property
     @pulumi.getter(name="deliveryTypeConfig")
@@ -675,7 +655,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["snapshot_id"] = snapshot_id
             __props__.__dict__["cancelled"] = None
-            __props__.__dict__["created_at"] = None
             __props__.__dict__["delivery_urls"] = None
             __props__.__dict__["expired"] = None
             __props__.__dict__["expires_at"] = None
@@ -694,7 +673,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cancelled: Optional[pulumi.Input[bool]] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
-            created_at: Optional[pulumi.Input[str]] = None,
             delivery_type_config: Optional[pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
             delivery_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             expired: Optional[pulumi.Input[bool]] = None,
@@ -713,7 +691,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] cancelled: Indicates whether the restore job was canceled.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[str] created_at: UTC ISO 8601 formatted point in time when Atlas created the restore job.
         :param pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
@@ -752,7 +729,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
 
         __props__.__dict__["cancelled"] = cancelled
         __props__.__dict__["cluster_name"] = cluster_name
-        __props__.__dict__["created_at"] = created_at
         __props__.__dict__["delivery_type_config"] = delivery_type_config
         __props__.__dict__["delivery_urls"] = delivery_urls
         __props__.__dict__["expired"] = expired
@@ -779,15 +755,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         The name of the Atlas cluster whose snapshot you want to restore.
         """
         return pulumi.get(self, "cluster_name")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
-    def created_at(self) -> pulumi.Output[str]:
-        """
-        UTC ISO 8601 formatted point in time when Atlas created the restore job.
-        """
-        return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="deliveryTypeConfig")

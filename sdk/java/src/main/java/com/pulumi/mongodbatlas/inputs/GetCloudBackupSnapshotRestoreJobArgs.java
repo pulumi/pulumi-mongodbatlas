@@ -8,8 +8,6 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class GetCloudBackupSnapshotRestoreJobArgs extends com.pulumi.resources.InvokeArgs {
@@ -32,29 +30,6 @@ public final class GetCloudBackupSnapshotRestoreJobArgs extends com.pulumi.resou
     }
 
     /**
-     * A base64-encoded ID  of `project_id`, `cluster_name`, and `job_id` of this resource. **Note**: This attribute is deprecated, use `snapshot_restore_job_id` instead.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead. */
-    @Import(name="jobId")
-    private @Nullable Output<String> jobId;
-
-    /**
-     * @return A base64-encoded ID  of `project_id`, `cluster_name`, and `job_id` of this resource. **Note**: This attribute is deprecated, use `snapshot_restore_job_id` instead.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead. */
-    public Optional<Output<String>> jobId() {
-        return Optional.ofNullable(this.jobId);
-    }
-
-    /**
      * The unique identifier of the project for the Atlas cluster.
      * 
      */
@@ -70,25 +45,24 @@ public final class GetCloudBackupSnapshotRestoreJobArgs extends com.pulumi.resou
     }
 
     /**
-     * The unique identifier of the restore job to retrieve. Required for versions 1.18.0 and later.
+     * The unique identifier of the restore job to retrieve.
      * 
      */
-    @Import(name="snapshotRestoreJobId")
-    private @Nullable Output<String> snapshotRestoreJobId;
+    @Import(name="snapshotRestoreJobId", required=true)
+    private Output<String> snapshotRestoreJobId;
 
     /**
-     * @return The unique identifier of the restore job to retrieve. Required for versions 1.18.0 and later.
+     * @return The unique identifier of the restore job to retrieve.
      * 
      */
-    public Optional<Output<String>> snapshotRestoreJobId() {
-        return Optional.ofNullable(this.snapshotRestoreJobId);
+    public Output<String> snapshotRestoreJobId() {
+        return this.snapshotRestoreJobId;
     }
 
     private GetCloudBackupSnapshotRestoreJobArgs() {}
 
     private GetCloudBackupSnapshotRestoreJobArgs(GetCloudBackupSnapshotRestoreJobArgs $) {
         this.clusterName = $.clusterName;
-        this.jobId = $.jobId;
         this.projectId = $.projectId;
         this.snapshotRestoreJobId = $.snapshotRestoreJobId;
     }
@@ -133,35 +107,6 @@ public final class GetCloudBackupSnapshotRestoreJobArgs extends com.pulumi.resou
         }
 
         /**
-         * @param jobId A base64-encoded ID  of `project_id`, `cluster_name`, and `job_id` of this resource. **Note**: This attribute is deprecated, use `snapshot_restore_job_id` instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead. */
-        public Builder jobId(@Nullable Output<String> jobId) {
-            $.jobId = jobId;
-            return this;
-        }
-
-        /**
-         * @param jobId A base64-encoded ID  of `project_id`, `cluster_name`, and `job_id` of this resource. **Note**: This attribute is deprecated, use `snapshot_restore_job_id` instead.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. Use snapshot_restore_job_id instead. */
-        public Builder jobId(String jobId) {
-            return jobId(Output.of(jobId));
-        }
-
-        /**
          * @param projectId The unique identifier of the project for the Atlas cluster.
          * 
          * @return builder
@@ -183,18 +128,18 @@ public final class GetCloudBackupSnapshotRestoreJobArgs extends com.pulumi.resou
         }
 
         /**
-         * @param snapshotRestoreJobId The unique identifier of the restore job to retrieve. Required for versions 1.18.0 and later.
+         * @param snapshotRestoreJobId The unique identifier of the restore job to retrieve.
          * 
          * @return builder
          * 
          */
-        public Builder snapshotRestoreJobId(@Nullable Output<String> snapshotRestoreJobId) {
+        public Builder snapshotRestoreJobId(Output<String> snapshotRestoreJobId) {
             $.snapshotRestoreJobId = snapshotRestoreJobId;
             return this;
         }
 
         /**
-         * @param snapshotRestoreJobId The unique identifier of the restore job to retrieve. Required for versions 1.18.0 and later.
+         * @param snapshotRestoreJobId The unique identifier of the restore job to retrieve.
          * 
          * @return builder
          * 
@@ -209,6 +154,9 @@ public final class GetCloudBackupSnapshotRestoreJobArgs extends com.pulumi.resou
             }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobArgs", "projectId");
+            }
+            if ($.snapshotRestoreJobId == null) {
+                throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobArgs", "snapshotRestoreJobId");
             }
             return $;
         }

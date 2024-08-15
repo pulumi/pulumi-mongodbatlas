@@ -286,24 +286,6 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
         return this.clusterName;
     }
     /**
-     * UTC ISO 8601 formatted point in time when Atlas created the restore job.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    @Export(name="createdAt", refs={String.class}, tree="[0]")
-    private Output<String> createdAt;
-
-    /**
-     * @return UTC ISO 8601 formatted point in time when Atlas created the restore job.
-     * 
-     */
-    public Output<String> createdAt() {
-        return this.createdAt;
-    }
-    /**
      * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
      * * `delivery_type_config.download` - Set to `true` to use the download configuration.

@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  * 
  * &gt; **NOTE:** To enable Cluster Extended Storage Sizes use the `is_extended_storage_sizes_enabled` parameter in the mongodbatlas.Project resource.
  * 
- * &gt; **NOTE:** The Low-CPU instance clusters are prefixed with `R`, i.e. `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
+ * &gt; **NOTE:** The Low-CPU instance clusters are prefixed with `R`, for example `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
  * 
  * ## Example Usage
  * 
@@ -258,7 +258,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
- * ### Example of a Multi-Cloud Cluster
+ * ### Example of a Multi Cloud Sharded Cluster with 2 shards
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -290,52 +290,52 @@ import javax.annotation.Nullable;
  *             .name(clusterName)
  *             .clusterType("SHARDED")
  *             .backupEnabled(true)
- *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
- *                 .numShards(3)
- *                 .regionConfigs(                
- *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                             .instanceSize("M10")
- *                             .nodeCount(3)
+ *             .replicationSpecs(            
+ *                 AdvancedClusterReplicationSpecArgs.builder()
+ *                     .regionConfigs(                    
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M10")
+ *                                 .nodeCount(3)
+ *                                 .build())
+ *                             .providerName("AWS")
+ *                             .priority(7)
+ *                             .regionName("US_EAST_1")
+ *                             .build(),
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M10")
+ *                                 .nodeCount(2)
+ *                                 .build())
+ *                             .providerName("AZURE")
+ *                             .priority(6)
+ *                             .regionName("US_EAST_2")
  *                             .build())
- *                         .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                             .instanceSize("M10")
- *                             .nodeCount(1)
+ *                     .build(),
+ *                 AdvancedClusterReplicationSpecArgs.builder()
+ *                     .regionConfigs(                    
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M10")
+ *                                 .nodeCount(3)
+ *                                 .build())
+ *                             .providerName("AWS")
+ *                             .priority(7)
+ *                             .regionName("US_EAST_1")
+ *                             .build(),
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M10")
+ *                                 .nodeCount(2)
+ *                                 .build())
+ *                             .providerName("AZURE")
+ *                             .priority(6)
+ *                             .regionName("US_EAST_2")
  *                             .build())
- *                         .providerName("AWS")
- *                         .priority(7)
- *                         .regionName("US_EAST_1")
- *                         .build(),
- *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                             .instanceSize("M10")
- *                             .nodeCount(2)
- *                             .build())
- *                         .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                             .instanceSize("M10")
- *                             .nodeCount(1)
- *                             .build())
- *                         .providerName("AZURE")
- *                         .priority(6)
- *                         .regionName("US_EAST_2")
- *                         .build(),
- *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                             .instanceSize("M10")
- *                             .nodeCount(2)
- *                             .build())
- *                         .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                             .instanceSize("M10")
- *                             .nodeCount(1)
- *                             .build())
- *                         .providerName("GCP")
- *                         .priority(5)
- *                         .regionName("US_EAST_4")
- *                         .build())
- *                 .build())
+ *                     .build())
  *             .advancedConfiguration(AdvancedClusterAdvancedConfigurationArgs.builder()
  *                 .javascriptEnabled(true)
- *                 .oplogSizeMb(30)
+ *                 .oplogSizeMb(991)
  *                 .sampleRefreshIntervalBiConnector(300)
  *                 .build())
  *             .build());
@@ -346,7 +346,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Example of a Global Cluster
+ * ### Example of a Global Cluster with 2 zones
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
  * {@code
@@ -380,16 +380,11 @@ import javax.annotation.Nullable;
  *             .replicationSpecs(            
  *                 AdvancedClusterReplicationSpecArgs.builder()
  *                     .zoneName("zone n1")
- *                     .numShards(3)
  *                     .regionConfigs(                    
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
  *                                 .instanceSize("M10")
  *                                 .nodeCount(3)
- *                                 .build())
- *                             .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                                 .instanceSize("M10")
- *                                 .nodeCount(1)
  *                                 .build())
  *                             .providerName("AWS")
  *                             .priority(7)
@@ -400,40 +395,40 @@ import javax.annotation.Nullable;
  *                                 .instanceSize("M10")
  *                                 .nodeCount(2)
  *                                 .build())
- *                             .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                                 .instanceSize("M10")
- *                                 .nodeCount(1)
- *                                 .build())
  *                             .providerName("AZURE")
  *                             .priority(6)
  *                             .regionName("US_EAST_2")
- *                             .build(),
- *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                                 .instanceSize("M10")
- *                                 .nodeCount(2)
- *                                 .build())
- *                             .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                                 .instanceSize("M10")
- *                                 .nodeCount(1)
- *                                 .build())
- *                             .providerName("GCP")
- *                             .priority(5)
- *                             .regionName("US_EAST_4")
  *                             .build())
  *                     .build(),
  *                 AdvancedClusterReplicationSpecArgs.builder()
- *                     .zoneName("zone n2")
- *                     .numShards(2)
+ *                     .zoneName("zone n1")
  *                     .regionConfigs(                    
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
  *                                 .instanceSize("M10")
  *                                 .nodeCount(3)
  *                                 .build())
- *                             .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
+ *                             .providerName("AWS")
+ *                             .priority(7)
+ *                             .regionName("US_EAST_1")
+ *                             .build(),
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
  *                                 .instanceSize("M10")
- *                                 .nodeCount(1)
+ *                                 .nodeCount(2)
+ *                                 .build())
+ *                             .providerName("AZURE")
+ *                             .priority(6)
+ *                             .regionName("US_EAST_2")
+ *                             .build())
+ *                     .build(),
+ *                 AdvancedClusterReplicationSpecArgs.builder()
+ *                     .zoneName("zone n2")
+ *                     .regionConfigs(                    
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M10")
+ *                                 .nodeCount(3)
  *                                 .build())
  *                             .providerName("AWS")
  *                             .priority(7)
@@ -444,26 +439,31 @@ import javax.annotation.Nullable;
  *                                 .instanceSize("M10")
  *                                 .nodeCount(2)
  *                                 .build())
- *                             .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                                 .instanceSize("M10")
- *                                 .nodeCount(1)
- *                                 .build())
  *                             .providerName("AZURE")
  *                             .priority(6)
  *                             .regionName("EUROPE_NORTH")
+ *                             .build())
+ *                     .build(),
+ *                 AdvancedClusterReplicationSpecArgs.builder()
+ *                     .zoneName("zone n2")
+ *                     .regionConfigs(                    
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M10")
+ *                                 .nodeCount(3)
+ *                                 .build())
+ *                             .providerName("AWS")
+ *                             .priority(7)
+ *                             .regionName("EU_WEST_1")
  *                             .build(),
  *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
  *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
  *                                 .instanceSize("M10")
  *                                 .nodeCount(2)
  *                                 .build())
- *                             .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                                 .instanceSize("M10")
- *                                 .nodeCount(1)
- *                                 .build())
- *                             .providerName("GCP")
- *                             .priority(5)
- *                             .regionName("US_EAST_4")
+ *                             .providerName("AZURE")
+ *                             .priority(6)
+ *                             .regionName("EUROPE_NORTH")
  *                             .build())
  *                     .build())
  *             .advancedConfiguration(AdvancedClusterAdvancedConfigurationArgs.builder()
@@ -545,6 +545,9 @@ import javax.annotation.Nullable;
  * $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
  * ```
  * See detailed information for arguments and attributes: [MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
+ * 
+ * ~&gt; __IMPORTANT:__
+ * \n\n &amp;#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
  * 
  */
 @ResourceType(type="mongodbatlas:index/advancedCluster:AdvancedCluster")
@@ -670,14 +673,18 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.createDate;
     }
     /**
-     * Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
+     * Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     @Export(name="diskSizeGb", refs={Double.class}, tree="[0]")
     private Output<Double> diskSizeGb;
 
     /**
-     * @return Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
+     * @return Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
      * 
      */
     public Output<Double> diskSizeGb() {
@@ -806,14 +813,14 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * Configuration for cluster regions and the hardware provisioned in them. See below
+     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
      * 
      */
     @Export(name="replicationSpecs", refs={List.class,AdvancedClusterReplicationSpec.class}, tree="[0,1]")
     private Output<List<AdvancedClusterReplicationSpec>> replicationSpecs;
 
     /**
-     * @return Configuration for cluster regions and the hardware provisioned in them. See below
+     * @return List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
      * 
      */
     public Output<List<AdvancedClusterReplicationSpec>> replicationSpecs() {
@@ -855,6 +862,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * - DELETING
      * - DELETED
      * - REPAIRING
+     * * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
      * 
      */
     @Export(name="stateName", refs={String.class}, tree="[0]")
@@ -868,6 +876,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * - DELETING
      * - DELETED
      * - REPAIRING
+     * * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
      * 
      */
     public Output<String> stateName() {

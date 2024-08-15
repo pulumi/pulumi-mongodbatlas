@@ -23,7 +23,6 @@ class ThirdPartyIntegrationArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  routing_key: Optional[pulumi.Input[str]] = None,
-                 scheme: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  service_discovery: Optional[pulumi.Input[str]] = None,
                  service_key: Optional[pulumi.Input[str]] = None,
@@ -61,11 +60,6 @@ class ThirdPartyIntegrationArgs:
             pulumi.set(__self__, "region", region)
         if routing_key is not None:
             pulumi.set(__self__, "routing_key", routing_key)
-        if scheme is not None:
-            warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-            pulumi.log.warn("""scheme is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-        if scheme is not None:
-            pulumi.set(__self__, "scheme", scheme)
         if secret is not None:
             pulumi.set(__self__, "secret", secret)
         if service_discovery is not None:
@@ -178,16 +172,6 @@ class ThirdPartyIntegrationArgs:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
-    def scheme(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "scheme")
-
-    @scheme.setter
-    def scheme(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "scheme", value)
-
-    @property
-    @pulumi.getter
     def secret(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "secret")
 
@@ -252,7 +236,6 @@ class _ThirdPartyIntegrationState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  routing_key: Optional[pulumi.Input[str]] = None,
-                 scheme: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  service_discovery: Optional[pulumi.Input[str]] = None,
                  service_key: Optional[pulumi.Input[str]] = None,
@@ -291,11 +274,6 @@ class _ThirdPartyIntegrationState:
             pulumi.set(__self__, "region", region)
         if routing_key is not None:
             pulumi.set(__self__, "routing_key", routing_key)
-        if scheme is not None:
-            warnings.warn("""This parameter is deprecated and will be removed in version 1.18.0.""", DeprecationWarning)
-            pulumi.log.warn("""scheme is deprecated: This parameter is deprecated and will be removed in version 1.18.0.""")
-        if scheme is not None:
-            pulumi.set(__self__, "scheme", scheme)
         if secret is not None:
             pulumi.set(__self__, "secret", secret)
         if service_discovery is not None:
@@ -388,16 +366,6 @@ class _ThirdPartyIntegrationState:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
-    def scheme(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "scheme")
-
-    @scheme.setter
-    def scheme(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "scheme", value)
-
-    @property
-    @pulumi.getter
     def secret(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "secret")
 
@@ -486,7 +454,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  routing_key: Optional[pulumi.Input[str]] = None,
-                 scheme: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  service_discovery: Optional[pulumi.Input[str]] = None,
                  service_key: Optional[pulumi.Input[str]] = None,
@@ -609,7 +576,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  routing_key: Optional[pulumi.Input[str]] = None,
-                 scheme: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  service_discovery: Optional[pulumi.Input[str]] = None,
                  service_key: Optional[pulumi.Input[str]] = None,
@@ -636,7 +602,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["routing_key"] = None if routing_key is None else pulumi.Output.secret(routing_key)
-            __props__.__dict__["scheme"] = scheme
             __props__.__dict__["secret"] = None if secret is None else pulumi.Output.secret(secret)
             __props__.__dict__["service_discovery"] = None if service_discovery is None else pulumi.Output.secret(service_discovery)
             __props__.__dict__["service_key"] = None if service_key is None else pulumi.Output.secret(service_key)
@@ -666,7 +631,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             routing_key: Optional[pulumi.Input[str]] = None,
-            scheme: Optional[pulumi.Input[str]] = None,
             secret: Optional[pulumi.Input[str]] = None,
             service_discovery: Optional[pulumi.Input[str]] = None,
             service_key: Optional[pulumi.Input[str]] = None,
@@ -706,7 +670,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["routing_key"] = routing_key
-        __props__.__dict__["scheme"] = scheme
         __props__.__dict__["secret"] = secret
         __props__.__dict__["service_discovery"] = service_discovery
         __props__.__dict__["service_key"] = service_key
@@ -758,12 +721,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @pulumi.getter(name="routingKey")
     def routing_key(self) -> pulumi.Output[str]:
         return pulumi.get(self, "routing_key")
-
-    @property
-    @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated and will be removed in version 1.18.0.""")
-    def scheme(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "scheme")
 
     @property
     @pulumi.getter

@@ -15,44 +15,7 @@ import (
 //
 // `getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			identityProvider, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identity_provider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
-//				FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f"),
-//				Name:                 pulumi.String("mongodb_federation_test"),
-//				AssociatedDomains: pulumi.StringArray{
-//					pulumi.String("yourdomain.com"),
-//				},
-//				SsoDebugEnabled: pulumi.Bool(true),
-//				Status:          pulumi.String("ACTIVE"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = identityProvider.ID().ApplyT(func(id string) (mongodbatlas.GetFederatedSettingsIdentityProvidersResult, error) {
-//				return mongodbatlas.GetFederatedSettingsIdentityProvidersResult(interface{}(mongodbatlas.LookupFederatedSettingsIdentityProvidersOutput(ctx, mongodbatlas.GetFederatedSettingsIdentityProvidersOutputArgs{
-//					FederationSettingsId: id,
-//					PageNum:              1,
-//					ItemsPerPage:         5,
-//				}, nil))), nil
-//			}).(mongodbatlas.GetFederatedSettingsIdentityProvidersResultOutput)
-//			return nil
-//		})
-//	}
-//
-// ```
+// Note: This implementation returns a maximum of 100 results.
 func LookupFederatedSettingsIdentityProviders(ctx *pulumi.Context, args *LookupFederatedSettingsIdentityProvidersArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsIdentityProvidersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsIdentityProvidersResult
@@ -69,14 +32,6 @@ type LookupFederatedSettingsIdentityProvidersArgs struct {
 	FederationSettingsId string `pulumi:"federationSettingsId"`
 	// The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
 	IdpTypes []string `pulumi:"idpTypes"`
-	// Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	ItemsPerPage *int `pulumi:"itemsPerPage"`
-	// The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	PageNum *int `pulumi:"pageNum"`
 	// The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
 	Protocols []string `pulumi:"protocols"`
 }
@@ -86,12 +41,8 @@ type LookupFederatedSettingsIdentityProvidersResult struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	FederationSettingsId string `pulumi:"federationSettingsId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string   `pulumi:"id"`
-	IdpTypes []string `pulumi:"idpTypes"`
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	ItemsPerPage *int `pulumi:"itemsPerPage"`
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	PageNum   *int     `pulumi:"pageNum"`
+	Id        string   `pulumi:"id"`
+	IdpTypes  []string `pulumi:"idpTypes"`
 	Protocols []string `pulumi:"protocols"`
 	// Includes cloudProviderSnapshot object for each item detailed in the results array section.
 	// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
@@ -117,14 +68,6 @@ type LookupFederatedSettingsIdentityProvidersOutputArgs struct {
 	FederationSettingsId pulumi.StringInput `pulumi:"federationSettingsId"`
 	// The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
 	IdpTypes pulumi.StringArrayInput `pulumi:"idpTypes"`
-	// Number of items to return per page, up to a maximum of 500. Defaults to `100`. **Note**: This attribute is deprecated and not being used. The implementation is currently limited to returning a maximum of 100 results.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
-	// The page to return. Defaults to `1`. **Note**: This attribute is deprecated and not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
 	// The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
 	Protocols pulumi.StringArrayInput `pulumi:"protocols"`
 }
@@ -160,16 +103,6 @@ func (o LookupFederatedSettingsIdentityProvidersResultOutput) Id() pulumi.String
 
 func (o LookupFederatedSettingsIdentityProvidersResultOutput) IdpTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProvidersResult) []string { return v.IdpTypes }).(pulumi.StringArrayOutput)
-}
-
-// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-func (o LookupFederatedSettingsIdentityProvidersResultOutput) ItemsPerPage() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LookupFederatedSettingsIdentityProvidersResult) *int { return v.ItemsPerPage }).(pulumi.IntPtrOutput)
-}
-
-// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-func (o LookupFederatedSettingsIdentityProvidersResultOutput) PageNum() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LookupFederatedSettingsIdentityProvidersResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
 }
 
 func (o LookupFederatedSettingsIdentityProvidersResultOutput) Protocols() pulumi.StringArrayOutput {

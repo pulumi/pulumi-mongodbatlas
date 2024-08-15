@@ -22,10 +22,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string IpAddress;
         /// <summary>
-        /// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-        /// </summary>
-        public readonly string ServiceAttachmentName;
-        /// <summary>
         /// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         /// </summary>
         public readonly string Status;
@@ -36,13 +32,10 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string ipAddress,
 
-            string serviceAttachmentName,
-
             string status)
         {
             EndpointName = endpointName;
             IpAddress = ipAddress;
-            ServiceAttachmentName = serviceAttachmentName;
             Status = status;
         }
     }

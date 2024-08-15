@@ -42,9 +42,13 @@ public final class GetAdvancedClustersResult {
     private List<GetAdvancedClustersResultConnectionString> connectionStrings;
     private String createDate;
     /**
-     * @return Capacity, in gigabytes, of the host&#39;s root volume.
+     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     private Double diskSizeGb;
     /**
      * @return Possible values are AWS, GCP, AZURE or NONE.
@@ -87,7 +91,7 @@ public final class GetAdvancedClustersResult {
      */
     private Boolean pitEnabled;
     /**
-     * @return Configuration for cluster regions and the hardware provisioned in them. See below
+     * @return List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
      * 
      */
     private List<GetAdvancedClustersResultReplicationSpec> replicationSpecs;
@@ -153,9 +157,13 @@ public final class GetAdvancedClustersResult {
         return this.createDate;
     }
     /**
-     * @return Capacity, in gigabytes, of the host&#39;s root volume.
+     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide.html.markdown */
     public Double diskSizeGb() {
         return this.diskSizeGb;
     }
@@ -216,7 +224,7 @@ public final class GetAdvancedClustersResult {
         return this.pitEnabled;
     }
     /**
-     * @return Configuration for cluster regions and the hardware provisioned in them. See below
+     * @return List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
      * 
      */
     public List<GetAdvancedClustersResultReplicationSpec> replicationSpecs() {

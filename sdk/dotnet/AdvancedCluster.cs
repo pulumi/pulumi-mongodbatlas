@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** To enable Cluster Extended Storage Sizes use the `is_extended_storage_sizes_enabled` parameter in the mongodbatlas.Project resource.
     /// 
-    /// &gt; **NOTE:** The Low-CPU instance clusters are prefixed with `R`, i.e. `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
+    /// &gt; **NOTE:** The Low-CPU instance clusters are prefixed with `R`, for example `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each Cloud Provider (https://www.mongodb.com/docs/atlas/reference/cloud-providers/).
     /// 
     /// ## Example Usage
     /// 
@@ -211,7 +211,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
-    /// ### Example of a Multi-Cloud Cluster
+    /// ### Example of a Multi Cloud Sharded Cluster with 2 shards
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -231,7 +231,6 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
     ///             {
-    ///                 NumShards = 3,
     ///                 RegionConfigs = new[]
     ///                 {
     ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
@@ -240,11 +239,6 @@ namespace Pulumi.Mongodbatlas
     ///                         {
     ///                             InstanceSize = "M10",
     ///                             NodeCount = 3,
-    ///                         },
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
     ///                         },
     ///                         ProviderName = "AWS",
     ///                         Priority = 7,
@@ -257,14 +251,26 @@ namespace Pulumi.Mongodbatlas
     ///                             InstanceSize = "M10",
     ///                             NodeCount = 2,
     ///                         },
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
-    ///                         },
     ///                         ProviderName = "AZURE",
     ///                         Priority = 6,
     ///                         RegionName = "US_EAST_2",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                         ProviderName = "AWS",
+    ///                         Priority = 7,
+    ///                         RegionName = "US_EAST_1",
     ///                     },
     ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
     ///                     {
@@ -273,14 +279,9 @@ namespace Pulumi.Mongodbatlas
     ///                             InstanceSize = "M10",
     ///                             NodeCount = 2,
     ///                         },
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
-    ///                         },
-    ///                         ProviderName = "GCP",
-    ///                         Priority = 5,
-    ///                         RegionName = "US_EAST_4",
+    ///                         ProviderName = "AZURE",
+    ///                         Priority = 6,
+    ///                         RegionName = "US_EAST_2",
     ///                     },
     ///                 },
     ///             },
@@ -288,7 +289,7 @@ namespace Pulumi.Mongodbatlas
     ///         AdvancedConfiguration = new Mongodbatlas.Inputs.AdvancedClusterAdvancedConfigurationArgs
     ///         {
     ///             JavascriptEnabled = true,
-    ///             OplogSizeMb = 30,
+    ///             OplogSizeMb = 991,
     ///             SampleRefreshIntervalBiConnector = 300,
     ///         },
     ///     });
@@ -296,7 +297,7 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// ### Example of a Global Cluster
+    /// ### Example of a Global Cluster with 2 zones
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -316,7 +317,6 @@ namespace Pulumi.Mongodbatlas
     ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
     ///             {
     ///                 ZoneName = "zone n1",
-    ///                 NumShards = 3,
     ///                 RegionConfigs = new[]
     ///                 {
     ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
@@ -325,11 +325,6 @@ namespace Pulumi.Mongodbatlas
     ///                         {
     ///                             InstanceSize = "M10",
     ///                             NodeCount = 3,
-    ///                         },
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
     ///                         },
     ///                         ProviderName = "AWS",
     ///                         Priority = 7,
@@ -342,37 +337,15 @@ namespace Pulumi.Mongodbatlas
     ///                             InstanceSize = "M10",
     ///                             NodeCount = 2,
     ///                         },
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
-    ///                         },
     ///                         ProviderName = "AZURE",
     ///                         Priority = 6,
     ///                         RegionName = "US_EAST_2",
-    ///                     },
-    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
-    ///                     {
-    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 2,
-    ///                         },
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
-    ///                         },
-    ///                         ProviderName = "GCP",
-    ///                         Priority = 5,
-    ///                         RegionName = "US_EAST_4",
     ///                     },
     ///                 },
     ///             },
     ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
     ///             {
-    ///                 ZoneName = "zone n2",
-    ///                 NumShards = 2,
+    ///                 ZoneName = "zone n1",
     ///                 RegionConfigs = new[]
     ///                 {
     ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
@@ -382,10 +355,34 @@ namespace Pulumi.Mongodbatlas
     ///                             InstanceSize = "M10",
     ///                             NodeCount = 3,
     ///                         },
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
+    ///                         ProviderName = "AWS",
+    ///                         Priority = 7,
+    ///                         RegionName = "US_EAST_1",
+    ///                     },
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
     ///                         {
     ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
+    ///                             NodeCount = 2,
+    ///                         },
+    ///                         ProviderName = "AZURE",
+    ///                         Priority = 6,
+    ///                         RegionName = "US_EAST_2",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 ZoneName = "zone n2",
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
     ///                         },
     ///                         ProviderName = "AWS",
     ///                         Priority = 7,
@@ -398,14 +395,27 @@ namespace Pulumi.Mongodbatlas
     ///                             InstanceSize = "M10",
     ///                             NodeCount = 2,
     ///                         },
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
-    ///                         },
     ///                         ProviderName = "AZURE",
     ///                         Priority = 6,
     ///                         RegionName = "EUROPE_NORTH",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 ZoneName = "zone n2",
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                         ProviderName = "AWS",
+    ///                         Priority = 7,
+    ///                         RegionName = "EU_WEST_1",
     ///                     },
     ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
     ///                     {
@@ -414,14 +424,9 @@ namespace Pulumi.Mongodbatlas
     ///                             InstanceSize = "M10",
     ///                             NodeCount = 2,
     ///                         },
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
-    ///                         },
-    ///                         ProviderName = "GCP",
-    ///                         Priority = 5,
-    ///                         RegionName = "US_EAST_4",
+    ///                         ProviderName = "AZURE",
+    ///                         Priority = 6,
+    ///                         RegionName = "EUROPE_NORTH",
     ///                     },
     ///                 },
     ///             },
@@ -475,6 +480,9 @@ namespace Pulumi.Mongodbatlas
     /// $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
     /// ```
     /// See detailed information for arguments and attributes: [MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
+    /// 
+    /// ~&gt; __IMPORTANT:__
+    /// \n\n &amp;#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/advancedCluster:AdvancedCluster")]
     public partial class AdvancedCluster : global::Pulumi.CustomResource
@@ -534,7 +542,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> CreateDate { get; private set; } = null!;
 
         /// <summary>
-        /// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
+        /// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
         /// </summary>
         [Output("diskSizeGb")]
         public Output<double> DiskSizeGb { get; private set; } = null!;
@@ -591,7 +599,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration for cluster regions and the hardware provisioned in them. See below
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
         /// </summary>
         [Output("replicationSpecs")]
         public Output<ImmutableArray<Outputs.AdvancedClusterReplicationSpec>> ReplicationSpecs { get; private set; } = null!;
@@ -616,6 +624,7 @@ namespace Pulumi.Mongodbatlas
         /// - DELETING
         /// - DELETED
         /// - REPAIRING
+        /// * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         /// </summary>
         [Output("stateName")]
         public Output<string> StateName { get; private set; } = null!;
@@ -726,7 +735,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ClusterType { get; set; } = null!;
 
         /// <summary>
-        /// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
+        /// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
         /// </summary>
         [Input("diskSizeGb")]
         public Input<double>? DiskSizeGb { get; set; }
@@ -787,7 +796,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterReplicationSpecArgs>? _replicationSpecs;
 
         /// <summary>
-        /// Configuration for cluster regions and the hardware provisioned in them. See below
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecArgs> ReplicationSpecs
         {
@@ -902,7 +911,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? CreateDate { get; set; }
 
         /// <summary>
-        /// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
+        /// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_config.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
         /// </summary>
         [Input("diskSizeGb")]
         public Input<double>? DiskSizeGb { get; set; }
@@ -969,7 +978,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterReplicationSpecGetArgs>? _replicationSpecs;
 
         /// <summary>
-        /// Configuration for cluster regions and the hardware provisioned in them. See below
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecGetArgs> ReplicationSpecs
         {
@@ -997,6 +1006,7 @@ namespace Pulumi.Mongodbatlas
         /// - DELETING
         /// - DELETED
         /// - REPAIRING
+        /// * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         /// </summary>
         [Input("stateName")]
         public Input<string>? StateName { get; set; }

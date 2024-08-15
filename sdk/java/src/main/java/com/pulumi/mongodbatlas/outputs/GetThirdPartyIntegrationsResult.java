@@ -54,15 +54,6 @@ public final class GetThirdPartyIntegrationsResult {
      */
     private String routingKey;
     /**
-     * @return Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    private @Nullable String scheme;
-    /**
      * @return An optional field for your webhook secret.
      * * `MICROSOFT_TEAMS`
      * 
@@ -156,17 +147,6 @@ public final class GetThirdPartyIntegrationsResult {
         return this.routingKey;
     }
     /**
-     * @return Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public Optional<String> scheme() {
-        return Optional.ofNullable(this.scheme);
-    }
-    /**
      * @return An optional field for your webhook secret.
      * * `MICROSOFT_TEAMS`
      * 
@@ -232,7 +212,6 @@ public final class GetThirdPartyIntegrationsResult {
         private String projectId;
         private String region;
         private String routingKey;
-        private @Nullable String scheme;
         private String secret;
         private @Nullable String serviceDiscovery;
         private String serviceKey;
@@ -252,7 +231,6 @@ public final class GetThirdPartyIntegrationsResult {
     	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
     	      this.routingKey = defaults.routingKey;
-    	      this.scheme = defaults.scheme;
     	      this.secret = defaults.secret;
     	      this.serviceDiscovery = defaults.serviceDiscovery;
     	      this.serviceKey = defaults.serviceKey;
@@ -331,12 +309,6 @@ public final class GetThirdPartyIntegrationsResult {
             return this;
         }
         @CustomType.Setter
-        public Builder scheme(@Nullable String scheme) {
-
-            this.scheme = scheme;
-            return this;
-        }
-        @CustomType.Setter
         public Builder secret(String secret) {
             if (secret == null) {
               throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "secret");
@@ -399,7 +371,6 @@ public final class GetThirdPartyIntegrationsResult {
             _resultValue.projectId = projectId;
             _resultValue.region = region;
             _resultValue.routingKey = routingKey;
-            _resultValue.scheme = scheme;
             _resultValue.secret = secret;
             _resultValue.serviceDiscovery = serviceDiscovery;
             _resultValue.serviceKey = serviceKey;

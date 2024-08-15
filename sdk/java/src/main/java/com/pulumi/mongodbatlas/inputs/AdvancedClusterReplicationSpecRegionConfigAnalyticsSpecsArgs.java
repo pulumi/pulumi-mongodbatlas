@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -18,18 +19,33 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
     public static final AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs Empty = new AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs();
 
     /**
-     * Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebs_volume_type` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster.
      * 
      */
     @Import(name="diskIops")
     private @Nullable Output<Integer> diskIops;
 
     /**
-     * @return Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster.
+     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebs_volume_type` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster.
      * 
      */
     public Optional<Output<Integer>> diskIops() {
         return Optional.ofNullable(this.diskIops);
+    }
+
+    /**
+     * Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+     * 
+     */
+    @Import(name="diskSizeGb")
+    private @Nullable Output<Double> diskSizeGb;
+
+    /**
+     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+     * 
+     */
+    public Optional<Output<Double>> diskSizeGb() {
+        return Optional.ofNullable(this.diskSizeGb);
     }
 
     /**
@@ -52,14 +68,14 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
     }
 
     /**
-     * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+     * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as &#34;base nodes&#34;) within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      * 
      */
     @Import(name="instanceSize", required=true)
     private Output<String> instanceSize;
 
     /**
-     * @return Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+     * @return Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as &#34;base nodes&#34;) within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      * 
      */
     public Output<String> instanceSize() {
@@ -85,6 +101,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
 
     private AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs $) {
         this.diskIops = $.diskIops;
+        this.diskSizeGb = $.diskSizeGb;
         this.ebsVolumeType = $.ebsVolumeType;
         this.instanceSize = $.instanceSize;
         this.nodeCount = $.nodeCount;
@@ -109,7 +126,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
         }
 
         /**
-         * @param diskIops Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster.
+         * @param diskIops Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebs_volume_type` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster.
          * 
          * @return builder
          * 
@@ -120,13 +137,34 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
         }
 
         /**
-         * @param diskIops Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster.
+         * @param diskIops Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebs_volume_type` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster.
          * 
          * @return builder
          * 
          */
         public Builder diskIops(Integer diskIops) {
             return diskIops(Output.of(diskIops));
+        }
+
+        /**
+         * @param diskSizeGb Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder diskSizeGb(@Nullable Output<Double> diskSizeGb) {
+            $.diskSizeGb = diskSizeGb;
+            return this;
+        }
+
+        /**
+         * @param diskSizeGb Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder diskSizeGb(Double diskSizeGb) {
+            return diskSizeGb(Output.of(diskSizeGb));
         }
 
         /**
@@ -155,7 +193,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
         }
 
         /**
-         * @param instanceSize Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+         * @param instanceSize Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as &#34;base nodes&#34;) within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
          * 
          * @return builder
          * 
@@ -166,7 +204,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
         }
 
         /**
-         * @param instanceSize Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+         * @param instanceSize Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as &#34;base nodes&#34;) within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
          * 
          * @return builder
          * 

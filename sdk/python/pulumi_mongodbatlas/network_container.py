@@ -435,8 +435,6 @@ class NetworkContainer(pulumi.CustomResource):
         ```
         See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
 
-        -> __NOTE:__ If you need to get an existing container ID see the How-To Guide.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] atlas_cidr_block: CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
@@ -524,8 +522,6 @@ class NetworkContainer(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a
         ```
         See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
-
-        -> __NOTE:__ If you need to get an existing container ID see the How-To Guide.
 
         :param str resource_name: The name of the resource.
         :param NetworkContainerArgs args: The arguments to use to populate this resource's properties.

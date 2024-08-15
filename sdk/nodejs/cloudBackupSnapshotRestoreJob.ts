@@ -183,12 +183,6 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
      */
     public readonly clusterName!: pulumi.Output<string>;
     /**
-     * UTC ISO 8601 formatted point in time when Atlas created the restore job.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
-    /**
      * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
      * * `delivery_type_config.download` - Set to `true` to use the download configuration.
@@ -262,7 +256,6 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
             const state = argsOrState as CloudBackupSnapshotRestoreJobState | undefined;
             resourceInputs["cancelled"] = state ? state.cancelled : undefined;
             resourceInputs["clusterName"] = state ? state.clusterName : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["deliveryTypeConfig"] = state ? state.deliveryTypeConfig : undefined;
             resourceInputs["deliveryUrls"] = state ? state.deliveryUrls : undefined;
             resourceInputs["expired"] = state ? state.expired : undefined;
@@ -285,7 +278,6 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
             resourceInputs["cancelled"] = undefined /*out*/;
-            resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["deliveryUrls"] = undefined /*out*/;
             resourceInputs["expired"] = undefined /*out*/;
             resourceInputs["expiresAt"] = undefined /*out*/;
@@ -310,12 +302,6 @@ export interface CloudBackupSnapshotRestoreJobState {
      * The name of the Atlas cluster whose snapshot you want to restore.
      */
     clusterName?: pulumi.Input<string>;
-    /**
-     * UTC ISO 8601 formatted point in time when Atlas created the restore job.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    createdAt?: pulumi.Input<string>;
     /**
      * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.

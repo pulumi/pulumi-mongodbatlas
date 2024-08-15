@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -14,10 +15,15 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     /**
-     * @return Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster.
+     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebs_volume_type` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster.
      * 
      */
     private @Nullable Integer diskIops;
+    /**
+     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+     * 
+     */
+    private @Nullable Double diskSizeGb;
     /**
      * @return Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Valid values are:
      * * `STANDARD` volume types can&#39;t exceed the default IOPS rate for the selected volume size.
@@ -26,7 +32,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     private @Nullable String ebsVolumeType;
     /**
-     * @return Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+     * @return Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as &#34;base nodes&#34;) within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      * 
      */
     private String instanceSize;
@@ -38,11 +44,18 @@ public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
 
     private AdvancedClusterReplicationSpecRegionConfigElectableSpecs() {}
     /**
-     * @return Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster.
+     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to &#34;M30&#34; or greater (not including &#34;Mxx_NVME&#34; tiers), and `ebs_volume_type` is &#34;PROVISIONED&#34;. You can&#39;t set this attribute for a multi-cloud cluster.
      * 
      */
     public Optional<Integer> diskIops() {
         return Optional.ofNullable(this.diskIops);
+    }
+    /**
+     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+     * 
+     */
+    public Optional<Double> diskSizeGb() {
+        return Optional.ofNullable(this.diskSizeGb);
     }
     /**
      * @return Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Valid values are:
@@ -54,7 +67,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
         return Optional.ofNullable(this.ebsVolumeType);
     }
     /**
-     * @return Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+     * @return Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as &#34;base nodes&#34;) within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      * 
      */
     public String instanceSize() {
@@ -78,6 +91,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Integer diskIops;
+        private @Nullable Double diskSizeGb;
         private @Nullable String ebsVolumeType;
         private String instanceSize;
         private @Nullable Integer nodeCount;
@@ -85,6 +99,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
         public Builder(AdvancedClusterReplicationSpecRegionConfigElectableSpecs defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.diskIops = defaults.diskIops;
+    	      this.diskSizeGb = defaults.diskSizeGb;
     	      this.ebsVolumeType = defaults.ebsVolumeType;
     	      this.instanceSize = defaults.instanceSize;
     	      this.nodeCount = defaults.nodeCount;
@@ -94,6 +109,12 @@ public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
         public Builder diskIops(@Nullable Integer diskIops) {
 
             this.diskIops = diskIops;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder diskSizeGb(@Nullable Double diskSizeGb) {
+
+            this.diskSizeGb = diskSizeGb;
             return this;
         }
         @CustomType.Setter
@@ -119,6 +140,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
         public AdvancedClusterReplicationSpecRegionConfigElectableSpecs build() {
             final var _resultValue = new AdvancedClusterReplicationSpecRegionConfigElectableSpecs();
             _resultValue.diskIops = diskIops;
+            _resultValue.diskSizeGb = diskSizeGb;
             _resultValue.ebsVolumeType = ebsVolumeType;
             _resultValue.instanceSize = instanceSize;
             _resultValue.nodeCount = nodeCount;

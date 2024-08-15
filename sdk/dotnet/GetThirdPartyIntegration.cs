@@ -114,12 +114,6 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
-        /// <summary>
-        /// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-        /// </summary>
-        [Input("scheme")]
-        public string? Scheme { get; set; }
-
         [Input("serviceDiscovery")]
         private string? _serviceDiscovery;
 
@@ -193,12 +187,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
-
-        /// <summary>
-        /// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-        /// </summary>
-        [Input("scheme")]
-        public Input<string>? Scheme { get; set; }
 
         [Input("serviceDiscovery")]
         private Input<string>? _serviceDiscovery;
@@ -286,10 +274,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string RoutingKey;
         /// <summary>
-        /// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-        /// </summary>
-        public readonly string? Scheme;
-        /// <summary>
         /// An optional field for your webhook secret.
         /// * `MICROSOFT_TEAMS`
         /// </summary>
@@ -334,8 +318,6 @@ namespace Pulumi.Mongodbatlas
 
             string routingKey,
 
-            string? scheme,
-
             string secret,
 
             string? serviceDiscovery,
@@ -359,7 +341,6 @@ namespace Pulumi.Mongodbatlas
             ProjectId = projectId;
             Region = region;
             RoutingKey = routingKey;
-            Scheme = scheme;
             Secret = secret;
             ServiceDiscovery = serviceDiscovery;
             ServiceKey = serviceKey;

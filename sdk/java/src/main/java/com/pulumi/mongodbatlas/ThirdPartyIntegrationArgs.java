@@ -81,25 +81,6 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
         return Optional.ofNullable(this.routingKey);
     }
 
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    @Import(name="scheme")
-    private @Nullable Output<String> scheme;
-
-    /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public Optional<Output<String>> scheme() {
-        return Optional.ofNullable(this.scheme);
-    }
-
     @Import(name="secret")
     private @Nullable Output<String> secret;
 
@@ -186,7 +167,6 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
         this.projectId = $.projectId;
         this.region = $.region;
         this.routingKey = $.routingKey;
-        this.scheme = $.scheme;
         this.secret = $.secret;
         this.serviceDiscovery = $.serviceDiscovery;
         this.serviceKey = $.serviceKey;
@@ -296,31 +276,6 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
 
         public Builder routingKey(String routingKey) {
             return routingKey(Output.of(routingKey));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder scheme(@Nullable Output<String> scheme) {
-            $.scheme = scheme;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder scheme(String scheme) {
-            return scheme(Output.of(scheme));
         }
 
         public Builder secret(@Nullable Output<String> secret) {

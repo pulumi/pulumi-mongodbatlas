@@ -64,29 +64,6 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
     }
 
     /**
-     * Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    @Import(name="scheme")
-    private @Nullable String scheme;
-
-    /**
-     * @return Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public Optional<String> scheme() {
-        return Optional.ofNullable(this.scheme);
-    }
-
-    /**
      * Indicates which service discovery method is used, either file or http.
      * 
      */
@@ -151,7 +128,6 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
         this.enabled = $.enabled;
         this.microsoftTeamsWebhookUrl = $.microsoftTeamsWebhookUrl;
         this.projectId = $.projectId;
-        this.scheme = $.scheme;
         this.serviceDiscovery = $.serviceDiscovery;
         this.type = $.type;
         this.userName = $.userName;
@@ -206,21 +182,6 @@ public final class GetThirdPartyIntegrationPlainArgs extends com.pulumi.resource
          */
         public Builder projectId(String projectId) {
             $.projectId = projectId;
-            return this;
-        }
-
-        /**
-         * @param scheme Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in version 1.18.0.
-         * 
-         */
-        @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-        public Builder scheme(@Nullable String scheme) {
-            $.scheme = scheme;
             return this;
         }
 

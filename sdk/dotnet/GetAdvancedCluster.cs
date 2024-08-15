@@ -67,6 +67,73 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
+        /// 
+        /// ## Example using latest sharding schema with independent shard scaling in the cluster
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleAdvancedCluster = new Mongodbatlas.AdvancedCluster("example", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "cluster-test",
+        ///         BackupEnabled = false,
+        ///         ClusterType = "SHARDED",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M30",
+        ///                             DiskIops = 3000,
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                         ProviderName = "AWS",
+        ///                         Priority = 7,
+        ///                         RegionName = "EU_WEST_1",
+        ///                     },
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M40",
+        ///                             DiskIops = 3000,
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                         ProviderName = "AWS",
+        ///                         Priority = 7,
+        ///                         RegionName = "EU_WEST_1",
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var example = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     {
+        ///         ProjectId = exampleAdvancedCluster.ProjectId,
+        ///         Name = exampleAdvancedCluster.Name,
+        ///         UseReplicationSpecPerShard = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetAdvancedClusterResult> InvokeAsync(GetAdvancedClusterArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClusterResult>("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args ?? new GetAdvancedClusterArgs(), options.WithDefaults());
@@ -127,6 +194,73 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
+        /// 
+        /// ## Example using latest sharding schema with independent shard scaling in the cluster
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleAdvancedCluster = new Mongodbatlas.AdvancedCluster("example", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "cluster-test",
+        ///         BackupEnabled = false,
+        ///         ClusterType = "SHARDED",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M30",
+        ///                             DiskIops = 3000,
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                         ProviderName = "AWS",
+        ///                         Priority = 7,
+        ///                         RegionName = "EU_WEST_1",
+        ///                     },
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M40",
+        ///                             DiskIops = 3000,
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                         ProviderName = "AWS",
+        ///                         Priority = 7,
+        ///                         RegionName = "EU_WEST_1",
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var example = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     {
+        ///         ProjectId = exampleAdvancedCluster.ProjectId,
+        ///         Name = exampleAdvancedCluster.Name,
+        ///         UseReplicationSpecPerShard = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAdvancedClusterResult> Invoke(GetAdvancedClusterInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAdvancedClusterResult>("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args ?? new GetAdvancedClusterInvokeArgs(), options.WithDefaults());
@@ -153,6 +287,12 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+        /// </summary>
+        [Input("useReplicationSpecPerShard")]
+        public bool? UseReplicationSpecPerShard { get; set; }
+
         public GetAdvancedClusterArgs()
         {
         }
@@ -178,6 +318,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+        /// </summary>
+        [Input("useReplicationSpecPerShard")]
+        public Input<bool>? UseReplicationSpecPerShard { get; set; }
 
         public GetAdvancedClusterInvokeArgs()
         {
@@ -208,7 +354,7 @@ namespace Pulumi.Mongodbatlas
         public readonly ImmutableArray<Outputs.GetAdvancedClusterConnectionStringResult> ConnectionStrings;
         public readonly string CreateDate;
         /// <summary>
-        /// Capacity, in gigabytes, of the host's root volume.
+        /// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
         /// </summary>
         public readonly double DiskSizeGb;
         /// <summary>
@@ -224,7 +370,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED.)** Use `tags` instead.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClusterLabelResult> Labels;
         /// <summary>
@@ -246,7 +392,7 @@ namespace Pulumi.Mongodbatlas
         public readonly bool PitEnabled;
         public readonly string ProjectId;
         /// <summary>
-        /// Configuration for cluster regions and the hardware provisioned in them. See below.
+        /// List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClusterReplicationSpecResult> ReplicationSpecs;
         /// <summary>
@@ -265,6 +411,7 @@ namespace Pulumi.Mongodbatlas
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
         public readonly bool TerminationProtectionEnabled;
+        public readonly bool? UseReplicationSpecPerShard;
         /// <summary>
         /// Release cadence that Atlas uses for this cluster.
         /// </summary>
@@ -316,6 +463,8 @@ namespace Pulumi.Mongodbatlas
 
             bool terminationProtectionEnabled,
 
+            bool? useReplicationSpecPerShard,
+
             string versionReleaseSystem)
         {
             AdvancedConfigurations = advancedConfigurations;
@@ -340,6 +489,7 @@ namespace Pulumi.Mongodbatlas
             StateName = stateName;
             Tags = tags;
             TerminationProtectionEnabled = terminationProtectionEnabled;
+            UseReplicationSpecPerShard = useReplicationSpecPerShard;
             VersionReleaseSystem = versionReleaseSystem;
         }
     }

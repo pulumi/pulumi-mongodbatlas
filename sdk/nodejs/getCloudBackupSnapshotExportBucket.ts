@@ -34,7 +34,6 @@ export function getCloudBackupSnapshotExportBucket(args: GetCloudBackupSnapshotE
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", {
         "exportBucketId": args.exportBucketId,
-        "id": args.id,
         "projectId": args.projectId,
     }, opts);
 }
@@ -48,10 +47,6 @@ export interface GetCloudBackupSnapshotExportBucketArgs {
      */
     exportBucketId: string;
     /**
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-     */
-    id?: string;
-    /**
      * The unique identifier of the project for the Atlas cluster.
      */
     projectId: string;
@@ -62,23 +57,32 @@ export interface GetCloudBackupSnapshotExportBucketArgs {
  */
 export interface GetCloudBackupSnapshotExportBucketResult {
     /**
-     * Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+     * Name of the bucket that the provided role ID is authorized to access.
      */
     readonly bucketName: string;
     /**
-     * Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+     * Name of the provider of the cloud service where Atlas can access the S3 bucket.
      */
     readonly cloudProvider: string;
     readonly exportBucketId: string;
     /**
-     * Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+     * Unique identifier of the role that Atlas can use to access the bucket.
      */
     readonly iamRoleId: string;
-    /**
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-     */
     readonly id: string;
     readonly projectId: string;
+    /**
+     * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container.
+     */
+    readonly roleId: string;
+    /**
+     * URL that identifies the blob Endpoint of the Azure Blob Storage Account.
+     */
+    readonly serviceUrl: string;
+    /**
+     * UUID that identifies the Azure Active Directory Tenant ID.
+     */
+    readonly tenantId: string;
 }
 /**
  * ## # Data Source: mongodbatlas.CloudBackupSnapshotExportBucket
@@ -117,10 +121,6 @@ export interface GetCloudBackupSnapshotExportBucketOutputArgs {
      * Unique identifier of the snapshot export bucket.
      */
     exportBucketId: pulumi.Input<string>;
-    /**
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0. Will not be an input parameter, only computed.
-     */
-    id?: pulumi.Input<string>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */

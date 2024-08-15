@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resources.ResourceArgs {
@@ -15,14 +17,14 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
     public static final CloudBackupSnapshotExportBucketArgs Empty = new CloudBackupSnapshotExportBucketArgs();
 
     /**
-     * Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+     * Name of the bucket that the provided role ID is authorized to access.
      * 
      */
     @Import(name="bucketName", required=true)
     private Output<String> bucketName;
 
     /**
-     * @return Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+     * @return Name of the bucket that the provided role ID is authorized to access.
      * 
      */
     public Output<String> bucketName() {
@@ -30,14 +32,14 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
     }
 
     /**
-     * Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+     * Name of the provider of the cloud service where Atlas can access the S3 bucket.
      * 
      */
     @Import(name="cloudProvider", required=true)
     private Output<String> cloudProvider;
 
     /**
-     * @return Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+     * @return Name of the provider of the cloud service where Atlas can access the S3 bucket.
      * 
      */
     public Output<String> cloudProvider() {
@@ -45,18 +47,18 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
     }
 
     /**
-     * Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+     * Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
      * 
      */
-    @Import(name="iamRoleId", required=true)
-    private Output<String> iamRoleId;
+    @Import(name="iamRoleId")
+    private @Nullable Output<String> iamRoleId;
 
     /**
-     * @return Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+     * @return Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
      * 
      */
-    public Output<String> iamRoleId() {
-        return this.iamRoleId;
+    public Optional<Output<String>> iamRoleId() {
+        return Optional.ofNullable(this.iamRoleId);
     }
 
     /**
@@ -74,6 +76,51 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         return this.projectId;
     }
 
+    /**
+     * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+     * 
+     */
+    @Import(name="roleId")
+    private @Nullable Output<String> roleId;
+
+    /**
+     * @return Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+     * 
+     */
+    public Optional<Output<String>> roleId() {
+        return Optional.ofNullable(this.roleId);
+    }
+
+    /**
+     * URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+     * 
+     */
+    @Import(name="serviceUrl")
+    private @Nullable Output<String> serviceUrl;
+
+    /**
+     * @return URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+     * 
+     */
+    public Optional<Output<String>> serviceUrl() {
+        return Optional.ofNullable(this.serviceUrl);
+    }
+
+    /**
+     * UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+     * 
+     */
+    @Import(name="tenantId")
+    private @Nullable Output<String> tenantId;
+
+    /**
+     * @return UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+     * 
+     */
+    public Optional<Output<String>> tenantId() {
+        return Optional.ofNullable(this.tenantId);
+    }
+
     private CloudBackupSnapshotExportBucketArgs() {}
 
     private CloudBackupSnapshotExportBucketArgs(CloudBackupSnapshotExportBucketArgs $) {
@@ -81,6 +128,9 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         this.cloudProvider = $.cloudProvider;
         this.iamRoleId = $.iamRoleId;
         this.projectId = $.projectId;
+        this.roleId = $.roleId;
+        this.serviceUrl = $.serviceUrl;
+        this.tenantId = $.tenantId;
     }
 
     public static Builder builder() {
@@ -102,7 +152,7 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param bucketName Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+         * @param bucketName Name of the bucket that the provided role ID is authorized to access.
          * 
          * @return builder
          * 
@@ -113,7 +163,7 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param bucketName Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+         * @param bucketName Name of the bucket that the provided role ID is authorized to access.
          * 
          * @return builder
          * 
@@ -123,7 +173,7 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param cloudProvider Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+         * @param cloudProvider Name of the provider of the cloud service where Atlas can access the S3 bucket.
          * 
          * @return builder
          * 
@@ -134,7 +184,7 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param cloudProvider Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+         * @param cloudProvider Name of the provider of the cloud service where Atlas can access the S3 bucket.
          * 
          * @return builder
          * 
@@ -144,18 +194,18 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
         }
 
         /**
-         * @param iamRoleId Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+         * @param iamRoleId Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
          * 
          * @return builder
          * 
          */
-        public Builder iamRoleId(Output<String> iamRoleId) {
+        public Builder iamRoleId(@Nullable Output<String> iamRoleId) {
             $.iamRoleId = iamRoleId;
             return this;
         }
 
         /**
-         * @param iamRoleId Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+         * @param iamRoleId Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
          * 
          * @return builder
          * 
@@ -185,15 +235,75 @@ public final class CloudBackupSnapshotExportBucketArgs extends com.pulumi.resour
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param roleId Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleId(@Nullable Output<String> roleId) {
+            $.roleId = roleId;
+            return this;
+        }
+
+        /**
+         * @param roleId Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleId(String roleId) {
+            return roleId(Output.of(roleId));
+        }
+
+        /**
+         * @param serviceUrl URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceUrl(@Nullable Output<String> serviceUrl) {
+            $.serviceUrl = serviceUrl;
+            return this;
+        }
+
+        /**
+         * @param serviceUrl URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceUrl(String serviceUrl) {
+            return serviceUrl(Output.of(serviceUrl));
+        }
+
+        /**
+         * @param tenantId UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tenantId(@Nullable Output<String> tenantId) {
+            $.tenantId = tenantId;
+            return this;
+        }
+
+        /**
+         * @param tenantId UUID that identifies the Azure Active Directory Tenant ID. Required if `cloud_provider` is set to `AZURE`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tenantId(String tenantId) {
+            return tenantId(Output.of(tenantId));
+        }
+
         public CloudBackupSnapshotExportBucketArgs build() {
             if ($.bucketName == null) {
                 throw new MissingRequiredPropertyException("CloudBackupSnapshotExportBucketArgs", "bucketName");
             }
             if ($.cloudProvider == null) {
                 throw new MissingRequiredPropertyException("CloudBackupSnapshotExportBucketArgs", "cloudProvider");
-            }
-            if ($.iamRoleId == null) {
-                throw new MissingRequiredPropertyException("CloudBackupSnapshotExportBucketArgs", "iamRoleId");
             }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("CloudBackupSnapshotExportBucketArgs", "projectId");

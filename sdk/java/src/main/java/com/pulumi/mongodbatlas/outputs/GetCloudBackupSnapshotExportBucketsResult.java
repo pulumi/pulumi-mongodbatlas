@@ -11,12 +11,12 @@ import java.util.Objects;
 @CustomType
 public final class GetCloudBackupSnapshotExportBucketsResult {
     /**
-     * @return Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+     * @return Name of the bucket that the provided role ID is authorized to access.
      * 
      */
     private String bucketName;
     /**
-     * @return Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+     * @return Name of the provider of the cloud service where Atlas can access the S3 bucket.
      * 
      */
     private String cloudProvider;
@@ -26,21 +26,36 @@ public final class GetCloudBackupSnapshotExportBucketsResult {
      */
     private String exportBucketId;
     /**
-     * @return Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+     * @return Unique identifier of the role that Atlas can use to access the bucket.
      * 
      */
     private String iamRoleId;
+    /**
+     * @return Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container.
+     * 
+     */
+    private String roleId;
+    /**
+     * @return URL that identifies the blob Endpoint of the Azure Blob Storage Account.
+     * 
+     */
+    private String serviceUrl;
+    /**
+     * @return UUID that identifies the Azure Active Directory Tenant ID.
+     * 
+     */
+    private String tenantId;
 
     private GetCloudBackupSnapshotExportBucketsResult() {}
     /**
-     * @return Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+     * @return Name of the bucket that the provided role ID is authorized to access.
      * 
      */
     public String bucketName() {
         return this.bucketName;
     }
     /**
-     * @return Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+     * @return Name of the provider of the cloud service where Atlas can access the S3 bucket.
      * 
      */
     public String cloudProvider() {
@@ -54,11 +69,32 @@ public final class GetCloudBackupSnapshotExportBucketsResult {
         return this.exportBucketId;
     }
     /**
-     * @return Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+     * @return Unique identifier of the role that Atlas can use to access the bucket.
      * 
      */
     public String iamRoleId() {
         return this.iamRoleId;
+    }
+    /**
+     * @return Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container.
+     * 
+     */
+    public String roleId() {
+        return this.roleId;
+    }
+    /**
+     * @return URL that identifies the blob Endpoint of the Azure Blob Storage Account.
+     * 
+     */
+    public String serviceUrl() {
+        return this.serviceUrl;
+    }
+    /**
+     * @return UUID that identifies the Azure Active Directory Tenant ID.
+     * 
+     */
+    public String tenantId() {
+        return this.tenantId;
     }
 
     public static Builder builder() {
@@ -74,6 +110,9 @@ public final class GetCloudBackupSnapshotExportBucketsResult {
         private String cloudProvider;
         private String exportBucketId;
         private String iamRoleId;
+        private String roleId;
+        private String serviceUrl;
+        private String tenantId;
         public Builder() {}
         public Builder(GetCloudBackupSnapshotExportBucketsResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -81,6 +120,9 @@ public final class GetCloudBackupSnapshotExportBucketsResult {
     	      this.cloudProvider = defaults.cloudProvider;
     	      this.exportBucketId = defaults.exportBucketId;
     	      this.iamRoleId = defaults.iamRoleId;
+    	      this.roleId = defaults.roleId;
+    	      this.serviceUrl = defaults.serviceUrl;
+    	      this.tenantId = defaults.tenantId;
         }
 
         @CustomType.Setter
@@ -115,12 +157,39 @@ public final class GetCloudBackupSnapshotExportBucketsResult {
             this.iamRoleId = iamRoleId;
             return this;
         }
+        @CustomType.Setter
+        public Builder roleId(String roleId) {
+            if (roleId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketsResult", "roleId");
+            }
+            this.roleId = roleId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder serviceUrl(String serviceUrl) {
+            if (serviceUrl == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketsResult", "serviceUrl");
+            }
+            this.serviceUrl = serviceUrl;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tenantId(String tenantId) {
+            if (tenantId == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotExportBucketsResult", "tenantId");
+            }
+            this.tenantId = tenantId;
+            return this;
+        }
         public GetCloudBackupSnapshotExportBucketsResult build() {
             final var _resultValue = new GetCloudBackupSnapshotExportBucketsResult();
             _resultValue.bucketName = bucketName;
             _resultValue.cloudProvider = cloudProvider;
             _resultValue.exportBucketId = exportBucketId;
             _resultValue.iamRoleId = iamRoleId;
+            _resultValue.roleId = roleId;
+            _resultValue.serviceUrl = serviceUrl;
+            _resultValue.tenantId = tenantId;
             return _resultValue;
         }
     }

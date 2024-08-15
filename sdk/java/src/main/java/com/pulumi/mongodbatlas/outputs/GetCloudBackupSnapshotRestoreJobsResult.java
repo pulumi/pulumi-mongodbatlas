@@ -19,15 +19,6 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
      */
     private Boolean cancelled;
     /**
-     * @return UTC ISO 8601 formatted point in time when Atlas created the restore job.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    private String createdAt;
-    /**
      * @return Type of restore job to create. Possible values are: automated and download.
      * 
      */
@@ -91,17 +82,6 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
      */
     public Boolean cancelled() {
         return this.cancelled;
-    }
-    /**
-     * @return UTC ISO 8601 formatted point in time when Atlas created the restore job.
-     * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in version 1.18.0.
-     * 
-     */
-    @Deprecated /* This parameter is deprecated and will be removed in version 1.18.0. */
-    public String createdAt() {
-        return this.createdAt;
     }
     /**
      * @return Type of restore job to create. Possible values are: automated and download.
@@ -196,7 +176,6 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
     @CustomType.Builder
     public static final class Builder {
         private Boolean cancelled;
-        private String createdAt;
         private String deliveryType;
         private List<String> deliveryUrls;
         private Boolean expired;
@@ -214,7 +193,6 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
         public Builder(GetCloudBackupSnapshotRestoreJobsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.cancelled = defaults.cancelled;
-    	      this.createdAt = defaults.createdAt;
     	      this.deliveryType = defaults.deliveryType;
     	      this.deliveryUrls = defaults.deliveryUrls;
     	      this.expired = defaults.expired;
@@ -236,14 +214,6 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
               throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "cancelled");
             }
             this.cancelled = cancelled;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder createdAt(String createdAt) {
-            if (createdAt == null) {
-              throw new MissingRequiredPropertyException("GetCloudBackupSnapshotRestoreJobsResult", "createdAt");
-            }
-            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
@@ -356,7 +326,6 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
         public GetCloudBackupSnapshotRestoreJobsResult build() {
             final var _resultValue = new GetCloudBackupSnapshotRestoreJobsResult();
             _resultValue.cancelled = cancelled;
-            _resultValue.createdAt = createdAt;
             _resultValue.deliveryType = deliveryType;
             _resultValue.deliveryUrls = deliveryUrls;
             _resultValue.expired = expired;

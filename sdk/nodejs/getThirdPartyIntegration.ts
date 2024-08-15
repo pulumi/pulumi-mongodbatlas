@@ -36,7 +36,6 @@ export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opt
         "enabled": args.enabled,
         "microsoftTeamsWebhookUrl": args.microsoftTeamsWebhookUrl,
         "projectId": args.projectId,
-        "scheme": args.scheme,
         "serviceDiscovery": args.serviceDiscovery,
         "type": args.type,
         "userName": args.userName,
@@ -60,12 +59,6 @@ export interface GetThirdPartyIntegrationArgs {
      * The unique ID for the project to get all Third-Party service integrations
      */
     projectId: string;
-    /**
-     * Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    scheme?: string;
     /**
      * Indicates which service discovery method is used, either file or http.
      */
@@ -121,12 +114,6 @@ export interface GetThirdPartyIntegrationResult {
      * * `WEBHOOK`
      */
     readonly routingKey: string;
-    /**
-     * Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    readonly scheme?: string;
     /**
      * An optional field for your webhook secret.
      * * `MICROSOFT_TEAMS`
@@ -198,12 +185,6 @@ export interface GetThirdPartyIntegrationOutputArgs {
      * The unique ID for the project to get all Third-Party service integrations
      */
     projectId: pulumi.Input<string>;
-    /**
-     * Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-     *
-     * @deprecated This parameter is deprecated and will be removed in version 1.18.0.
-     */
-    scheme?: pulumi.Input<string>;
     /**
      * Indicates which service discovery method is used, either file or http.
      */

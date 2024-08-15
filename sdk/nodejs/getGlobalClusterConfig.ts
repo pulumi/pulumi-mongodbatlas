@@ -19,32 +19,58 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const test = new mongodbatlas.Cluster("test", {
+ * const test = new mongodbatlas.AdvancedCluster("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     name: "<CLUSTER-NAME>",
- *     cloudBackup: true,
  *     clusterType: "GEOSHARDED",
- *     providerName: "AWS",
- *     providerInstanceSizeName: "M30",
+ *     backupEnabled: true,
  *     replicationSpecs: [
  *         {
  *             zoneName: "Zone 1",
- *             numShards: 2,
- *             regionsConfigs: [{
- *                 regionName: "EU_CENTRAL_1",
- *                 electableNodes: 3,
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M30",
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
  *                 priority: 7,
- *                 readOnlyNodes: 0,
+ *                 regionName: "EU_CENTRAL_1",
+ *             }],
+ *         },
+ *         {
+ *             zoneName: "Zone 1",
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M30",
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
+ *                 priority: 7,
+ *                 regionName: "EU_CENTRAL_1",
  *             }],
  *         },
  *         {
  *             zoneName: "Zone 2",
- *             numShards: 2,
- *             regionsConfigs: [{
- *                 regionName: "US_EAST_2",
- *                 electableNodes: 3,
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M30",
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
  *                 priority: 7,
- *                 readOnlyNodes: 0,
+ *                 regionName: "US_EAST_2",
+ *             }],
+ *         },
+ *         {
+ *             zoneName: "Zone 2",
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M30",
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
+ *                 priority: 7,
+ *                 regionName: "US_EAST_2",
  *             }],
  *         },
  *     ],
@@ -126,32 +152,58 @@ export interface GetGlobalClusterConfigResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const test = new mongodbatlas.Cluster("test", {
+ * const test = new mongodbatlas.AdvancedCluster("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     name: "<CLUSTER-NAME>",
- *     cloudBackup: true,
  *     clusterType: "GEOSHARDED",
- *     providerName: "AWS",
- *     providerInstanceSizeName: "M30",
+ *     backupEnabled: true,
  *     replicationSpecs: [
  *         {
  *             zoneName: "Zone 1",
- *             numShards: 2,
- *             regionsConfigs: [{
- *                 regionName: "EU_CENTRAL_1",
- *                 electableNodes: 3,
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M30",
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
  *                 priority: 7,
- *                 readOnlyNodes: 0,
+ *                 regionName: "EU_CENTRAL_1",
+ *             }],
+ *         },
+ *         {
+ *             zoneName: "Zone 1",
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M30",
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
+ *                 priority: 7,
+ *                 regionName: "EU_CENTRAL_1",
  *             }],
  *         },
  *         {
  *             zoneName: "Zone 2",
- *             numShards: 2,
- *             regionsConfigs: [{
- *                 regionName: "US_EAST_2",
- *                 electableNodes: 3,
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M30",
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
  *                 priority: 7,
- *                 readOnlyNodes: 0,
+ *                 regionName: "US_EAST_2",
+ *             }],
+ *         },
+ *         {
+ *             zoneName: "Zone 2",
+ *             regionConfigs: [{
+ *                 electableSpecs: {
+ *                     instanceSize: "M30",
+ *                     nodeCount: 3,
+ *                 },
+ *                 providerName: "AWS",
+ *                 priority: 7,
+ *                 regionName: "US_EAST_2",
  *             }],
  *         },
  *     ],

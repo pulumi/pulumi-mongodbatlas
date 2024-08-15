@@ -13,6 +13,8 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ### AWS Example
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -22,6 +24,22 @@ import * as utilities from "./utilities";
  *     iamRoleId: "{IAM_ROLE_ID}",
  *     bucketName: "example-bucket",
  *     cloudProvider: "AWS",
+ * });
+ * ```
+ *
+ * ### Azure Example
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
+ *     projectId: "{PROJECT_ID}",
+ *     roleId: "{ROLE_ID}",
+ *     serviceUrl: "{SERVICE_URL}",
+ *     tenantId: "{TENANT_ID}",
+ *     bucketName: "example-bucket",
+ *     cloudProvider: "AZURE",
  * });
  * ```
  *
@@ -63,11 +81,11 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
     }
 
     /**
-     * Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+     * Name of the bucket that the provided role ID is authorized to access.
      */
     public readonly bucketName!: pulumi.Output<string>;
     /**
-     * Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+     * Name of the provider of the cloud service where Atlas can access the S3 bucket.
      */
     public readonly cloudProvider!: pulumi.Output<string>;
     /**
@@ -75,13 +93,25 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
      */
     public /*out*/ readonly exportBucketId!: pulumi.Output<string>;
     /**
-     * Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+     * Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
      */
-    public readonly iamRoleId!: pulumi.Output<string>;
+    public readonly iamRoleId!: pulumi.Output<string | undefined>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
+     */
+    public readonly roleId!: pulumi.Output<string | undefined>;
+    /**
+     * URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
+     */
+    public readonly serviceUrl!: pulumi.Output<string | undefined>;
+    /**
+     * UUID that identifies the Azure Active Directory Tenant ID. Required if `cloudProvider` is set to `AZURE`.
+     */
+    public readonly tenantId!: pulumi.Output<string | undefined>;
 
     /**
      * Create a CloudBackupSnapshotExportBucket resource with the given unique name, arguments, and options.
@@ -101,6 +131,9 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
             resourceInputs["exportBucketId"] = state ? state.exportBucketId : undefined;
             resourceInputs["iamRoleId"] = state ? state.iamRoleId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["roleId"] = state ? state.roleId : undefined;
+            resourceInputs["serviceUrl"] = state ? state.serviceUrl : undefined;
+            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
         } else {
             const args = argsOrState as CloudBackupSnapshotExportBucketArgs | undefined;
             if ((!args || args.bucketName === undefined) && !opts.urn) {
@@ -109,9 +142,6 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
             if ((!args || args.cloudProvider === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'cloudProvider'");
             }
-            if ((!args || args.iamRoleId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'iamRoleId'");
-            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -119,6 +149,9 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
             resourceInputs["cloudProvider"] = args ? args.cloudProvider : undefined;
             resourceInputs["iamRoleId"] = args ? args.iamRoleId : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["roleId"] = args ? args.roleId : undefined;
+            resourceInputs["serviceUrl"] = args ? args.serviceUrl : undefined;
+            resourceInputs["tenantId"] = args ? args.tenantId : undefined;
             resourceInputs["exportBucketId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -131,11 +164,11 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
  */
 export interface CloudBackupSnapshotExportBucketState {
     /**
-     * Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+     * Name of the bucket that the provided role ID is authorized to access.
      */
     bucketName?: pulumi.Input<string>;
     /**
-     * Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+     * Name of the provider of the cloud service where Atlas can access the S3 bucket.
      */
     cloudProvider?: pulumi.Input<string>;
     /**
@@ -143,13 +176,25 @@ export interface CloudBackupSnapshotExportBucketState {
      */
     exportBucketId?: pulumi.Input<string>;
     /**
-     * Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+     * Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
      */
     iamRoleId?: pulumi.Input<string>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
+     */
+    roleId?: pulumi.Input<string>;
+    /**
+     * URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
+     */
+    serviceUrl?: pulumi.Input<string>;
+    /**
+     * UUID that identifies the Azure Active Directory Tenant ID. Required if `cloudProvider` is set to `AZURE`.
+     */
+    tenantId?: pulumi.Input<string>;
 }
 
 /**
@@ -157,19 +202,31 @@ export interface CloudBackupSnapshotExportBucketState {
  */
 export interface CloudBackupSnapshotExportBucketArgs {
     /**
-     * Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+     * Name of the bucket that the provided role ID is authorized to access.
      */
     bucketName: pulumi.Input<string>;
     /**
-     * Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+     * Name of the provider of the cloud service where Atlas can access the S3 bucket.
      */
     cloudProvider: pulumi.Input<string>;
     /**
-     * Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+     * Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
      */
-    iamRoleId: pulumi.Input<string>;
+    iamRoleId?: pulumi.Input<string>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
+     */
+    roleId?: pulumi.Input<string>;
+    /**
+     * URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
+     */
+    serviceUrl?: pulumi.Input<string>;
+    /**
+     * UUID that identifies the Azure Active Directory Tenant ID. Required if `cloudProvider` is set to `AZURE`.
+     */
+    tenantId?: pulumi.Input<string>;
 }

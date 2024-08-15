@@ -68,10 +68,6 @@ type LookupThirdPartyIntegrationArgs struct {
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
-	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	Scheme *string `pulumi:"scheme"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
 	// Third-Party service integration type
@@ -107,10 +103,6 @@ type LookupThirdPartyIntegrationResult struct {
 	// An optional field for your Routing Key.
 	// * `WEBHOOK`
 	RoutingKey string `pulumi:"routingKey"`
-	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	Scheme *string `pulumi:"scheme"`
 	// An optional field for your webhook secret.
 	// * `MICROSOFT_TEAMS`
 	Secret string `pulumi:"secret"`
@@ -149,10 +141,6 @@ type LookupThirdPartyIntegrationOutputArgs struct {
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-	//
-	// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-	Scheme pulumi.StringPtrInput `pulumi:"scheme"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery pulumi.StringPtrInput `pulumi:"serviceDiscovery"`
 	// Third-Party service integration type
@@ -230,13 +218,6 @@ func (o LookupThirdPartyIntegrationResultOutput) Region() pulumi.StringOutput {
 // * `WEBHOOK`
 func (o LookupThirdPartyIntegrationResultOutput) RoutingKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.RoutingKey }).(pulumi.StringOutput)
-}
-
-// Your Prometheus protocol scheme configured for requests. **Note** This attribute is deprecated as it is not being used.
-//
-// Deprecated: This parameter is deprecated and will be removed in version 1.18.0.
-func (o LookupThirdPartyIntegrationResultOutput) Scheme() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) *string { return v.Scheme }).(pulumi.StringPtrOutput)
 }
 
 // An optional field for your webhook secret.

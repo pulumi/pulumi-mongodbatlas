@@ -21,11 +21,6 @@ public final class GetPrivateLinkEndpointServiceEndpoint {
      */
     private String ipAddress;
     /**
-     * @return Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-     * 
-     */
-    private String serviceAttachmentName;
-    /**
      * @return Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      * 
      */
@@ -47,13 +42,6 @@ public final class GetPrivateLinkEndpointServiceEndpoint {
         return this.ipAddress;
     }
     /**
-     * @return Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
-     * 
-     */
-    public String serviceAttachmentName() {
-        return this.serviceAttachmentName;
-    }
-    /**
      * @return Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      * 
      */
@@ -72,14 +60,12 @@ public final class GetPrivateLinkEndpointServiceEndpoint {
     public static final class Builder {
         private String endpointName;
         private String ipAddress;
-        private String serviceAttachmentName;
         private String status;
         public Builder() {}
         public Builder(GetPrivateLinkEndpointServiceEndpoint defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.endpointName = defaults.endpointName;
     	      this.ipAddress = defaults.ipAddress;
-    	      this.serviceAttachmentName = defaults.serviceAttachmentName;
     	      this.status = defaults.status;
         }
 
@@ -100,14 +86,6 @@ public final class GetPrivateLinkEndpointServiceEndpoint {
             return this;
         }
         @CustomType.Setter
-        public Builder serviceAttachmentName(String serviceAttachmentName) {
-            if (serviceAttachmentName == null) {
-              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointServiceEndpoint", "serviceAttachmentName");
-            }
-            this.serviceAttachmentName = serviceAttachmentName;
-            return this;
-        }
-        @CustomType.Setter
         public Builder status(String status) {
             if (status == null) {
               throw new MissingRequiredPropertyException("GetPrivateLinkEndpointServiceEndpoint", "status");
@@ -119,7 +97,6 @@ public final class GetPrivateLinkEndpointServiceEndpoint {
             final var _resultValue = new GetPrivateLinkEndpointServiceEndpoint();
             _resultValue.endpointName = endpointName;
             _resultValue.ipAddress = ipAddress;
-            _resultValue.serviceAttachmentName = serviceAttachmentName;
             _resultValue.status = status;
             return _resultValue;
         }
