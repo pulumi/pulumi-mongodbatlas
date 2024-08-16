@@ -882,7 +882,7 @@ export interface CloudProviderAccessAuthorizationAzure {
 }
 
 export interface CloudProviderAccessAuthorizationFeatureUsage {
-    featureId: {[key: string]: any};
+    featureId: {[key: string]: string};
     featureType: string;
 }
 
@@ -3527,8 +3527,8 @@ export interface GetClusterBiConnectorConfig {
 }
 
 export interface GetClusterConnectionString {
-    awsPrivateLink: {[key: string]: any};
-    awsPrivateLinkSrv: {[key: string]: any};
+    awsPrivateLink: {[key: string]: string};
+    awsPrivateLinkSrv: {[key: string]: string};
     /**
      * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
@@ -3918,8 +3918,8 @@ export interface GetClustersResultBiConnectorConfig {
 }
 
 export interface GetClustersResultConnectionString {
-    awsPrivateLink: {[key: string]: any};
-    awsPrivateLinkSrv: {[key: string]: any};
+    awsPrivateLink: {[key: string]: string};
+    awsPrivateLinkSrv: {[key: string]: string};
     /**
      * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */

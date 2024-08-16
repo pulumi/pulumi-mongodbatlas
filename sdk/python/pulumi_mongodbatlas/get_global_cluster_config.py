@@ -47,7 +47,7 @@ class GetGlobalClusterConfigResult:
 
     @property
     @pulumi.getter(name="customZoneMapping")
-    def custom_zone_mapping(self) -> Mapping[str, Any]:
+    def custom_zone_mapping(self) -> Mapping[str, str]:
         """
         A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         """

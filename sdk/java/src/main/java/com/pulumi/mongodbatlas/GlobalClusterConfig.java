@@ -12,7 +12,6 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigState;
 import com.pulumi.mongodbatlas.outputs.GlobalClusterConfigCustomZoneMapping;
 import com.pulumi.mongodbatlas.outputs.GlobalClusterConfigManagedNamespace;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -146,14 +145,14 @@ public class GlobalClusterConfig extends com.pulumi.resources.CustomResource {
      * A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      * 
      */
-    @Export(name="customZoneMapping", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output<Map<String,Object>> customZoneMapping;
+    @Export(name="customZoneMapping", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> customZoneMapping;
 
     /**
      * @return A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      * 
      */
-    public Output<Map<String,Object>> customZoneMapping() {
+    public Output<Map<String,String>> customZoneMapping() {
         return this.customZoneMapping;
     }
     /**

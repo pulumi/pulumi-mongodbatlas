@@ -5,7 +5,6 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -18,9 +17,9 @@ public final class CloudProviderAccessAuthorizationFeatureUsageArgs extends com.
     public static final CloudProviderAccessAuthorizationFeatureUsageArgs Empty = new CloudProviderAccessAuthorizationFeatureUsageArgs();
 
     @Import(name="featureId")
-    private @Nullable Output<Map<String,Object>> featureId;
+    private @Nullable Output<Map<String,String>> featureId;
 
-    public Optional<Output<Map<String,Object>>> featureId() {
+    public Optional<Output<Map<String,String>>> featureId() {
         return Optional.ofNullable(this.featureId);
     }
 
@@ -56,12 +55,12 @@ public final class CloudProviderAccessAuthorizationFeatureUsageArgs extends com.
             $ = new CloudProviderAccessAuthorizationFeatureUsageArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder featureId(@Nullable Output<Map<String,Object>> featureId) {
+        public Builder featureId(@Nullable Output<Map<String,String>> featureId) {
             $.featureId = featureId;
             return this;
         }
 
-        public Builder featureId(Map<String,Object> featureId) {
+        public Builder featureId(Map<String,String> featureId) {
             return featureId(Output.of(featureId));
         }
 

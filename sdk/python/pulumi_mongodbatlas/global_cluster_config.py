@@ -87,14 +87,14 @@ class GlobalClusterConfigArgs:
 class _GlobalClusterConfigState:
     def __init__(__self__, *,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 custom_zone_mapping: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 custom_zone_mapping: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]] = None,
                  managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering GlobalClusterConfig resources.
         :param pulumi.Input[str] cluster_name: The name of the Global Cluster.
-        :param pulumi.Input[Mapping[str, Any]] custom_zone_mapping: A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_zone_mapping: A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
@@ -124,14 +124,14 @@ class _GlobalClusterConfigState:
 
     @property
     @pulumi.getter(name="customZoneMapping")
-    def custom_zone_mapping(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def custom_zone_mapping(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         """
         return pulumi.get(self, "custom_zone_mapping")
 
     @custom_zone_mapping.setter
-    def custom_zone_mapping(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def custom_zone_mapping(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "custom_zone_mapping", value)
 
     @property
@@ -392,7 +392,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
-            custom_zone_mapping: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            custom_zone_mapping: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]]] = None,
             managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None) -> 'GlobalClusterConfig':
@@ -404,7 +404,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: The name of the Global Cluster.
-        :param pulumi.Input[Mapping[str, Any]] custom_zone_mapping: A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_zone_mapping: A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
@@ -430,7 +430,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="customZoneMapping")
-    def custom_zone_mapping(self) -> pulumi.Output[Mapping[str, Any]]:
+    def custom_zone_mapping(self) -> pulumi.Output[Mapping[str, str]]:
         """
         A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         """

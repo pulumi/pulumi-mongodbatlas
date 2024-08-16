@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigCustomZoneMappingArgs;
 import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigManagedNamespaceArgs;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -40,13 +39,13 @@ public final class GlobalClusterConfigState extends com.pulumi.resources.Resourc
      * 
      */
     @Import(name="customZoneMapping")
-    private @Nullable Output<Map<String,Object>> customZoneMapping;
+    private @Nullable Output<Map<String,String>> customZoneMapping;
 
     /**
      * @return A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      * 
      */
-    public Optional<Output<Map<String,Object>>> customZoneMapping() {
+    public Optional<Output<Map<String,String>>> customZoneMapping() {
         return Optional.ofNullable(this.customZoneMapping);
     }
 
@@ -150,7 +149,7 @@ public final class GlobalClusterConfigState extends com.pulumi.resources.Resourc
          * @return builder
          * 
          */
-        public Builder customZoneMapping(@Nullable Output<Map<String,Object>> customZoneMapping) {
+        public Builder customZoneMapping(@Nullable Output<Map<String,String>> customZoneMapping) {
             $.customZoneMapping = customZoneMapping;
             return this;
         }
@@ -161,7 +160,7 @@ public final class GlobalClusterConfigState extends com.pulumi.resources.Resourc
          * @return builder
          * 
          */
-        public Builder customZoneMapping(Map<String,Object> customZoneMapping) {
+        public Builder customZoneMapping(Map<String,String> customZoneMapping) {
             return customZoneMapping(Output.of(customZoneMapping));
         }
 

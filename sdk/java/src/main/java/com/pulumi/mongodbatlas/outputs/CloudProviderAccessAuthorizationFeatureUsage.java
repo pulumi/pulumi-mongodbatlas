@@ -4,7 +4,6 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -13,11 +12,11 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class CloudProviderAccessAuthorizationFeatureUsage {
-    private @Nullable Map<String,Object> featureId;
+    private @Nullable Map<String,String> featureId;
     private @Nullable String featureType;
 
     private CloudProviderAccessAuthorizationFeatureUsage() {}
-    public Map<String,Object> featureId() {
+    public Map<String,String> featureId() {
         return this.featureId == null ? Map.of() : this.featureId;
     }
     public Optional<String> featureType() {
@@ -33,7 +32,7 @@ public final class CloudProviderAccessAuthorizationFeatureUsage {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable Map<String,Object> featureId;
+        private @Nullable Map<String,String> featureId;
         private @Nullable String featureType;
         public Builder() {}
         public Builder(CloudProviderAccessAuthorizationFeatureUsage defaults) {
@@ -43,7 +42,7 @@ public final class CloudProviderAccessAuthorizationFeatureUsage {
         }
 
         @CustomType.Setter
-        public Builder featureId(@Nullable Map<String,Object> featureId) {
+        public Builder featureId(@Nullable Map<String,String> featureId) {
 
             this.featureId = featureId;
             return this;

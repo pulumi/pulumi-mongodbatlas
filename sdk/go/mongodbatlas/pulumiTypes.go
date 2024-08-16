@@ -6585,8 +6585,8 @@ func (o CloudProviderAccessAuthorizationAzurePtrOutput) TenantId() pulumi.String
 }
 
 type CloudProviderAccessAuthorizationFeatureUsage struct {
-	FeatureId   map[string]interface{} `pulumi:"featureId"`
-	FeatureType *string                `pulumi:"featureType"`
+	FeatureId   map[string]string `pulumi:"featureId"`
+	FeatureType *string           `pulumi:"featureType"`
 }
 
 // CloudProviderAccessAuthorizationFeatureUsageInput is an input type that accepts CloudProviderAccessAuthorizationFeatureUsageArgs and CloudProviderAccessAuthorizationFeatureUsageOutput values.
@@ -6601,7 +6601,7 @@ type CloudProviderAccessAuthorizationFeatureUsageInput interface {
 }
 
 type CloudProviderAccessAuthorizationFeatureUsageArgs struct {
-	FeatureId   pulumi.MapInput       `pulumi:"featureId"`
+	FeatureId   pulumi.StringMapInput `pulumi:"featureId"`
 	FeatureType pulumi.StringPtrInput `pulumi:"featureType"`
 }
 
@@ -6656,8 +6656,8 @@ func (o CloudProviderAccessAuthorizationFeatureUsageOutput) ToCloudProviderAcces
 	return o
 }
 
-func (o CloudProviderAccessAuthorizationFeatureUsageOutput) FeatureId() pulumi.MapOutput {
-	return o.ApplyT(func(v CloudProviderAccessAuthorizationFeatureUsage) map[string]interface{} { return v.FeatureId }).(pulumi.MapOutput)
+func (o CloudProviderAccessAuthorizationFeatureUsageOutput) FeatureId() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CloudProviderAccessAuthorizationFeatureUsage) map[string]string { return v.FeatureId }).(pulumi.StringMapOutput)
 }
 
 func (o CloudProviderAccessAuthorizationFeatureUsageOutput) FeatureType() pulumi.StringPtrOutput {
@@ -28231,8 +28231,8 @@ func (o GetClusterBiConnectorConfigArrayOutput) Index(i pulumi.IntInput) GetClus
 }
 
 type GetClusterConnectionString struct {
-	AwsPrivateLink    map[string]interface{} `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv map[string]interface{} `pulumi:"awsPrivateLinkSrv"`
+	AwsPrivateLink    map[string]string `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv map[string]string `pulumi:"awsPrivateLinkSrv"`
 	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	Private          string                                      `pulumi:"private"`
 	PrivateEndpoints []GetClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
@@ -28264,8 +28264,8 @@ type GetClusterConnectionStringInput interface {
 }
 
 type GetClusterConnectionStringArgs struct {
-	AwsPrivateLink    pulumi.MapInput `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv pulumi.MapInput `pulumi:"awsPrivateLinkSrv"`
+	AwsPrivateLink    pulumi.StringMapInput `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv pulumi.StringMapInput `pulumi:"awsPrivateLinkSrv"`
 	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	Private          pulumi.StringInput                                  `pulumi:"private"`
 	PrivateEndpoints GetClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
@@ -28336,12 +28336,12 @@ func (o GetClusterConnectionStringOutput) ToGetClusterConnectionStringOutputWith
 	return o
 }
 
-func (o GetClusterConnectionStringOutput) AwsPrivateLink() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClusterConnectionString) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
+func (o GetClusterConnectionStringOutput) AwsPrivateLink() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClusterConnectionString) map[string]string { return v.AwsPrivateLink }).(pulumi.StringMapOutput)
 }
 
-func (o GetClusterConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClusterConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
+func (o GetClusterConnectionStringOutput) AwsPrivateLinkSrv() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClusterConnectionString) map[string]string { return v.AwsPrivateLinkSrv }).(pulumi.StringMapOutput)
 }
 
 // [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
@@ -30363,8 +30363,8 @@ func (o GetClustersResultBiConnectorConfigArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type GetClustersResultConnectionString struct {
-	AwsPrivateLink    map[string]interface{} `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv map[string]interface{} `pulumi:"awsPrivateLinkSrv"`
+	AwsPrivateLink    map[string]string `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv map[string]string `pulumi:"awsPrivateLinkSrv"`
 	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	Private          string                                             `pulumi:"private"`
 	PrivateEndpoints []GetClustersResultConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
@@ -30396,8 +30396,8 @@ type GetClustersResultConnectionStringInput interface {
 }
 
 type GetClustersResultConnectionStringArgs struct {
-	AwsPrivateLink    pulumi.MapInput `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv pulumi.MapInput `pulumi:"awsPrivateLinkSrv"`
+	AwsPrivateLink    pulumi.StringMapInput `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv pulumi.StringMapInput `pulumi:"awsPrivateLinkSrv"`
 	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	Private          pulumi.StringInput                                         `pulumi:"private"`
 	PrivateEndpoints GetClustersResultConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
@@ -30468,12 +30468,12 @@ func (o GetClustersResultConnectionStringOutput) ToGetClustersResultConnectionSt
 	return o
 }
 
-func (o GetClustersResultConnectionStringOutput) AwsPrivateLink() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionString) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
+func (o GetClustersResultConnectionStringOutput) AwsPrivateLink() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionString) map[string]string { return v.AwsPrivateLink }).(pulumi.StringMapOutput)
 }
 
-func (o GetClustersResultConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
+func (o GetClustersResultConnectionStringOutput) AwsPrivateLinkSrv() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionString) map[string]string { return v.AwsPrivateLinkSrv }).(pulumi.StringMapOutput)
 }
 
 // [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.

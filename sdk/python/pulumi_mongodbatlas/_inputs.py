@@ -3435,7 +3435,7 @@ class CloudProviderAccessAuthorizationAzureArgs:
 @pulumi.input_type
 class CloudProviderAccessAuthorizationFeatureUsageArgs:
     def __init__(__self__, *,
-                 feature_id: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 feature_id: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  feature_type: Optional[pulumi.Input[str]] = None):
         if feature_id is not None:
             pulumi.set(__self__, "feature_id", feature_id)
@@ -3444,11 +3444,11 @@ class CloudProviderAccessAuthorizationFeatureUsageArgs:
 
     @property
     @pulumi.getter(name="featureId")
-    def feature_id(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def feature_id(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "feature_id")
 
     @feature_id.setter
-    def feature_id(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def feature_id(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "feature_id", value)
 
     @property
