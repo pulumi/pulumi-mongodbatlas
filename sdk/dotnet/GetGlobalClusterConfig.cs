@@ -355,7 +355,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> CustomZoneMapping;
+        public readonly ImmutableDictionary<string, string> CustomZoneMapping;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -370,7 +370,7 @@ namespace Pulumi.Mongodbatlas
         private GetGlobalClusterConfigResult(
             string clusterName,
 
-            ImmutableDictionary<string, object> customZoneMapping,
+            ImmutableDictionary<string, string> customZoneMapping,
 
             string id,
 

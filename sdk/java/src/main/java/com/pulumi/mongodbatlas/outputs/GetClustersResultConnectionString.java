@@ -6,7 +6,6 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultConnectionStringPrivateEndpoint;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +13,8 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClustersResultConnectionString {
-    private Map<String,Object> awsPrivateLink;
-    private Map<String,Object> awsPrivateLinkSrv;
+    private Map<String,String> awsPrivateLink;
+    private Map<String,String> awsPrivateLinkSrv;
     /**
      * @return [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * 
@@ -47,10 +46,10 @@ public final class GetClustersResultConnectionString {
     private String standardSrv;
 
     private GetClustersResultConnectionString() {}
-    public Map<String,Object> awsPrivateLink() {
+    public Map<String,String> awsPrivateLink() {
         return this.awsPrivateLink;
     }
-    public Map<String,Object> awsPrivateLinkSrv() {
+    public Map<String,String> awsPrivateLinkSrv() {
         return this.awsPrivateLinkSrv;
     }
     /**
@@ -102,8 +101,8 @@ public final class GetClustersResultConnectionString {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Map<String,Object> awsPrivateLink;
-        private Map<String,Object> awsPrivateLinkSrv;
+        private Map<String,String> awsPrivateLink;
+        private Map<String,String> awsPrivateLinkSrv;
         private String private_;
         private List<GetClustersResultConnectionStringPrivateEndpoint> privateEndpoints;
         private String privateSrv;
@@ -122,7 +121,7 @@ public final class GetClustersResultConnectionString {
         }
 
         @CustomType.Setter
-        public Builder awsPrivateLink(Map<String,Object> awsPrivateLink) {
+        public Builder awsPrivateLink(Map<String,String> awsPrivateLink) {
             if (awsPrivateLink == null) {
               throw new MissingRequiredPropertyException("GetClustersResultConnectionString", "awsPrivateLink");
             }
@@ -130,7 +129,7 @@ public final class GetClustersResultConnectionString {
             return this;
         }
         @CustomType.Setter
-        public Builder awsPrivateLinkSrv(Map<String,Object> awsPrivateLinkSrv) {
+        public Builder awsPrivateLinkSrv(Map<String,String> awsPrivateLinkSrv) {
             if (awsPrivateLinkSrv == null) {
               throw new MissingRequiredPropertyException("GetClustersResultConnectionString", "awsPrivateLinkSrv");
             }

@@ -101,8 +101,11 @@ def get_network_containers(project_id: Optional[str] = None,
         atlas_cidr_block="10.8.0.0/21",
         provider_name="AWS",
         region_name="US_EAST_1")
-    test = pulumi.Output.all(test_network_container.project_id, test_network_container.provider_name).apply(lambda project_id, provider_name: mongodbatlas.get_network_containers_output(project_id=project_id,
-        provider_name=provider_name))
+    test = pulumi.Output.all(
+        project_id=test_network_container.project_id,
+        provider_name=test_network_container.provider_name
+    ).apply(lambda resolved_outputs: mongodbatlas.get_network_containers_output(project_id=resolved_outputs['project_id'],
+        provider_name=resolved_outputs['provider_name']))
     ```
 
 
@@ -146,8 +149,11 @@ def get_network_containers_output(project_id: Optional[pulumi.Input[str]] = None
         atlas_cidr_block="10.8.0.0/21",
         provider_name="AWS",
         region_name="US_EAST_1")
-    test = pulumi.Output.all(test_network_container.project_id, test_network_container.provider_name).apply(lambda project_id, provider_name: mongodbatlas.get_network_containers_output(project_id=project_id,
-        provider_name=provider_name))
+    test = pulumi.Output.all(
+        project_id=test_network_container.project_id,
+        provider_name=test_network_container.provider_name
+    ).apply(lambda resolved_outputs: mongodbatlas.get_network_containers_output(project_id=resolved_outputs['project_id'],
+        provider_name=resolved_outputs['provider_name']))
     ```
 
 

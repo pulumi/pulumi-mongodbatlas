@@ -882,7 +882,7 @@ export interface CloudProviderAccessAuthorizationAzure {
 }
 
 export interface CloudProviderAccessAuthorizationFeatureUsage {
-    featureId?: pulumi.Input<{[key: string]: any}>;
+    featureId?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     featureType?: pulumi.Input<string>;
 }
 

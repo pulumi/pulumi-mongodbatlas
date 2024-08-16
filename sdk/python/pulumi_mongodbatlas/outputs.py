@@ -3712,7 +3712,7 @@ class CloudProviderAccessAuthorizationFeatureUsage(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 feature_id: Optional[Mapping[str, Any]] = None,
+                 feature_id: Optional[Mapping[str, str]] = None,
                  feature_type: Optional[str] = None):
         if feature_id is not None:
             pulumi.set(__self__, "feature_id", feature_id)
@@ -3721,7 +3721,7 @@ class CloudProviderAccessAuthorizationFeatureUsage(dict):
 
     @property
     @pulumi.getter(name="featureId")
-    def feature_id(self) -> Optional[Mapping[str, Any]]:
+    def feature_id(self) -> Optional[Mapping[str, str]]:
         return pulumi.get(self, "feature_id")
 
     @property
@@ -13574,8 +13574,8 @@ class GetClusterBiConnectorConfigResult(dict):
 @pulumi.output_type
 class GetClusterConnectionStringResult(dict):
     def __init__(__self__, *,
-                 aws_private_link: Mapping[str, Any],
-                 aws_private_link_srv: Mapping[str, Any],
+                 aws_private_link: Mapping[str, str],
+                 aws_private_link_srv: Mapping[str, str],
                  private: str,
                  private_endpoints: Sequence['outputs.GetClusterConnectionStringPrivateEndpointResult'],
                  private_srv: str,
@@ -13605,12 +13605,12 @@ class GetClusterConnectionStringResult(dict):
 
     @property
     @pulumi.getter(name="awsPrivateLink")
-    def aws_private_link(self) -> Mapping[str, Any]:
+    def aws_private_link(self) -> Mapping[str, str]:
         return pulumi.get(self, "aws_private_link")
 
     @property
     @pulumi.getter(name="awsPrivateLinkSrv")
-    def aws_private_link_srv(self) -> Mapping[str, Any]:
+    def aws_private_link_srv(self) -> Mapping[str, str]:
         return pulumi.get(self, "aws_private_link_srv")
 
     @property
@@ -14702,8 +14702,8 @@ class GetClustersResultBiConnectorConfigResult(dict):
 @pulumi.output_type
 class GetClustersResultConnectionStringResult(dict):
     def __init__(__self__, *,
-                 aws_private_link: Mapping[str, Any],
-                 aws_private_link_srv: Mapping[str, Any],
+                 aws_private_link: Mapping[str, str],
+                 aws_private_link_srv: Mapping[str, str],
                  private: str,
                  private_endpoints: Sequence['outputs.GetClustersResultConnectionStringPrivateEndpointResult'],
                  private_srv: str,
@@ -14733,12 +14733,12 @@ class GetClustersResultConnectionStringResult(dict):
 
     @property
     @pulumi.getter(name="awsPrivateLink")
-    def aws_private_link(self) -> Mapping[str, Any]:
+    def aws_private_link(self) -> Mapping[str, str]:
         return pulumi.get(self, "aws_private_link")
 
     @property
     @pulumi.getter(name="awsPrivateLinkSrv")
-    def aws_private_link_srv(self) -> Mapping[str, Any]:
+    def aws_private_link_srv(self) -> Mapping[str, str]:
         return pulumi.get(self, "aws_private_link_srv")
 
     @property

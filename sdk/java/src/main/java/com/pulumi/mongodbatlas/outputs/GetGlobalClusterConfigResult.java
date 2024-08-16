@@ -6,7 +6,6 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetGlobalClusterConfigManagedNamespace;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +18,7 @@ public final class GetGlobalClusterConfigResult {
      * @return A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      * 
      */
-    private Map<String,Object> customZoneMapping;
+    private Map<String,String> customZoneMapping;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -40,7 +39,7 @@ public final class GetGlobalClusterConfigResult {
      * @return A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      * 
      */
-    public Map<String,Object> customZoneMapping() {
+    public Map<String,String> customZoneMapping() {
         return this.customZoneMapping;
     }
     /**
@@ -71,7 +70,7 @@ public final class GetGlobalClusterConfigResult {
     @CustomType.Builder
     public static final class Builder {
         private String clusterName;
-        private Map<String,Object> customZoneMapping;
+        private Map<String,String> customZoneMapping;
         private String id;
         private List<GetGlobalClusterConfigManagedNamespace> managedNamespaces;
         private String projectId;
@@ -94,7 +93,7 @@ public final class GetGlobalClusterConfigResult {
             return this;
         }
         @CustomType.Setter
-        public Builder customZoneMapping(Map<String,Object> customZoneMapping) {
+        public Builder customZoneMapping(Map<String,String> customZoneMapping) {
             if (customZoneMapping == null) {
               throw new MissingRequiredPropertyException("GetGlobalClusterConfigResult", "customZoneMapping");
             }

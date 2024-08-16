@@ -118,7 +118,7 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
     /**
      * A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      */
-    public /*out*/ readonly customZoneMapping!: pulumi.Output<{[key: string]: any}>;
+    public /*out*/ readonly customZoneMapping!: pulumi.Output<{[key: string]: string}>;
     /**
      * Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
      */
@@ -180,7 +180,7 @@ export interface GlobalClusterConfigState {
     /**
      * A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      */
-    customZoneMapping?: pulumi.Input<{[key: string]: any}>;
+    customZoneMapping?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
      */
