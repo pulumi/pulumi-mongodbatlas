@@ -349,7 +349,7 @@ def get_advanced_cluster(name: Optional[str] = None,
         name=example_advanced_cluster.name)
     ```
 
-    ## Example using latest sharding schema with independent shard scaling in the cluster
+    ## Example using latest sharding configurations with independent shard scaling in the cluster
 
     ```python
     import pulumi
@@ -474,7 +474,7 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
         name=example_advanced_cluster.name)
     ```
 
-    ## Example using latest sharding schema with independent shard scaling in the cluster
+    ## Example using latest sharding configurations with independent shard scaling in the cluster
 
     ```python
     import pulumi

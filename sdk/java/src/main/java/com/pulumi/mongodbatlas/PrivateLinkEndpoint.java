@@ -15,18 +15,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.PrivateLinkEndpoint
- * 
- * `mongodbatlas.PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a [Private Endpoint Service](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) that can be created in an Atlas project.
- * 
- * &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
- *   * Organization Owner
- *   * Project Owner
- * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
- * 
- * &gt; **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.
- * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -74,7 +62,7 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
  * ```
- * See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//)
+ * See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one/)
  * 
  */
 @ResourceType(type="mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint")

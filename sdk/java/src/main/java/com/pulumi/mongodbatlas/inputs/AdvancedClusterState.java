@@ -311,14 +311,14 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
      * 
      */
     @Import(name="replicationSpecs")
     private @Nullable Output<List<AdvancedClusterReplicationSpecArgs>> replicationSpecs;
 
     /**
-     * @return List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+     * @return List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
      * 
      */
     public Optional<Output<List<AdvancedClusterReplicationSpecArgs>>> replicationSpecs() {
@@ -888,7 +888,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
          * 
          * @return builder
          * 
@@ -899,7 +899,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
          * 
          * @return builder
          * 
@@ -909,7 +909,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
          * 
          * @return builder
          * 

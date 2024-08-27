@@ -222,11 +222,6 @@ class PushBasedLogExport(pulumi.CustomResource):
                  timeouts: Optional[pulumi.Input[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
-        ## # Resource: PushBasedLogExport
-
-        `PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable & disable the project level settings for the push-based log export feature. Using this resource you
-        can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.
-
         ## Example Usage
 
         ### S
@@ -272,11 +267,6 @@ class PushBasedLogExport(pulumi.CustomResource):
                  args: PushBasedLogExportArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: PushBasedLogExport
-
-        `PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable & disable the project level settings for the push-based log export feature. Using this resource you
-        can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.
-
         ## Example Usage
 
         ### S

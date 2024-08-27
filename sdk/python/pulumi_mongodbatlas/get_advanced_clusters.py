@@ -113,7 +113,7 @@ def get_advanced_clusters(project_id: Optional[str] = None,
     example = mongodbatlas.get_advanced_clusters_output(project_id=example_advanced_cluster.project_id)
     ```
 
-    ## Example using latest sharding schema with independent shard scaling in the cluster
+    ## Example using latest sharding configurations with independent shard scaling in the cluster
 
     ```python
     import pulumi
@@ -211,7 +211,7 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
     example = mongodbatlas.get_advanced_clusters_output(project_id=example_advanced_cluster.project_id)
     ```
 
-    ## Example using latest sharding schema with independent shard scaling in the cluster
+    ## Example using latest sharding configurations with independent shard scaling in the cluster
 
     ```python
     import pulumi

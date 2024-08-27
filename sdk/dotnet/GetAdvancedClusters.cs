@@ -67,7 +67,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ## Example using latest sharding schema with independent shard scaling in the cluster
+        /// ## Example using latest sharding configurations with independent shard scaling in the cluster
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -193,7 +193,7 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ## Example using latest sharding schema with independent shard scaling in the cluster
+        /// ## Example using latest sharding configurations with independent shard scaling in the cluster
         /// 
         /// ```csharp
         /// using System.Collections.Generic;

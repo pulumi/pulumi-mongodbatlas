@@ -483,6 +483,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ~&gt; __IMPORTANT:__
     /// \n\n &amp;#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
+    /// \n\n &amp;#8226;  Note: The first time `pulumi up` command is run __after__ updating the configuration of an imported cluster, you may receive a `500 Internal Server Error (Error code: "SERVICE_UNAVAILABLE")` error. This is a known temporary issue. If you encounter this, please re-run `pulumi up` and this time the update should succeed.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/advancedCluster:AdvancedCluster")]
     public partial class AdvancedCluster : global::Pulumi.CustomResource
@@ -599,7 +600,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         /// </summary>
         [Output("replicationSpecs")]
         public Output<ImmutableArray<Outputs.AdvancedClusterReplicationSpec>> ReplicationSpecs { get; private set; } = null!;
@@ -796,7 +797,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterReplicationSpecArgs>? _replicationSpecs;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecArgs> ReplicationSpecs
         {
@@ -978,7 +979,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterReplicationSpecGetArgs>? _replicationSpecs;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecGetArgs> ReplicationSpecs
         {

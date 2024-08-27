@@ -477,6 +477,7 @@ import (
 //
 // ~> __IMPORTANT:__
 // \n\n &#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
+// \n\n &#8226;  Note: The first time `pulumi up` command is run __after__ updating the configuration of an imported cluster, you may receive a `500 Internal Server Error (Error code: "SERVICE_UNAVAILABLE")` error. This is a known temporary issue. If you encounter this, please re-run `pulumi up` and this time the update should succeed.
 type AdvancedCluster struct {
 	pulumi.CustomResourceState
 
@@ -529,7 +530,7 @@ type AdvancedCluster struct {
 	PitEnabled pulumi.BoolOutput `pulumi:"pitEnabled"`
 	// Unique ID for the project to create the database user.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
 	ReplicationSpecs AdvancedClusterReplicationSpecArrayOutput `pulumi:"replicationSpecs"`
 	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
 	RetainBackupsEnabled pulumi.BoolPtrOutput `pulumi:"retainBackupsEnabled"`
@@ -642,7 +643,7 @@ type advancedClusterState struct {
 	PitEnabled *bool `pulumi:"pitEnabled"`
 	// Unique ID for the project to create the database user.
 	ProjectId *string `pulumi:"projectId"`
-	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
 	ReplicationSpecs []AdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
 	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
 	RetainBackupsEnabled *bool `pulumi:"retainBackupsEnabled"`
@@ -717,7 +718,7 @@ type AdvancedClusterState struct {
 	PitEnabled pulumi.BoolPtrInput
 	// Unique ID for the project to create the database user.
 	ProjectId pulumi.StringPtrInput
-	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
 	ReplicationSpecs AdvancedClusterReplicationSpecArrayInput
 	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
 	RetainBackupsEnabled pulumi.BoolPtrInput
@@ -789,7 +790,7 @@ type advancedClusterArgs struct {
 	PitEnabled *bool `pulumi:"pitEnabled"`
 	// Unique ID for the project to create the database user.
 	ProjectId string `pulumi:"projectId"`
-	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
 	ReplicationSpecs []AdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
 	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
 	RetainBackupsEnabled *bool `pulumi:"retainBackupsEnabled"`
@@ -849,7 +850,7 @@ type AdvancedClusterArgs struct {
 	PitEnabled pulumi.BoolPtrInput
 	// Unique ID for the project to create the database user.
 	ProjectId pulumi.StringInput
-	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
 	ReplicationSpecs AdvancedClusterReplicationSpecArrayInput
 	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
 	RetainBackupsEnabled pulumi.BoolPtrInput
@@ -1055,7 +1056,7 @@ func (o AdvancedClusterOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replicationSpec `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
 func (o AdvancedClusterOutput) ReplicationSpecs() AdvancedClusterReplicationSpecArrayOutput {
 	return o.ApplyT(func(v *AdvancedCluster) AdvancedClusterReplicationSpecArrayOutput { return v.ReplicationSpecs }).(AdvancedClusterReplicationSpecArrayOutput)
 }

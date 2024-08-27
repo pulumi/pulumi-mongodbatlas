@@ -44,7 +44,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ## Example using latest sharding schema with independent shard scaling in the cluster
+ * ## Example using latest sharding configurations with independent shard scaling in the cluster
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -165,7 +165,7 @@ export interface GetAdvancedClustersResult {
  * });
  * ```
  *
- * ## Example using latest sharding schema with independent shard scaling in the cluster
+ * ## Example using latest sharding configurations with independent shard scaling in the cluster
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

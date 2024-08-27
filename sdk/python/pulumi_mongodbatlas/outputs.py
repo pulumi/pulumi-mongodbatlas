@@ -8023,7 +8023,7 @@ class StreamConnectionDbRoleToExecute(dict):
                  role: str,
                  type: str):
         """
-        :param str role: The name of the role to use. Can be a built in role or a custom role.
+        :param str role: The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
         :param str type: Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
         """
         pulumi.set(__self__, "role", role)
@@ -8033,7 +8033,7 @@ class StreamConnectionDbRoleToExecute(dict):
     @pulumi.getter
     def role(self) -> str:
         """
-        The name of the role to use. Can be a built in role or a custom role.
+        The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
         """
         return pulumi.get(self, "role")
 

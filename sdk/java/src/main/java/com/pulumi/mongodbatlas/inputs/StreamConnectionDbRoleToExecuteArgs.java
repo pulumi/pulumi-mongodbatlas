@@ -15,14 +15,14 @@ public final class StreamConnectionDbRoleToExecuteArgs extends com.pulumi.resour
     public static final StreamConnectionDbRoleToExecuteArgs Empty = new StreamConnectionDbRoleToExecuteArgs();
 
     /**
-     * The name of the role to use. Can be a built in role or a custom role.
+     * The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
      * 
      */
     @Import(name="role", required=true)
     private Output<String> role;
 
     /**
-     * @return The name of the role to use. Can be a built in role or a custom role.
+     * @return The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
      * 
      */
     public Output<String> role() {
@@ -70,7 +70,7 @@ public final class StreamConnectionDbRoleToExecuteArgs extends com.pulumi.resour
         }
 
         /**
-         * @param role The name of the role to use. Can be a built in role or a custom role.
+         * @param role The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class StreamConnectionDbRoleToExecuteArgs extends com.pulumi.resour
         }
 
         /**
-         * @param role The name of the role to use. Can be a built in role or a custom role.
+         * @param role The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
          * 
          * @return builder
          * 
