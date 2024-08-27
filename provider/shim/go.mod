@@ -7,7 +7,7 @@ toolchain go1.22.1
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.10.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
-	github.com/mongodb/terraform-provider-mongodbatlas v1.18.0
+	github.com/mongodb/terraform-provider-mongodbatlas v1.18.1
 )
 
 require (

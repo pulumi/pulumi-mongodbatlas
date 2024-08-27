@@ -580,8 +580,8 @@ github.com/mitchellh/reflectwalk v1.0.2 h1:G2LzWKi524PWgd3mLHV8Y5k7s6XUvT0Gef6zx
 github.com/mitchellh/reflectwalk v1.0.2/go.mod h1:mSTlrgnPZtwu0c4WaC2kGObEpuNDbx0jmZXqmk4esnw=
 github.com/mongodb-forks/digest v1.1.0 h1:7eUdsR1BtqLv0mdNm4OXs6ddWvR4X2/OsLwdKksrOoc=
 github.com/mongodb-forks/digest v1.1.0/go.mod h1:rb+EX8zotClD5Dj4NdgxnJXG9nwrlx3NWKJ8xttz1Dg=
-github.com/mongodb/terraform-provider-mongodbatlas v1.18.0 h1:+s0HHuUxcWTvWO1imTQWd6OgRUzbgv1PaMHtoK0kJn0=
-github.com/mongodb/terraform-provider-mongodbatlas v1.18.0/go.mod h1:0NV1vN+w2FH4adHFrjGIwMDYqDCiFgqzHMqjbJiVaVc=
+github.com/mongodb/terraform-provider-mongodbatlas v1.18.1 h1:LJV4Ze8tU05LR4FRGICiCViH13tIg43lKh0RZggGjWM=
+github.com/mongodb/terraform-provider-mongodbatlas v1.18.1/go.mod h1:0NV1vN+w2FH4adHFrjGIwMDYqDCiFgqzHMqjbJiVaVc=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=
 github.com/oklog/run v1.0.0 h1:Ru7dDtJNOyC66gQ5dQmaCa0qIsAUFY3sFpK1Xk8igrw=
 github.com/oklog/run v1.0.0/go.mod h1:dlhp/R75TPv97u0XWUtDeV/lRKWPKSdTuV0TZvrmrQA=
