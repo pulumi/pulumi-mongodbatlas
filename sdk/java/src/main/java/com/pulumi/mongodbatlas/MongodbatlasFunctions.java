@@ -804,7 +804,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Example using latest sharding schema with independent shard scaling in the cluster
+     * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -947,7 +947,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Example using latest sharding schema with independent shard scaling in the cluster
+     * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1090,7 +1090,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Example using latest sharding schema with independent shard scaling in the cluster
+     * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1233,7 +1233,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Example using latest sharding schema with independent shard scaling in the cluster
+     * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1375,7 +1375,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Example using latest sharding schema with independent shard scaling in the cluster
+     * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1517,7 +1517,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Example using latest sharding schema with independent shard scaling in the cluster
+     * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1659,7 +1659,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Example using latest sharding schema with independent shard scaling in the cluster
+     * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1801,7 +1801,7 @@ public final class MongodbatlasFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ## Example using latest sharding schema with independent shard scaling in the cluster
+     * ## Example using latest sharding configurations with independent shard scaling in the cluster
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>

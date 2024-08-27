@@ -16934,7 +16934,7 @@ func (o StreamConnectionAuthenticationPtrOutput) Username() pulumi.StringPtrOutp
 }
 
 type StreamConnectionDbRoleToExecute struct {
-	// The name of the role to use. Can be a built in role or a custom role.
+	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role string `pulumi:"role"`
 	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
 	Type string `pulumi:"type"`
@@ -16952,7 +16952,7 @@ type StreamConnectionDbRoleToExecuteInput interface {
 }
 
 type StreamConnectionDbRoleToExecuteArgs struct {
-	// The name of the role to use. Can be a built in role or a custom role.
+	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role pulumi.StringInput `pulumi:"role"`
 	// Type of connection. Can be either `Cluster`, `Kafka` or `Sample`.
 	Type pulumi.StringInput `pulumi:"type"`
@@ -17035,7 +17035,7 @@ func (o StreamConnectionDbRoleToExecuteOutput) ToStreamConnectionDbRoleToExecute
 	}).(StreamConnectionDbRoleToExecutePtrOutput)
 }
 
-// The name of the role to use. Can be a built in role or a custom role.
+// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 func (o StreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
 }
@@ -17069,7 +17069,7 @@ func (o StreamConnectionDbRoleToExecutePtrOutput) Elem() StreamConnectionDbRoleT
 	}).(StreamConnectionDbRoleToExecuteOutput)
 }
 
-// The name of the role to use. Can be a built in role or a custom role.
+// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 func (o StreamConnectionDbRoleToExecutePtrOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionDbRoleToExecute) *string {
 		if v == nil {

@@ -16,11 +16,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.PushBasedLogExport
- * 
- * `mongodbatlas.PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable &amp; disable the project level settings for the push-based log export feature. Using this resource you
- * can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.
- * 
  * ## Example Usage
  * 
  * ### S

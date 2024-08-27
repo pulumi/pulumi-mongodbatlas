@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class StreamConnectionDbRoleToExecute
     {
         /// <summary>
-        /// The name of the role to use. Can be a built in role or a custom role.
+        /// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
         /// </summary>
         public readonly string Role;
         /// <summary>

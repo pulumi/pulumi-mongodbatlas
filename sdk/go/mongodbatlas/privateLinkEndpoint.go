@@ -12,18 +12,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: PrivateLinkEndpoint
-//
-// `PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a [Private Endpoint Service](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) that can be created in an Atlas project.
-//
-// > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
-//   - Organization Owner
-//   - Project Owner
-//
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
-// > **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.
-//
 // ## Example Usage
 //
 // ```go
@@ -62,7 +50,7 @@ import (
 // ```sh
 // $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
 // ```
-// See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//)
+// See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one/)
 type PrivateLinkEndpoint struct {
 	pulumi.CustomResourceState
 

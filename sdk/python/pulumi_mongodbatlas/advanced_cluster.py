@@ -44,7 +44,7 @@ class AdvancedClusterArgs:
                - `SHARDED`	Sharded cluster
                - `GEOSHARDED` Global Cluster
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[str] accept_data_risks_and_force_replica_set_reconfig: If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         :param pulumi.Input[bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
@@ -147,7 +147,7 @@ class AdvancedClusterArgs:
     @pulumi.getter(name="replicationSpecs")
     def replication_specs(self) -> pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]]:
         """
-        List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+        List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         """
         return pulumi.get(self, "replication_specs")
 
@@ -423,7 +423,7 @@ class _AdvancedClusterState:
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[str] state_name: Current state of the cluster. The possible states are:
@@ -722,7 +722,7 @@ class _AdvancedClusterState:
     @pulumi.getter(name="replicationSpecs")
     def replication_specs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]]]:
         """
-        List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+        List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         """
         return pulumi.get(self, "replication_specs")
 
@@ -1170,6 +1170,7 @@ class AdvancedCluster(pulumi.CustomResource):
 
         ~> __IMPORTANT:__
         \\n\\n &#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
+        \\n\\n &#8226;  Note: The first time `pulumi up` command is run __after__ updating the configuration of an imported cluster, you may receive a `500 Internal Server Error (Error code: "SERVICE_UNAVAILABLE")` error. This is a known temporary issue. If you encounter this, please re-run `pulumi up` and this time the update should succeed.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1197,7 +1198,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterTagArgs', 'AdvancedClusterTagArgsDict']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -1544,6 +1545,7 @@ class AdvancedCluster(pulumi.CustomResource):
 
         ~> __IMPORTANT:__
         \\n\\n &#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
+        \\n\\n &#8226;  Note: The first time `pulumi up` command is run __after__ updating the configuration of an imported cluster, you may receive a `500 Internal Server Error (Error code: "SERVICE_UNAVAILABLE")` error. This is a known temporary issue. If you encounter this, please re-run `pulumi up` and this time the update should succeed.
 
         :param str resource_name: The name of the resource.
         :param AdvancedClusterArgs args: The arguments to use to populate this resource's properties.
@@ -1689,7 +1691,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[str] project_id: Unique ID for the project to create the database user.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         :param pulumi.Input[bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
         :param pulumi.Input[str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[str] state_name: Current state of the cluster. The possible states are:
@@ -1890,7 +1892,7 @@ class AdvancedCluster(pulumi.CustomResource):
     @pulumi.getter(name="replicationSpecs")
     def replication_specs(self) -> pulumi.Output[Sequence['outputs.AdvancedClusterReplicationSpec']]:
         """
-        List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding schema), then each object represents a zone with one or more shards. See below
+        List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each replication_spec `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. See below
         """
         return pulumi.get(self, "replication_specs")
 
